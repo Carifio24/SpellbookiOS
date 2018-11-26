@@ -14,6 +14,17 @@
 		397EE97321ACA86800B116B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 397EE97121ACA86800B116B0 /* LaunchScreen.storyboard */; };
 		397EE97E21ACA86800B116B0 /* SpellbookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE97D21ACA86800B116B0 /* SpellbookTests.swift */; };
 		397EE98921ACA86900B116B0 /* SpellbookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE98821ACA86900B116B0 /* SpellbookUITests.swift */; };
+		397EE9A121ACAF9C00B116B0 /* Spell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE99621ACAF9B00B116B0 /* Spell.swift */; };
+		397EE9A221ACAF9C00B116B0 /* School.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE99721ACAF9B00B116B0 /* School.swift */; };
+		397EE9A321ACAF9C00B116B0 /* SpellbookError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE99821ACAF9B00B116B0 /* SpellbookError.swift */; };
+		397EE9A421ACAF9C00B116B0 /* SpellParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE99921ACAF9B00B116B0 /* SpellParse.swift */; };
+		397EE9A521ACAF9C00B116B0 /* CasterClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE99A21ACAF9B00B116B0 /* CasterClass.swift */; };
+		397EE9A621ACAF9C00B116B0 /* Spells.json in Resources */ = {isa = PBXBuildFile; fileRef = 397EE99B21ACAF9C00B116B0 /* Spells.json */; };
+		397EE9A721ACAF9C00B116B0 /* SubClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE99C21ACAF9C00B116B0 /* SubClass.swift */; };
+		397EE9A821ACAF9C00B116B0 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE99D21ACAF9C00B116B0 /* Util.swift */; };
+		397EE9A921ACAF9C00B116B0 /* Spellbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE99E21ACAF9C00B116B0 /* Spellbook.swift */; };
+		397EE9AA21ACAF9C00B116B0 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE99F21ACAF9C00B116B0 /* Source.swift */; };
+		397EE9AB21ACAF9C00B116B0 /* SpellComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE9A021ACAF9C00B116B0 /* SpellComparison.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +58,17 @@
 		397EE98421ACA86900B116B0 /* SpellbookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpellbookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		397EE98821ACA86900B116B0 /* SpellbookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellbookUITests.swift; sourceTree = "<group>"; };
 		397EE98A21ACA86900B116B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		397EE99621ACAF9B00B116B0 /* Spell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spell.swift; sourceTree = "<group>"; };
+		397EE99721ACAF9B00B116B0 /* School.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = School.swift; sourceTree = "<group>"; };
+		397EE99821ACAF9B00B116B0 /* SpellbookError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellbookError.swift; sourceTree = "<group>"; };
+		397EE99921ACAF9B00B116B0 /* SpellParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellParse.swift; sourceTree = "<group>"; };
+		397EE99A21ACAF9B00B116B0 /* CasterClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CasterClass.swift; sourceTree = "<group>"; };
+		397EE99B21ACAF9C00B116B0 /* Spells.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Spells.json; sourceTree = "<group>"; };
+		397EE99C21ACAF9C00B116B0 /* SubClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubClass.swift; sourceTree = "<group>"; };
+		397EE99D21ACAF9C00B116B0 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		397EE99E21ACAF9C00B116B0 /* Spellbook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spellbook.swift; sourceTree = "<group>"; };
+		397EE99F21ACAF9C00B116B0 /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
+		397EE9A021ACAF9C00B116B0 /* SpellComparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellComparison.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +122,17 @@
 				397EE96821ACA86400B116B0 /* AppDelegate.swift */,
 				397EE96A21ACA86400B116B0 /* ViewController.swift */,
 				397EE96C21ACA86400B116B0 /* Main.storyboard */,
+				397EE99A21ACAF9B00B116B0 /* CasterClass.swift */,
+				397EE99721ACAF9B00B116B0 /* School.swift */,
+				397EE99F21ACAF9C00B116B0 /* Source.swift */,
+				397EE99621ACAF9B00B116B0 /* Spell.swift */,
+				397EE99E21ACAF9C00B116B0 /* Spellbook.swift */,
+				397EE99821ACAF9B00B116B0 /* SpellbookError.swift */,
+				397EE9A021ACAF9C00B116B0 /* SpellComparison.swift */,
+				397EE99921ACAF9B00B116B0 /* SpellParse.swift */,
+				397EE99B21ACAF9C00B116B0 /* Spells.json */,
+				397EE99C21ACAF9C00B116B0 /* SubClass.swift */,
+				397EE99D21ACAF9C00B116B0 /* Util.swift */,
 				397EE96F21ACA86800B116B0 /* Assets.xcassets */,
 				397EE97121ACA86800B116B0 /* LaunchScreen.storyboard */,
 				397EE97421ACA86800B116B0 /* Info.plist */,
@@ -231,6 +264,7 @@
 			files = (
 				397EE97321ACA86800B116B0 /* LaunchScreen.storyboard in Resources */,
 				397EE97021ACA86800B116B0 /* Assets.xcassets in Resources */,
+				397EE9A621ACAF9C00B116B0 /* Spells.json in Resources */,
 				397EE96E21ACA86400B116B0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,7 +291,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				397EE96B21ACA86400B116B0 /* ViewController.swift in Sources */,
+				397EE9A821ACAF9C00B116B0 /* Util.swift in Sources */,
+				397EE9A721ACAF9C00B116B0 /* SubClass.swift in Sources */,
 				397EE96921ACA86400B116B0 /* AppDelegate.swift in Sources */,
+				397EE9AA21ACAF9C00B116B0 /* Source.swift in Sources */,
+				397EE9A421ACAF9C00B116B0 /* SpellParse.swift in Sources */,
+				397EE9A321ACAF9C00B116B0 /* SpellbookError.swift in Sources */,
+				397EE9AB21ACAF9C00B116B0 /* SpellComparison.swift in Sources */,
+				397EE9A121ACAF9C00B116B0 /* Spell.swift in Sources */,
+				397EE9A521ACAF9C00B116B0 /* CasterClass.swift in Sources */,
+				397EE9A221ACAF9C00B116B0 /* School.swift in Sources */,
+				397EE9A921ACAF9C00B116B0 /* Spellbook.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +478,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Spellbook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -451,6 +496,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Spellbook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
