@@ -25,6 +25,7 @@
 		397EE9A921ACAF9C00B116B0 /* Spellbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE99E21ACAF9C00B116B0 /* Spellbook.swift */; };
 		397EE9AA21ACAF9C00B116B0 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE99F21ACAF9C00B116B0 /* Source.swift */; };
 		397EE9AB21ACAF9C00B116B0 /* SpellComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE9A021ACAF9C00B116B0 /* SpellComparison.swift */; };
+		39F1047221AD88130068A09E /* SION.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F1047121AD88130068A09E /* SION.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,8 @@
 		397EE99E21ACAF9C00B116B0 /* Spellbook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spellbook.swift; sourceTree = "<group>"; };
 		397EE99F21ACAF9C00B116B0 /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		397EE9A021ACAF9C00B116B0 /* SpellComparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellComparison.swift; sourceTree = "<group>"; };
+		39F1046F21AD87F40068A09E /* SION.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SION.swift; path = "../../Desktop/git/swift-sion/Sources/SION/SION.swift"; sourceTree = "<group>"; };
+		39F1047121AD88130068A09E /* SION.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SION.swift; path = "../../Desktop/git/swift-sion/Sources/SION/SION.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +102,12 @@
 		397EE95C21ACA86300B116B0 = {
 			isa = PBXGroup;
 			children = (
+				39F1047121AD88130068A09E /* SION.swift */,
 				397EE96721ACA86400B116B0 /* Spellbook */,
 				397EE97C21ACA86800B116B0 /* SpellbookTests */,
 				397EE98721ACA86900B116B0 /* SpellbookUITests */,
 				397EE96621ACA86400B116B0 /* Products */,
+				39F1046E21AD87F40068A09E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -156,6 +161,14 @@
 				397EE98A21ACA86900B116B0 /* Info.plist */,
 			);
 			path = SpellbookUITests;
+			sourceTree = "<group>";
+		};
+		39F1046E21AD87F40068A09E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				39F1046F21AD87F40068A09E /* SION.swift */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,6 +233,9 @@
 		397EE95D21ACA86300B116B0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					schoolLabel,
+				);
 				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Jonathan Carifio";
@@ -290,6 +306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39F1047221AD88130068A09E /* SION.swift in Sources */,
 				397EE96B21ACA86400B116B0 /* ViewController.swift in Sources */,
 				397EE9A821ACAF9C00B116B0 /* Util.swift in Sources */,
 				397EE9A721ACAF9C00B116B0 /* SubClass.swift in Sources */,

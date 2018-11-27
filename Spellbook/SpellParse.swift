@@ -1,4 +1,4 @@
-import SION
+//import SION
 import Foundation
 
 func has_key(obj: SION, key: String) -> Bool {
