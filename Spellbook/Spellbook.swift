@@ -18,7 +18,12 @@ public class Spellbook {
 	}
 
 	// Empty constructor uses default arguments
-	init() {}
+    init() {}
+    
+    init(jsonStr: String) {
+        spells = parseSpellList(jsonStr: jsonStr)
+        N_SPELLS = spells.count
+    }
 
 	// init(jsonStr: String) {
 	// 	spells = parseSpellList(jsonStr)

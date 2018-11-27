@@ -28,6 +28,7 @@ func sourceFromName(name: String) -> Source? {
 
 func load_file(filepath: String) -> String {
 	let text = try! String(contentsOf: URL(fileURLWithPath: filepath))
+    print(text)
 	return text
 }
 
@@ -62,7 +63,8 @@ func parseSpell(obj: SION) -> Spell {
 		s.setConcentration(concentrationIn: false)
 	}
 
-	s.setLevel(levelIn: Int(obj["level"].double!))
+    print("\(obj["level"])")
+	s.setLevel(levelIn: Int(obj["level"].int!))
 	s.setCastingTime(castingTimeIn: obj["casting_time"].string!)
 
 	// Material, if necessary
@@ -140,11 +142,15 @@ func parseSpell(obj: SION) -> Spell {
 
 func parseSpellList(jsonStr: String) -> Array<Spell> {
 
+    var i = 0
 	var spells: Array<Spell> = []
 	var jarr = SION(json: jsonStr)
 	for (_, v) in jarr {
+        print("\(v)")
+        print("=====")
 		let nextSpell = parseSpell(obj: v)
 		spells.append(nextSpell)
+        i += 1
 	}
 	return spells
 

@@ -8,41 +8,60 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: Properties
     var sortPickerData: [String] = ["Name", "Level", "School"]
     
-    @IBOutlet weak var sortLabel1: UILabel!
+    // Spellbook
+    var spellbook = Spellbook()
     
-    @IBOutlet weak var sortLabel2: UILabel!
+    // Child controllers
+    var pickerController: PickerViewController?
+    var labelController: LabelViewController?
+    var tableController: SpellTableViewController?
     
-    @IBOutlet weak var classLabel: UILabel!
+    let cellReuseIdentifier = "cell"
     
-    @IBOutlet weak var sortPicker1: UIPickerView!
-    
-    @IBOutlet weak var sortPicker2: UIPickerView!
-    
-    @IBOutlet weak var classPicker: UIPickerView!
-    
-    
+    let spellsFile = Bundle.main.url(forResource: "Spells", withExtension: "json")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.sortPicker1.dataSource = self
-        self.sortPicker1.delegate = self
-        self.sortPicker2.dataSource = self
-        sortPicker2.delegate = self as? UIPickerViewDelegate
-        classPicker.dataSource = self as? UIPickerViewDataSource
-        classPicker.delegate = self as? UIPickerViewDelegate
         
+        // Picker settings
+        //self.sortPicker1.dataSource = self as? UIPickerViewDataSource
+        //self.sortPicker1.delegate = self as? UIPickerViewDelegate
+        //self.sortPicker2.dataSource = self as? UIPickerViewDataSource
+        //self.sortPicker2.delegate = self as? UIPickerViewDelegate
+        //self.classPicker.dataSource = self as? UIPickerViewDataSource
+        //self.classPicker.delegate = self as? UIPickerViewDelegate
         
+        // Load the spell data and parse the spells
+        let spellData = try! String(contentsOf: spellsFile!)
+        spellbook = Spellbook(jsonStr: spellData)
+        print(spellbook.spells.count)
+        
+        // Populate the list of spells
+        spellTable.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated
+    }
+    
+    // Connecting to the child controllers
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "sortSegue" {
+            pickerController = segue.destination as! PickerViewController
+        }
+        if segue.identifier == "labelSegue" {
+            labelController = segue.destination as! LabelViewController
+        }
+        if segue.identifier == "tableSegue" {
+            tableController = segue.destination as! SpellTableViewController
+        }
     }
     
     // Number of columns of data
@@ -68,6 +87,15 @@ class ViewController: UIViewController {
         }
     }
     
-
+    // Number of rows in TableView
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return spellbook.N_SPELLS
+    }
+    
+    // Function for adding SpellDataCell to table
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SpellDataCell
+        cell.spell = spellbook.spells[indexPath.row]
+        return cell
+    }
 }
-
