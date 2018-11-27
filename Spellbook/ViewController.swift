@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: Properties
-    var sortPickerData: [String] = ["Name", "Level", "School"]
+    
     
     // Spellbook
     var spellbook = Spellbook()
@@ -20,8 +20,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var pickerController: PickerViewController?
     var labelController: LabelViewController?
     var tableController: SpellTableViewController?
-    
-    let cellReuseIdentifier = "cell"
     
     let spellsFile = Bundle.main.url(forResource: "Spells", withExtension: "json")
     
@@ -64,38 +62,4 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    // Number of columns of data
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    // Number of rows of data
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if (pickerView.tag == 0) || (pickerView.tag == 1) {
-            return sortPickerData.count
-        } else {
-            return Spellbook.casterNames.count
-        }
-    }
-    
-    // Title for each row
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        if (pickerView.tag == 0) || (pickerView.tag == 1) {
-            return sortPickerData[row]
-        } else {
-            return Spellbook.casterNames[row]
-        }
-    }
-    
-    // Number of rows in TableView
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return spellbook.N_SPELLS
-    }
-    
-    // Function for adding SpellDataCell to table
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SpellDataCell
-        cell.spell = spellbook.spells[indexPath.row]
-        return cell
-    }
 }

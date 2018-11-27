@@ -11,7 +11,9 @@ import UIKit
 class PickerViewController: UIViewController {
     
     var boss: ViewController?
-
+    var sortPickerData: [String] = ["Name", "Level", "School"]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,7 +24,29 @@ class PickerViewController: UIViewController {
         super.viewDidAppear(animated)
         boss = self.parent as? ViewController
     }
-
+    
+    // Number of columns of data
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // Number of rows of data
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if (pickerView.tag == 0) || (pickerView.tag == 1) {
+            return sortPickerData.count
+        } else {
+            return Spellbook.casterNames.count
+        }
+    }
+    
+    // Title for each row
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        if (pickerView.tag == 0) || (pickerView.tag == 1) {
+            return sortPickerData[row]
+        } else {
+            return Spellbook.casterNames[row]
+        }
+    }
     /*
     // MARK: - Navigation
 

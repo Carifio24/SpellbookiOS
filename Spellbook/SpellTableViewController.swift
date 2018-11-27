@@ -11,7 +11,9 @@ import UIKit
 class SpellTableViewController: UITableViewController {
     
     var boss: ViewController?
-
+    
+    let cellReuseIdentifier = "cell"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,11 +35,17 @@ class SpellTableViewController: UITableViewController {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 0
+    // Number of rows in TableView
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return boss!.spellbook.N_SPELLS
     }
-
+    
+    // Function for adding SpellDataCell to table
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SpellDataCell
+        cell.spell = boss!.spellbook.spells[indexPath.row]
+        return cell
+    }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
