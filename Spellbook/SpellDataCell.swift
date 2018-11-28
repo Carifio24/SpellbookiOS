@@ -10,11 +10,11 @@ import UIKit
 
 class SpellDataCell: UITableViewCell {
     
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet var nameLabel: UILabel!
     
-    @IBOutlet weak var schoolLabel: UILabel!
+    @IBOutlet var schoolLabel: UILabel!
     
-    @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet var levelLabel: UILabel!
     
     // The spell for the data cell
     // The label text is updated when Spell is set
@@ -28,6 +28,11 @@ class SpellDataCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        // Initialize the labels
+        nameLabel = UILabel()
+        schoolLabel = UILabel()
+        levelLabel = UILabel()
         
         // Get the screen dimensions
         let screenSize = UIScreen.main.bounds

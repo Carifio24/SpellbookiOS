@@ -12,6 +12,12 @@ class LabelViewController: UIViewController {
     
     var boss: ViewController?
 
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var schoolLabel: UILabel!
+    
+    @IBOutlet weak var levelLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

@@ -10,6 +10,12 @@ import UIKit
 
 class PickerViewController: UIViewController {
     
+    @IBOutlet weak var sortPicker1: UIPickerView!
+    
+    @IBOutlet weak var sortPicker2: UIPickerView!
+    
+    @IBOutlet weak var classPicker: UIPickerView!
+    
     var boss: ViewController?
     var sortPickerData: [String] = ["Name", "Level", "School"]
     

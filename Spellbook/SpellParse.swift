@@ -63,7 +63,7 @@ func parseSpell(obj: SION) -> Spell {
 		s.setConcentration(concentrationIn: false)
 	}
 
-    print("\(obj["level"])")
+    //print("\(obj["level"])")
 	s.setLevel(levelIn: Int(obj["level"].int!))
 	s.setCastingTime(castingTimeIn: obj["casting_time"].string!)
 
@@ -146,8 +146,8 @@ func parseSpellList(jsonStr: String) -> Array<Spell> {
 	var spells: Array<Spell> = []
 	var jarr = SION(json: jsonStr)
 	for (_, v) in jarr {
-        print("\(v)")
-        print("=====")
+        //print("\(v)")
+        //print("=====")
 		let nextSpell = parseSpell(obj: v)
 		spells.append(nextSpell)
         i += 1

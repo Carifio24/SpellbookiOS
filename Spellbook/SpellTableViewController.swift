@@ -12,11 +12,20 @@ class SpellTableViewController: UITableViewController {
     
     var boss: ViewController?
     
+    // Spellbook
+    let spellbook = Spellbook(jsonStr: try! String(contentsOf: Bundle.main.url(forResource: "Spells", withExtension: "json")!))
+    
+    @IBOutlet weak var spellTable: UITableView!
+    
     let cellReuseIdentifier = "cell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Populate the list of spells
+        //spellTable.register(SpellDataCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        tableView.register(SpellDataCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -26,7 +35,8 @@ class SpellTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        boss = self.parent as? ViewController
+        print("View did appear")
+        boss = (self.parent as! ViewController)
     }
     
     // MARK: - Table view data source
@@ -36,14 +46,18 @@ class SpellTableViewController: UITableViewController {
     }
 
     // Number of rows in TableView
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return boss!.spellbook.N_SPELLS
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return spellbook.N_SPELLS
     }
     
     // Function for adding SpellDataCell to table
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print(indexPath.row)
+        print(tableView)
+        print(spellTable)
+        print(tableView == spellTable)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SpellDataCell
-        cell.spell = boss!.spellbook.spells[indexPath.row]
+        cell.spell = spellbook.spells[indexPath.row]
         return cell
     }
     /*
