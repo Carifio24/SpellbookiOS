@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PickerViewController: UIViewController {
+class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var sortPicker1: UIPickerView!
     
@@ -22,8 +22,14 @@ class PickerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // Set the delegates and data sources for the pickers
+        sortPicker1.delegate = self as? UIPickerViewDelegate
+        sortPicker2.delegate = self as? UIPickerViewDelegate
+        classPicker.delegate = self as? UIPickerViewDelegate
+        sortPicker1.dataSource = self as? UIPickerViewDataSource
+        sortPicker2.dataSource = self as? UIPickerViewDataSource
+        classPicker.dataSource = self as? UIPickerViewDataSource
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -37,7 +43,7 @@ class PickerViewController: UIViewController {
     }
     
     // Number of rows of data
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if (pickerView.tag == 0) || (pickerView.tag == 1) {
             return sortPickerData.count
         } else {
@@ -46,10 +52,12 @@ class PickerViewController: UIViewController {
     }
     
     // Title for each row
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         if (pickerView.tag == 0) || (pickerView.tag == 1) {
+            print(sortPickerData[row])
             return sortPickerData[row]
         } else {
+            print(Spellbook.casterNames[row])
             return Spellbook.casterNames[row]
         }
     }

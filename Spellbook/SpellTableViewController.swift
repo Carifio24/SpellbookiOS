@@ -52,10 +52,6 @@ class SpellTableViewController: UITableViewController {
     
     // Function for adding SpellDataCell to table
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print(indexPath.row)
-        print(tableView)
-        print(spellTable)
-        print(tableView == spellTable)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SpellDataCell
         cell.spell = spellbook.spells[indexPath.row]
         return cell
