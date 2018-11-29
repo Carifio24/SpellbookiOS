@@ -54,6 +54,7 @@ class SpellTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SpellDataCell
         cell.spell = spellbook.spells[indexPath.row]
+        print(spellbook.spells[indexPath.row].name)
         return cell
     }
     /*

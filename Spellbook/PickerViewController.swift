@@ -18,18 +18,19 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     var boss: ViewController?
     var sortPickerData: [String] = ["Name", "Level", "School"]
+    var classPickerData: [String] = ["None"] + Spellbook.casterNames
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Set the delegates and data sources for the pickers
-        sortPicker1.delegate = self as? UIPickerViewDelegate
-        sortPicker2.delegate = self as? UIPickerViewDelegate
-        classPicker.delegate = self as? UIPickerViewDelegate
-        sortPicker1.dataSource = self as? UIPickerViewDataSource
-        sortPicker2.dataSource = self as? UIPickerViewDataSource
-        classPicker.dataSource = self as? UIPickerViewDataSource
+        sortPicker1.delegate = self as UIPickerViewDelegate
+        sortPicker2.delegate = self as UIPickerViewDelegate
+        classPicker.delegate = self as UIPickerViewDelegate
+        sortPicker1.dataSource = self as UIPickerViewDataSource
+        sortPicker2.dataSource = self as UIPickerViewDataSource
+        classPicker.dataSource = self as UIPickerViewDataSource
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -47,18 +48,16 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         if (pickerView.tag == 0) || (pickerView.tag == 1) {
             return sortPickerData.count
         } else {
-            return Spellbook.casterNames.count
+            return classPickerData.count
         }
     }
     
     // Title for each row
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         if (pickerView.tag == 0) || (pickerView.tag == 1) {
-            print(sortPickerData[row])
             return sortPickerData[row]
         } else {
-            print(Spellbook.casterNames[row])
-            return Spellbook.casterNames[row]
+            return classPickerData[row]
         }
     }
     /*
