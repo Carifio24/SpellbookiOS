@@ -17,7 +17,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBOutlet weak var classPicker: UIPickerView!
     
     var boss: ViewController?
-    var sortPickerData: [String] = ["Name", "Level", "School"]
+    var sortPickerData: [String] = ["Name", "School", "Level"]
     var classPickerData: [String] = ["None"] + Spellbook.casterNames
     
     
@@ -53,13 +53,44 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     // Title for each row
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if (pickerView.tag == 0) || (pickerView.tag == 1) {
             return sortPickerData[row]
         } else {
             return classPickerData[row]
         }
     }
+    
+    // When an option is changed
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        // If one of the sort field pickers is changed
+        if (pickerView.tag == 0) || (pickerView.tag == 1) {
+            var index1 = 0
+            var index2 = 0
+            if pickerView.tag == 0 {
+                index1 = row
+                index2 = sortPicker2.selectedRow(inComponent: 0)
+            } else {
+                index1 = sortPicker1.selectedRow(inComponent: 0)
+                index2 = row
+            }
+            print(index1)
+            print(index2)
+            
+            if (index2 == 0) || (index1 == 0) {
+                boss!.tableController!.singleSort(index: index1)
+            } else {
+                boss!.tableController!.doubleSort(index1: index1, index2: index2)
+            }
+            
+        // If the class filter picker is changed
+        } else {
+            boss!.tableController!.filter()
+        }
+        
+    }
+    
     /*
     // MARK: - Navigation
 

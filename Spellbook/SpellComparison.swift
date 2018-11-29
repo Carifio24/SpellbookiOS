@@ -13,11 +13,11 @@ func compareName(s1: Spell, s2: Spell) -> Int {
 }
 
 func compareSchool(s1: Spell, s2: Spell) -> Int {
-	return s1.school.rawValue - s2.school.rawValue
+	return s2.school.rawValue - s1.school.rawValue
 }
 
 func compareLevel(s1: Spell, s2: Spell) -> Int {
-	return s1.level - s2.level
+	return s2.level - s1.level
 }
 
 func singleCompare(s1: Spell, s2: Spell, index: Int) -> Int {
@@ -31,6 +31,8 @@ func singleCompare(s1: Spell, s2: Spell, index: Int) -> Int {
 }
 
 func compareOne(s1: Spell, s2: Spell, index: Int) -> Bool {
+    let s = "Single compare: " + String(index)
+    print(s)
 	var r = singleCompare(s1: s1, s2: s2, index: index)
 	if r != 0 {
 		return intToTruthValue(x: r)
@@ -40,6 +42,8 @@ func compareOne(s1: Spell, s2: Spell, index: Int) -> Bool {
 }
 
 func compareTwo(s1: Spell, s2: Spell, index1: Int, index2: Int) -> Bool {
+    let s = "Double compare: " + String(index1) + " " + String(index2)
+    print(s)
 	var r = singleCompare(s1: s1, s2: s2, index: index1)
 	if r != 0 {
 		return intToTruthValue(x: r)

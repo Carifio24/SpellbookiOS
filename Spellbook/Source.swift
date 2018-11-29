@@ -1,5 +1,5 @@
 enum Source: Int {
-	case PlayersHandbook, Xanathars
+	case PlayersHandbook=0, Xanathars
 }
 
 // So we can interate over all values

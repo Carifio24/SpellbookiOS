@@ -82,3 +82,10 @@ extension Spell : Equatable {
 	}
 
 }
+
+// So that we can use Spell as a dictionary key
+extension Spell: Hashable {
+    public var hashValue: Int {
+        return name.hashValue
+    }
+}

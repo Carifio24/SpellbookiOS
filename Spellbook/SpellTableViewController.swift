@@ -15,6 +15,9 @@ class SpellTableViewController: UITableViewController {
     // Spellbook
     let spellbook = Spellbook(jsonStr: try! String(contentsOf: Bundle.main.url(forResource: "Spells", withExtension: "json")!))
     
+    var spells: [(Spell, Bool)] = []
+    var spellArray: [Spell] = []
+    
     @IBOutlet weak var spellTable: UITableView!
     
     let cellReuseIdentifier = "cell"
@@ -38,13 +41,17 @@ class SpellTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         print("View did appear")
         boss = (self.parent as! ViewController)
-        //tableView.reloadData()
+        for spell in spellbook.spells {
+            spells.append((spell,true))
+            spellArray.append(spell)
+            print(spellArray.count)
+            tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("View will appear")
-        //tableView.reloadData()
     }
     
     // MARK: - Table view data source
@@ -55,19 +62,119 @@ class SpellTableViewController: UITableViewController {
 
     // Number of rows in TableView
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return spellbook.N_SPELLS
+        return spellArray.count
     }
     
     // Function for adding SpellDataCell to table
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SpellDataCell
-        let spell = spellbook.spells[indexPath.row]
+        let spell = spellArray[indexPath.row]
         cell.spell = spell
         cell.nameLabel.text = spell.name
         cell.schoolLabel.text = Spellbook.schoolNames[spell.school.rawValue]
         cell.levelLabel.text = String(spell.level)
         return cell
     }
+    
+    // Function to get the spells to currently display
+    func getSpellArray() -> [Spell] {
+        spellArray = []
+        for tpl in spells {
+            if tpl.1 {
+                spellArray.append(tpl.0)
+            }
+        }
+        return spellArray
+    }
+    
+    
+    // Function to sort the data by one field
+    func singleSort(index: Int) {
+        
+        // Do the sorting
+        spells.sort {return compareOne(s1: $0.0, s2: $1.0, index: index)}
+        
+        // Get the array
+        spellArray = getSpellArray()
+
+        // Repopulate the table
+        print("Reloading")
+        print(index)
+        tableView.reloadData()
+        print("Done reloading")
+    }
+    
+    // Function to sort the data by two fields
+    func doubleSort(index1: Int, index2: Int) {
+        
+        // Do the sorting
+        spells.sort {return compareTwo(s1: $0.0, s2: $1.0, index1: index1, index2: index2)}
+        
+        // Get the array
+        spellArray = getSpellArray()
+        
+        // Repopulate the table
+        print("Reloading")
+        print(index1)
+        print(index2)
+        tableView.reloadData()
+        print("Done reloading")
+    }
+    
+    // Function to entirely unfilter - i.e., display everything
+    func unfilter() {
+        for i in 0...spells.count-1 {
+            spells[i] = (spells[i].0, true)
+        }
+        spellArray = getSpellArray()
+        tableView.reloadData()
+    }
+    
+    // Determine whether or not a single row should be filtered
+    func filterItem(isClass: Bool, isFav: Bool, isText: Bool, s: Spell, cc: CasterClass, text: String) -> Bool {
+        let spname = s.name.lowercased()
+        var toHide = (isClass && !s.usableByClass(cc: cc))
+        toHide = toHide || (isFav && !s.favorite)
+        toHide = toHide || (isText && !spname.starts(with: text))
+        return toHide
+    }
+    
+    // Function to filter the table data
+    func filter(isFav: Bool) {
+        
+        // First, we filter the data
+        let classIndex = boss?.pickerController?.classPicker.selectedRow(inComponent: 0)
+        let isClass = (classIndex != 0)
+        var cc: CasterClass = CasterClass(rawValue: 0)!
+        let isText = false // Placeholder for now, until the search field is added
+        let searchText = "" // Placeholder for now, until the search field is added
+        if isClass {
+            cc = CasterClass(rawValue: classIndex!-1)!
+        }
+        
+        if ( !(isText || isFav || isClass) ) {
+            unfilter()
+        } else {
+            for i in 0...spells.count-1 {
+                let filter = filterItem(isClass: isClass, isFav: isFav, isText: isText, s: spells[i].0, cc: cc, text: searchText)
+                spells[i] = (spells[i].0, !filter)
+            }
+        }
+            
+        // Get the new spell array
+        spellArray = getSpellArray()
+            
+        // Repopulate the table
+        tableView.reloadData()
+    }
+        
+    // Filter function
+    func filter() {
+        let isFav = true // Just a placeholder until favoriting is implemented
+        filter(isFav: isFav)
+    }
+    
+    
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
