@@ -25,6 +25,7 @@ class SpellTableViewController: UITableViewController {
         // Populate the list of spells
         //spellTable.register(SpellDataCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.register(SpellDataCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        tableView.separatorStyle = .none
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -37,6 +38,13 @@ class SpellTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         print("View did appear")
         boss = (self.parent as! ViewController)
+        //tableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("View will appear")
+        //tableView.reloadData()
     }
     
     // MARK: - Table view data source
@@ -53,8 +61,11 @@ class SpellTableViewController: UITableViewController {
     // Function for adding SpellDataCell to table
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SpellDataCell
-        cell.spell = spellbook.spells[indexPath.row]
-        print(spellbook.spells[indexPath.row].name)
+        let spell = spellbook.spells[indexPath.row]
+        cell.spell = spell
+        cell.nameLabel.text = spell.name
+        cell.schoolLabel.text = Spellbook.schoolNames[spell.school.rawValue]
+        cell.levelLabel.text = String(spell.level)
         return cell
     }
     /*

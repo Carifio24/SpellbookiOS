@@ -20,9 +20,11 @@ class SpellDataCell: UITableViewCell {
     // The label text is updated when Spell is set
     var spell: Spell? {
         didSet {
-            nameLabel.text = spell?.name
-            schoolLabel.text = Spellbook.schoolNames[spell!.school.rawValue]
-            levelLabel.text = String(spell!.level)
+            //nameLabel.text = spell?.name
+            //schoolLabel.text = Spellbook.schoolNames[spell!.school.rawValue]
+            //levelLabel.text = String(spell!.level)
+            //var s: String = "Setting spell: " + spell!.name + " " + Spellbook.schoolNames[spell!.school.rawValue] + " " + String(spell!.level)
+            //print(s)
         }
     }
 
