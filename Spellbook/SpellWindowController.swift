@@ -23,6 +23,7 @@ class SpellWindowController: UIViewController {
         didSet {
             spellNameLabel.attributedText = propertyText(name: "Name", text: spell.name, forName: true)
             spellTextLabel.attributedText = spellText()
+            spellTextLabel.sizeToFit()
         }
     }
 
@@ -30,14 +31,14 @@ class SpellWindowController: UIViewController {
         super.viewDidLoad()
 
         // We close the window on a left swipe
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: "respondToSwipeGesture")
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
         swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
         self.view.addGestureRecognizer(swipeLeft)
         
         // Do any additional setup after loading the view.
     }
     
-    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+    @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
                 case UISwipeGestureRecognizer.Direction.left:
