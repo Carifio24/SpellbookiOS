@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     var pickerController: PickerViewController?
     var labelController: LabelViewController?
     var tableController: SpellTableViewController?
+    var spellWindowController: SpellWindowController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,7 @@ class ViewController: UIViewController {
     
     // Connecting to the child controllers
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print(segue.identifier)
         if segue.identifier == "sortSegue" {
             pickerController = (segue.destination as! PickerViewController)
         }

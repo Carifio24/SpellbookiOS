@@ -21,6 +21,8 @@ class SpellTableViewController: UITableViewController {
     @IBOutlet weak var spellTable: UITableView!
     
     let cellReuseIdentifier = "cell"
+    let spellWindowSegueIdentifier = "spellWindowSegue"
+    let spellWindowIdentifier = "spellWindow"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -177,6 +179,19 @@ class SpellTableViewController: UITableViewController {
     func filter() {
         let isFav = false // Just a placeholder until favoriting is implemented
         filter(isFav: isFav)
+    }
+    
+    // Set what happens when a cell is selected
+    // For us, that's creating a segue to a view with the spell info
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(boss!)
+        //print(boss!.spellWindowController!)
+        //boss?.spellWindowController!.spell = spellArray[indexPath.row]
+        //boss?.performSegue(withIdentifier: spellWindowSegueIdentifier, sender: nil)
+        let storyboard = self.storyboard
+        let spellWindowController = storyboard?.instantiateViewController(withIdentifier: spellWindowIdentifier) as! SpellWindowController
+        self.present(spellWindowController, animated:true, completion: nil)
+        spellWindowController.spell = spellArray[indexPath.row]
     }
     
     

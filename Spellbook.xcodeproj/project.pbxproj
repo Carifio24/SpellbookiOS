@@ -13,6 +13,7 @@
 		39522D1D21ADFA0A00A4DBCE /* LabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D1C21ADFA0A00A4DBCE /* LabelViewController.swift */; };
 		39522D2121ADFBA100A4DBCE /* SpellTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D2021ADFBA100A4DBCE /* SpellTableViewController.swift */; };
 		39522D2321B04FE500A4DBCE /* BookBackground.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 39522D2221B04FE500A4DBCE /* BookBackground.jpeg */; };
+		39522D2721B1C52100A4DBCE /* SpellWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D2621B1C52100A4DBCE /* SpellWindowController.swift */; };
 		397EE96921ACA86400B116B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE96821ACA86400B116B0 /* AppDelegate.swift */; };
 		397EE96B21ACA86400B116B0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE96A21ACA86400B116B0 /* ViewController.swift */; };
 		397EE96E21ACA86400B116B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 397EE96C21ACA86400B116B0 /* Main.storyboard */; };
@@ -57,6 +58,7 @@
 		39522D1C21ADFA0A00A4DBCE /* LabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelViewController.swift; sourceTree = "<group>"; };
 		39522D2021ADFBA100A4DBCE /* SpellTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellTableViewController.swift; sourceTree = "<group>"; };
 		39522D2221B04FE500A4DBCE /* BookBackground.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BookBackground.jpeg; sourceTree = "<group>"; };
+		39522D2621B1C52100A4DBCE /* SpellWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellWindowController.swift; sourceTree = "<group>"; };
 		397EE96521ACA86400B116B0 /* Spellbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spellbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		397EE96821ACA86400B116B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		397EE96A21ACA86400B116B0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 		397EE96721ACA86400B116B0 /* Spellbook */ = {
 			isa = PBXGroup;
 			children = (
+				39522D2621B1C52100A4DBCE /* SpellWindowController.swift */,
 				39522D2021ADFBA100A4DBCE /* SpellTableViewController.swift */,
 				39522D1821ADC41F00A4DBCE /* SpellDataCell.swift */,
 				39522D1421ADC15900A4DBCE /* SION.swift */,
@@ -322,6 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39522D2721B1C52100A4DBCE /* SpellWindowController.swift in Sources */,
 				39522D1B21ADF99500A4DBCE /* PickerViewController.swift in Sources */,
 				397EE96B21ACA86400B116B0 /* ViewController.swift in Sources */,
 				397EE9A821ACAF9C00B116B0 /* Util.swift in Sources */,
