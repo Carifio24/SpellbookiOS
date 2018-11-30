@@ -73,6 +73,7 @@ class SpellTableViewController: UITableViewController {
         cell.nameLabel.text = spell.name
         cell.schoolLabel.text = Spellbook.schoolNames[spell.school.rawValue]
         cell.levelLabel.text = String(spell.level)
+        cell.backgroundColor = UIColor.clear
         return cell
     }
     
@@ -80,6 +81,8 @@ class SpellTableViewController: UITableViewController {
     func getSpellArray() -> [Spell] {
         spellArray = []
         for tpl in spells {
+            //print(tpl.0.name)
+            //print(tpl.1)
             if tpl.1 {
                 spellArray.append(tpl.0)
             }
@@ -132,6 +135,8 @@ class SpellTableViewController: UITableViewController {
     
     // Determine whether or not a single row should be filtered
     func filterItem(isClass: Bool, isFav: Bool, isText: Bool, s: Spell, cc: CasterClass, text: String) -> Bool {
+        //print(s.name)
+        //print(Spellbook.casterNames[cc.rawValue])
         let spname = s.name.lowercased()
         var toHide = (isClass && !s.usableByClass(cc: cc))
         toHide = toHide || (isFav && !s.favorite)
@@ -170,7 +175,7 @@ class SpellTableViewController: UITableViewController {
         
     // Filter function
     func filter() {
-        let isFav = true // Just a placeholder until favoriting is implemented
+        let isFav = false // Just a placeholder until favoriting is implemented
         filter(isFav: isFav)
     }
     
