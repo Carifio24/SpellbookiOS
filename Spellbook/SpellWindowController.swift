@@ -31,10 +31,10 @@ class SpellWindowController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // We close the window on a left swipe
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
-        swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
-        self.view.addGestureRecognizer(swipeLeft)
+        // We close the window on a swipe to the right
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizer.Direction.right
+        self.view.addGestureRecognizer(swipeRight)
         
         // Do any additional setup after loading the view.
     }
@@ -42,7 +42,7 @@ class SpellWindowController: UIViewController {
     @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
-                case UISwipeGestureRecognizer.Direction.left:
+                case UISwipeGestureRecognizer.Direction.right:
                     self.dismiss(animated: true, completion: nil)
                 default:
                     break

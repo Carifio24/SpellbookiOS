@@ -12,6 +12,8 @@ class SpellTableViewController: UITableViewController {
     
     var boss: ViewController?
     
+    var firstAppear: Bool = true
+    
     // Spellbook
     let spellbook = Spellbook(jsonStr: try! String(contentsOf: Bundle.main.url(forResource: "Spells", withExtension: "json")!))
     
@@ -43,11 +45,17 @@ class SpellTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         print("View did appear")
         boss = (self.parent as! ViewController)
-        for spell in spellbook.spells {
-            spells.append((spell,true))
-            spellArray.append(spell)
-            print(spellArray.count)
-            tableView.reloadData()
+        
+        // If this is the view's first appearance (i.e. when the app is opening), we initialize spellArray
+        if firstAppear {
+            spellArray = []
+            for spell in spellbook.spells {
+                spells.append((spell,true))
+                spellArray.append(spell)
+                print(spellArray.count)
+                tableView.reloadData()
+            firstAppear = false
+            }
         }
     }
     
@@ -80,7 +88,7 @@ class SpellTableViewController: UITableViewController {
     }
     
     // Function to get the spells to currently display
-    func getSpellArray() -> [Spell] {
+    func updateSpellArray() {
         spellArray = []
         for tpl in spells {
             //print(tpl.0.name)
@@ -89,7 +97,6 @@ class SpellTableViewController: UITableViewController {
                 spellArray.append(tpl.0)
             }
         }
-        return spellArray
     }
     
     
@@ -100,13 +107,13 @@ class SpellTableViewController: UITableViewController {
         spells.sort {return compareOne(s1: $0.0, s2: $1.0, index: index)}
         
         // Get the array
-        spellArray = getSpellArray()
+        updateSpellArray()
 
         // Repopulate the table
-        print("Reloading")
-        print(index)
+        //print("Reloading")
+        //print(index)
         tableView.reloadData()
-        print("Done reloading")
+        //print("Done reloading")
     }
     
     // Function to sort the data by two fields
@@ -116,14 +123,14 @@ class SpellTableViewController: UITableViewController {
         spells.sort {return compareTwo(s1: $0.0, s2: $1.0, index1: index1, index2: index2)}
         
         // Get the array
-        spellArray = getSpellArray()
+        updateSpellArray()
         
         // Repopulate the table
-        print("Reloading")
-        print(index1)
-        print(index2)
+        //print("Reloading")
+        //print(index1)
+        //print(index2)
         tableView.reloadData()
-        print("Done reloading")
+        //print("Done reloading")
     }
     
     // Function to entirely unfilter - i.e., display everything
@@ -131,7 +138,7 @@ class SpellTableViewController: UITableViewController {
         for i in 0...spells.count-1 {
             spells[i] = (spells[i].0, true)
         }
-        spellArray = getSpellArray()
+        updateSpellArray()
         tableView.reloadData()
     }
     
@@ -169,7 +176,7 @@ class SpellTableViewController: UITableViewController {
         }
             
         // Get the new spell array
-        spellArray = getSpellArray()
+        updateSpellArray()
             
         // Repopulate the table
         tableView.reloadData()
@@ -184,7 +191,7 @@ class SpellTableViewController: UITableViewController {
     // Set what happens when a cell is selected
     // For us, that's creating a segue to a view with the spell info
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(boss!)
+        //print(boss!)
         //print(boss!.spellWindowController!)
         //boss?.spellWindowController!.spell = spellArray[indexPath.row]
         //boss?.performSegue(withIdentifier: spellWindowSegueIdentifier, sender: nil)
