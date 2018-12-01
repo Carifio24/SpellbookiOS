@@ -14,16 +14,17 @@ class SpellWindowController: UIViewController {
     static let nameSize = CGFloat(30)
     static let fontSize = CGFloat(15)
     
-    @IBOutlet weak var spellNameLabel: UILabel!
+    @IBOutlet var spellNameLabel: UILabel!
     
-    @IBOutlet weak var spellTextLabel: UILabel!
+    @IBOutlet var spellTextLabel: UITextView!
     
     // The spell for the window
     var spell = Spell() {
         didSet {
-            spellNameLabel.attributedText = propertyText(name: "Name", text: spell.name, forName: true)
+            spellNameLabel.attributedText =
+            NSMutableAttributedString(string: spell.name, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: SpellWindowController.nameSize)])
             spellTextLabel.attributedText = spellText()
-            spellTextLabel.sizeToFit()
+            //spellTextLabel.sizeToFit()
         }
     }
 
@@ -50,10 +51,10 @@ class SpellWindowController: UIViewController {
     }
     
     // Create the text <b>Name: </b> Text for a single property
-    func propertyText(name: String, text: String, addLine: Bool = false, forName: Bool = false) -> NSMutableAttributedString {
+    func propertyText(name: String, text: String, addLine: Bool = false) -> NSMutableAttributedString {
         let toadd = addLine ? ":\n" : ": "
         let boldStr = name + toadd
-        let fontSize = forName ? SpellWindowController.nameSize : SpellWindowController.fontSize
+        let fontSize =  SpellWindowController.fontSize
         let font = UIFont.systemFont(ofSize: fontSize)
         let boldFontAttribute: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: font.pointSize)]
          let attributedName = NSMutableAttributedString(string: boldStr, attributes: boldFontAttribute)
