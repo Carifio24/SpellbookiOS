@@ -34,7 +34,6 @@ class ViewController: UIViewController {
     
     // Connecting to the child controllers
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print(segue.identifier)
         if segue.identifier == "sortSegue" {
             pickerController = (segue.destination as! PickerViewController)
         }

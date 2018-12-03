@@ -1,0 +1,22 @@
+version: "Apple Swift version 4.2.1 (swiftlang-1000.11.42 clang-1000.11.45.1)"
+options: "e2b94962f123fe1901287ac8a64f5837"
+build_time: [1543685356, 248340000]
+inputs:
+  "/Users/jcarifio/Documents/SpellbookiOS/Spellbook/SpellWindowController.swift": [9223372036, 854775807]
+  "/Users/jcarifio/Documents/SpellbookiOS/Spellbook/PickerViewController.swift": [9223372036, 854775807]
+  "/Users/jcarifio/Documents/SpellbookiOS/Spellbook/ViewController.swift": [9223372036, 854775807]
+  "/Users/jcarifio/Documents/SpellbookiOS/Spellbook/Util.swift": [9223372036, 854775807]
+  "/Users/jcarifio/Documents/SpellbookiOS/Spellbook/LabelViewController.swift": [9223372036, 854775807]
+  "/Users/jcarifio/Documents/SpellbookiOS/Spellbook/SubClass.swift": [9223372036, 854775807]
+  "/Users/jcarifio/Documents/SpellbookiOS/Spellbook/AppDelegate.swift": [9223372036, 854775807]
+  "/Users/jcarifio/Documents/SpellbookiOS/Spellbook/SION.swift": [9223372036, 854775807]
+  "/Users/jcarifio/Documents/SpellbookiOS/Spellbook/Source.swift": [9223372036, 854775807]
+  "/Users/jcarifio/Documents/SpellbookiOS/Spellbook/SpellDataCell.swift": [9223372036, 854775807]
+  "/Users/jcarifio/Documents/SpellbookiOS/Spellbook/SpellParse.swift": [9223372036, 854775807]
+  "/Users/jcarifio/Documents/SpellbookiOS/Spellbook/SpellbookError.swift": [9223372036, 854775807]
+  "/Users/jcarifio/Documents/SpellbookiOS/Spellbook/SpellComparison.swift": [9223372036, 854775807]
+  "/Users/jcarifio/Documents/SpellbookiOS/Spellbook/SpellTableViewController.swift": [9223372036, 854775807]
+  "/Users/jcarifio/Documents/SpellbookiOS/Spellbook/Spell.swift": [9223372036, 854775807]
+  "/Users/jcarifio/Documents/SpellbookiOS/Spellbook/CasterClass.swift": [9223372036, 854775807]
+  "/Users/jcarifio/Documents/SpellbookiOS/Spellbook/School.swift": [9223372036, 854775807]
+  "/Users/jcarifio/Documents/SpellbookiOS/Spellbook/Spellbook.swift": [9223372036, 854775807]

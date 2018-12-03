@@ -953,7 +953,8 @@ extension SION {
             return FD([0xcb, u0,u1,u2,u3,u4,u5,u6,u7])
         case .String(let v):
             let d = v.data(using:.utf8)!
-            switch d.count {
+            //switch d.count {
+            switch UInt32(d.count) {
             case 0...0b11111 :  // fixstr
                 return FD([UInt8(0b10100000 | d.count)]) + d
             case 0x20...0xff :
@@ -968,7 +969,8 @@ extension SION {
                 fatalError("String too large!")
             }
         case .Data(let d):
-            switch d.count {
+            //switch d.count {
+            switch UInt32(d.count) {
             case 0...0xff :
                 return FD([0xc4, UInt8(d.count)]) + d
             case 0x80...0xffff:
@@ -981,7 +983,8 @@ extension SION {
                 fatalError("Data too large!")
             }
         case .Array(let a):
-            switch a.count {
+            //switch a.count {
+            switch UInt32(a.count) {
             case 0...0xf:
                 var d = FD([UInt8(0b10010000 | a.count)])
                 a.forEach{ d += $0.msgPack }
@@ -1000,7 +1003,8 @@ extension SION {
                 fatalError("Array too large!")
             }
         case .Dictionary(let m):
-            switch m.count {
+            //switch m.count {
+            switch UInt32(m.count) {
             case 0...0xf:
                 var d = FD([UInt8(0b10000000 | m.count)])
                 m.forEach{ d += $0.0.msgPack + $0.1.msgPack }
