@@ -58,7 +58,7 @@ class SpellTableViewController: UITableViewController {
                 tableView.reloadData()
             firstAppear = false
             }
-            setTableDimensions()
+            //setTableDimensions()
         }
     }
     
@@ -67,7 +67,7 @@ class SpellTableViewController: UITableViewController {
         print("View will appear")
     }
     
-    func setTableDimensions() {
+    func setTableDimensions(leftPadding: CGFloat, bottomPadding: CGFloat, usableHeight: CGFloat, usableWidth: CGFloat) {
         print("SPELL TABLE VIEW DIMENSIONS")
         // Get the view dimensions
         let viewRect = self.view.bounds
@@ -79,7 +79,7 @@ class SpellTableViewController: UITableViewController {
         print(viewHeight)
         
         // Set the table dimensions
-        let tableFrame = CGRect(x: 0, y: 0, width: viewWidth, height: viewHeight)
+        let tableFrame = CGRect(x: leftPadding, y: 0, width: usableWidth, height: usableHeight - bottomPadding)
         tableView.frame = tableFrame
         
         //boss?.setContainerDimensions()

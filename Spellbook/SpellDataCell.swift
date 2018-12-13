@@ -56,6 +56,7 @@ class SpellDataCell: UITableViewCell {
         nameLabel.frame = CGRect(x: 0, y:0, width: nameWidth , height: labelHeight)
         schoolLabel.frame = CGRect(x: nameWidth, y:0, width: schoolWidth, height: labelHeight)
         levelLabel.frame = CGRect(x: nameWidth + schoolWidth, y: 0, width: levelWidth, height: labelHeight)
+        levelLabel.textAlignment = NSTextAlignment.center
         
         // Set the label text
         

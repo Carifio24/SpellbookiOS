@@ -29,8 +29,19 @@ class ViewController: UIViewController {
     
     // Dimensions
     let sortFraction = CGFloat(0.1)
-    let labelFraction = CGFloat(0.1)
+    let labelFraction = CGFloat(0.08)
     // The table will take up the rest of the space
+    
+    let maxHorizPadding = CGFloat(5)
+    let maxVertPadding = CGFloat(5)
+    let minHorizPadding = CGFloat(1)
+    let minVertPadding = CGFloat(1)
+    
+    // Padding amounts
+    let leftPaddingFraction = CGFloat(0.01)
+    let rightPaddingFraction = CGFloat(0.01)
+    let topPaddingFraction = CGFloat(0.01)
+    let bottomPaddingFraction = CGFloat(0.01)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,39 +57,46 @@ class ViewController: UIViewController {
         let screenWidth = screenRect.size.width
         let screenHeight = screenRect.size.height
         
+        // Get the padding sizes
+        let leftPadding = max(min(leftPaddingFraction * screenWidth, maxHorizPadding), minHorizPadding)
+        let rightPadding = max(min(rightPaddingFraction * screenWidth, maxHorizPadding), minHorizPadding)
+        let topPadding = max(min(topPaddingFraction * screenHeight, maxVertPadding), minVertPadding)
+        let bottomPadding = max(min(bottomPaddingFraction * screenHeight, maxVertPadding), minVertPadding)
+        
+        // Account for padding
+        let usableHeight = screenHeight - topPadding - bottomPadding
+        let usableWidth = screenWidth - leftPadding - rightPadding
+        
         // Set the dimensions for the child containers
-        let sortHeight = max(min(sortFraction * screenHeight, 100), 70)
-        let labelHeight = min(labelFraction * screenHeight, 70)
-        let tableHeight = screenHeight - sortHeight - labelHeight
-        print("ScreenHeight:")
-        print(screenHeight)
-        print("sortHeight:")
-        print(sortHeight)
-        print("labelHeight:")
-        print(labelHeight)
-        print("tableHeight:")
-        print(tableHeight)
+        let sortHeight = max(min(sortFraction * usableHeight, 100), 70)
+        let labelHeight = min(labelFraction * usableHeight, 70)
+        let tableHeight = usableHeight - sortHeight - labelHeight
+        
+        print("Padding:")
+        print(leftPadding)
+        print(rightPadding)
+        print(topPadding)
+        print(bottomPadding)
         
         // Set the relevant dimensions to the elements
         // First the PickerViewController
-        let pickerFrame = CGRect(x: 0, y: 0, width: screenWidth, height: sortHeight)
-        pickerView.frame = pickerFrame
-        pickerController!.view!.frame = pickerFrame
+        pickerView.frame = CGRect(x: leftPadding, y: topPadding, width: usableWidth, height: sortHeight)
+        pickerController!.view!.frame = CGRect(x: leftPadding, y: topPadding, width: usableWidth, height: sortHeight)
         
         // Then the LabelViewController
         // We need to set the labelController's view to have y = 0 (so that it's at the top of the view)
-        labelView.frame = CGRect(x: 0, y: sortHeight, width: screenWidth, height: labelHeight)
-        labelController!.view!.frame = CGRect(x: 0, y: 0, width: screenWidth, height: labelHeight)
+        labelView.frame = CGRect(x: leftPadding, y: sortHeight, width: usableWidth, height: labelHeight)
+        labelController!.view!.frame = CGRect(x: leftPadding, y: 0, width: usableWidth, height: labelHeight)
         
         // Finally, the SpellTableViewController
         // Note that we don't need to adjust the tableController's view differently - the TableViewController seems to be able to handle this part itself
-        let tableFrame = CGRect(x: 0, y: sortHeight + labelHeight, width: screenWidth, height: tableHeight)
+        let tableFrame = CGRect(x: leftPadding, y: sortHeight + labelHeight, width: usableWidth, height: tableHeight)
         tableView.frame = tableFrame
         tableController!.view!.frame = tableFrame
         
         pickerController?.setViewDimensions()
         labelController?.setViewDimensions()
-        tableController?.setTableDimensions()
+        tableController?.setTableDimensions(leftPadding: leftPadding, bottomPadding: bottomPadding, usableHeight: usableHeight, usableWidth: usableWidth)
     }
     
     override func didReceiveMemoryWarning() {
