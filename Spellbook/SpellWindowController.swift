@@ -14,9 +14,28 @@ class SpellWindowController: UIViewController {
     static let nameSize = CGFloat(30)
     static let fontSize = CGFloat(15)
     
+    // Label height
+    // The rest will be the spell text
+    let labelHeight = CGFloat(40)
+    
     @IBOutlet var spellNameLabel: UILabel!
     
     @IBOutlet var spellTextLabel: UITextView!
+    
+    // Extreme padding amounts
+    let maxHorizPadding = CGFloat(5)
+    let maxTopPadding = CGFloat(5)
+    let maxBotPadding = CGFloat(3)
+    let minHorizPadding = CGFloat(1)
+    let minTopPadding = CGFloat(5)
+    let minBotPadding = CGFloat(1)
+    
+    // Padding amounts
+    let leftPaddingFraction = CGFloat(0.01)
+    let rightPaddingFraction = CGFloat(0.01)
+    let topPaddingFraction = CGFloat(0.01)
+    let bottomPaddingFraction = CGFloat(0.01)
+    
     
     // The spell for the window
     var spell = Spell() {
@@ -24,6 +43,9 @@ class SpellWindowController: UIViewController {
             spellNameLabel.attributedText =
             NSMutableAttributedString(string: spell.name, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: SpellWindowController.nameSize)])
             spellTextLabel.attributedText = spellText()
+            self.view.bringSubviewToFront(spellNameLabel)
+            self.view.bringSubviewToFront(spellTextLabel)
+            print(spellTextLabel.attributedText)
             //spellTextLabel.sizeToFit()
         }
     }
@@ -37,6 +59,7 @@ class SpellWindowController: UIViewController {
         self.view.addGestureRecognizer(swipeRight)
         
         // Do any additional setup after loading the view.
+        setDimensions()
     }
     
     @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
@@ -117,6 +140,29 @@ class SpellWindowController: UIViewController {
             spellText.append(higherLevelText)
         }
         return spellText
+    }
+    
+    func setDimensions() {
+        
+        // Screen dimensions
+        let screenRect = view.bounds
+        let screenWidth = screenRect.size.width
+        let screenHeight = screenRect.size.height
+        
+        // Get the padding sizes
+        let leftPadding = max(min(leftPaddingFraction * screenWidth, maxHorizPadding), minHorizPadding)
+        let rightPadding = max(min(rightPaddingFraction * screenWidth, maxHorizPadding), minHorizPadding)
+        let topPadding = max(min(topPaddingFraction * screenHeight, maxTopPadding), minTopPadding)
+        let bottomPadding = max(min(bottomPaddingFraction * screenHeight, maxTopPadding), minBotPadding)
+        
+        // Account for padding
+        let usableHeight = screenHeight - topPadding - bottomPadding
+        let usableWidth = screenWidth - leftPadding - rightPadding
+        
+        // Set the element sizes
+        let spellTextHeight = usableHeight - labelHeight
+        spellNameLabel.frame = CGRect(x: leftPadding, y: topPadding, width: usableWidth, height: labelHeight)
+        spellTextLabel.frame = CGRect(x: leftPadding, y: topPadding + labelHeight, width: usableWidth, height: spellTextHeight)
     }
     
 

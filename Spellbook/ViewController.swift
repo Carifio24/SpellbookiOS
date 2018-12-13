@@ -32,10 +32,13 @@ class ViewController: UIViewController {
     let labelFraction = CGFloat(0.08)
     // The table will take up the rest of the space
     
+    // Extreme padding amounts
     let maxHorizPadding = CGFloat(5)
-    let maxVertPadding = CGFloat(5)
+    let maxTopPadding = CGFloat(5)
+    let maxBotPadding = CGFloat(3)
     let minHorizPadding = CGFloat(1)
-    let minVertPadding = CGFloat(1)
+    let minTopPadding = CGFloat(1)
+    let minBotPadding = CGFloat(1)
     
     // Padding amounts
     let leftPaddingFraction = CGFloat(0.01)
@@ -60,8 +63,8 @@ class ViewController: UIViewController {
         // Get the padding sizes
         let leftPadding = max(min(leftPaddingFraction * screenWidth, maxHorizPadding), minHorizPadding)
         let rightPadding = max(min(rightPaddingFraction * screenWidth, maxHorizPadding), minHorizPadding)
-        let topPadding = max(min(topPaddingFraction * screenHeight, maxVertPadding), minVertPadding)
-        let bottomPadding = max(min(bottomPaddingFraction * screenHeight, maxVertPadding), minVertPadding)
+        let topPadding = max(min(topPaddingFraction * screenHeight, maxTopPadding), minTopPadding)
+        let bottomPadding = max(min(bottomPaddingFraction * screenHeight, maxBotPadding), minBotPadding)
         
         // Account for padding
         let usableHeight = screenHeight - topPadding - bottomPadding
