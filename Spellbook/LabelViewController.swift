@@ -35,7 +35,7 @@ class LabelViewController: UIViewController {
     
     // Set the sizes and positions for the labels
     func setViewDimensions() {
-        print("LABEL VIEW DIMENSIONS")
+
         // Get the view dimensions
         let viewRect = self.view.bounds
         let viewWidth = viewRect.size.width
@@ -46,10 +46,10 @@ class LabelViewController: UIViewController {
         let schoolWidth = schoolFraction * viewWidth
         let nameWidth = viewWidth - levelWidth - schoolWidth
         
-        print("Widths:")
-        print(nameWidth)
-        print(schoolWidth)
-        print(levelWidth)
+        // Alignments
+        nameLabel.textAlignment = NSTextAlignment.left
+        schoolLabel.textAlignment = NSTextAlignment.left
+        levelLabel.textAlignment = NSTextAlignment.center
         
         // Set the element positions
         let nameFrame = CGRect(x: 0, y: 0, width: nameWidth, height: viewHeight)

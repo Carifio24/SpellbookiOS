@@ -14,20 +14,14 @@ class SpellWindowController: UIViewController {
     static let nameSize = CGFloat(30)
     static let fontSize = CGFloat(15)
     
-    // Label height
-    // The rest will be the spell text
-    let labelHeight = CGFloat(40)
-    
-    @IBOutlet var spellNameLabel: UILabel!
-    
     @IBOutlet var spellTextLabel: UITextView!
     
     // Extreme padding amounts
     let maxHorizPadding = CGFloat(5)
-    let maxTopPadding = CGFloat(5)
+    let maxTopPadding = CGFloat(12)
     let maxBotPadding = CGFloat(3)
     let minHorizPadding = CGFloat(1)
-    let minTopPadding = CGFloat(5)
+    let minTopPadding = CGFloat(10)
     let minBotPadding = CGFloat(1)
     
     // Padding amounts
@@ -40,13 +34,12 @@ class SpellWindowController: UIViewController {
     // The spell for the window
     var spell = Spell() {
         didSet {
-            spellNameLabel.attributedText =
-            NSMutableAttributedString(string: spell.name, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: SpellWindowController.nameSize)])
-            spellTextLabel.attributedText = spellText()
-            self.view.bringSubviewToFront(spellNameLabel)
+            let allText = NSMutableAttributedString()
+            allText.append(nameText())
+            allText.append(NSAttributedString(string: "\n"))
+            allText.append(spellText())
+            spellTextLabel.attributedText = allText
             self.view.bringSubviewToFront(spellTextLabel)
-            print(spellTextLabel.attributedText)
-            //spellTextLabel.sizeToFit()
         }
     }
 
@@ -71,6 +64,10 @@ class SpellWindowController: UIViewController {
                     break
             }
         }
+    }
+    
+    func nameText() -> NSMutableAttributedString {
+        return NSMutableAttributedString(string: spell.name, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: SpellWindowController.nameSize)])
     }
     
     // Create the text <b>Name: </b> Text for a single property
@@ -160,9 +157,8 @@ class SpellWindowController: UIViewController {
         let usableWidth = screenWidth - leftPadding - rightPadding
         
         // Set the element sizes
-        let spellTextHeight = usableHeight - labelHeight
-        spellNameLabel.frame = CGRect(x: leftPadding, y: topPadding, width: usableWidth, height: labelHeight)
-        spellTextLabel.frame = CGRect(x: leftPadding, y: topPadding + labelHeight, width: usableWidth, height: spellTextHeight)
+        let spellTextHeight = usableHeight
+        spellTextLabel.frame = CGRect(x: leftPadding, y: topPadding, width: usableWidth, height: spellTextHeight)
     }
     
 

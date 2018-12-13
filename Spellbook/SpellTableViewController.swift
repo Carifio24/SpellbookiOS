@@ -19,6 +19,10 @@ class SpellTableViewController: UITableViewController {
     
     var spells: [(Spell, Bool)] = []
     var spellArray: [Spell] = []
+    var paddedSpells: [(Spell, Bool)] = []
+    var paddedArray: [Spell] = []
+    
+    let nBlankPadding = 4
     
     @IBOutlet var spellTable: UITableView!
     
@@ -45,7 +49,6 @@ class SpellTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("View did appear")
         boss = (self.parent as! ViewController)
         
         // If this is the view's first appearance (i.e. when the app is opening), we initialize spellArray
@@ -55,34 +58,22 @@ class SpellTableViewController: UITableViewController {
                 spells.append((spell,true))
                 spellArray.append(spell)
                 //print(spellArray.count)
-                tableView.reloadData()
-            firstAppear = false
             }
-            //setTableDimensions()
+            updatePaddedSpells()
+            tableView.reloadData()
+            firstAppear = false
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("View will appear")
     }
     
-    func setTableDimensions(leftPadding: CGFloat, bottomPadding: CGFloat, usableHeight: CGFloat, usableWidth: CGFloat) {
-        print("SPELL TABLE VIEW DIMENSIONS")
-        // Get the view dimensions
-        let viewRect = self.view.bounds
-        let viewWidth = viewRect.size.width
-        let viewHeight = viewRect.size.height
-        
-        print("Table view dimensions:")
-        print(viewWidth)
-        print(viewHeight)
+    func setTableDimensions(leftPadding: CGFloat, bottomPadding: CGFloat, usableHeight: CGFloat, usableWidth: CGFloat, tableTopPadding: CGFloat) {
         
         // Set the table dimensions
-        let tableFrame = CGRect(x: leftPadding, y: 0, width: usableWidth, height: usableHeight - bottomPadding)
+        let tableFrame = CGRect(x: leftPadding, y: tableTopPadding, width: usableWidth, height: usableHeight - bottomPadding)
         tableView.frame = tableFrame
-        
-        //boss?.setContainerDimensions()
     }
     
     // MARK: - Table view data source
@@ -93,17 +84,27 @@ class SpellTableViewController: UITableViewController {
 
     // Number of rows in TableView
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return spellArray.count
+        return paddedArray.count
     }
     
     // Function for adding SpellDataCell to table
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SpellDataCell
-        let spell = spellArray[indexPath.row]
+        let spell = paddedArray[indexPath.row]
         cell.spell = spell
-        cell.nameLabel.text = spell.name
-        cell.schoolLabel.text = Spellbook.schoolNames[spell.school.rawValue]
-        cell.levelLabel.text = String(spell.level)
+        if spell.name != "" {
+            cell.nameLabel.text = spell.name
+            cell.schoolLabel.text = Spellbook.schoolNames[spell.school.rawValue]
+            cell.levelLabel.text = String(spell.level)
+        } else {
+            cell.nameLabel.text = "XXX"
+            cell.schoolLabel.text = "XXX"
+            cell.levelLabel.text = "XXX"
+            cell.nameLabel.textColor = UIColor.clear
+            cell.schoolLabel.textColor = UIColor.clear
+            cell.levelLabel.textColor = UIColor.clear
+            
+        }
         cell.backgroundColor = UIColor.clear
         return cell
     }
@@ -129,6 +130,7 @@ class SpellTableViewController: UITableViewController {
         
         // Get the array
         updateSpellArray()
+        updatePaddedSpells()
 
         // Repopulate the table
         //print("Reloading")
@@ -145,6 +147,7 @@ class SpellTableViewController: UITableViewController {
         
         // Get the array
         updateSpellArray()
+        updatePaddedSpells()
         
         // Repopulate the table
         //print("Reloading")
@@ -160,6 +163,7 @@ class SpellTableViewController: UITableViewController {
             spells[i] = (spells[i].0, true)
         }
         updateSpellArray()
+        updatePaddedSpells()
     }
     
     // Determine whether or not a single row should be filtered
@@ -197,6 +201,7 @@ class SpellTableViewController: UITableViewController {
             
         // Get the new spell array
         updateSpellArray()
+        updatePaddedSpells()
             
         // Repopulate the table
         tableView.reloadData()
@@ -218,7 +223,18 @@ class SpellTableViewController: UITableViewController {
         let storyboard = self.storyboard
         let spellWindowController = storyboard?.instantiateViewController(withIdentifier: spellWindowIdentifier) as! SpellWindowController
         self.present(spellWindowController, animated:true, completion: nil)
-        spellWindowController.spell = spellArray[indexPath.row]
+        spellWindowController.spell = paddedArray[indexPath.row]
+    }
+    
+    func updatePaddedSpells() {
+        paddedSpells = spells
+        for _ in 0...nBlankPadding-1 {
+            paddedSpells.append((Spell(),true))
+        }
+        paddedArray = spellArray
+        for _ in 0...nBlankPadding-1 {
+            paddedArray.append(Spell())
+        }
     }
     
     

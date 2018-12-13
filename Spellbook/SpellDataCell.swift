@@ -42,9 +42,9 @@ class SpellDataCell: UITableViewCell {
         //let screenHeight = Double(screenSize.height)
         
         // Assign a fraction of the width to each property
-        let nameFraction = 0.45
         let schoolFraction = 0.35
-        let levelFraction = 0.2
+        let levelFraction = 0.15
+        let nameFraction = 1 - schoolFraction - levelFraction
         
         // Determine the label sizes
         let nameWidth = Int(nameFraction*screenWidth)
@@ -57,6 +57,7 @@ class SpellDataCell: UITableViewCell {
         schoolLabel.frame = CGRect(x: nameWidth, y:0, width: schoolWidth, height: labelHeight)
         levelLabel.frame = CGRect(x: nameWidth + schoolWidth, y: 0, width: levelWidth, height: labelHeight)
         levelLabel.textAlignment = NSTextAlignment.center
+        schoolLabel.textAlignment = NSTextAlignment.left
         
         // Set the label text
         

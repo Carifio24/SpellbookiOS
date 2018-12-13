@@ -47,7 +47,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     func setViewDimensions() {
-        print("PICKER VIEW DIMENSIONS")
+
         // Get the view dimensions
         let viewRect = self.view.bounds
         let viewWidth = viewRect.size.width
@@ -57,8 +57,6 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let sort1Width = sort1Fraction * viewWidth
         let sort2Width = sort2Fraction * viewWidth
         let classWidth = viewWidth - sort1Width - sort2Width
-        print("pickerViewHeight:")
-        print(viewHeight)
         
         // Set the element dimensions
         let sort1Frame = CGRect(x: 0, y: 0, width: sort1Width, height: viewHeight)

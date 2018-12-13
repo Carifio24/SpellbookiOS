@@ -54,7 +54,7 @@ class ViewController: UIViewController {
     }
     
     func setContainerDimensions() {
-        print("MAIN VIEW DIMENSIONS")
+
         // Get the screen dimensions
         let screenRect = UIScreen.main.bounds
         let screenWidth = screenRect.size.width
@@ -75,12 +75,6 @@ class ViewController: UIViewController {
         let labelHeight = min(labelFraction * usableHeight, 70)
         let tableHeight = usableHeight - sortHeight - labelHeight
         
-        print("Padding:")
-        print(leftPadding)
-        print(rightPadding)
-        print(topPadding)
-        print(bottomPadding)
-        
         // Set the relevant dimensions to the elements
         // First the PickerViewController
         pickerView.frame = CGRect(x: leftPadding, y: topPadding, width: usableWidth, height: sortHeight)
@@ -99,7 +93,7 @@ class ViewController: UIViewController {
         
         pickerController?.setViewDimensions()
         labelController?.setViewDimensions()
-        tableController?.setTableDimensions(leftPadding: leftPadding, bottomPadding: bottomPadding, usableHeight: usableHeight, usableWidth: usableWidth)
+        tableController?.setTableDimensions(leftPadding: leftPadding, bottomPadding: bottomPadding, usableHeight: usableHeight, usableWidth: usableWidth, tableTopPadding: tableView.frame.height * 0.04)
     }
     
     override func didReceiveMemoryWarning() {
