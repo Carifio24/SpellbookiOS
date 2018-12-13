@@ -96,6 +96,9 @@ class SpellTableViewController: UITableViewController {
             cell.nameLabel.text = spell.name
             cell.schoolLabel.text = Spellbook.schoolNames[spell.school.rawValue]
             cell.levelLabel.text = String(spell.level)
+            cell.nameLabel.textColor = UIColor.black
+            cell.schoolLabel.textColor = UIColor.black
+            cell.levelLabel.textColor = UIColor.black
         } else {
             cell.nameLabel.text = "XXX"
             cell.schoolLabel.text = "XXX"
@@ -103,7 +106,6 @@ class SpellTableViewController: UITableViewController {
             cell.nameLabel.textColor = UIColor.clear
             cell.schoolLabel.textColor = UIColor.clear
             cell.levelLabel.textColor = UIColor.clear
-            
         }
         cell.backgroundColor = UIColor.clear
         return cell

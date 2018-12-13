@@ -64,8 +64,16 @@ func parseSpell(obj: SION) -> Spell {
 	}
 
     //print(obj["level"].double)
-	s.setLevel(levelIn: Int(obj["level"].double!))
-    //s.setLevel(levelIn: Int(obj["level"].int!))
+    var isInt: Bool = false
+    if let _ = obj["level"].int {
+        isInt = true
+    }
+    if isInt {
+        s.setLevel(levelIn: Int(obj["level"].int!))
+    } else {
+        s.setLevel(levelIn: Int(obj["level"].double!))
+    }
+
     s.setCastingTime(castingTimeIn: obj["casting_time"].string!)
 
 	// Material, if necessary
