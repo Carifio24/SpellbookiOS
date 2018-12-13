@@ -63,9 +63,10 @@ func parseSpell(obj: SION) -> Spell {
 		s.setConcentration(concentrationIn: false)
 	}
 
-    //print("\(obj["level"])")
-	s.setLevel(levelIn: Int(obj["level"].int!))
-	s.setCastingTime(castingTimeIn: obj["casting_time"].string!)
+    //print(obj["level"].double)
+	s.setLevel(levelIn: Int(obj["level"].double!))
+    //s.setLevel(levelIn: Int(obj["level"].int!))
+    s.setCastingTime(castingTimeIn: obj["casting_time"].string!)
 
 	// Material, if necessary
 	if has_key(obj: obj, key: "material") {

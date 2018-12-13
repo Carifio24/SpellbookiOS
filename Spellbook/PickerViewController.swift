@@ -16,10 +16,15 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     @IBOutlet weak var classPicker: UIPickerView!
     
+    @IBOutlet weak var searchButton: SearchButton!
+    
     var boss: ViewController?
     var sortPickerData: [String] = ["Name", "School", "Level"]
     var classPickerData: [String] = ["None"] + Spellbook.casterNames
     
+    let sort1Fraction = CGFloat(0.33)
+    let sort2Fraction = CGFloat(0.33)
+    // The rest will be for the class picker
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +36,39 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         sortPicker1.dataSource = self as UIPickerViewDataSource
         sortPicker2.dataSource = self as UIPickerViewDataSource
         classPicker.dataSource = self as UIPickerViewDataSource
+        
+        // Set the picker dimensions and positions
+        setViewDimensions()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         boss = self.parent as? ViewController
+    }
+    
+    func setViewDimensions() {
+        print("PICKER VIEW DIMENSIONS")
+        // Get the view dimensions
+        let viewRect = self.view.bounds
+        let viewWidth = viewRect.size.width
+        let viewHeight = viewRect.size.height
+        
+        // Determine the sizes of the elements
+        let sort1Width = sort1Fraction * viewWidth
+        let sort2Width = sort2Fraction * viewWidth
+        let classWidth = viewWidth - sort1Width - sort2Width
+        print("pickerViewHeight:")
+        print(viewHeight)
+        
+        // Set the element dimensions
+        let sort1Frame = CGRect(x: 0, y: 0, width: sort1Width, height: viewHeight)
+        sortPicker1.frame = sort1Frame
+        
+        let sort2Frame = CGRect(x: sort1Width, y: 0, width: sort2Width, height: viewHeight)
+        sortPicker2.frame = sort2Frame
+        
+        let classFrame = CGRect(x: sort1Width + sort2Width, y: 0, width: classWidth, height: viewHeight)
+        classPicker.frame = classFrame
     }
     
     // Number of columns of data
@@ -87,6 +120,11 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         // If the class filter picker is changed
         } else {
             boss!.tableController!.filter()
+        }
+        
+        // What happens when the search button is clicked
+        func searchButtonClicked(sender: UIButton) {
+            
         }
         
     }

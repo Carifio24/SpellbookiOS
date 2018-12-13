@@ -20,7 +20,7 @@ class SpellTableViewController: UITableViewController {
     var spells: [(Spell, Bool)] = []
     var spellArray: [Spell] = []
     
-    @IBOutlet weak var spellTable: UITableView!
+    @IBOutlet var spellTable: UITableView!
     
     let cellReuseIdentifier = "cell"
     let spellWindowSegueIdentifier = "spellWindowSegue"
@@ -39,6 +39,8 @@ class SpellTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -52,16 +54,35 @@ class SpellTableViewController: UITableViewController {
             for spell in spellbook.spells {
                 spells.append((spell,true))
                 spellArray.append(spell)
-                print(spellArray.count)
+                //print(spellArray.count)
                 tableView.reloadData()
             firstAppear = false
             }
+            setTableDimensions()
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("View will appear")
+    }
+    
+    func setTableDimensions() {
+        print("SPELL TABLE VIEW DIMENSIONS")
+        // Get the view dimensions
+        let viewRect = self.view.bounds
+        let viewWidth = viewRect.size.width
+        let viewHeight = viewRect.size.height
+        
+        print("Table view dimensions:")
+        print(viewWidth)
+        print(viewHeight)
+        
+        // Set the table dimensions
+        let tableFrame = CGRect(x: 0, y: 0, width: viewWidth, height: viewHeight)
+        tableView.frame = tableFrame
+        
+        //boss?.setContainerDimensions()
     }
     
     // MARK: - Table view data source
@@ -139,7 +160,6 @@ class SpellTableViewController: UITableViewController {
             spells[i] = (spells[i].0, true)
         }
         updateSpellArray()
-        tableView.reloadData()
     }
     
     // Determine whether or not a single row should be filtered

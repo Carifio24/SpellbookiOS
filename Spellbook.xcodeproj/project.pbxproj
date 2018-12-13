@@ -32,6 +32,8 @@
 		397EE9A921ACAF9C00B116B0 /* Spellbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE99E21ACAF9C00B116B0 /* Spellbook.swift */; };
 		397EE9AA21ACAF9C00B116B0 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE99F21ACAF9C00B116B0 /* Source.swift */; };
 		397EE9AB21ACAF9C00B116B0 /* SpellComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE9A021ACAF9C00B116B0 /* SpellComparison.swift */; };
+		3997EE9B21C06E6D007DC1B6 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997EE9A21C06E6D007DC1B6 /* SearchButton.swift */; };
+		3997EE9D21C07293007DC1B6 /* SearchIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3997EE9C21C07292007DC1B6 /* SearchIcon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,8 @@
 		397EE99E21ACAF9C00B116B0 /* Spellbook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spellbook.swift; sourceTree = "<group>"; };
 		397EE99F21ACAF9C00B116B0 /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
 		397EE9A021ACAF9C00B116B0 /* SpellComparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellComparison.swift; sourceTree = "<group>"; };
+		3997EE9A21C06E6D007DC1B6 /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
+		3997EE9C21C07292007DC1B6 /* SearchIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchIcon.png; sourceTree = SOURCE_ROOT; };
 		39F1046F21AD87F40068A09E /* SION.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SION.swift; path = "../../Desktop/git/swift-sion/Sources/SION/SION.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,6 +148,8 @@
 				39522D1A21ADF99500A4DBCE /* PickerViewController.swift */,
 				39522D2221B04FE500A4DBCE /* BookBackground.jpeg */,
 				397EE96C21ACA86400B116B0 /* Main.storyboard */,
+				3997EE9C21C07292007DC1B6 /* SearchIcon.png */,
+				3997EE9A21C06E6D007DC1B6 /* SearchButton.swift */,
 				39522D1C21ADFA0A00A4DBCE /* LabelViewController.swift */,
 				397EE99A21ACAF9B00B116B0 /* CasterClass.swift */,
 				397EE99721ACAF9B00B116B0 /* School.swift */,
@@ -293,6 +299,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3997EE9D21C07293007DC1B6 /* SearchIcon.png in Resources */,
 				39522D2321B04FE500A4DBCE /* BookBackground.jpeg in Resources */,
 				397EE97321ACA86800B116B0 /* LaunchScreen.storyboard in Resources */,
 				397EE97021ACA86800B116B0 /* Assets.xcassets in Resources */,
@@ -323,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39522D2721B1C52100A4DBCE /* SpellWindowController.swift in Sources */,
+				3997EE9B21C06E6D007DC1B6 /* SearchButton.swift in Sources */,
 				39522D1B21ADF99500A4DBCE /* PickerViewController.swift in Sources */,
 				397EE96B21ACA86400B116B0 /* ViewController.swift in Sources */,
 				397EE9A821ACAF9C00B116B0 /* Util.swift in Sources */,

@@ -18,6 +18,10 @@ class LabelViewController: UIViewController {
     
     @IBOutlet weak var levelLabel: UILabel!
     
+    let levelFraction = CGFloat(0.15)
+    let schoolFraction = CGFloat(0.35)
+    // The name will take up the rest
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -26,6 +30,36 @@ class LabelViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         boss = self.parent as? ViewController
+        setViewDimensions()
+    }
+    
+    // Set the sizes and positions for the labels
+    func setViewDimensions() {
+        print("LABEL VIEW DIMENSIONS")
+        // Get the view dimensions
+        let viewRect = self.view.bounds
+        let viewWidth = viewRect.size.width
+        let viewHeight = viewRect.size.height
+        
+        // Determine the widths of the elements
+        let levelWidth = levelFraction * viewWidth
+        let schoolWidth = schoolFraction * viewWidth
+        let nameWidth = viewWidth - levelWidth - schoolWidth
+        
+        print("Widths:")
+        print(nameWidth)
+        print(schoolWidth)
+        print(levelWidth)
+        
+        // Set the element positions
+        let nameFrame = CGRect(x: 0, y: 0, width: nameWidth, height: viewHeight)
+        nameLabel.frame = nameFrame
+        
+        let schoolFrame = CGRect(x: nameWidth, y: 0, width: schoolWidth, height: viewHeight)
+        schoolLabel.frame = schoolFrame
+        
+        let levelFrame = CGRect(x: nameWidth + schoolWidth, y: 0, width: levelWidth, height: viewHeight)
+        levelLabel.frame = levelFrame
     }
     
 
