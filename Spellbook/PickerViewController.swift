@@ -106,8 +106,6 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 index1 = sortPicker1.selectedRow(inComponent: 0)
                 index2 = row
             }
-            print(index1)
-            print(index2)
             
             if (index2 == 0) || (index1 == 0) {
                 boss!.tableController!.singleSort(index: index1)

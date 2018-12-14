@@ -57,7 +57,6 @@ class SpellTableViewController: UITableViewController {
             for spell in spellbook.spells {
                 spells.append((spell,true))
                 spellArray.append(spell)
-                //print(spellArray.count)
             }
             updatePaddedSpells()
             tableView.reloadData()
@@ -115,8 +114,6 @@ class SpellTableViewController: UITableViewController {
     func updateSpellArray() {
         spellArray = []
         for tpl in spells {
-            //print(tpl.0.name)
-            //print(tpl.1)
             if tpl.1 {
                 spellArray.append(tpl.0)
             }

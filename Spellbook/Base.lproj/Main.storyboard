@@ -48,6 +48,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundView" destination="N4d-fT-FYa" id="CMl-hh-36r"/>
                         <outlet property="classLabel" destination="Wnd-wm-dtm" id="7Un-1Q-iLQ"/>
                         <outlet property="classPicker" destination="TNy-15-pIK" id="N0Q-GR-GxE"/>
                         <outlet property="labelView" destination="YqA-pP-HMf" id="PDW-jr-clA"/>

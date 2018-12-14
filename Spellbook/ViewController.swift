@@ -16,6 +16,9 @@ class ViewController: UIViewController {
     // Spellbook
     let spellbook = Spellbook(jsonStr: try! String(contentsOf: Bundle.main.url(forResource: "Spells", withExtension: "json")!))
     
+    // The background image
+    @IBOutlet weak var backgroundView: UIImageView!
+    
     // Child controllers
     var pickerController: PickerViewController?
     var labelController: LabelViewController?
@@ -31,6 +34,7 @@ class ViewController: UIViewController {
     let sortFraction = CGFloat(0.1)
     let labelFraction = CGFloat(0.08)
     // The table will take up the rest of the space
+    let backgroundOffset = CGFloat(27)
     
     // Extreme padding amounts
     let maxHorizPadding = CGFloat(5)
@@ -50,15 +54,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
-        setContainerDimensions()
+        let screenRect = UIScreen.main.bounds
+        setContainerDimensions(screenWidth: screenRect.size.width, screenHeight: screenRect.size.height)
     }
     
-    func setContainerDimensions() {
-
-        // Get the screen dimensions
-        let screenRect = UIScreen.main.bounds
-        let screenWidth = screenRect.size.width
-        let screenHeight = screenRect.size.height
+    func setContainerDimensions(screenWidth: CGFloat, screenHeight: CGFloat) {
+        
+        // Set the dimensions for the background image
+        // No padding necessary for this
+        backgroundView.frame = CGRect(x: 0, y: -backgroundOffset, width: screenWidth, height: screenHeight + backgroundOffset)
         
         // Get the padding sizes
         let leftPadding = max(min(leftPaddingFraction * screenWidth, maxHorizPadding), minHorizPadding)
@@ -117,7 +121,13 @@ class ViewController: UIViewController {
     override func viewWillTransition(to size: CGSize,
                                      with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        setContainerDimensions()
+        setContainerDimensions(screenWidth: size.width, screenHeight: size.height)
+        SpellDataCell.screenWidth = size.width
+    }
+    
+    // Until the issue with the SpellDataCell sizing is fixed, let's disable rotation
+    override open var shouldAutorotate: Bool {
+        return false
     }
     
 }

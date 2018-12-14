@@ -16,6 +16,8 @@ class SpellDataCell: UITableViewCell {
     
     @IBOutlet var levelLabel: UILabel!
     
+    static var screenWidth = UIScreen.main.bounds.width
+    
     // The spell for the data cell
     // The label text is updated when Spell is set
     var spell: Spell? {
@@ -37,20 +39,20 @@ class SpellDataCell: UITableViewCell {
         levelLabel = UILabel()
         
         // Get the screen dimensions
-        let screenSize = UIScreen.main.bounds
-        let screenWidth = Double(screenSize.width)
+//        let screenSize = UIScreen.main.bounds
+//        let screenWidth = Double(screenSize.width)
         //let screenHeight = Double(screenSize.height)
         
         // Assign a fraction of the width to each property
-        let schoolFraction = 0.35
-        let levelFraction = 0.15
+        let schoolFraction = CGFloat(0.35)
+        let levelFraction = CGFloat(0.15)
         let nameFraction = 1 - schoolFraction - levelFraction
         
         // Determine the label sizes
-        let nameWidth = Int(nameFraction*screenWidth)
-        let schoolWidth = Int(schoolFraction*screenWidth)
-        let levelWidth = Int(levelFraction*screenWidth)
-        let labelHeight = 50
+        let nameWidth = nameFraction*SpellDataCell.screenWidth
+        let schoolWidth = schoolFraction*SpellDataCell.screenWidth
+        let levelWidth = levelFraction*SpellDataCell.screenWidth
+        let labelHeight = CGFloat(50)
         
         // Set the label sizes
         nameLabel.frame = CGRect(x: 0, y:0, width: nameWidth , height: labelHeight)
