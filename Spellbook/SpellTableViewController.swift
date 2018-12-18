@@ -183,8 +183,8 @@ class SpellTableViewController: UITableViewController {
         let classIndex = boss?.pickerController?.classPicker.selectedRow(inComponent: 0)
         let isClass = (classIndex != 0)
         var cc: CasterClass = CasterClass(rawValue: 0)!
-        let isText = false // Placeholder for now, until the search field is added
-        let searchText = "" // Placeholder for now, until the search field is added
+        let isText = !((boss?.pickerController?.searchField.text?.isEmpty)!)
+        let searchText = isText ? (boss?.pickerController?.searchField.text)! : ""
         if isClass {
             cc = CasterClass(rawValue: classIndex!-1)!
         }

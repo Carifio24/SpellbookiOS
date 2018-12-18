@@ -18,13 +18,22 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     @IBOutlet weak var searchButton: SearchButton!
     
+    @IBOutlet weak var searchField: UITextField!
+    
     var boss: ViewController?
     var sortPickerData: [String] = ["Name", "School", "Level"]
     var classPickerData: [String] = ["None"] + Spellbook.casterNames
     
-    let sort1Fraction = CGFloat(0.33)
-    let sort2Fraction = CGFloat(0.33)
-    // The rest will be for the class picker
+    let sort1Fraction = CGFloat(0.3)
+    let sort2Fraction = CGFloat(0.3)
+    let classFraction = CGFloat(0.3)
+    let searchButtonVertFraction = CGFloat(0.75)
+    let searchFieldVertFraction = CGFloat(0.75)
+    // The rest will be for the search button
+    
+    // The font for the pickers
+    let pickerFont = UIFont.systemFont(ofSize: CGFloat(20))
+    let searchFont = UIFont.systemFont(ofSize: CGFloat(20))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +46,19 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         sortPicker2.dataSource = self as UIPickerViewDataSource
         classPicker.dataSource = self as UIPickerViewDataSource
         
-        // Set the picker dimensions and positions
+        // Set the callback function for the text field
+        searchField.addTarget(self, action: #selector(searchFieldDidChange(textField:)), for: .editingChanged)
+        
+        // Set the callback function for the search button
+        searchButton.addTarget(self, action: #selector(searchButtonClicked(sender:)), for: .touchUpInside)
+        
+        // For testing only
+        searchButton.backgroundColor = UIColor.purple
+        
+        // Set the search field font
+        searchField.font = searchFont
+        
+        // Set the element dimensions and positions
         setViewDimensions()
     }
     
@@ -56,7 +77,10 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         // Determine the sizes of the elements
         let sort1Width = sort1Fraction * viewWidth
         let sort2Width = sort2Fraction * viewWidth
-        let classWidth = viewWidth - sort1Width - sort2Width
+        let classWidth = classFraction * viewWidth
+        let searchWidth = viewWidth - sort1Width - sort2Width - classWidth
+        let searchFieldHeight = searchFieldVertFraction * viewHeight
+        let searchButtonHeight = searchButtonVertFraction * viewHeight
         
         // Set the element dimensions
         let sort1Frame = CGRect(x: 0, y: 0, width: sort1Width, height: viewHeight)
@@ -67,6 +91,15 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         let classFrame = CGRect(x: sort1Width + sort2Width, y: 0, width: classWidth, height: viewHeight)
         classPicker.frame = classFrame
+        
+        let searchFrame = CGRect(x: sort1Width + sort2Width + classWidth, y: (viewHeight - searchButtonHeight)/2, width: searchWidth, height: searchButtonHeight)
+        searchButton.frame = searchFrame
+        
+        // The search field is initially hidden, but it takes up the same space as the three pickers
+        // The search field is vertically centered within the view
+        let searchFieldFrame = CGRect(x: 0, y: (viewHeight - searchFieldHeight)/2, width: sort1Width + sort2Width + classWidth, height: searchFieldHeight)
+        searchField.frame = searchFieldFrame
+        
     }
     
     // Number of columns of data
@@ -84,12 +117,16 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     // Title for each row
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var label = UILabel()
+        if let v = view as? UILabel { label = v }
+        label.font = pickerFont
         if (pickerView.tag == 0) || (pickerView.tag == 1) {
-            return sortPickerData[row]
+            label.text = sortPickerData[row]
         } else {
-            return classPickerData[row]
+            label.text = classPickerData[row]
         }
+        return label
     }
     
     // When an option is changed
@@ -117,13 +154,19 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         } else {
             boss!.tableController!.filter()
         }
+    }
         
         // What happens when the search button is clicked
-        func searchButtonClicked(sender: UIButton) {
-            
+        @objc func searchButtonClicked(sender: UIButton) {
+            sortPicker1.isHidden = !sortPicker1.isHidden
+            sortPicker2.isHidden = !sortPicker2.isHidden
+            classPicker.isHidden = !classPicker.isHidden
+            searchField.isHidden = !searchField.isHidden
         }
         
-    }
+        @objc func searchFieldDidChange(textField: UITextField) {
+            boss!.tableController!.filter()
+        }
     
     /*
     // MARK: - Navigation

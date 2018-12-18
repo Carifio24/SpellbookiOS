@@ -105,11 +105,20 @@
                                     <accessibilityTraits key="traits" button="YES" image="YES"/>
                                 </accessibility>
                             </button>
+                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" id="baw-jg-Jp1">
+                                <rect key="frame" x="136" y="7" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="classPicker" destination="TNy-15-pIK" id="n99-mm-VRM"/>
                         <outlet property="searchButton" destination="KPX-AI-vxp" id="Wwy-qa-2fC"/>
+                        <outlet property="searchField" destination="baw-jg-Jp1" id="Jqb-46-16q"/>
                         <outlet property="sortPicker1" destination="NKM-eo-2xO" id="azC-DS-hJo"/>
                         <outlet property="sortPicker2" destination="T27-TR-XLe" id="Bb2-j1-ePU"/>
                     </connections>

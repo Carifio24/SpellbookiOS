@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UIView!
     
     // Dimensions
-    let sortFraction = CGFloat(0.1)
+    let sortFraction = CGFloat(0.08)
     let labelFraction = CGFloat(0.08)
     // The table will take up the rest of the space
     let backgroundOffset = CGFloat(27)
@@ -56,6 +56,12 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         let screenRect = UIScreen.main.bounds
         setContainerDimensions(screenWidth: screenRect.size.width, screenHeight: screenRect.size.height)
+        
+        // Dismiss keyboard when not in the search field
+        let tapper = UITapGestureRecognizer(target: self, action: #selector(endEditing))
+        tapper.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapper)
+        
     }
     
     func setContainerDimensions(screenWidth: CGFloat, screenHeight: CGFloat) {
@@ -128,6 +134,11 @@ class ViewController: UIViewController {
     // Until the issue with the SpellDataCell sizing is fixed, let's disable rotation
     override open var shouldAutorotate: Bool {
         return false
+    }
+    
+    // To dismiss the keyboard
+    @objc func endEditing() {
+        pickerController!.searchField.resignFirstResponder()
     }
     
 }
