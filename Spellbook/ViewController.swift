@@ -62,6 +62,9 @@ class ViewController: UIViewController {
         tapper.cancelsTouchesInView = false
         view.addGestureRecognizer(tapper)
         
+        // Pull out the side menu
+       view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
     }
     
     func setContainerDimensions(screenWidth: CGFloat, screenHeight: CGFloat) {

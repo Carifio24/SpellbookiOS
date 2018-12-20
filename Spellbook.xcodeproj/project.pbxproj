@@ -34,6 +34,9 @@
 		397EE9AB21ACAF9C00B116B0 /* SpellComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE9A021ACAF9C00B116B0 /* SpellComparison.swift */; };
 		3997EE9B21C06E6D007DC1B6 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997EE9A21C06E6D007DC1B6 /* SearchButton.swift */; };
 		3997EE9D21C07293007DC1B6 /* SearchIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3997EE9C21C07292007DC1B6 /* SearchIcon.png */; };
+		39C5B23221CAE121005F08DA /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C5B23121CAE121005F08DA /* SWRevealViewController.m */; };
+		39C5B23421CAF3CB005F08DA /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C5B23321CAF3CB005F08DA /* SideMenuController.swift */; };
+		39C5B23621CB10ED005F08DA /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C5B23521CB10ED005F08DA /* SideMenuCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +90,11 @@
 		397EE9A021ACAF9C00B116B0 /* SpellComparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellComparison.swift; sourceTree = "<group>"; };
 		3997EE9A21C06E6D007DC1B6 /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
 		3997EE9C21C07292007DC1B6 /* SearchIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchIcon.png; sourceTree = SOURCE_ROOT; };
+		39C5B22F21CAE11F005F08DA /* Spellbook-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Spellbook-Bridging-Header.h"; sourceTree = "<group>"; };
+		39C5B23021CAE120005F08DA /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../SWRevealViewController-master/SWRevealViewController/SWRevealViewController.h"; sourceTree = "<group>"; };
+		39C5B23121CAE121005F08DA /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = "../../SWRevealViewController-master/SWRevealViewController/SWRevealViewController.m"; sourceTree = "<group>"; };
+		39C5B23321CAF3CB005F08DA /* SideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
+		39C5B23521CB10ED005F08DA /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
 		39F1046F21AD87F40068A09E /* SION.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SION.swift; path = "../../Desktop/git/swift-sion/Sources/SION/SION.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +126,7 @@
 		397EE95C21ACA86300B116B0 = {
 			isa = PBXGroup;
 			children = (
+				39C5B22E21CAE0BF005F08DA /* SWRevealViewController */,
 				397EE96721ACA86400B116B0 /* Spellbook */,
 				397EE97C21ACA86800B116B0 /* SpellbookTests */,
 				397EE98721ACA86900B116B0 /* SpellbookUITests */,
@@ -148,6 +157,8 @@
 				39522D1A21ADF99500A4DBCE /* PickerViewController.swift */,
 				39522D2221B04FE500A4DBCE /* BookBackground.jpeg */,
 				397EE96C21ACA86400B116B0 /* Main.storyboard */,
+				39C5B23521CB10ED005F08DA /* SideMenuCell.swift */,
+				39C5B23321CAF3CB005F08DA /* SideMenuController.swift */,
 				3997EE9C21C07292007DC1B6 /* SearchIcon.png */,
 				3997EE9A21C06E6D007DC1B6 /* SearchButton.swift */,
 				39522D1C21ADFA0A00A4DBCE /* LabelViewController.swift */,
@@ -185,6 +196,16 @@
 				397EE98A21ACA86900B116B0 /* Info.plist */,
 			);
 			path = SpellbookUITests;
+			sourceTree = "<group>";
+		};
+		39C5B22E21CAE0BF005F08DA /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				39C5B23021CAE120005F08DA /* SWRevealViewController.h */,
+				39C5B23121CAE121005F08DA /* SWRevealViewController.m */,
+				39C5B22F21CAE11F005F08DA /* Spellbook-Bridging-Header.h */,
+			);
+			path = SWRevealViewController;
 			sourceTree = "<group>";
 		};
 		39F1046E21AD87F40068A09E /* Frameworks */ = {
@@ -263,6 +284,7 @@
 				TargetAttributes = {
 					397EE96421ACA86400B116B0 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 					397EE97821ACA86800B116B0 = {
 						CreatedOnToolsVersion = 10.1;
@@ -333,15 +355,18 @@
 				3997EE9B21C06E6D007DC1B6 /* SearchButton.swift in Sources */,
 				39522D1B21ADF99500A4DBCE /* PickerViewController.swift in Sources */,
 				397EE96B21ACA86400B116B0 /* ViewController.swift in Sources */,
+				39C5B23421CAF3CB005F08DA /* SideMenuController.swift in Sources */,
 				397EE9A821ACAF9C00B116B0 /* Util.swift in Sources */,
 				39522D1D21ADFA0A00A4DBCE /* LabelViewController.swift in Sources */,
 				397EE9A721ACAF9C00B116B0 /* SubClass.swift in Sources */,
+				39C5B23221CAE121005F08DA /* SWRevealViewController.m in Sources */,
 				397EE96921ACA86400B116B0 /* AppDelegate.swift in Sources */,
 				39522D1521ADC15900A4DBCE /* SION.swift in Sources */,
 				397EE9AA21ACAF9C00B116B0 /* Source.swift in Sources */,
 				39522D1921ADC41F00A4DBCE /* SpellDataCell.swift in Sources */,
 				397EE9A421ACAF9C00B116B0 /* SpellParse.swift in Sources */,
 				397EE9A321ACAF9C00B116B0 /* SpellbookError.swift in Sources */,
+				39C5B23621CB10ED005F08DA /* SideMenuCell.swift in Sources */,
 				397EE9AB21ACAF9C00B116B0 /* SpellComparison.swift in Sources */,
 				39522D2121ADFBA100A4DBCE /* SpellTableViewController.swift in Sources */,
 				397EE9A121ACAF9C00B116B0 /* Spell.swift in Sources */,
@@ -522,6 +547,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
@@ -535,6 +561,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dnd.jon.Spellbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SWRevealViewController/Spellbook-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -544,6 +572,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
@@ -557,6 +586,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dnd.jon.Spellbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SWRevealViewController/Spellbook-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

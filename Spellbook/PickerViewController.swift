@@ -21,8 +21,8 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBOutlet weak var searchField: UITextField!
     
     var boss: ViewController?
-    var sortPickerData: [String] = ["Name", "School", "Level"]
-    var classPickerData: [String] = ["None"] + Spellbook.casterNames
+    let sortPickerData: [String] = ["Name", "School", "Level"]
+    let classPickerData: [String] = ["None"] + Spellbook.casterNames
     
     let sort1Fraction = CGFloat(0.3)
     let sort2Fraction = CGFloat(0.3)
