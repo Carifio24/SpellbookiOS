@@ -14,7 +14,16 @@ class SpellWindowController: UIViewController {
     static let nameSize = CGFloat(30)
     static let fontSize = CGFloat(15)
     
+    @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var spellNameLabel: UILabel!
     @IBOutlet var spellTextLabel: UITextView!
+    
+    // The name label size
+    let nameLabelHeight = CGFloat(55)
+    
+    // How much of the horizontal width goes to the name label
+    // The rest is for the favoriting button
+    let nameLabelFraction = CGFloat(0.9)
     
     // Extreme padding amounts
     let maxHorizPadding = CGFloat(5)
@@ -34,17 +43,26 @@ class SpellWindowController: UIViewController {
     // The spell for the window
     var spell = Spell() {
         didSet {
+           
+            // Set the attributed text on the name label
+            spellNameLabel.attributedText = nameText()
+            self.view.bringSubviewToFront(spellNameLabel)
+            
+            // Do the same for the body of the spell text
             let allText = NSMutableAttributedString()
-            allText.append(nameText())
-            allText.append(NSAttributedString(string: "\n"))
             allText.append(spellText())
             spellTextLabel.attributedText = allText
             self.view.bringSubviewToFront(spellTextLabel)
+            
+            // Set the view dimensions
+            setDimensions()
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.bringSubviewToFront(scrollView)
 
         // We close the window on a swipe to the right
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
@@ -52,7 +70,6 @@ class SpellWindowController: UIViewController {
         self.view.addGestureRecognizer(swipeRight)
         
         // Do any additional setup after loading the view.
-        setDimensions()
     }
     
     @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
@@ -156,9 +173,36 @@ class SpellWindowController: UIViewController {
         let usableHeight = screenHeight - topPadding - bottomPadding
         let usableWidth = screenWidth - leftPadding - rightPadding
         
-        // Set the element sizes
-        let spellTextHeight = usableHeight
-        spellTextLabel.frame = CGRect(x: leftPadding, y: topPadding, width: usableWidth, height: spellTextHeight)
+        // Set the element dimensions
+        // First, the size of the UIScrollView
+        scrollView.frame = CGRect(x: leftPadding, y: topPadding, width: usableWidth, height: usableHeight)
+        
+        // Get the scroll view's dimensions
+        let scrollRect = scrollView.bounds
+        let scrollWidth = scrollRect.size.width
+        //let scrollHeight = scrollRect.size.height
+        
+        // Set the dimensions of the subviews
+        let nameLabelWidth = nameLabelFraction * scrollWidth
+        spellNameLabel.frame.origin.x = 0
+        spellNameLabel.frame.origin.y = 0
+        spellNameLabel.frame.size.width = nameLabelWidth
+        spellNameLabel.sizeToFit()
+        
+        let nameLabelHeight = spellNameLabel.frame.size.height
+        spellTextLabel.frame.origin.x = 0
+        spellTextLabel.frame.origin.y = nameLabelHeight
+        spellTextLabel.frame.size.width = scrollWidth
+        spellTextLabel.sizeToFit()
+        
+        // We need to tell the scroll view how large its contents are
+        scrollView.contentSize = CGSize(width: scrollWidth, height: nameLabelHeight + spellTextLabel.frame.size.height)
+        
+//        spellNameLabel.frame = CGRect(x: 0, y: 0, width: nameLabelWidth, height: nameLabelHeight)
+//
+//        let spellTextHeight = scrollHeight - nameLabelHeight
+//        spellTextLabel.frame = CGRect(x: 0, y: nameLabelHeight, width: scrollWidth, height: spellTextHeight)
+        
     }
     
 

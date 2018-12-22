@@ -10,8 +10,12 @@ import UIKit
 
 class SideMenuCell: UITableViewCell {
     
-    static let cellWidth = CGFloat(100)
-    static let cellHeight = CGFloat(100)
+    static let cellWidth = CGFloat(150)
+    static let cellHeight = CGFloat(40)
+    
+    // Extreme padding amounts
+    static let leftPadding = CGFloat(3)
+    static let topPadding = CGFloat(3)
     
     @IBOutlet var optionLabel: UILabel!
     
@@ -20,7 +24,7 @@ class SideMenuCell: UITableViewCell {
         
         self.backgroundColor = UIColor.clear
         optionLabel = UILabel()
-        optionLabel.frame = CGRect(x:0, y: 0, width: SideMenuCell.cellWidth, height: SideMenuCell.cellHeight)
+        optionLabel.frame = CGRect(x: SideMenuCell.leftPadding, y: SideMenuCell.topPadding, width: SideMenuCell.cellWidth, height: SideMenuCell.cellHeight)
         optionLabel.backgroundColor = UIColor.clear
         self.addSubview(optionLabel)
         

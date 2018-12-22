@@ -68,6 +68,11 @@ class SideMenuController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SideMenuCell
         cell.optionLabel.text = menuOptions[indexPath.row]
         cell.optionLabel.textColor = UIColor.black
+        if indexPath.row == 0 {
+            cell.optionLabel.backgroundColor = UIColor.blue
+        } else {
+            cell.optionLabel.backgroundColor = UIColor.red
+        }
         return cell
     }
     
@@ -76,8 +81,8 @@ class SideMenuController: UITableViewController {
         
         let revealController = UIApplication.shared.keyWindow!.rootViewController as! SWRevealViewController
         let mainWindowController = revealController.frontViewController as! ViewController
-        let isFav = (indexPath.row != 0)
-        mainWindowController.tableController?.filter(isFav: isFav)
+        mainWindowController.tableController?.isFav = (indexPath.row != 0)
+        mainWindowController.tableController?.filter()
         revealController.revealToggle(self)
     }
     

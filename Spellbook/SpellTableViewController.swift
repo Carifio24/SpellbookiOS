@@ -21,8 +21,11 @@ class SpellTableViewController: UITableViewController {
     var spellArray: [Spell] = []
     var paddedSpells: [(Spell, Bool)] = []
     var paddedArray: [Spell] = []
+    var isFav = false
     
     let nBlankPadding = 4
+    
+    let favoritesFile = Bundle.main.url(forResource: "Favorites", withExtension: "txt")
     
     @IBOutlet var spellTable: UITableView!
     
@@ -177,7 +180,7 @@ class SpellTableViewController: UITableViewController {
     }
     
     // Function to filter the table data
-    func filter(isFav: Bool) {
+    func filter() {
         
         // First, we filter the data
         let classIndex = boss?.pickerController?.classPicker.selectedRow(inComponent: 0)
@@ -205,12 +208,6 @@ class SpellTableViewController: UITableViewController {
         // Repopulate the table
         tableView.reloadData()
     }
-        
-    // Filter function
-    func filter() {
-        let isFav = false // Just a placeholder until favoriting is implemented
-        filter(isFav: isFav)
-    }
     
     // Set what happens when a cell is selected
     // For us, that's creating a segue to a view with the spell info
@@ -236,6 +233,36 @@ class SpellTableViewController: UITableViewController {
         }
     }
     
+    func loadFavorites() {
+        if let favoritesText = try? String(contentsOf: favoritesFile!) {
+            let favoriteNames = favoritesText.components(separatedBy: .newlines)
+            for name in favoriteNames {
+                var inSpellbook = false
+                for spell in spells {
+                    if name == spell.0.name {
+                        spell.0.setFavorite(favIn: true)
+                        inSpellbook = true
+                        break
+                    }
+                }
+                // if !inSpellbook {
+                    // throw Exception
+                // }
+            }
+        } else {
+            return
+        }
+    }
+    
+    func saveFavorites() {
+        var favoriteNames: [String] = []
+        for spell in spells {
+            if spell.0.favorite {
+                favoriteNames.append(spell.0.name)
+            }
+        }
+        try! favoriteNames.joined(separator: "\n").write(to: favoritesFile!, atomically: false, encoding: .utf8)
+    }
     
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
