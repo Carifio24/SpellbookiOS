@@ -20,6 +20,8 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     @IBOutlet weak var searchField: UITextField!
     
+    static let searchIcon = UIImage(named: "search_icon.png")?.withRenderingMode(.alwaysOriginal)
+    
     var boss: ViewController?
     let sortPickerData: [String] = ["Name", "School", "Level"]
     let classPickerData: [String] = ["None"] + Spellbook.casterNames
@@ -53,7 +55,10 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         searchButton.addTarget(self, action: #selector(searchButtonClicked(sender:)), for: .touchUpInside)
         
         // For testing only
-        searchButton.backgroundColor = UIColor.purple
+        //searchButton.backgroundColor = UIColor.purple
+        
+        // Set the search button image
+        searchButton.setImage(PickerViewController.searchIcon, for: .normal)
         
         // Set the search field font
         searchField.font = searchFont

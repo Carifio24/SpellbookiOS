@@ -24,14 +24,16 @@ class SpellTableViewController: UITableViewController {
     var isFav = false
     
     let nBlankPadding = 4
-    
-    let favoritesFile = Bundle.main.url(forResource: "Favorites", withExtension: "txt")
+
     
     @IBOutlet var spellTable: UITableView!
     
     let cellReuseIdentifier = "cell"
     let spellWindowSegueIdentifier = "spellWindowSegue"
     let spellWindowIdentifier = "spellWindow"
+    
+    // Documents directory
+    let documentsDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +66,7 @@ class SpellTableViewController: UITableViewController {
             updatePaddedSpells()
             tableView.reloadData()
             firstAppear = false
+            loadFavorites()
         }
     }
     
@@ -219,6 +222,7 @@ class SpellTableViewController: UITableViewController {
         let storyboard = self.storyboard
         let spellWindowController = storyboard?.instantiateViewController(withIdentifier: spellWindowIdentifier) as! SpellWindowController
         self.present(spellWindowController, animated:true, completion: nil)
+        spellWindowController.spellIndex = indexPath.row
         spellWindowController.spell = paddedArray[indexPath.row]
     }
     
@@ -234,7 +238,8 @@ class SpellTableViewController: UITableViewController {
     }
     
     func loadFavorites() {
-        if let favoritesText = try? String(contentsOf: favoritesFile!) {
+        let favoritesFile = documentsDirectory.appendingPathComponent("Favorites.txt")
+        if let favoritesText = try? String(contentsOf: favoritesFile) {
             let favoriteNames = favoritesText.components(separatedBy: .newlines)
             for name in favoriteNames {
                 var inSpellbook = false
@@ -255,13 +260,19 @@ class SpellTableViewController: UITableViewController {
     }
     
     func saveFavorites() {
+        let favoritesFile = documentsDirectory.appendingPathComponent("Favorites.txt")
         var favoriteNames: [String] = []
         for spell in spells {
             if spell.0.favorite {
                 favoriteNames.append(spell.0.name)
             }
         }
-        try! favoriteNames.joined(separator: "\n").write(to: favoritesFile!, atomically: false, encoding: .utf8)
+        let favoritesString =  favoriteNames.joined(separator: "\n")
+        do {
+            try favoritesString.write(to: favoritesFile, atomically: false, encoding: .utf8)
+        } catch let e {
+            print("\(e)")
+        }
     }
     
     /*

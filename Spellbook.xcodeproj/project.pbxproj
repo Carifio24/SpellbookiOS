@@ -37,6 +37,9 @@
 		39C5B23221CAE121005F08DA /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C5B23121CAE121005F08DA /* SWRevealViewController.m */; };
 		39C5B23421CAF3CB005F08DA /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C5B23321CAF3CB005F08DA /* SideMenuController.swift */; };
 		39C5B23621CB10ED005F08DA /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C5B23521CB10ED005F08DA /* SideMenuCell.swift */; };
+		39C5B23D21CF03A8005F08DA /* star_filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C5B23B21CF03A1005F08DA /* star_filled.png */; };
+		39C5B23E21CF03A8005F08DA /* star_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C5B23C21CF03A5005F08DA /* star_empty.png */; };
+		39C5B24021CF1D1A005F08DA /* search_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C5B23F21CF1D1A005F08DA /* search_icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +98,9 @@
 		39C5B23121CAE121005F08DA /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = "../../SWRevealViewController-master/SWRevealViewController/SWRevealViewController.m"; sourceTree = "<group>"; };
 		39C5B23321CAF3CB005F08DA /* SideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
 		39C5B23521CB10ED005F08DA /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
+		39C5B23B21CF03A1005F08DA /* star_filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_filled.png; sourceTree = SOURCE_ROOT; };
+		39C5B23C21CF03A5005F08DA /* star_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_empty.png; sourceTree = SOURCE_ROOT; };
+		39C5B23F21CF1D1A005F08DA /* search_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_icon.png; sourceTree = SOURCE_ROOT; };
 		39F1046F21AD87F40068A09E /* SION.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SION.swift; path = "../../Desktop/git/swift-sion/Sources/SION/SION.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,6 +156,7 @@
 			children = (
 				39522D2621B1C52100A4DBCE /* SpellWindowController.swift */,
 				39522D2021ADFBA100A4DBCE /* SpellTableViewController.swift */,
+				39C5B23F21CF1D1A005F08DA /* search_icon.png */,
 				39522D1821ADC41F00A4DBCE /* SpellDataCell.swift */,
 				39522D1421ADC15900A4DBCE /* SION.swift */,
 				397EE96821ACA86400B116B0 /* AppDelegate.swift */,
@@ -157,6 +164,8 @@
 				39522D1A21ADF99500A4DBCE /* PickerViewController.swift */,
 				39522D2221B04FE500A4DBCE /* BookBackground.jpeg */,
 				397EE96C21ACA86400B116B0 /* Main.storyboard */,
+				39C5B23C21CF03A5005F08DA /* star_empty.png */,
+				39C5B23B21CF03A1005F08DA /* star_filled.png */,
 				39C5B23521CB10ED005F08DA /* SideMenuCell.swift */,
 				39C5B23321CAF3CB005F08DA /* SideMenuController.swift */,
 				3997EE9C21C07292007DC1B6 /* SearchIcon.png */,
@@ -321,7 +330,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39C5B24021CF1D1A005F08DA /* search_icon.png in Resources */,
 				3997EE9D21C07293007DC1B6 /* SearchIcon.png in Resources */,
+				39C5B23E21CF03A8005F08DA /* star_empty.png in Resources */,
+				39C5B23D21CF03A8005F08DA /* star_filled.png in Resources */,
 				39522D2321B04FE500A4DBCE /* BookBackground.jpeg in Resources */,
 				397EE97321ACA86800B116B0 /* LaunchScreen.storyboard in Resources */,
 				397EE97021ACA86800B116B0 /* Assets.xcassets in Resources */,

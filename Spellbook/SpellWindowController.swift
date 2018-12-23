@@ -10,27 +10,35 @@ import UIKit
 
 class SpellWindowController: UIViewController {
     
+    // The main controller
+    let mainWindowController = (UIApplication.shared.keyWindow!.rootViewController as! SWRevealViewController).frontViewController as! ViewController
+    
     // Font sizes
     static let nameSize = CGFloat(30)
     static let fontSize = CGFloat(15)
     
+    // Favorite/not favorite images
+    static let isFavoriteImage = UIImage(named: "star_filled.png")?.withRenderingMode(.alwaysOriginal)
+    static let notFavoriteImage = UIImage(named: "star_empty.png")?.withRenderingMode(.alwaysOriginal)
+    
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var spellNameLabel: UILabel!
     @IBOutlet var spellTextLabel: UITextView!
+    @IBOutlet var favoriteButton: UIButton!
     
     // The name label size
     let nameLabelHeight = CGFloat(55)
     
     // How much of the horizontal width goes to the name label
     // The rest is for the favoriting button
-    let nameLabelFraction = CGFloat(0.9)
+    let nameLabelFraction = CGFloat(0.87)
     
     // Extreme padding amounts
     let maxHorizPadding = CGFloat(5)
-    let maxTopPadding = CGFloat(12)
+    let maxTopPadding = CGFloat(25)
     let maxBotPadding = CGFloat(3)
     let minHorizPadding = CGFloat(1)
-    let minTopPadding = CGFloat(10)
+    let minTopPadding = CGFloat(20)
     let minBotPadding = CGFloat(1)
     
     // Padding amounts
@@ -40,7 +48,8 @@ class SpellWindowController: UIViewController {
     let bottomPaddingFraction = CGFloat(0.01)
     
     
-    // The spell for the window
+    // The spell for the window, and its (current) index in the array
+    var spellIndex: Int = 0
     var spell = Spell() {
         didSet {
            
@@ -56,6 +65,17 @@ class SpellWindowController: UIViewController {
             
             // Set the view dimensions
             setDimensions()
+            
+            // Set the button image
+            if spell.favorite {
+                favoriteButton.setImage(SpellWindowController.isFavoriteImage, for: .normal)
+            } else {
+                favoriteButton.setImage(SpellWindowController.notFavoriteImage, for: .normal)
+            }
+            self.view.bringSubviewToFront(favoriteButton)
+            
+            // Set the button function
+            favoriteButton.addTarget(self, action: #selector(favoriteButtonPressed), for: UIControl.Event.touchUpInside)
         }
     }
 
@@ -76,6 +96,8 @@ class SpellWindowController: UIViewController {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
                 case UISwipeGestureRecognizer.Direction.right:
+                    mainWindowController.tableController!.filter()
+                    mainWindowController.tableController!.saveFavorites()
                     self.dismiss(animated: true, completion: nil)
                 default:
                     break
@@ -183,13 +205,21 @@ class SpellWindowController: UIViewController {
         //let scrollHeight = scrollRect.size.height
         
         // Set the dimensions of the subviews
+        
+        // First the name label
         let nameLabelWidth = nameLabelFraction * scrollWidth
         spellNameLabel.frame.origin.x = 0
         spellNameLabel.frame.origin.y = 0
         spellNameLabel.frame.size.width = nameLabelWidth
         spellNameLabel.sizeToFit()
         
+        // Then the favoriting button
+        let favoriteButtonWidth = scrollWidth - nameLabelWidth
         let nameLabelHeight = spellNameLabel.frame.size.height
+        favoriteButton.frame = CGRect(x: nameLabelWidth, y: 0, width: favoriteButtonWidth, height: nameLabelHeight)
+        //favoriteButton.backgroundColor = UIColor.red // For testing purposes only
+        
+        // Finally, the spell text
         spellTextLabel.frame.origin.x = 0
         spellTextLabel.frame.origin.y = nameLabelHeight
         spellTextLabel.frame.size.width = scrollWidth
@@ -198,12 +228,19 @@ class SpellWindowController: UIViewController {
         // We need to tell the scroll view how large its contents are
         scrollView.contentSize = CGSize(width: scrollWidth, height: nameLabelHeight + spellTextLabel.frame.size.height)
         
-//        spellNameLabel.frame = CGRect(x: 0, y: 0, width: nameLabelWidth, height: nameLabelHeight)
-//
-//        let spellTextHeight = scrollHeight - nameLabelHeight
-//        spellTextLabel.frame = CGRect(x: 0, y: nameLabelHeight, width: scrollWidth, height: spellTextHeight)
-        
     }
+    
+    @objc func favoriteButtonPressed() {
+        spell.setFavorite(favIn: !spell.favorite)
+        mainWindowController.tableController!.spells[spellIndex].0.setFavorite(favIn: spell.favorite)
+        if spell.favorite {
+            favoriteButton.setImage(SpellWindowController.isFavoriteImage, for: .normal)
+        } else {
+            favoriteButton.setImage(SpellWindowController.notFavoriteImage, for: .normal)
+        }
+    }
+    
+    
     
 
     /*
