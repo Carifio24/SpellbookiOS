@@ -13,7 +13,13 @@ class SideMenuController: UITableViewController {
     let menuOptions: [String] = ["All spells", "Favorites"]
     let backgroundOffset = CGFloat(27)
     let cellReuseIdentifier = "menuCell"
+    
+    let leftPadding = CGFloat(7)
+    let topPadding = CGFloat(7)
 
+    let titleFontSize = CGFloat(30)
+    let titleViewHeight = CGFloat(65)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -64,15 +70,41 @@ class SideMenuController: UITableViewController {
         return menuOptions.count
     }
     
+    // The table title
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let titleViewWidth = self.view.bounds.size.width
+        let titleView = UIView.init(frame: CGRect(x:0, y: 0, width: titleViewWidth, height: titleViewHeight))
+        let titleLabel = UILabel()
+        titleLabel.text = "Spellbook"
+        titleLabel.font = UIFont.boldSystemFont(ofSize: titleFontSize)
+        titleLabel.textColor = UIColor.black
+        titleView.addSubview(titleLabel)
+        titleView.bringSubviewToFront(titleLabel)
+        titleLabel.frame = CGRect(x: leftPadding, y: topPadding, width: titleViewWidth - leftPadding, height: titleViewHeight - topPadding)
+//        titleLabel.frame.origin.x = leftPadding
+//        titleLabel.frame.origin.y = topPadding
+//        titleLabel.frame.size.height = titleViewHeight - topPadding
+//        titleLabel.frame.size.width = self.view.bounds.size.width - leftPadding
+        return titleView
+        //return titleLabel
+    }
+    
+    // The title view's height
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return titleViewHeight
+    }
+    
+    // The title's properties
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = UIColor.clear
+    }
+    
+    // The cells for the table
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SideMenuCell
         cell.optionLabel.text = menuOptions[indexPath.row]
         cell.optionLabel.textColor = UIColor.black
-        if indexPath.row == 0 {
-            cell.optionLabel.backgroundColor = UIColor.blue
-        } else {
-            cell.optionLabel.backgroundColor = UIColor.red
-        }
+        cell.optionLabel.backgroundColor = UIColor.clear
         return cell
     }
     

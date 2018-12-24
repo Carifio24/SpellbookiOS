@@ -69,8 +69,10 @@ class SpellWindowController: UIViewController {
             // Set the button image
             if spell.favorite {
                 favoriteButton.setImage(SpellWindowController.isFavoriteImage, for: .normal)
+                favoriteButton.imageView?.contentMode = .scaleAspectFit
             } else {
                 favoriteButton.setImage(SpellWindowController.notFavoriteImage, for: .normal)
+                favoriteButton.imageView?.contentMode = .scaleAspectFit
             }
             self.view.bringSubviewToFront(favoriteButton)
             
@@ -235,8 +237,10 @@ class SpellWindowController: UIViewController {
         mainWindowController.tableController!.spells[spellIndex].0.setFavorite(favIn: spell.favorite)
         if spell.favorite {
             favoriteButton.setImage(SpellWindowController.isFavoriteImage, for: .normal)
+            favoriteButton.imageView?.contentMode = .scaleAspectFit
         } else {
             favoriteButton.setImage(SpellWindowController.notFavoriteImage, for: .normal)
+            favoriteButton.imageView?.contentMode = .scaleAspectFit
         }
     }
     

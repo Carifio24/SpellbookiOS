@@ -59,6 +59,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         // Set the search button image
         searchButton.setImage(PickerViewController.searchIcon, for: .normal)
+        searchButton.imageView?.contentMode = .scaleAspectFit
         
         // Set the search field font
         searchField.font = searchFont
