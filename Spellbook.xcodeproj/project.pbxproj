@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39005F5D22383F710006E97D /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39005F5C22383F710006E97D /* SideMenuController.swift */; };
 		39522D1521ADC15900A4DBCE /* SION.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D1421ADC15900A4DBCE /* SION.swift */; };
 		39522D1921ADC41F00A4DBCE /* SpellDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D1821ADC41F00A4DBCE /* SpellDataCell.swift */; };
 		39522D1B21ADF99500A4DBCE /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D1A21ADF99500A4DBCE /* PickerViewController.swift */; };
@@ -30,13 +31,18 @@
 		397EE9A721ACAF9C00B116B0 /* SubClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE99C21ACAF9C00B116B0 /* SubClass.swift */; };
 		397EE9A821ACAF9C00B116B0 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE99D21ACAF9C00B116B0 /* Util.swift */; };
 		397EE9A921ACAF9C00B116B0 /* Spellbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE99E21ACAF9C00B116B0 /* Spellbook.swift */; };
-		397EE9AA21ACAF9C00B116B0 /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE99F21ACAF9C00B116B0 /* Source.swift */; };
+		397EE9AA21ACAF9C00B116B0 /* Sourcebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE99F21ACAF9C00B116B0 /* Sourcebook.swift */; };
 		397EE9AB21ACAF9C00B116B0 /* SpellComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE9A021ACAF9C00B116B0 /* SpellComparison.swift */; };
 		3997EE9B21C06E6D007DC1B6 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997EE9A21C06E6D007DC1B6 /* SearchButton.swift */; };
 		3997EE9D21C07293007DC1B6 /* SearchIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3997EE9C21C07292007DC1B6 /* SearchIcon.png */; };
+		399D9E5B223A7F580054BA8F /* book_filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 399D9E59223A7F570054BA8F /* book_filled.png */; };
+		399D9E5C223A7F580054BA8F /* book_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 399D9E5A223A7F570054BA8F /* book_empty.png */; };
+		399D9E5F223A7F670054BA8F /* wand_filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 399D9E5D223A7F660054BA8F /* wand_filled.png */; };
+		399D9E60223A7F670054BA8F /* wand_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 399D9E5E223A7F660054BA8F /* wand_empty.png */; };
+		39A268CE223853680032158F /* SourcebookFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A268CD223853680032158F /* SourcebookFilterController.swift */; };
+		39A268D02239960C0032158F /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A268CF2239960C0032158F /* SideMenuCell.swift */; };
 		39C5B23221CAE121005F08DA /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C5B23121CAE121005F08DA /* SWRevealViewController.m */; };
-		39C5B23421CAF3CB005F08DA /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C5B23321CAF3CB005F08DA /* SideMenuController.swift */; };
-		39C5B23621CB10ED005F08DA /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C5B23521CB10ED005F08DA /* SideMenuCell.swift */; };
+		39C5B23421CAF3CB005F08DA /* StatusFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C5B23321CAF3CB005F08DA /* StatusFilterController.swift */; };
 		39C5B23D21CF03A8005F08DA /* star_filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C5B23B21CF03A1005F08DA /* star_filled.png */; };
 		39C5B23E21CF03A8005F08DA /* star_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C5B23C21CF03A5005F08DA /* star_empty.png */; };
 		39C5B24021CF1D1A005F08DA /* search_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C5B23F21CF1D1A005F08DA /* search_icon.png */; };
@@ -60,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		39005F5C22383F710006E97D /* SideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
 		39522D1421ADC15900A4DBCE /* SION.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SION.swift; sourceTree = "<group>"; };
 		39522D1821ADC41F00A4DBCE /* SpellDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellDataCell.swift; sourceTree = "<group>"; };
 		39522D1A21ADF99500A4DBCE /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
@@ -89,15 +96,20 @@
 		397EE99C21ACAF9C00B116B0 /* SubClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubClass.swift; sourceTree = "<group>"; };
 		397EE99D21ACAF9C00B116B0 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		397EE99E21ACAF9C00B116B0 /* Spellbook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spellbook.swift; sourceTree = "<group>"; };
-		397EE99F21ACAF9C00B116B0 /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
+		397EE99F21ACAF9C00B116B0 /* Sourcebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sourcebook.swift; sourceTree = "<group>"; };
 		397EE9A021ACAF9C00B116B0 /* SpellComparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellComparison.swift; sourceTree = "<group>"; };
 		3997EE9A21C06E6D007DC1B6 /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
 		3997EE9C21C07292007DC1B6 /* SearchIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchIcon.png; sourceTree = SOURCE_ROOT; };
+		399D9E59223A7F570054BA8F /* book_filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book_filled.png; sourceTree = SOURCE_ROOT; };
+		399D9E5A223A7F570054BA8F /* book_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book_empty.png; sourceTree = SOURCE_ROOT; };
+		399D9E5D223A7F660054BA8F /* wand_filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wand_filled.png; sourceTree = SOURCE_ROOT; };
+		399D9E5E223A7F660054BA8F /* wand_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wand_empty.png; sourceTree = SOURCE_ROOT; };
+		39A268CD223853680032158F /* SourcebookFilterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcebookFilterController.swift; sourceTree = "<group>"; };
+		39A268CF2239960C0032158F /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
 		39C5B22F21CAE11F005F08DA /* Spellbook-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Spellbook-Bridging-Header.h"; sourceTree = "<group>"; };
 		39C5B23021CAE120005F08DA /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../SWRevealViewController-master/SWRevealViewController/SWRevealViewController.h"; sourceTree = "<group>"; };
 		39C5B23121CAE121005F08DA /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = "../../SWRevealViewController-master/SWRevealViewController/SWRevealViewController.m"; sourceTree = "<group>"; };
-		39C5B23321CAF3CB005F08DA /* SideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
-		39C5B23521CB10ED005F08DA /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
+		39C5B23321CAF3CB005F08DA /* StatusFilterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusFilterController.swift; sourceTree = "<group>"; };
 		39C5B23B21CF03A1005F08DA /* star_filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_filled.png; sourceTree = SOURCE_ROOT; };
 		39C5B23C21CF03A5005F08DA /* star_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_empty.png; sourceTree = SOURCE_ROOT; };
 		39C5B23F21CF1D1A005F08DA /* search_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_icon.png; sourceTree = SOURCE_ROOT; };
@@ -154,6 +166,10 @@
 		397EE96721ACA86400B116B0 /* Spellbook */ = {
 			isa = PBXGroup;
 			children = (
+				399D9E5E223A7F660054BA8F /* wand_empty.png */,
+				399D9E5D223A7F660054BA8F /* wand_filled.png */,
+				399D9E5A223A7F570054BA8F /* book_empty.png */,
+				399D9E59223A7F570054BA8F /* book_filled.png */,
 				39522D2621B1C52100A4DBCE /* SpellWindowController.swift */,
 				39522D2021ADFBA100A4DBCE /* SpellTableViewController.swift */,
 				39C5B23F21CF1D1A005F08DA /* search_icon.png */,
@@ -166,14 +182,16 @@
 				397EE96C21ACA86400B116B0 /* Main.storyboard */,
 				39C5B23C21CF03A5005F08DA /* star_empty.png */,
 				39C5B23B21CF03A1005F08DA /* star_filled.png */,
-				39C5B23521CB10ED005F08DA /* SideMenuCell.swift */,
-				39C5B23321CAF3CB005F08DA /* SideMenuController.swift */,
+				39A268CF2239960C0032158F /* SideMenuCell.swift */,
+				39C5B23321CAF3CB005F08DA /* StatusFilterController.swift */,
+				39A268CD223853680032158F /* SourcebookFilterController.swift */,
+				39005F5C22383F710006E97D /* SideMenuController.swift */,
 				3997EE9C21C07292007DC1B6 /* SearchIcon.png */,
 				3997EE9A21C06E6D007DC1B6 /* SearchButton.swift */,
 				39522D1C21ADFA0A00A4DBCE /* LabelViewController.swift */,
 				397EE99A21ACAF9B00B116B0 /* CasterClass.swift */,
 				397EE99721ACAF9B00B116B0 /* School.swift */,
-				397EE99F21ACAF9C00B116B0 /* Source.swift */,
+				397EE99F21ACAF9C00B116B0 /* Sourcebook.swift */,
 				397EE99621ACAF9B00B116B0 /* Spell.swift */,
 				397EE99E21ACAF9C00B116B0 /* Spellbook.swift */,
 				397EE99821ACAF9B00B116B0 /* SpellbookError.swift */,
@@ -330,8 +348,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				399D9E5B223A7F580054BA8F /* book_filled.png in Resources */,
+				399D9E5C223A7F580054BA8F /* book_empty.png in Resources */,
 				39C5B24021CF1D1A005F08DA /* search_icon.png in Resources */,
+				399D9E5F223A7F670054BA8F /* wand_filled.png in Resources */,
 				3997EE9D21C07293007DC1B6 /* SearchIcon.png in Resources */,
+				399D9E60223A7F670054BA8F /* wand_empty.png in Resources */,
 				39C5B23E21CF03A8005F08DA /* star_empty.png in Resources */,
 				39C5B23D21CF03A8005F08DA /* star_filled.png in Resources */,
 				39522D2321B04FE500A4DBCE /* BookBackground.jpeg in Resources */,
@@ -364,27 +386,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				39522D2721B1C52100A4DBCE /* SpellWindowController.swift in Sources */,
+				39005F5D22383F710006E97D /* SideMenuController.swift in Sources */,
 				3997EE9B21C06E6D007DC1B6 /* SearchButton.swift in Sources */,
 				39522D1B21ADF99500A4DBCE /* PickerViewController.swift in Sources */,
 				397EE96B21ACA86400B116B0 /* ViewController.swift in Sources */,
-				39C5B23421CAF3CB005F08DA /* SideMenuController.swift in Sources */,
+				39C5B23421CAF3CB005F08DA /* StatusFilterController.swift in Sources */,
 				397EE9A821ACAF9C00B116B0 /* Util.swift in Sources */,
 				39522D1D21ADFA0A00A4DBCE /* LabelViewController.swift in Sources */,
 				397EE9A721ACAF9C00B116B0 /* SubClass.swift in Sources */,
 				39C5B23221CAE121005F08DA /* SWRevealViewController.m in Sources */,
+				39A268CE223853680032158F /* SourcebookFilterController.swift in Sources */,
 				397EE96921ACA86400B116B0 /* AppDelegate.swift in Sources */,
 				39522D1521ADC15900A4DBCE /* SION.swift in Sources */,
-				397EE9AA21ACAF9C00B116B0 /* Source.swift in Sources */,
+				397EE9AA21ACAF9C00B116B0 /* Sourcebook.swift in Sources */,
 				39522D1921ADC41F00A4DBCE /* SpellDataCell.swift in Sources */,
 				397EE9A421ACAF9C00B116B0 /* SpellParse.swift in Sources */,
 				397EE9A321ACAF9C00B116B0 /* SpellbookError.swift in Sources */,
-				39C5B23621CB10ED005F08DA /* SideMenuCell.swift in Sources */,
 				397EE9AB21ACAF9C00B116B0 /* SpellComparison.swift in Sources */,
 				39522D2121ADFBA100A4DBCE /* SpellTableViewController.swift in Sources */,
 				397EE9A121ACAF9C00B116B0 /* Spell.swift in Sources */,
 				397EE9A521ACAF9C00B116B0 /* CasterClass.swift in Sources */,
 				397EE9A221ACAF9C00B116B0 /* School.swift in Sources */,
 				397EE9A921ACAF9C00B116B0 /* Spellbook.swift in Sources */,
+				39A268D02239960C0032158F /* SideMenuCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,4 +2,84 @@
 <Bucket
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Spellbook/AppDelegate.swift"
+            timestampString = "574187290.143392"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "AppDelegate"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Spellbook.AppDelegate.__allocating_init() -&gt; Spellbook.AppDelegate"
+                  moduleName = "Spellbook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jcarifio/Documents/SpellbookiOS/Spellbook/AppDelegate.swift"
+                  timestampString = "574187190.6741869"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "10">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Spellbook.AppDelegate.init() -&gt; Spellbook.AppDelegate"
+                  moduleName = "Spellbook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jcarifio/Documents/SpellbookiOS/Spellbook/AppDelegate.swift"
+                  timestampString = "574187190.677555"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Spellbook.AppDelegate.__deallocating_deinit"
+                  moduleName = "Spellbook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jcarifio/Documents/SpellbookiOS/Spellbook/AppDelegate.swift"
+                  timestampString = "574187190.681201"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "14">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "main"
+                  moduleName = "Spellbook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jcarifio/Documents/SpellbookiOS/Spellbook/AppDelegate.swift"
+                  timestampString = "574187190.684577"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "6">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

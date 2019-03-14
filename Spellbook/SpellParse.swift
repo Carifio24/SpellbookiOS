@@ -22,8 +22,8 @@ func subclassFromName(name: String) -> SubClass? {
 	return SubClass(rawValue: Spellbook.subclassNames.firstIndex(of: name)!)
 }
 
-func sourceFromName(name: String) -> Source? {
-	return Source(rawValue: Spellbook.sourceNames.firstIndex(of: name)!)
+func sourceFromName(name: String) -> Sourcebook? {
+	return Sourcebook(rawValue: Spellbook.sourceNames.firstIndex(of: name)!)
 }
 
 func load_file(filepath: String) -> String {
@@ -109,6 +109,7 @@ func parseSpell(obj: SION) -> Spell {
 	jstr = String()
 	firstAdded = false
 	if has_key(obj: obj, key: "higher_level") {
+        jarr = obj["higher_level"]
 		for (_, v) in jarr {
 			if !firstAdded {
 				firstAdded = true
@@ -118,7 +119,7 @@ func parseSpell(obj: SION) -> Spell {
 			jstr += v.string!
 		}
 	}
-	s.setHigherLevelDesc(higherLevelIn: jstr)
+    s.setHigherLevelDesc(higherLevelIn: jstr)
 
 	// School
 	jso = obj["school"]

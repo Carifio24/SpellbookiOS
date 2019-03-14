@@ -21,7 +21,14 @@ class SpellTableViewController: UITableViewController {
     var spellArray: [Spell] = []
     var paddedSpells: [(Spell, Bool)] = []
     var paddedArray: [Spell] = []
-    var isFav = false
+    var filterByBooks: [Sourcebook : Bool] = [
+        Sourcebook.PlayersHandbook : true,
+        Sourcebook.XanatharsGTE : false,
+        Sourcebook.SwordCoastAG : false
+    ]
+    var filterByFavorites = false
+    var filterByPrepared = false
+    var filterByKnown = false
     
     let nBlankPadding = 4
 
@@ -172,13 +179,12 @@ class SpellTableViewController: UITableViewController {
     }
     
     // Determine whether or not a single row should be filtered
-    func filterItem(isClass: Bool, isFav: Bool, isText: Bool, s: Spell, cc: CasterClass, text: String) -> Bool {
-        //print(s.name)
-        //print(Spellbook.casterNames[cc.rawValue])
+    func filterItem(isClass: Bool, favSelected: Bool, isText: Bool, s: Spell, cc: CasterClass, text: String) -> Bool {
         let spname = s.name.lowercased()
         var toHide = (isClass && !s.usableByClass(cc: cc))
-        toHide = toHide || (isFav && !s.favorite)
+        toHide = toHide || (favSelected && !s.favorite)
         toHide = toHide || (isText && !spname.starts(with: text))
+        toHide = toHide || (!(filterByBooks[s.sourcebook]!))
         return toHide
     }
     
@@ -194,14 +200,9 @@ class SpellTableViewController: UITableViewController {
         if isClass {
             cc = CasterClass(rawValue: classIndex!-1)!
         }
-        
-        if ( !(isText || isFav || isClass) ) {
-            unfilter()
-        } else {
-            for i in 0...spells.count-1 {
-                let filter = filterItem(isClass: isClass, isFav: isFav, isText: isText, s: spells[i].0, cc: cc, text: searchText)
-                spells[i] = (spells[i].0, !filter)
-            }
+        for i in 0...spells.count-1 {
+            let filter = filterItem(isClass: isClass, favSelected: filterByFavorites, isText: isText, s: spells[i].0, cc: cc, text: searchText)
+            spells[i] = (spells[i].0, !filter)
         }
             
         // Get the new spell array

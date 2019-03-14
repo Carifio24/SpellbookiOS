@@ -241,6 +241,7 @@ class SpellWindowController: UIViewController {
         } else {
             favoriteButton.setImage(SpellWindowController.notFavoriteImage, for: .normal)
             favoriteButton.imageView?.contentMode = .scaleAspectFit
+            
         }
     }
     
