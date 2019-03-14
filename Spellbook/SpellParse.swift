@@ -22,8 +22,8 @@ func subclassFromName(name: String) -> SubClass? {
 	return SubClass(rawValue: Spellbook.subclassNames.firstIndex(of: name)!)
 }
 
-func sourceFromName(name: String) -> Sourcebook? {
-	return Sourcebook(rawValue: Spellbook.sourceNames.firstIndex(of: name)!)
+func sourcebookFromCode(name: String) -> Sourcebook? {
+	return Sourcebook(rawValue: Spellbook.sourcebookCodes.firstIndex(of: name)!)
 }
 
 func load_file(filepath: String) -> String {
@@ -44,10 +44,13 @@ func parseSpell(obj: SION) -> Spell {
 	// Set the values that need no/trivial parsing
 	s.setName(nameIn: obj["name"].string!)
 	jstr = obj["page"].string!
-	let page = Int(jstr.components(separatedBy: " ")[1])
-	s.setPage(pageIn: page!)
-
-	s.setDuration(durationIn: obj["duration"].string!)
+    let locationPieces = jstr.components(separatedBy: " ")
+	let page = Int(locationPieces[1])!
+	s.setPage(pageIn: page)
+    let sourcebook = sourcebookFromCode(name: locationPieces[0])!
+    s.setSourcebook(sourcebookIn: sourcebook)
+    let durationString = obj["duration"].string! // Use this again later for the concentration part
+	s.setDuration(durationIn: durationString)
 	s.setRange(rangeIn: obj["range"].string!)
 
 	if has_key(obj: obj, key: "ritual") {
@@ -56,9 +59,11 @@ func parseSpell(obj: SION) -> Spell {
 	} else {
 		s.setRitual(ritualIn: false)
 	}
-	if has_key(obj: obj, key: "concentration") {
-		let concentrationString = try! yn_to_bool(yn: obj["concentration"].string!)
-		s.setConcentration(concentrationIn: concentrationString)
+    if (durationString.starts(with: "Up to")) {
+        s.setConcentration(concentrationIn: true)
+    } else if has_key(obj: obj, key: "concentration") {
+        let concentrationString = obj["concentration"].string!
+        s.setConcentration(concentrationIn: try! yn_to_bool(yn: concentrationString))
 	} else {
 		s.setConcentration(concentrationIn: false)
 	}
@@ -130,8 +135,13 @@ func parseSpell(obj: SION) -> Spell {
 	var classes: Array<CasterClass> = []
 	jarr = obj["classes"]
 	for (_, v) in jarr {
-		name = v["name"].string!
-		classes.append(casterFromName(name: name)!)
+        var name = v["name"].string
+        if name != nil {
+            classes.append(casterFromName(name: name!)!)
+        } else {
+            name = v.string!
+            classes.append(casterFromName(name: name!)!)
+        }
 	}
 	s.setClasses(classesIn: classes)
 
@@ -162,6 +172,7 @@ func parseSpellList(jsonStr: String) -> Array<Spell> {
 		spells.append(nextSpell)
         i += 1
 	}
+    spells.sort(by: { $0.name < $1.name })
 	return spells
 
 }

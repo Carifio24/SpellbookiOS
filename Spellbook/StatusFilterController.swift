@@ -10,7 +10,7 @@ import UIKit
 
 class StatusFilterController: UITableViewController {
     
-    let menuOptions: [String] = ["All spells", "Favorites", "Known", "Prepared"]
+    let menuOptions: [String] = ["All spells", "Favorites", "Prepared", "Known"]
     let iconFilenames: [Int : String] = [
     0 : "",
     1 : "star_empty",
@@ -109,8 +109,6 @@ class StatusFilterController: UITableViewController {
     // The cells for the table
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        print(indexPath.row)
-        print(menuOptions.count)
         let imageFile = iconFilenames[indexPath.row]!
         let cell = SideMenuCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: cellReuseIdentifier, selected: false, isSelectedImageFile: imageFile, notSelectedImageFile: imageFile)
         //let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SideMenuCell
@@ -134,6 +132,7 @@ class StatusFilterController: UITableViewController {
         spellTableController.filterByPrepared = (index == 2)
         spellTableController.filterByKnown = (index == 3)
         mainWindowController.tableController?.filter()
+        spellTableController.saveSettings()
 
         //revealController.revealToggle(self)
     }

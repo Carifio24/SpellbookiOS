@@ -15,7 +15,7 @@ class SideMenuCell: UITableViewCell {
     static let cellHeight = CGFloat(40)
     
     // Sizes of elements
-    static let iconHeight = CGFloat(0.9 * cellHeight)
+    static let iconHeight = CGFloat(0.8 * cellHeight)
     static let iconWidth = cellHeight
     static let labelWidth = cellWidth - iconWidth
     

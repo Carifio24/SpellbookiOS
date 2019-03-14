@@ -6,6 +6,10 @@
 //  Copyright © 2018 Jonathan Carifio. All rights reserved.
 //
 
+// Type aliases for making closures
+typealias SpellStatusSetter = (Spell, Bool) -> Void
+typealias SpellStatusGetter = (Spell) -> Bool
+
 import UIKit
 
 class SpellTableViewController: UITableViewController {
@@ -38,6 +42,12 @@ class SpellTableViewController: UITableViewController {
     let cellReuseIdentifier = "cell"
     let spellWindowSegueIdentifier = "spellWindowSegue"
     let spellWindowIdentifier = "spellWindow"
+    
+    // Storage files
+    let favoritesFile = "Favorites.txt"
+    let preparedFile = "Prepared.txt"
+    let knownFile = "Known.txt"
+    let settingsFile = "Settings.json"
     
     // Documents directory
     let documentsDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
@@ -73,8 +83,19 @@ class SpellTableViewController: UITableViewController {
             updatePaddedSpells()
             tableView.reloadData()
             firstAppear = false
-            loadFavorites()
+            
+            // Load the spell statuses
+            loadSpellsForProperty(filename: favoritesFile, propSetter: { $0.setFavorite(favIn: $1) })
+            loadSpellsForProperty(filename: preparedFile, propSetter: { $0.setPrepared(preparedIn: $1) })
+            loadSpellsForProperty(filename: knownFile, propSetter: { $0.setKnown(knownIn: $1) })
+            
+            // Load the filtering settings
+            loadSettings()
+            
         }
+        
+        // Do an initial filtering
+        filter()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -179,9 +200,11 @@ class SpellTableViewController: UITableViewController {
     }
     
     // Determine whether or not a single row should be filtered
-    func filterItem(isClass: Bool, favSelected: Bool, isText: Bool, s: Spell, cc: CasterClass, text: String) -> Bool {
+    func filterItem(isClass: Bool, knownSelected:Bool, preparedSelected: Bool, favSelected: Bool, isText: Bool, s: Spell, cc: CasterClass, text: String) -> Bool {
         let spname = s.name.lowercased()
         var toHide = (isClass && !s.usableByClass(cc: cc))
+        toHide = toHide || (knownSelected && !s.known)
+        toHide = toHide || (preparedSelected && !s.prepared)
         toHide = toHide || (favSelected && !s.favorite)
         toHide = toHide || (isText && !spname.starts(with: text))
         toHide = toHide || (!(filterByBooks[s.sourcebook]!))
@@ -201,7 +224,7 @@ class SpellTableViewController: UITableViewController {
             cc = CasterClass(rawValue: classIndex!-1)!
         }
         for i in 0...spells.count-1 {
-            let filter = filterItem(isClass: isClass, favSelected: filterByFavorites, isText: isText, s: spells[i].0, cc: cc, text: searchText)
+            let filter = filterItem(isClass: isClass, knownSelected: filterByKnown, preparedSelected: filterByPrepared, favSelected: filterByFavorites, isText: isText, s: spells[i].0, cc: cc, text: searchText)
             spells[i] = (spells[i].0, !filter)
         }
             
@@ -238,6 +261,25 @@ class SpellTableViewController: UITableViewController {
         }
     }
     
+    func loadSpellsForProperty(filename: String, propSetter: SpellStatusSetter) {
+        let fileLocation = documentsDirectory.appendingPathComponent(filename)
+        if let fileText = try? String(contentsOf: fileLocation) {
+            let fileItems = fileText.components(separatedBy: .newlines)
+            for item in fileItems {
+                //var inSpellbook = false
+                for spell in spells {
+                    if item == spell.0.name {
+                        propSetter(spell.0, true)
+                        //inSpellbook = true
+                        break
+                    }
+                }
+            }
+        } else {
+            return
+        }
+    }
+    
     func loadFavorites() {
         let favoritesFile = documentsDirectory.appendingPathComponent("Favorites.txt")
         if let favoritesText = try? String(contentsOf: favoritesFile) {
@@ -260,6 +302,22 @@ class SpellTableViewController: UITableViewController {
         }
     }
     
+    func saveSpellsWithProperty(propGetter: SpellStatusGetter, filename: String) {
+        let fileLocation = documentsDirectory.appendingPathComponent(filename)
+        var propNames: [String] = []
+        for spell in spells {
+            if propGetter(spell.0) {
+                propNames.append(spell.0.name)
+            }
+        }
+        let propString = propNames.joined(separator: "\n")
+        do {
+            try propString.write(to: fileLocation, atomically: false, encoding: .utf8)
+        } catch let e {
+            print("\(e)")
+        }
+    }
+    
     func saveFavorites() {
         let favoritesFile = documentsDirectory.appendingPathComponent("Favorites.txt")
         var favoriteNames: [String] = []
@@ -275,6 +333,60 @@ class SpellTableViewController: UITableViewController {
             print("\(e)")
         }
     }
+    
+    // Saving the settings
+    func saveSettings() {
+        let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
+        var settingsJSON = SION([:])
+        // Book filtering settings
+        for item in filterByBooks {
+            let code = Spellbook.sourcebookCodes[item.0.rawValue]
+            settingsJSON[SION.String(code)] = SION.Bool(item.1)
+        }
+        
+        // Status filtering settings
+        settingsJSON["favorite"] = SION.Bool(filterByFavorites)
+        settingsJSON["prepared"] = SION.Bool(filterByPrepared)
+        settingsJSON["known"] = SION.Bool(filterByKnown)
+        
+        do {
+            try settingsJSON.toJSON().write(to: settingsLocation, atomically: false, encoding: .utf8)
+        } catch let e {
+            print("\(e)")
+        }
+    }
+    
+    // Loading the settings
+    func loadSettings() {
+        let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
+        if let settingsText = try? String(contentsOf: settingsLocation) {
+            do {
+                print(settingsText)
+                var settingsJSON = SION(json: settingsText)
+                
+                // Unpack the status filtering
+                //filterByFavorites = settingsJSON["favorite"].bool
+                //filterByPrepared = settingsJSON["prepared"].bool
+                //filterByKnown = settingsJSON["known"].bool
+                
+                // Unpack the sourcebook filtering
+                var i = 0
+                for item in filterByBooks {
+                    let code = Spellbook.sourcebookCodes[item.0.rawValue]
+                    print(code)
+                    print(SION.String(code))
+                    filterByBooks[item.0] = settingsJSON[SION.String(code)].bool!
+                    i += 1
+                }
+            } catch let e {
+                print("\(e)")
+            }
+            
+        } else {
+            return
+        }
+    }
+    
     
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -132,6 +132,7 @@ class SourcebookFilterController: UITableViewController {
         spellTableController.filter()
         let cell = self.tableView.cellForRow(at: indexPath) as! SideMenuCell
         cell.toggleSelected()
+        spellTableController.saveSettings()
         
         
         //revealController.revealToggle(self)

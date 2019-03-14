@@ -27,10 +27,10 @@ class SideMenuController: UIViewController {
     let leftPadding = CGFloat(7)
     let topPadding = CGFloat(7)
     
-    let tablePadding = CGFloat(10)
+    let tablePadding = CGFloat(5)
     let betweenTablePadding = CGFloat(20)
     
-    let titleFontSize = CGFloat(30)
+    //let titleFontSize = CGFloat(30)
     let titleViewHeight = CGFloat(60)
     
     override func viewDidLoad() {
@@ -51,7 +51,7 @@ class SideMenuController: UIViewController {
         
         // Set up the view positioning
         sideMenuHeader.frame = CGRect(x: leftPadding, y: topPadding, width: viewWidth, height: headerHeight)
-        sideMenuHeader.font = UIFont.systemFont(ofSize: titleFontSize)
+        //sideMenuHeader.font = UIFont.systemFont(ofSize: titleFontSize)
         
         statusFilterView.frame = CGRect(x: leftPadding, y: topPadding + headerHeight + tablePadding, width: viewWidth - leftPadding, height: statusFilterHeight)
         
@@ -70,7 +70,6 @@ class SideMenuController: UIViewController {
             statusController = (segue.destination as! StatusFilterController)
         }
     }
-    
 
     /*
     // MARK: - Navigation

@@ -20,11 +20,17 @@ class SpellWindowController: UIViewController {
     // Favorite/not favorite images
     static let isFavoriteImage = UIImage(named: "star_filled.png")?.withRenderingMode(.alwaysOriginal)
     static let notFavoriteImage = UIImage(named: "star_empty.png")?.withRenderingMode(.alwaysOriginal)
+    static let isPreparedImage = UIImage(named: "wand_filled.png")?.withRenderingMode(.alwaysOriginal)
+    static let notPreparedImage = UIImage(named: "wand_empty.png")?.withRenderingMode(.alwaysOriginal)
+    static let isKnownImage = UIImage(named: "book_filled.png")?.withRenderingMode(.alwaysOriginal)
+    static let notKnownImage = UIImage(named: "book_empty.png")?.withRenderingMode(.alwaysOriginal)
     
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var spellNameLabel: UILabel!
     @IBOutlet var spellTextLabel: UITextView!
     @IBOutlet var favoriteButton: UIButton!
+    @IBOutlet var preparedButton: UIButton!
+    @IBOutlet var knownButton: UIButton!
     
     // The name label size
     let nameLabelHeight = CGFloat(55)
@@ -47,6 +53,8 @@ class SpellWindowController: UIViewController {
     let topPaddingFraction = CGFloat(0.01)
     let bottomPaddingFraction = CGFloat(0.01)
     
+    let paddingBetweenImages = CGFloat(3)
+    
     
     // The spell for the window, and its (current) index in the array
     var spellIndex: Int = 0
@@ -66,18 +74,30 @@ class SpellWindowController: UIViewController {
             // Set the view dimensions
             setDimensions()
             
-            // Set the button image
-            if spell.favorite {
-                favoriteButton.setImage(SpellWindowController.isFavoriteImage, for: .normal)
-                favoriteButton.imageView?.contentMode = .scaleAspectFit
-            } else {
-                favoriteButton.setImage(SpellWindowController.notFavoriteImage, for: .normal)
-                favoriteButton.imageView?.contentMode = .scaleAspectFit
-            }
+            // Set the button images
+            // First, the favorite button
+            let favoriteImage = spell.favorite ? SpellWindowController.isFavoriteImage : SpellWindowController.notFavoriteImage
+            favoriteButton.setImage(favoriteImage, for: .normal)
+            favoriteButton.imageView?.contentMode = .scaleAspectFit
             self.view.bringSubviewToFront(favoriteButton)
             
-            // Set the button function
+            // Next, the prepared button
+            let preparedImage = spell.prepared ? SpellWindowController.isPreparedImage : SpellWindowController.notPreparedImage
+            preparedButton.setImage(preparedImage, for: .normal)
+            preparedButton.imageView?.contentMode = .scaleAspectFit
+            self.view.bringSubviewToFront(preparedButton)
+            
+            // Finally, the known button
+            let knownImage = spell.known ? SpellWindowController.isKnownImage : SpellWindowController.notKnownImage
+            knownButton.setImage(knownImage, for: .normal)
+            knownButton.imageView?.contentMode = .scaleAspectFit
+            self.view.bringSubviewToFront(knownButton)
+            
+            // Set the button functions
             favoriteButton.addTarget(self, action: #selector(favoriteButtonPressed), for: UIControl.Event.touchUpInside)
+            preparedButton.addTarget(self, action: #selector(preparedButtonPressed), for: UIControl.Event.touchUpInside)
+            knownButton.addTarget(self, action: #selector(knownButtonPressed), for: UIControl.Event.touchUpInside)
+            
         }
     }
 
@@ -98,8 +118,12 @@ class SpellWindowController: UIViewController {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
                 case UISwipeGestureRecognizer.Direction.right:
-                    mainWindowController.tableController!.filter()
-                    mainWindowController.tableController!.saveFavorites()
+                    let spellTableController = mainWindowController.tableController!
+                    spellTableController.filter()
+                    spellTableController.saveSpellsWithProperty(propGetter: { return $0.favorite }, filename: spellTableController.favoritesFile)
+                    spellTableController.saveSpellsWithProperty(propGetter: { return $0.prepared }, filename: spellTableController.preparedFile)
+                    spellTableController.saveSpellsWithProperty(propGetter: { return $0.known }, filename: spellTableController.knownFile)
+                    //mainWindowController.tableController!.saveFavorites()
                     self.dismiss(animated: true, completion: nil)
                 default:
                     break
@@ -135,7 +159,8 @@ class SpellWindowController: UIViewController {
         let levelText = propertyText(name: "Level", text: String(spell.level))
         let castingTimeText = propertyText(name: "Casting time", text: spell.castingTime)
         let durationText = propertyText(name: "Duration", text: spell.duration)
-        let locationText = propertyText(name: "Location", text: "PHB " + String(spell.page))
+        let sourcebookCode = Spellbook.sourcebookCodes[spell.sourcebook.rawValue].uppercased()
+        let locationText = propertyText(name: "Location", text: sourcebookCode + " " + String(spell.page))
         let componentsText = propertyText(name: "Components", text: spell.componentsString())
         let materialsText = propertyText(name: "Materials", text: spell.material)
         let rangeText = propertyText(name: "Range", text: spell.range)
@@ -152,11 +177,15 @@ class SpellWindowController: UIViewController {
         spellText.append(attrNewline)
         spellText.append(levelText)
         spellText.append(attrNewline)
-        spellText.append(castingTimeText)
+        spellText.append(locationText)
+        spellText.append(attrNewline)
+        spellText.append(ritualText)
+        spellText.append(attrNewline)
+        spellText.append(concentrationText)
         spellText.append(attrNewline)
         spellText.append(durationText)
         spellText.append(attrNewline)
-        spellText.append(locationText)
+        spellText.append(castingTimeText)
         spellText.append(attrNewline)
         spellText.append(componentsText)
         spellText.append(attrNewline)
@@ -165,10 +194,6 @@ class SpellWindowController: UIViewController {
             spellText.append(attrNewline)
         }
         spellText.append(rangeText)
-        spellText.append(attrNewline)
-        spellText.append(ritualText)
-        spellText.append(attrNewline)
-        spellText.append(concentrationText)
         spellText.append(attrNewline)
         spellText.append(classesText)
         spellText.append(attrNewline)
@@ -215,11 +240,13 @@ class SpellWindowController: UIViewController {
         spellNameLabel.frame.size.width = nameLabelWidth
         spellNameLabel.sizeToFit()
         
-        // Then the favoriting button
-        let favoriteButtonWidth = scrollWidth - nameLabelWidth
+        // Then the buttons
+        let buttonWidth = scrollWidth - nameLabelWidth
+        let buttonHeight = buttonWidth
         let nameLabelHeight = spellNameLabel.frame.size.height
-        favoriteButton.frame = CGRect(x: nameLabelWidth, y: 0, width: favoriteButtonWidth, height: nameLabelHeight)
-        //favoriteButton.backgroundColor = UIColor.red // For testing purposes only
+        favoriteButton.frame = CGRect(x: nameLabelWidth, y: 0, width: buttonWidth, height: buttonHeight)
+        preparedButton.frame = CGRect(x: nameLabelWidth, y: buttonHeight + paddingBetweenImages, width: buttonWidth, height: buttonHeight)
+        knownButton.frame = CGRect(x: nameLabelWidth, y: 2 * ( buttonHeight + paddingBetweenImages), width: buttonWidth, height: buttonHeight)
         
         // Finally, the spell text
         spellTextLabel.frame.origin.x = 0
@@ -235,14 +262,25 @@ class SpellWindowController: UIViewController {
     @objc func favoriteButtonPressed() {
         spell.setFavorite(favIn: !spell.favorite)
         mainWindowController.tableController!.spells[spellIndex].0.setFavorite(favIn: spell.favorite)
-        if spell.favorite {
-            favoriteButton.setImage(SpellWindowController.isFavoriteImage, for: .normal)
-            favoriteButton.imageView?.contentMode = .scaleAspectFit
-        } else {
-            favoriteButton.setImage(SpellWindowController.notFavoriteImage, for: .normal)
-            favoriteButton.imageView?.contentMode = .scaleAspectFit
-            
-        }
+        let favoriteImage = spell.favorite ? SpellWindowController.isFavoriteImage : SpellWindowController.notFavoriteImage
+        favoriteButton.setImage(favoriteImage, for: .normal)
+        favoriteButton.imageView?.contentMode = .scaleAspectFit
+    }
+    
+    @objc func preparedButtonPressed() {
+        spell.setPrepared(preparedIn: !spell.prepared)
+        mainWindowController.tableController!.spells[spellIndex].0.setPrepared(preparedIn: spell.prepared)
+        let preparedImage = spell.prepared ? SpellWindowController.isPreparedImage : SpellWindowController.notPreparedImage
+        preparedButton.setImage(preparedImage, for: .normal)
+        preparedButton.imageView?.contentMode = .scaleAspectFit
+    }
+    
+    @objc func knownButtonPressed() {
+        spell.setKnown(knownIn: !spell.known)
+        mainWindowController.tableController!.spells[spellIndex].0.setKnown(knownIn: spell.known)
+        let knownImage = spell.known ? SpellWindowController.isKnownImage : SpellWindowController.notKnownImage
+        knownButton.setImage(knownImage, for: .normal)
+        knownButton.imageView?.contentMode = .scaleAspectFit
     }
     
     
