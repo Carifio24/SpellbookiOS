@@ -16,7 +16,7 @@ class SideMenuCell: UITableViewCell {
     
     // Sizes of elements
     static let iconHeight = CGFloat(0.8 * cellHeight)
-    static let iconWidth = cellHeight
+    static let iconWidth = CGFloat(0.8 * cellHeight)
     static let labelWidth = cellWidth - iconWidth
     
     // Label font size
@@ -29,7 +29,7 @@ class SideMenuCell: UITableViewCell {
     static let rightIconPadding = CGFloat(10)
     
     // Selected/not selected images
-    static let isSelectedStar =  "star_filled.png"
+    static let isSelectedStar =  "star.png"
     static let notSelectedStar = "star_empty.png"
     
     var isSelectedImage: UIImage
@@ -68,11 +68,8 @@ class SideMenuCell: UITableViewCell {
         
         cellSelected = selected
         iconView.frame = CGRect(x: SideMenuCell.leftPadding, y: SideMenuCell.topPadding, width: SideMenuCell.iconWidth, height: SideMenuCell.iconHeight)
-        if selected {
-            iconView.image = isSelectedImage
-        } else {
-            iconView.image = notSelectedImage
-        }
+        let selectionImage = selected ? isSelectedImage : notSelectedImage
+        iconView.image = selectionImage
         iconView.backgroundColor = UIColor.clear
         self.addSubview(iconView)
         
@@ -91,11 +88,8 @@ class SideMenuCell: UITableViewCell {
     }
     
     func updateIcon() {
-        if cellSelected {
-            iconView.image = isSelectedImage
-        } else {
-            iconView.image = notSelectedImage
-        }
+        let updateImage = cellSelected ? isSelectedImage : notSelectedImage
+        iconView.image = updateImage
     }
     
     required init?(coder decoder: NSCoder) {

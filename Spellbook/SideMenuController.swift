@@ -28,7 +28,7 @@ class SideMenuController: UIViewController {
     let topPadding = CGFloat(7)
     
     let tablePadding = CGFloat(5)
-    let betweenTablePadding = CGFloat(20)
+    let betweenTablePadding = CGFloat(2)
     
     //let titleFontSize = CGFloat(30)
     let titleViewHeight = CGFloat(60)
@@ -46,7 +46,7 @@ class SideMenuController: UIViewController {
         backgroundView.frame = CGRect(x: 0, y: -backgroundOffset, width: viewWidth, height: viewHeight + backgroundOffset)
         
         let headerHeight = CGFloat(0.1 * viewHeight)
-        let statusFilterHeight = CGFloat(0.35 * viewHeight)
+        let statusFilterHeight = CGFloat(0.3 * viewHeight)
         let sourcebookFilterHeight = CGFloat(0.35 * viewHeight)
         
         // Set up the view positioning

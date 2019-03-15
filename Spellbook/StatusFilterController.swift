@@ -81,7 +81,7 @@ class StatusFilterController: UITableViewController {
         let titleViewWidth = self.view.bounds.size.width
         let titleView = UIView.init(frame: CGRect(x:0, y: 0, width: titleViewWidth, height: titleViewHeight))
         let titleLabel = UILabel()
-        titleLabel.text = "Filter by status"
+        titleLabel.text = ""
         titleLabel.font = UIFont.boldSystemFont(ofSize: titleFontSize)
         titleLabel.textColor = UIColor.black
         titleView.addSubview(titleLabel)
@@ -97,7 +97,8 @@ class StatusFilterController: UITableViewController {
     
     // The title view's height
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return titleViewHeight
+        //return titleViewHeight
+        return 0
     }
     
     // The title's properties
