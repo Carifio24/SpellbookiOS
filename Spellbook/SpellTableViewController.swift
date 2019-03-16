@@ -361,7 +361,7 @@ class SpellTableViewController: UITableViewController {
         let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
         if let settingsText = try? String(contentsOf: settingsLocation) {
             do {
-                print(settingsText)
+                //print(settingsText)
                 var settingsJSON = SION(json: settingsText)
                 
                 // Unpack the status filtering
@@ -370,13 +370,11 @@ class SpellTableViewController: UITableViewController {
                 //filterByKnown = settingsJSON["known"].bool
                 
                 // Unpack the sourcebook filtering
-                var i = 0
                 for item in filterByBooks {
                     let code = Spellbook.sourcebookCodes[item.0.rawValue]
-                    print(code)
-                    print(SION.String(code))
+                    //print(code)
+                    //print(SION.String(code))
                     filterByBooks[item.0] = settingsJSON[SION.String(code)].bool!
-                    i += 1
                 }
             } catch let e {
                 print("\(e)")

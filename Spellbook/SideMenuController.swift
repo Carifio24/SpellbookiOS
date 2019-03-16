@@ -45,9 +45,12 @@ class SideMenuController: UIViewController {
         // No padding necessary for this
         backgroundView.frame = CGRect(x: 0, y: -backgroundOffset, width: viewWidth, height: viewHeight + backgroundOffset)
         
-        let headerHeight = CGFloat(0.1 * viewHeight)
-        let statusFilterHeight = CGFloat(0.3 * viewHeight)
-        let sourcebookFilterHeight = CGFloat(0.35 * viewHeight)
+        //let headerHeight = CGFloat(0.1 * viewHeight)
+        //let statusFilterHeight = CGFloat(0.3 * viewHeight)
+        //let sourcebookFilterHeight = CGFloat(0.35 * viewHeight)
+        let headerHeight = CGFloat(57)
+        let statusFilterHeight = CGFloat(171)
+        let sourcebookFilterHeight = CGFloat(199)
         
         // Set up the view positioning
         sideMenuHeader.frame = CGRect(x: leftPadding, y: topPadding, width: viewWidth, height: headerHeight)
@@ -56,8 +59,6 @@ class SideMenuController: UIViewController {
         statusFilterView.frame = CGRect(x: leftPadding, y: topPadding + headerHeight + tablePadding, width: viewWidth - leftPadding, height: statusFilterHeight)
         
         sourcebookFilterView.frame = CGRect(x: leftPadding, y: topPadding + headerHeight + tablePadding + statusFilterHeight + betweenTablePadding, width: viewWidth - leftPadding, height: sourcebookFilterHeight)
-        
-        
         
     }
     

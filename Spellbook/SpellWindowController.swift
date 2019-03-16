@@ -55,6 +55,10 @@ class SpellWindowController: UIViewController {
     
     let paddingBetweenImages = CGFloat(3)
     
+    // Button sizes
+    let buttonHeight = CGFloat(41)
+    let buttonWidth = CGFloat(41)
+    
     
     // The spell for the window, and its (current) index in the array
     var spellIndex: Int = 0
@@ -241,12 +245,13 @@ class SpellWindowController: UIViewController {
         spellNameLabel.sizeToFit()
         
         // Then the buttons
-        let buttonWidth = scrollWidth - nameLabelWidth
-        let buttonHeight = buttonWidth
+        //let buttonWidth = scrollWidth - nameLabelWidth
+        //let buttonHeight = buttonWidth
         let nameLabelHeight = spellNameLabel.frame.size.height
         favoriteButton.frame = CGRect(x: nameLabelWidth, y: 0, width: buttonWidth, height: buttonHeight)
         preparedButton.frame = CGRect(x: nameLabelWidth, y: buttonHeight + paddingBetweenImages, width: buttonWidth, height: buttonHeight)
         knownButton.frame = CGRect(x: nameLabelWidth, y: 2 * ( buttonHeight + paddingBetweenImages), width: buttonWidth, height: buttonHeight)
+        
         
         // Finally, the spell text
         spellTextLabel.frame.origin.x = 0
