@@ -66,7 +66,8 @@ class SpellWindowController: UIViewController {
         didSet {
            
             // Set the attributed text on the name label
-            spellNameLabel.attributedText = nameText()
+            //spellNameLabel.attributedText = nameText()
+            spellNameLabel.text = spell.name
             self.view.bringSubviewToFront(spellNameLabel)
             
             // Do the same for the body of the spell text
@@ -177,11 +178,11 @@ class SpellWindowController: UIViewController {
         // Now combine everything together
         let spellText = NSMutableAttributedString()
         let attrNewline = NSAttributedString(string: "\n")
+        spellText.append(locationText)
+        spellText.append(attrNewline)
         spellText.append(schoolText)
         spellText.append(attrNewline)
         spellText.append(levelText)
-        spellText.append(attrNewline)
-        spellText.append(locationText)
         spellText.append(attrNewline)
         spellText.append(ritualText)
         spellText.append(attrNewline)
