@@ -61,8 +61,6 @@ class SpellDataCell: UITableViewCell {
         levelLabel.textAlignment = NSTextAlignment.center
         schoolLabel.textAlignment = NSTextAlignment.left
         
-        // Set the label text
-        
         // Display the labels
         self.addSubview(nameLabel)
         self.addSubview(schoolLabel)

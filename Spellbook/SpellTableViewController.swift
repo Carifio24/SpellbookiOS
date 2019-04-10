@@ -6,6 +6,10 @@
 //  Copyright © 2018 Jonathan Carifio. All rights reserved.
 //
 
+// Type aliases for making closures
+typealias SpellStatusSetter = (Spell, Bool) -> Void
+typealias SpellStatusGetter = (Spell) -> Bool
+
 import UIKit
 
 class SpellTableViewController: UITableViewController {
@@ -21,14 +25,32 @@ class SpellTableViewController: UITableViewController {
     var spellArray: [Spell] = []
     var paddedSpells: [(Spell, Bool)] = []
     var paddedArray: [Spell] = []
+    var filterByBooks: [Sourcebook : Bool] = [
+        Sourcebook.PlayersHandbook : true,
+        Sourcebook.XanatharsGTE : false,
+        Sourcebook.SwordCoastAG : false
+    ]
+    var filterByFavorites = false
+    var filterByPrepared = false
+    var filterByKnown = false
     
     let nBlankPadding = 4
+
     
     @IBOutlet var spellTable: UITableView!
     
     let cellReuseIdentifier = "cell"
     let spellWindowSegueIdentifier = "spellWindowSegue"
     let spellWindowIdentifier = "spellWindow"
+    
+    // Storage files
+    let favoritesFile = "Favorites.txt"
+    let preparedFile = "Prepared.txt"
+    let knownFile = "Known.txt"
+    let settingsFile = "Settings.json"
+    
+    // Documents directory
+    let documentsDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +83,19 @@ class SpellTableViewController: UITableViewController {
             updatePaddedSpells()
             tableView.reloadData()
             firstAppear = false
+            
+            // Load the spell statuses
+            loadSpellsForProperty(filename: favoritesFile, propSetter: { $0.setFavorite(favIn: $1) })
+            loadSpellsForProperty(filename: preparedFile, propSetter: { $0.setPrepared(preparedIn: $1) })
+            loadSpellsForProperty(filename: knownFile, propSetter: { $0.setKnown(knownIn: $1) })
+            
+            // Load the filtering settings
+            loadSettings()
+            
         }
+        
+        // Do an initial filtering
+        filter()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -166,36 +200,32 @@ class SpellTableViewController: UITableViewController {
     }
     
     // Determine whether or not a single row should be filtered
-    func filterItem(isClass: Bool, isFav: Bool, isText: Bool, s: Spell, cc: CasterClass, text: String) -> Bool {
-        //print(s.name)
-        //print(Spellbook.casterNames[cc.rawValue])
+    func filterItem(isClass: Bool, knownSelected:Bool, preparedSelected: Bool, favSelected: Bool, isText: Bool, s: Spell, cc: CasterClass, text: String) -> Bool {
         let spname = s.name.lowercased()
         var toHide = (isClass && !s.usableByClass(cc: cc))
-        toHide = toHide || (isFav && !s.favorite)
+        toHide = toHide || (knownSelected && !s.known)
+        toHide = toHide || (preparedSelected && !s.prepared)
+        toHide = toHide || (favSelected && !s.favorite)
         toHide = toHide || (isText && !spname.starts(with: text))
+        toHide = toHide || (!(filterByBooks[s.sourcebook]!))
         return toHide
     }
     
     // Function to filter the table data
-    func filter(isFav: Bool) {
+    func filter() {
         
         // First, we filter the data
         let classIndex = boss?.pickerController?.classPicker.selectedRow(inComponent: 0)
         let isClass = (classIndex != 0)
         var cc: CasterClass = CasterClass(rawValue: 0)!
-        let isText = false // Placeholder for now, until the search field is added
-        let searchText = "" // Placeholder for now, until the search field is added
+        let isText = !((boss?.pickerController?.searchField.text?.isEmpty)!)
+        let searchText = isText ? (boss?.pickerController?.searchField.text)! : ""
         if isClass {
             cc = CasterClass(rawValue: classIndex!-1)!
         }
-        
-        if ( !(isText || isFav || isClass) ) {
-            unfilter()
-        } else {
-            for i in 0...spells.count-1 {
-                let filter = filterItem(isClass: isClass, isFav: isFav, isText: isText, s: spells[i].0, cc: cc, text: searchText)
-                spells[i] = (spells[i].0, !filter)
-            }
+        for i in 0...spells.count-1 {
+            let filter = filterItem(isClass: isClass, knownSelected: filterByKnown, preparedSelected: filterByPrepared, favSelected: filterByFavorites, isText: isText, s: spells[i].0, cc: cc, text: searchText)
+            spells[i] = (spells[i].0, !filter)
         }
             
         // Get the new spell array
@@ -204,12 +234,6 @@ class SpellTableViewController: UITableViewController {
             
         // Repopulate the table
         tableView.reloadData()
-    }
-        
-    // Filter function
-    func filter() {
-        let isFav = false // Just a placeholder until favoriting is implemented
-        filter(isFav: isFav)
     }
     
     // Set what happens when a cell is selected
@@ -222,6 +246,7 @@ class SpellTableViewController: UITableViewController {
         let storyboard = self.storyboard
         let spellWindowController = storyboard?.instantiateViewController(withIdentifier: spellWindowIdentifier) as! SpellWindowController
         self.present(spellWindowController, animated:true, completion: nil)
+        spellWindowController.spellIndex = indexPath.row
         spellWindowController.spell = paddedArray[indexPath.row]
     }
     
@@ -233,6 +258,130 @@ class SpellTableViewController: UITableViewController {
         paddedArray = spellArray
         for _ in 0...nBlankPadding-1 {
             paddedArray.append(Spell())
+        }
+    }
+    
+    func loadSpellsForProperty(filename: String, propSetter: SpellStatusSetter) {
+        let fileLocation = documentsDirectory.appendingPathComponent(filename)
+        if let fileText = try? String(contentsOf: fileLocation) {
+            let fileItems = fileText.components(separatedBy: .newlines)
+            for item in fileItems {
+                //var inSpellbook = false
+                for spell in spells {
+                    if item == spell.0.name {
+                        propSetter(spell.0, true)
+                        //inSpellbook = true
+                        break
+                    }
+                }
+            }
+        } else {
+            return
+        }
+    }
+    
+    func loadFavorites() {
+        let favoritesFile = documentsDirectory.appendingPathComponent("Favorites.txt")
+        if let favoritesText = try? String(contentsOf: favoritesFile) {
+            let favoriteNames = favoritesText.components(separatedBy: .newlines)
+            for name in favoriteNames {
+                var inSpellbook = false
+                for spell in spells {
+                    if name == spell.0.name {
+                        spell.0.setFavorite(favIn: true)
+                        inSpellbook = true
+                        break
+                    }
+                }
+                // if !inSpellbook {
+                    // throw Exception
+                // }
+            }
+        } else {
+            return
+        }
+    }
+    
+    func saveSpellsWithProperty(propGetter: SpellStatusGetter, filename: String) {
+        let fileLocation = documentsDirectory.appendingPathComponent(filename)
+        var propNames: [String] = []
+        for spell in spells {
+            if propGetter(spell.0) {
+                propNames.append(spell.0.name)
+            }
+        }
+        let propString = propNames.joined(separator: "\n")
+        do {
+            try propString.write(to: fileLocation, atomically: false, encoding: .utf8)
+        } catch let e {
+            print("\(e)")
+        }
+    }
+    
+    func saveFavorites() {
+        let favoritesFile = documentsDirectory.appendingPathComponent("Favorites.txt")
+        var favoriteNames: [String] = []
+        for spell in spells {
+            if spell.0.favorite {
+                favoriteNames.append(spell.0.name)
+            }
+        }
+        let favoritesString =  favoriteNames.joined(separator: "\n")
+        do {
+            try favoritesString.write(to: favoritesFile, atomically: false, encoding: .utf8)
+        } catch let e {
+            print("\(e)")
+        }
+    }
+    
+    // Saving the settings
+    func saveSettings() {
+        let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
+        var settingsJSON = SION([:])
+        // Book filtering settings
+        for item in filterByBooks {
+            let code = Spellbook.sourcebookCodes[item.0.rawValue]
+            settingsJSON[SION.String(code)] = SION.Bool(item.1)
+        }
+        
+        // Status filtering settings
+        settingsJSON["favorite"] = SION.Bool(filterByFavorites)
+        settingsJSON["prepared"] = SION.Bool(filterByPrepared)
+        settingsJSON["known"] = SION.Bool(filterByKnown)
+        
+        do {
+            try settingsJSON.toJSON().write(to: settingsLocation, atomically: false, encoding: .utf8)
+        } catch let e {
+            print("\(e)")
+        }
+    }
+    
+    // Loading the settings
+    func loadSettings() {
+        let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
+        if let settingsText = try? String(contentsOf: settingsLocation) {
+            do {
+                //print(settingsText)
+                var settingsJSON = SION(json: settingsText)
+                
+                // Unpack the status filtering
+                //filterByFavorites = settingsJSON["favorite"].bool
+                //filterByPrepared = settingsJSON["prepared"].bool
+                //filterByKnown = settingsJSON["known"].bool
+                
+                // Unpack the sourcebook filtering
+                for item in filterByBooks {
+                    let code = Spellbook.sourcebookCodes[item.0.rawValue]
+                    //print(code)
+                    //print(SION.String(code))
+                    filterByBooks[item.0] = settingsJSON[SION.String(code)].bool!
+                }
+            } catch let e {
+                print("\(e)")
+            }
+            
+        } else {
+            return
         }
     }
     

@@ -1,9 +1,10 @@
 public class Spellbook {
 	
-	static var schoolNames = ["Abjuration", "Conjuration", "Divination", "Enchantment", "Evocation", "Illusion", "Necromancy", "Transmutation"]
-	static var casterNames = ["Bard", "Cleric", "Druid", "Paladin", "Ranger", "Sorcerer", "Warlock", "Wizard"]
-	static var subclassNames = ["Berserker", "Devotion", "Draconic", "Evocation", "Fiend", "Hunter", "Land", "Life", "Lore", "Open Hand", "Thief"]
-	static var sourceNames = ["phb", "xge"]
+	static let schoolNames = ["Abjuration", "Conjuration", "Divination", "Enchantment", "Evocation", "Illusion", "Necromancy", "Transmutation"]
+	static let casterNames = ["Bard", "Cleric", "Druid", "Paladin", "Ranger", "Sorcerer", "Warlock", "Wizard"]
+	static let subclassNames = ["Berserker", "Devotion", "Draconic", "Evocation", "Fiend", "Hunter", "Land", "Life", "Lore", "Open Hand", "Thief"]
+	static let sourcebookCodes = ["phb", "xge", "scag"]
+    static let sourcebookNames = ["Player's Handbook", "Xanathar's Guide to Everything", "Sword Coast AG"]
 
 	static let N_SCHOOLS = schoolNames.count
 	static let N_CASTERS = casterNames.count
