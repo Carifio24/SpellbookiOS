@@ -263,6 +263,8 @@ class SpellTableViewController: UITableViewController {
     
     func loadSpellsForProperty(filename: String, propSetter: SpellStatusSetter) {
         let fileLocation = documentsDirectory.appendingPathComponent(filename)
+        print("Loading spells from")
+        print(fileLocation)
         if let fileText = try? String(contentsOf: fileLocation) {
             let fileItems = fileText.components(separatedBy: .newlines)
             for item in fileItems {
@@ -270,6 +272,7 @@ class SpellTableViewController: UITableViewController {
                 for spell in spells {
                     if item == spell.0.name {
                         propSetter(spell.0, true)
+                        print(spell.0.name)
                         //inSpellbook = true
                         break
                     }
@@ -304,10 +307,13 @@ class SpellTableViewController: UITableViewController {
     
     func saveSpellsWithProperty(propGetter: SpellStatusGetter, filename: String) {
         let fileLocation = documentsDirectory.appendingPathComponent(filename)
+        print("Saving spells to:")
+        print(fileLocation)
         var propNames: [String] = []
         for spell in spells {
             if propGetter(spell.0) {
                 propNames.append(spell.0.name)
+                print(spell.0.name)
             }
         }
         let propString = propNames.joined(separator: "\n")

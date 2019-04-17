@@ -16,9 +16,27 @@ public class Spell {
 	private(set) var school: School = School.Abjuration
 	private(set) var classes: Array<CasterClass> = []
 	private(set) var subclasses: Array<SubClass> = []
-	private(set) var favorite: Bool = false
-    private(set) var known: Bool = false
-    private(set) var prepared: Bool = false
+    private(set) var favorite: Bool = false {
+        didSet {
+            let fav_s = favorite ? "true" : "false"
+            let s = name + " favorite is now " + fav_s
+            print(s)
+        }
+    }
+    private(set) var known: Bool = false {
+        didSet {
+            let known_s = known ? "true" : "false"
+            let s = name + " known is now " + known_s
+            print(s)
+        }
+    }
+    private(set) var prepared: Bool = false {
+        didSet {
+            let prep_s = prepared ? "true" : "false"
+            let s = name + " prepared is now " + prep_s
+            print(s)
+        }
+    }
 	private(set) var sourcebook: Sourcebook = Sourcebook.PlayersHandbook
 
 	// Only the setters are private, so we don't need getter functions

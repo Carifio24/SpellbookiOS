@@ -42,6 +42,9 @@
 		399D9E63223AEF660054BA8F /* dungeon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 399D9E61223AEF650054BA8F /* dungeon.ttf */; };
 		399D9E64223AEF660054BA8F /* cloister_black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 399D9E62223AEF660054BA8F /* cloister_black.ttf */; };
 		399D9E66223B61750054BA8F /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 399D9E65223B61750054BA8F /* star.png */; };
+		399D9E682264B7830054BA8F /* SpellStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D9E672264B7830054BA8F /* SpellStatus.swift */; };
+		399D9E6A2264B9F20054BA8F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D9E692264B9F20054BA8F /* Settings.swift */; };
+		399D9E6C2267D4810054BA8F /* CharacterProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D9E6B2267D4810054BA8F /* CharacterProfile.swift */; };
 		39A268CE223853680032158F /* SourcebookFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A268CD223853680032158F /* SourcebookFilterController.swift */; };
 		39A268D02239960C0032158F /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A268CF2239960C0032158F /* SideMenuCell.swift */; };
 		39C5B23221CAE121005F08DA /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C5B23121CAE121005F08DA /* SWRevealViewController.m */; };
@@ -110,6 +113,9 @@
 		399D9E61223AEF650054BA8F /* dungeon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dungeon.ttf; sourceTree = SOURCE_ROOT; };
 		399D9E62223AEF660054BA8F /* cloister_black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = cloister_black.ttf; sourceTree = SOURCE_ROOT; };
 		399D9E65223B61750054BA8F /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = SOURCE_ROOT; };
+		399D9E672264B7830054BA8F /* SpellStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellStatus.swift; sourceTree = "<group>"; };
+		399D9E692264B9F20054BA8F /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		399D9E6B2267D4810054BA8F /* CharacterProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProfile.swift; sourceTree = "<group>"; };
 		39A268CD223853680032158F /* SourcebookFilterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcebookFilterController.swift; sourceTree = "<group>"; };
 		39A268CF2239960C0032158F /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
 		39C5B22F21CAE11F005F08DA /* Spellbook-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Spellbook-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -177,6 +183,9 @@
 				399D9E5A223A7F570054BA8F /* book_empty.png */,
 				399D9E59223A7F570054BA8F /* book_filled.png */,
 				39522D2621B1C52100A4DBCE /* SpellWindowController.swift */,
+				399D9E672264B7830054BA8F /* SpellStatus.swift */,
+				399D9E6B2267D4810054BA8F /* CharacterProfile.swift */,
+				399D9E692264B9F20054BA8F /* Settings.swift */,
 				39522D2021ADFBA100A4DBCE /* SpellTableViewController.swift */,
 				399D9E62223AEF660054BA8F /* cloister_black.ttf */,
 				399D9E61223AEF650054BA8F /* dungeon.ttf */,
@@ -397,8 +406,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				399D9E6C2267D4810054BA8F /* CharacterProfile.swift in Sources */,
 				39522D2721B1C52100A4DBCE /* SpellWindowController.swift in Sources */,
 				39005F5D22383F710006E97D /* SideMenuController.swift in Sources */,
+				399D9E6A2264B9F20054BA8F /* Settings.swift in Sources */,
 				3997EE9B21C06E6D007DC1B6 /* SearchButton.swift in Sources */,
 				39522D1B21ADF99500A4DBCE /* PickerViewController.swift in Sources */,
 				397EE96B21ACA86400B116B0 /* ViewController.swift in Sources */,
@@ -416,6 +427,7 @@
 				397EE9A321ACAF9C00B116B0 /* SpellbookError.swift in Sources */,
 				397EE9AB21ACAF9C00B116B0 /* SpellComparison.swift in Sources */,
 				39522D2121ADFBA100A4DBCE /* SpellTableViewController.swift in Sources */,
+				399D9E682264B7830054BA8F /* SpellStatus.swift in Sources */,
 				397EE9A121ACAF9C00B116B0 /* Spell.swift in Sources */,
 				397EE9A521ACAF9C00B116B0 /* CasterClass.swift in Sources */,
 				397EE9A221ACAF9C00B116B0 /* School.swift in Sources */,
@@ -612,7 +624,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "SWRevealViewController/Spellbook-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -636,7 +648,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SWRevealViewController/Spellbook-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
