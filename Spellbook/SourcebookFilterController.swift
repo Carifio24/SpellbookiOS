@@ -102,7 +102,7 @@ class SourcebookFilterController: UITableViewController {
         let spellTableController = mainWindowController.tableController!
         
         let sb = Sourcebook.init(rawValue: indexPath.row)!
-        let selected = spellTableController.filterByBooks[sb]!
+        let selected = spellTableController.settings.getFilter(sb: sb)
         let cell = SideMenuCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: cellReuseIdentifier, selected: selected)
         //let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SideMenuCell
         cell.optionLabel.text = menuOptions[indexPath.row]
@@ -127,7 +127,7 @@ class SourcebookFilterController: UITableViewController {
         // Set the filtering variables accordingly
         let index = indexPath.row
         let sb = Sourcebook.init(rawValue: index)!
-        spellTableController.filterByBooks[sb] = !(spellTableController.filterByBooks[sb]!)
+        spellTableController.settings.setBookFilter(sb: sb, tf: !spellTableController.settings.getFilter(sb: sb))
         
         spellTableController.filter()
         let cell = self.tableView.cellForRow(at: indexPath) as! SideMenuCell

@@ -129,9 +129,9 @@ class StatusFilterController: UITableViewController {
         
         // Set the filtering variables accordingly
         let index = indexPath.row
-        spellTableController.filterByFavorites = (index == 1)
-        spellTableController.filterByPrepared = (index == 2)
-        spellTableController.filterByKnown = (index == 3)
+        spellTableController.settings.setFilterFavorites(fav: index == 1)
+        spellTableController.settings.setFilterPrepared(prep: index == 2)
+        spellTableController.settings.setFilterKnown(known: index == 3)
         mainWindowController.tableController?.filter()
         spellTableController.saveSettings()
 

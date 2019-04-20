@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SideMenuController: UIViewController {
+class SideMenuController: UIViewController, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet var backgroundView: UIImageView!
     
@@ -17,6 +17,10 @@ class SideMenuController: UIViewController {
     @IBOutlet var sourcebookFilterView: UIView!
     
     @IBOutlet var statusFilterView: UIView!
+    
+    @IBOutlet var characterLabel: UILabel!
+    
+    @IBOutlet var selectionButton: UIButton!
     
     var statusController: StatusFilterController?
     
@@ -33,13 +37,16 @@ class SideMenuController: UIViewController {
     //let titleFontSize = CGFloat(30)
     let titleViewHeight = CGFloat(60)
     
+    private var viewHeight = CGFloat(600)
+    private var viewWidth = CGFloat(400)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Get the view dimensions
         let viewRect = self.view.bounds
-        let viewHeight = viewRect.size.height
-        let viewWidth = viewRect.size.width
+        viewHeight = viewRect.size.height
+        viewWidth = viewRect.size.width
         
         // Set the dimensions for the background image
         // No padding necessary for this
@@ -51,14 +58,28 @@ class SideMenuController: UIViewController {
         let headerHeight = CGFloat(57)
         let statusFilterHeight = CGFloat(171)
         let sourcebookFilterHeight = CGFloat(199)
+        let characterLabelHeight = CGFloat(20)
+        let selectionButtonHeight = CGFloat(20)
         
         // Set up the view positioning
-        sideMenuHeader.frame = CGRect(x: leftPadding, y: topPadding, width: viewWidth, height: headerHeight)
-        //sideMenuHeader.font = UIFont.systemFont(ofSize: titleFontSize)
+        var currentY = CGFloat(topPadding)
+        sideMenuHeader.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth, height: headerHeight)
         
-        statusFilterView.frame = CGRect(x: leftPadding, y: topPadding + headerHeight + tablePadding, width: viewWidth - leftPadding, height: statusFilterHeight)
+        currentY += (headerHeight + tablePadding)
+        statusFilterView.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: statusFilterHeight)
         
-        sourcebookFilterView.frame = CGRect(x: leftPadding, y: topPadding + headerHeight + tablePadding + statusFilterHeight + betweenTablePadding, width: viewWidth - leftPadding, height: sourcebookFilterHeight)
+        currentY += (statusFilterHeight + betweenTablePadding)
+        sourcebookFilterView.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: sourcebookFilterHeight)
+        
+        currentY += sourcebookFilterHeight
+        characterLabel.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: characterLabelHeight)
+        
+        currentY += characterLabelHeight
+        selectionButton.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: selectionButtonHeight)
+        
+        // The character selection button callback
+        selectionButton.addTarget(self, action: #selector(selectionButtonPressed), for: UIControl.Event.touchUpInside)
+
         
     }
     
@@ -70,7 +91,48 @@ class SideMenuController: UIViewController {
         if segue.identifier == "statusSegue" {
             statusController = (segue.destination as! StatusFilterController)
         }
+//        if segue.identifier == "characterSelection" {
+//            let popoverViewController = segue.destination
+//            popoverViewController.modalPresentationStyle = .popover
+//            print("Set style")
+//            popoverViewController.presentationController?.delegate = self
+//            print("Assigned delegate")
+//            popoverViewController.popoverPresentationController?.sourceView = selectionButton
+//            popoverViewController.popoverPresentationController?.sourceRect = CGRect(x: 0, y: 0, width: selectionButton.frame.size.width, height: selectionButton.frame.size.height)
+//
+//        }
     }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
+    @objc func selectionButtonPressed() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "characterSelection")
+        print("Made popover controller")
+        
+        let popupVC = PopupViewController(contentController: controller, popupWidth: 0.75 * viewWidth, popupHeight: 0.35 * viewHeight)
+        self.present(popupVC, animated: true)
+    }
+
+    
+    
+//    @objc func selectionButtonPressed() {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let controller = storyboard.instantiateViewController(withIdentifier: "characterSelection")
+//        print("Made popover controller")
+//        controller.modalPresentationStyle = .popover
+//
+//        let popoverVC = controller.popoverPresentationController
+//        controller.preferredContentSize = CGSize(width: 100, height: 100)
+//        self.present(controller, animated: true, completion: nil)
+//        print("Presented controller")
+    
+//        self.present(controller, animated: true, completion: nil)
+//        print("presented controller")
+//        let popupController = UIPopoverPresentationController(presentedViewController: controller, presenting: self)
+    //}
 
     /*
     // MARK: - Navigation

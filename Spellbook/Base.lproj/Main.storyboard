@@ -238,6 +238,21 @@
             </objects>
             <point key="canvasLocation" x="1246.376811594203" y="26.785714285714285"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="TxJ-cW-uGi">
+            <objects>
+                <viewController storyboardIdentifier="characterSelection" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hVs-2U-qR2" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="characterSelection" id="cxZ-5f-UHA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="50" height="50"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uaK-6T-WRR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2224" y="30"/>
+        </scene>
         <!--Data Source-->
         <scene sceneID="aFY-Rt-gSj">
             <objects>
@@ -358,11 +373,28 @@
                                     <segue destination="526-HG-Tzy" kind="embed" identifier="statusSegue" id="nsR-T5-eop"/>
                                 </connections>
                             </containerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xCE-VA-VJs">
+                                <rect key="frame" x="186" y="437" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8BR-mp-g4U">
+                                <rect key="frame" x="-18" y="867" width="125" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Change Character">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
                         <outlet property="backgroundView" destination="xNj-3h-KOs" id="ZAt-GZ-cVZ"/>
+                        <outlet property="characterLabel" destination="xCE-VA-VJs" id="CA9-Ik-AHs"/>
+                        <outlet property="selectionButton" destination="8BR-mp-g4U" id="eZ4-yL-ucW"/>
                         <outlet property="sideMenuHeader" destination="wna-nj-ofa" id="xMA-ns-dai"/>
                         <outlet property="sourcebookFilterView" destination="Whd-IM-ueH" id="y0I-FF-Pnz"/>
                         <outlet property="statusFilterView" destination="YnO-eH-2iK" id="oGE-MX-zei"/>

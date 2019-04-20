@@ -41,7 +41,7 @@ class Settings {
     private(set) var nRows: Int
     private(set) var spellSize: Int
     private(set) var charName: String?
-    private(set) var filterByBooks: [Sourcebook : Bool]
+    private var filterByBooks: [Sourcebook : Bool]
     
     // Constructors
     init() {
@@ -77,7 +77,7 @@ class Settings {
         }
     }
     
-    // Getters
+    // Setters
     func setFilterFavorites(fav: Bool) { filterByFavorites = fav }
     func setFilterPrepared(prep: Bool) { filterByPrepared = prep }
     func setFilterKnown(known: Bool) { filterByKnown = known }
@@ -87,6 +87,9 @@ class Settings {
     func setSpellTextSize(size: Int) { spellSize = size }
     func setTableTextSize(size: Int) { tableSize = size }
     func setNTableRows(n: Int) { nRows = n }
+    
+    // Getters
+    func getFilter(sb: Sourcebook) -> Bool { return filterByBooks[sb]! }
     
     // To SION
     func toSION() -> SION {
@@ -112,6 +115,15 @@ class Settings {
     // To JSON string form
     func toJSONString() -> String {
         return toSION().json
+    }
+    
+    // Save to file
+    func save(filename: URL) {
+        do {
+            try toJSONString().write(to: filename, atomically: false, encoding: .utf8)
+        } catch let e {
+            print("\(e)")
+        }
     }
     
 }

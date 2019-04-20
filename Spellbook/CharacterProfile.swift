@@ -14,7 +14,7 @@ typealias StatusPropertyGetter = (SpellStatus) -> Bool
 class CharacterProfile {
     
     // Member values
-    private(set) var charName: String
+    private(set) var name: String
     private(set) var spellStatuses: [String : SpellStatus]
     
     // Keys for loading/saving
@@ -25,38 +25,42 @@ class CharacterProfile {
     private static let preparedKey: String = "Prepared"
     private static let knownKey: String = "Known"
     
-    init(name: String, spellStatusesIn: [String:SpellStatus]) {
-        charName = name
+    init(nameIn: String, spellStatusesIn: [String:SpellStatus]) {
+        name = nameIn
         spellStatuses = spellStatusesIn
     }
     
-    init(name: String) {
-        charName = name
+    init(nameIn: String) {
+        name = nameIn
         spellStatuses = [:]
+    }
+    
+    convenience init() {
+        self.init(nameIn: "")
     }
     
     init(sion: SION) {
         spellStatuses = [:]
-        charName = sion[SION(CharacterProfile.charNameKey)].string!
+        name = sion[SION(CharacterProfile.charNameKey)].string!
         for (k, v) in sion {
-            let name: String = k.string!
+            let spellName: String = k.string!
             let fav = v[SION(CharacterProfile.favoriteKey)].bool!
             let prep = v[SION(CharacterProfile.preparedKey)].bool!
             let known = v[SION(CharacterProfile.knownKey)].bool!
             let status = SpellStatus(favIn: fav, prepIn: prep, knownIn: known)
-            spellStatuses[name] = status
+            spellStatuses[spellName] = status
         }
     }
     
     // To SION
     func toSION() -> SION {
         var sion = SION([:])
-        sion[SION(CharacterProfile.charNameKey)] = SION(charName)
+        sion[SION(CharacterProfile.charNameKey)] = SION(name)
         var spellsSION = SION([])
         var idx: Int = 0
-        for (name, status) in spellStatuses {
+        for (spellName, status) in spellStatuses {
             var statusSION = SION([:])
-            statusSION[SION(CharacterProfile.spellNameKey)] = SION(name)
+            statusSION[SION(CharacterProfile.spellNameKey)] = SION(spellName)
             statusSION[SION(CharacterProfile.favoriteKey)] = SION(status.favorite)
             statusSION[SION(CharacterProfile.preparedKey)] = SION(status.prepared)
             statusSION[SION(CharacterProfile.knownKey)] = SION(status.known)

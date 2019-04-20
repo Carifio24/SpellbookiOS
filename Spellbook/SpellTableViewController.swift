@@ -14,7 +14,7 @@ import UIKit
 
 class SpellTableViewController: UITableViewController {
     
-    var boss: ViewController?
+    var main: ViewController?
     
     var firstAppear: Bool = true
     
@@ -25,14 +25,8 @@ class SpellTableViewController: UITableViewController {
     var spellArray: [Spell] = []
     var paddedSpells: [(Spell, Bool)] = []
     var paddedArray: [Spell] = []
-    var filterByBooks: [Sourcebook : Bool] = [
-        Sourcebook.PlayersHandbook : true,
-        Sourcebook.XanatharsGTE : false,
-        Sourcebook.SwordCoastAG : false
-    ]
-    var filterByFavorites = false
-    var filterByPrepared = false
-    var filterByKnown = false
+    var settings = Settings()
+    var characterProfile = CharacterProfile()
     
     let nBlankPadding = 4
 
@@ -51,6 +45,8 @@ class SpellTableViewController: UITableViewController {
     
     // Documents directory
     let documentsDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
+    let profilesDirectoryName = "Characters"
+    var profilesDirectory = URL(fileURLWithPath: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +55,17 @@ class SpellTableViewController: UITableViewController {
         //spellTable.register(SpellDataCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.register(SpellDataCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.separatorStyle = .none
+        
+        // Create the profiles directory if it doesn't already exist
+        let fileManager = FileManager.default
+        profilesDirectory = documentsDirectory.appendingPathComponent(profilesDirectoryName)
+        if !fileManager.fileExists(atPath: profilesDirectory.path) {
+            do {
+                try fileManager.createDirectory(atPath: profilesDirectory.path, withIntermediateDirectories: true, attributes: nil)
+            } catch let e {
+                print("\(e)")
+            }
+        }
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -71,7 +78,9 @@ class SpellTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        boss = (self.parent as! ViewController)
+        
+        // Get the main view
+        main = self.parent as! ViewController
         
         // If this is the view's first appearance (i.e. when the app is opening), we initialize spellArray
         if firstAppear {
@@ -84,12 +93,7 @@ class SpellTableViewController: UITableViewController {
             tableView.reloadData()
             firstAppear = false
             
-            // Load the spell statuses
-            loadSpellsForProperty(filename: favoritesFile, propSetter: { $0.setFavorite(favIn: $1) })
-            loadSpellsForProperty(filename: preparedFile, propSetter: { $0.setPrepared(preparedIn: $1) })
-            loadSpellsForProperty(filename: knownFile, propSetter: { $0.setKnown(knownIn: $1) })
-            
-            // Load the filtering settings
+            // Load the settings
             loadSettings()
             
         }
@@ -203,11 +207,11 @@ class SpellTableViewController: UITableViewController {
     func filterItem(isClass: Bool, knownSelected:Bool, preparedSelected: Bool, favSelected: Bool, isText: Bool, s: Spell, cc: CasterClass, text: String) -> Bool {
         let spname = s.name.lowercased()
         var toHide = (isClass && !s.usableByClass(cc: cc))
-        toHide = toHide || (knownSelected && !s.known)
-        toHide = toHide || (preparedSelected && !s.prepared)
-        toHide = toHide || (favSelected && !s.favorite)
+        toHide = toHide || (knownSelected && !characterProfile.isKnown(s: s))
+        toHide = toHide || (preparedSelected && !characterProfile.isPrepared(s: s))
+        toHide = toHide || (favSelected && !characterProfile.isFavorite(s: s))
         toHide = toHide || (isText && !spname.starts(with: text))
-        toHide = toHide || (!(filterByBooks[s.sourcebook]!))
+        toHide = toHide || (!(settings.getFilter(sb: s.sourcebook)))
         return toHide
     }
     
@@ -215,16 +219,16 @@ class SpellTableViewController: UITableViewController {
     func filter() {
         
         // First, we filter the data
-        let classIndex = boss?.pickerController?.classPicker.selectedRow(inComponent: 0)
+        let classIndex = main?.pickerController?.classPicker.selectedRow(inComponent: 0)
         let isClass = (classIndex != 0)
         var cc: CasterClass = CasterClass(rawValue: 0)!
-        let isText = !((boss?.pickerController?.searchField.text?.isEmpty)!)
-        let searchText = isText ? (boss?.pickerController?.searchField.text)! : ""
+        let isText = !((main?.pickerController?.searchField.text?.isEmpty)!)
+        let searchText = isText ? (main?.pickerController?.searchField.text)! : ""
         if isClass {
             cc = CasterClass(rawValue: classIndex!-1)!
         }
         for i in 0...spells.count-1 {
-            let filter = filterItem(isClass: isClass, knownSelected: filterByKnown, preparedSelected: filterByPrepared, favSelected: filterByFavorites, isText: isText, s: spells[i].0, cc: cc, text: searchText)
+            let filter = filterItem(isClass: isClass, knownSelected: settings.filterByKnown, preparedSelected: settings.filterByPrepared, favSelected: settings.filterByFavorites, isText: isText, s: spells[i].0, cc: cc, text: searchText)
             spells[i] = (spells[i].0, !filter)
         }
             
@@ -291,7 +295,7 @@ class SpellTableViewController: UITableViewController {
                 var inSpellbook = false
                 for spell in spells {
                     if name == spell.0.name {
-                        spell.0.setFavorite(favIn: true)
+                        characterProfile.setFavorite(s: spell.0, fav: true)
                         inSpellbook = true
                         break
                     }
@@ -328,7 +332,7 @@ class SpellTableViewController: UITableViewController {
         let favoritesFile = documentsDirectory.appendingPathComponent("Favorites.txt")
         var favoriteNames: [String] = []
         for spell in spells {
-            if spell.0.favorite {
+            if characterProfile.isFavorite(s: spell.0) {
                 favoriteNames.append(spell.0.name)
             }
         }
@@ -343,23 +347,7 @@ class SpellTableViewController: UITableViewController {
     // Saving the settings
     func saveSettings() {
         let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
-        var settingsJSON = SION([:])
-        // Book filtering settings
-        for item in filterByBooks {
-            let code = Spellbook.sourcebookCodes[item.0.rawValue]
-            settingsJSON[SION.String(code)] = SION.Bool(item.1)
-        }
-        
-        // Status filtering settings
-        settingsJSON["favorite"] = SION.Bool(filterByFavorites)
-        settingsJSON["prepared"] = SION.Bool(filterByPrepared)
-        settingsJSON["known"] = SION.Bool(filterByKnown)
-        
-        do {
-            try settingsJSON.toJSON().write(to: settingsLocation, atomically: false, encoding: .utf8)
-        } catch let e {
-            print("\(e)")
-        }
+        settings.save(filename: settingsLocation)
     }
     
     // Loading the settings
@@ -367,28 +355,32 @@ class SpellTableViewController: UITableViewController {
         let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
         if let settingsText = try? String(contentsOf: settingsLocation) {
             do {
-                //print(settingsText)
-                var settingsJSON = SION(json: settingsText)
-                
-                // Unpack the status filtering
-                //filterByFavorites = settingsJSON["favorite"].bool
-                //filterByPrepared = settingsJSON["prepared"].bool
-                //filterByKnown = settingsJSON["known"].bool
-                
-                // Unpack the sourcebook filtering
-                for item in filterByBooks {
-                    let code = Spellbook.sourcebookCodes[item.0.rawValue]
-                    //print(code)
-                    //print(SION.String(code))
-                    filterByBooks[item.0] = settingsJSON[SION.String(code)].bool!
-                }
-            } catch let e {
-                print("\(e)")
+                let settingsJSON = SION(json: settingsText)
+                settings = Settings(json: settingsJSON)
             }
-            
         } else {
             return
         }
+    }
+    
+    func saveCharacterProfile() {
+        let charFile: String = characterProfile.name + ".json"
+        let profileLocation = profilesDirectory.appendingPathComponent(charFile)
+        characterProfile.save(filename: profileLocation)
+    }
+    
+    func setSideMenuCharacterName() {
+        let sideMenuController = main?.sideMenuController!
+        sideMenuController!.characterLabel.text = "Character: " + characterProfile.name
+    }
+    
+    func setCharacterProfile(cp: CharacterProfile) {
+        characterProfile = cp
+        settings.setCharacterName(name: cp.name)
+        setSideMenuCharacterName()
+        saveSettings()
+        saveCharacterProfile()
+        filter()
     }
     
     

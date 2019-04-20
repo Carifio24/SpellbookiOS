@@ -25,6 +25,9 @@ class ViewController: UIViewController {
     var tableController: SpellTableViewController?
     var spellWindowController: SpellWindowController?
     
+    // The side menu controller
+    var sideMenuController: SideMenuController?
+    
     // The UIViews that hold the child controllers
     @IBOutlet weak var pickerView: UIView!
     @IBOutlet weak var labelView: UIView!
@@ -64,6 +67,9 @@ class ViewController: UIViewController {
         
         // Pull out the side menu
        view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        
+        // Get the side menu controller
+        sideMenuController = self.revealViewController()?.rearViewController as? SideMenuController
         
     }
     

@@ -15,6 +15,9 @@
 		39522D2121ADFBA100A4DBCE /* SpellTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D2021ADFBA100A4DBCE /* SpellTableViewController.swift */; };
 		39522D2321B04FE500A4DBCE /* BookBackground.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 39522D2221B04FE500A4DBCE /* BookBackground.jpeg */; };
 		39522D2721B1C52100A4DBCE /* SpellWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D2621B1C52100A4DBCE /* SpellWindowController.swift */; };
+		395F3A902268079100D7B382 /* CharacterSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395F3A8F2268079100D7B382 /* CharacterSelectionController.swift */; };
+		395F3A92226A9BD600D7B382 /* EzPopup-1.0 in Resources */ = {isa = PBXBuildFile; fileRef = 395F3A91226A9BD500D7B382 /* EzPopup-1.0 */; };
+		395F3A94226B604600D7B382 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395F3A93226B604500D7B382 /* PopupViewController.swift */; };
 		397EE96921ACA86400B116B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE96821ACA86400B116B0 /* AppDelegate.swift */; };
 		397EE96B21ACA86400B116B0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE96A21ACA86400B116B0 /* ViewController.swift */; };
 		397EE96E21ACA86400B116B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 397EE96C21ACA86400B116B0 /* Main.storyboard */; };
@@ -80,6 +83,9 @@
 		39522D2021ADFBA100A4DBCE /* SpellTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellTableViewController.swift; sourceTree = "<group>"; };
 		39522D2221B04FE500A4DBCE /* BookBackground.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BookBackground.jpeg; sourceTree = "<group>"; };
 		39522D2621B1C52100A4DBCE /* SpellWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellWindowController.swift; sourceTree = "<group>"; };
+		395F3A8F2268079100D7B382 /* CharacterSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSelectionController.swift; sourceTree = "<group>"; };
+		395F3A91226A9BD500D7B382 /* EzPopup-1.0 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "EzPopup-1.0"; path = "../EzPopup-1.0"; sourceTree = "<group>"; };
+		395F3A93226B604500D7B382 /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopupViewController.swift; path = "../../EzPopup-1.0/EzPopup/Classes/PopupViewController.swift"; sourceTree = "<group>"; };
 		397EE96521ACA86400B116B0 /* Spellbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spellbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		397EE96821ACA86400B116B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		397EE96A21ACA86400B116B0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +162,7 @@
 		397EE95C21ACA86300B116B0 = {
 			isa = PBXGroup;
 			children = (
+				395F3A91226A9BD500D7B382 /* EzPopup-1.0 */,
 				39C5B22E21CAE0BF005F08DA /* SWRevealViewController */,
 				397EE96721ACA86400B116B0 /* Spellbook */,
 				397EE97C21ACA86800B116B0 /* SpellbookTests */,
@@ -178,6 +185,7 @@
 		397EE96721ACA86400B116B0 /* Spellbook */ = {
 			isa = PBXGroup;
 			children = (
+				395F3A93226B604500D7B382 /* PopupViewController.swift */,
 				399D9E5E223A7F660054BA8F /* wand_empty.png */,
 				399D9E5D223A7F660054BA8F /* wand_filled.png */,
 				399D9E5A223A7F570054BA8F /* book_empty.png */,
@@ -197,6 +205,7 @@
 				39522D1A21ADF99500A4DBCE /* PickerViewController.swift */,
 				39522D2221B04FE500A4DBCE /* BookBackground.jpeg */,
 				397EE96C21ACA86400B116B0 /* Main.storyboard */,
+				395F3A8F2268079100D7B382 /* CharacterSelectionController.swift */,
 				39C5B23C21CF03A5005F08DA /* star_empty.png */,
 				39C5B23B21CF03A1005F08DA /* star_filled.png */,
 				39A268CF2239960C0032158F /* SideMenuCell.swift */,
@@ -371,6 +380,7 @@
 				399D9E5C223A7F580054BA8F /* book_empty.png in Resources */,
 				39C5B24021CF1D1A005F08DA /* search_icon.png in Resources */,
 				399D9E5F223A7F670054BA8F /* wand_filled.png in Resources */,
+				395F3A92226A9BD600D7B382 /* EzPopup-1.0 in Resources */,
 				399D9E66223B61750054BA8F /* star.png in Resources */,
 				3997EE9D21C07293007DC1B6 /* SearchIcon.png in Resources */,
 				399D9E63223AEF660054BA8F /* dungeon.ttf in Resources */,
@@ -426,11 +436,13 @@
 				397EE9A421ACAF9C00B116B0 /* SpellParse.swift in Sources */,
 				397EE9A321ACAF9C00B116B0 /* SpellbookError.swift in Sources */,
 				397EE9AB21ACAF9C00B116B0 /* SpellComparison.swift in Sources */,
+				395F3A902268079100D7B382 /* CharacterSelectionController.swift in Sources */,
 				39522D2121ADFBA100A4DBCE /* SpellTableViewController.swift in Sources */,
 				399D9E682264B7830054BA8F /* SpellStatus.swift in Sources */,
 				397EE9A121ACAF9C00B116B0 /* Spell.swift in Sources */,
 				397EE9A521ACAF9C00B116B0 /* CasterClass.swift in Sources */,
 				397EE9A221ACAF9C00B116B0 /* School.swift in Sources */,
+				395F3A94226B604600D7B382 /* PopupViewController.swift in Sources */,
 				397EE9A921ACAF9C00B116B0 /* Spellbook.swift in Sources */,
 				39A268D02239960C0032158F /* SideMenuCell.swift in Sources */,
 			);
