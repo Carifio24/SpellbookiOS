@@ -238,20 +238,56 @@
             </objects>
             <point key="canvasLocation" x="1246.376811594203" y="26.785714285714285"/>
         </scene>
-        <!--View Controller-->
+        <!--Character Selection Controller-->
         <scene sceneID="TxJ-cW-uGi">
             <objects>
-                <viewController storyboardIdentifier="characterSelection" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hVs-2U-qR2" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="characterSelection" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hVs-2U-qR2" customClass="CharacterSelectionController" customModule="Spellbook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="characterSelection" id="cxZ-5f-UHA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Characters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dhc-z9-YXb">
+                                <rect key="frame" x="147" y="177" width="120" height="93"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="CloisterBlack-Light" family="Cloister Black" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please select a character" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ds6-GA-Lq3">
+                                <rect key="frame" x="147" y="332" width="163" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="CnN-tb-9cS">
+                                <rect key="frame" x="87" y="441" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="characterCell" id="eWc-8P-YUE" customClass="CharacterSelectionCell" customModule="Spellbook" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="240" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eWc-8P-YUE" id="Gm4-lB-Pi3">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="50" height="50"/>
+                    <connections>
+                        <outlet property="characterTable" destination="CnN-tb-9cS" id="CJA-sh-77e"/>
+                        <outlet property="selectionMessage" destination="Ds6-GA-Lq3" id="Iff-9s-s7F"/>
+                        <outlet property="selectionTitle" destination="dhc-z9-YXb" id="iBs-Pz-CwQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uaK-6T-WRR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2224" y="30"/>
+            <point key="canvasLocation" x="2223.1884057971015" y="29.464285714285712"/>
         </scene>
         <!--Data Source-->
         <scene sceneID="aFY-Rt-gSj">

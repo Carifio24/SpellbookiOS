@@ -55,6 +55,8 @@
 		39C5B23D21CF03A8005F08DA /* star_filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C5B23B21CF03A1005F08DA /* star_filled.png */; };
 		39C5B23E21CF03A8005F08DA /* star_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C5B23C21CF03A5005F08DA /* star_empty.png */; };
 		39C5B24021CF1D1A005F08DA /* search_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C5B23F21CF1D1A005F08DA /* search_icon.png */; };
+		39CFA5EC226E1882006EA33B /* CharacterTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CFA5EB226E1881006EA33B /* CharacterTableController.swift */; };
+		39CFA5EE226E817C006EA33B /* CharacterSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CFA5ED226E817C006EA33B /* CharacterSelectionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +133,8 @@
 		39C5B23B21CF03A1005F08DA /* star_filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_filled.png; sourceTree = SOURCE_ROOT; };
 		39C5B23C21CF03A5005F08DA /* star_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_empty.png; sourceTree = SOURCE_ROOT; };
 		39C5B23F21CF1D1A005F08DA /* search_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_icon.png; sourceTree = SOURCE_ROOT; };
+		39CFA5EB226E1881006EA33B /* CharacterTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableController.swift; sourceTree = "<group>"; };
+		39CFA5ED226E817C006EA33B /* CharacterSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSelectionCell.swift; sourceTree = "<group>"; };
 		39F1046F21AD87F40068A09E /* SION.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SION.swift; path = "../../Desktop/git/swift-sion/Sources/SION/SION.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -205,7 +209,9 @@
 				39522D1A21ADF99500A4DBCE /* PickerViewController.swift */,
 				39522D2221B04FE500A4DBCE /* BookBackground.jpeg */,
 				397EE96C21ACA86400B116B0 /* Main.storyboard */,
+				39CFA5EB226E1881006EA33B /* CharacterTableController.swift */,
 				395F3A8F2268079100D7B382 /* CharacterSelectionController.swift */,
+				39CFA5ED226E817C006EA33B /* CharacterSelectionCell.swift */,
 				39C5B23C21CF03A5005F08DA /* star_empty.png */,
 				39C5B23B21CF03A1005F08DA /* star_filled.png */,
 				39A268CF2239960C0032158F /* SideMenuCell.swift */,
@@ -418,6 +424,7 @@
 			files = (
 				399D9E6C2267D4810054BA8F /* CharacterProfile.swift in Sources */,
 				39522D2721B1C52100A4DBCE /* SpellWindowController.swift in Sources */,
+				39CFA5EC226E1882006EA33B /* CharacterTableController.swift in Sources */,
 				39005F5D22383F710006E97D /* SideMenuController.swift in Sources */,
 				399D9E6A2264B9F20054BA8F /* Settings.swift in Sources */,
 				3997EE9B21C06E6D007DC1B6 /* SearchButton.swift in Sources */,
@@ -443,6 +450,7 @@
 				397EE9A521ACAF9C00B116B0 /* CasterClass.swift in Sources */,
 				397EE9A221ACAF9C00B116B0 /* School.swift in Sources */,
 				395F3A94226B604600D7B382 /* PopupViewController.swift in Sources */,
+				39CFA5EE226E817C006EA33B /* CharacterSelectionCell.swift in Sources */,
 				397EE9A921ACAF9C00B116B0 /* Spellbook.swift in Sources */,
 				39A268D02239960C0032158F /* SideMenuCell.swift in Sources */,
 			);

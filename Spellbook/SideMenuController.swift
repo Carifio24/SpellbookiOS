@@ -109,10 +109,17 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     
     @objc func selectionButtonPressed() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "characterSelection")
+        let controller = storyboard.instantiateViewController(withIdentifier: "characterSelection") as! CharacterSelectionController
         print("Made popover controller")
-        
-        let popupVC = PopupViewController(contentController: controller, popupWidth: 0.75 * viewWidth, popupHeight: 0.35 * viewHeight)
+
+        let popupWidth = CGFloat(0.75 * viewWidth)
+        let popupHeight = CGFloat(0.35 * viewHeight)
+        controller.width = popupWidth
+        controller.height = popupHeight
+        let main =  self.revealViewController()?.frontViewController as? ViewController
+        controller.mainTable = main?.tableController
+        print("Set height and width")
+        let popupVC = PopupViewController(contentController: controller, popupWidth: popupWidth, popupHeight: popupHeight)
         self.present(popupVC, animated: true)
     }
 
@@ -128,11 +135,11 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
 //        controller.preferredContentSize = CGSize(width: 100, height: 100)
 //        self.present(controller, animated: true, completion: nil)
 //        print("Presented controller")
-    
+//
 //        self.present(controller, animated: true, completion: nil)
 //        print("presented controller")
 //        let popupController = UIPopoverPresentationController(presentedViewController: controller, presenting: self)
-    //}
+//    }
 
     /*
     // MARK: - Navigation

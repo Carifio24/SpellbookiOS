@@ -48,7 +48,7 @@ class StatusFilterController: UITableViewController {
         tableView.reloadData()
 
         // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
@@ -135,7 +135,7 @@ class StatusFilterController: UITableViewController {
         mainWindowController.tableController?.filter()
         spellTableController.saveSettings()
 
-        //revealController.revealToggle(self)
+        revealController.revealToggle(self)
     }
     
 

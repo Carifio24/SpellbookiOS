@@ -383,6 +383,22 @@ class SpellTableViewController: UITableViewController {
         filter()
     }
     
+    func characterList() -> [String] {
+        var charList: [String] = []
+        let fileManager = FileManager.default
+        let charExt = "json"
+        let charExtLen = charExt.count
+        let enumerator = fileManager.enumerator(at: profilesDirectory, includingPropertiesForKeys: nil)
+        while let element = enumerator?.nextObject() as? String {
+            if element.hasSuffix(charExt) {
+                var charName = element
+                charName.removeLast(charExtLen+1)
+                charList.append(charName)
+            }
+        }
+        return charList
+    }
+    
     
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
