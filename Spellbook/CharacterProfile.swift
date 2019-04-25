@@ -42,8 +42,8 @@ class CharacterProfile {
     init(sion: SION) {
         spellStatuses = [:]
         name = sion[SION(CharacterProfile.charNameKey)].string!
-        for (k, v) in sion {
-            let spellName: String = k.string!
+        for (k, v) in sion[SION(CharacterProfile.spellsKey)] {
+            let spellName: String = v[SION(CharacterProfile.spellNameKey)].string!
             let fav = v[SION(CharacterProfile.favoriteKey)].bool!
             let prep = v[SION(CharacterProfile.preparedKey)].bool!
             let known = v[SION(CharacterProfile.knownKey)].bool!

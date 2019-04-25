@@ -26,6 +26,9 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     
     var sourcebookController: SourcebookFilterController?
     
+    var main: ViewController?
+    var mainTable: SpellTableViewController?
+    
     let backgroundOffset = CGFloat(27)
     
     let leftPadding = CGFloat(7)
@@ -42,6 +45,9 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        main =  self.revealViewController()?.frontViewController as? ViewController
+        mainTable = main?.tableController
         
         // Get the view dimensions
         let viewRect = self.view.bounds
@@ -79,6 +85,12 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         
         // The character selection button callback
         selectionButton.addTarget(self, action: #selector(selectionButtonPressed), for: UIControl.Event.touchUpInside)
+        
+        // Set the character label
+        let name = mainTable?.characterProfile.name
+        if (name != nil) {
+            characterLabel.text = "Current character: " + name!
+        }
 
         
     }
@@ -110,16 +122,15 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     @objc func selectionButtonPressed() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "characterSelection") as! CharacterSelectionController
-        print("Made popover controller")
 
-        let popupWidth = CGFloat(0.75 * viewWidth)
-        let popupHeight = CGFloat(0.35 * viewHeight)
+        let screenRect = UIScreen.main.bounds
+        let popupWidth = CGFloat(0.8 * screenRect.size.width)
+        let popupHeight = CGFloat(0.35 * screenRect.size.height)
         controller.width = popupWidth
         controller.height = popupHeight
-        let main =  self.revealViewController()?.frontViewController as? ViewController
-        controller.mainTable = main?.tableController
-        print("Set height and width")
+        controller.mainTable = mainTable
         let popupVC = PopupViewController(contentController: controller, popupWidth: popupWidth, popupHeight: popupHeight)
+        mainTable?.selectionWindow = controller
         self.present(popupVC, animated: true)
     }
 

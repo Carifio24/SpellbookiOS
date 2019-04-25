@@ -57,6 +57,8 @@
 		39C5B24021CF1D1A005F08DA /* search_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C5B23F21CF1D1A005F08DA /* search_icon.png */; };
 		39CFA5EC226E1882006EA33B /* CharacterTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CFA5EB226E1881006EA33B /* CharacterTableController.swift */; };
 		39CFA5EE226E817C006EA33B /* CharacterSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CFA5ED226E817C006EA33B /* CharacterSelectionCell.swift */; };
+		39CFA5F0226F985C006EA33B /* CharacterCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CFA5EF226F985C006EA33B /* CharacterCreationController.swift */; };
+		39CFA5F22271F030006EA33B /* trash_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 39CFA5F12271F02F006EA33B /* trash_icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +137,8 @@
 		39C5B23F21CF1D1A005F08DA /* search_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_icon.png; sourceTree = SOURCE_ROOT; };
 		39CFA5EB226E1881006EA33B /* CharacterTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableController.swift; sourceTree = "<group>"; };
 		39CFA5ED226E817C006EA33B /* CharacterSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSelectionCell.swift; sourceTree = "<group>"; };
+		39CFA5EF226F985C006EA33B /* CharacterCreationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCreationController.swift; sourceTree = "<group>"; };
+		39CFA5F12271F02F006EA33B /* trash_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash_icon.png; sourceTree = SOURCE_ROOT; };
 		39F1046F21AD87F40068A09E /* SION.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SION.swift; path = "../../Desktop/git/swift-sion/Sources/SION/SION.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,6 +193,7 @@
 		397EE96721ACA86400B116B0 /* Spellbook */ = {
 			isa = PBXGroup;
 			children = (
+				39CFA5EF226F985C006EA33B /* CharacterCreationController.swift */,
 				395F3A93226B604500D7B382 /* PopupViewController.swift */,
 				399D9E5E223A7F660054BA8F /* wand_empty.png */,
 				399D9E5D223A7F660054BA8F /* wand_filled.png */,
@@ -209,6 +214,7 @@
 				39522D1A21ADF99500A4DBCE /* PickerViewController.swift */,
 				39522D2221B04FE500A4DBCE /* BookBackground.jpeg */,
 				397EE96C21ACA86400B116B0 /* Main.storyboard */,
+				39CFA5F12271F02F006EA33B /* trash_icon.png */,
 				39CFA5EB226E1881006EA33B /* CharacterTableController.swift */,
 				395F3A8F2268079100D7B382 /* CharacterSelectionController.swift */,
 				39CFA5ED226E817C006EA33B /* CharacterSelectionCell.swift */,
@@ -388,6 +394,7 @@
 				399D9E5F223A7F670054BA8F /* wand_filled.png in Resources */,
 				395F3A92226A9BD600D7B382 /* EzPopup-1.0 in Resources */,
 				399D9E66223B61750054BA8F /* star.png in Resources */,
+				39CFA5F22271F030006EA33B /* trash_icon.png in Resources */,
 				3997EE9D21C07293007DC1B6 /* SearchIcon.png in Resources */,
 				399D9E63223AEF660054BA8F /* dungeon.ttf in Resources */,
 				399D9E60223A7F670054BA8F /* wand_empty.png in Resources */,
@@ -428,6 +435,7 @@
 				39005F5D22383F710006E97D /* SideMenuController.swift in Sources */,
 				399D9E6A2264B9F20054BA8F /* Settings.swift in Sources */,
 				3997EE9B21C06E6D007DC1B6 /* SearchButton.swift in Sources */,
+				39CFA5F0226F985C006EA33B /* CharacterCreationController.swift in Sources */,
 				39522D1B21ADF99500A4DBCE /* PickerViewController.swift in Sources */,
 				397EE96B21ACA86400B116B0 /* ViewController.swift in Sources */,
 				39C5B23421CAF3CB005F08DA /* StatusFilterController.swift in Sources */,

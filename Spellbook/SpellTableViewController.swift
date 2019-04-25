@@ -27,6 +27,7 @@ class SpellTableViewController: UITableViewController {
     var paddedArray: [Spell] = []
     var settings = Settings()
     var characterProfile = CharacterProfile()
+    var selectionWindow: CharacterSelectionController?
     
     let nBlankPadding = 4
 
@@ -44,7 +45,7 @@ class SpellTableViewController: UITableViewController {
     let settingsFile = "Settings.json"
     
     // Documents directory
-    let documentsDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
+    let documentsDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
     let profilesDirectoryName = "Characters"
     var profilesDirectory = URL(fileURLWithPath: "")
     
@@ -66,6 +67,7 @@ class SpellTableViewController: UITableViewController {
                 print("\(e)")
             }
         }
+        print("profilesDirectory is: \(profilesDirectory)")
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -80,7 +82,7 @@ class SpellTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         
         // Get the main view
-        main = self.parent as! ViewController
+        main = self.parent as? ViewController
         
         // If this is the view's first appearance (i.e. when the app is opening), we initialize spellArray
         if firstAppear {
@@ -95,6 +97,18 @@ class SpellTableViewController: UITableViewController {
             
             // Load the settings
             loadSettings()
+            
+            // For now, we're going to ignore the status filters
+            settings.setFilterFavorites(fav: false)
+            settings.setFilterPrepared(prep: false)
+            settings.setFilterKnown(known: false)
+            
+            // Load the character profile
+            let name = settings.charName
+            if name != nil {
+                print("name is \(name!)")
+                loadCharacterProfile(name: name!)
+            }
             
         }
         
@@ -348,15 +362,38 @@ class SpellTableViewController: UITableViewController {
     func saveSettings() {
         let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
         settings.save(filename: settingsLocation)
+        print("Settings are: \(settings.toJSONString())")
+        print("Saving settings to: \(settingsLocation)")
     }
     
     // Loading the settings
     func loadSettings() {
         let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
+        print("settingsLocation is: \(settingsLocation)")
         if let settingsText = try? String(contentsOf: settingsLocation) {
             do {
+                print("settingsText is: \(settingsText)")
                 let settingsJSON = SION(json: settingsText)
                 settings = Settings(json: settingsJSON)
+            }
+        } else {
+            print("Error getting settings")
+            return
+        }
+    }
+    
+    func profileLocation(name: String) -> URL {
+        let charFile = name + ".json"
+        return profilesDirectory.appendingPathComponent(charFile)
+    }
+    
+    func loadCharacterProfile(name: String) {
+        let location = profileLocation(name: characterProfile.name)
+        if let profileText = try? String(contentsOf: location) {
+            do {
+                let profileSION = SION(json: profileText)
+                let profile = CharacterProfile(sion: profileSION)
+                setCharacterProfile(cp: profile)
             }
         } else {
             return
@@ -364,14 +401,26 @@ class SpellTableViewController: UITableViewController {
     }
     
     func saveCharacterProfile() {
-        let charFile: String = characterProfile.name + ".json"
-        let profileLocation = profilesDirectory.appendingPathComponent(charFile)
-        characterProfile.save(filename: profileLocation)
+        let location = profileLocation(name: characterProfile.name)
+        print("Saving profile for \(characterProfile.name) to \(location)")
+        characterProfile.save(filename: location)
+    }
+    
+    func deleteCharacterProfile(name: String) {
+        let location = profileLocation(name: name)
+        let fileManager = FileManager.default
+        do {
+            try fileManager.removeItem(at: location)
+        } catch let e {
+            print("\(e)")
+        }
     }
     
     func setSideMenuCharacterName() {
         let sideMenuController = main?.sideMenuController!
-        sideMenuController!.characterLabel.text = "Character: " + characterProfile.name
+        if (sideMenuController!.characterLabel != nil) {
+            sideMenuController!.characterLabel.text = "Character: " + characterProfile.name
+        }
     }
     
     func setCharacterProfile(cp: CharacterProfile) {
@@ -388,15 +437,27 @@ class SpellTableViewController: UITableViewController {
         let fileManager = FileManager.default
         let charExt = "json"
         let charExtLen = charExt.count
+        print("profilesDirectory is \(profilesDirectory)")
         let enumerator = fileManager.enumerator(at: profilesDirectory, includingPropertiesForKeys: nil)
-        while let element = enumerator?.nextObject() as? String {
+        //while let element = enumerator?.nextObject() as? String {
+        for x in enumerator!.allObjects {
+            let url = x as! URL
+            let element = url.lastPathComponent
+            print(element)
             if element.hasSuffix(charExt) {
                 var charName = element
                 charName.removeLast(charExtLen+1)
                 charList.append(charName)
             }
         }
+        charList.sort()
         return charList
+    }
+    
+    func updateSelectionList() {
+        if selectionWindow != nil {
+            selectionWindow!.updateCharacterTable()
+        }
     }
     
     

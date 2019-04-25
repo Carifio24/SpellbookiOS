@@ -37,7 +37,8 @@ class ViewController: UIViewController {
     let sortFraction = CGFloat(0.08)
     let labelFraction = CGFloat(0.08)
     // The table will take up the rest of the space
-    let backgroundOffset = CGFloat(27)
+    //let backgroundOffset = CGFloat(27)
+    let backgroundOffset = CGFloat(0)
     
     // Extreme padding amounts
     let maxHorizPadding = CGFloat(5)
@@ -74,6 +75,9 @@ class ViewController: UIViewController {
     }
     
     func setContainerDimensions(screenWidth: CGFloat, screenHeight: CGFloat) {
+        
+        print("Screen width: \(screenWidth)")
+        print("Screen height: \(screenHeight)")
         
         // Set the dimensions for the background image
         // No padding necessary for this
