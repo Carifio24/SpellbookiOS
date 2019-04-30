@@ -82,7 +82,7 @@ class Settings {
     func setFilterPrepared(prep: Bool) { filterByPrepared = prep }
     func setFilterKnown(known: Bool) { filterByKnown = known }
     func setBookFilter(sb: Sourcebook, tf: Bool) { filterByBooks[sb] = tf }
-    func setCharacterName(name: String) { charName = name }
+    func setCharacterName(name: String?) { charName = name }
     func setHeaderTextSize(size: Int) { headerSize = size }
     func setSpellTextSize(size: Int) { spellSize = size }
     func setTableTextSize(size: Int) { tableSize = size }

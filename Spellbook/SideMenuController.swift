@@ -66,6 +66,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         let sourcebookFilterHeight = CGFloat(199)
         let characterLabelHeight = CGFloat(20)
         let selectionButtonHeight = CGFloat(20)
+        let belowCharacterLabelPadding = CGFloat(14)
         
         // Set up the view positioning
         var currentY = CGFloat(topPadding)
@@ -80,7 +81,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         currentY += sourcebookFilterHeight
         characterLabel.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: characterLabelHeight)
         
-        currentY += characterLabelHeight
+        currentY += characterLabelHeight + belowCharacterLabelPadding
         selectionButton.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: selectionButtonHeight)
         
         // The character selection button callback
@@ -89,7 +90,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         // Set the character label
         let name = mainTable?.characterProfile.name
         if (name != nil) {
-            characterLabel.text = "Current character: " + name!
+            characterLabel.text = "Character: " + name!
         }
 
         
@@ -131,7 +132,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         controller.mainTable = mainTable
         let popupVC = PopupViewController(contentController: controller, popupWidth: popupWidth, popupHeight: popupHeight)
         mainTable?.selectionWindow = controller
-        self.present(popupVC, animated: true)
+        self.present(popupVC, animated: true, completion: nil)
     }
 
     

@@ -27,7 +27,15 @@ class SpellTableViewController: UITableViewController {
     var paddedArray: [Spell] = []
     var settings = Settings()
     var characterProfile = CharacterProfile()
-    var selectionWindow: CharacterSelectionController?
+    var selectionWindow: CharacterSelectionController? {
+        didSet {
+            if selectionWindow != nil {
+                print("Set selectionWindow to \(selectionWindow!)")
+            } else {
+                print("Set selectionWindow to nil")
+            }
+        }
+    }
     
     let nBlankPadding = 4
 
@@ -104,11 +112,21 @@ class SpellTableViewController: UITableViewController {
             settings.setFilterKnown(known: false)
             
             // Load the character profile
-            let name = settings.charName
-            if name != nil {
+            let characters = characterList()
+            if settings.charName != nil {
+                let name = settings.charName
+                print("case 1")
                 print("name is \(name!)")
                 loadCharacterProfile(name: name!)
+            } else if characters.count > 0 {
+                print("case 2")
+                print("characters[0] is \(characters[0])")
+                loadCharacterProfile(name: characters[0])
+            } else {
+                print("case 3")
+                openCharacterCreationDialog(mustComplete: true)
             }
+            
             
         }
         
@@ -157,6 +175,8 @@ class SpellTableViewController: UITableViewController {
             cell.nameLabel.textColor = UIColor.clear
             cell.schoolLabel.textColor = UIColor.clear
             cell.levelLabel.textColor = UIColor.clear
+            cell.isUserInteractionEnabled = false
+            cell.selectionStyle = .none
         }
         cell.backgroundColor = UIColor.clear
         return cell
@@ -261,6 +281,9 @@ class SpellTableViewController: UITableViewController {
         //print(boss!.spellWindowController!)
         //boss?.spellWindowController!.spell = spellArray[indexPath.row]
         //boss?.performSegue(withIdentifier: spellWindowSegueIdentifier, sender: nil)
+        print("spells.count is \(spellArray.count)")
+        print("indexPath.row is \(indexPath.row)")
+        if indexPath.row >= spellArray.count { return }
         let storyboard = self.storyboard
         let spellWindowController = storyboard?.instantiateViewController(withIdentifier: spellWindowIdentifier) as! SpellWindowController
         self.present(spellWindowController, animated:true, completion: nil)
@@ -388,7 +411,8 @@ class SpellTableViewController: UITableViewController {
     }
     
     func loadCharacterProfile(name: String) {
-        let location = profileLocation(name: characterProfile.name)
+        let location = profileLocation(name: name)
+        print("Location is: \(location)")
         if let profileText = try? String(contentsOf: location) {
             do {
                 let profileSION = SION(json: profileText)
@@ -396,6 +420,8 @@ class SpellTableViewController: UITableViewController {
                 setCharacterProfile(cp: profile)
             }
         } else {
+            print("Error reading file")
+            settings.setCharacterName(name: nil)
             return
         }
     }
@@ -408,18 +434,34 @@ class SpellTableViewController: UITableViewController {
     
     func deleteCharacterProfile(name: String) {
         let location = profileLocation(name: name)
+        print("Beginning deleteCharacterProfile with name: \(name)")
         let fileManager = FileManager.default
         do {
+            let deletingCurrent = (name == characterProfile.name)
             try fileManager.removeItem(at: location)
+            let characters = characterList()
+            updateSelectionList()
+            setSideMenuCharacterName()
+            print("deletingCurrent: \(deletingCurrent)")
+            if deletingCurrent {
+                if characters.count > 0 {
+                    print("The new character's name is: \(characters[0])")
+                    loadCharacterProfile(name: characters[0])
+                }
+            }
         } catch let e {
             print("\(e)")
         }
     }
     
     func setSideMenuCharacterName() {
+        print("Setting side menu name with \(characterProfile.name)")
         let sideMenuController = main?.sideMenuController!
         if (sideMenuController!.characterLabel != nil) {
+            print("Here")
             sideMenuController!.characterLabel.text = "Character: " + characterProfile.name
+        } else {
+            print("label is nil")
         }
     }
     
@@ -430,6 +472,7 @@ class SpellTableViewController: UITableViewController {
         saveSettings()
         saveCharacterProfile()
         filter()
+        updateSelectionList()
     }
     
     func characterList() -> [String] {
@@ -450,14 +493,44 @@ class SpellTableViewController: UITableViewController {
                 charList.append(charName)
             }
         }
-        charList.sort()
+        charList.sort(by: { $0.lowercased() < $1.lowercased() })
         return charList
     }
     
     func updateSelectionList() {
+        print("In updateSelectionList()")
         if selectionWindow != nil {
+            print("Updating...")
             selectionWindow!.updateCharacterTable()
         }
+    }
+    
+    func openCharacterCreationDialog(mustComplete: Bool=false) {
+        
+        print("mustComplete: \(mustComplete)")
+        print("selectionWindow condition: \(selectionWindow == nil)")
+        
+        if mustComplete && (selectionWindow == nil) {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "characterCreation") as! CharacterCreationController
+            controller.tableController = self
+            
+            let screenRect = UIScreen.main.bounds
+            let popupWidth = CGFloat(0.8 * screenRect.size.width)
+            let popupHeight = CGFloat(0.25 * screenRect.size.height)
+            controller.width = popupWidth
+            controller.height = popupHeight
+            let popupVC = PopupViewController(contentController: controller, popupWidth: popupWidth, popupHeight: popupHeight)
+            if mustComplete {
+                controller.cancelButton.isHidden = true
+                popupVC.canTapOutsideToDismiss = false
+                self.present(popupVC, animated: true)
+            }
+        } else {
+            //selectionWindow!.displayNewCharacterWindow(mustComplete: mustComplete)
+            selectionWindow!.newCharacterButton.sendActions(for: UIControl.Event.touchUpInside)
+        }
+        
     }
     
     

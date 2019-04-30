@@ -33,9 +33,18 @@ class CharacterCreationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("In viewDidLoad()")
         setLayout()
+        print("Finished setting layout")
         setButtonFunctions()
+        print("Finished setting button functions")
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("Starting viewDidAppear")
+        super.viewDidAppear(animated)
+        print("Finished viewDidAppear")
     }
     
     func setLayout() {
@@ -51,6 +60,10 @@ class CharacterCreationController: UIViewController {
         self.view.sendSubviewToBack(backgroundView)
         backgroundView.frame = CGRect(x: 0, y: 0, width: width, height: height)
         
+        print("Popup type: DeletionPromptController")
+        print("Popup width: \(width)")
+        print("Popup height: \(height)")
+        
         let titleX = CGFloat(width / 2)
         let titleY = view.frame.origin.y + topPadding
         creationTitle.center.x = titleX
@@ -60,6 +73,7 @@ class CharacterCreationController: UIViewController {
         let messageX = CGFloat(width / 2)
         let messageY = titleY + creationTitle.frame.height
         creationMessage.center.x = messageX
+        print("creationMessageX is \(messageX)")
         creationMessage.frame.origin.y = messageY
         creationMessage.sizeToFit()
         

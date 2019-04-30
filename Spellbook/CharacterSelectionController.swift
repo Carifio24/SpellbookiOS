@@ -60,11 +60,9 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         let usableWidth = width - leftPadding - rightPadding
         let usableHeight = height - topPadding - bottomPadding
         
-        view.backgroundColor = UIColor.yellow
-        
         backgroundView.frame = CGRect(x: 0, y: 0, width: width, height: height)
-        //backgroundView.isHidden = true
         
+        print("Popup type: CharacterSelectionController")
         print("Popup width: \(width)")
         print("Popup height: \(height)")
 
@@ -106,7 +104,6 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("Creating table cell")
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! CharacterSelectionCell
         let name = characters[indexPath.row]
         cell.name = name
@@ -120,12 +117,19 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Pressed at \(indexPath.row)")
+        print("Name is \(characters[indexPath.row])")
         mainTable?.loadCharacterProfile(name: characters[indexPath.row])
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: dismissOperations)
     }
     
     @objc func newCharacterButtonPressed() {
-       
+        let mustComplete = (mainTable?.characterList().count == 0)
+        print("Pressed new character button, mustComplete: \(mustComplete)")
+        displayNewCharacterWindow(mustComplete: mustComplete)
+    }
+    
+    func displayNewCharacterWindow(mustComplete: Bool=false) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "characterCreation") as! CharacterCreationController
         controller.tableController = mainTable
@@ -136,31 +140,43 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         controller.width = popupWidth
         controller.height = popupHeight
         let popupVC = PopupViewController(contentController: controller, popupWidth: popupWidth, popupHeight: popupHeight)
+        if mustComplete {
+            controller.cancelButton.isHidden = true
+            popupVC.canTapOutsideToDismiss = false
+            self.present(popupVC, animated: true)
+        }
         self.present(popupVC, animated: true)
     }
     
+    func createDeletionPrompt(name: String) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "deletePrompt") as! DeletionPromptController
+        controller.mainTable = mainTable
+        controller.name = name
+        
+        let screenRect = UIScreen.main.bounds
+        let popupWidth = CGFloat(0.8 * screenRect.size.width)
+        let popupHeight = CGFloat(0.25 * screenRect.size.height)
+        controller.width = popupWidth
+        controller.height = popupHeight
+        let popupVC = PopupViewController(contentController: controller, popupWidth: popupWidth, popupHeight: popupHeight)
+        self.present(popupVC, animated: true)
+    }
+    
+    
     func updateCharacterTable() {
+        characters = (mainTable?.characterList())!
         tableView.reloadData()
     }
     
     func dismissOperations() {
-        print("In dismisOperations()")
+        print("In dismissOperations()")
         mainTable?.selectionWindow = nil
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first
-        guard let location = touch?.location(in: self.view) else { return }
-        if !self.view.frame.contains(location) {
-            print("In dismissOperations()")
-            dismissOperations()
-        }
+    func pressNewCharacterButton() {
+        newCharacterButton.sendActions(for: UIControl.Event.touchUpInside)
     }
-    
-    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        dismissOperations()
-        super.dismiss(animated: flag, completion: completion)
-    }
-    
+
     
 }

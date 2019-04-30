@@ -59,6 +59,7 @@
 		39CFA5EE226E817C006EA33B /* CharacterSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CFA5ED226E817C006EA33B /* CharacterSelectionCell.swift */; };
 		39CFA5F0226F985C006EA33B /* CharacterCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CFA5EF226F985C006EA33B /* CharacterCreationController.swift */; };
 		39CFA5F22271F030006EA33B /* trash_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 39CFA5F12271F02F006EA33B /* trash_icon.png */; };
+		39CFA5F42272519B006EA33B /* DeletionPromptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CFA5F32272519B006EA33B /* DeletionPromptController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +140,7 @@
 		39CFA5ED226E817C006EA33B /* CharacterSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSelectionCell.swift; sourceTree = "<group>"; };
 		39CFA5EF226F985C006EA33B /* CharacterCreationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCreationController.swift; sourceTree = "<group>"; };
 		39CFA5F12271F02F006EA33B /* trash_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash_icon.png; sourceTree = SOURCE_ROOT; };
+		39CFA5F32272519B006EA33B /* DeletionPromptController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletionPromptController.swift; sourceTree = "<group>"; };
 		39F1046F21AD87F40068A09E /* SION.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SION.swift; path = "../../Desktop/git/swift-sion/Sources/SION/SION.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -217,6 +219,7 @@
 				39CFA5F12271F02F006EA33B /* trash_icon.png */,
 				39CFA5EB226E1881006EA33B /* CharacterTableController.swift */,
 				395F3A8F2268079100D7B382 /* CharacterSelectionController.swift */,
+				39CFA5F32272519B006EA33B /* DeletionPromptController.swift */,
 				39CFA5ED226E817C006EA33B /* CharacterSelectionCell.swift */,
 				39C5B23C21CF03A5005F08DA /* star_empty.png */,
 				39C5B23B21CF03A1005F08DA /* star_filled.png */,
@@ -430,6 +433,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				399D9E6C2267D4810054BA8F /* CharacterProfile.swift in Sources */,
+				39CFA5F42272519B006EA33B /* DeletionPromptController.swift in Sources */,
 				39522D2721B1C52100A4DBCE /* SpellWindowController.swift in Sources */,
 				39CFA5EC226E1882006EA33B /* CharacterTableController.swift in Sources */,
 				39005F5D22383F710006E97D /* SideMenuController.swift in Sources */,

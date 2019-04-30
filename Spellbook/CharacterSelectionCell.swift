@@ -29,7 +29,6 @@ class CharacterSelectionCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = UIColor.clear
         iconButton.addTarget(self, action: #selector(deleteButtonPressed), for: UIControl.Event.touchUpInside)
-        print("Called init")
         setup()
         
     }
@@ -43,7 +42,7 @@ class CharacterSelectionCell: UITableViewCell {
         nameLabel.backgroundColor = UIColor.clear
         nameLabel.text = name
         nameLabel.textColor = UIColor.black
-        print("Set name as \(name)")
+
         self.bringSubviewToFront(nameLabel)
         
         self.addSubview(iconButton)
@@ -53,8 +52,29 @@ class CharacterSelectionCell: UITableViewCell {
         
     }
     
+//    @objc func deleteButtonPressed() {
+//        print("Pressed delete icon on cell \(iconButton.tag)")
+//        let table = parentTable()
+//        let selectionController = table.dataSource as! CharacterSelectionController
+//        let mainTable = selectionController.mainTable
+//        let characters = mainTable?.characterList()
+//        mainTable?.deleteCharacterProfile(name: characters![iconButton.tag])
+//    }
+    
     @objc func deleteButtonPressed() {
         print("Pressed delete icon on cell \(iconButton.tag)")
+        let table = parentTable()
+        let selectionController = table.dataSource as! CharacterSelectionController
+        selectionController.createDeletionPrompt(name: name)
+        
+    }
+    
+    func parentTable() -> UITableView {
+        var view = self.superview
+        while (view != nil && view?.isKind(of: UITableView.self) == false) {
+            view = view!.superview
+        }
+        return view as! UITableView
     }
     
 }
