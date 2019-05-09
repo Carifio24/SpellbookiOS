@@ -110,9 +110,11 @@ class ViewController: UIViewController {
         
         // Finally, the SpellTableViewController
         // Note that we don't need to adjust the tableController's view differently - the TableViewController seems to be able to handle this part itself
-        let tableFrame = CGRect(x: leftPadding, y: sortHeight + labelHeight, width: usableWidth, height: tableHeight)
+        let tableY = sortHeight + labelHeight
+        let tableFrame = CGRect(x: leftPadding, y: tableY, width: usableWidth, height: tableHeight)
         tableView.frame = tableFrame
         tableController!.view!.frame = tableFrame
+        tableController!.mainY = tableY
         
         pickerController?.setViewDimensions()
         labelController?.setViewDimensions()

@@ -38,6 +38,9 @@ class SpellTableViewController: UITableViewController {
     }
     
     let nBlankPadding = 4
+    
+    // Vertical position in main view
+    var mainY = CGFloat(0)
 
     
     @IBOutlet var spellTable: UITableView!
@@ -76,6 +79,13 @@ class SpellTableViewController: UITableViewController {
             }
         }
         print("profilesDirectory is: \(profilesDirectory)")
+        
+        // Long press gesture recognizer
+        let lpgr = UILongPressGestureRecognizer.init(target: self, action: #selector(handleLongPress))
+        lpgr.minimumPressDuration = 0.5
+        //lpgr.delegate = self
+        tableView.addGestureRecognizer(lpgr)
+        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -161,6 +171,7 @@ class SpellTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SpellDataCell
         let spell = paddedArray[indexPath.row]
         cell.spell = spell
+        cell.selectionStyle = .none
         if spell.name != "" {
             cell.nameLabel.text = spell.name
             cell.schoolLabel.text = Spellbook.schoolNames[spell.school.rawValue]
@@ -176,7 +187,7 @@ class SpellTableViewController: UITableViewController {
             cell.schoolLabel.textColor = UIColor.clear
             cell.levelLabel.textColor = UIColor.clear
             cell.isUserInteractionEnabled = false
-            cell.selectionStyle = .none
+            //cell.selectionStyle = .none
         }
         cell.backgroundColor = UIColor.clear
         return cell
@@ -197,7 +208,7 @@ class SpellTableViewController: UITableViewController {
     func singleSort(index: Int) {
         
         // Do the sorting
-        spells.sort {return compareOne(s1: $0.0, s2: $1.0, index: index)}
+        spells.sort { return compareOne(s1: $0.0, s2: $1.0, index: index) }
         
         // Get the array
         updateSpellArray()
@@ -214,7 +225,7 @@ class SpellTableViewController: UITableViewController {
     func doubleSort(index1: Int, index2: Int) {
         
         // Do the sorting
-        spells.sort {return compareTwo(s1: $0.0, s2: $1.0, index1: index1, index2: index2)}
+        spells.sort { return compareTwo(s1: $0.0, s2: $1.0, index1: index1, index2: index2) }
         
         // Get the array
         updateSpellArray()
@@ -241,9 +252,9 @@ class SpellTableViewController: UITableViewController {
     func filterItem(isClass: Bool, knownSelected:Bool, preparedSelected: Bool, favSelected: Bool, isText: Bool, s: Spell, cc: CasterClass, text: String) -> Bool {
         let spname = s.name.lowercased()
         var toHide = (isClass && !s.usableByClass(cc: cc))
-        toHide = toHide || (knownSelected && !characterProfile.isKnown(s: s))
-        toHide = toHide || (preparedSelected && !characterProfile.isPrepared(s: s))
-        toHide = toHide || (favSelected && !characterProfile.isFavorite(s: s))
+        toHide = toHide || (knownSelected && !characterProfile.isKnown(s))
+        toHide = toHide || (preparedSelected && !characterProfile.isPrepared(s))
+        toHide = toHide || (favSelected && !characterProfile.isFavorite(s))
         toHide = toHide || (isText && !spname.starts(with: text))
         toHide = toHide || (!(settings.getFilter(sb: s.sourcebook)))
         return toHide
@@ -289,6 +300,37 @@ class SpellTableViewController: UITableViewController {
         self.present(spellWindowController, animated:true, completion: nil)
         spellWindowController.spellIndex = indexPath.row
         spellWindowController.spell = paddedArray[indexPath.row]
+    }
+    
+    
+    @objc func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
+        let p = gestureRecognizer.location(in: tableView)
+        let pAbs = gestureRecognizer.location(in: main?.view)
+        print("Long press at \(pAbs.x), \(pAbs.y)")
+        let indexPath = tableView.indexPathForRow(at: p)
+        if indexPath == nil {
+            return
+        } else if (gestureRecognizer.state == UIGestureRecognizer.State.began) {
+            if indexPath!.row >= spellArray.count { return }
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "statusPopup") as! StatusPopupController
+            
+            let popupHeight = CGFloat(50)
+            let popupWidth = CGFloat(158)
+            controller.width = popupWidth
+            controller.height = popupHeight
+            controller.mainTable = self
+            let cell = tableView.cellForRow(at: indexPath!) as! SpellDataCell
+            let positionX = CGFloat(5)
+            let positionY = cell.frame.maxY
+            let position = CGPoint(x: positionX, y: positionY)
+            let absPosition = main!.view.convert(position, from: self.tableView)
+            let popupPosition = PopupViewController.PopupPosition.topLeft(absPosition)
+            controller.spell = paddedArray[indexPath!.row]
+            let popupVC = PopupViewController(contentController: controller, position: popupPosition, popupWidth: popupWidth, popupHeight: popupHeight)
+            popupVC.backgroundAlpha = 0
+            self.present(popupVC, animated: true, completion: nil)
+        }
     }
     
     func updatePaddedSpells() {
@@ -369,7 +411,7 @@ class SpellTableViewController: UITableViewController {
         let favoritesFile = documentsDirectory.appendingPathComponent("Favorites.txt")
         var favoriteNames: [String] = []
         for spell in spells {
-            if characterProfile.isFavorite(s: spell.0) {
+            if characterProfile.isFavorite(spell.0) {
                 favoriteNames.append(spell.0.name)
             }
         }

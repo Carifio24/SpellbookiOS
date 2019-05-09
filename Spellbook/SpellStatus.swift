@@ -23,8 +23,8 @@ class SpellStatus {
     
     init() {}
     
-    func setFavorite(favIn: Bool) { favorite = favIn }
-    func setPrepared(prepIn: Bool) { prepared = prepIn }
-    func setKnown(knownIn: Bool) { known = knownIn }
+    func setFavorite(_ favIn: Bool) { favorite = favIn }
+    func setPrepared(_ prepIn: Bool) { prepared = prepIn }
+    func setKnown(_ knownIn: Bool) { known = knownIn }
     
 }

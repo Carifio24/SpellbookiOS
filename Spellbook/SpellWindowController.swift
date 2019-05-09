@@ -84,19 +84,19 @@ class SpellWindowController: UIViewController {
             
             // Set the button images
             // First, the favorite button
-            let favoriteImage = characterProfile.isFavorite(s: spell) ? SpellWindowController.isFavoriteImage : SpellWindowController.notFavoriteImage
+            let favoriteImage = characterProfile.isFavorite(spell) ? SpellWindowController.isFavoriteImage : SpellWindowController.notFavoriteImage
             favoriteButton.setImage(favoriteImage, for: .normal)
             favoriteButton.imageView?.contentMode = .scaleAspectFit
             self.view.bringSubviewToFront(favoriteButton)
             
             // Next, the prepared button
-            let preparedImage = characterProfile.isPrepared(s: spell) ? SpellWindowController.isPreparedImage : SpellWindowController.notPreparedImage
+            let preparedImage = characterProfile.isPrepared(spell) ? SpellWindowController.isPreparedImage : SpellWindowController.notPreparedImage
             preparedButton.setImage(preparedImage, for: .normal)
             preparedButton.imageView?.contentMode = .scaleAspectFit
             self.view.bringSubviewToFront(preparedButton)
             
             // Finally, the known button
-            let knownImage = characterProfile.isKnown(s: spell) ? SpellWindowController.isKnownImage : SpellWindowController.notKnownImage
+            let knownImage = characterProfile.isKnown(spell) ? SpellWindowController.isKnownImage : SpellWindowController.notKnownImage
             knownButton.setImage(knownImage, for: .normal)
             knownButton.imageView?.contentMode = .scaleAspectFit
             self.view.bringSubviewToFront(knownButton)
@@ -267,7 +267,7 @@ class SpellWindowController: UIViewController {
     
     @objc func favoriteButtonPressed() {
         let profile = main.tableController!.characterProfile
-        let fav = !profile.isFavorite(s: spell)
+        let fav = !profile.isFavorite(spell)
         profile.setFavorite(s: spell, fav: fav)
         let favoriteImage = fav ? SpellWindowController.isFavoriteImage : SpellWindowController.notFavoriteImage
         favoriteButton.setImage(favoriteImage, for: .normal)
@@ -276,7 +276,7 @@ class SpellWindowController: UIViewController {
     
     @objc func preparedButtonPressed() {
         let profile = main.tableController!.characterProfile
-        let prep = !profile.isPrepared(s: spell)
+        let prep = !profile.isPrepared(spell)
         profile.setPrepared(s: spell, prep: prep)
         let preparedImage = prep ? SpellWindowController.isPreparedImage : SpellWindowController.notPreparedImage
         preparedButton.setImage(preparedImage, for: .normal)
@@ -285,7 +285,7 @@ class SpellWindowController: UIViewController {
     
     @objc func knownButtonPressed() {
         let profile = main.tableController!.characterProfile
-        let known = !profile.isKnown(s: spell)
+        let known = !profile.isKnown(spell)
         profile.setKnown(s: spell, known: known)
         let knownImage = known ? SpellWindowController.isKnownImage : SpellWindowController.notKnownImage
         knownButton.setImage(knownImage, for: .normal)

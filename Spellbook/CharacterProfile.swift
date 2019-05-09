@@ -86,15 +86,15 @@ class CharacterProfile {
     }
     
     // The property getters
-    func isFavorite(s: Spell) -> Bool {
+    func isFavorite(_ s: Spell) -> Bool {
         return isProperty(s: s, propGetter: { return $0.favorite })
     }
     
-    func isPrepared(s: Spell) -> Bool {
+    func isPrepared(_ s: Spell) -> Bool {
         return isProperty(s: s, propGetter: { return $0.prepared })
     }
     
-    func isKnown(s: Spell) -> Bool {
+    func isKnown(_ s: Spell) -> Bool {
         return isProperty(s: s, propGetter: { return $0.known })
     }
     
@@ -112,15 +112,15 @@ class CharacterProfile {
     
     // The property setters
     func setFavorite(s: Spell, fav: Bool) {
-        setProperty(s: s, val: fav, propSetter: { $0.setFavorite(favIn: $1) })
+        setProperty(s: s, val: fav, propSetter: { $0.setFavorite($1) })
     }
     
     func setPrepared(s: Spell, prep: Bool) {
-        setProperty(s: s, val: prep, propSetter: { $0.setPrepared(prepIn: $1) })
+        setProperty(s: s, val: prep, propSetter: { $0.setPrepared($1) })
     }
     
     func setKnown(s: Spell, known: Bool) {
-        setProperty(s: s, val: known, propSetter: { $0.setKnown(knownIn: $1) })
+        setProperty(s: s, val: known, propSetter: { $0.setKnown($1) })
     }
     
     // Save to a file

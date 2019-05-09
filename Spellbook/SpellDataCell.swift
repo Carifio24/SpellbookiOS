@@ -72,5 +72,4 @@ class SpellDataCell: UITableViewCell {
         super.init(coder: decoder)
     }
     
-    
 }

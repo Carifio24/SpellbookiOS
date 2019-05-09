@@ -10,6 +10,7 @@ import UIKit
 
 class CharacterSelectionCell: UITableViewCell {
     
+    let nameFont = UIFont(name: "Cloister Black", size: 25)
     var width = CGFloat(0)
     let nameLabel = UILabel()
     let iconButton = UIButton()
@@ -42,6 +43,7 @@ class CharacterSelectionCell: UITableViewCell {
         nameLabel.backgroundColor = UIColor.clear
         nameLabel.text = name
         nameLabel.textColor = UIColor.black
+        nameLabel.font = nameFont
 
         self.bringSubviewToFront(nameLabel)
         
