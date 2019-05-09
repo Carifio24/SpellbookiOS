@@ -76,6 +76,7 @@ class StatusPopupController: UIViewController {
         let isProperty = !getter(spell)
         setter(spell, isProperty)
         iconSetter(isProperty)
+        mainTable!.filter()
     }
     
     @objc private func onFavoriteButtonPressed() {
