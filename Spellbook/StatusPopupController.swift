@@ -95,15 +95,20 @@ class StatusPopupController: UIViewController {
         
         let iconWidth = CGFloat(50)
         let iconHeight = CGFloat(50)
+        let borderSize = CGFloat(1)
+        let gap = (width - iconWidth * 3) / 4
+        let usableWidth = width - 2 * borderSize
+        let usableHeight = height - 2 * borderSize
         
-        backgroundView.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        backgroundView.frame = CGRect(x: borderSize, y: borderSize, width: usableWidth, height: usableHeight)
+        view.backgroundColor = UIColor.black
         
-        let startingX = CGFloat(2)
-        favoriteButton.frame = CGRect(x: startingX, y: 0, width: iconWidth, height: iconHeight)
-        let preparedX = favoriteButton.frame.maxX + 2
-        preparedButton.frame = CGRect(x: preparedX, y: 0, width: iconWidth, height: iconHeight)
-        let knownX = preparedButton.frame.maxX + 2
-        knownButton.frame = CGRect(x: knownX, y: 0, width: iconWidth, height: iconHeight)
+        let startingX = gap
+        favoriteButton.frame = CGRect(x: startingX, y: borderSize, width: iconWidth, height: iconHeight)
+        let preparedX = favoriteButton.frame.maxX + gap
+        preparedButton.frame = CGRect(x: preparedX, y: borderSize, width: iconWidth, height: iconHeight)
+        let knownX = preparedButton.frame.maxX + gap
+        knownButton.frame = CGRect(x: knownX, y: borderSize, width: iconWidth, height: iconHeight)
         
     }
     

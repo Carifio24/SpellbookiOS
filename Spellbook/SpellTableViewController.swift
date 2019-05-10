@@ -305,8 +305,8 @@ class SpellTableViewController: UITableViewController {
     
     @objc func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
         let p = gestureRecognizer.location(in: tableView)
-        let pAbs = gestureRecognizer.location(in: main?.view)
-        print("Long press at \(pAbs.x), \(pAbs.y)")
+        //let pAbs = gestureRecognizer.location(in: main?.view)
+        //print("Long press at \(pAbs.x), \(pAbs.y)")
         let indexPath = tableView.indexPathForRow(at: p)
         if indexPath == nil {
             return
@@ -315,13 +315,13 @@ class SpellTableViewController: UITableViewController {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "statusPopup") as! StatusPopupController
             
-            let popupHeight = CGFloat(50)
-            let popupWidth = CGFloat(158)
+            let popupHeight = CGFloat(52)
+            let popupWidth = CGFloat(166)
             controller.width = popupWidth
             controller.height = popupHeight
             controller.mainTable = self
             let cell = tableView.cellForRow(at: indexPath!) as! SpellDataCell
-            let positionX = CGFloat(5)
+            let positionX = CGFloat(0)
             let positionY = cell.frame.maxY
             let position = CGPoint(x: positionX, y: positionY)
             let absPosition = main!.view.convert(position, from: self.tableView)
@@ -427,14 +427,14 @@ class SpellTableViewController: UITableViewController {
     func saveSettings() {
         let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
         settings.save(filename: settingsLocation)
-        print("Settings are: \(settings.toJSONString())")
-        print("Saving settings to: \(settingsLocation)")
+        //print("Settings are: \(settings.toJSONString())")
+        //print("Saving settings to: \(settingsLocation)")
     }
     
     // Loading the settings
     func loadSettings() {
         let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
-        print("settingsLocation is: \(settingsLocation)")
+        //print("settingsLocation is: \(settingsLocation)")
         if let settingsText = try? String(contentsOf: settingsLocation) {
             do {
                 print("settingsText is: \(settingsText)")
@@ -454,7 +454,7 @@ class SpellTableViewController: UITableViewController {
     
     func loadCharacterProfile(name: String) {
         let location = profileLocation(name: name)
-        print("Location is: \(location)")
+        //print("Location is: \(location)")
         if let profileText = try? String(contentsOf: location) {
             do {
                 let profileSION = SION(json: profileText)
@@ -470,13 +470,13 @@ class SpellTableViewController: UITableViewController {
     
     func saveCharacterProfile() {
         let location = profileLocation(name: characterProfile.name)
-        print("Saving profile for \(characterProfile.name) to \(location)")
+        //print("Saving profile for \(characterProfile.name) to \(location)")
         characterProfile.save(filename: location)
     }
     
     func deleteCharacterProfile(name: String) {
         let location = profileLocation(name: name)
-        print("Beginning deleteCharacterProfile with name: \(name)")
+        //print("Beginning deleteCharacterProfile with name: \(name)")
         let fileManager = FileManager.default
         do {
             let deletingCurrent = (name == characterProfile.name)
@@ -484,10 +484,10 @@ class SpellTableViewController: UITableViewController {
             let characters = characterList()
             updateSelectionList()
             setSideMenuCharacterName()
-            print("deletingCurrent: \(deletingCurrent)")
+            //print("deletingCurrent: \(deletingCurrent)")
             if deletingCurrent {
                 if characters.count > 0 {
-                    print("The new character's name is: \(characters[0])")
+                    //print("The new character's name is: \(characters[0])")
                     loadCharacterProfile(name: characters[0])
                 }
             }
@@ -497,7 +497,7 @@ class SpellTableViewController: UITableViewController {
     }
     
     func setSideMenuCharacterName() {
-        print("Setting side menu name with \(characterProfile.name)")
+        //print("Setting side menu name with \(characterProfile.name)")
         let sideMenuController = main?.sideMenuController!
         if (sideMenuController!.characterLabel != nil) {
             print("Here")
