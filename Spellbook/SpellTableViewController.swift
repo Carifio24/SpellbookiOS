@@ -455,8 +455,10 @@ class SpellTableViewController: UITableViewController {
     func loadCharacterProfile(name: String) {
         let location = profileLocation(name: name)
         //print("Location is: \(location)")
-        if let profileText = try? String(contentsOf: location) {
+        if var profileText = try? String(contentsOf: location) {
             do {
+                fixEscapeCharacters(&profileText)
+                print("profileText is:\n\(profileText)")
                 let profileSION = SION(json: profileText)
                 let profile = CharacterProfile(sion: profileSION)
                 setCharacterProfile(cp: profile)

@@ -15,3 +15,14 @@ func bool_to_yn(yn: Bool) -> String {
 		return "no"
 	}
 }
+
+
+func fixEscapeCharacters(_ str : inout String) {
+    let replacements : [String : String] = [
+        "\\'" : "\'",
+        "\\\\" : "\\"
+    ]
+    for x in replacements {
+        str = str.replacingOccurrences(of: x.0, with: x.1)
+    }
+}

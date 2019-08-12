@@ -77,6 +77,7 @@ class StatusPopupController: UIViewController {
         setter(spell, isProperty)
         iconSetter(isProperty)
         mainTable!.filter()
+        mainTable!.saveCharacterProfile()
     }
     
     @objc private func onFavoriteButtonPressed() {

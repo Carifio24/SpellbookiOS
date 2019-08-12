@@ -53,7 +53,7 @@ class CharacterProfile {
     }
     
     // To SION
-    func toSION() -> SION {
+    func asSION() -> SION {
         var sion = SION([:])
         sion[SION(CharacterProfile.charNameKey)] = SION(name)
         var spellsSION = SION([])
@@ -72,8 +72,8 @@ class CharacterProfile {
     }
     
     // As a JSON string
-    func toJSONString() -> String {
-        return toSION().json
+    func asJSONString() -> String {
+        return asSION().json
     }
     
     // For setting spell status properties
@@ -98,15 +98,29 @@ class CharacterProfile {
         return isProperty(s: s, propGetter: { return $0.known })
     }
     
+    func oneTrue(_ s: Spell) -> Bool {
+        return ( isFavorite(s) || isPrepared(s) || isKnown(s) )
+    }
+    
     // For getting spell status properties
     private func setProperty(s: Spell, val: Bool, propSetter: StatusPropertySetter) {
+        
+        // Get the status for the given spell
         let status: SpellStatus? = spellStatuses[s.name]
+        
+        // If the status already exists, modify it
         if (status != nil) {
             propSetter(status!, val)
+        // Otherwise, add it to the dictionary. The default status has all values False
         } else {
             let newStatus = SpellStatus()
             propSetter(newStatus, val)
             spellStatuses[s.name] = newStatus
+        }
+        
+        // If all of the values are now false, remove the entry
+        if !oneTrue(s) {
+            spellStatuses.removeValue(forKey: s.name)
         }
     }
     
@@ -126,7 +140,8 @@ class CharacterProfile {
     // Save to a file
     func save(filename: URL) {
         do {
-            try toJSONString().write(to: filename, atomically: false, encoding: .utf8)
+            print(asJSONString())
+            try asJSONString().write(to: filename, atomically: false, encoding: .utf8)
         } catch let e {
             print("\(e)")
         }
