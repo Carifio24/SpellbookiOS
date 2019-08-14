@@ -125,15 +125,15 @@ class SpellTableViewController: UITableViewController {
             let characters = characterList()
             if settings.charName != nil {
                 let name = settings.charName
-                print("case 1")
-                print("name is \(name!)")
+                //print("case 1")
+                //print("name is \(name!)")
                 loadCharacterProfile(name: name!)
             } else if characters.count > 0 {
-                print("case 2")
-                print("characters[0] is \(characters[0])")
+                //print("case 2")
+                //print("characters[0] is \(characters[0])")
                 loadCharacterProfile(name: characters[0])
             } else {
-                print("case 3")
+                //print("case 3")
                 openCharacterCreationDialog(mustComplete: true)
             }
             
@@ -292,8 +292,8 @@ class SpellTableViewController: UITableViewController {
         //print(boss!.spellWindowController!)
         //boss?.spellWindowController!.spell = spellArray[indexPath.row]
         //boss?.performSegue(withIdentifier: spellWindowSegueIdentifier, sender: nil)
-        print("spells.count is \(spellArray.count)")
-        print("indexPath.row is \(indexPath.row)")
+        //print("spells.count is \(spellArray.count)")
+        //print("indexPath.row is \(indexPath.row)")
         if indexPath.row >= spellArray.count { return }
         let storyboard = self.storyboard
         let spellWindowController = storyboard?.instantiateViewController(withIdentifier: spellWindowIdentifier) as! SpellWindowController
@@ -346,8 +346,8 @@ class SpellTableViewController: UITableViewController {
     
     func loadSpellsForProperty(filename: String, propSetter: SpellStatusSetter) {
         let fileLocation = documentsDirectory.appendingPathComponent(filename)
-        print("Loading spells from")
-        print(fileLocation)
+        //print("Loading spells from")
+        //print(fileLocation)
         if let fileText = try? String(contentsOf: fileLocation) {
             let fileItems = fileText.components(separatedBy: .newlines)
             for item in fileItems {
@@ -437,12 +437,12 @@ class SpellTableViewController: UITableViewController {
         //print("settingsLocation is: \(settingsLocation)")
         if let settingsText = try? String(contentsOf: settingsLocation) {
             do {
-                print("settingsText is: \(settingsText)")
+                //print("settingsText is: \(settingsText)")
                 let settingsJSON = SION(json: settingsText)
                 settings = Settings(json: settingsJSON)
             }
         } else {
-            print("Error getting settings")
+            //print("Error getting settings")
             return
         }
     }
@@ -458,7 +458,7 @@ class SpellTableViewController: UITableViewController {
         if var profileText = try? String(contentsOf: location) {
             do {
                 fixEscapeCharacters(&profileText)
-                print("profileText is:\n\(profileText)")
+                //print("profileText is:\n\(profileText)")
                 let profileSION = SION(json: profileText)
                 let profile = CharacterProfile(sion: profileSION)
                 setCharacterProfile(cp: profile)
@@ -502,10 +502,11 @@ class SpellTableViewController: UITableViewController {
         //print("Setting side menu name with \(characterProfile.name)")
         let sideMenuController = main?.sideMenuController!
         if (sideMenuController!.characterLabel != nil) {
-            print("Here")
+            //print("Here")
             sideMenuController!.characterLabel.text = "Character: " + characterProfile.name
         } else {
-            print("label is nil")
+            //print("label is nil")
+            return
         }
     }
     
