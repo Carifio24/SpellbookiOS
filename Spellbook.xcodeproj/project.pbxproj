@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		39005F5D22383F710006E97D /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39005F5C22383F710006E97D /* SideMenuController.swift */; };
+		3925E9862281C6C900C5734B /* StatusPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3925E9852281C6C900C5734B /* StatusPopupController.swift */; };
 		39522D1521ADC15900A4DBCE /* SION.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D1421ADC15900A4DBCE /* SION.swift */; };
 		39522D1921ADC41F00A4DBCE /* SpellDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D1821ADC41F00A4DBCE /* SpellDataCell.swift */; };
 		39522D1B21ADF99500A4DBCE /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D1A21ADF99500A4DBCE /* PickerViewController.swift */; };
@@ -15,6 +16,8 @@
 		39522D2121ADFBA100A4DBCE /* SpellTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D2021ADFBA100A4DBCE /* SpellTableViewController.swift */; };
 		39522D2321B04FE500A4DBCE /* BookBackground.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 39522D2221B04FE500A4DBCE /* BookBackground.jpeg */; };
 		39522D2721B1C52100A4DBCE /* SpellWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D2621B1C52100A4DBCE /* SpellWindowController.swift */; };
+		395F3A902268079100D7B382 /* CharacterSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395F3A8F2268079100D7B382 /* CharacterSelectionController.swift */; };
+		395F3A94226B604600D7B382 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395F3A93226B604500D7B382 /* PopupViewController.swift */; };
 		397EE96921ACA86400B116B0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE96821ACA86400B116B0 /* AppDelegate.swift */; };
 		397EE96B21ACA86400B116B0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE96A21ACA86400B116B0 /* ViewController.swift */; };
 		397EE96E21ACA86400B116B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 397EE96C21ACA86400B116B0 /* Main.storyboard */; };
@@ -42,6 +45,9 @@
 		399D9E63223AEF660054BA8F /* dungeon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 399D9E61223AEF650054BA8F /* dungeon.ttf */; };
 		399D9E64223AEF660054BA8F /* cloister_black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 399D9E62223AEF660054BA8F /* cloister_black.ttf */; };
 		399D9E66223B61750054BA8F /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 399D9E65223B61750054BA8F /* star.png */; };
+		399D9E682264B7830054BA8F /* SpellStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D9E672264B7830054BA8F /* SpellStatus.swift */; };
+		399D9E6A2264B9F20054BA8F /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D9E692264B9F20054BA8F /* Settings.swift */; };
+		399D9E6C2267D4810054BA8F /* CharacterProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 399D9E6B2267D4810054BA8F /* CharacterProfile.swift */; };
 		39A268CE223853680032158F /* SourcebookFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A268CD223853680032158F /* SourcebookFilterController.swift */; };
 		39A268D02239960C0032158F /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A268CF2239960C0032158F /* SideMenuCell.swift */; };
 		39C5B23221CAE121005F08DA /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C5B23121CAE121005F08DA /* SWRevealViewController.m */; };
@@ -49,6 +55,11 @@
 		39C5B23D21CF03A8005F08DA /* star_filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C5B23B21CF03A1005F08DA /* star_filled.png */; };
 		39C5B23E21CF03A8005F08DA /* star_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C5B23C21CF03A5005F08DA /* star_empty.png */; };
 		39C5B24021CF1D1A005F08DA /* search_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C5B23F21CF1D1A005F08DA /* search_icon.png */; };
+		39CFA5EC226E1882006EA33B /* CharacterTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CFA5EB226E1881006EA33B /* CharacterTableController.swift */; };
+		39CFA5EE226E817C006EA33B /* CharacterSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CFA5ED226E817C006EA33B /* CharacterSelectionCell.swift */; };
+		39CFA5F0226F985C006EA33B /* CharacterCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CFA5EF226F985C006EA33B /* CharacterCreationController.swift */; };
+		39CFA5F22271F030006EA33B /* trash_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 39CFA5F12271F02F006EA33B /* trash_icon.png */; };
+		39CFA5F42272519B006EA33B /* DeletionPromptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CFA5F32272519B006EA33B /* DeletionPromptController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +81,7 @@
 
 /* Begin PBXFileReference section */
 		39005F5C22383F710006E97D /* SideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
+		3925E9852281C6C900C5734B /* StatusPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusPopupController.swift; sourceTree = "<group>"; };
 		39522D1421ADC15900A4DBCE /* SION.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SION.swift; sourceTree = "<group>"; };
 		39522D1821ADC41F00A4DBCE /* SpellDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellDataCell.swift; sourceTree = "<group>"; };
 		39522D1A21ADF99500A4DBCE /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +89,8 @@
 		39522D2021ADFBA100A4DBCE /* SpellTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellTableViewController.swift; sourceTree = "<group>"; };
 		39522D2221B04FE500A4DBCE /* BookBackground.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BookBackground.jpeg; sourceTree = "<group>"; };
 		39522D2621B1C52100A4DBCE /* SpellWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellWindowController.swift; sourceTree = "<group>"; };
+		395F3A8F2268079100D7B382 /* CharacterSelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSelectionController.swift; sourceTree = "<group>"; };
+		395F3A93226B604500D7B382 /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopupViewController.swift; path = "../../EzPopup-1.0/EzPopup/Classes/PopupViewController.swift"; sourceTree = "<group>"; };
 		397EE96521ACA86400B116B0 /* Spellbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spellbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		397EE96821ACA86400B116B0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		397EE96A21ACA86400B116B0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +124,9 @@
 		399D9E61223AEF650054BA8F /* dungeon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dungeon.ttf; sourceTree = SOURCE_ROOT; };
 		399D9E62223AEF660054BA8F /* cloister_black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = cloister_black.ttf; sourceTree = SOURCE_ROOT; };
 		399D9E65223B61750054BA8F /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = SOURCE_ROOT; };
+		399D9E672264B7830054BA8F /* SpellStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellStatus.swift; sourceTree = "<group>"; };
+		399D9E692264B9F20054BA8F /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		399D9E6B2267D4810054BA8F /* CharacterProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProfile.swift; sourceTree = "<group>"; };
 		39A268CD223853680032158F /* SourcebookFilterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcebookFilterController.swift; sourceTree = "<group>"; };
 		39A268CF2239960C0032158F /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
 		39C5B22F21CAE11F005F08DA /* Spellbook-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Spellbook-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -119,6 +136,11 @@
 		39C5B23B21CF03A1005F08DA /* star_filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_filled.png; sourceTree = SOURCE_ROOT; };
 		39C5B23C21CF03A5005F08DA /* star_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_empty.png; sourceTree = SOURCE_ROOT; };
 		39C5B23F21CF1D1A005F08DA /* search_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search_icon.png; sourceTree = SOURCE_ROOT; };
+		39CFA5EB226E1881006EA33B /* CharacterTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableController.swift; sourceTree = "<group>"; };
+		39CFA5ED226E817C006EA33B /* CharacterSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSelectionCell.swift; sourceTree = "<group>"; };
+		39CFA5EF226F985C006EA33B /* CharacterCreationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCreationController.swift; sourceTree = "<group>"; };
+		39CFA5F12271F02F006EA33B /* trash_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash_icon.png; sourceTree = SOURCE_ROOT; };
+		39CFA5F32272519B006EA33B /* DeletionPromptController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletionPromptController.swift; sourceTree = "<group>"; };
 		39F1046F21AD87F40068A09E /* SION.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SION.swift; path = "../../Desktop/git/swift-sion/Sources/SION/SION.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,43 +194,54 @@
 		397EE96721ACA86400B116B0 /* Spellbook */ = {
 			isa = PBXGroup;
 			children = (
-				399D9E5E223A7F660054BA8F /* wand_empty.png */,
-				399D9E5D223A7F660054BA8F /* wand_filled.png */,
+				397EE96821ACA86400B116B0 /* AppDelegate.swift */,
 				399D9E5A223A7F570054BA8F /* book_empty.png */,
 				399D9E59223A7F570054BA8F /* book_filled.png */,
-				39522D2621B1C52100A4DBCE /* SpellWindowController.swift */,
-				39522D2021ADFBA100A4DBCE /* SpellTableViewController.swift */,
-				399D9E62223AEF660054BA8F /* cloister_black.ttf */,
-				399D9E61223AEF650054BA8F /* dungeon.ttf */,
-				39C5B23F21CF1D1A005F08DA /* search_icon.png */,
-				39522D1821ADC41F00A4DBCE /* SpellDataCell.swift */,
-				39522D1421ADC15900A4DBCE /* SION.swift */,
-				397EE96821ACA86400B116B0 /* AppDelegate.swift */,
-				397EE96A21ACA86400B116B0 /* ViewController.swift */,
-				39522D1A21ADF99500A4DBCE /* PickerViewController.swift */,
 				39522D2221B04FE500A4DBCE /* BookBackground.jpeg */,
-				397EE96C21ACA86400B116B0 /* Main.storyboard */,
-				39C5B23C21CF03A5005F08DA /* star_empty.png */,
-				39C5B23B21CF03A1005F08DA /* star_filled.png */,
-				39A268CF2239960C0032158F /* SideMenuCell.swift */,
-				399D9E65223B61750054BA8F /* star.png */,
-				39C5B23321CAF3CB005F08DA /* StatusFilterController.swift */,
-				39A268CD223853680032158F /* SourcebookFilterController.swift */,
-				39005F5C22383F710006E97D /* SideMenuController.swift */,
-				3997EE9C21C07292007DC1B6 /* SearchIcon.png */,
-				3997EE9A21C06E6D007DC1B6 /* SearchButton.swift */,
-				39522D1C21ADFA0A00A4DBCE /* LabelViewController.swift */,
 				397EE99A21ACAF9B00B116B0 /* CasterClass.swift */,
+				39CFA5EF226F985C006EA33B /* CharacterCreationController.swift */,
+				399D9E6B2267D4810054BA8F /* CharacterProfile.swift */,
+				39CFA5ED226E817C006EA33B /* CharacterSelectionCell.swift */,
+				395F3A8F2268079100D7B382 /* CharacterSelectionController.swift */,
+				39CFA5EB226E1881006EA33B /* CharacterTableController.swift */,
+				399D9E62223AEF660054BA8F /* cloister_black.ttf */,
+				39CFA5F32272519B006EA33B /* DeletionPromptController.swift */,
+				399D9E61223AEF650054BA8F /* dungeon.ttf */,
+				39522D1C21ADFA0A00A4DBCE /* LabelViewController.swift */,
+				397EE96C21ACA86400B116B0 /* Main.storyboard */,
+				39522D1A21ADF99500A4DBCE /* PickerViewController.swift */,
+				395F3A93226B604500D7B382 /* PopupViewController.swift */,
 				397EE99721ACAF9B00B116B0 /* School.swift */,
+				3997EE9A21C06E6D007DC1B6 /* SearchButton.swift */,
+				39C5B23F21CF1D1A005F08DA /* search_icon.png */,
+				3997EE9C21C07292007DC1B6 /* SearchIcon.png */,
+				399D9E692264B9F20054BA8F /* Settings.swift */,
+				39A268CF2239960C0032158F /* SideMenuCell.swift */,
+				39005F5C22383F710006E97D /* SideMenuController.swift */,
+				39522D1421ADC15900A4DBCE /* SION.swift */,
 				397EE99F21ACAF9C00B116B0 /* Sourcebook.swift */,
+				39A268CD223853680032158F /* SourcebookFilterController.swift */,
 				397EE99621ACAF9B00B116B0 /* Spell.swift */,
 				397EE99E21ACAF9C00B116B0 /* Spellbook.swift */,
 				397EE99821ACAF9B00B116B0 /* SpellbookError.swift */,
 				397EE9A021ACAF9C00B116B0 /* SpellComparison.swift */,
+				39522D1821ADC41F00A4DBCE /* SpellDataCell.swift */,
 				397EE99921ACAF9B00B116B0 /* SpellParse.swift */,
+				399D9E672264B7830054BA8F /* SpellStatus.swift */,
+				39522D2021ADFBA100A4DBCE /* SpellTableViewController.swift */,
 				397EE99B21ACAF9C00B116B0 /* Spells.json */,
+				39522D2621B1C52100A4DBCE /* SpellWindowController.swift */,
+				399D9E65223B61750054BA8F /* star.png */,
+				39C5B23C21CF03A5005F08DA /* star_empty.png */,
+				39C5B23B21CF03A1005F08DA /* star_filled.png */,
+				39C5B23321CAF3CB005F08DA /* StatusFilterController.swift */,
+				3925E9852281C6C900C5734B /* StatusPopupController.swift */,
 				397EE99C21ACAF9C00B116B0 /* SubClass.swift */,
+				39CFA5F12271F02F006EA33B /* trash_icon.png */,
 				397EE99D21ACAF9C00B116B0 /* Util.swift */,
+				397EE96A21ACA86400B116B0 /* ViewController.swift */,
+				399D9E5E223A7F660054BA8F /* wand_empty.png */,
+				399D9E5D223A7F660054BA8F /* wand_filled.png */,
 				397EE96F21ACA86800B116B0 /* Assets.xcassets */,
 				397EE97121ACA86800B116B0 /* LaunchScreen.storyboard */,
 				397EE97421ACA86800B116B0 /* Info.plist */,
@@ -363,6 +396,7 @@
 				39C5B24021CF1D1A005F08DA /* search_icon.png in Resources */,
 				399D9E5F223A7F670054BA8F /* wand_filled.png in Resources */,
 				399D9E66223B61750054BA8F /* star.png in Resources */,
+				39CFA5F22271F030006EA33B /* trash_icon.png in Resources */,
 				3997EE9D21C07293007DC1B6 /* SearchIcon.png in Resources */,
 				399D9E63223AEF660054BA8F /* dungeon.ttf in Resources */,
 				399D9E60223A7F670054BA8F /* wand_empty.png in Resources */,
@@ -397,9 +431,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				399D9E6C2267D4810054BA8F /* CharacterProfile.swift in Sources */,
+				39CFA5F42272519B006EA33B /* DeletionPromptController.swift in Sources */,
 				39522D2721B1C52100A4DBCE /* SpellWindowController.swift in Sources */,
+				39CFA5EC226E1882006EA33B /* CharacterTableController.swift in Sources */,
+				3925E9862281C6C900C5734B /* StatusPopupController.swift in Sources */,
 				39005F5D22383F710006E97D /* SideMenuController.swift in Sources */,
+				399D9E6A2264B9F20054BA8F /* Settings.swift in Sources */,
 				3997EE9B21C06E6D007DC1B6 /* SearchButton.swift in Sources */,
+				39CFA5F0226F985C006EA33B /* CharacterCreationController.swift in Sources */,
 				39522D1B21ADF99500A4DBCE /* PickerViewController.swift in Sources */,
 				397EE96B21ACA86400B116B0 /* ViewController.swift in Sources */,
 				39C5B23421CAF3CB005F08DA /* StatusFilterController.swift in Sources */,
@@ -415,10 +455,14 @@
 				397EE9A421ACAF9C00B116B0 /* SpellParse.swift in Sources */,
 				397EE9A321ACAF9C00B116B0 /* SpellbookError.swift in Sources */,
 				397EE9AB21ACAF9C00B116B0 /* SpellComparison.swift in Sources */,
+				395F3A902268079100D7B382 /* CharacterSelectionController.swift in Sources */,
 				39522D2121ADFBA100A4DBCE /* SpellTableViewController.swift in Sources */,
+				399D9E682264B7830054BA8F /* SpellStatus.swift in Sources */,
 				397EE9A121ACAF9C00B116B0 /* Spell.swift in Sources */,
 				397EE9A521ACAF9C00B116B0 /* CasterClass.swift in Sources */,
 				397EE9A221ACAF9C00B116B0 /* School.swift in Sources */,
+				395F3A94226B604600D7B382 /* PopupViewController.swift in Sources */,
+				39CFA5EE226E817C006EA33B /* CharacterSelectionCell.swift in Sources */,
 				397EE9A921ACAF9C00B116B0 /* Spellbook.swift in Sources */,
 				39A268D02239960C0032158F /* SideMenuCell.swift in Sources */,
 			);
@@ -612,7 +656,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "SWRevealViewController/Spellbook-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -636,7 +680,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SWRevealViewController/Spellbook-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

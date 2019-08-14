@@ -25,6 +25,9 @@ class ViewController: UIViewController {
     var tableController: SpellTableViewController?
     var spellWindowController: SpellWindowController?
     
+    // The side menu controller
+    var sideMenuController: SideMenuController?
+    
     // The UIViews that hold the child controllers
     @IBOutlet weak var pickerView: UIView!
     @IBOutlet weak var labelView: UIView!
@@ -34,7 +37,8 @@ class ViewController: UIViewController {
     let sortFraction = CGFloat(0.08)
     let labelFraction = CGFloat(0.08)
     // The table will take up the rest of the space
-    let backgroundOffset = CGFloat(27)
+    //let backgroundOffset = CGFloat(27)
+    let backgroundOffset = CGFloat(0)
     
     // Extreme padding amounts
     let maxHorizPadding = CGFloat(5)
@@ -65,9 +69,15 @@ class ViewController: UIViewController {
         // Pull out the side menu
        view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
+        // Get the side menu controller
+        sideMenuController = self.revealViewController()?.rearViewController as? SideMenuController
+        
     }
     
     func setContainerDimensions(screenWidth: CGFloat, screenHeight: CGFloat) {
+        
+        print("Screen width: \(screenWidth)")
+        print("Screen height: \(screenHeight)")
         
         // Set the dimensions for the background image
         // No padding necessary for this
@@ -100,9 +110,11 @@ class ViewController: UIViewController {
         
         // Finally, the SpellTableViewController
         // Note that we don't need to adjust the tableController's view differently - the TableViewController seems to be able to handle this part itself
-        let tableFrame = CGRect(x: leftPadding, y: sortHeight + labelHeight, width: usableWidth, height: tableHeight)
+        let tableY = sortHeight + labelHeight
+        let tableFrame = CGRect(x: leftPadding, y: tableY, width: usableWidth, height: tableHeight)
         tableView.frame = tableFrame
         tableController!.view!.frame = tableFrame
+        tableController!.mainY = tableY
         
         pickerController?.setViewDimensions()
         labelController?.setViewDimensions()

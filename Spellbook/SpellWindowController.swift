@@ -11,7 +11,7 @@ import UIKit
 class SpellWindowController: UIViewController {
     
     // The main controller
-    let mainWindowController = (UIApplication.shared.keyWindow!.rootViewController as! SWRevealViewController).frontViewController as! ViewController
+    let main = (UIApplication.shared.keyWindow!.rootViewController as! SWRevealViewController).frontViewController as! ViewController
     
     // Font sizes
     static let nameSize = CGFloat(30)
@@ -79,21 +79,24 @@ class SpellWindowController: UIViewController {
             // Set the view dimensions
             setDimensions()
             
+            // Get the character profile
+            let characterProfile = main.tableController!.characterProfile
+            
             // Set the button images
             // First, the favorite button
-            let favoriteImage = spell.favorite ? SpellWindowController.isFavoriteImage : SpellWindowController.notFavoriteImage
+            let favoriteImage = characterProfile.isFavorite(spell) ? SpellWindowController.isFavoriteImage : SpellWindowController.notFavoriteImage
             favoriteButton.setImage(favoriteImage, for: .normal)
             favoriteButton.imageView?.contentMode = .scaleAspectFit
             self.view.bringSubviewToFront(favoriteButton)
             
             // Next, the prepared button
-            let preparedImage = spell.prepared ? SpellWindowController.isPreparedImage : SpellWindowController.notPreparedImage
+            let preparedImage = characterProfile.isPrepared(spell) ? SpellWindowController.isPreparedImage : SpellWindowController.notPreparedImage
             preparedButton.setImage(preparedImage, for: .normal)
             preparedButton.imageView?.contentMode = .scaleAspectFit
             self.view.bringSubviewToFront(preparedButton)
             
             // Finally, the known button
-            let knownImage = spell.known ? SpellWindowController.isKnownImage : SpellWindowController.notKnownImage
+            let knownImage = characterProfile.isKnown(spell) ? SpellWindowController.isKnownImage : SpellWindowController.notKnownImage
             knownButton.setImage(knownImage, for: .normal)
             knownButton.imageView?.contentMode = .scaleAspectFit
             self.view.bringSubviewToFront(knownButton)
@@ -123,12 +126,9 @@ class SpellWindowController: UIViewController {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
                 case UISwipeGestureRecognizer.Direction.right:
-                    let spellTableController = mainWindowController.tableController!
+                    let spellTableController = main.tableController!
                     spellTableController.filter()
-                    spellTableController.saveSpellsWithProperty(propGetter: { return $0.favorite }, filename: spellTableController.favoritesFile)
-                    spellTableController.saveSpellsWithProperty(propGetter: { return $0.prepared }, filename: spellTableController.preparedFile)
-                    spellTableController.saveSpellsWithProperty(propGetter: { return $0.known }, filename: spellTableController.knownFile)
-                    //mainWindowController.tableController!.saveFavorites()
+                    spellTableController.saveCharacterProfile()
                     self.dismiss(animated: true, completion: nil)
                 default:
                     break
@@ -266,25 +266,28 @@ class SpellWindowController: UIViewController {
     }
     
     @objc func favoriteButtonPressed() {
-        spell.setFavorite(favIn: !spell.favorite)
-        mainWindowController.tableController!.spells[spellIndex].0.setFavorite(favIn: spell.favorite)
-        let favoriteImage = spell.favorite ? SpellWindowController.isFavoriteImage : SpellWindowController.notFavoriteImage
+        let profile = main.tableController!.characterProfile
+        let fav = !profile.isFavorite(spell)
+        profile.setFavorite(s: spell, fav: fav)
+        let favoriteImage = fav ? SpellWindowController.isFavoriteImage : SpellWindowController.notFavoriteImage
         favoriteButton.setImage(favoriteImage, for: .normal)
         favoriteButton.imageView?.contentMode = .scaleAspectFit
     }
     
     @objc func preparedButtonPressed() {
-        spell.setPrepared(preparedIn: !spell.prepared)
-        mainWindowController.tableController!.spells[spellIndex].0.setPrepared(preparedIn: spell.prepared)
-        let preparedImage = spell.prepared ? SpellWindowController.isPreparedImage : SpellWindowController.notPreparedImage
+        let profile = main.tableController!.characterProfile
+        let prep = !profile.isPrepared(spell)
+        profile.setPrepared(s: spell, prep: prep)
+        let preparedImage = prep ? SpellWindowController.isPreparedImage : SpellWindowController.notPreparedImage
         preparedButton.setImage(preparedImage, for: .normal)
         preparedButton.imageView?.contentMode = .scaleAspectFit
     }
     
     @objc func knownButtonPressed() {
-        spell.setKnown(knownIn: !spell.known)
-        mainWindowController.tableController!.spells[spellIndex].0.setKnown(knownIn: spell.known)
-        let knownImage = spell.known ? SpellWindowController.isKnownImage : SpellWindowController.notKnownImage
+        let profile = main.tableController!.characterProfile
+        let known = !profile.isKnown(spell)
+        profile.setKnown(s: spell, known: known)
+        let knownImage = known ? SpellWindowController.isKnownImage : SpellWindowController.notKnownImage
         knownButton.setImage(knownImage, for: .normal)
         knownButton.imageView?.contentMode = .scaleAspectFit
     }

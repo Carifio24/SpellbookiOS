@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SideMenuController: UIViewController {
+class SideMenuController: UIViewController, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet var backgroundView: UIImageView!
     
@@ -18,9 +18,16 @@ class SideMenuController: UIViewController {
     
     @IBOutlet var statusFilterView: UIView!
     
+    @IBOutlet var characterLabel: UILabel!
+    
+    @IBOutlet var selectionButton: UIButton!
+    
     var statusController: StatusFilterController?
     
     var sourcebookController: SourcebookFilterController?
+    
+    var main: ViewController?
+    var mainTable: SpellTableViewController?
     
     let backgroundOffset = CGFloat(27)
     
@@ -33,13 +40,19 @@ class SideMenuController: UIViewController {
     //let titleFontSize = CGFloat(30)
     let titleViewHeight = CGFloat(60)
     
+    private var viewHeight = CGFloat(600)
+    private var viewWidth = CGFloat(400)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        main =  self.revealViewController()?.frontViewController as? ViewController
+        mainTable = main?.tableController
+        
         // Get the view dimensions
         let viewRect = self.view.bounds
-        let viewHeight = viewRect.size.height
-        let viewWidth = viewRect.size.width
+        viewHeight = viewRect.size.height
+        viewWidth = viewRect.size.width
         
         // Set the dimensions for the background image
         // No padding necessary for this
@@ -51,14 +64,35 @@ class SideMenuController: UIViewController {
         let headerHeight = CGFloat(57)
         let statusFilterHeight = CGFloat(171)
         let sourcebookFilterHeight = CGFloat(199)
+        let characterLabelHeight = CGFloat(20)
+        let selectionButtonHeight = CGFloat(20)
+        let belowCharacterLabelPadding = CGFloat(14)
         
         // Set up the view positioning
-        sideMenuHeader.frame = CGRect(x: leftPadding, y: topPadding, width: viewWidth, height: headerHeight)
-        //sideMenuHeader.font = UIFont.systemFont(ofSize: titleFontSize)
+        var currentY = CGFloat(topPadding)
+        sideMenuHeader.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth, height: headerHeight)
         
-        statusFilterView.frame = CGRect(x: leftPadding, y: topPadding + headerHeight + tablePadding, width: viewWidth - leftPadding, height: statusFilterHeight)
+        currentY += (headerHeight + tablePadding)
+        statusFilterView.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: statusFilterHeight)
         
-        sourcebookFilterView.frame = CGRect(x: leftPadding, y: topPadding + headerHeight + tablePadding + statusFilterHeight + betweenTablePadding, width: viewWidth - leftPadding, height: sourcebookFilterHeight)
+        currentY += (statusFilterHeight + betweenTablePadding)
+        sourcebookFilterView.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: sourcebookFilterHeight)
+        
+        currentY += sourcebookFilterHeight
+        characterLabel.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: characterLabelHeight)
+        
+        currentY += characterLabelHeight + belowCharacterLabelPadding
+        selectionButton.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: selectionButtonHeight)
+        
+        // The character selection button callback
+        selectionButton.addTarget(self, action: #selector(selectionButtonPressed), for: UIControl.Event.touchUpInside)
+        
+        // Set the character label
+        let name = mainTable?.characterProfile.name
+        if (name != nil) {
+            characterLabel.text = "Character: " + name!
+        }
+
         
     }
     
@@ -70,7 +104,54 @@ class SideMenuController: UIViewController {
         if segue.identifier == "statusSegue" {
             statusController = (segue.destination as! StatusFilterController)
         }
+//        if segue.identifier == "characterSelection" {
+//            let popoverViewController = segue.destination
+//            popoverViewController.modalPresentationStyle = .popover
+//            print("Set style")
+//            popoverViewController.presentationController?.delegate = self
+//            print("Assigned delegate")
+//            popoverViewController.popoverPresentationController?.sourceView = selectionButton
+//            popoverViewController.popoverPresentationController?.sourceRect = CGRect(x: 0, y: 0, width: selectionButton.frame.size.width, height: selectionButton.frame.size.height)
+//
+//        }
     }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
+    @objc func selectionButtonPressed() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "characterSelection") as! CharacterSelectionController
+
+        let screenRect = UIScreen.main.bounds
+        let popupWidth = CGFloat(0.8 * screenRect.size.width)
+        let popupHeight = CGFloat(0.35 * screenRect.size.height)
+        controller.width = popupWidth
+        controller.height = popupHeight
+        controller.mainTable = mainTable
+        let popupVC = PopupViewController(contentController: controller, popupWidth: popupWidth, popupHeight: popupHeight)
+        mainTable?.selectionWindow = controller
+        self.present(popupVC, animated: true, completion: nil)
+    }
+
+    
+    
+//    @objc func selectionButtonPressed() {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let controller = storyboard.instantiateViewController(withIdentifier: "characterSelection")
+//        print("Made popover controller")
+//        controller.modalPresentationStyle = .popover
+//
+//        let popoverVC = controller.popoverPresentationController
+//        controller.preferredContentSize = CGSize(width: 100, height: 100)
+//        self.present(controller, animated: true, completion: nil)
+//        print("Presented controller")
+//
+//        self.present(controller, animated: true, completion: nil)
+//        print("presented controller")
+//        let popupController = UIPopoverPresentationController(presentedViewController: controller, presenting: self)
+//    }
 
     /*
     // MARK: - Navigation

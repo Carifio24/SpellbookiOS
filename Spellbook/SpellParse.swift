@@ -32,7 +32,7 @@ func load_file(filepath: String) -> String {
 	return text
 }
 
-func parseSpell(obj: SION) -> Spell {
+func parseSpell(_ obj: SION) -> Spell {
 
 	// Create the Spell
 	let s = Spell()
@@ -168,7 +168,7 @@ func parseSpellList(jsonStr: String) -> Array<Spell> {
 	for (_, v) in jarr {
         //print("\(v)")
         //print("=====")
-		let nextSpell = parseSpell(obj: v)
+		let nextSpell = parseSpell(v)
 		spells.append(nextSpell)
         i += 1
 	}

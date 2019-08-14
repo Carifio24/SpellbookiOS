@@ -16,9 +16,6 @@ public class Spell {
 	private(set) var school: School = School.Abjuration
 	private(set) var classes: Array<CasterClass> = []
 	private(set) var subclasses: Array<SubClass> = []
-	private(set) var favorite: Bool = false
-    private(set) var known: Bool = false
-    private(set) var prepared: Bool = false
 	private(set) var sourcebook: Sourcebook = Sourcebook.PlayersHandbook
 
 	// Only the setters are private, so we don't need getter functions
@@ -40,9 +37,6 @@ public class Spell {
 	func setClasses(classesIn: Array<CasterClass>) {classes = classesIn}
 	func setSubclasses(subclassesIn: Array<SubClass>) {subclasses = subclassesIn}
     func setSourcebook(sourcebookIn: Sourcebook) {sourcebook = sourcebookIn}
-	func setFavorite(favIn: Bool) {favorite = favIn}
-    func setKnown(knownIn: Bool) {known = knownIn}
-    func setPrepared(preparedIn: Bool) {prepared = preparedIn}
 
 	// Constructors
 

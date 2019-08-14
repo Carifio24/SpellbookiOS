@@ -14,7 +14,7 @@ import UIKit
 
 class SpellTableViewController: UITableViewController {
     
-    var boss: ViewController?
+    var main: ViewController?
     
     var firstAppear: Bool = true
     
@@ -25,16 +25,22 @@ class SpellTableViewController: UITableViewController {
     var spellArray: [Spell] = []
     var paddedSpells: [(Spell, Bool)] = []
     var paddedArray: [Spell] = []
-    var filterByBooks: [Sourcebook : Bool] = [
-        Sourcebook.PlayersHandbook : true,
-        Sourcebook.XanatharsGTE : false,
-        Sourcebook.SwordCoastAG : false
-    ]
-    var filterByFavorites = false
-    var filterByPrepared = false
-    var filterByKnown = false
+    var settings = Settings()
+    var characterProfile = CharacterProfile()
+    var selectionWindow: CharacterSelectionController? {
+        didSet {
+            if selectionWindow != nil {
+                print("Set selectionWindow to \(selectionWindow!)")
+            } else {
+                print("Set selectionWindow to nil")
+            }
+        }
+    }
     
     let nBlankPadding = 4
+    
+    // Vertical position in main view
+    var mainY = CGFloat(0)
 
     
     @IBOutlet var spellTable: UITableView!
@@ -50,7 +56,9 @@ class SpellTableViewController: UITableViewController {
     let settingsFile = "Settings.json"
     
     // Documents directory
-    let documentsDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor:nil, create:false)
+    let documentsDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+    let profilesDirectoryName = "Characters"
+    var profilesDirectory = URL(fileURLWithPath: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +67,25 @@ class SpellTableViewController: UITableViewController {
         //spellTable.register(SpellDataCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.register(SpellDataCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.separatorStyle = .none
+        
+        // Create the profiles directory if it doesn't already exist
+        let fileManager = FileManager.default
+        profilesDirectory = documentsDirectory.appendingPathComponent(profilesDirectoryName)
+        if !fileManager.fileExists(atPath: profilesDirectory.path) {
+            do {
+                try fileManager.createDirectory(atPath: profilesDirectory.path, withIntermediateDirectories: true, attributes: nil)
+            } catch let e {
+                print("\(e)")
+            }
+        }
+        print("profilesDirectory is: \(profilesDirectory)")
+        
+        // Long press gesture recognizer
+        let lpgr = UILongPressGestureRecognizer.init(target: self, action: #selector(handleLongPress))
+        lpgr.minimumPressDuration = 0.5
+        //lpgr.delegate = self
+        tableView.addGestureRecognizer(lpgr)
+        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -71,7 +98,9 @@ class SpellTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        boss = (self.parent as! ViewController)
+        
+        // Get the main view
+        main = self.parent as? ViewController
         
         // If this is the view's first appearance (i.e. when the app is opening), we initialize spellArray
         if firstAppear {
@@ -84,13 +113,30 @@ class SpellTableViewController: UITableViewController {
             tableView.reloadData()
             firstAppear = false
             
-            // Load the spell statuses
-            loadSpellsForProperty(filename: favoritesFile, propSetter: { $0.setFavorite(favIn: $1) })
-            loadSpellsForProperty(filename: preparedFile, propSetter: { $0.setPrepared(preparedIn: $1) })
-            loadSpellsForProperty(filename: knownFile, propSetter: { $0.setKnown(knownIn: $1) })
-            
-            // Load the filtering settings
+            // Load the settings
             loadSettings()
+            
+            // For now, we're going to ignore the status filters
+            settings.setFilterFavorites(fav: false)
+            settings.setFilterPrepared(prep: false)
+            settings.setFilterKnown(known: false)
+            
+            // Load the character profile
+            let characters = characterList()
+            if settings.charName != nil {
+                let name = settings.charName
+                //print("case 1")
+                //print("name is \(name!)")
+                loadCharacterProfile(name: name!)
+            } else if characters.count > 0 {
+                //print("case 2")
+                //print("characters[0] is \(characters[0])")
+                loadCharacterProfile(name: characters[0])
+            } else {
+                //print("case 3")
+                openCharacterCreationDialog(mustComplete: true)
+            }
+            
             
         }
         
@@ -125,6 +171,7 @@ class SpellTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SpellDataCell
         let spell = paddedArray[indexPath.row]
         cell.spell = spell
+        cell.selectionStyle = .none
         if spell.name != "" {
             cell.nameLabel.text = spell.name
             cell.schoolLabel.text = Spellbook.schoolNames[spell.school.rawValue]
@@ -139,6 +186,8 @@ class SpellTableViewController: UITableViewController {
             cell.nameLabel.textColor = UIColor.clear
             cell.schoolLabel.textColor = UIColor.clear
             cell.levelLabel.textColor = UIColor.clear
+            cell.isUserInteractionEnabled = false
+            //cell.selectionStyle = .none
         }
         cell.backgroundColor = UIColor.clear
         return cell
@@ -159,7 +208,7 @@ class SpellTableViewController: UITableViewController {
     func singleSort(index: Int) {
         
         // Do the sorting
-        spells.sort {return compareOne(s1: $0.0, s2: $1.0, index: index)}
+        spells.sort { return compareOne(s1: $0.0, s2: $1.0, index: index) }
         
         // Get the array
         updateSpellArray()
@@ -176,7 +225,7 @@ class SpellTableViewController: UITableViewController {
     func doubleSort(index1: Int, index2: Int) {
         
         // Do the sorting
-        spells.sort {return compareTwo(s1: $0.0, s2: $1.0, index1: index1, index2: index2)}
+        spells.sort { return compareTwo(s1: $0.0, s2: $1.0, index1: index1, index2: index2) }
         
         // Get the array
         updateSpellArray()
@@ -203,11 +252,11 @@ class SpellTableViewController: UITableViewController {
     func filterItem(isClass: Bool, knownSelected:Bool, preparedSelected: Bool, favSelected: Bool, isText: Bool, s: Spell, cc: CasterClass, text: String) -> Bool {
         let spname = s.name.lowercased()
         var toHide = (isClass && !s.usableByClass(cc: cc))
-        toHide = toHide || (knownSelected && !s.known)
-        toHide = toHide || (preparedSelected && !s.prepared)
-        toHide = toHide || (favSelected && !s.favorite)
+        toHide = toHide || (knownSelected && !characterProfile.isKnown(s))
+        toHide = toHide || (preparedSelected && !characterProfile.isPrepared(s))
+        toHide = toHide || (favSelected && !characterProfile.isFavorite(s))
         toHide = toHide || (isText && !spname.starts(with: text))
-        toHide = toHide || (!(filterByBooks[s.sourcebook]!))
+        toHide = toHide || (!(settings.getFilter(sb: s.sourcebook)))
         return toHide
     }
     
@@ -215,16 +264,16 @@ class SpellTableViewController: UITableViewController {
     func filter() {
         
         // First, we filter the data
-        let classIndex = boss?.pickerController?.classPicker.selectedRow(inComponent: 0)
+        let classIndex = main?.pickerController?.classPicker.selectedRow(inComponent: 0)
         let isClass = (classIndex != 0)
         var cc: CasterClass = CasterClass(rawValue: 0)!
-        let isText = !((boss?.pickerController?.searchField.text?.isEmpty)!)
-        let searchText = isText ? (boss?.pickerController?.searchField.text)! : ""
+        let isText = !((main?.pickerController?.searchField.text?.isEmpty)!)
+        let searchText = isText ? (main?.pickerController?.searchField.text)! : ""
         if isClass {
             cc = CasterClass(rawValue: classIndex!-1)!
         }
         for i in 0...spells.count-1 {
-            let filter = filterItem(isClass: isClass, knownSelected: filterByKnown, preparedSelected: filterByPrepared, favSelected: filterByFavorites, isText: isText, s: spells[i].0, cc: cc, text: searchText)
+            let filter = filterItem(isClass: isClass, knownSelected: settings.filterByKnown, preparedSelected: settings.filterByPrepared, favSelected: settings.filterByFavorites, isText: isText, s: spells[i].0, cc: cc, text: searchText)
             spells[i] = (spells[i].0, !filter)
         }
             
@@ -243,11 +292,45 @@ class SpellTableViewController: UITableViewController {
         //print(boss!.spellWindowController!)
         //boss?.spellWindowController!.spell = spellArray[indexPath.row]
         //boss?.performSegue(withIdentifier: spellWindowSegueIdentifier, sender: nil)
+        //print("spells.count is \(spellArray.count)")
+        //print("indexPath.row is \(indexPath.row)")
+        if indexPath.row >= spellArray.count { return }
         let storyboard = self.storyboard
         let spellWindowController = storyboard?.instantiateViewController(withIdentifier: spellWindowIdentifier) as! SpellWindowController
         self.present(spellWindowController, animated:true, completion: nil)
         spellWindowController.spellIndex = indexPath.row
         spellWindowController.spell = paddedArray[indexPath.row]
+    }
+    
+    
+    @objc func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer) {
+        let p = gestureRecognizer.location(in: tableView)
+        //let pAbs = gestureRecognizer.location(in: main?.view)
+        //print("Long press at \(pAbs.x), \(pAbs.y)")
+        let indexPath = tableView.indexPathForRow(at: p)
+        if indexPath == nil {
+            return
+        } else if (gestureRecognizer.state == UIGestureRecognizer.State.began) {
+            if indexPath!.row >= spellArray.count { return }
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "statusPopup") as! StatusPopupController
+            
+            let popupHeight = CGFloat(52)
+            let popupWidth = CGFloat(166)
+            controller.width = popupWidth
+            controller.height = popupHeight
+            controller.mainTable = self
+            let cell = tableView.cellForRow(at: indexPath!) as! SpellDataCell
+            let positionX = CGFloat(0)
+            let positionY = cell.frame.maxY
+            let position = CGPoint(x: positionX, y: positionY)
+            let absPosition = main!.view.convert(position, from: self.tableView)
+            let popupPosition = PopupViewController.PopupPosition.topLeft(absPosition)
+            controller.spell = paddedArray[indexPath!.row]
+            let popupVC = PopupViewController(contentController: controller, position: popupPosition, popupWidth: popupWidth, popupHeight: popupHeight)
+            popupVC.backgroundAlpha = 0
+            self.present(popupVC, animated: true, completion: nil)
+        }
     }
     
     func updatePaddedSpells() {
@@ -263,6 +346,8 @@ class SpellTableViewController: UITableViewController {
     
     func loadSpellsForProperty(filename: String, propSetter: SpellStatusSetter) {
         let fileLocation = documentsDirectory.appendingPathComponent(filename)
+        //print("Loading spells from")
+        //print(fileLocation)
         if let fileText = try? String(contentsOf: fileLocation) {
             let fileItems = fileText.components(separatedBy: .newlines)
             for item in fileItems {
@@ -270,6 +355,7 @@ class SpellTableViewController: UITableViewController {
                 for spell in spells {
                     if item == spell.0.name {
                         propSetter(spell.0, true)
+                        print(spell.0.name)
                         //inSpellbook = true
                         break
                     }
@@ -288,7 +374,7 @@ class SpellTableViewController: UITableViewController {
                 var inSpellbook = false
                 for spell in spells {
                     if name == spell.0.name {
-                        spell.0.setFavorite(favIn: true)
+                        characterProfile.setFavorite(s: spell.0, fav: true)
                         inSpellbook = true
                         break
                     }
@@ -304,10 +390,13 @@ class SpellTableViewController: UITableViewController {
     
     func saveSpellsWithProperty(propGetter: SpellStatusGetter, filename: String) {
         let fileLocation = documentsDirectory.appendingPathComponent(filename)
+        print("Saving spells to:")
+        print(fileLocation)
         var propNames: [String] = []
         for spell in spells {
             if propGetter(spell.0) {
                 propNames.append(spell.0.name)
+                print(spell.0.name)
             }
         }
         let propString = propNames.joined(separator: "\n")
@@ -322,7 +411,7 @@ class SpellTableViewController: UITableViewController {
         let favoritesFile = documentsDirectory.appendingPathComponent("Favorites.txt")
         var favoriteNames: [String] = []
         for spell in spells {
-            if spell.0.favorite {
+            if characterProfile.isFavorite(spell.0) {
                 favoriteNames.append(spell.0.name)
             }
         }
@@ -337,52 +426,156 @@ class SpellTableViewController: UITableViewController {
     // Saving the settings
     func saveSettings() {
         let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
-        var settingsJSON = SION([:])
-        // Book filtering settings
-        for item in filterByBooks {
-            let code = Spellbook.sourcebookCodes[item.0.rawValue]
-            settingsJSON[SION.String(code)] = SION.Bool(item.1)
-        }
-        
-        // Status filtering settings
-        settingsJSON["favorite"] = SION.Bool(filterByFavorites)
-        settingsJSON["prepared"] = SION.Bool(filterByPrepared)
-        settingsJSON["known"] = SION.Bool(filterByKnown)
-        
-        do {
-            try settingsJSON.toJSON().write(to: settingsLocation, atomically: false, encoding: .utf8)
-        } catch let e {
-            print("\(e)")
-        }
+        settings.save(filename: settingsLocation)
+        //print("Settings are: \(settings.toJSONString())")
+        //print("Saving settings to: \(settingsLocation)")
     }
     
     // Loading the settings
     func loadSettings() {
         let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
+        //print("settingsLocation is: \(settingsLocation)")
         if let settingsText = try? String(contentsOf: settingsLocation) {
             do {
-                //print(settingsText)
-                var settingsJSON = SION(json: settingsText)
-                
-                // Unpack the status filtering
-                //filterByFavorites = settingsJSON["favorite"].bool
-                //filterByPrepared = settingsJSON["prepared"].bool
-                //filterByKnown = settingsJSON["known"].bool
-                
-                // Unpack the sourcebook filtering
-                for item in filterByBooks {
-                    let code = Spellbook.sourcebookCodes[item.0.rawValue]
-                    //print(code)
-                    //print(SION.String(code))
-                    filterByBooks[item.0] = settingsJSON[SION.String(code)].bool!
-                }
-            } catch let e {
-                print("\(e)")
+                //print("settingsText is: \(settingsText)")
+                let settingsJSON = SION(json: settingsText)
+                settings = Settings(json: settingsJSON)
             }
-            
         } else {
+            //print("Error getting settings")
             return
         }
+    }
+    
+    func profileLocation(name: String) -> URL {
+        let charFile = name + ".json"
+        return profilesDirectory.appendingPathComponent(charFile)
+    }
+    
+    func loadCharacterProfile(name: String) {
+        let location = profileLocation(name: name)
+        //print("Location is: \(location)")
+        if var profileText = try? String(contentsOf: location) {
+            do {
+                fixEscapeCharacters(&profileText)
+                //print("profileText is:\n\(profileText)")
+                let profileSION = SION(json: profileText)
+                let profile = CharacterProfile(sion: profileSION)
+                setCharacterProfile(cp: profile)
+            }
+        } else {
+            print("Error reading file")
+            settings.setCharacterName(name: nil)
+            return
+        }
+    }
+    
+    func saveCharacterProfile() {
+        let location = profileLocation(name: characterProfile.name)
+        //print("Saving profile for \(characterProfile.name) to \(location)")
+        characterProfile.save(filename: location)
+    }
+    
+    func deleteCharacterProfile(name: String) {
+        let location = profileLocation(name: name)
+        //print("Beginning deleteCharacterProfile with name: \(name)")
+        let fileManager = FileManager.default
+        do {
+            let deletingCurrent = (name == characterProfile.name)
+            try fileManager.removeItem(at: location)
+            let characters = characterList()
+            updateSelectionList()
+            setSideMenuCharacterName()
+            //print("deletingCurrent: \(deletingCurrent)")
+            if deletingCurrent {
+                if characters.count > 0 {
+                    //print("The new character's name is: \(characters[0])")
+                    loadCharacterProfile(name: characters[0])
+                }
+            }
+        } catch let e {
+            print("\(e)")
+        }
+    }
+    
+    func setSideMenuCharacterName() {
+        //print("Setting side menu name with \(characterProfile.name)")
+        let sideMenuController = main?.sideMenuController!
+        if (sideMenuController!.characterLabel != nil) {
+            //print("Here")
+            sideMenuController!.characterLabel.text = "Character: " + characterProfile.name
+        } else {
+            //print("label is nil")
+            return
+        }
+    }
+    
+    func setCharacterProfile(cp: CharacterProfile) {
+        characterProfile = cp
+        settings.setCharacterName(name: cp.name)
+        setSideMenuCharacterName()
+        saveSettings()
+        saveCharacterProfile()
+        filter()
+        updateSelectionList()
+    }
+    
+    func characterList() -> [String] {
+        var charList: [String] = []
+        let fileManager = FileManager.default
+        let charExt = "json"
+        let charExtLen = charExt.count
+        print("profilesDirectory is \(profilesDirectory)")
+        let enumerator = fileManager.enumerator(at: profilesDirectory, includingPropertiesForKeys: nil)
+        //while let element = enumerator?.nextObject() as? String {
+        for x in enumerator!.allObjects {
+            let url = x as! URL
+            let element = url.lastPathComponent
+            print(element)
+            if element.hasSuffix(charExt) {
+                var charName = element
+                charName.removeLast(charExtLen+1)
+                charList.append(charName)
+            }
+        }
+        charList.sort(by: { $0.lowercased() < $1.lowercased() })
+        return charList
+    }
+    
+    func updateSelectionList() {
+        print("In updateSelectionList()")
+        if selectionWindow != nil {
+            print("Updating...")
+            selectionWindow!.updateCharacterTable()
+        }
+    }
+    
+    func openCharacterCreationDialog(mustComplete: Bool=false) {
+        
+        print("mustComplete: \(mustComplete)")
+        print("selectionWindow condition: \(selectionWindow == nil)")
+        
+        if mustComplete && (selectionWindow == nil) {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "characterCreation") as! CharacterCreationController
+            controller.tableController = self
+            
+            let screenRect = UIScreen.main.bounds
+            let popupWidth = CGFloat(0.8 * screenRect.size.width)
+            let popupHeight = CGFloat(0.25 * screenRect.size.height)
+            controller.width = popupWidth
+            controller.height = popupHeight
+            let popupVC = PopupViewController(contentController: controller, popupWidth: popupWidth, popupHeight: popupHeight)
+            if mustComplete {
+                controller.cancelButton.isHidden = true
+                popupVC.canTapOutsideToDismiss = false
+                self.present(popupVC, animated: true)
+            }
+        } else {
+            //selectionWindow!.displayNewCharacterWindow(mustComplete: mustComplete)
+            selectionWindow!.newCharacterButton.sendActions(for: UIControl.Event.touchUpInside)
+        }
+        
     }
     
     
