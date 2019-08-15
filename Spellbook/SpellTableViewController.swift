@@ -208,7 +208,8 @@ class SpellTableViewController: UITableViewController {
     func singleSort(index: Int) {
         
         // Do the sorting
-        spells.sort { return compareOne(s1: $0.0, s2: $1.0, index: index) }
+        let comparator = singleComparator(index: index)
+        spells.sort { return comparator($0.0, $1.0) }
         
         // Get the array
         updateSpellArray()
@@ -225,7 +226,8 @@ class SpellTableViewController: UITableViewController {
     func doubleSort(index1: Int, index2: Int) {
         
         // Do the sorting
-        spells.sort { return compareTwo(s1: $0.0, s2: $1.0, index1: index1, index2: index2) }
+        let comparator = doubleComparator(index1: index1, index2: index2)
+        spells.sort { return comparator($0.0, $1.0) }
         
         // Get the array
         updateSpellArray()

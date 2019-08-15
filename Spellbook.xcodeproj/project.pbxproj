@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		39005F5D22383F710006E97D /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39005F5C22383F710006E97D /* SideMenuController.swift */; };
+		3919F4CC23048431004347DB /* Quantity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3919F4CB23048431004347DB /* Quantity.swift */; };
+		3919F4CE230485A5004347DB /* SpellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3919F4CD230485A5004347DB /* SpellBuilder.swift */; };
+		3919F4D023048D07004347DB /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3919F4CF23048D07004347DB /* Distance.swift */; };
+		3919F4D223048D8E004347DB /* LengthUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3919F4D123048D8E004347DB /* LengthUnit.swift */; };
+		3919F4D423048DAA004347DB /* Unit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3919F4D323048DAA004347DB /* Unit.swift */; };
+		3919F4D62304EEDA004347DB /* TimeUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3919F4D52304EEDA004347DB /* TimeUnit.swift */; };
 		3925E9862281C6C900C5734B /* StatusPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3925E9852281C6C900C5734B /* StatusPopupController.swift */; };
 		39522D1521ADC15900A4DBCE /* SION.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D1421ADC15900A4DBCE /* SION.swift */; };
 		39522D1921ADC41F00A4DBCE /* SpellDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D1821ADC41F00A4DBCE /* SpellDataCell.swift */; };
@@ -36,6 +42,7 @@
 		397EE9A921ACAF9C00B116B0 /* Spellbook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE99E21ACAF9C00B116B0 /* Spellbook.swift */; };
 		397EE9AA21ACAF9C00B116B0 /* Sourcebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE99F21ACAF9C00B116B0 /* Sourcebook.swift */; };
 		397EE9AB21ACAF9C00B116B0 /* SpellComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE9A021ACAF9C00B116B0 /* SpellComparison.swift */; };
+		39938E8E2305D08E008AB6C9 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39938E8D2305D08E008AB6C9 /* Duration.swift */; };
 		3997EE9B21C06E6D007DC1B6 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3997EE9A21C06E6D007DC1B6 /* SearchButton.swift */; };
 		3997EE9D21C07293007DC1B6 /* SearchIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3997EE9C21C07292007DC1B6 /* SearchIcon.png */; };
 		399D9E5B223A7F580054BA8F /* book_filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 399D9E59223A7F570054BA8F /* book_filled.png */; };
@@ -81,6 +88,12 @@
 
 /* Begin PBXFileReference section */
 		39005F5C22383F710006E97D /* SideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
+		3919F4CB23048431004347DB /* Quantity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quantity.swift; sourceTree = "<group>"; };
+		3919F4CD230485A5004347DB /* SpellBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellBuilder.swift; sourceTree = "<group>"; };
+		3919F4CF23048D07004347DB /* Distance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Distance.swift; sourceTree = "<group>"; };
+		3919F4D123048D8E004347DB /* LengthUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LengthUnit.swift; sourceTree = "<group>"; };
+		3919F4D323048DAA004347DB /* Unit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unit.swift; sourceTree = "<group>"; };
+		3919F4D52304EEDA004347DB /* TimeUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUnit.swift; sourceTree = "<group>"; };
 		3925E9852281C6C900C5734B /* StatusPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusPopupController.swift; sourceTree = "<group>"; };
 		39522D1421ADC15900A4DBCE /* SION.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SION.swift; sourceTree = "<group>"; };
 		39522D1821ADC41F00A4DBCE /* SpellDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellDataCell.swift; sourceTree = "<group>"; };
@@ -115,6 +128,7 @@
 		397EE99E21ACAF9C00B116B0 /* Spellbook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spellbook.swift; sourceTree = "<group>"; };
 		397EE99F21ACAF9C00B116B0 /* Sourcebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sourcebook.swift; sourceTree = "<group>"; };
 		397EE9A021ACAF9C00B116B0 /* SpellComparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellComparison.swift; sourceTree = "<group>"; };
+		39938E8D2305D08E008AB6C9 /* Duration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
 		3997EE9A21C06E6D007DC1B6 /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
 		3997EE9C21C07292007DC1B6 /* SearchIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchIcon.png; sourceTree = SOURCE_ROOT; };
 		399D9E59223A7F570054BA8F /* book_filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book_filled.png; sourceTree = SOURCE_ROOT; };
@@ -220,6 +234,12 @@
 				39005F5C22383F710006E97D /* SideMenuController.swift */,
 				39522D1421ADC15900A4DBCE /* SION.swift */,
 				397EE99F21ACAF9C00B116B0 /* Sourcebook.swift */,
+				3919F4CB23048431004347DB /* Quantity.swift */,
+				3919F4CF23048D07004347DB /* Distance.swift */,
+				3919F4D123048D8E004347DB /* LengthUnit.swift */,
+				3919F4D52304EEDA004347DB /* TimeUnit.swift */,
+				3919F4D323048DAA004347DB /* Unit.swift */,
+				3919F4CD230485A5004347DB /* SpellBuilder.swift */,
 				39A268CD223853680032158F /* SourcebookFilterController.swift */,
 				397EE99621ACAF9B00B116B0 /* Spell.swift */,
 				397EE99E21ACAF9C00B116B0 /* Spellbook.swift */,
@@ -231,6 +251,7 @@
 				39522D2021ADFBA100A4DBCE /* SpellTableViewController.swift */,
 				397EE99B21ACAF9C00B116B0 /* Spells.json */,
 				39522D2621B1C52100A4DBCE /* SpellWindowController.swift */,
+				39938E8D2305D08E008AB6C9 /* Duration.swift */,
 				399D9E65223B61750054BA8F /* star.png */,
 				39C5B23C21CF03A5005F08DA /* star_empty.png */,
 				39C5B23B21CF03A1005F08DA /* star_filled.png */,
@@ -431,11 +452,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3919F4D423048DAA004347DB /* Unit.swift in Sources */,
 				399D9E6C2267D4810054BA8F /* CharacterProfile.swift in Sources */,
 				39CFA5F42272519B006EA33B /* DeletionPromptController.swift in Sources */,
 				39522D2721B1C52100A4DBCE /* SpellWindowController.swift in Sources */,
+				39938E8E2305D08E008AB6C9 /* Duration.swift in Sources */,
+				3919F4D223048D8E004347DB /* LengthUnit.swift in Sources */,
+				3919F4CC23048431004347DB /* Quantity.swift in Sources */,
 				39CFA5EC226E1882006EA33B /* CharacterTableController.swift in Sources */,
 				3925E9862281C6C900C5734B /* StatusPopupController.swift in Sources */,
+				3919F4D62304EEDA004347DB /* TimeUnit.swift in Sources */,
 				39005F5D22383F710006E97D /* SideMenuController.swift in Sources */,
 				399D9E6A2264B9F20054BA8F /* Settings.swift in Sources */,
 				3997EE9B21C06E6D007DC1B6 /* SearchButton.swift in Sources */,
@@ -446,6 +472,7 @@
 				397EE9A821ACAF9C00B116B0 /* Util.swift in Sources */,
 				39522D1D21ADFA0A00A4DBCE /* LabelViewController.swift in Sources */,
 				397EE9A721ACAF9C00B116B0 /* SubClass.swift in Sources */,
+				3919F4CE230485A5004347DB /* SpellBuilder.swift in Sources */,
 				39C5B23221CAE121005F08DA /* SWRevealViewController.m in Sources */,
 				39A268CE223853680032158F /* SourcebookFilterController.swift in Sources */,
 				397EE96921ACA86400B116B0 /* AppDelegate.swift in Sources */,
@@ -461,6 +488,7 @@
 				397EE9A121ACAF9C00B116B0 /* Spell.swift in Sources */,
 				397EE9A521ACAF9C00B116B0 /* CasterClass.swift in Sources */,
 				397EE9A221ACAF9C00B116B0 /* School.swift in Sources */,
+				3919F4D023048D07004347DB /* Distance.swift in Sources */,
 				395F3A94226B604600D7B382 /* PopupViewController.swift in Sources */,
 				39CFA5EE226E817C006EA33B /* CharacterSelectionCell.swift in Sources */,
 				397EE9A921ACAF9C00B116B0 /* Spellbook.swift in Sources */,

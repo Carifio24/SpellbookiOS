@@ -32,40 +32,37 @@ func load_file(filepath: String) -> String {
 	return text
 }
 
-func parseSpell(_ obj: SION) -> Spell {
-
-	// Create the Spell
-	let s = Spell()
+func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
 
 	// Objects to reuse
 	var jstr: String
 	var jso: SION
 	
 	// Set the values that need no/trivial parsing
-	s.setName(nameIn: obj["name"].string!)
+	b.setName(obj["name"].string!)
 	jstr = obj["page"].string!
     let locationPieces = jstr.components(separatedBy: " ")
 	let page = Int(locationPieces[1])!
-	s.setPage(pageIn: page)
+	b.setPage(page)
     let sourcebook = sourcebookFromCode(name: locationPieces[0])!
-    s.setSourcebook(sourcebookIn: sourcebook)
+    b.setSourcebook(sourcebook)
     let durationString = obj["duration"].string! // Use this again later for the concentration part
-	s.setDuration(durationIn: durationString)
-	s.setRange(rangeIn: obj["range"].string!)
+	b.setDuration(durationString)
+	b.setRange(Distance.fromString(obj["range"].string!))
 
 	if has_key(obj: obj, key: "ritual") {
 		let ritualString = try! yn_to_bool(yn: obj["ritual"].string!)
-		s.setRitual(ritualIn: ritualString)
+		b.setRitual(ritualString)
 	} else {
-		s.setRitual(ritualIn: false)
+		b.setRitual(false)
 	}
     if (durationString.starts(with: "Up to")) {
-        s.setConcentration(concentrationIn: true)
+        b.setConcentration(true)
     } else if has_key(obj: obj, key: "concentration") {
         let concentrationString = obj["concentration"].string!
-        s.setConcentration(concentrationIn: try! yn_to_bool(yn: concentrationString))
+        b.setConcentration(try! yn_to_bool(yn: concentrationString))
 	} else {
-		s.setConcentration(concentrationIn: false)
+		b.setConcentration(false)
 	}
 
     //print(obj["level"].double)
@@ -74,16 +71,16 @@ func parseSpell(_ obj: SION) -> Spell {
         isInt = true
     }
     if isInt {
-        s.setLevel(levelIn: Int(obj["level"].int!))
+        b.setLevel(Int(obj["level"].int!))
     } else {
-        s.setLevel(levelIn: Int(obj["level"].double!))
+        b.setLevel(Int(obj["level"].double!))
     }
 
-    s.setCastingTime(castingTimeIn: obj["casting_time"].string!)
+    b.setCastingTime(obj["casting_time"].string!)
 
 	// Material, if necessary
 	if has_key(obj: obj, key: "material") {
-		s.setMaterial(materialIn: obj["material"].string!)
+		b.setMaterial(obj["material"].string!)
 	}
 
 	// components
@@ -94,7 +91,7 @@ func parseSpell(_ obj: SION) -> Spell {
 		if v == "S" {components[1] = true; continue}
 		if v == "M" {components[2] = true; continue}
 	}
-	s.setComponents(componentsIn: components)
+	b.setComponents(components)
 
 	// Description
 	jstr = String()
@@ -108,7 +105,7 @@ func parseSpell(_ obj: SION) -> Spell {
 		}
 		jstr += v.string!
 	}
-	s.setDescription(descriptionIn: jstr)
+	b.setDescription(jstr)
 
 	// Higher level description
 	jstr = String()
@@ -124,12 +121,12 @@ func parseSpell(_ obj: SION) -> Spell {
 			jstr += v.string!
 		}
 	}
-    s.setHigherLevelDesc(higherLevelIn: jstr)
+    b.setHigherLevelDesc(jstr)
 
 	// School
 	jso = obj["school"]
 	var name: String = jso["name"].string!
-	s.setSchool(schoolIn: schoolFromName(name: name)!)
+	b.setSchool(schoolFromName(name: name)!)
 
 	// Classes
 	var classes: Array<CasterClass> = []
@@ -143,7 +140,7 @@ func parseSpell(_ obj: SION) -> Spell {
             classes.append(casterFromName(name: name!)!)
         }
 	}
-	s.setClasses(classesIn: classes)
+	b.setClasses(classes)
 
 	// Subclasses
 	var subclasses: Array<SubClass> = []
@@ -153,14 +150,17 @@ func parseSpell(_ obj: SION) -> Spell {
 			name = v["name"].string!
 			subclasses.append(subclassFromName(name: name)!)
 		}
-		s.setSubclasses(subclassesIn: subclasses)
+		b.setSubclasses(subclasses)
 	}
 
 	// Return
-	return s
+	return b.buildAndReset()
 }
 
 func parseSpellList(jsonStr: String) -> Array<Spell> {
+    
+    // Create the SpellBuilder
+    let builder = SpellBuilder()
 
     var i = 0
 	var spells: Array<Spell> = []
@@ -168,7 +168,7 @@ func parseSpellList(jsonStr: String) -> Array<Spell> {
 	for (_, v) in jarr {
         //print("\(v)")
         //print("=====")
-		let nextSpell = parseSpell(v)
+        let nextSpell = parseSpell(obj: v, b: builder)
 		spells.append(nextSpell)
         i += 1
 	}

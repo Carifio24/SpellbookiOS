@@ -23,7 +23,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     static let searchIcon = UIImage(named: "search_icon.png")?.withRenderingMode(.alwaysOriginal)
     
     var boss: ViewController?
-    let sortPickerData: [String] = ["Name", "School", "Level"]
+    let sortPickerData: [String] = ["Name", "School", "Level", "Range", "Duration"]
     let classPickerData: [String] = ["None"] + Spellbook.casterNames
     
     let sort1Fraction = CGFloat(0.3)
