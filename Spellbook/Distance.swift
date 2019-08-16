@@ -6,12 +6,29 @@
 //  Copyright © 2019 Jonathan Carifio. All rights reserved.
 //
 
-import Foundation
-
 // An enum class for the various types of Distance
-fileprivate enum DistanceType: Int {
+enum DistanceType: Int, Comparable {
     case Special=0, SelfDistance, Touch, Sight, Ranged, Unlimited
+    
+    func name() -> String {
+        switch (self) {
+        case .Special:
+            return "Special"
+        case .SelfDistance:
+            return "Self"
+        case .Touch:
+            return "Touch"
+        case .Ranged:
+            return "Ranged"
+        case .Unlimited:
+            return "Unlimited"
+        default:
+            return "" // Unreachable
+        }
+    }
 }
+
+import Foundation
 
 class Distance : Quantity<DistanceType, LengthUnit> {
     
@@ -19,11 +36,11 @@ class Distance : Quantity<DistanceType, LengthUnit> {
     
     // If no unit is given, assume feet (if no unit is given, we shouldn't have a string description either)
     convenience init(type: DistanceType, length: Int) {
-        super.init(type: type, value: length, unit: LengthUnit.foot)
+        self.init(type: type, value: length, unit: LengthUnit.foot)
     }
     
     convenience init() {
-        self.init(type: SelfDistance, length: 0)
+        self.init(type: DistanceType.SelfDistance, length: 0)
     }
     
     ///// Methods
@@ -38,54 +55,56 @@ class Distance : Quantity<DistanceType, LengthUnit> {
         if (!str.isEmpty) { return str }
         
         switch (type) {
-        case Touch, Special, Unlimited, Sight:
+        case DistanceType.Touch, DistanceType.Special, DistanceType.Unlimited, DistanceType.Sight:
             return type.name()
-        case SelfDistance:
+        case DistanceType.SelfDistance:
             if (self.value > 0) {
-                return type.name() + "(" + self.value + " foot radius)"
+                return type.name() + "(" + String(value) + " foot radius)"
             }
-        case Ranged:
-            let ft: String = (self.value() == 1) ? type.name() : type.pluralName()
-            return value + " " + ft
-        default:
-            return "" // We'll never get here, as the above cases exhaust the enum
+        case DistanceType.Ranged:
+            let ft: String = (value == 1) ? unit.name() : unit.pluralName()
+            return String(value) + " " + ft
+            
         }
+        return "" // We'll never get here, as the above cases exhaust the enum
     }
     
     // Create a Distance from its string description
-    static func fromString(_ s: String) -> Distance {
+    static func fromString(_ s: String) throws -> Distance {
         
         // The "special" types - basically, ones other than Ranged and Self
-        for type in [Touch, Special, Sight, Unlimited] {
+        for type in [DistanceType.Touch, DistanceType.Special, DistanceType.Sight, DistanceType.Unlimited] {
             if (s.starts(with: type.name())) {
                 return Distance(type: type, value: 0, unit: LengthUnit.foot, str: s)
             }
         }
         
         // Parse Self and Ranged Distances
-        if (s.starts(with: SelfDistance.name())) {
-            let sSplit = s.split(" ", 2)
+        if (s.starts(with: DistanceType.SelfDistance.name())) {
+            let sSplit = s.split(separator: " ", maxSplits: 2)
             if (sSplit.count == 1) {
-                return Distance(type: SelfDistance)
+                return Distance(type: DistanceType.SelfDistance, length: 0)
             } else {
-                var distStr = sSplit[1]
-                if ( !(distStr.starts(with: "(") && distStr.ends(with: ")")) ) {
-                    throw Error("Error parsing radius of spell with Distance Self")
+                var distStr = String(sSplit[1])
+                if ( !(distStr.hasPrefix("(") && distStr.hasSuffix(")")) ) {
+                    throw SpellbookError.SelfRadiusError
                 }
-                distStr = String(distStr[1..distStr.count-2])
-                let distSplit = distStr.split(" ")
+                let end = distStr.count - 2
+                distStr = String(distStr[1...end])
+                let distSplit = distStr.split(separator: " ")
                 let length = Int(distSplit[0])
-                let unit = LengthUnit.fromString(distSplit[1])
-                return Distance(type: SelfDistance, length: length, unit: unit, str: s)
+                let unit = try LengthUnit.fromString(String(distSplit[1]))
+                return Distance(type: DistanceType.SelfDistance, value: length!, unit: unit, str: s)
             }
             do {
-                let sSplit = s.split(" ")
+                let sSplit = s.split(separator: " ")
                 let length = Int(sSplit[0])
-                let unit = LengthUnit.fromString(sSplit[1])
-                return Distance(type: Ranged, length: length, unit: unit, str: s)
+                let unit = try LengthUnit.fromString(String(sSplit[1]))
+                return Distance(type: DistanceType.Ranged, value: length!, unit: unit, str: s)
             } catch let e {
                 print("\(e)")
             }
         }
+        return Distance()
     }
 }

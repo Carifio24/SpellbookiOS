@@ -1,9 +1,26 @@
+typealias Getter<T,R> = (T) -> R
+typealias IntComparatorFunc<T> = (T,T) -> Int
+typealias ComparatorFunc<T> = (T,T) -> Bool
+
+let spellPropertyComparators: [(Spell,Spell)->Int] = [
+    propertyTriComp({ (_ s: Spell) -> String in
+        return s.name }),
+    propertyTriComp({ (_ s: Spell) -> School in
+        return s.school }),
+    propertyTriComp({ (_ s:Spell) -> Int in
+        return s.level }),
+    propertyTriComp({ (_ s:Spell) -> Distance in
+        return s.range }),
+    propertyTriComp({ (_ s:Spell) -> Duration in
+        return s.duration })
+]
+
 func intToTruthValue(_ x: Int) -> Bool {
 	return x > 0
 }
 
 // The default spell comparator (in our case, name)
-func defaultSpellComparison(_ s1: Spell, _ s2: Spell) {
+func defaultSpellComparison(_ s1: Spell, _ s2: Spell) -> Bool {
     return s1.name < s2.name
 }
 
@@ -12,25 +29,22 @@ func triComp<T:Comparable>(_ t1: T, _ t2: T) -> Int {
     if (t1 > t2) {
         return -1
     }
-    return Int(t1 != t2)
+    return NSNumber(value: t1 != t2).intValue
 }
 
 // Given a property P, this returns a function with inputs t1, t2 that evaluates triComp( P(t1), P(t2) )
-func propertyTriComp<T,R>(_ getter: (T) -> R) -> (T,T) -> Int {
+func propertyTriComp<T,R>(_ getter: @escaping Getter<T,R>) -> IntComparatorFunc<T> where R:Comparable {
     return { (_ t1: T, _ t2: T) in
-        return triComp<R>(getter(t1), getter(t2))
+        return triComp(getter(t1), getter(t2))
     }
 }
 
 // Create the single-comparator function with a property
-func singleComparator<T>(property: (Spell) -> T) -> ((Spell,Spell)->Bool) {
-    
-    // The tri-comparer
-    let propTC = propertyTriComp(property)
+func singleComparator(propertyTC: @escaping IntComparatorFunc<Spell>) -> ComparatorFunc<Spell> {
     
     // The comparator function that we're returning
-    let comparator = { (s1, s2) -> Bool in
-        let r = propTC(s1, s2)
+    let comparator = { (s1: Spell, s2: Spell) -> Bool in
+        let r = propertyTC(s1, s2)
         if (r != 0) {
             return intToTruthValue(r)
         }
@@ -42,35 +56,28 @@ func singleComparator<T>(property: (Spell) -> T) -> ((Spell,Spell)->Bool) {
 
 
 // Create the single-comparator function by index
-func singleComparator(index: Int) -> ((Spell,Spell) -> Bool) {
-    let comparisonProperties = [
-        Spell::name, Spell::school, Spell::level, Spell::Range, Spell::Duration
-    ]
+func spellComparator(_ index: Int) -> ComparatorFunc<Spell> {
     
     // Set the index to zero if it's too high
-    if (index > comparators.count) {
-        index = 0
-    }
+    let idx = (index > spellPropertyComparators.count) ? 0 : index
     
     // Call the property version of the function
-    return singleComparator(property: comparisonProperties[index])
+    //return singleComparator(property: spellComparisons(idx))
+    
+    return singleComparator(propertyTC: spellPropertyComparators[idx])
 }
 
 
 // Create the double-comparator function with a property
-func doubleComparator<T1,T2>(property1: (Spell) -> T1, property2: (Spell) -> T2)  -> ((Spell,Spell)->Bool) {
-    
-    // The tri-comparers
-    let prop1TC = propertyTriComp(property1)
-    let prop2TC = propertyTriComp(property2)
+func doubleComparator(propertyTC1: @escaping IntComparatorFunc<Spell>, propertyTC2: @escaping IntComparatorFunc<Spell>)  -> ComparatorFunc<Spell> {
     
     // The comparator function that we're returning
-    let comparator = { (s1, s2) -> Bool in
-        let r1 = prop1TC(s1, s2)
+    let comparator = { (s1: Spell, s2: Spell) -> Bool in
+        let r1 = propertyTC1(s1, s2)
         if (r1 != 0) {
             return intToTruthValue(r1)
         }
-        let r2 = prop2TC(s1, s2)
+        let r2 = propertyTC2(s1, s2)
         if (r2 != 0) {
             return intToTruthValue(r2)
         }
@@ -82,24 +89,19 @@ func doubleComparator<T1,T2>(property1: (Spell) -> T1, property2: (Spell) -> T2)
 
 
 // Create the double-comparator function by index
-func doubleComparator(index:Int) -> ((Spell,Spell)->Bool) {
+func spellComparator(_ index1: Int, _ index2: Int) -> ComparatorFunc<Spell> {
 
     // Set each index to zero if it's too high
-    if (index1 > comparators.count) { index1 = 0 }
-    if (index2 > comparators.count) { index2 = 0 }
+    let idx1 = (index1 > spellPropertyComparators.count) ? 0 : index1
+    let idx2 = (index2 > spellPropertyComparators.count) ? 0 : index2
     
     // If the indices are the same, fall back to singleComparator
-    if (index1 == index2) { return singleComparator(index: index1) }
-    
-    // The comparison properties
-    let comparisonProperties = [
-        Spell::name, Spell::school, Spell::level, Spell::Range, Spell::Duration
-    ]
+    if (idx1 == idx2) { return spellComparator(idx1) }
     
     // Get the properties
-    let prop1 = comparisonProperties[index1]
-    let prop2 = comparisonProperties[index2]
+    let propertyTC1 = spellPropertyComparators[idx1]
+    let propertyTC2 = spellPropertyComparators[idx2]
     
     // Call the property version of this function
-    return doubleComparator(property1: prop1, property2: prop2)
+    return doubleComparator(propertyTC1: propertyTC1, propertyTC2: propertyTC2)
 }

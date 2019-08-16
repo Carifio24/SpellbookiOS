@@ -10,10 +10,10 @@ import Foundation
 
 class Quantity<QuantityType, UnitType: Unit> where QuantityType:Comparable {
     
-    internal let type: QuantityType
-    internal let value: Int
-    internal let unit: UnitType
-    internal let str: String
+    let type: QuantityType
+    let value: Int
+    let unit: UnitType
+    let str: String
     
     // Constructors
     init(type: QuantityType, value: Int, unit: UnitType, str: String) {

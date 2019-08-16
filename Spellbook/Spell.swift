@@ -1,22 +1,22 @@
 public class Spell {
 
 	// Member values
-	private(set) let name: String
-	private(set) let description: String
-	private(set) let higherLevel: String
-	private(set) let page: Int
-	private(set) let range: String
-	private(set) let components: Array<Bool>
-	private(set) let material: String
-	private(set) let ritual: Bool
-	private(set) let duration: Duration
-    private(set) let concentration: Bool
-	private(set) let castingTime: String
-	private(set) let level: Int
-	private(set) let school: School
-	private(set) let classes: Array<CasterClass>
-	private(set) let subclasses: Array<SubClass>
-    private(set) let sourcebook: Sourcebook
+    let name: String
+	let description: String
+	let higherLevel: String
+	let page: Int
+	let range: Distance
+	let components: Array<Bool>
+	let material: String
+	let ritual: Bool
+	let duration: Duration
+    let concentration: Bool
+	let castingTime: String
+	let level: Int
+	let school: School
+	let classes: Array<CasterClass>
+	let subclasses: Array<SubClass>
+    let sourcebook: Sourcebook
 
 	// Constructor
     init(name: String, description: String, higherLevel: String, page: Int, range: Distance, components: Array<Bool>, material: String, ritual: Bool, duration: Duration, concentration: Bool, castingTime: String, level: Int, school: School, classes: Array<CasterClass>, subclasses: Array<SubClass>, sourcebook: Sourcebook) {
@@ -29,10 +29,7 @@ public class Spell {
     
     // Default constructor (for convenience, when necessary)
     convenience init() {
-        name = ""; description = ""; higherLevel = ""; page = 0; range = Distance();
-        components = []; material = ""; ritual = false; duration = ""; concentration = false;
-        castingTime = ""; level = 0; school = School.Abjuration; classes = []; subclasses = [];
-        sourcebook = Sourcebook.PlayersHandbook
+        self.init(name: "", description: "", higherLevel: "", page: 0, range: Distance(), components: [false,false,false], material: "", ritual: false, duration: Duration(), concentration: false, castingTime: "", level: 0, school: School.Abjuration, classes: [], subclasses: [], sourcebook: Sourcebook.PlayersHandbook)
     }
     
 

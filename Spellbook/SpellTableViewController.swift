@@ -208,8 +208,8 @@ class SpellTableViewController: UITableViewController {
     func singleSort(index: Int) {
         
         // Do the sorting
-        let comparator = singleComparator(index: index)
-        spells.sort { return comparator($0.0, $1.0) }
+        let cmp = spellComparator(index)
+        spells.sort { return cmp($0.0, $1.0) }
         
         // Get the array
         updateSpellArray()
@@ -226,8 +226,8 @@ class SpellTableViewController: UITableViewController {
     func doubleSort(index1: Int, index2: Int) {
         
         // Do the sorting
-        let comparator = doubleComparator(index1: index1, index2: index2)
-        spells.sort { return comparator($0.0, $1.0) }
+        let cmp = spellComparator(index1, index2)
+        spells.sort { return cmp($0.0, $1.0) }
         
         // Get the array
         updateSpellArray()
@@ -253,7 +253,7 @@ class SpellTableViewController: UITableViewController {
     // Determine whether or not a single row should be filtered
     func filterItem(isClass: Bool, knownSelected:Bool, preparedSelected: Bool, favSelected: Bool, isText: Bool, s: Spell, cc: CasterClass, text: String) -> Bool {
         let spname = s.name.lowercased()
-        var toHide = (isClass && !s.usableByClass(cc: cc))
+        var toHide = (isClass && !s.usableByClass(cc))
         toHide = toHide || (knownSelected && !characterProfile.isKnown(s))
         toHide = toHide || (preparedSelected && !characterProfile.isPrepared(s))
         toHide = toHide || (favSelected && !characterProfile.isFavorite(s))

@@ -47,8 +47,17 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
     let sourcebook = sourcebookFromCode(name: locationPieces[0])!
     b.setSourcebook(sourcebook)
     let durationString = obj["duration"].string! // Use this again later for the concentration part
-	b.setDuration(durationString)
-	b.setRange(Distance.fromString(obj["range"].string!))
+    do {
+        try b.setDuration(Duration.fromString(durationString))
+    } catch {
+        b.setDuration(Duration())
+    }
+    do {
+        try b.setRange(Distance.fromString(obj["range"].string!))
+    } catch {
+        b.setRange(Distance())
+    }
+    
 
 	if has_key(obj: obj, key: "ritual") {
 		let ritualString = try! yn_to_bool(yn: obj["ritual"].string!)

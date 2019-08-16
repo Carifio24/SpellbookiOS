@@ -67,6 +67,8 @@
 		39CFA5F0226F985C006EA33B /* CharacterCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CFA5EF226F985C006EA33B /* CharacterCreationController.swift */; };
 		39CFA5F22271F030006EA33B /* trash_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 39CFA5F12271F02F006EA33B /* trash_icon.png */; };
 		39CFA5F42272519B006EA33B /* DeletionPromptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CFA5F32272519B006EA33B /* DeletionPromptController.swift */; };
+		39EB75912306E6C7001CA1EF /* EnumUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EB75902306E6C7001CA1EF /* EnumUtilities.swift */; };
+		39EB75932306F948001CA1EF /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EB75922306F948001CA1EF /* StringUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +157,8 @@
 		39CFA5EF226F985C006EA33B /* CharacterCreationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCreationController.swift; sourceTree = "<group>"; };
 		39CFA5F12271F02F006EA33B /* trash_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash_icon.png; sourceTree = SOURCE_ROOT; };
 		39CFA5F32272519B006EA33B /* DeletionPromptController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletionPromptController.swift; sourceTree = "<group>"; };
+		39EB75902306E6C7001CA1EF /* EnumUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumUtilities.swift; sourceTree = "<group>"; };
+		39EB75922306F948001CA1EF /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		39F1046F21AD87F40068A09E /* SION.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SION.swift; path = "../../Desktop/git/swift-sion/Sources/SION/SION.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -236,6 +240,7 @@
 				397EE99F21ACAF9C00B116B0 /* Sourcebook.swift */,
 				3919F4CB23048431004347DB /* Quantity.swift */,
 				3919F4CF23048D07004347DB /* Distance.swift */,
+				39EB75922306F948001CA1EF /* StringUtils.swift */,
 				3919F4D123048D8E004347DB /* LengthUnit.swift */,
 				3919F4D52304EEDA004347DB /* TimeUnit.swift */,
 				3919F4D323048DAA004347DB /* Unit.swift */,
@@ -245,6 +250,7 @@
 				397EE99E21ACAF9C00B116B0 /* Spellbook.swift */,
 				397EE99821ACAF9B00B116B0 /* SpellbookError.swift */,
 				397EE9A021ACAF9C00B116B0 /* SpellComparison.swift */,
+				39EB75902306E6C7001CA1EF /* EnumUtilities.swift */,
 				39522D1821ADC41F00A4DBCE /* SpellDataCell.swift */,
 				397EE99921ACAF9B00B116B0 /* SpellParse.swift */,
 				399D9E672264B7830054BA8F /* SpellStatus.swift */,
@@ -481,11 +487,13 @@
 				39522D1921ADC41F00A4DBCE /* SpellDataCell.swift in Sources */,
 				397EE9A421ACAF9C00B116B0 /* SpellParse.swift in Sources */,
 				397EE9A321ACAF9C00B116B0 /* SpellbookError.swift in Sources */,
+				39EB75912306E6C7001CA1EF /* EnumUtilities.swift in Sources */,
 				397EE9AB21ACAF9C00B116B0 /* SpellComparison.swift in Sources */,
 				395F3A902268079100D7B382 /* CharacterSelectionController.swift in Sources */,
 				39522D2121ADFBA100A4DBCE /* SpellTableViewController.swift in Sources */,
 				399D9E682264B7830054BA8F /* SpellStatus.swift in Sources */,
 				397EE9A121ACAF9C00B116B0 /* Spell.swift in Sources */,
+				39EB75932306F948001CA1EF /* StringUtils.swift in Sources */,
 				397EE9A521ACAF9C00B116B0 /* CasterClass.swift in Sources */,
 				397EE9A221ACAF9C00B116B0 /* School.swift in Sources */,
 				3919F4D023048D07004347DB /* Distance.swift in Sources */,

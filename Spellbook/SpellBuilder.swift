@@ -19,10 +19,10 @@ public class SpellBuilder {
     private(set) var higherLevel: String = ""
     private(set) var page: Int = 0
     private(set) var range: Distance = Distance()
-    private(set) var components: Array<Bool> = []
+    private(set) var components: Array<Bool> = [false,false,false]
     private(set) var material: String = ""
     private(set) var ritual: Bool = false
-    private(set) var duration: String = ""
+    private(set) var duration: Duration = Duration()
     private(set) var concentration: Bool = false
     private(set) var castingTime: String = ""
     private(set) var level: Int = -1
@@ -40,7 +40,7 @@ public class SpellBuilder {
     func setComponents(_ componentsIn: Array<Bool>) -> SpellBuilder { components = componentsIn; return self }
     func setMaterial(_ materialIn: String) -> SpellBuilder { material = materialIn; return self }
     func setRitual(_ ritualIn: Bool) -> SpellBuilder { ritual = ritualIn; return self }
-    func setDuration(_ durationIn: String) -> SpellBuilder { duration = durationIn; return self }
+    func setDuration(_ durationIn: Duration) -> SpellBuilder { duration = durationIn; return self }
     func setConcentration(_ concentrationIn: Bool) -> SpellBuilder { concentration = concentrationIn; return self }
     func setCastingTime(_ castingTimeIn: String) -> SpellBuilder { castingTime = castingTimeIn; return self }
     func setLevel(_ levelIn: Int) -> SpellBuilder { level = levelIn; return self }
@@ -57,7 +57,12 @@ public class SpellBuilder {
     
     // Reset to default values
     func reset() {
-        self = SpellBuilder()
+        name = ""; description = ""; higherLevel = "";
+        page = 0; range = Distance(); components = [false,false,false];
+        material = ""; ritual = false; duration = Duration();
+        concentration = false; castingTime = ""; level = 0;
+        school = School.Abjuration; classes = []; subclasses = [];
+        sourcebook = Sourcebook.PlayersHandbook
     }
     
     // Build and reset

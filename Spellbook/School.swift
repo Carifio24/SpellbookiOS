@@ -4,3 +4,6 @@ enum School: Int {
 
 // So we can iterate over all values
 extension School: CaseIterable {}
+
+// For sorting purposes
+extension School: Comparable {}

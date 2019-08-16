@@ -29,16 +29,20 @@ enum LengthUnit : Int, Unit {
         return LengthUnit.names[self]![2]
     }
     
+    func value() -> Int {
+        return self.rawValue
+    }
+    
     // Create a LengthUnit instance from a String
-    static func fromString(_ s: String) -> LengthUnit {
-        s = s.lowercased()
+    static func fromString(_ s: String) throws -> LengthUnit {
+        let t = s.lowercased()
         for (unit, arr) in names {
             for name in arr {
-                if (s == name) {
+                if (t == name) {
                     return unit
                 }
             }
         }
-        throw Error("Not a valid LengthUnit string")
+        throw SpellbookError.UnitStringError
     }
 }

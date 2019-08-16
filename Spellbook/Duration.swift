@@ -9,8 +9,24 @@
 import Foundation
 
 // An enum class for the various types of Distance
-fileprivate enum DistanceType: Int {
-    case Special=0, SelfDistance, Touch, Sight, Ranged, Unlimited
+enum DurationType: Int, Comparable {
+    case Instantaneous=0, Spanning, Special, UntilDispelled
+    
+    func name() -> String {
+        switch (self) {
+        case .Instantaneous:
+            return "Instantaneous"
+        case .Spanning:
+            return "Spanning"
+        case .Special:
+            return "Special"
+        case.UntilDispelled:
+            return "Until dispelled"
+        default:
+            return "" // Unreachable
+        }
+    }
+    
 }
 
 class Duration : Quantity<DurationType, TimeUnit> {
@@ -19,11 +35,11 @@ class Duration : Quantity<DurationType, TimeUnit> {
     
     // If no unit is given, assume seconds (if no unit is given, we shouldn't have a string description either)
     convenience init(type: DurationType, secs: Int) {
-        super.init(type: type, value: secs, unit: TimeUnit.second)
+        self.init(type: type, value: secs, unit: TimeUnit.second)
     }
     
     convenience init() {
-        self.init(type: Instantaneous, secs: 0)
+        self.init(type: DurationType.Instantaneous, secs: 0)
     }
     
     ///// Methods
@@ -38,46 +54,46 @@ class Duration : Quantity<DurationType, TimeUnit> {
         if (!str.isEmpty) { return str }
         
         switch (type) {
-        case Instantaneous, Special:
+        case DurationType.Instantaneous, DurationType.Special:
             return type.name()
-        case UntilDispelled:
+        case DurationType.UntilDispelled:
             return "Until dispelled"
-        case Spanning:
-            let secs: String = (self.value() == 1) ? type.name() : type.pluralName()
-            return value + " " + secs
-        default:
-            return "" // We'll never get here, as the above cases exhaust the enum
+        case DurationType.Spanning:
+            let secs: String = (value == 1) ? unit.name() : unit.pluralName()
+            return secs + " s"
         }
+        return "" // We'll never get here, as the above cases exhaust the enum
     }
     
     // Create a Duration from its string description
-    static func fromString(_ s: String) -> Duration {
+    static func fromString(_ s: String) throws -> Duration {
         
         // Instantaneous and special
-        for type in [Instantaneous, Special] {
+        for type in [DurationType.Instantaneous, DurationType.Special] {
             if (s.starts(with: type.name())) {
-                return Duration(type: type, value: 0)
+                return Duration(type: type, secs: 0)
             }
             
         }
         
         // Until dispelled
         if (s.starts(with: "Until dispelled")) {
-            return Duration(type: UntilDispelled, secs: 0)
+            return Duration(type: DurationType.UntilDispelled, secs: 0)
         }
         
         // Spanning
         let concentrationPrefix = "Up to"
-        let t = s.starts(with:concentrationPrefix) ? String(s[(concentrationPrefix.count-1)..]) : s
+        let start = concentrationPrefix.count - 1
+        let t = s.starts(with:concentrationPrefix) ? String(s[start...]) : s
         do {
-            let tSplit = t.split(" ", 2)
+            let tSplit = t.split(separator: " ", maxSplits: 2)
             let value = Int(tSplit[0])
-            let unit = TimeUnit.fromString(tSplit[1])
-            return Duration(type: Spanning, value: value, unit: unit, str: s)
+            let unit = try TimeUnit.fromString(String(tSplit[1]))
+            return Duration(type: DurationType.Spanning, value: value!, unit: unit, str: s)
         } catch let e{
             print("\(e)")
         }
-        
+        return Duration()
     }
     
 }
