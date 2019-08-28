@@ -43,6 +43,7 @@ enum LengthUnit : Int, Unit {
                 }
             }
         }
+        print(s)
         throw SpellbookError.UnitStringError
     }
 }

@@ -86,6 +86,10 @@
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
                             </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9rj-pf-HV4" customClass="SortDirectionButton" customModule="Spellbook" customModuleProvider="target">
+                                <rect key="frame" x="170" y="7" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </button>
                             <pickerView opaque="NO" tag="2" contentMode="scaleToFill" id="TNy-15-pIK">
                                 <rect key="frame" x="199" y="2" width="96" height="56"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -94,6 +98,10 @@
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
                             </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="UVo-Tc-w4S" customClass="SortDirectionButton" customModule="Spellbook" customModuleProvider="target">
+                                <rect key="frame" x="170" y="7" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </button>
                             <pickerView opaque="NO" tag="1" contentMode="scaleToFill" id="T27-TR-XLe">
                                 <rect key="frame" x="94" y="0.0" width="85" height="58"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -124,6 +132,8 @@
                         <outlet property="classPicker" destination="TNy-15-pIK" id="n99-mm-VRM"/>
                         <outlet property="searchButton" destination="KPX-AI-vxp" id="Wwy-qa-2fC"/>
                         <outlet property="searchField" destination="baw-jg-Jp1" id="Jqb-46-16q"/>
+                        <outlet property="sortArrow1" destination="9rj-pf-HV4" id="yW6-Se-11z"/>
+                        <outlet property="sortArrow2" destination="UVo-Tc-w4S" id="aF4-eQ-cYX"/>
                         <outlet property="sortPicker1" destination="NKM-eo-2xO" id="azC-DS-hJo"/>
                         <outlet property="sortPicker2" destination="T27-TR-XLe" id="Bb2-j1-ePU"/>
                     </connections>

@@ -81,7 +81,7 @@ class Distance : Quantity<DistanceType, LengthUnit> {
         
         // Parse Self and Ranged Distances
         if (s.starts(with: DistanceType.SelfDistance.name())) {
-            let sSplit = s.split(separator: " ", maxSplits: 2)
+            let sSplit = s.split(separator: " ", maxSplits: 1)
             if (sSplit.count == 1) {
                 return Distance(type: DistanceType.SelfDistance, length: 0)
             } else {
@@ -96,14 +96,14 @@ class Distance : Quantity<DistanceType, LengthUnit> {
                 let unit = try LengthUnit.fromString(String(distSplit[1]))
                 return Distance(type: DistanceType.SelfDistance, value: length!, unit: unit, str: s)
             }
-            do {
-                let sSplit = s.split(separator: " ")
-                let length = Int(sSplit[0])
-                let unit = try LengthUnit.fromString(String(sSplit[1]))
-                return Distance(type: DistanceType.Ranged, value: length!, unit: unit, str: s)
-            } catch let e {
-                print("\(e)")
-            }
+        }
+        do {
+            let sSplit = s.split(separator: " ")
+            let length = Int(sSplit[0])
+            let unit = try LengthUnit.fromString(String(sSplit[1]))
+            return Distance(type: DistanceType.Ranged, value: length!, unit: unit, str: s)
+        } catch let e {
+            print("\(e)")
         }
         return Distance()
     }

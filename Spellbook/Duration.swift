@@ -82,12 +82,14 @@ class Duration : Quantity<DurationType, TimeUnit> {
         }
         
         // Spanning
-        let concentrationPrefix = "Up to"
-        let start = concentrationPrefix.count - 1
+        let concentrationPrefix = "Up to "
+        let start = concentrationPrefix.count
         let t = s.starts(with:concentrationPrefix) ? String(s[start...]) : s
         do {
-            let tSplit = t.split(separator: " ", maxSplits: 2)
+            let tSplit = t.split(separator: " ", maxSplits: 1)
             let value = Int(tSplit[0])
+            //print("t is \(t)")
+            //print("tSplit[1] is \(String(tSplit[1]))")
             let unit = try TimeUnit.fromString(String(tSplit[1]))
             return Duration(type: DurationType.Spanning, value: value!, unit: unit, str: s)
         } catch let e{

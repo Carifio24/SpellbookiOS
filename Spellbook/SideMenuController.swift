@@ -44,6 +44,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     private var viewWidth = CGFloat(400)
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         main =  self.revealViewController()?.frontViewController as? ViewController
@@ -87,12 +88,15 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         // The character selection button callback
         selectionButton.addTarget(self, action: #selector(selectionButtonPressed), for: UIControl.Event.touchUpInside)
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
         // Set the character label
-        let name = mainTable?.characterProfile.name
+        let name = main?.characterProfile.name()
         if (name != nil) {
             characterLabel.text = "Character: " + name!
         }
-
         
     }
     
@@ -129,12 +133,16 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         let popupHeight = CGFloat(0.35 * screenRect.size.height)
         controller.width = popupWidth
         controller.height = popupHeight
-        controller.mainTable = mainTable
+        controller.main = main
         let popupVC = PopupViewController(contentController: controller, popupWidth: popupWidth, popupHeight: popupHeight)
-        mainTable?.selectionWindow = controller
+        main!.selectionWindow = controller
         self.present(popupVC, animated: true, completion: nil)
     }
 
+    func setFilterStatus(profile: CharacterProfile) {
+        //statusController.setFilter(profile.getStatusFilter())
+        //sourcebookController!.setFilters(profile: profile)
+    }
     
     
 //    @objc func selectionButtonPressed() {

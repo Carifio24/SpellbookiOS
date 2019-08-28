@@ -1864,7 +1864,7 @@
             "V"
         ],
         "ritual": "no",
-        "duration":" Up to 10 minutes",
+        "duration":"Up to 10 minutes",
         "concentration": "yes",
         "casting_time": "1 action",
         "level": 5,
@@ -15837,7 +15837,7 @@
         "components": [
             "S"
         ],
-        "duration":" Up to 1 minute",
+        "duration":"Up to 1 minute",
         "concentration": "yes",
         "classes": [
             "Wizard"

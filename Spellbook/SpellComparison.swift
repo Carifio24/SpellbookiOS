@@ -2,18 +2,6 @@ typealias Getter<T,R> = (T) -> R
 typealias IntComparatorFunc<T> = (T,T) -> Int
 typealias ComparatorFunc<T> = (T,T) -> Bool
 
-let spellPropertyComparators: [(Spell,Spell)->Int] = [
-    propertyTriComp({ (_ s: Spell) -> String in
-        return s.name }),
-    propertyTriComp({ (_ s: Spell) -> School in
-        return s.school }),
-    propertyTriComp({ (_ s:Spell) -> Int in
-        return s.level }),
-    propertyTriComp({ (_ s:Spell) -> Distance in
-        return s.range }),
-    propertyTriComp({ (_ s:Spell) -> Duration in
-        return s.duration })
-]
 
 func intToTruthValue(_ x: Int) -> Bool {
 	return x > 0
@@ -58,17 +46,19 @@ func singleComparator(propertyTC: @escaping IntComparatorFunc<Spell>, reverse: B
     return comparator
 }
 
+// Create the single-comparator function by SortField
+func spellComparator(sortField: SortField, reverse: Bool) -> ComparatorFunc<Spell> {
+    return singleComparator(propertyTC: sortField.comparator(), reverse: reverse)
+}
 
 // Create the single-comparator function by index
 func spellComparator(index: Int, reverse: Bool) -> ComparatorFunc<Spell> {
     
     // Set the index to zero if it's too high
-    let idx = (index > spellPropertyComparators.count) ? 0 : index
+    let idx = (index >= SortField.count) ? 0 : index
     
-    // Call the property version of the function
-    //return singleComparator(property: spellComparisons(idx))
-    
-    return singleComparator(propertyTC: spellPropertyComparators[idx], reverse: reverse)
+    // Call the SortField version of the function
+    return spellComparator(sortField: SortField(rawValue: idx)!, reverse: reverse)
 }
 
 
@@ -91,21 +81,22 @@ func doubleComparator(propertyTC1: @escaping IntComparatorFunc<Spell>, propertyT
     return comparator
 }
 
+// Create the double-comparator function by SortField
+func spellComparator(sortField1: SortField, sortField2: SortField, reverse1: Bool, reverse2: Bool) -> ComparatorFunc<Spell> {
+    return doubleComparator(propertyTC1: sortField1.comparator(), propertyTC2: sortField2.comparator(), reverse1: reverse1, reverse2: reverse2)
+}
+
 
 // Create the double-comparator function by index
 func spellComparator(index1: Int, index2: Int, reverse1: Bool, reverse2: Bool) -> ComparatorFunc<Spell> {
 
     // Set each index to zero if it's too high
-    let idx1 = (index1 > spellPropertyComparators.count) ? 0 : index1
-    let idx2 = (index2 > spellPropertyComparators.count) ? 0 : index2
+    let idx1 = (index1 >= SortField.count) ? 0 : index1
+    let idx2 = (index2 >= SortField.count) ? 0 : index2
     
     // If the indices are the same, fall back to singleComparator
     if (idx1 == idx2) { return spellComparator(index: idx1, reverse: reverse1) }
     
-    // Get the properties
-    let propertyTC1 = spellPropertyComparators[idx1]
-    let propertyTC2 = spellPropertyComparators[idx2]
-    
-    // Call the property version of this function
-    return doubleComparator(propertyTC1: propertyTC1, propertyTC2: propertyTC2, reverse1: reverse1, reverse2: reverse2)
+    // Call the SortField version of the function
+    return spellComparator(sortField1: SortField(rawValue: idx1)!, sortField2: SortField(rawValue: idx2)!, reverse1: reverse1, reverse2: reverse2)
 }

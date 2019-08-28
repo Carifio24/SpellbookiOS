@@ -26,3 +26,16 @@ func fixEscapeCharacters(_ str : inout String) {
         str = str.replacingOccurrences(of: x.0, with: x.1)
     }
 }
+
+func getKeys<Key,Value>(dict: [Key:Value], value: Value) -> [Key] {
+    return (dict as NSDictionary).allKeys(for: value) as! [Key]
+}
+
+func getOneKey<Key,Value>(dict: [Key:Value], value: Value) -> Key? {
+    let keys = getKeys(dict: dict, value: value)
+    if keys.count > 0 {
+        return keys[0]
+    } else {
+        return nil
+    }
+}

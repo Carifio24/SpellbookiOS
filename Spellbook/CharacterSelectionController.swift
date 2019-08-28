@@ -21,13 +21,13 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     var height = CGFloat(0)
     var width = CGFloat(0)
     var characters: [String] = []
-    var mainTable: SpellTableViewController?
+    var main: ViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Get the current characters list
-        characters = mainTable!.characterList()
+        characters = main!.characterList()
         print("There are \(characters.count) characters")
         
         // Set the view dimensions
@@ -119,12 +119,12 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Pressed at \(indexPath.row)")
         print("Name is \(characters[indexPath.row])")
-        mainTable?.loadCharacterProfile(name: characters[indexPath.row])
+        main?.loadCharacterProfile(name: characters[indexPath.row])
         self.dismiss(animated: true, completion: dismissOperations)
     }
     
     @objc func newCharacterButtonPressed() {
-        let mustComplete = (mainTable?.characterList().count == 0)
+        let mustComplete = (main?.characterList().count == 0)
         print("Pressed new character button, mustComplete: \(mustComplete)")
         displayNewCharacterWindow(mustComplete: mustComplete)
     }
@@ -132,7 +132,7 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     func displayNewCharacterWindow(mustComplete: Bool=false) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "characterCreation") as! CharacterCreationController
-        controller.tableController = mainTable
+        controller.main = main
         
         let screenRect = UIScreen.main.bounds
         let popupWidth = CGFloat(0.8 * screenRect.size.width)
@@ -151,7 +151,7 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     func createDeletionPrompt(name: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "deletePrompt") as! DeletionPromptController
-        controller.mainTable = mainTable
+        controller.main = main
         controller.name = name
         
         let screenRect = UIScreen.main.bounds
@@ -165,13 +165,13 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     
     
     func updateCharacterTable() {
-        characters = (mainTable?.characterList())!
+        characters = (main?.characterList())!
         tableView.reloadData()
     }
     
     func dismissOperations() {
         print("In dismissOperations()")
-        mainTable?.selectionWindow = nil
+        main?.selectionWindow = nil
     }
     
     func pressNewCharacterButton() {

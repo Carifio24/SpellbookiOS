@@ -49,6 +49,7 @@ enum TimeUnit : Int, Unit {
                 }
             }
         }
+        print(s)
         throw SpellbookError.UnitStringError
     }
     

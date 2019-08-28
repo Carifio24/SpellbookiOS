@@ -30,9 +30,11 @@ class StatusPopupController: UIViewController {
     var spell: Spell = Spell()
     var height = CGFloat(0)
     var width = CGFloat(0)
-    var mainTable: SpellTableViewController? {
+    var mainTable: SpellTableViewController? = nil
+    var main: ViewController? = nil {
         didSet {
-            profile = mainTable!.characterProfile
+            mainTable = main!.tableController
+            profile = main!.characterProfile
         }
     }
     
@@ -41,9 +43,10 @@ class StatusPopupController: UIViewController {
         super.viewDidLoad()
 
         // Set the images for the icons
-        setFavoriteIcon((mainTable!.characterProfile.isFavorite(spell)))
-        setPreparedIcon(mainTable!.characterProfile.isPrepared(spell))
-        setKnownIcon(mainTable!.characterProfile.isKnown(spell))
+        let cp = main!.characterProfile
+        setFavoriteIcon((cp.isFavorite(spell)))
+        setPreparedIcon(cp.isPrepared(spell))
+        setKnownIcon(cp.isKnown(spell))
         
         // Add the button listeners
         favoriteButton.addTarget(self, action: #selector(onFavoriteButtonPressed), for: UIControl.Event.touchUpInside)
@@ -76,8 +79,8 @@ class StatusPopupController: UIViewController {
         let isProperty = !getter(spell)
         setter(spell, isProperty)
         iconSetter(isProperty)
-        mainTable!.filter()
-        mainTable!.saveCharacterProfile()
+        main!.filter()
+        main!.saveCharacterProfile()
     }
     
     @objc private func onFavoriteButtonPressed() {

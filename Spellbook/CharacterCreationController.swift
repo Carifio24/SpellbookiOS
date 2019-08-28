@@ -22,7 +22,7 @@ class CharacterCreationController: UIViewController {
     var width = CGFloat(0)
     let buttonWidth = CGFloat(75)
     let buttonHeight = CGFloat(40)
-    var tableController: SpellTableViewController?
+    var main: ViewController?
     private var cancelable = false
     
     private static let emptyNameMessage = "The character name cannot be empty"
@@ -91,7 +91,7 @@ class CharacterCreationController: UIViewController {
         createButton.frame = CGRect(x: createButtonX, y: buttonsY, width: buttonWidth, height: buttonHeight)
         print(createButtonX)
         
-        if tableController!.characterList().count == 0 {
+        if main!.characterList().count == 0 {
             cancelButton.isHidden = true
             cancelable = false
         }
@@ -101,7 +101,7 @@ class CharacterCreationController: UIViewController {
     @objc func createButtonPressed() {
         let name = nameEntry.text!
         
-        let characters = tableController!.characterList()
+        let characters = main!.characterList()
         let nChars = characters.count
         
         // Reject an empty name
@@ -128,18 +128,18 @@ class CharacterCreationController: UIViewController {
         }
         
         // Create the new character profile
-        let profile = CharacterProfile(nameIn: name)
-        let charFile: String = profile.name + ".json"
-        let profileLocation = tableController!.profilesDirectory.appendingPathComponent(charFile)
+        let profile = CharacterProfile(name: name)
+        let charFile: String = profile.name() + ".json"
+        let profileLocation = main!.profilesDirectory.appendingPathComponent(charFile)
         profile.save(filename: profileLocation)
         
         // Set it as the current profile if there are no others
         if nChars == 0 {
-            tableController!.setCharacterProfile(cp: profile)
+            main!.setCharacterProfile(cp: profile)
         }
         
         // Update the character selection window, if one is open
-        tableController!.updateSelectionList()
+        main!.updateSelectionList()
         
         // Dismiss this window
         self.dismiss(animated: true, completion: nil)

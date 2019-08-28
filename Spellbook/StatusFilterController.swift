@@ -10,13 +10,26 @@ import UIKit
 
 class StatusFilterController: UITableViewController {
     
-    let menuOptions: [String] = ["All spells", "Favorites", "Prepared", "Known"]
+    // The menu options are the names of the status filter options
+    // We generate the array via an IICE
+    let menuOptions: [String] = {
+        var options: [String]  = []
+        for sff in StatusFilterField.allCases {
+            options.append(sff.name())
+        }
+        return options
+    }()
+    
+    // This dictionary contains the appropriate image filename for each status filter field
+    // Keyed by the filter field's raw value
     let iconFilenames: [Int : String] = [
-    0 : "",
-    1 : "star_empty",
-    2 : "wand_empty",
-    3 : "book_empty"
+        StatusFilterField.All.rawValue : "",
+        StatusFilterField.Favorites.rawValue : "star_empty",
+        StatusFilterField.Prepared.rawValue : "wand_empty",
+        StatusFilterField.Known.rawValue : "book_empty"
     ]
+    
+    
     let cellReuseIdentifier = "statusMenuCell"
     
     let leftPadding = CGFloat(7)
@@ -43,8 +56,10 @@ class StatusFilterController: UITableViewController {
         // Don't let the table scroll
         tableView.isScrollEnabled = false
         
+        // Set the dimensions of child views
         setViewDimensions()
         
+        // Load the data
         tableView.reloadData()
 
         // Uncomment the following line to preserve selection between presentations
@@ -125,18 +140,22 @@ class StatusFilterController: UITableViewController {
         
         let revealController = UIApplication.shared.keyWindow!.rootViewController as! SWRevealViewController
         let mainWindowController = revealController.frontViewController as! ViewController
-        let spellTableController = mainWindowController.tableController!
         
         // Set the filtering variables accordingly
-        let index = indexPath.row
-        spellTableController.settings.setFilterFavorites(fav: index == 1)
-        spellTableController.settings.setFilterPrepared(prep: index == 2)
-        spellTableController.settings.setFilterKnown(known: index == 3)
+        print("The row is \(indexPath.row)")
+        let sff = StatusFilterField(rawValue: indexPath.row)!
+        print(sff.name())
+        mainWindowController.characterProfile.setStatusFilter(sff)
         mainWindowController.tableController?.filter()
-        spellTableController.saveSettings()
-
+        mainWindowController.saveCharacterProfile()
         revealController.revealToggle(self)
     }
+    
+//    func setFilter(_ sff: StatusFilterField) {
+//        let indexPath = IndexPath(row: sff.rawValue, section: 0)
+//        let cell = tableView.cellForRow(at: indexPath) as! SideMenuCell
+//        cell.cellSelected = true
+//    }
     
 
     /*

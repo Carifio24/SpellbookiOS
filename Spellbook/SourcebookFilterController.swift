@@ -10,7 +10,15 @@ import UIKit
 
 class SourcebookFilterController: UITableViewController {
     
-    let menuOptions: [String] = ["Player's Handbook", "Xanathar's Guide to Everything", "Sword Coast AG"]
+    // The menu options are the names of the sourcebooks, generated via an IICE
+    let menuOptions: [String] = {
+        var options: [String] = []
+        for sb in Sourcebook.allCases {
+            options.append(sb.name())
+        }
+        return options
+    }()
+    
     let cellReuseIdentifier = "sourcebookMenuCell"
     
     let leftPadding = CGFloat(7)
@@ -99,10 +107,9 @@ class SourcebookFilterController: UITableViewController {
         // Access the relevant controllers
         let revealController = UIApplication.shared.keyWindow!.rootViewController as! SWRevealViewController
         let mainWindowController = revealController.frontViewController as! ViewController
-        let spellTableController = mainWindowController.tableController!
         
         let sb = Sourcebook.init(rawValue: indexPath.row)!
-        let selected = spellTableController.settings.getFilter(sb: sb)
+        let selected = mainWindowController.characterProfile.getSourcebookFilter(sb)
         let cell = SideMenuCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: cellReuseIdentifier, selected: selected)
         //let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SideMenuCell
         cell.optionLabel.text = menuOptions[indexPath.row]
@@ -122,20 +129,31 @@ class SourcebookFilterController: UITableViewController {
         // Access the relevant controllers
         let revealController = UIApplication.shared.keyWindow!.rootViewController as! SWRevealViewController
         let mainWindowController = revealController.frontViewController as! ViewController
-        let spellTableController = mainWindowController.tableController!
+        let profile = mainWindowController.characterProfile
         
         // Set the filtering variables accordingly
         let index = indexPath.row
         let sb = Sourcebook.init(rawValue: index)!
-        spellTableController.settings.setBookFilter(sb: sb, tf: !spellTableController.settings.getFilter(sb: sb))
+        profile.setSourcebookFilter(book: sb, tf: !mainWindowController.characterProfile.getSourcebookFilter(sb))
         
-        spellTableController.filter()
+        mainWindowController.filter()
         let cell = self.tableView.cellForRow(at: indexPath) as! SideMenuCell
         cell.toggleSelected()
-        spellTableController.saveSettings()
+        mainWindowController.saveCharacterProfile()
         
         
         //revealController.revealToggle(self)
+    }
+    
+    func setFilters(profile: CharacterProfile) {
+        
+        // For each sourcebook, set the corresponding cell correctly
+        for sb in Sourcebook.allCases {
+            let b = profile.getSourcebookFilter(sb)
+            let indexPath = IndexPath(row: sb.rawValue, section: 0)
+            let cell = tableView.cellForRow(at: indexPath) as! SideMenuCell
+            cell.cellSelected = b
+        }
     }
 
     /*

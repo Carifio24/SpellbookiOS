@@ -23,7 +23,7 @@ class DeletionPromptController: UIViewController {
     let buttonHeight = CGFloat(40)
     
     var name: String?
-    var mainTable: SpellTableViewController?
+    var main: ViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +47,8 @@ class DeletionPromptController: UIViewController {
         let topPadding = CGFloat(3)
         let bottomPadding = CGFloat(3)
         
-        let usableWidth = width - leftPadding - rightPadding
-        let usableHeight = height - topPadding - bottomPadding
+        //let usableWidth = width - leftPadding - rightPadding
+        //let usableHeight = height - topPadding - bottomPadding
         
         backgroundView.frame = CGRect(x: 0, y: 0, width: width, height: height)
         
@@ -87,12 +87,12 @@ class DeletionPromptController: UIViewController {
     
     @objc func yesButtonPressed() {
         if name != nil {
-            mainTable?.deleteCharacterProfile(name: name!)
+            main!.deleteCharacterProfile(name: name!)
         }
         self.dismiss(animated: true, completion: { () -> Void in
-            self.mainTable?.selectionWindow?.dismiss(animated: true, completion: nil)
-            self.mainTable?.selectionWindow = nil
-            self.mainTable?.openCharacterCreationDialog(mustComplete: true)
+            self.main!.selectionWindow?.dismiss(animated: true, completion: nil)
+            self.main!.selectionWindow = nil
+            self.main!.openCharacterCreationDialog(mustComplete: true)
         })
     }
     
