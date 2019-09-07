@@ -20,11 +20,14 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     @IBOutlet weak var classPicker: UIPickerView!
     
-    @IBOutlet weak var searchButton: SearchButton!
+    @IBOutlet var clearButton: UIButton!
+    
+    @IBOutlet var searchButton: UIButton!
     
     @IBOutlet weak var searchField: UITextField!
     
     static let searchIcon = UIImage(named: "search_icon.png")?.withRenderingMode(.alwaysOriginal)
+    static let xIcon = UIImage(named: "x_icon.png")?.withRenderingMode(.alwaysOriginal)
     
     var boss: ViewController?
     
@@ -58,10 +61,6 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     let padding2Fraction = CGFloat(0.01)
     let classFraction = CGFloat(0.25)
     
-    // The vertical heights of the search elements
-    let searchButtonVertFraction = CGFloat(0.75)
-    let searchFieldVertFraction = CGFloat(0.75)
-    
     // The font for the pickers
     let pickerFont = UIFont.systemFont(ofSize: pickerFontSize())
     let searchFont = UIFont.systemFont(ofSize: CGFloat(20))
@@ -87,15 +86,27 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         sortArrow1.addTarget(self, action: #selector(sortArrowClicked(sender:)), for: .touchUpInside)
         sortArrow2.addTarget(self, action: #selector(sortArrowClicked(sender:)), for: .touchUpInside)
         
+        // Set the callback function for the clear button
+        clearButton.addTarget(self, action: #selector(clearButtonClicked(sender:)), for: .touchUpInside)
+        
         // Set the search button image
         searchButton.setImage(PickerViewController.searchIcon, for: .normal)
         searchButton.imageView?.contentMode = .scaleAspectFit
+        searchButton.imageView?.clipsToBounds = true
+        
+        // Set the clear button image
+        clearButton.setImage(PickerViewController.xIcon, for: .normal)
+        clearButton.imageView?.contentMode = .scaleAspectFit
+        clearButton.imageView?.clipsToBounds = true
         
         // Set the search field font
         searchField.font = searchFont
         
         // Set the element dimensions and positions
-        setViewDimensions()
+        //setViewDimensions()
+        
+        print("searchButton's height is: \(searchButton.frame.height)")
+        print("clearButton's height is: \(clearButton.frame.height)")
         
         // For testing only
         //sortPicker1.backgroundColor = UIColor.blue
@@ -120,7 +131,17 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let viewWidth = viewRect.size.width
         let viewHeight = viewRect.size.height
         
-        // Determine the sizes of the elements
+        // Padding amounts
+        let searchButtonLeftPadding = CGFloat(5)
+        
+        // Factors used in calculating heights
+        let pickerHeightFactor = CGFloat(1)
+        let pickerHeight = pickerHeightFactor * viewHeight
+        let searchButtonFactor = CGFloat(0.6)
+        let searchFieldFactor = CGFloat(0.7)
+        let clearButtonFactor = CGFloat(0.5)
+        
+        // Detrmine the sizes of the elements
         let sort1Width = sort1Fraction * viewWidth
         let arrow1Width = arrow1Fraction * viewWidth
         let padding1Width = padding1Fraction * viewWidth
@@ -128,40 +149,66 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let arrow2Width = arrow2Fraction * viewWidth
         let padding2Width = padding2Fraction * viewWidth
         let classWidth = classFraction * viewWidth
-        let searchWidth = viewWidth - sort1Width - arrow1Width - sort2Width - arrow2Width - classWidth
-        let searchFieldHeight = searchFieldVertFraction * viewHeight
-        let searchButtonHeight = searchButtonVertFraction * viewHeight
+        let searchButtonWidth = searchButtonFactor * (viewWidth - sort1Width - arrow1Width - sort2Width - arrow2Width - classWidth)
+        let searchButtonHeight = searchButtonWidth
+        let searchFieldHeight = searchFieldFactor * viewHeight
+        let clearButtonHeight = clearButtonFactor * viewHeight
+        let clearButtonWidth = clearButtonHeight
+        let searchFieldWidth = viewWidth - searchButtonWidth - clearButtonWidth - searchButtonLeftPadding - padding1Width - padding2Width
+        
+        print("searchFieldWidth is: \(searchFieldWidth)")
+        print("clearButtonWidth is: \(clearButtonWidth)")
+        print("searchButtonWidth is: \(searchButtonWidth)")
+        print("viewWidth is: \(viewWidth)")
+        
+        //sortPicker1.backgroundColor = UIColor.yellow
+        //searchButton.backgroundColor = UIColor.green
+        //sortArrow1.backgroundColor = UIColor.orange
+        //clearButton.backgroundColor = UIColor.purple
         
         // Set the element dimensions
         var currentX = CGFloat(0)
+        let pickerY = (viewHeight - pickerHeight) / 2
         
-        let sort1Frame = CGRect(x: currentX, y: 0, width: sort1Width, height: viewHeight)
+        let sort1Frame = CGRect(x: currentX, y: pickerY, width: sort1Width, height: pickerHeight)
         sortPicker1.frame = sort1Frame
         currentX += sort1Width
         
-        let arrow1Frame = CGRect(x: currentX, y: 0, width: arrow1Width, height: viewHeight)
+        let arrow1Frame = CGRect(x: currentX, y: pickerY, width: arrow1Width, height: pickerHeight)
         sortArrow1.frame = arrow1Frame
         currentX += arrow1Width + padding1Width
         
-        let sort2Frame = CGRect(x: currentX, y: 0, width: sort2Width, height: viewHeight)
+        let sort2Frame = CGRect(x: currentX, y: pickerY, width: sort2Width, height: pickerHeight)
         sortPicker2.frame = sort2Frame
         currentX += sort2Width
         
-        let arrow2Frame = CGRect(x: currentX, y: 0, width: arrow2Width, height: viewHeight)
+        let arrow2Frame = CGRect(x: currentX, y: pickerY, width: arrow2Width, height: pickerHeight)
         sortArrow2.frame = arrow2Frame
         currentX += arrow2Width + padding2Width
         
-        let classFrame = CGRect(x: currentX, y: 0, width: classWidth, height: viewHeight)
+        let classFrame = CGRect(x: currentX, y: pickerY, width: classWidth, height: pickerHeight)
         classPicker.frame = classFrame
-        currentX += classWidth
+        currentX += classWidth + searchButtonLeftPadding
         
-        let searchFrame = CGRect(x: currentX, y: (viewHeight - searchButtonHeight)/2, width: searchWidth, height: searchButtonHeight)
-        searchButton.frame = searchFrame
+        let searchFieldY = (viewHeight - searchFieldHeight) / 2
+        let searchButtonY = 1.2 * (viewHeight - searchButtonHeight) / 2
+        let clearButtonY = (viewHeight - clearButtonHeight) / 2
+        print("searchButton x is: \(currentX)")
+        let searchButtonFrame = CGRect(x: currentX, y: searchButtonY, width: searchButtonWidth, height: searchButtonHeight)
+        searchButton.frame = searchButtonFrame
         
-        // The search field is initially hidden, but it takes up the same space as the three pickers
+        // The clear button and the search field are initially hidden, but take up the same space as the three pickers and the two search arrows
         // The search field is vertically centered within the view
-        let searchFieldFrame = CGRect(x: 0, y: (viewHeight - searchFieldHeight)/2, width: sort1Width + sort2Width + classWidth, height: searchFieldHeight)
+        let searchFieldFrame = CGRect(x: 0, y: searchFieldY, width: searchFieldWidth, height: searchFieldHeight)
         searchField.frame = searchFieldFrame
+        
+        let clearFrame = CGRect(x: searchFieldWidth, y: clearButtonY, width: clearButtonWidth, height: clearButtonHeight)
+        clearButton.frame = clearFrame
+        
+        print("searchHeight is: \(searchButtonHeight)")
+        print("searchFieldHeight is: \(searchFieldHeight)")
+        print("searchButton's height is: \(searchButton.frame.height)")
+        print("clearButton's height is: \(clearButton.frame.height)")
         
     }
     
@@ -251,6 +298,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             sortArrow2.isHidden = !sortArrow2.isHidden
             classPicker.isHidden = !classPicker.isHidden
             searchField.isHidden = !searchField.isHidden
+            clearButton.isHidden = !clearButton.isHidden
         }
         
         @objc func searchFieldDidChange(textField: UITextField) {
@@ -266,6 +314,10 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         boss!.characterProfile.setFirstSortReverse(reverse1)
         boss!.characterProfile.setSecondSortReverse(reverse2)
         boss!.saveCharacterProfile()
+    }
+    
+    @objc func clearButtonClicked(sender: UIButton) {
+        searchField.text = ""
     }
     
     func setSortStatus(sort1: SortField, sort2: SortField, reverse1: Bool, reverse2: Bool) {
@@ -294,15 +346,5 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             classPicker.selectRow(caster!.rawValue-1, inComponent: 0, animated: false)
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

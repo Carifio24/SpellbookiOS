@@ -110,7 +110,12 @@
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
                             </pickerView>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" id="KPX-AI-vxp" customClass="SearchButton" customModule="Spellbook" customModuleProvider="target">
+                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kXZ-OG-M3q">
+                                <rect key="frame" x="170" y="7" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KPX-AI-vxp">
                                 <rect key="frame" x="327" y="6" width="39" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -130,7 +135,8 @@
                     </view>
                     <connections>
                         <outlet property="classPicker" destination="TNy-15-pIK" id="n99-mm-VRM"/>
-                        <outlet property="searchButton" destination="KPX-AI-vxp" id="Wwy-qa-2fC"/>
+                        <outlet property="clearButton" destination="kXZ-OG-M3q" id="fhD-O7-ida"/>
+                        <outlet property="searchButton" destination="KPX-AI-vxp" id="QtA-4l-MCR"/>
                         <outlet property="searchField" destination="baw-jg-Jp1" id="Jqb-46-16q"/>
                         <outlet property="sortArrow1" destination="9rj-pf-HV4" id="yW6-Se-11z"/>
                         <outlet property="sortArrow2" destination="UVo-Tc-w4S" id="aF4-eQ-cYX"/>

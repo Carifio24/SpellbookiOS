@@ -30,7 +30,7 @@ class LabelViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         boss = self.parent as? ViewController
-        setViewDimensions()
+        //setViewDimensions()
     }
     
     // Set the sizes and positions for the labels
@@ -60,6 +60,7 @@ class LabelViewController: UIViewController {
         
         let levelFrame = CGRect(x: nameWidth + schoolWidth, y: 0, width: levelWidth, height: viewHeight)
         levelLabel.frame = levelFrame
+        
     }
     
 

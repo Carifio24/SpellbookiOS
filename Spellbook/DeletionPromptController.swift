@@ -92,7 +92,8 @@ class DeletionPromptController: UIViewController {
         self.dismiss(animated: true, completion: { () -> Void in
             self.main!.selectionWindow?.dismiss(animated: true, completion: nil)
             self.main!.selectionWindow = nil
-            self.main!.openCharacterCreationDialog(mustComplete: true)
+            let creationNecessary = (self.main!.characterList().count == 0)
+            self.main!.openCharacterCreationDialog(mustComplete: creationNecessary)
         })
     }
     

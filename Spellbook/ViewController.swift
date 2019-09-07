@@ -89,9 +89,12 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        // Everything in this method is setup, so we can just return after the first time
+        // This stuff isn't in viewDidLoad so that it can access the necessary subviews
+        // as this calls some subview methods as well as sets dimensions
         if !firstAppearance { return }
         
-        // Do any additional setup after loading the view, typically from a nib.
+        // Set the sizes of the container views (there are no other top level elements)
         let screenRect = UIScreen.main.bounds
         setContainerDimensions(screenWidth: screenRect.size.width, screenHeight: screenRect.size.height)
         
@@ -100,7 +103,7 @@ class ViewController: UIViewController {
         tapper.cancelsTouchesInView = false
         view.addGestureRecognizer(tapper)
         
-        // Pull out the side menu
+        // This adds the gesture recognizer for pulling out the side menu
         view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         
         // Get the side menu controller
@@ -136,13 +139,16 @@ class ViewController: UIViewController {
             openCharacterCreationDialog(mustComplete: true)
         }
         
-        // Do an initial filtering
-        filter()
-        
+        // The view has appeared, so we can set firstAppearance to false
         firstAppearance = false
+        
+        // Testing
+        //pickerView.backgroundColor = UIColor.red
+        //labelView.backgroundColor = UIColor.blue
         
     }
     
+    // This function sets the sizes of the top-level container views
     func setContainerDimensions(screenWidth: CGFloat, screenHeight: CGFloat) {
         
         //print("Screen width: \(screenWidth)")
@@ -163,9 +169,11 @@ class ViewController: UIViewController {
         let usableWidth = screenWidth - leftPadding - rightPadding
         
         // Set the dimensions for the child containers
-        let sortHeight = max(min(sortFraction * usableHeight, 100), 70)
+        let sortHeight = max(min(sortFraction * usableHeight, 100), 60)
         let labelHeight = min(labelFraction * usableHeight, 70)
         let tableHeight = usableHeight - sortHeight - labelHeight
+        print("sortHeight is \(sortHeight)")
+        print("labelHeight is \(labelHeight)")
         
         // Set the relevant dimensions to the elements
         // First the PickerViewController
@@ -208,6 +216,9 @@ class ViewController: UIViewController {
         }
     }
     
+    // This is supposed to handle rotations, etc.
+    // so we re-call setContainerDimensions and change the size associated to SpellDataCell
+    // But for the moment, the SpellDataCell change doesn't work correctly, and so rotation is disabled
     override func viewWillTransition(to size: CGSize,
                                      with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -259,6 +270,7 @@ class ViewController: UIViewController {
         }
     }
     
+    // This method gets the 
     func setSortSettings() {
         let sf1 = characterProfile.getFirstSortField()
         let sf2 = characterProfile.getSecondSortField()
@@ -299,6 +311,7 @@ class ViewController: UIViewController {
             }
         } else {
             //print("Error getting settings")
+            settings = Settings()
             return
         }
     }
@@ -375,7 +388,7 @@ class ViewController: UIViewController {
         //print("mustComplete: \(mustComplete)")
         //print("selectionWindow condition: \(selectionWindow == nil)")
         
-        if mustComplete && (selectionWindow == nil) {
+        if selectionWindow == nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "characterCreation") as! CharacterCreationController
             controller.main = self

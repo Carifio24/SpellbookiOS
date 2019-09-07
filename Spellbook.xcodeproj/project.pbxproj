@@ -58,6 +58,7 @@
 		39A268CE223853680032158F /* SourcebookFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A268CD223853680032158F /* SourcebookFilterController.swift */; };
 		39A268D02239960C0032158F /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A268CF2239960C0032158F /* SideMenuCell.swift */; };
 		39B0C11F230F514C00981A7E /* SortField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B0C11E230F514C00981A7E /* SortField.swift */; };
+		39B0C121231EE41700981A7E /* x_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 39B0C120231EE41200981A7E /* x_icon.png */; };
 		39C5B23221CAE121005F08DA /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C5B23121CAE121005F08DA /* SWRevealViewController.m */; };
 		39C5B23421CAF3CB005F08DA /* StatusFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C5B23321CAF3CB005F08DA /* StatusFilterController.swift */; };
 		39C5B23D21CF03A8005F08DA /* star_filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C5B23B21CF03A1005F08DA /* star_filled.png */; };
@@ -153,6 +154,7 @@
 		39A268CD223853680032158F /* SourcebookFilterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourcebookFilterController.swift; sourceTree = "<group>"; };
 		39A268CF2239960C0032158F /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
 		39B0C11E230F514C00981A7E /* SortField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortField.swift; sourceTree = "<group>"; };
+		39B0C120231EE41200981A7E /* x_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x_icon.png; sourceTree = SOURCE_ROOT; };
 		39C5B22F21CAE11F005F08DA /* Spellbook-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Spellbook-Bridging-Header.h"; sourceTree = "<group>"; };
 		39C5B23021CAE120005F08DA /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = "../../SWRevealViewController-master/SWRevealViewController/SWRevealViewController.h"; sourceTree = "<group>"; };
 		39C5B23121CAE121005F08DA /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = "../../SWRevealViewController-master/SWRevealViewController/SWRevealViewController.m"; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				39EB759723077447001CA1EF /* down_arrow.png */,
 				39EB759623077446001CA1EF /* up_arrow.png */,
 				39522D1A21ADF99500A4DBCE /* PickerViewController.swift */,
+				39B0C120231EE41200981A7E /* x_icon.png */,
 				39EB759A23085368001CA1EF /* iOSUtils.swift */,
 				395F3A93226B604500D7B382 /* PopupViewController.swift */,
 				397EE99721ACAF9B00B116B0 /* School.swift */,
@@ -439,6 +442,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39EB759823077447001CA1EF /* up_arrow.png in Resources */,
+				39B0C121231EE41700981A7E /* x_icon.png in Resources */,
 				399D9E5B223A7F580054BA8F /* book_filled.png in Resources */,
 				399D9E64223AEF660054BA8F /* cloister_black.ttf in Resources */,
 				399D9E5C223A7F580054BA8F /* book_empty.png in Resources */,

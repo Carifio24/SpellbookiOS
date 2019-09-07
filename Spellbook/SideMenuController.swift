@@ -97,6 +97,9 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         if (name != nil) {
             characterLabel.text = "Character: " + name!
         }
+        if statusController != nil {
+            statusController!.setFilter(main!.characterProfile.getStatusFilter())
+        }
         
     }
     
@@ -140,7 +143,9 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     }
 
     func setFilterStatus(profile: CharacterProfile) {
-        //statusController.setFilter(profile.getStatusFilter())
+        if statusController != nil {
+            statusController!.setFilter(profile.getStatusFilter())
+        }
         //sourcebookController!.setFilters(profile: profile)
     }
     

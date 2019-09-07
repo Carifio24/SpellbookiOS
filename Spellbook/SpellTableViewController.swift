@@ -80,6 +80,9 @@ class SpellTableViewController: UITableViewController {
             tableView.reloadData()
             firstAppear = false
         }
+        
+        // Initial filtering
+        filter()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -205,6 +208,11 @@ class SpellTableViewController: UITableViewController {
         
         // During initial setup
         if (spells.count == 0) { return }
+        
+        // Testing
+        print("Favorites selected: \(main?.characterProfile.favoritesSelected())")
+        print("Known selected: \(main?.characterProfile.knownSelected())")
+        print("Prepared selected: \(main?.characterProfile.preparedSelected())")
         
         // First, we filter the data
         let classIndex = main?.pickerController?.classPicker.selectedRow(inComponent: 0)
