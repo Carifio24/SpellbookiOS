@@ -343,7 +343,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         if caster == nil {
             classPicker.selectRow(0, inComponent: 0, animated: false)
         } else {
-            classPicker.selectRow(caster!.rawValue-1, inComponent: 0, animated: false)
+            classPicker.selectRow(caster!.rawValue + 1, inComponent: 0, animated: false)
         }
     }
 
