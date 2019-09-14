@@ -16,6 +16,7 @@ class SpellWindowController: UIViewController {
     // Font sizes
     static let nameSize = CGFloat(30)
     static let fontSize = CGFloat(15)
+    static let schoolLevelFontSize = CGFloat(19)
     
     // Favorite/not favorite images
     static let isFavoriteImage = UIImage(named: "star_filled.png")?.withRenderingMode(.alwaysOriginal)
@@ -63,50 +64,7 @@ class SpellWindowController: UIViewController {
     // The spell for the window, and its (current) index in the array
     var spellIndex: Int = 0
     var spell = Spell() {
-        didSet {
-           
-            // Set the attributed text on the name label
-            //spellNameLabel.attributedText = nameText()
-            spellNameLabel.text = spell.name
-            self.view.bringSubviewToFront(spellNameLabel)
-            
-            // Do the same for the body of the spell text
-            let allText = NSMutableAttributedString()
-            allText.append(spellText())
-            spellTextLabel.attributedText = allText
-            self.view.bringSubviewToFront(spellTextLabel)
-            
-            // Set the view dimensions
-            setDimensions()
-            
-            // Get the character profile
-            let characterProfile = main.characterProfile
-            
-            // Set the button images
-            // First, the favorite button
-            let favoriteImage = characterProfile.isFavorite(spell) ? SpellWindowController.isFavoriteImage : SpellWindowController.notFavoriteImage
-            favoriteButton.setImage(favoriteImage, for: .normal)
-            favoriteButton.imageView?.contentMode = .scaleAspectFit
-            self.view.bringSubviewToFront(favoriteButton)
-            
-            // Next, the prepared button
-            let preparedImage = characterProfile.isPrepared(spell) ? SpellWindowController.isPreparedImage : SpellWindowController.notPreparedImage
-            preparedButton.setImage(preparedImage, for: .normal)
-            preparedButton.imageView?.contentMode = .scaleAspectFit
-            self.view.bringSubviewToFront(preparedButton)
-            
-            // Finally, the known button
-            let knownImage = characterProfile.isKnown(spell) ? SpellWindowController.isKnownImage : SpellWindowController.notKnownImage
-            knownButton.setImage(knownImage, for: .normal)
-            knownButton.imageView?.contentMode = .scaleAspectFit
-            self.view.bringSubviewToFront(knownButton)
-            
-            // Set the button functions
-            favoriteButton.addTarget(self, action: #selector(favoriteButtonPressed), for: UIControl.Event.touchUpInside)
-            preparedButton.addTarget(self, action: #selector(preparedButtonPressed), for: UIControl.Event.touchUpInside)
-            knownButton.addTarget(self, action: #selector(knownButtonPressed), for: UIControl.Event.touchUpInside)
-            
-        }
+        didSet { setSpell(spell) }
     }
 
     override func viewDidLoad() {
@@ -118,8 +76,6 @@ class SpellWindowController: UIViewController {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(swipeRight)
-        
-        // Do any additional setup after loading the view.
     }
     
     @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
@@ -135,6 +91,49 @@ class SpellWindowController: UIViewController {
         }
     }
     
+    func setSpell(_ spell: Spell) {
+        
+        // Set the attributed text on the name label
+        //spellNameLabel.attributedText = nameText()
+        spellNameLabel.text = spell.name
+        self.view.bringSubviewToFront(spellNameLabel)
+        
+        // Do the same for the body of the spell text
+        spellTextLabel.attributedText = spellText()
+        self.view.bringSubviewToFront(spellTextLabel)
+        
+        // Set the view dimensions
+        setDimensions()
+        
+        // Get the character profile
+        let characterProfile = main.characterProfile
+        
+        // Set the button images
+        // First, the favorite button
+        let favoriteImage = characterProfile.isFavorite(spell) ? SpellWindowController.isFavoriteImage : SpellWindowController.notFavoriteImage
+        favoriteButton.setImage(favoriteImage, for: .normal)
+        favoriteButton.imageView?.contentMode = .scaleAspectFit
+        self.view.bringSubviewToFront(favoriteButton)
+        
+        // Next, the prepared button
+        let preparedImage = characterProfile.isPrepared(spell) ? SpellWindowController.isPreparedImage : SpellWindowController.notPreparedImage
+        preparedButton.setImage(preparedImage, for: .normal)
+        preparedButton.imageView?.contentMode = .scaleAspectFit
+        self.view.bringSubviewToFront(preparedButton)
+        
+        // Finally, the known button
+        let knownImage = characterProfile.isKnown(spell) ? SpellWindowController.isKnownImage : SpellWindowController.notKnownImage
+        knownButton.setImage(knownImage, for: .normal)
+        knownButton.imageView?.contentMode = .scaleAspectFit
+        self.view.bringSubviewToFront(knownButton)
+        
+        // Set the button functions
+        favoriteButton.addTarget(self, action: #selector(favoriteButtonPressed), for: UIControl.Event.touchUpInside)
+        preparedButton.addTarget(self, action: #selector(preparedButtonPressed), for: UIControl.Event.touchUpInside)
+        knownButton.addTarget(self, action: #selector(knownButtonPressed), for: UIControl.Event.touchUpInside)
+    }
+    
+    
     func nameText() -> NSMutableAttributedString {
         return NSMutableAttributedString(string: spell.name, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: SpellWindowController.nameSize)])
     }
@@ -145,7 +144,7 @@ class SpellWindowController: UIViewController {
         let boldStr = name + toadd
         let fontSize =  SpellWindowController.fontSize
         let font = UIFont.systemFont(ofSize: fontSize)
-        let boldFontAttribute: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: font.pointSize)]
+        let boldFontAttribute: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: font.pointSize)]
          let attributedName = NSMutableAttributedString(string: boldStr, attributes: boldFontAttribute)
         let attributedText = NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.font: font])
         let combined = NSMutableAttributedString()
@@ -154,13 +153,40 @@ class SpellWindowController: UIViewController {
         return combined
     }
     
+    func schoolLevelText(_ s: Spell) -> NSMutableAttributedString {
+        let font = UIFont.systemFont(ofSize: SpellWindowController.schoolLevelFontSize)
+        let italicFontAttribute : [NSAttributedString.Key : Any] = [NSAttributedString.Key.font : UIFont.italicSystemFont(ofSize: font.pointSize)]
+        
+        var text = String(s.level)
+        switch (s.level) {
+        case 0:
+            text = s.school.name() + " cantrip"
+            return NSMutableAttributedString(string: text, attributes: italicFontAttribute)
+        case 1:
+            text.append("st-level ")
+            break
+        case 2:
+            text.append("nd-level ")
+            break
+        case 3:
+            text.append("rd-level ")
+            break
+        default:
+            text.append("th-level ")
+        }
+        text = text + s.school.name().lowercased()
+        if s.ritual {
+            text = text + " (ritual)"
+        }
+        return NSMutableAttributedString(string: text, attributes: italicFontAttribute)
+    }
+    
     
     func spellText() -> NSMutableAttributedString {
         
         // We go through each property one by one, create the relevant text, then join them together
         // Note that the spell name gets its own text field
-        let schoolText = propertyText(name: "School", text: Spellbook.schoolNames[spell.school.rawValue])
-        let levelText = propertyText(name: "Level", text: String(spell.level))
+        let schoolText = schoolLevelText(spell)
         let castingTimeText = propertyText(name: "Casting time", text: spell.castingTime)
         let durationText = propertyText(name: "Duration", text: spell.duration.string())
         let sourcebookCode = Spellbook.sourcebookCodes[spell.sourcebook.rawValue].uppercased()
@@ -168,7 +194,6 @@ class SpellWindowController: UIViewController {
         let componentsText = propertyText(name: "Components", text: spell.componentsString())
         let materialsText = propertyText(name: "Materials", text: spell.material)
         let rangeText = propertyText(name: "Range", text: spell.range.string())
-        let ritualText = propertyText(name: "Ritual", text: bool_to_yn(yn: spell.ritual))
         let concentrationText = propertyText(name: "Concentration", text: bool_to_yn(yn: spell.concentration))
         let classesText = propertyText(name: "Classes", text: spell.classesString())
         let descriptionText = propertyText(name: "Description", text: spell.description, addLine: true)
@@ -177,19 +202,16 @@ class SpellWindowController: UIViewController {
         // Now combine everything together
         let spellText = NSMutableAttributedString()
         let attrNewline = NSAttributedString(string: "\n")
-        spellText.append(locationText)
-        spellText.append(attrNewline)
         spellText.append(schoolText)
         spellText.append(attrNewline)
-        spellText.append(levelText)
-        spellText.append(attrNewline)
-        spellText.append(ritualText)
+        //spellText.append(attrNewline)
+        spellText.append(locationText)
         spellText.append(attrNewline)
         spellText.append(concentrationText)
         spellText.append(attrNewline)
-        spellText.append(durationText)
-        spellText.append(attrNewline)
         spellText.append(castingTimeText)
+        spellText.append(attrNewline)
+        spellText.append(rangeText)
         spellText.append(attrNewline)
         spellText.append(componentsText)
         spellText.append(attrNewline)
@@ -197,7 +219,7 @@ class SpellWindowController: UIViewController {
             spellText.append(materialsText)
             spellText.append(attrNewline)
         }
-        spellText.append(rangeText)
+        spellText.append(durationText)
         spellText.append(attrNewline)
         spellText.append(classesText)
         spellText.append(attrNewline)
@@ -255,7 +277,7 @@ class SpellWindowController: UIViewController {
         
         // Finally, the spell text
         spellTextLabel.frame.origin.x = 0
-        spellTextLabel.frame.origin.y = nameLabelHeight
+        spellTextLabel.frame.origin.y = spellNameLabel.frame.size.height
         spellTextLabel.frame.size.width = scrollWidth
         spellTextLabel.sizeToFit()
         

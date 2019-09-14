@@ -4,7 +4,7 @@ enum School: Int {
     static let nameMap: [School:String] = [
         Abjuration : "Abjuration",
         Conjuration : "Conjuration",
-        Divination : "Diviniation",
+        Divination : "Divination",
         Enchantment : "Enchantment",
         Evocation : "Evocation",
         Illusion : "Illusion",
