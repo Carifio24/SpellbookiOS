@@ -81,8 +81,9 @@ class SpellTableViewController: UITableViewController {
             firstAppear = false
         }
         
-        // Initial filtering
+        // Initial filtering and sorting
         filter()
+        sort()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -180,6 +181,12 @@ class SpellTableViewController: UITableViewController {
         //print(index2)
         tableView.reloadData()
         //print("Done reloading")
+    }
+    
+    func sort() {
+        let pickerController = main?.pickerController
+        let ( index1, index2, reverse1, reverse2 ) = pickerController!.getSortValues()
+        doubleSort(index1: index1, index2: index2, reverse1: reverse1, reverse2: reverse2)
     }
     
     // Function to entirely unfilter - i.e., display everything

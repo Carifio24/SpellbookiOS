@@ -239,6 +239,8 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         return label
     }
     
+    // Get the current state of the widgets that affect sorting
+    // Namely, the two sort picker and the direction arrows
     func getSortValues() -> (Int,Int,Bool,Bool) {
         let index1 = sortPicker1.selectedRow(inComponent: 0)
         let index2 = sortPicker2.selectedRow(inComponent: 0)
@@ -247,7 +249,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         return ( index1, index2, reverse1, reverse2 )
     }
     
-    // When an option is changed
+    // When the selected onption on one of the pickers is changed
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         // If one of the sort field pickers is changed

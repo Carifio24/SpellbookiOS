@@ -455,4 +455,7 @@ class ViewController: UIViewController {
     // Wrapper around table controller functionality
     func filter() { tableController!.filter() }
     
+    // Wrapper around table controller functionality
+    func sort() { tableController!.sort() }
+    
 }
