@@ -172,8 +172,8 @@ class ViewController: UIViewController {
         let sortHeight = max(min(sortFraction * usableHeight, 100), 60)
         let labelHeight = min(labelFraction * usableHeight, 70)
         let tableHeight = usableHeight - sortHeight - labelHeight
-        print("sortHeight is \(sortHeight)")
-        print("labelHeight is \(labelHeight)")
+        //print("sortHeight is \(sortHeight)")
+        //print("labelHeight is \(labelHeight)")
         
         // Set the relevant dimensions to the elements
         // First the PickerViewController
@@ -260,7 +260,7 @@ class ViewController: UIViewController {
     }
     
     func setSideMenuCharacterName() {
-        print("Setting side menu name with \(characterProfile.name())")
+        //print("Setting side menu name with \(characterProfile.name())")
         if (sideMenuController!.characterLabel != nil) {
             //print("Here")
             sideMenuController!.characterLabel.text = "Character: " + characterProfile.name()
@@ -327,13 +327,13 @@ class ViewController: UIViewController {
         if var profileText = try? String(contentsOf: location) {
             do {
                 fixEscapeCharacters(&profileText)
-                print("profileText is:\n\(profileText)")
+                //print("profileText is:\n\(profileText)")
                 let profileSION = SION(json: profileText)
                 let profile = CharacterProfile(sion: profileSION)
                 setCharacterProfile(cp: profile)
             }
         } else {
-            print("Error reading file")
+            print("Error reading profile")
             settings.setCharacterName(name: nil)
             return
         }
@@ -435,13 +435,13 @@ class ViewController: UIViewController {
     
     func saveSpellsWithProperty(propGetter: SpellStatusGetter, filename: String) {
         let fileLocation = documentsDirectory.appendingPathComponent(filename)
-        print("Saving spells to:")
-        print(fileLocation)
+        //print("Saving spells to:")
+        //print(fileLocation)
         var propNames: [String] = []
         for spell in tableController!.spells {
             if propGetter(spell.0) {
                 propNames.append(spell.0.name)
-                print(spell.0.name)
+                //print(spell.0.name)
             }
         }
         let propString = propNames.joined(separator: "\n")

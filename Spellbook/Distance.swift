@@ -18,6 +18,8 @@ enum DistanceType: Int, Comparable {
             return "Self"
         case .Touch:
             return "Touch"
+        case .Sight:
+            return "Sight"
         case .Ranged:
             return "Ranged"
         case .Unlimited:

@@ -10,7 +10,7 @@ import Foundation
 
 // An enum class for the various types of Distance
 enum DurationType: Int, Comparable {
-    case Instantaneous=0, Spanning, Special, UntilDispelled
+    case Special=0, Instantaneous, Spanning, UntilDispelled
     
     func name() -> String {
         switch (self) {

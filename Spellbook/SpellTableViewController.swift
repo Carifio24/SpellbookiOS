@@ -121,6 +121,7 @@ class SpellTableViewController: UITableViewController {
             cell.nameLabel.textColor = UIColor.black
             cell.schoolLabel.textColor = UIColor.black
             cell.levelLabel.textColor = UIColor.black
+            cell.isUserInteractionEnabled = true
         } else {
             cell.nameLabel.text = "XXX"
             cell.schoolLabel.text = "XXX"
@@ -129,7 +130,6 @@ class SpellTableViewController: UITableViewController {
             cell.schoolLabel.textColor = UIColor.clear
             cell.levelLabel.textColor = UIColor.clear
             cell.isUserInteractionEnabled = false
-            //cell.selectionStyle = .none
         }
         cell.backgroundColor = UIColor.clear
         return cell
@@ -217,9 +217,9 @@ class SpellTableViewController: UITableViewController {
         if (spells.count == 0) { return }
         
         // Testing
-        print("Favorites selected: \(main?.characterProfile.favoritesSelected())")
-        print("Known selected: \(main?.characterProfile.knownSelected())")
-        print("Prepared selected: \(main?.characterProfile.preparedSelected())")
+        //print("Favorites selected: \(main?.characterProfile.favoritesSelected())")
+        //print("Known selected: \(main?.characterProfile.knownSelected())")
+        //print("Prepared selected: \(main?.characterProfile.preparedSelected())")
         
         // First, we filter the data
         let classIndex = main?.pickerController?.classPicker.selectedRow(inComponent: 0)
@@ -247,17 +247,25 @@ class SpellTableViewController: UITableViewController {
     // Set what happens when a cell is selected
     // For us, that's creating a segue to a view with the spell info
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //print(boss!)
-        //print(boss!.spellWindowController!)
-        //boss?.spellWindowController!.spell = spellArray[indexPath.row]
-        //boss?.performSegue(withIdentifier: spellWindowSegueIdentifier, sender: nil)
-        //print("spells.count is \(spellArray.count)")
-        //print("indexPath.row is \(indexPath.row)")
+        
+        // Debugging section
+//        print("spells.count is \(spellArray.count)")
+//        print("indexPath.row is \(indexPath.row)")
+//        let s = paddedArray[indexPath.row]
+//        print("Spell name is: \(s.name)")
+//        let fav: Bool = main!.characterProfile.isFavorite(s)
+//        let pr: Bool = main!.characterProfile.isPrepared(s)
+//        let kw: Bool = main!.characterProfile.isKnown(s)
+//        print("Spell is favorited: \(fav)")
+//        print("Spell is prepared: \(pr)")
+//        print("Spell is known: \(kw)")
+//        print("Selected row for spell: \(paddedArray[indexPath.row].name)")
+        
+        
         if indexPath.row >= spellArray.count { return }
         let storyboard = self.storyboard
         let spellWindowController = storyboard?.instantiateViewController(withIdentifier: spellWindowIdentifier) as! SpellWindowController
         self.present(spellWindowController, animated: true, completion: nil)
-        print("Selected row for spell: \(paddedArray[indexPath.row].name)")
         spellWindowController.spellIndex = indexPath.row
         spellWindowController.spell = paddedArray[indexPath.row]
     }

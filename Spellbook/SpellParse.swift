@@ -54,7 +54,9 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
     }
     do {
         try b.setRange(Distance.fromString(obj["range"].string!))
-    } catch {
+    } catch let e {
+        print("\(e)")
+        print("Defaulted to empty distance")
         b.setRange(Distance())
     }
     

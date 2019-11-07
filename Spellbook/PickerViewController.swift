@@ -104,9 +104,8 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         // Set the element dimensions and positions
         //setViewDimensions()
-        
-        print("searchButton's height is: \(searchButton.frame.height)")
-        print("clearButton's height is: \(clearButton.frame.height)")
+        //print("searchButton's height is: \(searchButton.frame.height)")
+        //print("clearButton's height is: \(clearButton.frame.height)")
         
         // For testing only
         //sortPicker1.backgroundColor = UIColor.blue
@@ -156,10 +155,10 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let clearButtonWidth = clearButtonHeight
         let searchFieldWidth = viewWidth - searchButtonWidth - clearButtonWidth - searchButtonLeftPadding - padding1Width - padding2Width
         
-        print("searchFieldWidth is: \(searchFieldWidth)")
-        print("clearButtonWidth is: \(clearButtonWidth)")
-        print("searchButtonWidth is: \(searchButtonWidth)")
-        print("viewWidth is: \(viewWidth)")
+        //print("searchFieldWidth is: \(searchFieldWidth)")
+        //print("clearButtonWidth is: \(clearButtonWidth)")
+        //print("searchButtonWidth is: \(searchButtonWidth)")
+        //print("viewWidth is: \(viewWidth)")
         
         //sortPicker1.backgroundColor = UIColor.yellow
         //searchButton.backgroundColor = UIColor.green
@@ -193,7 +192,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let searchFieldY = (viewHeight - searchFieldHeight) / 2
         let searchButtonY = 1.2 * (viewHeight - searchButtonHeight) / 2
         let clearButtonY = (viewHeight - clearButtonHeight) / 2
-        print("searchButton x is: \(currentX)")
+        //print("searchButton x is: \(currentX)")
         let searchButtonFrame = CGRect(x: currentX, y: searchButtonY, width: searchButtonWidth, height: searchButtonHeight)
         searchButton.frame = searchButtonFrame
         
@@ -205,10 +204,10 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let clearFrame = CGRect(x: searchFieldWidth, y: clearButtonY, width: clearButtonWidth, height: clearButtonHeight)
         clearButton.frame = clearFrame
         
-        print("searchHeight is: \(searchButtonHeight)")
-        print("searchFieldHeight is: \(searchFieldHeight)")
-        print("searchButton's height is: \(searchButton.frame.height)")
-        print("clearButton's height is: \(clearButton.frame.height)")
+        //print("searchHeight is: \(searchButtonHeight)")
+        //print("searchFieldHeight is: \(searchFieldHeight)")
+        //print("searchButton's height is: \(searchButton.frame.height)")
+        //print("clearButton's height is: \(clearButton.frame.height)")
         
     }
     
@@ -292,20 +291,20 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
     }
         
-        // What happens when the search button is clicked
-        @objc func searchButtonClicked(sender: UIButton) {
-            sortPicker1.isHidden = !sortPicker1.isHidden
-            sortArrow1.isHidden = !sortArrow1.isHidden
-            sortPicker2.isHidden = !sortPicker2.isHidden
-            sortArrow2.isHidden = !sortArrow2.isHidden
-            classPicker.isHidden = !classPicker.isHidden
-            searchField.isHidden = !searchField.isHidden
-            clearButton.isHidden = !clearButton.isHidden
-        }
-        
-        @objc func searchFieldDidChange(textField: UITextField) {
-            boss!.tableController!.filter()
-        }
+    // What happens when the search button is clicked
+    @objc func searchButtonClicked(sender: UIButton) {
+        sortPicker1.isHidden = !sortPicker1.isHidden
+        sortArrow1.isHidden = !sortArrow1.isHidden
+        sortPicker2.isHidden = !sortPicker2.isHidden
+        sortArrow2.isHidden = !sortArrow2.isHidden
+        classPicker.isHidden = !classPicker.isHidden
+        searchField.isHidden = !searchField.isHidden
+        clearButton.isHidden = !clearButton.isHidden
+    }
+    
+    @objc func searchFieldDidChange(textField: UITextField) {
+        boss!.tableController!.filter()
+    }
     
     // What happens when one of the sort arrows is clicked
     @objc func sortArrowClicked(sender: SortDirectionButton) {
@@ -320,6 +319,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     @objc func clearButtonClicked(sender: UIButton) {
         searchField.text = ""
+        searchFieldDidChange(textField: searchField)
     }
     
     func setSortStatus(sort1: SortField, sort2: SortField, reverse1: Bool, reverse2: Bool) {
