@@ -77,6 +77,9 @@
 		39EB759B23085368001CA1EF /* iOSUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EB759A23085368001CA1EF /* iOSUtils.swift */; };
 		39EB759D23088EBE001CA1EF /* SizeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EB759C23088EBE001CA1EF /* SizeUtils.swift */; };
 		39EB759F230F3610001CA1EF /* StatusFilterField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39EB759E230F3610001CA1EF /* StatusFilterField.swift */; };
+		39F306912374CA020078FA83 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F306902374CA020078FA83 /* ToggleButton.swift */; };
+		39F306932374D5180078FA83 /* SpellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F306922374D5180078FA83 /* SpellCell.swift */; };
+		39F306952375FFAB0078FA83 /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39F306942375FFAB0078FA83 /* ImageUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +179,9 @@
 		39EB759C23088EBE001CA1EF /* SizeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeUtils.swift; sourceTree = "<group>"; };
 		39EB759E230F3610001CA1EF /* StatusFilterField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusFilterField.swift; sourceTree = "<group>"; };
 		39F1046F21AD87F40068A09E /* SION.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SION.swift; path = "../../Desktop/git/swift-sion/Sources/SION/SION.swift"; sourceTree = "<group>"; };
+		39F306902374CA020078FA83 /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
+		39F306922374D5180078FA83 /* SpellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellCell.swift; sourceTree = "<group>"; };
+		39F306942375FFAB0078FA83 /* ImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +250,8 @@
 				399D9E61223AEF650054BA8F /* dungeon.ttf */,
 				39522D1C21ADFA0A00A4DBCE /* LabelViewController.swift */,
 				397EE96C21ACA86400B116B0 /* Main.storyboard */,
+				39F306922374D5180078FA83 /* SpellCell.swift */,
+				39F306902374CA020078FA83 /* ToggleButton.swift */,
 				39EB7594230763FA001CA1EF /* SortDirectionButton.swift */,
 				39EB759C23088EBE001CA1EF /* SizeUtils.swift */,
 				39EB759723077447001CA1EF /* down_arrow.png */,
@@ -276,6 +284,7 @@
 				397EE9A021ACAF9C00B116B0 /* SpellComparison.swift */,
 				39EB75902306E6C7001CA1EF /* EnumUtilities.swift */,
 				39522D1821ADC41F00A4DBCE /* SpellDataCell.swift */,
+				39F306942375FFAB0078FA83 /* ImageUtils.swift */,
 				397EE99921ACAF9B00B116B0 /* SpellParse.swift */,
 				399D9E672264B7830054BA8F /* SpellStatus.swift */,
 				39522D2021ADFBA100A4DBCE /* SpellTableViewController.swift */,
@@ -499,6 +508,8 @@
 				39005F5D22383F710006E97D /* SideMenuController.swift in Sources */,
 				39EB759F230F3610001CA1EF /* StatusFilterField.swift in Sources */,
 				399D9E6A2264B9F20054BA8F /* Settings.swift in Sources */,
+				39F306952375FFAB0078FA83 /* ImageUtils.swift in Sources */,
+				39F306912374CA020078FA83 /* ToggleButton.swift in Sources */,
 				3997EE9B21C06E6D007DC1B6 /* SearchButton.swift in Sources */,
 				39CFA5F0226F985C006EA33B /* CharacterCreationController.swift in Sources */,
 				39EB759D23088EBE001CA1EF /* SizeUtils.swift in Sources */,
@@ -522,6 +533,7 @@
 				397EE9AB21ACAF9C00B116B0 /* SpellComparison.swift in Sources */,
 				395F3A902268079100D7B382 /* CharacterSelectionController.swift in Sources */,
 				39522D2121ADFBA100A4DBCE /* SpellTableViewController.swift in Sources */,
+				39F306932374D5180078FA83 /* SpellCell.swift in Sources */,
 				39EB7595230763FA001CA1EF /* SortDirectionButton.swift in Sources */,
 				399D9E682264B7830054BA8F /* SpellStatus.swift in Sources */,
 				397EE9A121ACAF9C00B116B0 /* Spell.swift in Sources */,

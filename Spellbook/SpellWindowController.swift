@@ -157,27 +157,7 @@ class SpellWindowController: UIViewController {
         let font = UIFont.systemFont(ofSize: SpellWindowController.schoolLevelFontSize)
         let italicFontAttribute : [NSAttributedString.Key : Any] = [NSAttributedString.Key.font : UIFont.italicSystemFont(ofSize: font.pointSize)]
         
-        var text = String(s.level)
-        switch (s.level) {
-        case 0:
-            text = s.school.name() + " cantrip"
-            return NSMutableAttributedString(string: text, attributes: italicFontAttribute)
-        case 1:
-            text.append("st-level ")
-            break
-        case 2:
-            text.append("nd-level ")
-            break
-        case 3:
-            text.append("rd-level ")
-            break
-        default:
-            text.append("th-level ")
-        }
-        text = text + s.school.name().lowercased()
-        if s.ritual {
-            text = text + " (ritual)"
-        }
+        let text = s.levelSchoolString()
         return NSMutableAttributedString(string: text, attributes: italicFontAttribute)
     }
     

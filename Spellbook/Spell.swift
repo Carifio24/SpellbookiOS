@@ -59,6 +59,32 @@ public class Spell {
 	func usableBySubclass(_ sub: SubClass) -> Bool {
 		return subclasses.contains(sub)
 	}
+    
+    // School and level as a String
+    func levelSchoolString() -> String {
+        var text = String(level)
+        switch (level) {
+        case 0:
+            text = school.name() + " cantrip"
+            return text
+        case 1:
+            text.append("st-level ")
+            break
+        case 2:
+            text.append("nd-level ")
+            break
+        case 3:
+            text.append("rd-level ")
+            break
+        default:
+            text.append("th-level ")
+        }
+        text = text + school.name().lowercased()
+        if ritual {
+            text = text + " (ritual)"
+        }
+        return text
+    }
 
 }
 

@@ -24,7 +24,6 @@ class ViewController: UIViewController {
     
     // Child controllers
     var pickerController: PickerViewController?
-    var labelController: LabelViewController?
     var tableController: SpellTableViewController?
     var spellWindowController: SpellWindowController?
     
@@ -72,6 +71,10 @@ class ViewController: UIViewController {
     let rightPaddingFraction = CGFloat(0.01)
     let topPaddingFraction = CGFloat(0.01)
     let bottomPaddingFraction = CGFloat(0.01)
+    
+    // Usable height and width
+    static var usableHeight = CGFloat(0)
+    static var usableWidth = CGFloat(0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -165,37 +168,31 @@ class ViewController: UIViewController {
         let bottomPadding = max(min(bottomPaddingFraction * screenHeight, maxBotPadding), minBotPadding)
         
         // Account for padding
-        let usableHeight = screenHeight - topPadding - bottomPadding
-        let usableWidth = screenWidth - leftPadding - rightPadding
+        ViewController.usableHeight = screenHeight - topPadding - bottomPadding
+        ViewController.usableWidth = screenWidth - leftPadding - rightPadding
         
         // Set the dimensions for the child containers
-        let sortHeight = max(min(sortFraction * usableHeight, 100), 60)
-        let labelHeight = min(labelFraction * usableHeight, 70)
-        let tableHeight = usableHeight - sortHeight - labelHeight
+        let sortHeight = max(min(sortFraction * ViewController.usableHeight, 100), 60)
+        let labelHeight = min(labelFraction * ViewController.usableHeight, 70)
+        let tableHeight = ViewController.usableHeight - sortHeight - labelHeight
         //print("sortHeight is \(sortHeight)")
         //print("labelHeight is \(labelHeight)")
         
         // Set the relevant dimensions to the elements
         // First the PickerViewController
-        pickerView.frame = CGRect(x: leftPadding, y: topPadding, width: usableWidth, height: sortHeight)
-        pickerController!.view!.frame = CGRect(x: leftPadding, y: topPadding, width: usableWidth, height: sortHeight)
-        
-        // Then the LabelViewController
-        // We need to set the labelController's view to have y = 0 (so that it's at the top of the view)
-        labelView.frame = CGRect(x: leftPadding, y: sortHeight, width: usableWidth, height: labelHeight)
-        labelController!.view!.frame = CGRect(x: leftPadding, y: 0, width: usableWidth, height: labelHeight)
+        pickerView.frame = CGRect(x: leftPadding, y: topPadding, width: ViewController.usableWidth, height: sortHeight)
+        pickerController!.view!.frame = CGRect(x: leftPadding, y: topPadding, width: ViewController.usableWidth, height: sortHeight)
         
         // Finally, the SpellTableViewController
         // Note that we don't need to adjust the tableController's view differently - the TableViewController seems to be able to handle this part itself
-        let tableY = sortHeight + labelHeight
-        let tableFrame = CGRect(x: leftPadding, y: tableY, width: usableWidth, height: tableHeight)
+        let tableY = sortHeight
+        let tableFrame = CGRect(x: leftPadding, y: tableY, width: ViewController.usableWidth, height: tableHeight)
         tableView.frame = tableFrame
         tableController!.view!.frame = tableFrame
         tableController!.mainY = tableY
         
         pickerController?.setViewDimensions()
-        labelController?.setViewDimensions()
-        tableController?.setTableDimensions(leftPadding: leftPadding, bottomPadding: bottomPadding, usableHeight: usableHeight, usableWidth: usableWidth, tableTopPadding: tableView.frame.height * 0.04)
+        tableController?.setTableDimensions(leftPadding: leftPadding, bottomPadding: bottomPadding, usableHeight: ViewController.usableHeight, usableWidth: ViewController.usableWidth, tableTopPadding: tableView.frame.height * 0.04)
     }
     
     override func didReceiveMemoryWarning() {
@@ -207,9 +204,6 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "sortSegue" {
             pickerController = (segue.destination as! PickerViewController)
-        }
-        if segue.identifier == "labelSegue" {
-            labelController = (segue.destination as! LabelViewController)
         }
         if segue.identifier == "tableSegue" {
             tableController = (segue.destination as! SpellTableViewController)
@@ -223,7 +217,6 @@ class ViewController: UIViewController {
                                      with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         setContainerDimensions(screenWidth: size.width, screenHeight: size.height)
-        SpellDataCell.screenWidth = size.width
     }
     
     // Until the issue with the SpellDataCell sizing is fixed, let's disable rotation
