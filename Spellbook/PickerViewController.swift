@@ -65,6 +65,16 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     let pickerFont = UIFont.systemFont(ofSize: pickerFontSize())
     let searchFont = UIFont.systemFont(ofSize: CGFloat(20))
     
+    // Whether to use default values
+    var sort1Default = false
+    var sort2Default = false
+    var classDefault = false
+    
+    // The default values
+    let sort1DefaultText = "Sort 1"
+    let sort2DefaultText = "Sort 2"
+    let classDefaultText = "Class"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -101,6 +111,9 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         // Set the search field font
         searchField.font = searchFont
+        
+        // Set up the picker listener to remove default text state if needed
+        
         
         // Set the element dimensions and positions
         //setViewDimensions()
@@ -230,10 +243,27 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         var label = UILabel()
         if let v = view as? UILabel { label = v }
         label.font = pickerFont
-        if (pickerView.tag == 0) || (pickerView.tag == 1) {
-            label.text = sortPickerData[row]
+        
+        // For entries other than the first
+        if (row != 0) {
+            let sort = (pickerView.tag <= 1)
+            label.text = sort ? sortPickerData[row] : classPickerData[row]
+        
+        // For the first entry
         } else {
-            label.text = classPickerData[row]
+            switch (pickerView.tag) {
+            case 0:
+                label.text = sort1Default ? sort1DefaultText : sortPickerData[row]
+                break
+            case 1:
+                label.text = sort2Default ? sort2DefaultText : sortPickerData[row]
+                break
+            case 2:
+                label.text = classDefault ? classDefaultText : classPickerData[row]
+                break
+            default: // Shouldn't ever get here
+                print("Picker view tag error")
+            }
         }
         return label
     }

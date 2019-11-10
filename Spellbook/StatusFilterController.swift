@@ -142,9 +142,9 @@ class StatusFilterController: UITableViewController {
         let mainWindowController = revealController.frontViewController as! ViewController
         
         // Set the filtering variables accordingly
-        print("The row is \(indexPath.row)")
+        //print("The row is \(indexPath.row)")
         let sff = StatusFilterField(rawValue: indexPath.row)!
-        print(sff.name())
+        //print(sff.name())
         mainWindowController.characterProfile.setStatusFilter(sff)
         mainWindowController.tableController?.filter()
         mainWindowController.saveCharacterProfile()

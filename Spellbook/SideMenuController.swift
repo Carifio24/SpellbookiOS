@@ -136,7 +136,6 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         let popupHeight = CGFloat(0.35 * screenRect.size.height)
         controller.width = popupWidth
         controller.height = popupHeight
-        controller.main = main
         let popupVC = PopupViewController(contentController: controller, popupWidth: popupWidth, popupHeight: popupHeight)
         main!.selectionWindow = controller
         self.present(popupVC, animated: true, completion: nil)

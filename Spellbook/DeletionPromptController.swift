@@ -88,6 +88,7 @@ class DeletionPromptController: UIViewController {
     @objc func yesButtonPressed() {
         if name != nil {
             main!.deleteCharacterProfile(name: name!)
+            Controllers.revealController.view.makeToast("Character deleted: " + name!, duration: Constants.toastDuration)
         }
         self.dismiss(animated: true, completion: { () -> Void in
             self.main!.selectionWindow?.dismiss(animated: true, completion: nil)

@@ -44,11 +44,20 @@ class SpellTableViewController: UITableViewController {
         
         //print("profilesDirectory is: \(profilesDirectory)")
         
-        // Long press gesture recognizer
-        let lpgr = UILongPressGestureRecognizer.init(target: self, action: #selector(handleLongPress))
-        lpgr.minimumPressDuration = 0.5
-        //lpgr.delegate = self
-        tableView.addGestureRecognizer(lpgr)
+        // // Long press gesture recognizer (currently we aren't using it)
+        //let lpgr = UILongPressGestureRecognizer.init(target: self, action: #selector(handleLongPress))
+        //lpgr.minimumPressDuration = 0.5
+        // //lpgr.delegate = self
+        //tableView.addGestureRecognizer(lpgr)
+        
+        // For the swipe-to-filter functionality
+        // For iOS >= 10, which we're using, the TableView already has this property
+        // so we can just assign to it
+        tableView.refreshControl = {
+            let refreshControl = UIRefreshControl()
+            refreshControl.addTarget(self, action: #selector(handlePullDown(_:)), for: UIControl.Event.valueChanged)
+            return refreshControl
+        }()
         
         
         // Uncomment the following line to preserve selection between presentations
@@ -80,6 +89,7 @@ class SpellTableViewController: UITableViewController {
         // Initial filtering and sorting
         filter()
         sort()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -288,6 +298,13 @@ class SpellTableViewController: UITableViewController {
             popupVC.backgroundAlpha = 0
             self.present(popupVC, animated: true, completion: nil)
         }
+    }
+    
+    // Filter on pulldown
+    @objc func handlePullDown(_ sender: Any) {
+        filter()
+        tableView.reloadData()
+        refreshControl!.endRefreshing()
     }
 
     

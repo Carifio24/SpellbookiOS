@@ -21,13 +21,13 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     var height = CGFloat(0)
     var width = CGFloat(0)
     var characters: [String] = []
-    var main: ViewController?
+    let main: ViewController = Controllers.mainController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Get the current characters list
-        characters = main!.characterList()
+        characters = main.characterList()
         print("There are \(characters.count) characters")
         
         // Set the view dimensions
@@ -119,12 +119,14 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Pressed at \(indexPath.row)")
         print("Name is \(characters[indexPath.row])")
-        main?.loadCharacterProfile(name: characters[indexPath.row])
+        let name = characters[indexPath.row]
+        main.loadCharacterProfile(name: name)
+        Controllers.revealController.view.makeToast("Character selected: " + name, duration: Constants.toastDuration)
         self.dismiss(animated: true, completion: dismissOperations)
     }
     
     @objc func newCharacterButtonPressed() {
-        let mustComplete = (main?.characterList().count == 0)
+        let mustComplete = (main.characterList().count == 0)
         print("Pressed new character button, mustComplete: \(mustComplete)")
         displayNewCharacterWindow(mustComplete: mustComplete)
     }
@@ -132,7 +134,6 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     func displayNewCharacterWindow(mustComplete: Bool=false) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "characterCreation") as! CharacterCreationController
-        controller.main = main
         
         let screenRect = UIScreen.main.bounds
         let popupWidth = CGFloat(0.8 * screenRect.size.width)
@@ -165,13 +166,13 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     
     
     func updateCharacterTable() {
-        characters = (main?.characterList())!
+        characters = main.characterList()
         tableView.reloadData()
     }
     
     func dismissOperations() {
         print("In dismissOperations()")
-        main?.selectionWindow = nil
+        main.selectionWindow = nil
     }
     
     func pressNewCharacterButton() {

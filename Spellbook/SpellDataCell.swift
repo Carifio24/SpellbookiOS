@@ -21,8 +21,8 @@ class SpellDataCell: UITableViewCell {
     //static var screenWidth = UIScreen.main.bounds.width
     
     // The cell height
-    static let cellHeight = CGFloat(80)
-    static let main: ViewController = (UIApplication.shared.keyWindow?.rootViewController as! SWRevealViewController).frontViewController as! ViewController
+    static let cellHeight = CGFloat(90)
+    static let main: ViewController = Controllers.mainController
     
     // Button dimensions
     // All the button dimensions are static variables mainly so that we can do the size computations once, and thus (the important part) only re-render the button images once
@@ -34,6 +34,7 @@ class SpellDataCell: UITableViewCell {
     static let buttonHeight = SpellDataCell.buttonWidth
     
     // The button images
+    // It's too costly to do the re-rendering every time, so we just do it once
     static let starEmpty = UIImage(named: "star_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellDataCell.buttonWidth, height: SpellDataCell.buttonHeight)
     static let starFilled = UIImage(named: "star_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellDataCell.buttonWidth, height: SpellDataCell.buttonHeight)
     static let wandEmpty = UIImage(named: "wand_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellDataCell.buttonWidth, height: SpellDataCell.buttonHeight)
@@ -50,7 +51,7 @@ class SpellDataCell: UITableViewCell {
             levelSchoolLabel.text = spell!.levelSchoolString()
             sourcebookLabel.text = spell!.sourcebook.code().uppercased()
             setViewDimensions()
-            setButtonCallbacks()
+            setButtonImages()
         }
     }
 
@@ -61,11 +62,6 @@ class SpellDataCell: UITableViewCell {
         nameLabel = UILabel()
         levelSchoolLabel = UILabel()
         sourcebookLabel = UILabel()
-        
-        // Initialize the buttons
-        favoriteButton = ToggleButton()
-        preparedButton = ToggleButton()
-        knownButton = ToggleButton()
         
         // Get the screen dimensions
 //        let screenSize = UIScreen.main.bounds
@@ -82,11 +78,20 @@ class SpellDataCell: UITableViewCell {
         levelSchoolLabel.font = UIFont.italicSystemFont(ofSize: 11)
         sourcebookLabel.font = UIFont.systemFont(ofSize: 11)
         
+        // Button setup
+        favoriteButton = ToggleButton(SpellDataCell.starEmpty!, SpellDataCell.starFilled!, false)
+        preparedButton = ToggleButton(SpellDataCell.wandEmpty!, SpellDataCell.wandFilled!, false)
+        knownButton = ToggleButton(SpellDataCell.bookEmpty!, SpellDataCell.bookFilled!, false)
+        
+        
         // Display the labels and buttons
-        let items = [ nameLabel, levelSchoolLabel, sourcebookLabel ]
+        let items = [ nameLabel, levelSchoolLabel, sourcebookLabel, favoriteButton, preparedButton, knownButton ]
         for item in items {
             self.addSubview(item!)
         }
+        
+        // Set the button callbacks
+        setButtonCallbacks()
         
     }
     
@@ -132,12 +137,6 @@ class SpellDataCell: UITableViewCell {
         let sourcebookLabelX = levelSchoolLabel.frame.size.width + lowerLabelsHorizontalPadding
         sourcebookLabel.frame = CGRect(x: sourcebookLabelX, y: lowerLabelsY, width: labelsWidth - sourcebookLabelX, height: lowerLabelsHeight)
         
-        // The favorite, prepared, known buttons
-        let cp = SpellDataCell.main.characterProfile
-        favoriteButton = ToggleButton(SpellDataCell.starEmpty!, SpellDataCell.starFilled!, cp.isFavorite(spell!))
-        preparedButton = ToggleButton(SpellDataCell.wandEmpty!, SpellDataCell.wandFilled!, cp.isPrepared(spell!))
-        knownButton = ToggleButton(SpellDataCell.bookEmpty!, SpellDataCell.bookFilled!, cp.isKnown(spell!))
-        
         // Determine the button positions
         let buttonY = topPadding
         let favoriteButtonX = SpellDataCell.buttonsHorizontalPadding + labelsWidth
@@ -149,11 +148,15 @@ class SpellDataCell: UITableViewCell {
         preparedButton.frame = CGRect(x: preparedButtonX, y: buttonY, width: SpellDataCell.buttonWidth, height: SpellDataCell.buttonHeight)
         knownButton.frame = CGRect(x: knownButtonX, y: buttonY, width: SpellDataCell.buttonWidth, height: SpellDataCell.buttonHeight)
         
-        // Display the buttons
-        let buttons = [ favoriteButton, preparedButton, knownButton ]
-        for button in buttons {
-            self.addSubview(button!)
-        }
+    }
+    
+    private func setButtonImages() {
+        
+        // Set the favorite, prepared, known buttons
+        let cp = SpellDataCell.main.characterProfile
+        favoriteButton.set(cp.isFavorite(spell!))
+        preparedButton.set(cp.isPrepared(spell!))
+        knownButton.set(cp.isKnown(spell!))
         
     }
     

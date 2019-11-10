@@ -384,7 +384,6 @@ class ViewController: UIViewController {
         if selectionWindow == nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "characterCreation") as! CharacterCreationController
-            controller.main = self
             
             let screenRect = UIScreen.main.bounds
             let popupWidth = CGFloat(0.8 * screenRect.size.width)
