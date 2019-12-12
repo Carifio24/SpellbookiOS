@@ -120,7 +120,7 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         print("Pressed at \(indexPath.row)")
         print("Name is \(characters[indexPath.row])")
         let name = characters[indexPath.row]
-        main.loadCharacterProfile(name: name)
+        main.loadCharacterProfile(name: name, initialLoad: false)
         Controllers.revealController.view.makeToast("Character selected: " + name, duration: Constants.toastDuration)
         self.dismiss(animated: true, completion: dismissOperations)
     }

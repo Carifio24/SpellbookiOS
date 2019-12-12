@@ -145,7 +145,9 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         if statusController != nil {
             statusController!.setFilter(profile.getStatusFilter())
         }
-        //sourcebookController!.setFilters(profile: profile)
+        if sourcebookController != nil {
+            sourcebookController!.setFilters(profile: profile)
+        }
     }
     
     

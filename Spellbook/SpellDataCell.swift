@@ -106,9 +106,9 @@ class SpellDataCell: UITableViewCell {
         let lowerLabelsHeight = CGFloat(10)
         
         // Padding
-        let middlePadding = CGFloat(5)
+        let middlePadding = CGFloat(2)
         let topPadding = (SpellDataCell.cellHeight - nameLabelHeight - middlePadding - lowerLabelsHeight) / 2
-        let lowerLabelsHorizontalPadding = CGFloat(2)
+        let lowerLabelsHorizontalPadding = CGFloat(5)
         
         // Assign a fraction of the width to the buttons and the labels
         let labelsFraction = 1 - SpellDataCell.buttonsFraction

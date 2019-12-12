@@ -132,11 +132,11 @@ class ViewController: UIViewController {
             let name = settings.charName
             //print("case 1")
             //print("name is \(name!)")
-            loadCharacterProfile(name: name!)
+            loadCharacterProfile(name: name!, initialLoad: true)
         } else if characters.count > 0 {
             //print("case 2")
             //print("characters[0] is \(characters[0])")
-            loadCharacterProfile(name: characters[0])
+            loadCharacterProfile(name: characters[0], initialLoad: true)
         } else {
             //print("case 3")
             openCharacterCreationDialog(mustComplete: true)
@@ -144,6 +144,10 @@ class ViewController: UIViewController {
         
         // The view has appeared, so we can set firstAppearance to false
         firstAppearance = false
+        
+        // Initial sort and filter
+        //sort()
+        //filter()
         
         // Testing
         //pickerView.backgroundColor = UIColor.red
@@ -278,18 +282,24 @@ class ViewController: UIViewController {
         sideMenuController!.setFilterStatus(profile: characterProfile)
     }
     
-    func setCharacterProfile(cp: CharacterProfile) {
+    func setCharacterProfile(cp: CharacterProfile, initialLoad: Bool) {
+        
         characterProfile = cp
         settings.setCharacterName(name: cp.name())
         setSideMenuCharacterName()
         saveSettings()
         saveCharacterProfile()
-        filter()
-        updateSelectionList()
         
         // Set the sort and filter settings
         setSortSettings()
         setFilterSettings()
+        
+        // Filter and sort
+        if !initialLoad {
+            sort()
+            filter()
+            updateSelectionList()
+        }
     }
     
     // Loading the settings
@@ -314,7 +324,7 @@ class ViewController: UIViewController {
         return profilesDirectory.appendingPathComponent(charFile)
     }
     
-    func loadCharacterProfile(name: String) {
+    func loadCharacterProfile(name: String, initialLoad: Bool) {
         let location = profileLocation(name: name)
         //print("Location is: \(location)")
         if var profileText = try? String(contentsOf: location) {
@@ -323,7 +333,7 @@ class ViewController: UIViewController {
                 //print("profileText is:\n\(profileText)")
                 let profileSION = SION(json: profileText)
                 let profile = CharacterProfile(sion: profileSION)
-                setCharacterProfile(cp: profile)
+                setCharacterProfile(cp: profile, initialLoad: initialLoad)
             }
         } else {
             print("Error reading profile")
@@ -352,7 +362,7 @@ class ViewController: UIViewController {
             if deletingCurrent {
                 if characters.count > 0 {
                     //print("The new character's name is: \(characters[0])")
-                    loadCharacterProfile(name: characters[0])
+                    loadCharacterProfile(name: characters[0], initialLoad: false)
                 }
             }
         } catch let e {
@@ -449,5 +459,5 @@ class ViewController: UIViewController {
     
     // Wrapper around table controller functionality
     func sort() { tableController!.sort() }
-    
+
 }

@@ -135,7 +135,7 @@ class CharacterCreationController: UIViewController {
         
         // Set it as the current profile if there are no others
         if nChars == 0 {
-            main.setCharacterProfile(cp: profile)
+            main.setCharacterProfile(cp: profile, initialLoad: false)
         }
         
         // Update the character selection window, if one is open
