@@ -11,7 +11,7 @@ import UIKit
 class SpellWindowController: UIViewController {
     
     // The main controller
-    let main = (UIApplication.shared.keyWindow!.rootViewController as! SWRevealViewController).frontViewController as! ViewController
+    let main = Controllers.mainController
     
     // Font sizes
     static let nameSize = CGFloat(30)

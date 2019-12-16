@@ -47,7 +47,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         
         super.viewDidLoad()
         
-        main =  self.revealViewController()?.frontViewController as? ViewController
+        main = Controllers.mainController
         mainTable = main?.tableController
         
         // Get the view dimensions

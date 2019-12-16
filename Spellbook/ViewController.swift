@@ -76,6 +76,11 @@ class ViewController: UIViewController {
     static var usableHeight = CGFloat(0)
     static var usableWidth = CGFloat(0)
     
+    // The navigation bar and its items
+    @IBOutlet var navBar: UINavigationItem!
+    @IBOutlet var leftMenuButton: UIBarButtonItem!
+    @IBOutlet var refreshButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -111,6 +116,12 @@ class ViewController: UIViewController {
         
         // Get the side menu controller
         sideMenuController = self.revealViewController()?.rearViewController as? SideMenuController
+        
+        // Set the navigation bar button callbacks
+        leftMenuButton.target = self
+        leftMenuButton.action = #selector(leftMenuButtonPressed)
+        refreshButton.target = self
+        refreshButton.action = #selector(refreshButtonPressed)
         
         // Create the profiles directory if it doesn't already exist
         let fileManager = FileManager.default
@@ -459,5 +470,18 @@ class ViewController: UIViewController {
     
     // Wrapper around table controller functionality
     func sort() { tableController!.sort() }
+    
+    // Toggle whether or not the side menu is open
+    func toggleMenu() { Controllers.revealController.revealToggle(animated: true) }
+    
+    // For the left menu button on the navigation bar
+    @objc func leftMenuButtonPressed() {
+        toggleMenu()
+    }
+    
+    // For the refresh button on the navigation bar
+    @objc func refreshButtonPressed() {
+        filter()
+    }
 
 }

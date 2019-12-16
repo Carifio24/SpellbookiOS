@@ -104,9 +104,8 @@ class SourcebookFilterController: UITableViewController {
     // The cells for the table
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        // Access the relevant controllers
-        let revealController = UIApplication.shared.keyWindow!.rootViewController as! SWRevealViewController
-        let mainWindowController = revealController.frontViewController as! ViewController
+        // Access the main controller
+        let mainWindowController = Controllers.mainController
         
         let sb = Sourcebook.init(rawValue: indexPath.row)!
         let selected = mainWindowController.characterProfile.getSourcebookFilter(sb)

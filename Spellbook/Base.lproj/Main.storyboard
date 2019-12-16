@@ -14,12 +14,12 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Spellbook-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Spellbook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BookBackground.jpeg" id="N4d-fT-FYa">
@@ -49,11 +49,22 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Spellbook" id="4C6-oA-EBd">
+                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="sKB-QI-6JB">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="4Zg-Xi-Gd3">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="backgroundView" destination="N4d-fT-FYa" id="CMl-hh-36r"/>
                         <outlet property="classPicker" destination="TNy-15-pIK" id="N0Q-GR-GxE"/>
                         <outlet property="labelView" destination="YqA-pP-HMf" id="PDW-jr-clA"/>
+                        <outlet property="leftMenuButton" destination="sKB-QI-6JB" id="ekf-ud-MrQ"/>
+                        <outlet property="navBar" destination="4C6-oA-EBd" id="J2V-pj-cfN"/>
                         <outlet property="pickerView" destination="ZWC-2r-b6o" id="jGO-il-cdK"/>
+                        <outlet property="refreshButton" destination="4Zg-Xi-Gd3" id="Lmg-Y6-jKh"/>
                         <outlet property="sortPicker1" destination="NKM-eo-2xO" id="Du0-XP-XFb"/>
                         <outlet property="sortPicker2" destination="T27-TR-XLe" id="HzD-Vl-Cbl"/>
                         <outlet property="tableView" destination="Zki-DA-IIL" id="zng-zq-EQv"/>
@@ -62,7 +73,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-227.536231884058" y="19.419642857142858"/>
+            <point key="canvasLocation" x="682.60869565217399" y="19.419642857142858"/>
         </scene>
         <!--Picker View Controller-->
         <scene sceneID="voX-f9-NpZ">
@@ -140,7 +151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EOX-GL-bEN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="635" y="-159"/>
+            <point key="canvasLocation" x="1544.9275362318842" y="-159.375"/>
         </scene>
         <!--Spell Window Controller-->
         <scene sceneID="lgF-AM-lZI">
@@ -203,7 +214,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0so-Fa-Fua" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1246.376811594203" y="26.785714285714285"/>
+            <point key="canvasLocation" x="2156.521739130435" y="26.785714285714285"/>
         </scene>
         <!--Character Selection Controller-->
         <scene sceneID="TxJ-cW-uGi">
@@ -287,7 +298,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uaK-6T-WRR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2223.1884057971015" y="29.464285714285712"/>
+            <point key="canvasLocation" x="3133.3333333333335" y="29.464285714285712"/>
         </scene>
         <!--Character Creation Controller-->
         <scene sceneID="hIh-qY-Ver">
@@ -353,7 +364,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="06p-7L-Sgg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3004.347826086957" y="34.821428571428569"/>
+            <point key="canvasLocation" x="3914.4927536231885" y="34.821428571428569"/>
         </scene>
         <!--Deletion Prompt Controller-->
         <scene sceneID="Tbl-02-dyn">
@@ -408,7 +419,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0cx-dX-IyC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3802.898550724638" y="34.821428571428569"/>
+            <point key="canvasLocation" x="4713.04347826087" y="34.821428571428569"/>
         </scene>
         <!--Spell Table View Controller-->
         <scene sceneID="aFY-Rt-gSj">
@@ -496,13 +507,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="VDX-Vj-T65"/>
+                        <segue destination="dND-bH-GRC" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="VDX-Vj-T65"/>
                         <segue destination="nJP-yh-A11" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="q5M-6e-Rf2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IxE-nf-CWy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1245" y="763"/>
+            <point key="canvasLocation" x="2155.072463768116" y="762.72321428571422"/>
         </scene>
         <!--Status Popup Controller-->
         <scene sceneID="D1y-Jo-rD0">
@@ -543,7 +554,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OOK-5f-MPW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2223.1884057971015" y="762.72321428571422"/>
+            <point key="canvasLocation" x="3133.3333333333335" y="762.72321428571422"/>
         </scene>
         <!--Side Menu Controller-->
         <scene sceneID="786-gc-Z4L">
@@ -682,6 +693,33 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="top-OO-HlV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1576.8115942028987" y="69.642857142857139"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="eYz-fd-5Gp">
+            <objects>
+                <navigationController hidesBarsOnSwipe="YES" id="dND-bH-GRC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="NSG-YX-7wq">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.20000000000000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="wU2-7t-uAr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DTe-2i-HHr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-227.536231884058" y="19.419642857142858"/>
         </scene>
     </scenes>
     <resources>

@@ -138,8 +138,7 @@ class StatusFilterController: UITableViewController {
     // Apply the appropriate filtering when a cell is selected
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let revealController = UIApplication.shared.keyWindow!.rootViewController as! SWRevealViewController
-        let mainWindowController = revealController.frontViewController as! ViewController
+        let mainWindowController = Controllers.mainController
         
         // Set the filtering variables accordingly
         //print("The row is \(indexPath.row)")
@@ -148,7 +147,7 @@ class StatusFilterController: UITableViewController {
         mainWindowController.characterProfile.setStatusFilter(sff)
         mainWindowController.tableController?.filter()
         mainWindowController.saveCharacterProfile()
-        revealController.revealToggle(self)
+        mainWindowController.toggleMenu()
     }
     
     func setFilter(_ sff: StatusFilterField) {
