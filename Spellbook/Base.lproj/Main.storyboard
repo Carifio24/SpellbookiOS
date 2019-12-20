@@ -22,9 +22,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BookBackground.jpeg" id="N4d-fT-FYa">
-                                <rect key="frame" x="0.0" y="-27" width="414" height="923"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" image="BookBackground.jpeg" id="N4d-fT-FYa">
+                                <rect key="frame" x="0.0" y="-92" width="414" height="1016"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <containerView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="Zki-DA-IIL" userLabel="Table">
                                 <rect key="frame" x="24" y="283" width="370" height="579"/>
@@ -50,7 +50,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Spellbook" id="4C6-oA-EBd">
-                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="sKB-QI-6JB">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="HamburgerIcon" id="sKB-QI-6JB">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="4Zg-Xi-Gd3">
@@ -724,5 +724,6 @@
     </scenes>
     <resources>
         <image name="BookBackground.jpeg" width="1017" height="1605"/>
+        <image name="HamburgerIcon" width="25" height="25"/>
     </resources>
 </document>

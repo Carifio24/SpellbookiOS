@@ -306,6 +306,21 @@ class SpellTableViewController: UITableViewController {
         tableView.reloadData()
         refreshControl!.endRefreshing()
     }
+    
+    // For navigation bar behavior when scrolling
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        // Detect scrolling and get the y-velocity (for determining upwards or downwards)
+        let pan = scrollView.panGestureRecognizer
+        let yVelocity = pan.velocity(in: scrollView).y
+        let navController = Controllers.mainNavController
+        
+        // Only do something if the velocity is high enough
+        if (abs(yVelocity) <= 5) { return }
+        
+        let toHide: Bool = yVelocity < -5 // True if scrolling down, false if scrolling up
+        navController.setNavigationBarHidden(toHide, animated: true)
+    }
 
     
     

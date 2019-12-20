@@ -114,7 +114,7 @@ class SpellDataCell: UITableViewCell {
         let labelsFraction = 1 - SpellDataCell.buttonsFraction
         
         // The width of the labels section
-        let labelsWidth = labelsFraction * ViewController.usableWidth
+        let labelsWidth = labelsFraction * ViewController.usableWidth - 3 * SpellDataCell.buttonsHorizontalPadding
         
         // Set the label sizes
         // First, the name label

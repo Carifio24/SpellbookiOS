@@ -56,7 +56,6 @@ class ViewController: UIViewController {
     let labelFraction = CGFloat(0.08)
     // The table will take up the rest of the space
     //let backgroundOffset = CGFloat(27)
-    let backgroundOffset = CGFloat(0)
     
     // Extreme padding amounts
     let maxHorizPadding = CGFloat(5)
@@ -81,8 +80,41 @@ class ViewController: UIViewController {
     @IBOutlet var leftMenuButton: UIBarButtonItem!
     @IBOutlet var refreshButton: UIBarButtonItem!
     
+    // Status bar
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.default
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // For updating the status bar
+        setNeedsStatusBarAppearanceUpdate()
+        
+        // Set the status bar color
+//        let statusBarBGColor = UIColor.black
+//        if #available(iOS 13.0, *) {
+//            let app = UIApplication.shared
+//            let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+//
+//            let statusbarView = UIView()
+//            statusbarView.backgroundColor = statusBarBGColor
+//            view.addSubview(statusbarView)
+//
+//            statusbarView.translatesAutoresizingMaskIntoConstraints = false
+//            statusbarView.heightAnchor
+//                .constraint(equalToConstant: statusBarHeight).isActive = true
+//            statusbarView.widthAnchor
+//                .constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
+//            statusbarView.topAnchor
+//                .constraint(equalTo: view.topAnchor).isActive = true
+//            statusbarView.centerXAnchor
+//                .constraint(equalTo: view.centerXAnchor).isActive = true
+//
+//        } else {
+//            let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
+//            statusBar?.backgroundColor = statusBarBGColor
+//        }
         
         // Display the build and version number (for testing)
         //print("The iOS version is \(iOSVersion)")
@@ -174,7 +206,8 @@ class ViewController: UIViewController {
         
         // Set the dimensions for the background image
         // No padding necessary for this
-        backgroundView.frame = CGRect(x: 0, y: -backgroundOffset, width: screenWidth, height: screenHeight + backgroundOffset)
+        //backgroundView.frame = CGRect(x: 0, y: -backgroundOffset, width: screenWidth, height: screenHeight + backgroundOffset)
+        backgroundView.frame = UIScreen.main.bounds
         
         // Get the padding sizes
         let leftPadding = max(min(leftPaddingFraction * screenWidth, maxHorizPadding), minHorizPadding)

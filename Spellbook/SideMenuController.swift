@@ -32,7 +32,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     let backgroundOffset = CGFloat(27)
     
     let leftPadding = CGFloat(7)
-    let topPadding = CGFloat(7)
+    let topPadding = CGFloat(20)
     
     let tablePadding = CGFloat(5)
     let betweenTablePadding = CGFloat(2)
@@ -43,9 +43,18 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     private var viewHeight = CGFloat(600)
     private var viewWidth = CGFloat(400)
     
+    // Status bar
+    // Status bar
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.default
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        // Update status bar
+        setNeedsStatusBarAppearanceUpdate()
         
         main = Controllers.mainController
         mainTable = main?.tableController
