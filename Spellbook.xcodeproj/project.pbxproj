@@ -18,6 +18,7 @@
 		392F73DE23A9818E002D85C0 /* SpellcastingInfo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 392F73DD23A9818D002D85C0 /* SpellcastingInfo.xml */; };
 		392F73E023A98D63002D85C0 /* InfoMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392F73DF23A98D63002D85C0 /* InfoMenuViewController.swift */; };
 		392F73E223ABED35002D85C0 /* InfoMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392F73E123ABED35002D85C0 /* InfoMenuCell.swift */; };
+		3934857623B149A700EDA1CB /* SWXMLHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3934857523B149A700EDA1CB /* SWXMLHash.swift */; };
 		39522D1521ADC15900A4DBCE /* SION.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D1421ADC15900A4DBCE /* SION.swift */; };
 		39522D1921ADC41F00A4DBCE /* SpellDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D1821ADC41F00A4DBCE /* SpellDataCell.swift */; };
 		39522D1B21ADF99500A4DBCE /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D1A21ADF99500A4DBCE /* PickerViewController.swift */; };
@@ -117,6 +118,7 @@
 		392F73DD23A9818D002D85C0 /* SpellcastingInfo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SpellcastingInfo.xml; sourceTree = SOURCE_ROOT; };
 		392F73DF23A98D63002D85C0 /* InfoMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMenuViewController.swift; sourceTree = "<group>"; };
 		392F73E123ABED35002D85C0 /* InfoMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMenuCell.swift; sourceTree = "<group>"; };
+		3934857523B149A700EDA1CB /* SWXMLHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SWXMLHash.swift; path = SWXMLHash/SWXMLHash.swift; sourceTree = SOURCE_ROOT; };
 		39522D1421ADC15900A4DBCE /* SION.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SION.swift; sourceTree = "<group>"; };
 		39522D1821ADC41F00A4DBCE /* SpellDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellDataCell.swift; sourceTree = "<group>"; };
 		39522D1A21ADF99500A4DBCE /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 		397EE96721ACA86400B116B0 /* Spellbook */ = {
 			isa = PBXGroup;
 			children = (
+				3934857523B149A700EDA1CB /* SWXMLHash.swift */,
 				397EE96821ACA86400B116B0 /* AppDelegate.swift */,
 				399D9E5A223A7F570054BA8F /* book_empty.png */,
 				399D9E59223A7F570054BA8F /* book_filled.png */,
@@ -553,6 +556,7 @@
 				39522D1921ADC41F00A4DBCE /* SpellDataCell.swift in Sources */,
 				397EE9A421ACAF9C00B116B0 /* SpellParse.swift in Sources */,
 				397EE9A321ACAF9C00B116B0 /* SpellbookError.swift in Sources */,
+				3934857623B149A700EDA1CB /* SWXMLHash.swift in Sources */,
 				39EB75912306E6C7001CA1EF /* EnumUtilities.swift in Sources */,
 				397EE9AB21ACAF9C00B116B0 /* SpellComparison.swift in Sources */,
 				395F3A902268079100D7B382 /* CharacterSelectionController.swift in Sources */,

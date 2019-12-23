@@ -10,13 +10,16 @@ import UIKit
 
 class InfoMenuViewController: UITableViewController {
     
+    let reuseIdentifier = "info_cell"
+    
     struct InfoSection {
         let name: String
         let items: [String]
+        let itemInfo: [String:String]
         var collapsed: Bool
     }
     
-    var sections: [InfoSection] = []
+    let sections: [InfoSection] = InfoMenuViewController.parseSections()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +45,7 @@ class InfoMenuViewController: UITableViewController {
     
     // The table cells
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? InfoMenuCell ?? InfoMenuCell(style: .default, reuseIdentifier: "cell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? InfoMenuCell ?? InfoMenuCell(style: .default, reuseIdentifier: reuseIdentifier)
 
         cell.label.text = sections[indexPath.section].items[indexPath.row]
 
@@ -54,6 +57,34 @@ class InfoMenuViewController: UITableViewController {
     }
     
     // The section headers
+    
+    
+    
+    static func parseSections() -> [InfoSection] {
+        print("Entering parseSections")
+        let infoFile = Bundle.main.url(forResource: "SpellcastingInfo", withExtension: "xml")!
+        let data = try! String(contentsOf: infoFile)
+        let xmlDoc = SWXMLHash.parse(data)
+        var dataSections: [InfoSection] = []
+        print(xmlDoc)
+        for section in xmlDoc["root"]["section"].all {
+            var sectionItems: [String] = []
+            var sectionItemsInfo: [String:String] = [:]
+            let sectionName = section.element!.attribute(by: "name")!.text
+            print("======")
+            print(sectionName)
+            print("======")
+            for item in section["item"].all {
+                let itemName = item.element!.attribute(by: "name")!.text
+                print(itemName)
+                sectionItems.append(itemName)
+                sectionItemsInfo[itemName] = item.element?.text
+            }
+            let newSection = InfoSection(name: sectionName, items: sectionItems, itemInfo: sectionItemsInfo, collapsed: true)
+            dataSections.append(newSection)
+        }
+        return dataSections
+    }
  
 
     /*

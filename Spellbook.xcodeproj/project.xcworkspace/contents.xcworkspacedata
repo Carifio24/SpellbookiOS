@@ -2,6 +2,16 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/jcarifio/Documents/SpellbookiOS/Spellbook/Storage.swift">
+   </FileRef>
+   <Group
+      location = "container:"
+      name = "New Group">
+   </Group>
+   <FileRef
+      location = "group:../../../src/AEXML">
+   </FileRef>
+   <FileRef
       location = "self:">
    </FileRef>
 </Workspace>

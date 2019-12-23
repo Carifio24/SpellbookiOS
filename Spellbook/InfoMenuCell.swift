@@ -13,7 +13,7 @@ class InfoMenuCell: UITableViewCell {
     static let horizPadding = CGFloat(5)
     static let vertPadding = CGFloat(2)
     
-    let label = UILabel()
+    @IBOutlet var label: UILabel!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
