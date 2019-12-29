@@ -10,7 +10,10 @@ import UIKit
 
 class InfoMenuViewController: UITableViewController {
     
-    let reuseIdentifier = "info_cell"
+    static let cellReuseIdentifier = "info_cell"
+    static let headerReuseIdentifier = "info_header"
+    
+    static let backgroundImage = UIImage(named: "BookBackground.jpeg")?.withRenderingMode(.alwaysOriginal)
     
     struct InfoSection {
         let name: String
@@ -19,10 +22,19 @@ class InfoMenuViewController: UITableViewController {
         var collapsed: Bool
     }
     
-    let sections: [InfoSection] = InfoMenuViewController.parseSections()
+    static let infoSections = InfoMenuViewController.parseSections()
+    
+    var sections: [InfoSection] = InfoMenuViewController.infoSections
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Register the header and cell types
+        tableView.register(InfoTableViewHeader.self, forHeaderFooterViewReuseIdentifier: InfoMenuViewController.headerReuseIdentifier)
+        tableView.register(InfoMenuCell.self, forCellReuseIdentifier: InfoMenuViewController.cellReuseIdentifier)
+        
+        self.view.backgroundColor = UIColor.clear
+        tableView.backgroundView = UIImageView(image:  InfoMenuViewController.backgroundImage)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -45,8 +57,9 @@ class InfoMenuViewController: UITableViewController {
     
     // The table cells
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? InfoMenuCell ?? InfoMenuCell(style: .default, reuseIdentifier: reuseIdentifier)
+        let cell = tableView.dequeueReusableCell(withIdentifier: InfoMenuViewController.cellReuseIdentifier, for: indexPath) as? InfoMenuCell ?? InfoMenuCell(style: .default, reuseIdentifier: InfoMenuViewController.cellReuseIdentifier)
 
+        cell.backgroundColor = UIColor.clear
         cell.label.text = sections[indexPath.section].items[indexPath.row]
 
         return cell
@@ -57,7 +70,50 @@ class InfoMenuViewController: UITableViewController {
     }
     
     // The section headers
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: InfoMenuViewController.headerReuseIdentifier) as? InfoTableViewHeader ?? InfoTableViewHeader(reuseIdentifier: InfoMenuViewController.headerReuseIdentifier)
+        
+        header.backgroundColor = UIColor.clear
+        header.backgroundView = UIView()
+        header.backgroundView?.backgroundColor = UIColor.clear
+        header.contentView.backgroundColor = UIColor.clear
+        header.titleLabel.backgroundColor = UIColor.clear
+        header.arrowLabel.backgroundColor = UIColor.clear
+        
+        header.titleLabel.text = sections[section].name
+        header.arrowLabel.text = ">"
+        header.setCollapsed(sections[section].collapsed)
+        
+        header.section = section
+        header.delegate = self
+        
+        return header
+        
+    }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Get the relevant section
+        let sectionIndex = indexPath.section
+        let section = sections[sectionIndex]
+        
+        // Get the name of the item and its info (text in XML format)
+        let itemName = section.items[indexPath.row]
+        let itemInfo = section.itemInfo[itemName]!
+        
+        // Display the popup
+        displaySpellcastingInfoPopup(title: itemName, text: itemInfo)
+        
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44.0
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1.0
+    }
     
     
     static func parseSections() -> [InfoSection] {
@@ -84,6 +140,30 @@ class InfoMenuViewController: UITableViewController {
             dataSections.append(newSection)
         }
         return dataSections
+    }
+    
+    
+    func displaySpellcastingInfoPopup(title: String, text: String) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "spellcastingInfoPopup") as! SpellcastingInfoPopupController
+        print(storyboard)
+        print(controller)
+        
+        // Popup dimensions
+        let screenRect = UIScreen.main.bounds
+        let popupWidth = CGFloat(0.8 * screenRect.size.width)
+        let popupHeight = CGFloat(0.6 * screenRect.size.height)
+
+        // Set the controller properties and display
+        controller.width = popupWidth
+        controller.height = popupHeight
+        controller.infoTitle = title
+        controller.infoText = text
+        print("About to display popup")
+        let popupVC = PopupViewController(contentController: controller, popupWidth: popupWidth, popupHeight: popupHeight)
+        self.present(popupVC, animated: true, completion: nil)
+        
     }
  
 
@@ -132,4 +212,30 @@ class InfoMenuViewController: UITableViewController {
     }
     */
 
+}
+
+
+extension InfoMenuViewController: InfoTableViewHeaderDelegate {
+    
+    func toggleSection(_ header: InfoTableViewHeader, section: Int) {
+        
+        print("In toggleSection")
+        
+        let collapsed = !sections[section].collapsed
+        
+        // Toggle collapse
+        sections[section].collapsed = collapsed
+        header.setCollapsed(collapsed)
+        
+        print("About to reload data")
+        
+        tableView.reloadData()
+        
+        print("Reloaded data")
+        
+        tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)
+        
+        print("Reloaded sections")
+    }
+    
 }

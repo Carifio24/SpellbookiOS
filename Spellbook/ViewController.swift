@@ -79,6 +79,7 @@ class ViewController: UIViewController {
     @IBOutlet var navBar: UINavigationItem!
     @IBOutlet var leftMenuButton: UIBarButtonItem!
     @IBOutlet var refreshButton: UIBarButtonItem!
+    @IBOutlet var rightMenuButton: UIBarButtonItem!
     
     // Status bar
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -154,6 +155,8 @@ class ViewController: UIViewController {
         leftMenuButton.action = #selector(leftMenuButtonPressed)
         refreshButton.target = self
         refreshButton.action = #selector(refreshButtonPressed)
+        rightMenuButton.target = self
+        rightMenuButton.action = #selector(rightMenuButtonPressed)
         
         // Create the profiles directory if it doesn't already exist
         let fileManager = FileManager.default
@@ -505,16 +508,22 @@ class ViewController: UIViewController {
     func sort() { tableController!.sort() }
     
     // Toggle whether or not the side menu is open
-    func toggleMenu() { Controllers.revealController.revealToggle(animated: true) }
+    func toggleLeftMenu() { Controllers.revealController.revealToggle(animated: true) }
+    func toggleRightMenu() { Controllers.revealController.rightRevealToggle(animated: true) }
     
     // For the left menu button on the navigation bar
     @objc func leftMenuButtonPressed() {
-        toggleMenu()
+        toggleLeftMenu()
     }
     
     // For the refresh button on the navigation bar
     @objc func refreshButtonPressed() {
         filter()
+    }
+    
+    // For the right menu button on the navigation bar
+    @objc func rightMenuButtonPressed() {
+        toggleRightMenu()
     }
 
 }

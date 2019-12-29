@@ -19,6 +19,9 @@
 		392F73E023A98D63002D85C0 /* InfoMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392F73DF23A98D63002D85C0 /* InfoMenuViewController.swift */; };
 		392F73E223ABED35002D85C0 /* InfoMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392F73E123ABED35002D85C0 /* InfoMenuCell.swift */; };
 		3934857623B149A700EDA1CB /* SWXMLHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3934857523B149A700EDA1CB /* SWXMLHash.swift */; };
+		3934857823B16A4C00EDA1CB /* InfoTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3934857723B16A4B00EDA1CB /* InfoTableViewHeader.swift */; };
+		3934857A23B176CD00EDA1CB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3934857923B176CD00EDA1CB /* Extensions.swift */; };
+		3934857C23B7FEA600EDA1CB /* SpellcastingInfoPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3934857B23B7FEA500EDA1CB /* SpellcastingInfoPopupController.swift */; };
 		39522D1521ADC15900A4DBCE /* SION.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D1421ADC15900A4DBCE /* SION.swift */; };
 		39522D1921ADC41F00A4DBCE /* SpellDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D1821ADC41F00A4DBCE /* SpellDataCell.swift */; };
 		39522D1B21ADF99500A4DBCE /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D1A21ADF99500A4DBCE /* PickerViewController.swift */; };
@@ -119,6 +122,9 @@
 		392F73DF23A98D63002D85C0 /* InfoMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMenuViewController.swift; sourceTree = "<group>"; };
 		392F73E123ABED35002D85C0 /* InfoMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMenuCell.swift; sourceTree = "<group>"; };
 		3934857523B149A700EDA1CB /* SWXMLHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SWXMLHash.swift; path = SWXMLHash/SWXMLHash.swift; sourceTree = SOURCE_ROOT; };
+		3934857723B16A4B00EDA1CB /* InfoTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfoTableViewHeader.swift; path = /Users/jcarifio/Documents/SpellbookiOS/Spellbook/InfoTableViewHeader.swift; sourceTree = "<absolute>"; };
+		3934857923B176CD00EDA1CB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = /Users/jcarifio/Documents/SpellbookiOS/Spellbook/Extensions.swift; sourceTree = "<absolute>"; };
+		3934857B23B7FEA500EDA1CB /* SpellcastingInfoPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SpellcastingInfoPopupController.swift; path = /Users/jcarifio/Documents/SpellbookiOS/Spellbook/SpellcastingInfoPopupController.swift; sourceTree = "<absolute>"; };
 		39522D1421ADC15900A4DBCE /* SION.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SION.swift; sourceTree = "<group>"; };
 		39522D1821ADC41F00A4DBCE /* SpellDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellDataCell.swift; sourceTree = "<group>"; };
 		39522D1A21ADF99500A4DBCE /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
@@ -248,6 +254,8 @@
 		397EE96721ACA86400B116B0 /* Spellbook */ = {
 			isa = PBXGroup;
 			children = (
+				3934857B23B7FEA500EDA1CB /* SpellcastingInfoPopupController.swift */,
+				3934857923B176CD00EDA1CB /* Extensions.swift */,
 				3934857523B149A700EDA1CB /* SWXMLHash.swift */,
 				397EE96821ACA86400B116B0 /* AppDelegate.swift */,
 				399D9E5A223A7F570054BA8F /* book_empty.png */,
@@ -269,6 +277,7 @@
 				397EE96C21ACA86400B116B0 /* Main.storyboard */,
 				392F73DF23A98D63002D85C0 /* InfoMenuViewController.swift */,
 				392F73E123ABED35002D85C0 /* InfoMenuCell.swift */,
+				3934857723B16A4B00EDA1CB /* InfoTableViewHeader.swift */,
 				39F306922374D5180078FA83 /* SpellCell.swift */,
 				39F306982378A0710078FA83 /* Toast.swift */,
 				39F306902374CA020078FA83 /* ToggleButton.swift */,
@@ -568,9 +577,12 @@
 				397EE9A121ACAF9C00B116B0 /* Spell.swift in Sources */,
 				39EB75932306F948001CA1EF /* StringUtils.swift in Sources */,
 				397EE9A521ACAF9C00B116B0 /* CasterClass.swift in Sources */,
+				3934857823B16A4C00EDA1CB /* InfoTableViewHeader.swift in Sources */,
 				397EE9A221ACAF9C00B116B0 /* School.swift in Sources */,
 				3919F4D023048D07004347DB /* Distance.swift in Sources */,
 				39CFA5EE226E817C006EA33B /* CharacterSelectionCell.swift in Sources */,
+				3934857A23B176CD00EDA1CB /* Extensions.swift in Sources */,
+				3934857C23B7FEA600EDA1CB /* SpellcastingInfoPopupController.swift in Sources */,
 				397EE9A921ACAF9C00B116B0 /* Spellbook.swift in Sources */,
 				39A268D02239960C0032158F /* SideMenuCell.swift in Sources */,
 			);

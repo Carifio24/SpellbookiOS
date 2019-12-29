@@ -13,12 +13,16 @@ class InfoMenuCell: UITableViewCell {
     static let horizPadding = CGFloat(5)
     static let vertPadding = CGFloat(2)
     
-    @IBOutlet var label: UILabel!
+    let label = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        contentView.backgroundColor = UIColor.clear
 
-        // The label
+        // The label settings
+        label.textColor = UIColor.black
+        label.backgroundColor = UIColor.clear
         label.frame = CGRect(x: InfoMenuCell.horizPadding, y: InfoMenuCell.vertPadding, width: self.frame.size.width - 2*InfoMenuCell.horizPadding, height: self.frame.size.height - 2*InfoMenuCell.vertPadding)
         self.addSubview(label)
     }

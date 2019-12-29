@@ -147,7 +147,7 @@ class StatusFilterController: UITableViewController {
         mainWindowController.characterProfile.setStatusFilter(sff)
         mainWindowController.tableController?.filter()
         mainWindowController.saveCharacterProfile()
-        mainWindowController.toggleMenu()
+        mainWindowController.toggleLeftMenu()
     }
     
     func setFilter(_ sff: StatusFilterField) {
