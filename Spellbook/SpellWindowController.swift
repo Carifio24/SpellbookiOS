@@ -297,3 +297,15 @@ class SpellWindowController: UIViewController {
     }
 
 }
+
+
+extension SpellWindowController : UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return FromRightPushAnimator()
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return FromRightDismissAnimator()
+    }
+}

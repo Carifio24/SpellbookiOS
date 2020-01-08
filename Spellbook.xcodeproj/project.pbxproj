@@ -21,7 +21,10 @@
 		3934857623B149A700EDA1CB /* SWXMLHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3934857523B149A700EDA1CB /* SWXMLHash.swift */; };
 		3934857823B16A4C00EDA1CB /* InfoTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3934857723B16A4B00EDA1CB /* InfoTableViewHeader.swift */; };
 		3934857A23B176CD00EDA1CB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3934857923B176CD00EDA1CB /* Extensions.swift */; };
-		3934857C23B7FEA600EDA1CB /* SpellcastingInfoPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3934857B23B7FEA500EDA1CB /* SpellcastingInfoPopupController.swift */; };
+		3934857C23B7FEA600EDA1CB /* SpellcastingInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3934857B23B7FEA500EDA1CB /* SpellcastingInfoController.swift */; };
+		3934857E23C5919100EDA1CB /* Transitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3934857D23C5919000EDA1CB /* Transitions.swift */; };
+		3934858023C63F6000EDA1CB /* FromRightPushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3934857F23C63F5F00EDA1CB /* FromRightPushAnimator.swift */; };
+		3934858223C65C6E00EDA1CB /* FromRightDismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3934858123C65C6E00EDA1CB /* FromRightDismissAnimator.swift */; };
 		39522D1521ADC15900A4DBCE /* SION.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D1421ADC15900A4DBCE /* SION.swift */; };
 		39522D1921ADC41F00A4DBCE /* SpellDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D1821ADC41F00A4DBCE /* SpellDataCell.swift */; };
 		39522D1B21ADF99500A4DBCE /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39522D1A21ADF99500A4DBCE /* PickerViewController.swift */; };
@@ -124,7 +127,10 @@
 		3934857523B149A700EDA1CB /* SWXMLHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SWXMLHash.swift; path = SWXMLHash/SWXMLHash.swift; sourceTree = SOURCE_ROOT; };
 		3934857723B16A4B00EDA1CB /* InfoTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfoTableViewHeader.swift; path = /Users/jcarifio/Documents/SpellbookiOS/Spellbook/InfoTableViewHeader.swift; sourceTree = "<absolute>"; };
 		3934857923B176CD00EDA1CB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = /Users/jcarifio/Documents/SpellbookiOS/Spellbook/Extensions.swift; sourceTree = "<absolute>"; };
-		3934857B23B7FEA500EDA1CB /* SpellcastingInfoPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SpellcastingInfoPopupController.swift; path = /Users/jcarifio/Documents/SpellbookiOS/Spellbook/SpellcastingInfoPopupController.swift; sourceTree = "<absolute>"; };
+		3934857B23B7FEA500EDA1CB /* SpellcastingInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SpellcastingInfoController.swift; path = /Users/jcarifio/Documents/SpellbookiOS/Spellbook/SpellcastingInfoController.swift; sourceTree = "<absolute>"; };
+		3934857D23C5919000EDA1CB /* Transitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Transitions.swift; path = /Users/jcarifio/Documents/SpellbookiOS/Spellbook/Transitions.swift; sourceTree = "<absolute>"; };
+		3934857F23C63F5F00EDA1CB /* FromRightPushAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FromRightPushAnimator.swift; path = /Users/jcarifio/Documents/SpellbookiOS/Spellbook/FromRightPushAnimator.swift; sourceTree = "<absolute>"; };
+		3934858123C65C6E00EDA1CB /* FromRightDismissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FromRightDismissAnimator.swift; path = /Users/jcarifio/Documents/SpellbookiOS/Spellbook/FromRightDismissAnimator.swift; sourceTree = "<absolute>"; };
 		39522D1421ADC15900A4DBCE /* SION.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SION.swift; sourceTree = "<group>"; };
 		39522D1821ADC41F00A4DBCE /* SpellDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellDataCell.swift; sourceTree = "<group>"; };
 		39522D1A21ADF99500A4DBCE /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
@@ -254,7 +260,10 @@
 		397EE96721ACA86400B116B0 /* Spellbook */ = {
 			isa = PBXGroup;
 			children = (
-				3934857B23B7FEA500EDA1CB /* SpellcastingInfoPopupController.swift */,
+				3934858123C65C6E00EDA1CB /* FromRightDismissAnimator.swift */,
+				3934857F23C63F5F00EDA1CB /* FromRightPushAnimator.swift */,
+				3934857D23C5919000EDA1CB /* Transitions.swift */,
+				3934857B23B7FEA500EDA1CB /* SpellcastingInfoController.swift */,
 				3934857923B176CD00EDA1CB /* Extensions.swift */,
 				3934857523B149A700EDA1CB /* SWXMLHash.swift */,
 				397EE96821ACA86400B116B0 /* AppDelegate.swift */,
@@ -550,6 +559,7 @@
 				39CFA5F0226F985C006EA33B /* CharacterCreationController.swift in Sources */,
 				39EB759D23088EBE001CA1EF /* SizeUtils.swift in Sources */,
 				39522D1B21ADF99500A4DBCE /* PickerViewController.swift in Sources */,
+				3934858023C63F6000EDA1CB /* FromRightPushAnimator.swift in Sources */,
 				397EE96B21ACA86400B116B0 /* ViewController.swift in Sources */,
 				39C5B23421CAF3CB005F08DA /* StatusFilterController.swift in Sources */,
 				397EE9A821ACAF9C00B116B0 /* Util.swift in Sources */,
@@ -563,6 +573,7 @@
 				39522D1521ADC15900A4DBCE /* SION.swift in Sources */,
 				397EE9AA21ACAF9C00B116B0 /* Sourcebook.swift in Sources */,
 				39522D1921ADC41F00A4DBCE /* SpellDataCell.swift in Sources */,
+				3934858223C65C6E00EDA1CB /* FromRightDismissAnimator.swift in Sources */,
 				397EE9A421ACAF9C00B116B0 /* SpellParse.swift in Sources */,
 				397EE9A321ACAF9C00B116B0 /* SpellbookError.swift in Sources */,
 				3934857623B149A700EDA1CB /* SWXMLHash.swift in Sources */,
@@ -582,8 +593,9 @@
 				3919F4D023048D07004347DB /* Distance.swift in Sources */,
 				39CFA5EE226E817C006EA33B /* CharacterSelectionCell.swift in Sources */,
 				3934857A23B176CD00EDA1CB /* Extensions.swift in Sources */,
-				3934857C23B7FEA600EDA1CB /* SpellcastingInfoPopupController.swift in Sources */,
+				3934857C23B7FEA600EDA1CB /* SpellcastingInfoController.swift in Sources */,
 				397EE9A921ACAF9C00B116B0 /* Spellbook.swift in Sources */,
+				3934857E23C5919100EDA1CB /* Transitions.swift in Sources */,
 				39A268D02239960C0032158F /* SideMenuCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -2,6 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/jcarifio/Documents/SpellbookiOS/Spellbook/FromRightDismissAnimator.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/jcarifio/Documents/SpellbookiOS/Spellbook/FromRightPushAnimator.swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/jcarifio/Documents/SpellbookiOS/Spellbook/Transitions.swift">
+   </FileRef>
+   <FileRef
       location = "group:/Users/jcarifio/Documents/SpellbookiOS/Spellbook/SpellcastingInfoPopupController.swift">
    </FileRef>
    <FileRef

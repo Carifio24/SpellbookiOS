@@ -34,6 +34,7 @@ class InfoMenuViewController: UITableViewController {
         tableView.register(InfoMenuCell.self, forCellReuseIdentifier: InfoMenuViewController.cellReuseIdentifier)
         
         self.view.backgroundColor = UIColor.clear
+        tableView.separatorStyle = .none
         tableView.backgroundView = UIImageView(image:  InfoMenuViewController.backgroundImage)
 
         // Uncomment the following line to preserve selection between presentations
@@ -103,7 +104,7 @@ class InfoMenuViewController: UITableViewController {
         let itemInfo = section.itemInfo[itemName]!
         
         // Display the popup
-        displaySpellcastingInfoPopup(title: itemName, text: itemInfo)
+        displaySpellcastingInfoController(title: itemName, text: itemInfo)
         
     }
     
@@ -145,8 +146,9 @@ class InfoMenuViewController: UITableViewController {
     
     func displaySpellcastingInfoPopup(title: String, text: String) {
         
+        // Instantiate the controller using the storyboard
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "spellcastingInfoPopup") as! SpellcastingInfoPopupController
+        let controller = storyboard.instantiateViewController(withIdentifier: "spellcastingInfo") as! SpellcastingInfoController
         print(storyboard)
         print(controller)
         
@@ -160,10 +162,23 @@ class InfoMenuViewController: UITableViewController {
         controller.height = popupHeight
         controller.infoTitle = title
         controller.infoText = text
-        print("About to display popup")
+        
         let popupVC = PopupViewController(contentController: controller, popupWidth: popupWidth, popupHeight: popupHeight)
         self.present(popupVC, animated: true, completion: nil)
         
+    }
+    
+    func displaySpellcastingInfoController(title: String, text: String) {
+        
+        // Instantiate the controller using the storyboard
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "spellcastingInfo") as! SpellcastingInfoController
+        
+        // Set the controller properties and display
+        controller.infoTitle = title
+        controller.infoText = text
+        controller.transitioningDelegate = controller
+        self.present(controller, animated: true, completion: nil)
     }
  
 

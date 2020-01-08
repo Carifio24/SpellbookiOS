@@ -20,7 +20,9 @@ func bool_to_yn(yn: Bool) -> String {
 func fixEscapeCharacters(_ str : inout String) {
     let replacements : [String : String] = [
         "\\'" : "\'",
-        "\\\\" : "\\"
+        "\\\\" : "\\",
+        "\\n" : "\n",
+        "\\t" : "\t"
     ]
     for x in replacements {
         str = str.replacingOccurrences(of: x.0, with: x.1)

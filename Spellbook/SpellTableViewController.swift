@@ -246,24 +246,12 @@ class SpellTableViewController: UITableViewController {
     // Set what happens when a cell is selected
     // For us, that's creating a segue to a view with the spell info
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        // Debugging section
-//        print("spells.count is \(spellArray.count)")
-//        print("indexPath.row is \(indexPath.row)")
-//        let s = paddedArray[indexPath.row]
-//        print("Spell name is: \(s.name)")
-//        let fav: Bool = main!.characterProfile.isFavorite(s)
-//        let pr: Bool = main!.characterProfile.isPrepared(s)
-//        let kw: Bool = main!.characterProfile.isKnown(s)
-//        print("Spell is favorited: \(fav)")
-//        print("Spell is prepared: \(pr)")
-//        print("Spell is known: \(kw)")
-//        print("Selected row for spell: \(paddedArray[indexPath.row].name)")
-        
-        
+    
         if indexPath.row >= spellArray.count { return }
         let storyboard = self.storyboard
         let spellWindowController = storyboard?.instantiateViewController(withIdentifier: spellWindowIdentifier) as! SpellWindowController
+        spellWindowController.transitioningDelegate = spellWindowController
+        //view.window?.layer.add(Transitions.fromRightTransition, forKey: kCATransition)
         self.present(spellWindowController, animated: true, completion: nil)
         spellWindowController.spellIndex = indexPath.row
         spellWindowController.spell = spellArray[indexPath.row]
