@@ -69,15 +69,11 @@ class InfoTableViewHeader : UITableViewHeaderFooterView {
     //
     @objc func tapHeader(_ gestureRecognizer: UITapGestureRecognizer) {
         
-        print("In tapHeader")
         guard let cell = gestureRecognizer.view as? InfoTableViewHeader else {
             return
         }
-        print(cell)
         
         delegate?.toggleSection(self, section: cell.section)
-        
-        print("Toggled section")
         
     }
     
@@ -85,7 +81,9 @@ class InfoTableViewHeader : UITableViewHeaderFooterView {
         //
         // Animate the arrow rotation (see Extensions.swf)
         //
-        arrowLabel.rotate(collapsed ? 0.0 : .pi / 2)
+        //arrowLabel.rotate(collapsed ? 0.0 : .pi / 2)
+        let angle: CGFloat = collapsed ? .pi/2 : -.pi/2
+        arrowLabel.transform = CGAffineTransform(rotationAngle: angle)
     }
 
 }

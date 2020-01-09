@@ -25,6 +25,8 @@ class InfoMenuViewController: UITableViewController {
     static let infoSections = InfoMenuViewController.parseSections()
     
     var sections: [InfoSection] = InfoMenuViewController.infoSections
+    
+    let headerHeight = CGFloat(57)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,15 @@ class InfoMenuViewController: UITableViewController {
         self.view.backgroundColor = UIColor.clear
         tableView.separatorStyle = .none
         tableView.backgroundView = UIImageView(image:  InfoMenuViewController.backgroundImage)
+        
+        // The header for the table
+        let titleLabel = UILabel()
+        titleLabel.text = "Spellcasting"
+        titleLabel.font = UIFont(name: "Cloister Black", size: CGFloat(50))
+        titleLabel.backgroundColor = UIColor.clear
+        titleLabel.frame.size.height = headerHeight
+        tableView.tableHeaderView = titleLabel
+        //tableView.bringSubviewToFront(tableView.tableHeaderView!)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -118,22 +129,18 @@ class InfoMenuViewController: UITableViewController {
     
     
     static func parseSections() -> [InfoSection] {
-        print("Entering parseSections")
         let infoFile = Bundle.main.url(forResource: "SpellcastingInfo", withExtension: "xml")!
         let data = try! String(contentsOf: infoFile)
         let xmlDoc = SWXMLHash.parse(data)
         var dataSections: [InfoSection] = []
-        print(xmlDoc)
+        
         for section in xmlDoc["root"]["section"].all {
             var sectionItems: [String] = []
             var sectionItemsInfo: [String:String] = [:]
             let sectionName = section.element!.attribute(by: "name")!.text
-            print("======")
-            print(sectionName)
-            print("======")
+            
             for item in section["item"].all {
                 let itemName = item.element!.attribute(by: "name")!.text
-                print(itemName)
                 sectionItems.append(itemName)
                 sectionItemsInfo[itemName] = item.element?.text
             }
@@ -234,23 +241,15 @@ extension InfoMenuViewController: InfoTableViewHeaderDelegate {
     
     func toggleSection(_ header: InfoTableViewHeader, section: Int) {
         
-        print("In toggleSection")
-        
         let collapsed = !sections[section].collapsed
         
         // Toggle collapse
         sections[section].collapsed = collapsed
         header.setCollapsed(collapsed)
         
-        print("About to reload data")
-        
         tableView.reloadData()
-        
-        print("Reloaded data")
-        
         tableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)
         
-        print("Reloaded sections")
     }
     
 }
