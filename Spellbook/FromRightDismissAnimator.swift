@@ -21,23 +21,25 @@ class FromRightDismissAnimator : NSObject, UIViewControllerAnimatedTransitioning
             else {
                 return
         }
+        guard let fromViewController = transitionContext.viewController(forKey: .from)
+            else {
+                return
+        }
         
+        let fromView = fromViewController.view!
         let animationDuration = transitionDuration(using: transitionContext)
         let containerView = transitionContext.containerView
         
-        toViewController.view.transform = CGAffineTransform(translationX: -containerView.bounds.width, y: 0)
-        toViewController.view.layer.shadowColor = UIColor.black.cgColor
-        toViewController.view.layer.shadowOffset = CGSize(width: 0.0, height: 2.0)
-        toViewController.view.layer.shadowOpacity = 0.3
-        toViewController.view.layer.cornerRadius = 4.0
-        toViewController.view.clipsToBounds = true
-        
-        containerView.addSubview(toViewController.view)
+        containerView.addSubview(fromView)
+        containerView.insertSubview(toViewController.view, belowSubview: fromView)
+        fromView.frame.origin = .zero
         
         UIView.animate(withDuration: animationDuration,
-                       animations:  { toViewController.view.transform = CGAffineTransform.identity },
+                       animations:  { fromView.frame.origin = CGPoint(x: fromView.frame.width, y: 0) },
                        completion: {
-                        finished in transitionContext.completeTransition(finished)
+                        finished in
+                        fromView.removeFromSuperview()
+                        transitionContext.completeTransition(finished)
         }
         )
         

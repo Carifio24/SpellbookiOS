@@ -32,6 +32,7 @@ class SpellWindowController: UIViewController {
     @IBOutlet var favoriteButton: UIButton!
     @IBOutlet var preparedButton: UIButton!
     @IBOutlet var knownButton: UIButton!
+    @IBOutlet weak var backgroundView: UIImageView!
     
     // The name label size
     let nameLabelHeight = CGFloat(55)
@@ -217,6 +218,9 @@ class SpellWindowController: UIViewController {
         let screenRect = view.bounds
         let screenWidth = screenRect.size.width
         let screenHeight = screenRect.size.height
+        
+        // Background view
+        backgroundView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
         
         // Get the padding sizes
         let leftPadding = max(min(leftPaddingFraction * screenWidth, maxHorizPadding), minHorizPadding)

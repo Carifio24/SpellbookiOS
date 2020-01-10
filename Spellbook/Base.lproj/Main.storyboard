@@ -40,6 +40,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dJz-fX-8XT">
                                         <rect key="frame" x="142" y="277" width="0.0" height="0.0"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -246,13 +247,14 @@
                                 </subviews>
                             </scrollView>
                             <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BookBackground.jpeg" id="ypa-xU-HWY">
-                                <rect key="frame" x="0.0" y="-34" width="414" height="930"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <connections>
+                        <outlet property="backgroundView" destination="ypa-xU-HWY" id="FH7-hP-bh1"/>
                         <outlet property="favoriteButton" destination="z3p-02-z1G" id="qq5-YI-I6d"/>
                         <outlet property="knownButton" destination="f6W-mZ-pXE" id="fNQ-iR-tYj"/>
                         <outlet property="preparedButton" destination="omB-O3-Bun" id="obo-gk-qiI"/>
