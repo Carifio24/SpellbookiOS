@@ -126,8 +126,7 @@ class SourcebookFilterController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         // Access the relevant controllers
-        let revealController = UIApplication.shared.keyWindow!.rootViewController as! SWRevealViewController
-        let mainWindowController = revealController.frontViewController as! ViewController
+        let mainWindowController = Controllers.mainController
         let profile = mainWindowController.characterProfile
         
         // Set the filtering variables accordingly
