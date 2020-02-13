@@ -73,6 +73,9 @@ class SpellDataCell: UITableViewCell {
         levelSchoolLabel.textAlignment = NSTextAlignment.left
         sourcebookLabel.textAlignment = NSTextAlignment.left
         
+        print("star height is \(SpellDataCell.starFilled!.size.height)")
+        print("star width is \(SpellDataCell.starFilled!.size.width)")
+        
         // Set font sizes
         nameLabel.font = UIFont.systemFont(ofSize: 17)
         levelSchoolLabel.font = UIFont.italicSystemFont(ofSize: 11)

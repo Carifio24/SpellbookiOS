@@ -9,6 +9,9 @@ public class Spellbook {
 	static let N_SCHOOLS = schoolNames.count
 	static let N_CASTERS = casterNames.count
 	static let N_SUBCLASSES = subclassNames.count
+    
+    static let MIN_SPELL_LEVEL = 0
+    static let MAX_SPELL_LEVEL = 9
 
 	var spells: Array<Spell> = []
 	var N_SPELLS: Int = 0

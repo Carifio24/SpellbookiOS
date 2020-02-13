@@ -6,43 +6,41 @@
 //  Copyright © 2019 Jonathan Carifio. All rights reserved.
 //
 
+import Foundation
+
 // An enum class for the various types of Distance
-enum DistanceType: Int, Comparable {
+enum RangeType: Int, Comparable, QuantityType {
     case Special=0, SelfDistance, Touch, Sight, Ranged, Unlimited
     
-    func name() -> String {
-        switch (self) {
-        case .Special:
-            return "Special"
-        case .SelfDistance:
-            return "Self"
-        case .Touch:
-            return "Touch"
-        case .Sight:
-            return "Sight"
-        case .Ranged:
-            return "Ranged"
-        case .Unlimited:
-            return "Unlimited"
-        default:
-            return "" // Unreachable
-        }
+    private static let nameMap: [RangeType:String] = [
+        Special : "Special",
+        SelfDistance : "Self",
+        Touch : "Touch",
+        Sight : "Sight",
+        Ranged : "Ranged",
+        Unlimited : "Unlimited"
+    ]
+    
+    var displayName: String {
+        return RangeType.nameMap[self]!
+    }
+    
+    func isSpanningType() -> Bool {
+        return self == .Ranged
     }
 }
 
-import Foundation
-
-class Distance : Quantity<DistanceType, LengthUnit> {
+class Range : Quantity<RangeType, LengthUnit> {
     
     ///// Specialized constructors
     
     // If no unit is given, assume feet (if no unit is given, we shouldn't have a string description either)
-    convenience init(type: DistanceType, length: Int) {
+    convenience init(type: RangeType, length: Int) {
         self.init(type: type, value: length, unit: LengthUnit.foot)
     }
     
     convenience init() {
-        self.init(type: DistanceType.SelfDistance, length: 0)
+        self.init(type: RangeType.SelfDistance, length: 0)
     }
     
     ///// Methods
@@ -58,13 +56,13 @@ class Distance : Quantity<DistanceType, LengthUnit> {
         
         switch (type) {
         case DistanceType.Touch, DistanceType.Special, DistanceType.Unlimited, DistanceType.Sight:
-            return type.name()
+            return type.displayName
         case DistanceType.SelfDistance:
             if (self.value > 0) {
-                return type.name() + "(" + String(value) + " foot radius)"
+                return type.displayName + "(" + String(value) + " foot radius)"
             }
         case DistanceType.Ranged:
-            let ft: String = (value == 1) ? unit.name() : unit.pluralName()
+            let ft: String = (value == 1) ? unit.singularName() : unit.pluralName()
             return String(value) + " " + ft
             
         }
@@ -72,20 +70,20 @@ class Distance : Quantity<DistanceType, LengthUnit> {
     }
     
     // Create a Distance from its string description
-    static func fromString(_ s: String) throws -> Distance {
+    static func fromString(_ s: String) throws -> Range {
         
         // The "special" types - basically, ones other than Ranged and Self
-        for type in [DistanceType.Touch, DistanceType.Special, DistanceType.Sight, DistanceType.Unlimited] {
-            if (s.starts(with: type.name())) {
-                return Distance(type: type, value: 0, unit: LengthUnit.foot, str: s)
+        for type in [RangeType.Touch, RangeType.Special, RangeType.Sight, RangeType.Unlimited] {
+            if (s.starts(with: type.displayName)) {
+                return Range(type: type, value: 0, unit: LengthUnit.foot, str: s)
             }
         }
         
         // Parse Self and Ranged Distances
-        if (s.starts(with: DistanceType.SelfDistance.name())) {
+        if (s.starts(with: RangeType.SelfDistance.displayName)) {
             let sSplit = s.split(separator: " ", maxSplits: 1)
             if (sSplit.count == 1) {
-                return Distance(type: DistanceType.SelfDistance, length: 0)
+                return Range(type: RangeType.SelfDistance, length: 0)
             } else {
                 var distStr = String(sSplit[1])
                 if ( !(distStr.hasPrefix("(") && distStr.hasSuffix(")")) ) {
@@ -96,17 +94,17 @@ class Distance : Quantity<DistanceType, LengthUnit> {
                 let distSplit = distStr.split(separator: " ")
                 let length = Int(distSplit[0])
                 let unit = try LengthUnit.fromString(String(distSplit[1]))
-                return Distance(type: DistanceType.SelfDistance, value: length!, unit: unit, str: s)
+                return Range(type: RangeType.SelfDistance, value: length!, unit: unit, str: s)
             }
         }
         do {
             let sSplit = s.split(separator: " ")
             let length = Int(sSplit[0])
             let unit = try LengthUnit.fromString(String(sSplit[1]))
-            return Distance(type: DistanceType.Ranged, value: length!, unit: unit, str: s)
+            return Range(type: RangeType.Ranged, value: length!, unit: unit, str: s)
         } catch let e {
             print("\(e)")
         }
-        return Distance()
+        return Range()
     }
 }

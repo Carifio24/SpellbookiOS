@@ -9,22 +9,23 @@
 import Foundation
 
 // An enum class for the various types of Distance
-enum DurationType: Int, Comparable {
+enum DurationType: Int, Comparable, QuantityType {
+    
     case Special=0, Instantaneous, Spanning, UntilDispelled
     
-    func name() -> String {
-        switch (self) {
-        case .Instantaneous:
-            return "Instantaneous"
-        case .Spanning:
-            return "Spanning"
-        case .Special:
-            return "Special"
-        case.UntilDispelled:
-            return "Until dispelled"
-        default:
-            return "" // Unreachable
-        }
+    private static let displayNameMap = [
+        Special : "Special",
+        Instantaneous : "Instantaneous",
+        Spanning : "Finite duration",
+        UntilDispelled : "Until dispelled"
+    ]
+    
+    var displayName: String {
+        return DurationType.displayNameMap[self]!
+    }
+    
+    func isSpanningType() -> Bool {
+        return self == .Spanning
     }
     
 }
@@ -55,11 +56,11 @@ class Duration : Quantity<DurationType, TimeUnit> {
         
         switch (type) {
         case DurationType.Instantaneous, DurationType.Special:
-            return type.name()
+            return type.displayName
         case DurationType.UntilDispelled:
             return "Until dispelled"
         case DurationType.Spanning:
-            let secs: String = (value == 1) ? unit.name() : unit.pluralName()
+            let secs: String = (value == 1) ? unit.singularName() : unit.pluralName()
             return secs + " s"
         }
         return "" // We'll never get here, as the above cases exhaust the enum
@@ -70,7 +71,7 @@ class Duration : Quantity<DurationType, TimeUnit> {
         
         // Instantaneous and special
         for type in [DurationType.Instantaneous, DurationType.Special] {
-            if (s.starts(with: type.name())) {
+            if (s.starts(with: type.displayName)) {
                 return Duration(type: type, secs: 0)
             }
             
@@ -84,7 +85,7 @@ class Duration : Quantity<DurationType, TimeUnit> {
         // Spanning
         let concentrationPrefix = "Up to "
         let start = concentrationPrefix.count
-        let t = s.starts(with:concentrationPrefix) ? String(s[start...]) : s
+        let t = s.starts(with: concentrationPrefix) ? String(s[start...]) : s
         do {
             let tSplit = t.split(separator: " ", maxSplits: 1)
             let value = Int(tSplit[0])
@@ -92,7 +93,7 @@ class Duration : Quantity<DurationType, TimeUnit> {
             //print("tSplit[1] is \(String(tSplit[1]))")
             let unit = try TimeUnit.fromString(String(tSplit[1]))
             return Duration(type: DurationType.Spanning, value: value!, unit: unit, str: s)
-        } catch let e{
+        } catch let e {
             print("\(e)")
         }
         return Duration()

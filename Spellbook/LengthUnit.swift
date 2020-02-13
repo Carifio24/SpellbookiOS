@@ -17,7 +17,7 @@ enum LengthUnit : Int, Unit {
         mile: ["mile", "miles", "mi", "mi."]
     ]
     
-    func name() -> String {
+    func singularName() -> String {
         return LengthUnit.names[self]![0]
     }
     

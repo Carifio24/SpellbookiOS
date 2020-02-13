@@ -21,7 +21,7 @@ enum TimeUnit : Int, Unit {
         year: ["year", "years", "yr", "yr."]
     ]
     
-    func name() -> String {
+    func singularName() -> String {
         return TimeUnit.names[self]![0]
     }
     

@@ -9,7 +9,7 @@
 import Foundation
 
 protocol Unit {
-    func name() -> String
+    func singularName() -> String
     func pluralName() -> String
     func abbreviation() -> String
     func value() -> Int

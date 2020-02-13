@@ -12,10 +12,6 @@ enum School: Int {
         Transmutation : "Transmutation"
     ]
     
-    func name() -> String {
-        return School.nameMap[self]!
-    }
-    
     static func fromName(_ s: String) -> School? {
         return getOneKey(dict: School.nameMap, value: s)
     }
@@ -26,3 +22,11 @@ extension School: CaseIterable {}
 
 // For sorting purposes
 extension School: Comparable {}
+
+extension School: NameDisplayable {
+    
+    var displayName: String {
+        return School.nameMap[self]!
+    }
+    
+}

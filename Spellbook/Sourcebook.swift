@@ -4,7 +4,7 @@ enum Sourcebook: Int {
     private static let nameMap: [Sourcebook:String] = [
         PlayersHandbook : "Player's Handbook",
         XanatharsGTE : "Xanathar's Guide to Everything",
-        SwordCoastAG : "Sword Coast AG"
+        SwordCoastAG : "Sword Coast Adv. Guide"
     ]
     
     private static let codeMap: [Sourcebook:String] = [
@@ -12,10 +12,6 @@ enum Sourcebook: Int {
         XanatharsGTE : "xge",
         SwordCoastAG : "scag"
     ]
-    
-    func name() -> String {
-        return Sourcebook.nameMap[self]!
-    }
     
     func code() -> String {
         return Sourcebook.codeMap[self]!
@@ -56,5 +52,11 @@ extension Sourcebook: CaseIterable {}
 extension Sourcebook: Hashable {
     public var hashValue: Int {
         return rawValue
+    }
+}
+
+extension Sourcebook: NameDisplayable {
+    var displayName: String {
+        return Sourcebook.nameMap[self]!
     }
 }

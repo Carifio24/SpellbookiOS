@@ -18,7 +18,7 @@ public class SpellBuilder {
     private(set) var description: String = ""
     private(set) var higherLevel: String = ""
     private(set) var page: Int = 0
-    private(set) var range: Distance = Distance()
+    private(set) var range: Range = Range()
     private(set) var components: Array<Bool> = [false,false,false]
     private(set) var material: String = ""
     private(set) var ritual: Bool = false
@@ -36,7 +36,7 @@ public class SpellBuilder {
     func setDescription(_ descIn: String) -> SpellBuilder { description = descIn; return self }
     func setHigherLevelDesc(_ higherLevelIn: String) -> SpellBuilder { higherLevel = higherLevelIn; return self }
     func setPage(_ pageIn: Int) -> SpellBuilder { page = pageIn; return self }
-    func setRange(_ rangeIn: Distance) -> SpellBuilder { range = rangeIn; return self }
+    func setRange(_ rangeIn: Range) -> SpellBuilder { range = rangeIn; return self }
     func setComponents(_ componentsIn: Array<Bool>) -> SpellBuilder { components = componentsIn; return self }
     func setMaterial(_ materialIn: String) -> SpellBuilder { material = materialIn; return self }
     func setRitual(_ ritualIn: Bool) -> SpellBuilder { ritual = ritualIn; return self }
@@ -58,7 +58,7 @@ public class SpellBuilder {
     // Reset to default values
     func reset() {
         name = ""; description = ""; higherLevel = "";
-        page = 0; range = Distance(); components = [false,false,false];
+        page = 0; range = Range(); components = [false,false,false];
         material = ""; ritual = false; duration = Duration();
         concentration = false; castingTime = ""; level = 0;
         school = School.Abjuration; classes = []; subclasses = [];

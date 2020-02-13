@@ -23,6 +23,13 @@ extension UIView {
     
 }
 
+extension Dictionary {
+    subscript<T>(key: T.Type) -> Value? where Key == HashableType<T> {
+        get { return self[HashableType(key)] }
+        set { self[HashableType(key)] = newValue }
+    }
+}
+
 
 extension String {
     private var convertHtmlToNSAttributedString: NSAttributedString? {
@@ -54,4 +61,33 @@ extension String {
             return nil
         }
     }
+}
+
+extension Sequence {
+    
+    // A fun little method that calls an instance method on each element of the sequence
+    // Basically, the idea is if I have Container<Type>
+    // I pass in a method, i.e. Type.instanceMethod
+    // and this does element.instanceMethod() for each element in the Sequence
+    // Stole this from John Sundell (SwiftBySundell.com)
+    func forEach(_ closure: (Element) ->  () -> Void) {
+        for element in self {
+            closure(element)()
+        }
+    }
+}
+
+// It's annoying to have to convert Strings, etc. to SION before using them as keys
+// So we'll just do it once here and be done with it
+extension SION {
+    
+    public subscript(_ key: String) -> SION {
+        get {
+            return self[SION(key)]
+        }
+        set {
+            self[SION(key)] = newValue
+        }
+    }
+    
 }

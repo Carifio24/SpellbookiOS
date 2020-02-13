@@ -53,11 +53,11 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
         b.setDuration(Duration())
     }
     do {
-        try b.setRange(Distance.fromString(obj["range"].string!))
+        try b.setRange(Range.fromString(obj["range"].string!))
     } catch let e {
         print("\(e)")
         print("Defaulted to empty distance")
-        b.setRange(Distance())
+        b.setRange(Range())
     }
     
 

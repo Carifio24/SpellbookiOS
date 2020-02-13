@@ -5,7 +5,7 @@ public class Spell {
 	let description: String
 	let higherLevel: String
 	let page: Int
-	let range: Distance
+	let range: Range
 	let components: Array<Bool>
 	let material: String
 	let ritual: Bool
@@ -19,7 +19,7 @@ public class Spell {
     let sourcebook: Sourcebook
 
 	// Constructor
-    init(name: String, description: String, higherLevel: String, page: Int, range: Distance, components: Array<Bool>, material: String, ritual: Bool, duration: Duration, concentration: Bool, castingTime: String, level: Int, school: School, classes: Array<CasterClass>, subclasses: Array<SubClass>, sourcebook: Sourcebook) {
+    init(name: String, description: String, higherLevel: String, page: Int, range: Range, components: Array<Bool>, material: String, ritual: Bool, duration: Duration, concentration: Bool, castingTime: String, level: Int, school: School, classes: Array<CasterClass>, subclasses: Array<SubClass>, sourcebook: Sourcebook) {
         self.name = name; self.description = description; self.higherLevel = higherLevel;
         self.page = page; self.range = range; self.components = components; self.material = material;
         self.ritual = ritual; self.duration = duration; self.concentration = concentration;
@@ -29,7 +29,7 @@ public class Spell {
     
     // Default constructor (for convenience, when necessary)
     convenience init() {
-        self.init(name: "", description: "", higherLevel: "", page: 0, range: Distance(), components: [false,false,false], material: "", ritual: false, duration: Duration(), concentration: false, castingTime: "", level: 0, school: School.Abjuration, classes: [], subclasses: [], sourcebook: Sourcebook.PlayersHandbook)
+        self.init(name: "", description: "", higherLevel: "", page: 0, range: Range(), components: [false,false,false], material: "", ritual: false, duration: Duration(), concentration: false, castingTime: "", level: 0, school: School.Abjuration, classes: [], subclasses: [], sourcebook: Sourcebook.PlayersHandbook)
     }
     
 

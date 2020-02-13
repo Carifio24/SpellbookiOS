@@ -19,7 +19,7 @@ enum SortField: Int {
             return s.school }),
         Level : propertyTriComp({ (_ s:Spell) -> Int in
             return s.level }),
-        Range : propertyTriComp({ (_ s:Spell) -> Distance in
+        Range : propertyTriComp({ (_ s:Spell) -> Range in
             return s.range }),
         Duration : propertyTriComp({ (_ s:Spell) -> Duration in
             return s.duration })
@@ -33,10 +33,6 @@ enum SortField: Int {
         Duration : "Duration"
     ]
     
-    func name() -> String {
-        return SortField.nameMap[self]!
-    }
-    
     func comparator() -> IntComparatorFunc<Spell> {
         return SortField.spellComparators[self]!
     }
@@ -49,3 +45,11 @@ enum SortField: Int {
 }
 
 extension SortField : CaseIterable {}
+
+extension SortField: NameDisplayable {
+    
+    var displayName: String {
+        return SortField.nameMap[self]!
+    }
+    
+}
