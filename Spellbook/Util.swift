@@ -33,8 +33,27 @@ func getKeys<Key,Value>(dict: [Key:Value], value: Value) -> [Key] {
     return (dict as NSDictionary).allKeys(for: value) as! [Key]
 }
 
+func getKeys<Key:CaseIterable,Value:Equatable>(enumMap: EnumMap<Key,Value>, value: Value) -> [Key] {
+    var keys: [Key] = []
+    for key in Key.allCases {
+        if enumMap[key] == value {
+            keys.append(key)
+        }
+    }
+    return keys
+}
+
 func getOneKey<Key,Value>(dict: [Key:Value], value: Value) -> Key? {
     let keys = getKeys(dict: dict, value: value)
+    if keys.count > 0 {
+        return keys[0]
+    } else {
+        return nil
+    }
+}
+
+func getOneKey<Key:CaseIterable,Value:Equatable>(enumMap: EnumMap<Key,Value>, value: Value) -> Key? {
+    let keys = getKeys(enumMap: enumMap, value: value)
     if keys.count > 0 {
         return keys[0]
     } else {

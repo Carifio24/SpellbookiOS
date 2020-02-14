@@ -1,7 +1,7 @@
-enum Sourcebook: Int {
+enum Sourcebook: Int, NameDisplayable {
 	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG
     
-    private static let nameMap: [Sourcebook:String] = [
+    internal static let displayNameMap: [Sourcebook:String] = [
         PlayersHandbook : "Player's Handbook",
         XanatharsGTE : "Xanathar's Guide to Everything",
         SwordCoastAG : "Sword Coast Adv. Guide"
@@ -15,10 +15,6 @@ enum Sourcebook: Int {
     
     func code() -> String {
         return Sourcebook.codeMap[self]!
-    }
-    
-    static func fromName(_ s: String) -> Sourcebook? {
-        return getOneKey(dict: Sourcebook.nameMap, value: s)
     }
     
     static func fromCode(_ s: String) -> Sourcebook? {
@@ -48,15 +44,3 @@ enum Sourcebook: Int {
 
 // So we can interate over all values
 extension Sourcebook: CaseIterable {}
-
-extension Sourcebook: Hashable {
-    public var hashValue: Int {
-        return rawValue
-    }
-}
-
-extension Sourcebook: NameDisplayable {
-    var displayName: String {
-        return Sourcebook.nameMap[self]!
-    }
-}

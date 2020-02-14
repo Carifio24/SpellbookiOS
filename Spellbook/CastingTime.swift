@@ -18,7 +18,7 @@ enum CastingTimeType: Int, Comparable, QuantityType {
         Time : "time"
     ]
     
-    private static let displayNameMap = [
+    internal static let displayNameMap = [
         Action : "1 action",
         BonusAction : "1 bonus action",
         Reaction : "1 reaction",
@@ -29,10 +29,6 @@ enum CastingTimeType: Int, Comparable, QuantityType {
     
     fileprivate var parseName: String {
         return CastingTimeType.parseNameMap[self]!
-    }
-    
-    var displayName: String {
-        return CastingTimeType.displayNameMap[self]!
     }
     
     func isSpanningType() -> Bool {

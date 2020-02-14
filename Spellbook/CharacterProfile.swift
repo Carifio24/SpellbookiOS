@@ -15,11 +15,15 @@ typealias Visibilities<T:CaseIterable & Hashable> = EnumMap<T,Bool>
 //typealias Visibilities<T:Hashable> = [T:Bool]
 typealias EnumInfo = (Any.Type, Bool, (Any) -> Bool, String, String)
 
-struct RangeInfo {
-    let minUnit: Unit
-    let maxUnit: Unit
-    let minValue: Int
-    let maxValue: Int
+class RangeInfo {
+    var minUnit: Unit
+    var maxUnit: Unit
+    var minValue: Int
+    var maxValue: Int
+    
+    init(minUnit: Unit, maxUnit: Unit, minValue: minValue, maxValue: maxValue) {
+        self.minUnit = minUnit; self.maxUnit = maxUnit; self.minValue = minValue; self.maxValue = maxValue
+    }
 }
 
 class CharacterProfile {
@@ -173,23 +177,18 @@ class CharacterProfile {
         }
         
         // The sorting fields
-        let sortStr1: String = sion[SION(CharacterProfile.sort1Key)].string ?? SortField.Name.displayName
-        let sortStr2: String = sion[SION(CharacterProfile.sort2Key)].string ?? SortField.Name.displayName
+        let sortStr1: String = sion[CharacterProfile.sort1Key].string ?? SortField.Name.displayName
+        let sortStr2: String = sion[CharacterProfile.sort2Key].string ?? SortField.Name.displayName
         sortField1 = SortField.fromName(sortStr1)!
         sortField2 = SortField.fromName(sortStr2)!
         
         // The class filter
-        filterClass = nil
-        let classStr: String? = sion[SION(CharacterProfile.classFilterKey)].string
-        if (classStr == nil) {
-            filterClass = nil
-        } else {
-            filterClass = CasterClass.fromName(classStr!)!
-        }
+        sourcebookVisibilities = CharacterProfile.mapFromHiddenNames(nonTrivialFilter: true, sion: sion, key: CharacterProfile.hiddenSourcebooksKey)
+        
         
         // The sorting directions
-        reverse1 = sion[SION(CharacterProfile.reverse1Key)].bool ?? false
-        reverse2 = sion[SION(CharacterProfile.reverse2Key)].bool ?? false
+        reverse1 = sion[CharacterProfile.reverse1Key].bool ?? false
+        reverse2 = sion[CharacterProfile.reverse2Key].bool ?? false
         
         // The status filter
         let filterStr = sion[SION(CharacterProfile.statusFilterKey)].string ?? StatusFilterField.All.name()
@@ -344,7 +343,6 @@ class CharacterProfile {
     }
     
     
-    
     // For getting spell status properties
     private func setProperty(s: Spell, val: Bool, propSetter: StatusPropertySetter) {
         
@@ -391,19 +389,19 @@ class CharacterProfile {
     // For setting range filter data
     func setMinValue<E:QuantityType>(type: E.Type, value: Int) {
         let id = ObjectIdentifier(type)
-        quantityRangeFilterMap[id]?.2 = value
+        quantityRangeFilterMap[id]?.minValue = value
     }
     func setMaxValue<E:QuantityType>(type: E.Type, value: Int) {
         let id = ObjectIdentifier(type)
-        quantityRangeFilterMap[id]?.3 = value
+        quantityRangeFilterMap[id]?.maxValue = value
     }
     func setMinUnit<E:QuantityType>(type: E.Type, unit: Unit) {
         let id = ObjectIdentifier(type)
-        quantityRangeFilterMap[id]?.0 = unit
+        quantityRangeFilterMap[id]?.minUnit = unit
     }
     func setMaxUnit<E:QuantityType>(type: E.Type, unit: Unit) {
         let id = ObjectIdentifier(type)
-        quantityRangeFilterMap[id]?.1 = unit
+        quantityRangeFilterMap[id]?.maxUnit = unit
     }
     
     // Which map to use for a given type
@@ -471,17 +469,28 @@ class CharacterProfile {
     
     // Constructing a map from a list of hidden values
     // Used for JSON decoding
-    private static func mapFromHiddenNames<E:NameDisplayable>(filter: Filter<E>, json: SION, key: String, constructorFromName: (String) -> E) -> Visibilities<E> {
+    private static func mapFromHiddenNames<E:NameDisplayable>(nonTrivialFilter: Bool, sion: SION, key: String) -> Visibilities<E> {
         
         // The default map
         var map = CharacterProfile.getDefaultTypeMap(E.self)!.copy()
         
-        // Make modifications
-        let jsonArray = json[SION(key)].array
-        if (jsonArray != nil) {
-            for v in jsonArray! {
+        // Query the appropriate key
+        let sionArray = sion[key].array
+        
+        // If we have the key, do what we need to
+        if (sionArray != nil) {
+            
+            // If the filter is nontrivial, and we have the key, we want to start everything as true
+            if nonTrivialFilter {
+                for e in E.allCases {
+                    map[e] = true
+                }
+            }
+            
+            // Make modifications to the map, hiding any values whose names are present in the array
+            for v in sionArray! {
                 let name = v.string!
-                let value = constructorFromName(name)
+                let value = E.fromName(name)
                 map[value] = false
             }
         }

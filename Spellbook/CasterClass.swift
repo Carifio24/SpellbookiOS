@@ -1,7 +1,14 @@
-enum CasterClass: Int {
+enum CasterClass: Int, NameDisplayable {
 	case Bard=0, Cleric, Druid, Paladin, Ranger, Sorcerer, Warlock, Wizard
     
-    private static let nameMap: [CasterClass:String] = [
+    internal static let displayNameMap: EnumMap<CasterClass,String> = {
+        switch(self) {
+        case .Bard:
+            return "Bard"
+        case .Cleric:
+            return "Cleric"
+        }
+        
         Bard : "Bard",
         Cleric : "Cleric",
         Druid : "Druid",
@@ -10,10 +17,6 @@ enum CasterClass: Int {
         Sorcerer : "Sorcerer",
         Warlock : "Warlock",
         Wizard : "Wizard"
-    ]
-    
-    static func fromName(_ s: String) -> CasterClass? {
-        return getOneKey(dict: CasterClass.nameMap, value: s)
     }
     
     static let count = CasterClass.allCases.count
@@ -21,9 +24,3 @@ enum CasterClass: Int {
 
 // So we can iterate over all values
 extension CasterClass: CaseIterable {}
-
-extension CasterClass: NameDisplayable {
-    var displayName: String {
-        return CasterClass.nameMap[self]!
-    }
-}
