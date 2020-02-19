@@ -18,12 +18,18 @@ enum CastingTimeType: Int, Comparable, QuantityType {
         Time : "time"
     ]
     
-    internal static let displayNameMap = [
-        Action : "1 action",
-        BonusAction : "1 bonus action",
-        Reaction : "1 reaction",
-        Time : "Other"
-    ]
+    internal static let displayNameMap: EnumMap<CastingTimeType,String> {
+        switch (self) {
+            case .Action:
+                return "1 action"
+            case .BonusAction
+                return "1 bonus action"
+            case .Reaction:
+                return "1 reaction"
+            case .Time:
+                return "Other"
+        }
+    }
     
     fileprivate static let actionTypes = [ Action, BonusAction, Reaction ]
     

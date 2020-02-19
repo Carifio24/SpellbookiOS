@@ -13,12 +13,18 @@ enum DurationType: Int, Comparable, QuantityType {
     
     case Special=0, Instantaneous, Spanning, UntilDispelled
     
-    internal static let displayNameMap = [
-        Special : "Special",
-        Instantaneous : "Instantaneous",
-        Spanning : "Finite duration",
-        UntilDispelled : "Until dispelled"
-    ]
+    internal static let displayNameMap: EnumMap<DurationType,String> {
+        switch (self) {
+        case .Special:
+            return "Special"
+        case .Instantaneous:
+            return "Instantaneous"
+        case .Spanning:
+            return "Finite duration"
+        case .UntilDispelled:
+            return "Until dispelled"
+        }
+    }
     
     func isSpanningType() -> Bool {
         return self == .Spanning

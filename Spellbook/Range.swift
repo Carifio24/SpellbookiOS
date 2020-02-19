@@ -12,14 +12,22 @@ import Foundation
 enum RangeType: Int, Comparable, QuantityType {
     case Special=0, SelfDistance, Touch, Sight, Ranged, Unlimited
     
-    internal static let displayNameMap: [RangeType:String] = [
-        Special : "Special",
-        SelfDistance : "Self",
-        Touch : "Touch",
-        Sight : "Sight",
-        Ranged : "Ranged",
-        Unlimited : "Unlimited"
-    ]
+    internal static let displayNameMap: EnumMap<RangeType,String> {
+        switch (self) {
+        case .Special:
+            return "Special"
+        case .SelfDistance:
+            return "Self"
+        case .Touch:
+            return "Touch"
+        case .Sight:
+            return "Sight"
+        case .Ranged:
+            return "Ranged"
+        case .Unlimited:
+            return "Unlimited"
+        }
+    }
     
     func isSpanningType() -> Bool {
         return self == .Ranged

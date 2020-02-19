@@ -1,20 +1,27 @@
-enum School: Int, NameDisplayable {
+enum School: Int, Comparable, NameDisplayable {
 	case Abjuration=0, Conjuration, Divination, Enchantment, Evocation, Illusion, Necromancy, Transmutation
     
-    static let displayNameMap: [School:String] = [
-        Abjuration : "Abjuration",
-        Conjuration : "Conjuration",
-        Divination : "Divination",
-        Enchantment : "Enchantment",
-        Evocation : "Evocation",
-        Illusion : "Illusion",
-        Necromancy : "Necromancy",
-        Transmutation : "Transmutation"
-    ]
+    static let displayNameMap: EnumMap<School,String> {
+        switch (self) {
+        case .Abjuration: 
+            return "Abjuration"
+        case .Conjuration: 
+            return "Conjuration"
+        case .Divination:
+            return "Divination"
+        case .Enchantment:
+            return "Enchantment"
+        case .Evocation:
+            return "Evocation"
+        case .Illusion:
+            return "Illusion"
+        case .Necromancy:
+            return  "Necromancy"
+        case .Transmutation:
+            return "Transmutation"
+        }
+    }
 }
 
 // So we can iterate over all values
 extension School: CaseIterable {}
-
-// For sorting purposes
-extension School: Comparable {}

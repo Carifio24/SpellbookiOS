@@ -1,11 +1,16 @@
 enum Sourcebook: Int, NameDisplayable {
 	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG
     
-    internal static let displayNameMap: [Sourcebook:String] = [
-        PlayersHandbook : "Player's Handbook",
-        XanatharsGTE : "Xanathar's Guide to Everything",
-        SwordCoastAG : "Sword Coast Adv. Guide"
-    ]
+    internal static let displayNameMap: EnumMap<Sourcebook,String> {
+        switch (self) {
+        case .PlayersHandbook:
+            return "Player's Handbook"
+        case .XanatharsGTE:
+            return "Xanathar's Guide to Everything"
+        case .SwordCoastAG:
+            return "Sword Coast Adv. Guide"
+        }
+    }
     
     private static let codeMap: [Sourcebook:String] = [
         PlayersHandbook : "phb",

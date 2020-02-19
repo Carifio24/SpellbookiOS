@@ -9,6 +9,7 @@
 
 // Stole the basic setup of this from John Sundell
 // then modified it myself to make it mutable, and a reference type (struct -> class)
+// since that was more convenient for the purposes of this project
 
 import Foundation
 
