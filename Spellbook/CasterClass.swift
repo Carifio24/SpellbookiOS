@@ -1,8 +1,8 @@
 enum CasterClass: Int, NameDisplayable {
 	case Bard=0, Cleric, Druid, Paladin, Ranger, Sorcerer, Warlock, Wizard
     
-    internal static let displayNameMap: EnumMap<CasterClass,String> {
-        switch(self) {
+    internal static var displayNameMap = EnumMap<CasterClass,String> { e in
+        switch(e) {
         case .Bard:
             return "Bard"
         case .Cleric:
@@ -24,6 +24,3 @@ enum CasterClass: Int, NameDisplayable {
     
     static let count = CasterClass.allCases.count
 }
-
-// So we can iterate over all values
-extension CasterClass: CaseIterable {}

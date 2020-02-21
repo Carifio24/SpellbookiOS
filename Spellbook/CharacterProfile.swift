@@ -21,7 +21,7 @@ class RangeInfo {
     var minValue: Int
     var maxValue: Int
     
-    init(minUnit: Unit, maxUnit: Unit, minValue: minValue, maxValue: maxValue) {
+    init(minUnit: Unit, maxUnit: Unit, minValue: Int, maxValue: Int) {
         self.minUnit = minUnit; self.maxUnit = maxUnit; self.minValue = minValue; self.maxValue = maxValue
     }
 }

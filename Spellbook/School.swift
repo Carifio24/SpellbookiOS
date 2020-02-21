@@ -1,8 +1,8 @@
 enum School: Int, Comparable, NameDisplayable {
 	case Abjuration=0, Conjuration, Divination, Enchantment, Evocation, Illusion, Necromancy, Transmutation
     
-    static let displayNameMap: EnumMap<School,String> {
-        switch (self) {
+    internal static var displayNameMap = EnumMap<School,String> { e in
+        switch (e) {
         case .Abjuration: 
             return "Abjuration"
         case .Conjuration: 

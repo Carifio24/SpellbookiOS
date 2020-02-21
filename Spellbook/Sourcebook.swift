@@ -1,8 +1,8 @@
 enum Sourcebook: Int, NameDisplayable {
 	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG
     
-    internal static let displayNameMap: EnumMap<Sourcebook,String> {
-        switch (self) {
+    internal static var displayNameMap = EnumMap<Sourcebook,String> { e in
+        switch (e) {
         case .PlayersHandbook:
             return "Player's Handbook"
         case .XanatharsGTE:

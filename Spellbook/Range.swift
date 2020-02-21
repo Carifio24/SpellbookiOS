@@ -12,8 +12,8 @@ import Foundation
 enum RangeType: Int, Comparable, QuantityType {
     case Special=0, SelfDistance, Touch, Sight, Ranged, Unlimited
     
-    internal static let displayNameMap: EnumMap<RangeType,String> {
-        switch (self) {
+    internal static var displayNameMap = EnumMap<RangeType,String> { e in
+        switch (e) {
         case .Special:
             return "Special"
         case .SelfDistance:

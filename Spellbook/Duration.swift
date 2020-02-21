@@ -13,8 +13,8 @@ enum DurationType: Int, Comparable, QuantityType {
     
     case Special=0, Instantaneous, Spanning, UntilDispelled
     
-    internal static let displayNameMap: EnumMap<DurationType,String> {
-        switch (self) {
+    internal static var displayNameMap = EnumMap<DurationType,String> { e in
+        switch (e) {
         case .Special:
             return "Special"
         case .Instantaneous:
