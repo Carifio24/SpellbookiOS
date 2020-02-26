@@ -15,13 +15,13 @@ typealias Visibilities<T:CaseIterable & Hashable> = EnumMap<T,Bool>
 //typealias Visibilities<T:Hashable> = [T:Bool]
 typealias EnumInfo = (Any.Type, Bool, (Any) -> Bool, String, String)
 
-class RangeInfo {
-    var minUnit: Unit
-    var maxUnit: Unit
+class RangeInfo<U:Unit> {
+    var minUnit: U
+    var maxUnit: U
     var minValue: Int
     var maxValue: Int
     
-    init(minUnit: Unit, maxUnit: Unit, minValue: Int, maxValue: Int) {
+    init(minUnit: U, maxUnit: U, minValue: Int, maxValue: Int) {
         self.minUnit = minUnit; self.maxUnit = maxUnit; self.minValue = minValue; self.maxValue = maxValue
     }
 }
@@ -63,7 +63,7 @@ class CharacterProfile {
     private static let defaultCasterVisibilities = defaultFilterMap(type: CasterClass.self)
     private static let defaultSchoolVisibilities = defaultFilterMap(type: School.self)
     private static let defaultCastingTimeTypeVisibilities = defaultFilterMap(type: CastingTimeType.self)
-    private static let defaultDurationTypeVisibilities = defaultFilterMap(type: RangeType.self)
+    private static let defaultDurationTypeVisibilities = defaultFilterMap(type: DurationType.self)
     private static let defaultRangeTypeVisibilities = defaultFilterMap(type: RangeType.self)
     
     // Default quantity range filter info
@@ -72,11 +72,9 @@ class CharacterProfile {
 //    private static let defaultDurationFilters = (Duration.self, TimeUnit.self, TimeUnit.second, TimeUnit.day, 0, 30)
 //    private static let defaulRangeFilters = (Range.self, LengthUnit.self, LengthUnit.foot, LengthUnit.mile, 0, 1)
     
-    private static let defaultQuantityRangeFilterMap: [ObjectIdentifier : RangeInfo] = [
-        ObjectIdentifier(CastingTimeType.self) : RangeInfo(minUnit: TimeUnit.second, maxUnit: TimeUnit.hour, minValue: 0, maxValue: 24),
-        ObjectIdentifier(DurationType.self) : RangeInfo(minUnit: TimeUnit.second, maxUnit: TimeUnit.day, minValue: 0, maxValue: 30),
-        ObjectIdentifier(RangeType.self) : RangeInfo(minUnit: LengthUnit.foot, maxUnit: LengthUnit.mile, minValue: 0, maxValue: 1),
-    ]
+    private static let defaultCastingTimeRangeInfo = RangeInfo<TimeUnit>(minUnit: TimeUnit.second, maxUnit: TimeUnit.hour, minValue: 0, maxValue: 24)
+    private static let defaultDurationRangeInfo = RangeInfo<TimeUnit>(minUnit: TimeUnit.second, maxUnit: TimeUnit.day, minValue: 0, maxValue: 30)
+    private static let defaultRangeRangeInfo = RangeInfo<LengthUnit>(minUnit: LengthUnit.foot, maxUnit: LengthUnit.mile, minValue: 0, maxValue: 1)
     
     // Keys for loading/saving
     private static let charNameKey: String = "CharacterName"
@@ -103,11 +101,9 @@ class CharacterProfile {
     private static let versionCodeKey: String = "VersionCode"
     
     // Keys for storing range filter info
-    private static let quantityRangeKeys: [ObjectIdentifier:String] = [
-        ObjectIdentifier(CastingTimeType.self) : "CastingTimeFilters",
-        ObjectIdentifier(DurationType.self) : "DurationFilters",
-        ObjectIdentifier(RangeType.self) : "RangeFilters"
-    ]
+    private static let castingTimeRangeKey = "CastingTimeFilters"
+    private static let durationRangeKey = "DurationFilters"
+    private static let rangeRangeKey = "RangeFilters"
     private static let rangeFilterKeys = [ "MinUnit", "MaxUnit", "MinText", "MaxText" ]
     
     
@@ -125,12 +121,14 @@ class CharacterProfile {
     private var casterVisibilities: Visibilities<CasterClass>
     private var schoolVisibilities: Visibilities<School>
     private var castingTimeTypeVisibilities: Visibilities<CastingTimeType>
-    private var durationTypeVisibilities: Visibilities<RangeType>
+    private var durationTypeVisibilities: Visibilities<DurationType>
     private var rangeTypeVisibilities: Visibilities<RangeType>
-    private var quantityRangeFilterMap: [ObjectIdentifier:RangeInfo]
+    private var castingTimeRangeInfo: RangeInfo<TimeUnit>
+    private var durationRangeInfo: RangeInfo<TimeUnit>
+    private var rangeRangeInfo: RangeInfo<LengthUnit>
     
     
-    init(name: String, spellStatuses: [String:SpellStatus], sortField1: SortField, sortField2: SortField, reverse1: Bool, reverse2: Bool, statusFilter: StatusFilterField, minSpellLevel: Int, maxSpellLevel: Int, sourcebookVisibilities: Visibilities<Sourcebook>, casterVisibilities: Visibilities<CasterClass>, schoolVisibilities: Visibilities<School>, castingTimeTypeVisibilities: Visibilities<CastingTimeType>, durationTypeVisibilities: Visibilities<RangeType>, rangeTypeVisibilities: Visibilities<RangeType>, quantityRangeFilterMap: [ObjectIdentifier:RangeInfo]) {
+    init(name: String, spellStatuses: [String:SpellStatus], sortField1: SortField, sortField2: SortField, reverse1: Bool, reverse2: Bool, statusFilter: StatusFilterField, minSpellLevel: Int, maxSpellLevel: Int, sourcebookVisibilities: Visibilities<Sourcebook>, casterVisibilities: Visibilities<CasterClass>, schoolVisibilities: Visibilities<School>, castingTimeTypeVisibilities: Visibilities<CastingTimeType>, durationTypeVisibilities: Visibilities<DurationType>, rangeTypeVisibilities: Visibilities<RangeType>, castingTimeRangeInfo: RangeInfo<TimeUnit>, durationRangeInfo: RangeInfo<TimeUnit>, rangeRangeInfo: RangeInfo<LengthUnit>) {
         self.charName = name
         self.spellStatuses = spellStatuses
         self.sortField1 = sortField1
@@ -146,11 +144,13 @@ class CharacterProfile {
         self.castingTimeTypeVisibilities = castingTimeTypeVisibilities
         self.durationTypeVisibilities = durationTypeVisibilities
         self.rangeTypeVisibilities = rangeTypeVisibilities
-        self.quantityRangeFilterMap = quantityRangeFilterMap
+        self.castingTimeRangeInfo = castingTimeRangeInfo
+        self.durationRangeInfo = durationRangeInfo
+        self.rangeRangeInfo = rangeRangeInfo
     }
     
     convenience init(name: String, spellStatuses: [String:SpellStatus]) {
-        self.init(name: name, spellStatuses: spellStatuses, sortField1: SortField.Name, sortField2: SortField.Name, reverse1: false, reverse2: false, statusFilter: StatusFilterField.All, minSpellLevel: Spellbook.MIN_SPELL_LEVEL, maxSpellLevel: Spellbook.MAX_SPELL_LEVEL, sourcebookVisibilities: CharacterProfile.defaultSourcebookVisibilities, casterVisibilities: CharacterProfile.defaultCasterVisibilities, schoolVisibilities: CharacterProfile.defaultSchoolVisibilities, castingTimeTypeVisibilities: CharacterProfile.defaultCastingTimeTypeVisibilities, durationTypeVisibilities: CharacterProfile.defaultDurationTypeVisibilities, rangeTypeVisibilities: CharacterProfile.defaultRangeTypeVisibilities, quantityRangeFilterMap: CharacterProfile.defaultQuantityRangeFilterMap)
+        self.init(name: name, spellStatuses: spellStatuses, sortField1: SortField.Name, sortField2: SortField.Name, reverse1: false, reverse2: false, statusFilter: StatusFilterField.All, minSpellLevel: Spellbook.MIN_SPELL_LEVEL, maxSpellLevel: Spellbook.MAX_SPELL_LEVEL, sourcebookVisibilities: CharacterProfile.defaultSourcebookVisibilities, casterVisibilities: CharacterProfile.defaultCasterVisibilities, schoolVisibilities: CharacterProfile.defaultSchoolVisibilities, castingTimeTypeVisibilities: CharacterProfile.defaultCastingTimeTypeVisibilities, durationTypeVisibilities: CharacterProfile.defaultDurationTypeVisibilities, rangeTypeVisibilities: CharacterProfile.defaultRangeTypeVisibilities, castingTimeRangeInfo: CharacterProfile.defaultCastingTimeRangeInfo, durationRangeInfo: CharacterProfile.defaultDurationRangeInfo, rangeRangeInfo: CharacterProfile.defaultRangeRangeInfo)
     }
     
     convenience init(name: String) {
@@ -166,12 +166,12 @@ class CharacterProfile {
         //print(sion.toJSON())
         
         spellStatuses = [:]
-        charName = sion[SION(CharacterProfile.charNameKey)].string!
-        for (_, v) in sion[SION(CharacterProfile.spellsKey)] {
-            let spellName: String = v[SION(CharacterProfile.spellNameKey)].string!
-            let fav = v[SION(CharacterProfile.favoriteKey)].bool!
-            let prep = v[SION(CharacterProfile.preparedKey)].bool!
-            let known = v[SION(CharacterProfile.knownKey)].bool!
+        charName = sion[CharacterProfile.charNameKey].string!
+        for (_, v) in sion[CharacterProfile.spellsKey] {
+            let spellName: String = v[CharacterProfile.spellNameKey].string!
+            let fav = v[CharacterProfile.favoriteKey].bool!
+            let prep = v[CharacterProfile.preparedKey].bool!
+            let known = v[CharacterProfile.knownKey].bool!
             let status = SpellStatus(favIn: fav, prepIn: prep, knownIn: known)
             spellStatuses[spellName] = status
         }
@@ -182,25 +182,26 @@ class CharacterProfile {
         sortField1 = SortField.fromName(sortStr1)!
         sortField2 = SortField.fromName(sortStr2)!
         
-        // The class filter
-        sourcebookVisibilities = CharacterProfile.mapFromHiddenNames(nonTrivialFilter: true, sion: sion, key: CharacterProfile.hiddenSourcebooksKey)
+        // Visibilities for various quantities
+        sourcebookVisibilities = CharacterProfile.mapFromHiddenNames(type: Sourcebook.self, nonTrivialFilter: true, sion: sion, key: CharacterProfile.hiddenSourcebooksKey)
+        casterVisibilities = CharacterProfile.mapFromHiddenNames(type: CasterClass.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenCastersKey)
+        schoolVisibilities = CharacterProfile.mapFromHiddenNames(type: School.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenSchoolsKey)
+        castingTimeTypeVisibilities = CharacterProfile.mapFromHiddenNames(type: CastingTimeType.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenCastingTimeTypesKey)
+        durationTypeVisibilities = CharacterProfile.mapFromHiddenNames(type: DurationType.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenDurationTypesKey)
+        rangeTypeVisibilities = CharacterProfile.mapFromHiddenNames(type: RangeType.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenRangeTypesKey)
         
+        // Quantity range information
+        castingTimeRangeInfo = CharacterProfile.rangeInfoFromSION(sion: sion, key: CharacterProfile.castingTimeRangeKey, rangeType: CastingTimeType.self, unitType: TimeUnit.self)
+        durationRangeInfo = CharacterProfile.rangeInfoFromSION(sion: sion, key: CharacterProfile.durationRangeKey, rangeType: DurationType.self, unitType: TimeUnit.self)
+        rangeRangeInfo = CharacterProfile.rangeInfoFromSION(sion: sion, key: CharacterProfile.rangeRangeKey, rangeType: RangeType.self, unitType: LengthUnit.self)
         
         // The sorting directions
         reverse1 = sion[CharacterProfile.reverse1Key].bool ?? false
         reverse2 = sion[CharacterProfile.reverse2Key].bool ?? false
         
         // The status filter
-        let filterStr = sion[SION(CharacterProfile.statusFilterKey)].string ?? StatusFilterField.All.name()
+        let filterStr = sion[CharacterProfile.statusFilterKey].string ?? StatusFilterField.All.name()
         statusFilter = StatusFilterField.fromName(filterStr)!
-        
-        // Sourcebook filters
-        filterByBooks = [:]
-        let booksSION = sion[SION(CharacterProfile.booksFilterKey)]
-        for sb in Sourcebook.allCases {
-            let b = booksSION[SION(sb.code())].bool ?? (sb == Sourcebook.PlayersHandbook)
-            filterByBooks[sb] = b
-        }
         
     }
     
@@ -249,17 +250,10 @@ class CharacterProfile {
         sion[CharacterProfile.hiddenRangeTypesKey] = stringArrayToSION(getVisibleValueNames(type: RangeType.self, b: false))
         
         // Put in the range filters
-        for (id, rangeInfo) in quantityRangeFilterMap {
-            var rangeSION: SION = [:]
-            let key = CharacterProfile.quantityRangeKeys[id]
-            if (key == nil) { continue }
-            rangeSION[CharacterProfile.rangeFilterKeys[0]] = SION(rangeInfo.minUnit.pluralName())
-            rangeSION[CharacterProfile.rangeFilterKeys[1]] = SION(rangeInfo.maxUnit.pluralName())
-            rangeSION[CharacterProfile.rangeFilterKeys[2]] = SION(rangeInfo.minValue)
-            rangeSION[CharacterProfile.rangeFilterKeys[3]] = SION(rangeInfo.maxValue)
-            sion[key!] = rangeSION
-        }
-        
+        sion[CharacterProfile.castingTimeRangeKey] = rangeInfoToSION(castingTimeRangeInfo)
+        sion[CharacterProfile.durationRangeKey] = rangeInfoToSION(durationRangeInfo)
+        sion[CharacterProfile.rangeRangeKey] = rangeInfoToSION(rangeRangeInfo)
+
         // Put in the version code
         sion[CharacterProfile.versionCodeKey] = SION(Constants.VERSION_CODE)
         
@@ -269,6 +263,16 @@ class CharacterProfile {
     // As a JSON string
     func asJSONString() -> String {
         return asSION().json
+    }
+    
+    // For converting a RangeInfo<T> to a SION array
+    private func rangeInfoToSION<U:Unit>(_ rangeInfo: RangeInfo<U>) -> SION {
+        var rangeSION: SION = [:]
+        rangeSION[CharacterProfile.rangeFilterKeys[0]] = SION(rangeInfo.minUnit.pluralName())
+        rangeSION[CharacterProfile.rangeFilterKeys[1]] = SION(rangeInfo.maxUnit.pluralName())
+        rangeSION[CharacterProfile.rangeFilterKeys[2]] = SION(rangeInfo.minValue)
+        rangeSION[CharacterProfile.rangeFilterKeys[3]] = SION(rangeInfo.maxValue)
+        return rangeSION
     }
     
     // For converting an array of Strings to a SION array
@@ -316,10 +320,6 @@ class CharacterProfile {
     func getSecondSortReverse() -> Bool { return reverse2 }
     func getMinSpellLevel() -> Int { return minSpellLevel }
     func getMaxSpellLevel() -> Int { return maxSpellLevel }
-    
-    private func getQuantityRangeInfo(_ id: ObjectIdentifier) -> RangeInfo {
-        return quantityRangeFilterMap[id] ?? CharacterProfile.defaultQuantityRangeFilterMap[id]!
-    }
     
     func favoritesSelected() -> Bool { return (statusFilter == StatusFilterField.Favorites) }
     func preparedSelected() -> Bool { return (statusFilter == StatusFilterField.Prepared) }
@@ -387,21 +387,23 @@ class CharacterProfile {
     func setMaxSpellLevel(_ level: Int) { maxSpellLevel = level }
     
     // For setting range filter data
-    func setMinValue<E:QuantityType>(type: E.Type, value: Int) {
-        let id = ObjectIdentifier(type)
-        quantityRangeFilterMap[id]?.minValue = value
+    private func setRangeValue<E:QuantityType, U:Unit, V>(_ quantityType: E.Type, _ unitType: U.Type, _ value: V, _ setter: (RangeInfo<U>, V) -> Void) {
+        let rangeInfo = getQuantityRangeInfo(E.self, U.self)
+        if (rangeInfo == nil) { return }
+        setter(rangeInfo!, value)
     }
-    func setMaxValue<E:QuantityType>(type: E.Type, value: Int) {
-        let id = ObjectIdentifier(type)
-        quantityRangeFilterMap[id]?.maxValue = value
+    
+    func setMinValue<E:QuantityType, U:Unit>(quantityType: E.Type, unitType: U.Type, value: Int) {
+        setRangeValue(quantityType, unitType, value, { rangeInfo, val in rangeInfo.minValue = val } )
     }
-    func setMinUnit<E:QuantityType>(type: E.Type, unit: Unit) {
-        let id = ObjectIdentifier(type)
-        quantityRangeFilterMap[id]?.minUnit = unit
+    func setMaxValue<E:QuantityType, U:Unit>(quantityType: E.Type, unitType: U.Type, value: Int) {
+        setRangeValue(quantityType, unitType, value, { rangeInfo, val in rangeInfo.maxValue = val } )
     }
-    func setMaxUnit<E:QuantityType>(type: E.Type, unit: Unit) {
-        let id = ObjectIdentifier(type)
-        quantityRangeFilterMap[id]?.maxUnit = unit
+    func setMinUnit<E:QuantityType, U:Unit>(quantityType: E.Type, unitType: U.Type, unit: U) {
+        setRangeValue(quantityType, unitType, unit, { rangeInfo, val in rangeInfo.minUnit = val } )
+    }
+    func setMaxUnit<E:QuantityType, U:Unit>(quantityType: E.Type, unitType: U.Type, unit: U) {
+        setRangeValue(quantityType, unitType, unit, { rangeInfo, val in rangeInfo.maxUnit = val } )
     }
     
     // Which map to use for a given type
@@ -425,7 +427,7 @@ class CharacterProfile {
         }
     }
     
-    // Which map to use for a given type
+    // Which default map to use for a given type
     static func getDefaultTypeMap<E:CaseIterable & Hashable>(_ t : E.Type) -> Visibilities<E>? {
         let id = ObjectIdentifier(t)
         switch (id) {
@@ -441,6 +443,48 @@ class CharacterProfile {
             return CharacterProfile.defaultDurationTypeVisibilities as? Visibilities<E>
         case ObjectIdentifier(RangeType.self):
             return CharacterProfile.defaultRangeTypeVisibilities as? Visibilities<E>
+        default:
+            return nil
+        }
+    }
+    
+    static func getUnitType<E:QuantityType>(_ t : E.Type) -> Any.Type {
+        let id = ObjectIdentifier(t)
+        switch (id) {
+        case ObjectIdentifier(CastingTimeType.self), ObjectIdentifier(DurationType.self):
+            return TimeUnit.self
+        case ObjectIdentifier(RangeType.self):
+            return LengthUnit.self
+        default:
+            return TimeUnit.self // Should never get here
+        }
+    }
+    
+    // Default range info for a given type
+    static func getDefaultQuantityRangeInfo<E:NameDisplayable, U:Unit>(_ t : E.Type, _ u : U.Type) -> RangeInfo<U>? {
+        let id = ObjectIdentifier(t)
+        switch (id) {
+        case ObjectIdentifier(CastingTimeType.self):
+            return CharacterProfile.defaultCastingTimeRangeInfo as? RangeInfo<U>
+        case ObjectIdentifier(DurationType.self):
+            return CharacterProfile.defaultDurationRangeInfo as? RangeInfo<U>
+        case ObjectIdentifier(RangeType.self):
+            return CharacterProfile.defaultRangeRangeInfo as? RangeInfo<U>
+        default:
+            return nil
+        }
+    }
+    
+    // Range info for a given type
+    func getQuantityRangeInfo<E:NameDisplayable, U:Unit>(_ t : E.Type, _ u : U.Type) -> RangeInfo<U>? {
+        let id = ObjectIdentifier(t)
+        switch(id) {
+        case ObjectIdentifier(CastingTimeType.self):
+            return castingTimeRangeInfo as? RangeInfo<U>
+        case ObjectIdentifier(DurationType.self):
+            return durationRangeInfo as? RangeInfo<U>
+        case ObjectIdentifier(RangeType.self):
+            return rangeRangeInfo as? RangeInfo<U>
         default:
             return nil
         }
@@ -469,7 +513,7 @@ class CharacterProfile {
     
     // Constructing a map from a list of hidden values
     // Used for JSON decoding
-    private static func mapFromHiddenNames<E:NameDisplayable>(nonTrivialFilter: Bool, sion: SION, key: String) -> Visibilities<E> {
+    private static func mapFromHiddenNames<E:NameDisplayable>(type: E.Type, nonTrivialFilter: Bool, sion: SION, key: String) -> Visibilities<E> {
         
         // The default map
         var map = CharacterProfile.getDefaultTypeMap(E.self)!.copy()
@@ -482,9 +526,7 @@ class CharacterProfile {
             
             // If the filter is nontrivial, and we have the key, we want to start everything as true
             if nonTrivialFilter {
-                for e in E.allCases {
-                    map[e] = true
-                }
+                map = Visibilities<E> { _ in return true }
             }
             
             // Make modifications to the map, hiding any values whose names are present in the array
@@ -495,6 +537,29 @@ class CharacterProfile {
             }
         }
         return map
+    }
+    
+    private static func rangeInfoFromSION<T:NameDisplayable, U:Unit>(sion: SION, key: String, rangeType: T.Type, unitType: U.Type) -> RangeInfo<U> {
+        
+        // Query the appropriate key
+        let rangeInfoSION = sion[key].dictionary
+        
+        // If we don't have the key (more specifically, if its associated value isn't a dictionary), return the default
+        let defaultRange = CharacterProfile.getDefaultQuantityRangeInfo(rangeType, unitType)!
+        if rangeInfoSION == nil {
+            return defaultRange as RangeInfo<U>
+        }
+        
+        // If we do have the key, parse the dictionary
+        let minUnitString = rangeInfoSION![SION(CharacterProfile.rangeFilterKeys[0])]!.string ?? defaultRange.minUnit.pluralName()
+        let maxUnitString = rangeInfoSION![SION(CharacterProfile.rangeFilterKeys[1])]!.string ?? defaultRange.maxUnit.pluralName()
+        let minUnit = (try? U.fromString(minUnitString)) ?? defaultRange.minUnit
+        let maxUnit = (try? U.fromString(maxUnitString)) ?? defaultRange.maxUnit
+        let minValue = rangeInfoSION![SION(CharacterProfile.rangeFilterKeys[2])]!.int ?? defaultRange.minValue
+        let maxValue = rangeInfoSION![SION(CharacterProfile.rangeFilterKeys[3])]!.int ?? defaultRange.maxValue
+        
+        return RangeInfo(minUnit: minUnit, maxUnit: maxUnit, minValue: minValue, maxValue: maxValue)
+        
     }
     
     

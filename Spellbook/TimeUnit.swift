@@ -12,7 +12,7 @@ enum TimeUnit : Int, Unit {
     
     case second=1, round=6, minute=60, hour=3600, day=86400, year=31536000
     
-    static private let names: [TimeUnit:Array<String>] = [
+    static internal var names: [TimeUnit:Array<String>] = [
         second: ["second", "seconds", "s", "s."],
         round: ["round", "rounds", "rd", "rd."],
         minute: ["minute", "minutes", "min", "min."],
@@ -21,21 +21,7 @@ enum TimeUnit : Int, Unit {
         year: ["year", "years", "yr", "yr."]
     ]
     
-    func singularName() -> String {
-        return TimeUnit.names[self]![0]
-    }
-    
-    func pluralName() -> String {
-        return TimeUnit.names[self]![1]
-    }
-    
-    func abbreviation() -> String {
-        return TimeUnit.names[self]![2]
-    }
-    
-    func value() -> Int {
-        return self.rawValue
-    }
+    func value() -> Int { return self.rawValue }
     
     func inSeconds() -> Int { return value() }
     
