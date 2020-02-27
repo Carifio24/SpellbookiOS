@@ -14,7 +14,7 @@ class SourcebookFilterController: UITableViewController {
     let menuOptions: [String] = {
         var options: [String] = []
         for sb in Sourcebook.allCases {
-            options.append(sb.name())
+            options.append(sb.displayName)
         }
         return options
     }()
@@ -108,7 +108,7 @@ class SourcebookFilterController: UITableViewController {
         let mainWindowController = Controllers.mainController
         
         let sb = Sourcebook.init(rawValue: indexPath.row)!
-        let selected = mainWindowController.characterProfile.getSourcebookFilter(sb)
+        let selected = mainWindowController.characterProfile.getVisibility(sb)
         let cell = SideMenuCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: cellReuseIdentifier, selected: selected)
         //let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SideMenuCell
         cell.optionLabel.text = menuOptions[indexPath.row]
@@ -132,7 +132,7 @@ class SourcebookFilterController: UITableViewController {
         // Set the filtering variables accordingly
         let index = indexPath.row
         let sb = Sourcebook.init(rawValue: index)!
-        profile.setSourcebookFilter(book: sb, tf: !mainWindowController.characterProfile.getSourcebookFilter(sb))
+        profile.toggleVisibility(sb)
         
         mainWindowController.filter()
         let cell = self.tableView.cellForRow(at: indexPath) as! SideMenuCell
@@ -147,7 +147,7 @@ class SourcebookFilterController: UITableViewController {
         
         // For each sourcebook, set the corresponding cell correctly
         for sb in Sourcebook.allCases {
-            let b = profile.getSourcebookFilter(sb)
+            let b = profile.getVisibility(sb)
             let indexPath = IndexPath(row: sb.rawValue, section: 0)
             let cell = tableView.cellForRow(at: indexPath) as! SideMenuCell
             cell.cellSelected = b

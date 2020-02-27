@@ -37,7 +37,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     let sortPickerData: [String] = {
         var data: [String] = []
         for i in 0...(SortField.count-1) {
-            data.append(SortField(rawValue: i)!.name())
+            data.append(SortField(rawValue: i)!.displayName)
         }
         return data
     }()
@@ -46,7 +46,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     let classPickerData: [String] = ["None"] + {
         var data: [String] = []
         for i in 0...(CasterClass.count-1) {
-            data.append(CasterClass(rawValue: i)!.name())
+            data.append(CasterClass(rawValue: i)!.displayName)
         }
         return data
     }()
@@ -300,9 +300,9 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             let reverse2 = sortArrow2.pointingUp()
             
             if (index2 == 0) || (index1 == 0) {
-                boss!.tableController!.singleSort(index: index1, reverse: reverse1)
+                boss!.tableController!.singleSort(sortField: SortField.Name, reverse: reverse1)
             } else {
-                boss!.tableController!.doubleSort(index1: index1, index2: index2, reverse1: reverse1, reverse2: reverse2)
+                boss!.tableController!.doubleSort(sortField1: SortField.Name, sortField2: SortField.Name, reverse1: reverse1, reverse2: reverse2)
             }
             
             //Update the character profile
@@ -312,7 +312,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         // If the class filter picker is changed
         } else {
             let caster: CasterClass? = (row != 0) ? CasterClass(rawValue: row - 1) : nil
-            boss!.characterProfile.setFilterClass(caster)
+            //boss!.characterProfile.setFilterClass(caster)
             boss!.tableController!.filter()
         }
         
@@ -341,7 +341,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         sender.onPress()
         let ( index1, index2, reverse1, reverse2 ) = getSortValues()
         //print("The sort values are \(index1), \(index2), \(reverse1), \(reverse2)")
-        boss!.tableController!.doubleSort(index1: index1, index2: index2, reverse1: reverse1, reverse2: reverse2)
+        boss!.tableController!.doubleSort(sortField1: SortField.Name, sortField2: SortField.Name, reverse1: reverse1, reverse2: reverse2)
         boss!.characterProfile.setFirstSortReverse(reverse1)
         boss!.characterProfile.setSecondSortReverse(reverse2)
         boss!.saveCharacterProfile()

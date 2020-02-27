@@ -65,7 +65,7 @@ public class Spell {
         var text = String(level)
         switch (level) {
         case 0:
-            text = school.name() + " cantrip"
+            text = school.displayName + " cantrip"
             return text
         case 1:
             text.append("st-level ")
@@ -79,7 +79,7 @@ public class Spell {
         default:
             text.append("th-level ")
         }
-        text = text + school.name().lowercased()
+        text = text + school.displayName.lowercased()
         if ritual {
             text = text + " (ritual)"
         }

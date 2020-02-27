@@ -14,7 +14,7 @@ import UIKit
 
 class SpellTableViewController: UITableViewController {
     
-    var main: ViewController?
+    let main: ViewController = Controllers.mainController
     
     var firstAppear: Bool = true
     
@@ -73,7 +73,7 @@ class SpellTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         
         // Get the main view
-        main = self.parent as? ViewController
+        //main = self.parent as? ViewController
         
         // If this is the view's first appearance (i.e. when the app is opening), we initialize spellArray
         if firstAppear {
@@ -150,10 +150,10 @@ class SpellTableViewController: UITableViewController {
     
     
     // Function to sort the data by one field
-    func singleSort(index: Int, reverse: Bool) {
+    func singleSort(sortField: SortField, reverse: Bool) {
         
         // Do the sorting
-        let cmp = spellComparator(index: index, reverse: reverse)
+        let cmp = spellComparator(sortField: sortField, reverse: reverse)
         spells.sort { return cmp($0.0, $1.0) }
         
         // Get the array
@@ -167,10 +167,10 @@ class SpellTableViewController: UITableViewController {
     }
     
     // Function to sort the data by two fields
-    func doubleSort(index1: Int, index2: Int, reverse1: Bool, reverse2: Bool) {
+    func doubleSort(sortField1: SortField, sortField2: SortField, reverse1: Bool, reverse2: Bool) {
         
         // Do the sorting
-        let cmp = spellComparator(index1: index1, index2: index2, reverse1: reverse1, reverse2: reverse2)
+        let cmp = spellComparator(sortField1: sortField1, sortField2: sortField2, reverse1: reverse1, reverse2: reverse2)
         spells.sort { return cmp($0.0, $1.0) }
         
         // Get the array
@@ -185,9 +185,8 @@ class SpellTableViewController: UITableViewController {
     }
     
     func sort() {
-        let pickerController = main?.pickerController
-        let ( index1, index2, reverse1, reverse2 ) = pickerController!.getSortValues()
-        doubleSort(index1: index1, index2: index2, reverse1: reverse1, reverse2: reverse2)
+        let cp = main.characterProfile
+        doubleSort(sortField1: cp.getFirstSortField(), sortField2: cp.getSecondSortField(), reverse1: cp.getFirstSortReverse(), reverse2: cp.getSecondSortReverse())
     }
     
     // Function to entirely unfilter - i.e., display everything
@@ -206,7 +205,7 @@ class SpellTableViewController: UITableViewController {
         toHide = toHide || (profile.preparedSelected() && !profile.isPrepared(s))
         toHide = toHide || (profile.favoritesSelected() && !profile.isFavorite(s))
         toHide = toHide || (isText && !spname.starts(with: text))
-        toHide = toHide || (!(profile.getSourcebookFilter(s.sourcebook)))
+        toHide = toHide || (!(profile.getVisibility(s.sourcebook)))
         return toHide
     }
     
@@ -222,17 +221,17 @@ class SpellTableViewController: UITableViewController {
         //print("Prepared selected: \(main?.characterProfile.preparedSelected())")
         
         // First, we filter the data
-        let classIndex = main?.pickerController?.classPicker.selectedRow(inComponent: 0)
+        let classIndex: Int? = nil
         let isClass = (classIndex != 0) && (classIndex != nil)
-        var cc: CasterClass = CasterClass(rawValue: 0)!
-        let isText = !(main?.pickerController?.searchField.text?.isEmpty ?? true)
-        let searchText = isText ? (main?.pickerController?.searchField.text)! : ""
+        var cc: CasterClass = CasterClass.Wizard
+        let isText = false
+        let searchText = ""
         if isClass {
             cc = CasterClass(rawValue: classIndex!-1)!
         }
-        let cp = main?.characterProfile
+        let cp = main.characterProfile
         for i in 0...spells.count-1 {
-            let filter = filterItem(isClass: isClass, isText: isText, s: spells[i].0, cc: cc, text: searchText, profile: cp!)
+            let filter = filterItem(isClass: isClass, isText: isText, s: spells[i].0, cc: cc, text: searchText, profile: cp)
             spells[i] = (spells[i].0, !filter)
         }
             
@@ -274,12 +273,12 @@ class SpellTableViewController: UITableViewController {
             let popupWidth = CGFloat(166)
             controller.width = popupWidth
             controller.height = popupHeight
-            controller.main = main!
+            controller.main = main
             let cell = tableView.cellForRow(at: indexPath!) as! SpellDataCell
             let positionX = CGFloat(0)
             let positionY = cell.frame.maxY
             let position = CGPoint(x: positionX, y: positionY)
-            let absPosition = main!.view.convert(position, from: self.tableView)
+            let absPosition = main.view.convert(position, from: self.tableView)
             let popupPosition = PopupViewController.PopupPosition.topLeft(absPosition)
             controller.spell = spellArray[indexPath!.row]
             let popupVC = PopupViewController(contentController: controller, position: popupPosition, popupWidth: popupWidth, popupHeight: popupHeight)

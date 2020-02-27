@@ -179,8 +179,8 @@ class CharacterProfile {
         // The sorting fields
         let sortStr1: String = sion[CharacterProfile.sort1Key].string ?? SortField.Name.displayName
         let sortStr2: String = sion[CharacterProfile.sort2Key].string ?? SortField.Name.displayName
-        sortField1 = SortField.fromName(sortStr1)!
-        sortField2 = SortField.fromName(sortStr2)!
+        sortField1 = SortField.fromName(sortStr1)
+        sortField2 = SortField.fromName(sortStr2)
         
         // Visibilities for various quantities
         sourcebookVisibilities = CharacterProfile.mapFromHiddenNames(type: Sourcebook.self, nonTrivialFilter: true, sion: sion, key: CharacterProfile.hiddenSourcebooksKey)
@@ -202,6 +202,10 @@ class CharacterProfile {
         // The status filter
         let filterStr = sion[CharacterProfile.statusFilterKey].string ?? StatusFilterField.All.name()
         statusFilter = StatusFilterField.fromName(filterStr)!
+        
+        // Min and max spell levels
+        minSpellLevel = sion[CharacterProfile.minSpellLevelKey].int ?? Spellbook.MIN_SPELL_LEVEL
+        maxSpellLevel = sion[CharacterProfile.maxSpellLevelKey].int ?? Spellbook.MAX_SPELL_LEVEL
         
     }
     

@@ -59,13 +59,13 @@ class Range : Quantity<RangeType, LengthUnit> {
         if (!str.isEmpty) { return str }
         
         switch (type) {
-        case DistanceType.Touch, DistanceType.Special, DistanceType.Unlimited, DistanceType.Sight:
+        case RangeType.Touch, RangeType.Special, RangeType.Unlimited, RangeType.Sight:
             return type.displayName
-        case DistanceType.SelfDistance:
+        case RangeType.SelfDistance:
             if (self.value > 0) {
                 return type.displayName + "(" + String(value) + " foot radius)"
             }
-        case DistanceType.Ranged:
+        case RangeType.Ranged:
             let ft: String = (value == 1) ? unit.singularName() : unit.pluralName()
             return String(value) + " " + ft
             

@@ -14,8 +14,6 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     
     @IBOutlet var sideMenuHeader: UILabel!
     
-    @IBOutlet var sourcebookFilterView: UIView!
-    
     @IBOutlet var statusFilterView: UIView!
     
     @IBOutlet var characterLabel: UILabel!
@@ -23,8 +21,6 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     @IBOutlet var selectionButton: UIButton!
     
     var statusController: StatusFilterController?
-    
-    var sourcebookController: SourcebookFilterController?
     
     var main: ViewController?
     var mainTable: SpellTableViewController?
@@ -35,7 +31,6 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     let topPadding = CGFloat(20)
     
     let tablePadding = CGFloat(5)
-    let betweenTablePadding = CGFloat(2)
     
     //let titleFontSize = CGFloat(30)
     let titleViewHeight = CGFloat(60)
@@ -70,10 +65,8 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         
         //let headerHeight = CGFloat(0.1 * viewHeight)
         //let statusFilterHeight = CGFloat(0.3 * viewHeight)
-        //let sourcebookFilterHeight = CGFloat(0.35 * viewHeight)
         let headerHeight = CGFloat(57)
         let statusFilterHeight = CGFloat(171)
-        let sourcebookFilterHeight = CGFloat(199)
         let characterLabelHeight = CGFloat(20)
         let selectionButtonHeight = CGFloat(20)
         let belowCharacterLabelPadding = CGFloat(14)
@@ -85,10 +78,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         currentY += (headerHeight + tablePadding)
         statusFilterView.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: statusFilterHeight)
         
-        currentY += (statusFilterHeight + betweenTablePadding)
-        sourcebookFilterView.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: sourcebookFilterHeight)
-        
-        currentY += sourcebookFilterHeight
+        currentY += statusFilterHeight
         characterLabel.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: characterLabelHeight)
         
         currentY += characterLabelHeight + belowCharacterLabelPadding
@@ -114,9 +104,6 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     
     // Connecting to the child controllers
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "sourcebookSegue" {
-            sourcebookController = (segue.destination as! SourcebookFilterController)
-        }
         if segue.identifier == "statusSegue" {
             statusController = (segue.destination as! StatusFilterController)
         }
@@ -153,9 +140,6 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     func setFilterStatus(profile: CharacterProfile) {
         if statusController != nil {
             statusController!.setFilter(profile.getStatusFilter())
-        }
-        if sourcebookController != nil {
-            sourcebookController!.setFilters(profile: profile)
         }
     }
     

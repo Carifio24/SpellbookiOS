@@ -9,7 +9,7 @@
 
 import Foundation
 
-enum SortField: Int {
+enum SortField: Int, NameDisplayable {
     case Name=0, School, Level, Range, Duration
     
     private static let spellComparators: [SortField:IntComparatorFunc<Spell>] = [
@@ -25,31 +25,26 @@ enum SortField: Int {
             return s.duration })
     ]
     
-    private static let nameMap: [SortField:String] = [
-        Name : "Name",
-        School : "School",
-        Level : "Level",
-        Range : "Range",
-        Duration : "Duration"
-    ]
+    internal static var displayNameMap = EnumMap<SortField,String> { e in
+        switch(e) {
+        case .Name:
+            return "Name"
+        case .School:
+            return "School"
+        case .Level:
+            return "Level"
+        case .Range:
+            return "Range"
+        case .Duration:
+            return "Duration"
+        }
+        
+    }
+
     
     func comparator() -> IntComparatorFunc<Spell> {
         return SortField.spellComparators[self]!
     }
     
-    static func fromName(_ s: String) -> SortField? {
-        return getOneKey(dict: SortField.nameMap, value: s)
-    }
-    
     static let count = SortField.allCases.count
-}
-
-extension SortField : CaseIterable {}
-
-extension SortField: NameDisplayable {
-    
-    var displayName: String {
-        return SortField.nameMap[self]!
-    }
-    
 }

@@ -23,7 +23,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var backgroundView: UIImageView!
     
     // Child controllers
-    var pickerController: PickerViewController?
     var tableController: SpellTableViewController?
     var spellWindowController: SpellWindowController?
     
@@ -229,20 +228,14 @@ class ViewController: UIViewController {
         //print("sortHeight is \(sortHeight)")
         //print("labelHeight is \(labelHeight)")
         
-        // Set the relevant dimensions to the elements
-        // First the PickerViewController
-        pickerView.frame = CGRect(x: leftPadding, y: topPadding, width: ViewController.usableWidth, height: sortHeight)
-        pickerController!.view!.frame = CGRect(x: leftPadding, y: topPadding, width: ViewController.usableWidth, height: sortHeight)
-        
         // Finally, the SpellTableViewController
         // Note that we don't need to adjust the tableController's view differently - the TableViewController seems to be able to handle this part itself
-        let tableY = sortHeight
+        let tableY = topPadding
         let tableFrame = CGRect(x: leftPadding, y: tableY, width: ViewController.usableWidth, height: tableHeight)
         tableView.frame = tableFrame
         tableController!.view!.frame = tableFrame
         tableController!.mainY = tableY
         
-        pickerController?.setViewDimensions()
         tableController?.setTableDimensions(leftPadding: leftPadding, bottomPadding: bottomPadding, usableHeight: ViewController.usableHeight, usableWidth: ViewController.usableWidth, tableTopPadding: tableView.frame.height * 0.04)
     }
     
@@ -253,9 +246,6 @@ class ViewController: UIViewController {
     
     // Connecting to the child controllers
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "sortSegue" {
-            pickerController = (segue.destination as! PickerViewController)
-        }
         if segue.identifier == "tableSegue" {
             tableController = (segue.destination as! SpellTableViewController)
         }
@@ -273,11 +263,6 @@ class ViewController: UIViewController {
     // Until the issue with the SpellDataCell sizing is fixed, let's disable rotation
     override open var shouldAutorotate: Bool {
         return false
-    }
-    
-    // To dismiss the keyboard
-    @objc func endEditing() {
-        pickerController!.searchField.resignFirstResponder()
     }
     
     // Get the list of characters that currently exist
@@ -320,12 +305,9 @@ class ViewController: UIViewController {
         let sf2 = characterProfile.getSecondSortField()
         let rev1 = characterProfile.getFirstSortReverse()
         let rev2 = characterProfile.getSecondSortReverse()
-        pickerController!.setSortStatus(sort1: sf1, sort2: sf2, reverse1: rev1, reverse2: rev2)
     }
     
     func setFilterSettings() {
-        let caster = characterProfile.getFilterClass()
-        pickerController!.setFilterStatus(caster: caster)
         sideMenuController!.setFilterStatus(profile: characterProfile)
     }
     
@@ -524,6 +506,10 @@ class ViewController: UIViewController {
     // For the right menu button on the navigation bar
     @objc func rightMenuButtonPressed() {
         toggleRightMenu()
+    }
+    
+    @objc func endEditing() {
+        
     }
 
 }
