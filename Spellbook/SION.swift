@@ -478,7 +478,7 @@ extension SION {
         func tokenize(_ string:Swift.String)->[Swift.String] {
             var tokens = [Swift.String]()
             reAll.enumerateMatches(in: string, range:NSRange(0..<string.count)) { cr, _, _ in
-                let token = Swift.String(string[Range(cr!.range, in:string)!])
+                let token = Swift.String(string[Swift.Range(cr!.range, in:string)!])
                 if token.hasPrefix("//") { return } // ignore comment
                 tokens.append( token )
             }
@@ -489,8 +489,8 @@ extension SION {
         }
         func toDouble(_ s:String)->SION? {
             guard let cr = reDouble.firstMatch(in: s, range: NSRange(0..<s.count)) else { return nil }
-            let sign      = s[Range(cr.range(at:1), in:s)!]
-            let magnitude = s[Range(cr.range(at:2), in:s)!]
+            let sign      = s[Swift.Range(cr.range(at:1), in:s)!]
+            let magnitude = s[Swift.Range(cr.range(at:2), in:s)!]
             // debugPrint(sign, magnitude)
             let double    = (sign == "-" ? -1.0 : +1.0) * Swift.Double(magnitude)!
             return .Double(double)
@@ -498,8 +498,8 @@ extension SION {
         func toInt(_ s:String)->SION? {
             guard let cr = reInt.firstMatch(in: s, range: NSRange(0..<s.count)) else { return nil }
             var int = 0
-            let sign      = s[Range(cr.range(at:1), in:s)!]
-            let magnitude = s[Range(cr.range(at:2), in:s)!]
+            let sign      = s[Swift.Range(cr.range(at:1), in:s)!]
+            let magnitude = s[Swift.Range(cr.range(at:2), in:s)!]
             if magnitude.hasPrefix("0") && 2 < magnitude.count {
                 let offset = magnitude.index(magnitude.startIndex, offsetBy:2)
                 switch magnitude[magnitude.index(after:magnitude.startIndex)] {

@@ -19,6 +19,7 @@
 		392212B823F0C62300538314 /* NameDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392212B723F0C62300538314 /* NameDisplayable.swift */; };
 		392212BE23F1B5C100538314 /* CastingTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392212BD23F1B5C100538314 /* CastingTime.swift */; };
 		392212C023F4B2E500538314 /* QuantityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392212BF23F4B2E500538314 /* QuantityType.swift */; };
+		392212C42409837000538314 /* SortFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392212C32409837000538314 /* SortFilterController.swift */; };
 		3925E9862281C6C900C5734B /* StatusPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3925E9852281C6C900C5734B /* StatusPopupController.swift */; };
 		392F73DE23A9818E002D85C0 /* SpellcastingInfo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 392F73DD23A9818D002D85C0 /* SpellcastingInfo.xml */; };
 		392F73E023A98D63002D85C0 /* InfoMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392F73DF23A98D63002D85C0 /* InfoMenuViewController.swift */; };
@@ -130,6 +131,7 @@
 		392212B723F0C62300538314 /* NameDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameDisplayable.swift; sourceTree = "<group>"; };
 		392212BD23F1B5C100538314 /* CastingTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastingTime.swift; sourceTree = "<group>"; };
 		392212BF23F4B2E500538314 /* QuantityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityType.swift; sourceTree = "<group>"; };
+		392212C32409837000538314 /* SortFilterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFilterController.swift; sourceTree = "<group>"; };
 		3925E9852281C6C900C5734B /* StatusPopupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusPopupController.swift; sourceTree = "<group>"; };
 		392F73DD23A9818D002D85C0 /* SpellcastingInfo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SpellcastingInfo.xml; sourceTree = SOURCE_ROOT; };
 		392F73DF23A98D63002D85C0 /* InfoMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMenuViewController.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 				397EE99921ACAF9B00B116B0 /* SpellParse.swift */,
 				399D9E672264B7830054BA8F /* SpellStatus.swift */,
 				39522D2021ADFBA100A4DBCE /* SpellTableViewController.swift */,
+				392212C32409837000538314 /* SortFilterController.swift */,
 				392F73DD23A9818D002D85C0 /* SpellcastingInfo.xml */,
 				397EE99B21ACAF9C00B116B0 /* Spells.json */,
 				39522D2621B1C52100A4DBCE /* SpellWindowController.swift */,
@@ -606,6 +609,7 @@
 				399D9E682264B7830054BA8F /* SpellStatus.swift in Sources */,
 				397EE9A121ACAF9C00B116B0 /* Spell.swift in Sources */,
 				39EB75932306F948001CA1EF /* StringUtils.swift in Sources */,
+				392212C42409837000538314 /* SortFilterController.swift in Sources */,
 				397EE9A521ACAF9C00B116B0 /* CasterClass.swift in Sources */,
 				3934857823B16A4C00EDA1CB /* InfoTableViewHeader.swift in Sources */,
 				397EE9A221ACAF9C00B116B0 /* School.swift in Sources */,

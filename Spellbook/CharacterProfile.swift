@@ -422,7 +422,7 @@ class CharacterProfile {
             return schoolVisibilities as? Visibilities<E>
         case ObjectIdentifier(CastingTimeType.self):
             return castingTimeTypeVisibilities as? Visibilities<E>
-        case ObjectIdentifier(RangeType.self):
+        case ObjectIdentifier(DurationType.self):
             return durationTypeVisibilities as? Visibilities<E>
         case ObjectIdentifier(RangeType.self):
             return rangeTypeVisibilities as? Visibilities<E>
@@ -443,7 +443,7 @@ class CharacterProfile {
             return CharacterProfile.defaultSchoolVisibilities as? Visibilities<E>
         case ObjectIdentifier(CastingTimeType.self):
             return CharacterProfile.defaultCastingTimeTypeVisibilities as? Visibilities<E>
-        case ObjectIdentifier(RangeType.self):
+        case ObjectIdentifier(DurationType.self):
             return CharacterProfile.defaultDurationTypeVisibilities as? Visibilities<E>
         case ObjectIdentifier(RangeType.self):
             return CharacterProfile.defaultRangeTypeVisibilities as? Visibilities<E>
@@ -518,6 +518,8 @@ class CharacterProfile {
     // Constructing a map from a list of hidden values
     // Used for JSON decoding
     private static func mapFromHiddenNames<E:NameDisplayable>(type: E.Type, nonTrivialFilter: Bool, sion: SION, key: String) -> Visibilities<E> {
+        
+        print("The type is \(type)")
         
         // The default map
         var map = CharacterProfile.getDefaultTypeMap(E.self)!.copy()
