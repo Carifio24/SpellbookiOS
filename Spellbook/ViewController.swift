@@ -46,8 +46,6 @@ class ViewController: UIViewController {
     }
     
     // The UIViews that hold the child controllers
-    @IBOutlet weak var pickerView: UIView!
-    @IBOutlet weak var labelView: UIView!
     @IBOutlet weak var tableView: UIView!
     
     // Dimensions
@@ -494,19 +492,13 @@ class ViewController: UIViewController {
     func toggleRightMenu() { Controllers.revealController.rightRevealToggle(animated: true) }
     
     // For the left menu button on the navigation bar
-    @objc func leftMenuButtonPressed() {
-        toggleLeftMenu()
-    }
+    @objc func leftMenuButtonPressed() { toggleLeftMenu() }
     
     // For the refresh button on the navigation bar
-    @objc func refreshButtonPressed() {
-        filter()
-    }
+    @objc func refreshButtonPressed() { filter() }
     
     // For the right menu button on the navigation bar
-    @objc func rightMenuButtonPressed() {
-        toggleRightMenu()
-    }
+    @objc func rightMenuButtonPressed() { toggleRightMenu() }
     
     @objc func endEditing() {
         
