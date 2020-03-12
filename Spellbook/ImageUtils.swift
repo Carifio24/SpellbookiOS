@@ -10,8 +10,8 @@ import Foundation
 
 extension UIImage {
     func resized(to: CGSize) -> UIImage {
-        return UIGraphicsImageRenderer(size: size).image { _ in
-            draw(in: CGRect(origin: .zero, size: size))
+        return UIGraphicsImageRenderer(size: to).image { _ in
+            draw(in: CGRect(origin: .zero, size: to))
         }
     }
     

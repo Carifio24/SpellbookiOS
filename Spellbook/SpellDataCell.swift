@@ -11,12 +11,14 @@ import UIKit
 class SpellDataCell: UITableViewCell {
     
     // The labels
-    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var levelSchoolLabel: UILabel!
-    @IBOutlet var sourcebookLabel: UILabel!
-    @IBOutlet var favoriteButton: ToggleButton!
-    @IBOutlet var preparedButton: ToggleButton!
-    @IBOutlet var knownButton: ToggleButton!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var levelSchoolLabel: UILabel!
+    @IBOutlet weak var sourcebookLabel: UILabel!
+    @IBOutlet weak var favoriteButton: ToggleButton!
+    @IBOutlet weak var knownButton: ToggleButton!
+    @IBOutlet weak var preparedButton: ToggleButton!
+    
+    var spell: Spell = Spell()
     
     //static var screenWidth = UIScreen.main.bounds.width
     
@@ -42,65 +44,6 @@ class SpellDataCell: UITableViewCell {
     static let bookEmpty = UIImage(named: "book_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellDataCell.buttonWidth, height: SpellDataCell.buttonHeight)
     static let bookFilled = UIImage(named: "book_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellDataCell.buttonWidth, height: SpellDataCell.buttonHeight)
     
-    
-    // The spell for the data cell
-    // The label text is updated when Spell is set
-    var spell: Spell? {
-        didSet {
-            nameLabel.text = spell!.name
-            levelSchoolLabel.text = spell!.levelSchoolString()
-            sourcebookLabel.text = spell!.sourcebook.code().uppercased()
-            setViewDimensions()
-            setButtonImages()
-        }
-    }
-
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        // Initialize the labels
-        nameLabel = UILabel()
-        levelSchoolLabel = UILabel()
-        sourcebookLabel = UILabel()
-        
-        // Get the screen dimensions
-//        let screenSize = UIScreen.main.bounds
-//        let screenWidth = Double(screenSize.width)
-        //let screenHeight = Double(screenSize.height)
-        
-        // Set all three labels to have left-aligned text
-        nameLabel.textAlignment = NSTextAlignment.left
-        levelSchoolLabel.textAlignment = NSTextAlignment.left
-        sourcebookLabel.textAlignment = NSTextAlignment.left
-        
-        print("star height is \(SpellDataCell.starFilled!.size.height)")
-        print("star width is \(SpellDataCell.starFilled!.size.width)")
-        
-        // Set font sizes
-        nameLabel.font = UIFont.systemFont(ofSize: 17)
-        levelSchoolLabel.font = UIFont.italicSystemFont(ofSize: 11)
-        sourcebookLabel.font = UIFont.systemFont(ofSize: 11)
-        
-        // Button setup
-        favoriteButton = ToggleButton(SpellDataCell.starEmpty!, SpellDataCell.starFilled!, false)
-        preparedButton = ToggleButton(SpellDataCell.wandEmpty!, SpellDataCell.wandFilled!, false)
-        knownButton = ToggleButton(SpellDataCell.bookEmpty!, SpellDataCell.bookFilled!, false)
-        
-        
-        // Display the labels and buttons
-        let items = [ nameLabel, levelSchoolLabel, sourcebookLabel, favoriteButton, preparedButton, knownButton ]
-        for item in items {
-            self.addSubview(item!)
-        }
-        
-        // Set the button callbacks
-        setButtonCallbacks()
-        
-    }
-    
-    required init?(coder decoder: NSCoder) {
-        super.init(coder: decoder)
-    }
     
     private func setViewDimensions() {
         
@@ -152,35 +95,7 @@ class SpellDataCell: UITableViewCell {
         knownButton.frame = CGRect(x: knownButtonX, y: buttonY, width: SpellDataCell.buttonWidth, height: SpellDataCell.buttonHeight)
         
     }
-    
-    private func setButtonImages() {
-        
-        // Set the favorite, prepared, known buttons
-        let cp = SpellDataCell.main.characterProfile
-        favoriteButton.set(cp.isFavorite(spell!))
-        preparedButton.set(cp.isPrepared(spell!))
-        knownButton.set(cp.isKnown(spell!))
-        
-    }
-    
-    private func setButtonCallbacks() {
-        
-        // Set the callbacks for the buttons
-        favoriteButton.setCallback({
-            let cp = SpellDataCell.main.characterProfile
-            cp.setFavorite(s: self.spell!, fav: !cp.isFavorite(self.spell!))
-            SpellDataCell.main.saveCharacterProfile()
-            })
-        preparedButton.setCallback({
-            let cp = SpellDataCell.main.characterProfile
-            cp.setPrepared(s: self.spell!, prep: !cp.isPrepared(self.spell!))
-            SpellDataCell.main.saveCharacterProfile()
-        })
-        knownButton.setCallback({
-            let cp = SpellDataCell.main.characterProfile
-            cp.setKnown(s: self.spell!, known: !cp.isKnown(self.spell!))
-            SpellDataCell.main.saveCharacterProfile()
-        })
-    }
+
+
     
 }

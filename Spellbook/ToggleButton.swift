@@ -11,8 +11,8 @@ import UIKit
 class ToggleButton: UIButton {
 
     // Member values
-    private let imageT: UIImage
-    private let imageF: UIImage
+    private var imageT: UIImage
+    private var imageF: UIImage
     private var on: Bool
     private var callback: () -> Void
     
@@ -66,6 +66,10 @@ class ToggleButton: UIButton {
     // Set the button to the desired state
     func set(_ b: Bool) {
         on = b
+        updateImage()
+    }
+    
+    func updateImage() {
         let toSet: UIImage = on ? imageT : imageF
         setImage(toSet, for: .normal)
     }
@@ -90,6 +94,14 @@ class ToggleButton: UIButton {
     func onImageHeight() -> CGFloat { return imageT.size.height }
     func offImageWidth() -> CGFloat { return imageF.size.width }
     func onImageWidth() -> CGFloat { return imageT.size.width }
+    func setTrueImage(image: UIImage) {
+        imageT = image
+        if (on) { updateImage() }
+    }
+    func setFalseImage(image: UIImage) {
+        imageF = image
+        if (!on) { updateImage() }
+    }
     
 //    // Set the image height and width
 //    func setImageSize(size: CGSize) {

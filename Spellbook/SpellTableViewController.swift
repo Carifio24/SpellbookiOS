@@ -33,14 +33,29 @@ class SpellTableViewController: UITableViewController {
     let cellReuseIdentifier = "cell"
     let spellWindowSegueIdentifier = "spellWindowSegue"
     let spellWindowIdentifier = "spellWindow"
+    static let estimatedHeight = CGFloat(60)
+    
+    // The button images
+    // It's too costly to do the re-rendering every time, so we just do it once
+    static let buttonFraction = CGFloat(0.09)
+    static let imageWidth = SpellTableViewController.buttonFraction * ViewController.usableWidth
+    static let imageHeight = SpellTableViewController.imageWidth
+    static let starEmpty = UIImage(named: "star_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellTableViewController.imageWidth, height: SpellTableViewController.imageHeight)
+    static let starFilled = UIImage(named: "star_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellTableViewController.imageWidth, height: SpellTableViewController.imageHeight)
+    static let wandEmpty = UIImage(named: "wand_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellTableViewController.imageWidth, height: SpellTableViewController.imageHeight)
+    static let wandFilled = UIImage(named: "wand_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellTableViewController.imageWidth, height: SpellTableViewController.imageHeight)
+    static let bookEmpty = UIImage(named: "book_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellTableViewController.imageWidth, height: SpellTableViewController.imageHeight)
+    static let bookFilled = UIImage(named: "book_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellTableViewController.imageWidth, height: SpellTableViewController.imageHeight)
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Populate the list of spells
-        //spellTable.register(SpellDataCell.self, forCellReuseIdentifier: cellReuseIdentifier)
-        tableView.register(SpellDataCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        //tableView.register(SpellDataCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.separatorStyle = .none
+        tableView.estimatedRowHeight = SpellTableViewController.estimatedHeight
+        tableView.rowHeight = UITableView.automaticDimension
         
         //print("profilesDirectory is: \(profilesDirectory)")
         
@@ -118,6 +133,7 @@ class SpellTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForFooterInSection: Int) -> CGFloat {
         return 2 * SpellDataCell.cellHeight
     }
+
     
     // Return the footer view
     // We override this method so that we can make the background clear
@@ -130,11 +146,54 @@ class SpellTableViewController: UITableViewController {
     // Function for adding SpellDataCell to table
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SpellDataCell
+        
+        // Get the spell
         let spell = spellArray[indexPath.row]
         cell.spell = spell
+        
+        // Cell formatting
+        cell.layoutMargins = UIEdgeInsets(top: 2, left: 0, bottom: 2, right: 0)
         cell.selectionStyle = .none
         cell.isUserInteractionEnabled = true
         cell.backgroundColor = UIColor.clear
+        
+        // Set the text for the labels
+        cell.nameLabel.text = spell.name
+        cell.levelSchoolLabel.text = spell.levelSchoolString()
+        cell.sourcebookLabel.text = spell.sourcebook.code().uppercased()
+        
+        // Set the button images
+        cell.favoriteButton.setTrueImage(image: SpellTableViewController.starFilled!)
+        cell.favoriteButton.setFalseImage(image: SpellTableViewController.starEmpty!)
+        cell.preparedButton.setTrueImage(image: SpellTableViewController.wandFilled!)
+        cell.preparedButton.setFalseImage(image: SpellTableViewController.wandEmpty!)
+        cell.knownButton.setTrueImage(image: SpellTableViewController.bookFilled!)
+        cell.knownButton.setFalseImage(image: SpellTableViewController.bookEmpty!)
+        
+        // Set the button statuses
+        let cp = main.characterProfile
+        cell.favoriteButton.set(cp.isFavorite(spell))
+        cell.preparedButton.set(cp.isPrepared(spell))
+        cell.knownButton.set(cp.isKnown(spell))
+        
+        // Set the button callbacks
+        // Set the callbacks for the buttons
+        cell.favoriteButton.setCallback({
+            let cp = self.main.characterProfile
+            cp.setFavorite(s: cell.spell, fav: !cp.isFavorite(cell.spell))
+            self.main.saveCharacterProfile()
+            })
+        cell.preparedButton.setCallback({
+            let cp = self.main.characterProfile
+            cp.setPrepared(s: cell.spell, prep: !cp.isPrepared(cell.spell))
+            self.main.saveCharacterProfile()
+        })
+        cell.knownButton.setCallback({
+            let cp = self.main.characterProfile
+            cp.setKnown(s: cell.spell, known: !cp.isKnown(cell.spell))
+            self.main.saveCharacterProfile()
+        })
+        
         return cell
     }
     
