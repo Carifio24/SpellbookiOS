@@ -56,7 +56,7 @@
 		8E61490C241991C200842A18 /* EnumUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148C5241991C000842A18 /* EnumUtilities.swift */; };
 		8E61490D241991C200842A18 /* CharacterSelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148C6241991C000842A18 /* CharacterSelectionController.swift */; };
 		8E61490E241991C200842A18 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148C7241991C000842A18 /* Extensions.swift */; };
-		8E61490F241991C200842A18 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148C8241991C000842A18 /* PickerViewController.swift */; };
+		8E61490F241991C200842A18 /* SortController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148C8241991C000842A18 /* SortController.swift */; };
 		8E614910241991C200842A18 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148C9241991C000842A18 /* Util.swift */; };
 		8E614911241991C200842A18 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148CA241991C000842A18 /* AppDelegate.swift */; };
 		8E614912241991C200842A18 /* Quantity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148CB241991C000842A18 /* Quantity.swift */; };
@@ -94,6 +94,7 @@
 		8E61494624199B2D00842A18 /* x_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E61493D24199B2D00842A18 /* x_icon.png */; };
 		8E61494A24199ED500842A18 /* cloister_black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E61494824199CBC00842A18 /* cloister_black.ttf */; };
 		8E61494B24199ED800842A18 /* dungeon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E61494924199CBC00842A18 /* dungeon.ttf */; };
+		8E61494D24212BA200842A18 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E61494C24212BA200842A18 /* FilterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,7 +171,7 @@
 		8E6148C5241991C000842A18 /* EnumUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumUtilities.swift; sourceTree = "<group>"; };
 		8E6148C6241991C000842A18 /* CharacterSelectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterSelectionController.swift; sourceTree = "<group>"; };
 		8E6148C7241991C000842A18 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		8E6148C8241991C000842A18 /* PickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
+		8E6148C8241991C000842A18 /* SortController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortController.swift; sourceTree = "<group>"; };
 		8E6148C9241991C000842A18 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		8E6148CA241991C000842A18 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E6148CB241991C000842A18 /* Quantity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quantity.swift; sourceTree = "<group>"; };
@@ -210,6 +211,7 @@
 		8E61493D24199B2D00842A18 /* x_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x_icon.png; sourceTree = SOURCE_ROOT; };
 		8E61494824199CBC00842A18 /* cloister_black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = cloister_black.ttf; sourceTree = SOURCE_ROOT; };
 		8E61494924199CBC00842A18 /* dungeon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dungeon.ttf; sourceTree = SOURCE_ROOT; };
+		8E61494C24212BA200842A18 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +288,7 @@
 				8E6148DE241991C100842A18 /* EnumMap.swift */,
 				8E6148C5241991C000842A18 /* EnumUtilities.swift */,
 				8E6148C7241991C000842A18 /* Extensions.swift */,
+				8E61494C24212BA200842A18 /* FilterViewController.swift */,
 				8E6148D2241991C100842A18 /* FromRightDismissAnimator.swift */,
 				8E6148AF241991BF00842A18 /* FromRightPushAnimator.swift */,
 				8E6148B5241991BF00842A18 /* HashableType.swift */,
@@ -298,7 +301,7 @@
 				8E6148A2241991BF00842A18 /* LabelViewController.swift */,
 				8E6148A6241991BF00842A18 /* LengthUnit.swift */,
 				8E6148DC241991C100842A18 /* NameDisplayable.swift */,
-				8E6148C8241991C000842A18 /* PickerViewController.swift */,
+				8E6148C8241991C000842A18 /* SortController.swift */,
 				8E6148C0241991C000842A18 /* PopupViewController.swift */,
 				8E6148CB241991C000842A18 /* Quantity.swift */,
 				8E6148B9241991C000842A18 /* QuantityType.swift */,
@@ -603,6 +606,7 @@
 				8E614914241991C200842A18 /* CasterClass.swift in Sources */,
 				8E614917241991C200842A18 /* SpellParse.swift in Sources */,
 				8E614923241991C200842A18 /* NameDisplayable.swift in Sources */,
+				8E61494D24212BA200842A18 /* FilterViewController.swift in Sources */,
 				8E614901241991C200842A18 /* School.swift in Sources */,
 				8E6148E3241991C200842A18 /* TimeUnit.swift in Sources */,
 				8E614900241991C200842A18 /* QuantityType.swift in Sources */,
@@ -619,7 +623,7 @@
 				8E614904241991C200842A18 /* Range.swift in Sources */,
 				8E6148E9241991C200842A18 /* LabelViewController.swift in Sources */,
 				8E6148E7241991C200842A18 /* InfoMenuCell.swift in Sources */,
-				8E61490F241991C200842A18 /* PickerViewController.swift in Sources */,
+				8E61490F241991C200842A18 /* SortController.swift in Sources */,
 				8E61490C241991C200842A18 /* EnumUtilities.swift in Sources */,
 				8E614919241991C200842A18 /* FromRightDismissAnimator.swift in Sources */,
 				8E61490E241991C200842A18 /* Extensions.swift in Sources */,

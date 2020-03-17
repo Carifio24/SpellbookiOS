@@ -13,53 +13,55 @@ class SpellWindowController: UIViewController {
     // The main controller
     let main = Controllers.mainController
     
+    // How much of the horizontal width goes to the name label
+    // The rest is for the favoriting button
+    static let nameLabelFraction = CGFloat(0.87)
+    static let buttonFraction = 1 - SpellWindowController.nameLabelFraction
+    static let imageWidth = UIScreen.main.bounds.width * SpellWindowController.buttonFraction
+    static let imageHeight = UIScreen.main.bounds.width * SpellWindowController.buttonFraction
+    
     // Font sizes
     static let nameSize = CGFloat(30)
     static let fontSize = CGFloat(15)
     static let schoolLevelFontSize = CGFloat(19)
     
     // Favorite/not favorite images
-    static let isFavoriteImage = UIImage(named: "star_filled.png")?.withRenderingMode(.alwaysOriginal)
-    static let notFavoriteImage = UIImage(named: "star_empty.png")?.withRenderingMode(.alwaysOriginal)
-    static let isPreparedImage = UIImage(named: "wand_filled.png")?.withRenderingMode(.alwaysOriginal)
-    static let notPreparedImage = UIImage(named: "wand_empty.png")?.withRenderingMode(.alwaysOriginal)
-    static let isKnownImage = UIImage(named: "book_filled.png")?.withRenderingMode(.alwaysOriginal)
-    static let notKnownImage = UIImage(named: "book_empty.png")?.withRenderingMode(.alwaysOriginal)
+    static let isFavoriteImage = UIImage(named: "star_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellWindowController.imageWidth, height: SpellWindowController.imageHeight)
+    static let notFavoriteImage = UIImage(named: "star_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellWindowController.imageWidth, height: SpellWindowController.imageHeight)
+    static let isPreparedImage = UIImage(named: "wand_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellWindowController.imageWidth, height: SpellWindowController.imageHeight)
+    static let notPreparedImage = UIImage(named: "wand_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellWindowController.imageWidth, height: SpellWindowController.imageHeight)
+    static let isKnownImage = UIImage(named: "book_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellWindowController.imageWidth, height: SpellWindowController.imageHeight)
+    static let notKnownImage = UIImage(named: "book_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellWindowController.imageWidth, height: SpellWindowController.imageHeight)
     
-    @IBOutlet var scrollView: UIScrollView!
-    @IBOutlet var spellNameLabel: UILabel!
-    @IBOutlet var spellTextLabel: UITextView!
-    @IBOutlet var favoriteButton: UIButton!
-    @IBOutlet var preparedButton: UIButton!
-    @IBOutlet var knownButton: UIButton!
+
+    
+    // The scroll view and the content container
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var contentView: UIView!
+    
+    // The labels for displaying the spell info text
+    @IBOutlet weak var spellNameLabel: UILabel!
+    @IBOutlet weak var schoolLevelLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var concentrationLabel: UILabel!
+    @IBOutlet weak var castingTimeLabel: UILabel!
+    @IBOutlet weak var rangeLabel: UILabel!
+    @IBOutlet weak var componentsLabel: UILabel!
+    @IBOutlet weak var materialsLabel: UILabel!
+    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var classesLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var higherLevelLabel: UILabel!
+    
+    // The status buttons
+    @IBOutlet weak var favoriteButton: ToggleButton!
+    @IBOutlet weak var preparedButton: ToggleButton!
+    @IBOutlet weak var knownButton: ToggleButton!
+    
     @IBOutlet weak var backgroundView: UIImageView!
     
-    // The name label size
-    let nameLabelHeight = CGFloat(55)
-    
-    // How much of the horizontal width goes to the name label
-    // The rest is for the favoriting button
-    let nameLabelFraction = CGFloat(0.87)
-    
-    // Extreme padding amounts
-    let maxHorizPadding = CGFloat(5)
-    let maxTopPadding = CGFloat(25)
-    let maxBotPadding = CGFloat(3)
-    let minHorizPadding = CGFloat(1)
-    let minTopPadding = CGFloat(20)
-    let minBotPadding = CGFloat(1)
-    
-    // Padding amounts
-    let leftPaddingFraction = CGFloat(0.01)
-    let rightPaddingFraction = CGFloat(0.01)
-    let topPaddingFraction = CGFloat(0.01)
-    let bottomPaddingFraction = CGFloat(0.01)
-    
-    let paddingBetweenImages = CGFloat(3)
-    
-    // Button sizes
-    let buttonHeight = CGFloat(41)
-    let buttonWidth = CGFloat(41)
+    static let spellKey = "spell"
+    static let spellIndexKey = "spellIndex"
     
     
     // The spell for the window, and its (current) index in the array
@@ -70,13 +72,42 @@ class SpellWindowController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.bringSubviewToFront(scrollView)
 
         // We close the window on a swipe to the right
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(swipeRight)
+        
+        // Set the button images
+        favoriteButton.setTrueImage(image: SpellWindowController.isFavoriteImage!)
+        favoriteButton.setFalseImage(image: SpellWindowController.notFavoriteImage!)
+        preparedButton.setTrueImage(image: SpellWindowController.isPreparedImage!)
+        preparedButton.setFalseImage(image: SpellWindowController.notPreparedImage!)
+        knownButton.setTrueImage(image: SpellWindowController.isKnownImage!)
+        knownButton.setFalseImage(image: SpellWindowController.notKnownImage!)
+        
+        // Set the button callbacks
+        favoriteButton.setCallback({
+            self.main.characterProfile.toggleFavorite(self.spell)
+            self.main.saveCharacterProfile()
+        })
+        preparedButton.setCallback({
+            self.main.characterProfile.togglePrepared(self.spell)
+            self.main.saveCharacterProfile()
+        })
+        knownButton.setCallback({
+            self.main.characterProfile.toggleKnown(self.spell)
+            self.main.saveCharacterProfile()
+        })
+        
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        // The content size of the scroll view is equal to the content view's size
+        scrollView.contentSize = contentView.frame.size
     }
     
     @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
@@ -95,43 +126,36 @@ class SpellWindowController: UIViewController {
     func setSpell(_ spell: Spell) {
         
         // Set the attributed text on the name label
-        //spellNameLabel.attributedText = nameText()
         spellNameLabel.text = spell.name
-        self.view.bringSubviewToFront(spellNameLabel)
         
         // Do the same for the body of the spell text
-        spellTextLabel.attributedText = spellText()
-        self.view.bringSubviewToFront(spellTextLabel)
-        
-        // Set the view dimensions
-        setDimensions()
+        schoolLevelLabel.attributedText = schoolLevelText(spell)
+        castingTimeLabel.attributedText = propertyText(name: "Casting time", text: spell.castingTime)
+        durationLabel.attributedText = propertyText(name: "Duration", text: spell.duration.string())
+        locationLabel.attributedText = propertyText(name: "Location", text: locationText(spell))
+        componentsLabel.attributedText = propertyText(name: "Components", text: spell.componentsString())
+        if !spell.material.isEmpty {
+            materialsLabel.attributedText = propertyText(name: "Materials", text: spell.material)
+        }
+        rangeLabel.attributedText = propertyText(name: "Range", text: spell.range.string())
+        concentrationLabel.attributedText = propertyText(name: "Concentration", text: bool_to_yn(yn: spell.concentration))
+        classesLabel.attributedText = propertyText(name: "Classes", text: spell.classesString())
+        descriptionLabel.attributedText = propertyText(name: "Description", text: spell.description, addLine: true)
+        if !spell.higherLevel.isEmpty {
+            higherLevelLabel.attributedText = propertyText(name: "Higher level", text: spell.higherLevel, addLine: true)
+        }
         
         // Get the character profile
-        let characterProfile = main.characterProfile
+        let profile = main.characterProfile
         
-        // Set the button images
-        // First, the favorite button
-        let favoriteImage = characterProfile.isFavorite(spell) ? SpellWindowController.isFavoriteImage : SpellWindowController.notFavoriteImage
-        favoriteButton.setImage(favoriteImage, for: .normal)
-        favoriteButton.imageView?.contentMode = .scaleAspectFit
-        self.view.bringSubviewToFront(favoriteButton)
+        // Set the spell buttons to the correct state
+        favoriteButton.set(profile.isFavorite(spell))
+        preparedButton.set(profile.isPrepared(spell))
+        knownButton.set(profile.isKnown(spell))
         
-        // Next, the prepared button
-        let preparedImage = characterProfile.isPrepared(spell) ? SpellWindowController.isPreparedImage : SpellWindowController.notPreparedImage
-        preparedButton.setImage(preparedImage, for: .normal)
-        preparedButton.imageView?.contentMode = .scaleAspectFit
-        self.view.bringSubviewToFront(preparedButton)
-        
-        // Finally, the known button
-        let knownImage = characterProfile.isKnown(spell) ? SpellWindowController.isKnownImage : SpellWindowController.notKnownImage
-        knownButton.setImage(knownImage, for: .normal)
-        knownButton.imageView?.contentMode = .scaleAspectFit
-        self.view.bringSubviewToFront(knownButton)
-        
-        // Set the button functions
-        favoriteButton.addTarget(self, action: #selector(favoriteButtonPressed), for: UIControl.Event.touchUpInside)
-        preparedButton.addTarget(self, action: #selector(preparedButtonPressed), for: UIControl.Event.touchUpInside)
-        knownButton.addTarget(self, action: #selector(knownButtonPressed), for: UIControl.Event.touchUpInside)
+        // Set the scroll view content size
+        scrollView.contentSize = self.view.frame.size
+        print("Scroll enabled: \(scrollView.isScrollEnabled)")
     }
     
     
@@ -162,142 +186,8 @@ class SpellWindowController: UIViewController {
         return NSMutableAttributedString(string: text, attributes: italicFontAttribute)
     }
     
-    
-    func spellText() -> NSMutableAttributedString {
-        
-        // We go through each property one by one, create the relevant text, then join them together
-        // Note that the spell name gets its own text field
-        let schoolText = schoolLevelText(spell)
-        let castingTimeText = propertyText(name: "Casting time", text: spell.castingTime)
-        let durationText = propertyText(name: "Duration", text: spell.duration.string())
-        let sourcebookCode = Spellbook.sourcebookCodes[spell.sourcebook.rawValue].uppercased()
-        let locationText = propertyText(name: "Location", text: sourcebookCode + " " + String(spell.page))
-        let componentsText = propertyText(name: "Components", text: spell.componentsString())
-        let materialsText = propertyText(name: "Materials", text: spell.material)
-        let rangeText = propertyText(name: "Range", text: spell.range.string())
-        let concentrationText = propertyText(name: "Concentration", text: bool_to_yn(yn: spell.concentration))
-        let classesText = propertyText(name: "Classes", text: spell.classesString())
-        let descriptionText = propertyText(name: "Description", text: spell.description, addLine: true)
-        let higherLevelText = propertyText(name: "Higher level", text: spell.higherLevel, addLine: true)
-        
-        // Now combine everything together
-        let spellText = NSMutableAttributedString()
-        let attrNewline = NSAttributedString(string: "\n")
-        spellText.append(schoolText)
-        spellText.append(attrNewline)
-        //spellText.append(attrNewline)
-        spellText.append(locationText)
-        spellText.append(attrNewline)
-        spellText.append(concentrationText)
-        spellText.append(attrNewline)
-        spellText.append(castingTimeText)
-        spellText.append(attrNewline)
-        spellText.append(rangeText)
-        spellText.append(attrNewline)
-        spellText.append(componentsText)
-        spellText.append(attrNewline)
-        if spell.components[2] {
-            spellText.append(materialsText)
-            spellText.append(attrNewline)
-        }
-        spellText.append(durationText)
-        spellText.append(attrNewline)
-        spellText.append(classesText)
-        spellText.append(attrNewline)
-        spellText.append(descriptionText)
-        spellText.append(attrNewline)
-        if spell.higherLevel != "" {
-            spellText.append(higherLevelText)
-        }
-        return spellText
-    }
-    
-    func setDimensions() {
-        
-        // Screen dimensions
-        let screenRect = view.bounds
-        let screenWidth = screenRect.size.width
-        let screenHeight = screenRect.size.height
-        
-        // Background view
-        backgroundView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
-        
-        // Get the padding sizes
-        let leftPadding = max(min(leftPaddingFraction * screenWidth, maxHorizPadding), minHorizPadding)
-        let rightPadding = max(min(rightPaddingFraction * screenWidth, maxHorizPadding), minHorizPadding)
-        let topPadding = max(min(topPaddingFraction * screenHeight, maxTopPadding), minTopPadding)
-        let bottomPadding = max(min(bottomPaddingFraction * screenHeight, maxTopPadding), minBotPadding)
-        
-        // Account for padding
-        let usableHeight = screenHeight - topPadding - bottomPadding
-        let usableWidth = screenWidth - leftPadding - rightPadding
-        
-        // Set the element dimensions
-        // First, the size of the UIScrollView
-        scrollView.frame = CGRect(x: leftPadding, y: topPadding, width: usableWidth, height: usableHeight)
-        
-        // Get the scroll view's dimensions
-        let scrollRect = scrollView.bounds
-        let scrollWidth = scrollRect.size.width
-        //let scrollHeight = scrollRect.size.height
-        
-        // Set the dimensions of the subviews
-        
-        // First the name label
-        let nameLabelWidth = nameLabelFraction * scrollWidth
-        spellNameLabel.frame.origin.x = 0
-        spellNameLabel.frame.origin.y = 0
-        spellNameLabel.frame.size.width = nameLabelWidth
-        spellNameLabel.sizeToFit()
-        
-        // Then the buttons
-        //let buttonWidth = scrollWidth - nameLabelWidth
-        //let buttonHeight = buttonWidth
-        let nameLabelHeight = spellNameLabel.frame.size.height
-        favoriteButton.frame = CGRect(x: nameLabelWidth, y: 0, width: buttonWidth, height: buttonHeight)
-        preparedButton.frame = CGRect(x: nameLabelWidth, y: buttonHeight + paddingBetweenImages, width: buttonWidth, height: buttonHeight)
-        knownButton.frame = CGRect(x: nameLabelWidth, y: 2 * ( buttonHeight + paddingBetweenImages), width: buttonWidth, height: buttonHeight)
-        
-        
-        // Finally, the spell text
-        spellTextLabel.frame.origin.x = 0
-        spellTextLabel.frame.origin.y = spellNameLabel.frame.size.height
-        spellTextLabel.frame.size.width = scrollWidth
-        spellTextLabel.sizeToFit()
-        
-        // We need to tell the scroll view how large its contents are
-        scrollView.contentSize = CGSize(width: scrollWidth, height: nameLabelHeight + spellTextLabel.frame.size.height)
-        
-    }
-    
-    @objc func favoriteButtonPressed() {
-        let profile = main.characterProfile
-        let fav = !profile.isFavorite(spell)
-        profile.setFavorite(s: spell, fav: fav)
-        let favoriteImage = fav ? SpellWindowController.isFavoriteImage : SpellWindowController.notFavoriteImage
-        favoriteButton.setImage(favoriteImage, for: .normal)
-        favoriteButton.imageView?.contentMode = .scaleAspectFit
-        main.saveCharacterProfile()
-    }
-    
-    @objc func preparedButtonPressed() {
-        let profile = main.characterProfile
-        let prep = !profile.isPrepared(spell)
-        profile.setPrepared(s: spell, prep: prep)
-        let preparedImage = prep ? SpellWindowController.isPreparedImage : SpellWindowController.notPreparedImage
-        preparedButton.setImage(preparedImage, for: .normal)
-        preparedButton.imageView?.contentMode = .scaleAspectFit
-        main.saveCharacterProfile()
-    }
-    
-    @objc func knownButtonPressed() {
-        let profile = main.characterProfile
-        let known = !profile.isKnown(spell)
-        profile.setKnown(s: spell, known: known)
-        let knownImage = known ? SpellWindowController.isKnownImage : SpellWindowController.notKnownImage
-        knownButton.setImage(knownImage, for: .normal)
-        knownButton.imageView?.contentMode = .scaleAspectFit
-        main.saveCharacterProfile()
+    func locationText(_ s: Spell) -> String {
+        return s.sourcebook.code().uppercased() + " " + String(spell.page)
     }
 
 }

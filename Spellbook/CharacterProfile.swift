@@ -382,6 +382,23 @@ class CharacterProfile {
         setProperty(s: s, val: known, propSetter: { $0.setKnown($1) })
     }
     
+    // For toggling spell status properties
+    private func toggleProperty(spell: Spell, propGetter: StatusPropertyGetter, propSetter: StatusPropertySetter) {
+        setProperty(s: spell, val: !isProperty(s: spell, propGetter: propGetter), propSetter: propSetter)
+    }
+    
+    func toggleFavorite(_ s: Spell) {
+        toggleProperty(spell: s, propGetter: { return $0.favorite }, propSetter: { $0.setFavorite($1) })
+    }
+    
+    func togglePrepared(_ s: Spell) {
+        toggleProperty(spell: s, propGetter: { return $0.prepared }, propSetter: { $0.setPrepared($1) })
+    }
+    
+    func toggleKnown(_ s: Spell) {
+        toggleProperty(spell: s, propGetter: { return $0.known }, propSetter: { $0.setKnown($1) })
+    }
+    
     func setFirstSortField(_ sf: SortField) { sortField1 = sf }
     func setSecondSortField(_ sf: SortField) { sortField2 = sf }
     func setFirstSortReverse(_ r1: Bool) { reverse1 = r1 }

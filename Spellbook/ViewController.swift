@@ -200,14 +200,7 @@ class ViewController: UIViewController {
     
     // This function sets the sizes of the top-level container views
     func setContainerDimensions(screenWidth: CGFloat, screenHeight: CGFloat) {
-        
-        //print("Screen width: \(screenWidth)")
-        //print("Screen height: \(screenHeight)")
-        
-        // Set the dimensions for the background image
-        // No padding necessary for this
-        //backgroundView.frame = CGRect(x: 0, y: -backgroundOffset, width: screenWidth, height: screenHeight + backgroundOffset)
-        backgroundView.frame = UIScreen.main.bounds
+
         
         // Get the padding sizes
         let leftPadding = max(min(leftPaddingFraction * screenWidth, maxHorizPadding), minHorizPadding)
@@ -219,21 +212,8 @@ class ViewController: UIViewController {
         ViewController.usableHeight = screenHeight - topPadding - bottomPadding
         ViewController.usableWidth = screenWidth - leftPadding - rightPadding
         
-        // Set the dimensions for the child containers
-        let sortHeight = max(min(sortFraction * ViewController.usableHeight, 100), 60)
-        let labelHeight = min(labelFraction * ViewController.usableHeight, 70)
-        let tableHeight = ViewController.usableHeight - sortHeight - labelHeight
-        //print("sortHeight is \(sortHeight)")
-        //print("labelHeight is \(labelHeight)")
-        
         // Finally, the SpellTableViewController
         // Note that we don't need to adjust the tableController's view differently - the TableViewController seems to be able to handle this part itself
-        let tableY = topPadding
-        let tableFrame = CGRect(x: leftPadding, y: tableY, width: ViewController.usableWidth, height: tableHeight)
-        tableView.frame = tableFrame
-        tableController!.view!.frame = tableFrame
-        tableController!.mainY = tableY
-        
         tableController?.setTableDimensions(leftPadding: leftPadding, bottomPadding: bottomPadding, usableHeight: ViewController.usableHeight, usableWidth: ViewController.usableWidth, tableTopPadding: tableView.frame.height * 0.04)
     }
     
@@ -297,7 +277,7 @@ class ViewController: UIViewController {
         }
     }
     
-    // This method gets the 
+    // This method sets the sort settings
     func setSortSettings() {
         let sf1 = characterProfile.getFirstSortField()
         let sf2 = characterProfile.getSecondSortField()

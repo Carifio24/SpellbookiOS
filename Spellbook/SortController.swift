@@ -1,5 +1,5 @@
 //
-//  PickerViewController.swift
+//  SortController.swift
 //  Spellbook
 //
 //  Created by Jonathan Carifio on 11/27/18.
@@ -8,23 +8,19 @@
 
 import UIKit
 
-class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class SortController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    @IBOutlet weak var sortPicker1: UIPickerView!
+
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var contentView: UIView!
     
-    @IBOutlet var sortArrow1: SortDirectionButton!
+    @IBOutlet weak var firstLevelLabel: UILabel!
+    @IBOutlet weak var firstLevelPicker: UIPickerView!
+    @IBOutlet weak var firstLevelArrow: SortDirectionButton!
     
-    @IBOutlet weak var sortPicker2: UIPickerView!
-    
-    @IBOutlet var sortArrow2: SortDirectionButton!
-    
-    @IBOutlet weak var classPicker: UIPickerView!
-    
-    @IBOutlet var clearButton: UIButton!
-    
-    @IBOutlet var searchButton: UIButton!
-    
-    @IBOutlet weak var searchField: UITextField!
+    @IBOutlet weak var secondLevelLabel: UILabel!
+    @IBOutlet weak var secondLevelPicker: UIPickerView!
+    @IBOutlet weak var secondLevelArrow: SortDirectionButton!
     
     static let searchIcon = UIImage(named: "search_icon.png")?.withRenderingMode(.alwaysOriginal)
     static let xIcon = UIImage(named: "x_icon.png")?.withRenderingMode(.alwaysOriginal)
@@ -34,7 +30,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     // The data for the sort pickers is the names of the sort fields
     // Create this via an IICE
     // This way, doesn't need modification if sort fields are added/removed/reordered
-    let sortPickerData: [String] = {
+    static let sortPickerData: [String] = {
         var data: [String] = []
         for i in 0...(SortField.count-1) {
             data.append(SortField(rawValue: i)!.displayName)
@@ -42,14 +38,6 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         return data
     }()
     
-    // The data for the class picker is "None" plus the names of the caster classes
-    let classPickerData: [String] = ["None"] + {
-        var data: [String] = []
-        for i in 0...(CasterClass.count-1) {
-            data.append(CasterClass(rawValue: i)!.displayName)
-        }
-        return data
-    }()
     
     // The fractional widths of the sort/filter elements
     // The rest will be for the search button
@@ -85,50 +73,12 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         sortPicker1.dataSource = self as UIPickerViewDataSource
         sortPicker2.dataSource = self as UIPickerViewDataSource
         classPicker.dataSource = self as UIPickerViewDataSource
-        
-        // Set the callback function for the text field
-        searchField.addTarget(self, action: #selector(searchFieldDidChange(textField:)), for: .editingChanged)
-        
-        // Set the callback function for the search button
-        searchButton.addTarget(self, action: #selector(searchButtonClicked(sender:)), for: .touchUpInside)
+
         
         // Set the callback functions for the sort arrows
         sortArrow1.addTarget(self, action: #selector(sortArrowClicked(sender:)), for: .touchUpInside)
         sortArrow2.addTarget(self, action: #selector(sortArrowClicked(sender:)), for: .touchUpInside)
         
-        // Set the callback function for the clear button
-        clearButton.addTarget(self, action: #selector(clearButtonClicked(sender:)), for: .touchUpInside)
-        
-        // Set the search button image
-        searchButton.setImage(PickerViewController.searchIcon, for: .normal)
-        searchButton.imageView?.contentMode = .scaleAspectFit
-        searchButton.imageView?.clipsToBounds = true
-        
-        // Set the clear button image
-        clearButton.setImage(PickerViewController.xIcon, for: .normal)
-        clearButton.imageView?.contentMode = .scaleAspectFit
-        clearButton.imageView?.clipsToBounds = true
-        
-        // Set the search field font
-        searchField.font = searchFont
-        
-        // Set up the picker listener to remove default text state if needed
-        
-        
-        // Set the element dimensions and positions
-        //setViewDimensions()
-        //print("searchButton's height is: \(searchButton.frame.height)")
-        //print("clearButton's height is: \(clearButton.frame.height)")
-        
-        // For testing only
-        //sortPicker1.backgroundColor = UIColor.blue
-        //sortArrow1.backgroundColor = UIColor.orange
-        //sortPicker2.backgroundColor = UIColor.red
-        //sortArrow2.backgroundColor = UIColor.green
-        //classPicker.backgroundColor = UIColor.yellow
-        //searchButton.backgroundColor = UIColor.purple
-        //let pickerFS = pickerFontSize()
-        //print("The picker font size is: \(pickerFS)")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -280,60 +230,36 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     // When the selected onption on one of the pickers is changed
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        // If one of the sort field pickers is changed
-        if (pickerView.tag == 0) || (pickerView.tag == 1) {
             
-            // Get the indices of the currently selected entry in each picker
-            var index1 = 0
-            var index2 = 0
-            if pickerView.tag == 0 {
-                index1 = row
-                index2 = sortPicker2.selectedRow(inComponent: 0)
-            } else {
-                index1 = sortPicker1.selectedRow(inComponent: 0)
-                index2 = row
-            }
-            
-            // Get the direction of the sort arrows
-            let reverse1 = sortArrow1.pointingUp()
-            let reverse2 = sortArrow2.pointingUp()
-            
-            if (index2 == 0) || (index1 == 0) {
-                boss!.tableController!.singleSort(sortField: SortField.Name, reverse: reverse1)
-            } else {
-                boss!.tableController!.doubleSort(sortField1: SortField.Name, sortField2: SortField.Name, reverse1: reverse1, reverse2: reverse2)
-            }
-            
-            //Update the character profile
-            boss!.characterProfile.setFirstSortField(SortField(rawValue: index1)!)
-            boss!.characterProfile.setSecondSortField(SortField(rawValue: index2)!)
-            
-        // If the class filter picker is changed
+        // Get the indices of the currently selected entry in each picker
+        var index1 = 0
+        var index2 = 0
+        if pickerView.tag == 0 {
+            index1 = row
+            index2 = sortPicker2.selectedRow(inComponent: 0)
         } else {
-            let caster: CasterClass? = (row != 0) ? CasterClass(rawValue: row - 1) : nil
-            //boss!.characterProfile.setFilterClass(caster)
-            boss!.tableController!.filter()
+            index1 = sortPicker1.selectedRow(inComponent: 0)
+            index2 = row
         }
+        
+        // Get the direction of the sort arrows
+        let reverse1 = sortArrow1.pointingUp()
+        let reverse2 = sortArrow2.pointingUp()
+        
+        if (index2 == 0) || (index1 == 0) {
+            boss!.tableController!.singleSort(sortField: SortField.Name, reverse: reverse1)
+        } else {
+            boss!.tableController!.doubleSort(sortField1: SortField.Name, sortField2: SortField.Name, reverse1: reverse1, reverse2: reverse2)
+        }
+        
+        //Update the character profile
+        boss!.characterProfile.setFirstSortField(SortField(rawValue: index1)!)
+        boss!.characterProfile.setSecondSortField(SortField(rawValue: index2)!)
+            
         
         // Either way, we want to save the character profile
         boss!.saveCharacterProfile()
         
-    }
-        
-    // What happens when the search button is clicked
-    @objc func searchButtonClicked(sender: UIButton) {
-        sortPicker1.isHidden = !sortPicker1.isHidden
-        sortArrow1.isHidden = !sortArrow1.isHidden
-        sortPicker2.isHidden = !sortPicker2.isHidden
-        sortArrow2.isHidden = !sortArrow2.isHidden
-        classPicker.isHidden = !classPicker.isHidden
-        searchField.isHidden = !searchField.isHidden
-        clearButton.isHidden = !clearButton.isHidden
-    }
-    
-    @objc func searchFieldDidChange(textField: UITextField) {
-        boss!.tableController!.filter()
     }
     
     // What happens when one of the sort arrows is clicked
@@ -347,10 +273,6 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         boss!.saveCharacterProfile()
     }
     
-    @objc func clearButtonClicked(sender: UIButton) {
-        searchField.text = ""
-        searchFieldDidChange(textField: searchField)
-    }
     
     func setSortStatus(sort1: SortField, sort2: SortField, reverse1: Bool, reverse2: Bool) {
         // Set the pickers
@@ -370,13 +292,6 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             sortArrow2.setDown()
         }
     }
-    
-    func setFilterStatus(caster: CasterClass?) {
-        if caster == nil {
-            classPicker.selectRow(0, inComponent: 0, animated: false)
-        } else {
-            classPicker.selectRow(caster!.rawValue + 1, inComponent: 0, animated: false)
-        }
-    }
+
 
 }

@@ -131,7 +131,7 @@ class SpellTableViewController: UITableViewController {
     
     // Set the footer height
     override func tableView(_ tableView: UITableView, heightForFooterInSection: Int) -> CGFloat {
-        return 2 * SpellDataCell.cellHeight
+        return 2 * SpellTableViewController.estimatedHeight
     }
 
     
@@ -180,17 +180,17 @@ class SpellTableViewController: UITableViewController {
         // Set the callbacks for the buttons
         cell.favoriteButton.setCallback({
             let cp = self.main.characterProfile
-            cp.setFavorite(s: cell.spell, fav: !cp.isFavorite(cell.spell))
+            cp.toggleFavorite(cell.spell)
             self.main.saveCharacterProfile()
             })
         cell.preparedButton.setCallback({
             let cp = self.main.characterProfile
-            cp.setPrepared(s: cell.spell, prep: !cp.isPrepared(cell.spell))
+            cp.togglePrepared(cell.spell)
             self.main.saveCharacterProfile()
         })
         cell.knownButton.setCallback({
             let cp = self.main.characterProfile
-            cp.setKnown(s: cell.spell, known: !cp.isKnown(cell.spell))
+            cp.toggleKnown(cell.spell)
             self.main.saveCharacterProfile()
         })
         
@@ -304,15 +304,22 @@ class SpellTableViewController: UITableViewController {
     // Set what happens when a cell is selected
     // For us, that's creating a segue to a view with the spell info
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        print("Pressed at row \(indexPath.row)")
     
         if indexPath.row >= spellArray.count { return }
         let storyboard = self.storyboard
+        let spellIndex = indexPath.row
+        let spell = spellArray[spellIndex]
+
         let spellWindowController = storyboard?.instantiateViewController(withIdentifier: spellWindowIdentifier) as! SpellWindowController
         spellWindowController.transitioningDelegate = spellWindowController
         //view.window?.layer.add(Transitions.fromRightTransition, forKey: kCATransition)
+        print("Presenting...")
         self.present(spellWindowController, animated: true, completion: nil)
-        spellWindowController.spellIndex = indexPath.row
-        spellWindowController.spell = spellArray[indexPath.row]
+        spellWindowController.spell = spell
+        spellWindowController.spellIndex = spellIndex
+        print("")
     }
     
     

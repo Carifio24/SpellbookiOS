@@ -31,6 +31,7 @@ class FromRightPushAnimator : NSObject, UIViewControllerAnimatedTransitioning {
         
         containerView.addSubview(toViewController.view)
         
+        print("About to animate...")
         UIView.animate(withDuration: animationDuration,
                 animations:  { toViewController.view.transform = CGAffineTransform.identity },
                 completion: {
