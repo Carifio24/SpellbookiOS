@@ -1,0 +1,976 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		07A25AF8D87621ED2CB80525162D9B9B /* Pods-Spellbook-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B0C585E4655B926E6ACC377548B023C /* Pods-Spellbook-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14FEBF1F3D4945C084237A86399A6CFB /* Pods-Spellbook-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 866FB571543B27090826280BE073EEB4 /* Pods-Spellbook-dummy.m */; };
+		5FCFCBC82481CF30D9D923879F0196F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		606AAD1EB982DF12FE065BB6EF7A99D1 /* Pods-Spellbook-SpellbookUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 31C4877BC0947397DCBA91A9959DC7C4 /* Pods-Spellbook-SpellbookUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6640B9C1B67E8B1DFD8F37220D829939 /* Pods-Spellbook-SpellbookUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D359C4DE1F7BAF1D0AD6213079264B5B /* Pods-Spellbook-SpellbookUITests-dummy.m */; };
+		6833B5B341C0214934D7449BBFDF7529 /* Pods-SpellbookTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EADC2DD846C765D4970F61336E224BE /* Pods-SpellbookTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75BB5235832D0B55AF3F0B310706855D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		76DBC17F9562AB31555EE50DA2B8E905 /* SWXMLHash-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 233B462C47DFEAE43B6981AD57B7D641 /* SWXMLHash-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7C9560533D526220DD0B524C63648440 /* SWXMLHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B2F170D8BDE52B4523A4461E7AE58 /* SWXMLHash.swift */; };
+		84C786223AFD6AC185B08AFB3D743541 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		995F7F4AEC0BA9D85FF2C2235285ED73 /* XMLIndexer+XMLIndexerDeserializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE164FE792F4F73C59B977972DC136 /* XMLIndexer+XMLIndexerDeserializable.swift */; };
+		9D80B224850F41DE99AF0BA0EF522727 /* shim.swift in Sources */ = {isa = PBXBuildFile; fileRef = B733D2C44ADC7967E21F58DFB4C43579 /* shim.swift */; };
+		BD276717C9C33FE24234D209004966DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		C4385AA23D686AA3F6891DC1B21868D4 /* SWXMLHash-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F710317A38AF0A218C0F0F161E886EB /* SWXMLHash-dummy.m */; };
+		DC41F18FF545A80BC7DB7DE2148DABCE /* Pods-SpellbookTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7F72FA0D3A454B897841C51728FD79 /* Pods-SpellbookTests-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		044861FC0C83D15D082B70612B8D1266 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC9CCECC52010AB911ED929825AB69E2;
+			remoteInfo = "Pods-Spellbook";
+		};
+		F0FF9F2EF3F32438244FA2D2A0B05DD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63678F9A594800CBC7006B45EAB7886B;
+			remoteInfo = SWXMLHash;
+		};
+		FA24010855702F4E2BCEA269E14CA897 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63678F9A594800CBC7006B45EAB7886B;
+			remoteInfo = SWXMLHash;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		01C189D693BABCB43D79995744968215 /* Pods-Spellbook-SpellbookUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Spellbook-SpellbookUITests-Info.plist"; sourceTree = "<group>"; };
+		071CAF490C3B9B0D95DFA91465F984CD /* SWXMLHash-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SWXMLHash-prefix.pch"; sourceTree = "<group>"; };
+		081AF8E7B25B9DA2B4EED7005EDC17D7 /* Pods-Spellbook-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Spellbook-acknowledgements.markdown"; sourceTree = "<group>"; };
+		0EE5006468522FB83C579766998552DC /* Pods-Spellbook-SpellbookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Spellbook-SpellbookUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1E8B2F170D8BDE52B4523A4461E7AE58 /* SWXMLHash.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SWXMLHash.swift; path = Source/SWXMLHash.swift; sourceTree = "<group>"; };
+		233B462C47DFEAE43B6981AD57B7D641 /* SWXMLHash-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SWXMLHash-umbrella.h"; sourceTree = "<group>"; };
+		2F710317A38AF0A218C0F0F161E886EB /* SWXMLHash-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SWXMLHash-dummy.m"; sourceTree = "<group>"; };
+		30E75B5D026BCD65B1026DF9E36313BD /* Pods-Spellbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Spellbook.release.xcconfig"; sourceTree = "<group>"; };
+		31C4877BC0947397DCBA91A9959DC7C4 /* Pods-Spellbook-SpellbookUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Spellbook-SpellbookUITests-umbrella.h"; sourceTree = "<group>"; };
+		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		3FCCBBD7C21BF890946B80C1B0B33C09 /* Pods-Spellbook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Spellbook.debug.xcconfig"; sourceTree = "<group>"; };
+		48EC350E808E5CDA41EFEB2808FB79A2 /* Pods-Spellbook-SpellbookUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Spellbook-SpellbookUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		4AC67A66D3C96CF6AD6796FD9C0CB7FD /* SWXMLHash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SWXMLHash.release.xcconfig; sourceTree = "<group>"; };
+		4B0C585E4655B926E6ACC377548B023C /* Pods-Spellbook-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Spellbook-umbrella.h"; sourceTree = "<group>"; };
+		4F5EFF5AFC0C79585D68720FA6842A7D /* Pods-SpellbookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SpellbookTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5C7F72FA0D3A454B897841C51728FD79 /* Pods-SpellbookTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SpellbookTests-dummy.m"; sourceTree = "<group>"; };
+		5D59CEC622BC39647EF889453BE7427F /* SWXMLHash.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SWXMLHash.modulemap; sourceTree = "<group>"; };
+		5EADC2DD846C765D4970F61336E224BE /* Pods-SpellbookTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SpellbookTests-umbrella.h"; sourceTree = "<group>"; };
+		65F37CA36D6446F9451B54B99133E2BA /* Pods_Spellbook_SpellbookUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Spellbook_SpellbookUITests.framework; path = "Pods-Spellbook-SpellbookUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		69655695A589A0FC7FD459A46355D0B7 /* Pods-Spellbook-SpellbookUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Spellbook-SpellbookUITests.modulemap"; sourceTree = "<group>"; };
+		6C1B5B21B0CD43C34ED9A9C9A7BCA60E /* Pods-SpellbookTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SpellbookTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		6ED2D5DBAD7EA8A21252143F798F3E11 /* Pods-Spellbook-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Spellbook-acknowledgements.plist"; sourceTree = "<group>"; };
+		80D9B48B6C8D218DECCE9330A3176A44 /* Pods-Spellbook-SpellbookUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Spellbook-SpellbookUITests-frameworks.sh"; sourceTree = "<group>"; };
+		866FB571543B27090826280BE073EEB4 /* Pods-Spellbook-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Spellbook-dummy.m"; sourceTree = "<group>"; };
+		97D014AD6344E543FEDB1FD1F8F2BFEC /* SWXMLHash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SWXMLHash.framework; path = SWXMLHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A17942F4B1F5A17C5CB97A72D526BC9 /* Pods-Spellbook-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Spellbook-Info.plist"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		AD478447492BB4BFBC2880E1DE727189 /* Pods-SpellbookTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SpellbookTests-Info.plist"; sourceTree = "<group>"; };
+		B0CE164FE792F4F73C59B977972DC136 /* XMLIndexer+XMLIndexerDeserializable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "XMLIndexer+XMLIndexerDeserializable.swift"; path = "Source/XMLIndexer+XMLIndexerDeserializable.swift"; sourceTree = "<group>"; };
+		B4E40BD8D350D00ECA9289D319A26F7C /* Pods-Spellbook-SpellbookUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Spellbook-SpellbookUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B733D2C44ADC7967E21F58DFB4C43579 /* shim.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = shim.swift; path = Source/shim.swift; sourceTree = "<group>"; };
+		B82CAF350347DC2952B0EF82BFD2C2C3 /* Pods-Spellbook.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Spellbook.modulemap"; sourceTree = "<group>"; };
+		BCA7FB05518B7E49E008814451BCE87D /* SWXMLHash-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SWXMLHash-Info.plist"; sourceTree = "<group>"; };
+		C53696E3DBDC6FA7D111270F15A2C1F5 /* Pods-Spellbook-SpellbookUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Spellbook-SpellbookUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		D359C4DE1F7BAF1D0AD6213079264B5B /* Pods-Spellbook-SpellbookUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Spellbook-SpellbookUITests-dummy.m"; sourceTree = "<group>"; };
+		D64B454009D2EE1F5380919773AA1E5F /* Pods-SpellbookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SpellbookTests.release.xcconfig"; sourceTree = "<group>"; };
+		DB218E9F4485ED21697A6D4BAC51F89B /* Pods_Spellbook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Spellbook.framework; path = "Pods-Spellbook.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E019A7F761266E93C3D8EBB01437E0B4 /* Pods-SpellbookTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SpellbookTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		EAFFD16A6441A94F0452C3B3852DB0AF /* Pods-SpellbookTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SpellbookTests.modulemap"; sourceTree = "<group>"; };
+		EC7A54AA9EA44DD02913339D82A4C7AB /* Pods-Spellbook-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Spellbook-frameworks.sh"; sourceTree = "<group>"; };
+		F4EC83BC173D2A36A111FB382E6A1C4B /* SWXMLHash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SWXMLHash.debug.xcconfig; sourceTree = "<group>"; };
+		F564D6F6DE7C5552283645D4FD38F09C /* Pods_SpellbookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SpellbookTests.framework; path = "Pods-SpellbookTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2E4FD65D24F318FC0E0F721F2926EBA9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84C786223AFD6AC185B08AFB3D743541 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49ACC537705962C27C38949827DAE64A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FCFCBC82481CF30D9D923879F0196F1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		64B69721D94CAB41D7E95F56F7DE3ECF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				75BB5235832D0B55AF3F0B310706855D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83823909D8681DA4ED16DB226E379F12 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD276717C9C33FE24234D209004966DD /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		013DBC6830A99C8D090146A1871298B3 /* Pods-Spellbook-SpellbookUITests */ = {
+			isa = PBXGroup;
+			children = (
+				69655695A589A0FC7FD459A46355D0B7 /* Pods-Spellbook-SpellbookUITests.modulemap */,
+				48EC350E808E5CDA41EFEB2808FB79A2 /* Pods-Spellbook-SpellbookUITests-acknowledgements.markdown */,
+				C53696E3DBDC6FA7D111270F15A2C1F5 /* Pods-Spellbook-SpellbookUITests-acknowledgements.plist */,
+				D359C4DE1F7BAF1D0AD6213079264B5B /* Pods-Spellbook-SpellbookUITests-dummy.m */,
+				80D9B48B6C8D218DECCE9330A3176A44 /* Pods-Spellbook-SpellbookUITests-frameworks.sh */,
+				01C189D693BABCB43D79995744968215 /* Pods-Spellbook-SpellbookUITests-Info.plist */,
+				31C4877BC0947397DCBA91A9959DC7C4 /* Pods-Spellbook-SpellbookUITests-umbrella.h */,
+				B4E40BD8D350D00ECA9289D319A26F7C /* Pods-Spellbook-SpellbookUITests.debug.xcconfig */,
+				0EE5006468522FB83C579766998552DC /* Pods-Spellbook-SpellbookUITests.release.xcconfig */,
+			);
+			name = "Pods-Spellbook-SpellbookUITests";
+			path = "Target Support Files/Pods-Spellbook-SpellbookUITests";
+			sourceTree = "<group>";
+		};
+		0C85A5DB63D6692D9E93100EF50546F2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB218E9F4485ED21697A6D4BAC51F89B /* Pods_Spellbook.framework */,
+				65F37CA36D6446F9451B54B99133E2BA /* Pods_Spellbook_SpellbookUITests.framework */,
+				F564D6F6DE7C5552283645D4FD38F09C /* Pods_SpellbookTests.framework */,
+				97D014AD6344E543FEDB1FD1F8F2BFEC /* SWXMLHash.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0CA00009BC119DD86F91C95B8720B873 /* Pods-SpellbookTests */ = {
+			isa = PBXGroup;
+			children = (
+				EAFFD16A6441A94F0452C3B3852DB0AF /* Pods-SpellbookTests.modulemap */,
+				E019A7F761266E93C3D8EBB01437E0B4 /* Pods-SpellbookTests-acknowledgements.markdown */,
+				6C1B5B21B0CD43C34ED9A9C9A7BCA60E /* Pods-SpellbookTests-acknowledgements.plist */,
+				5C7F72FA0D3A454B897841C51728FD79 /* Pods-SpellbookTests-dummy.m */,
+				AD478447492BB4BFBC2880E1DE727189 /* Pods-SpellbookTests-Info.plist */,
+				5EADC2DD846C765D4970F61336E224BE /* Pods-SpellbookTests-umbrella.h */,
+				4F5EFF5AFC0C79585D68720FA6842A7D /* Pods-SpellbookTests.debug.xcconfig */,
+				D64B454009D2EE1F5380919773AA1E5F /* Pods-SpellbookTests.release.xcconfig */,
+			);
+			name = "Pods-SpellbookTests";
+			path = "Target Support Files/Pods-SpellbookTests";
+			sourceTree = "<group>";
+		};
+		21FFAEB3824076235DB40BAB4E8CA867 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				327796D1307E15D5CF841D4E393C456B /* SWXMLHash */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		327796D1307E15D5CF841D4E393C456B /* SWXMLHash */ = {
+			isa = PBXGroup;
+			children = (
+				B733D2C44ADC7967E21F58DFB4C43579 /* shim.swift */,
+				1E8B2F170D8BDE52B4523A4461E7AE58 /* SWXMLHash.swift */,
+				B0CE164FE792F4F73C59B977972DC136 /* XMLIndexer+XMLIndexerDeserializable.swift */,
+				F6455E5C2A4C1856ED9F92D51AA2DD01 /* Support Files */,
+			);
+			name = SWXMLHash;
+			path = SWXMLHash;
+			sourceTree = "<group>";
+		};
+		79AA06075FCFA07EB1D17B0EBA11B298 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F9853064A315322806999F86B67F9675 /* Pods-Spellbook */,
+				013DBC6830A99C8D090146A1871298B3 /* Pods-Spellbook-SpellbookUITests */,
+				0CA00009BC119DD86F91C95B8720B873 /* Pods-SpellbookTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				21FFAEB3824076235DB40BAB4E8CA867 /* Pods */,
+				0C85A5DB63D6692D9E93100EF50546F2 /* Products */,
+				79AA06075FCFA07EB1D17B0EBA11B298 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C0834CEBB1379A84116EF29F93051C60 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F6455E5C2A4C1856ED9F92D51AA2DD01 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5D59CEC622BC39647EF889453BE7427F /* SWXMLHash.modulemap */,
+				2F710317A38AF0A218C0F0F161E886EB /* SWXMLHash-dummy.m */,
+				BCA7FB05518B7E49E008814451BCE87D /* SWXMLHash-Info.plist */,
+				071CAF490C3B9B0D95DFA91465F984CD /* SWXMLHash-prefix.pch */,
+				233B462C47DFEAE43B6981AD57B7D641 /* SWXMLHash-umbrella.h */,
+				F4EC83BC173D2A36A111FB382E6A1C4B /* SWXMLHash.debug.xcconfig */,
+				4AC67A66D3C96CF6AD6796FD9C0CB7FD /* SWXMLHash.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SWXMLHash";
+			sourceTree = "<group>";
+		};
+		F9853064A315322806999F86B67F9675 /* Pods-Spellbook */ = {
+			isa = PBXGroup;
+			children = (
+				B82CAF350347DC2952B0EF82BFD2C2C3 /* Pods-Spellbook.modulemap */,
+				081AF8E7B25B9DA2B4EED7005EDC17D7 /* Pods-Spellbook-acknowledgements.markdown */,
+				6ED2D5DBAD7EA8A21252143F798F3E11 /* Pods-Spellbook-acknowledgements.plist */,
+				866FB571543B27090826280BE073EEB4 /* Pods-Spellbook-dummy.m */,
+				EC7A54AA9EA44DD02913339D82A4C7AB /* Pods-Spellbook-frameworks.sh */,
+				9A17942F4B1F5A17C5CB97A72D526BC9 /* Pods-Spellbook-Info.plist */,
+				4B0C585E4655B926E6ACC377548B023C /* Pods-Spellbook-umbrella.h */,
+				3FCCBBD7C21BF890946B80C1B0B33C09 /* Pods-Spellbook.debug.xcconfig */,
+				30E75B5D026BCD65B1026DF9E36313BD /* Pods-Spellbook.release.xcconfig */,
+			);
+			name = "Pods-Spellbook";
+			path = "Target Support Files/Pods-Spellbook";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		0404999B5772343604833982BE18C66D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				07A25AF8D87621ED2CB80525162D9B9B /* Pods-Spellbook-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F779647D539969A32043F2E4A4AF52E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76DBC17F9562AB31555EE50DA2B8E905 /* SWXMLHash-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F47C91C7ECC32BE2D6522FCCC5013E58 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6833B5B341C0214934D7449BBFDF7529 /* Pods-SpellbookTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4CFE1E5F054B4DA1B03115862A0A9BA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				606AAD1EB982DF12FE065BB6EF7A99D1 /* Pods-Spellbook-SpellbookUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		4A6380F27F7724BE52822F0893BB0C8E /* Pods-Spellbook-SpellbookUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CDBECF51EF291DCA04A1978ACC8621B /* Build configuration list for PBXNativeTarget "Pods-Spellbook-SpellbookUITests" */;
+			buildPhases = (
+				F4CFE1E5F054B4DA1B03115862A0A9BA /* Headers */,
+				DB2C27280BF17AB311A956ED6E40AA71 /* Sources */,
+				49ACC537705962C27C38949827DAE64A /* Frameworks */,
+				3E16434C8065633A4F04A10EDA899107 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F70DFE7CDD79C4A100E7EC072F8A1F68 /* PBXTargetDependency */,
+			);
+			name = "Pods-Spellbook-SpellbookUITests";
+			productName = "Pods-Spellbook-SpellbookUITests";
+			productReference = 65F37CA36D6446F9451B54B99133E2BA /* Pods_Spellbook_SpellbookUITests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		63678F9A594800CBC7006B45EAB7886B /* SWXMLHash */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A4CDC4EE6A81F3DE4852408A87B5B644 /* Build configuration list for PBXNativeTarget "SWXMLHash" */;
+			buildPhases = (
+				7F779647D539969A32043F2E4A4AF52E /* Headers */,
+				5C34EC43ECC2A4214C7710C5C69BDB1F /* Sources */,
+				64B69721D94CAB41D7E95F56F7DE3ECF /* Frameworks */,
+				AE440E27B2DEA2026D54873A0376328D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SWXMLHash;
+			productName = SWXMLHash;
+			productReference = 97D014AD6344E543FEDB1FD1F8F2BFEC /* SWXMLHash.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		647487ADD574591EE1B816723497D7AD /* Pods-SpellbookTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C473342956FC2776C5D4034AEDC53B79 /* Build configuration list for PBXNativeTarget "Pods-SpellbookTests" */;
+			buildPhases = (
+				F47C91C7ECC32BE2D6522FCCC5013E58 /* Headers */,
+				0E8B2E4BBE578C8DEDC38A8FA207E256 /* Sources */,
+				2E4FD65D24F318FC0E0F721F2926EBA9 /* Frameworks */,
+				C40255664FB4755739EC6CAA0E95DE1D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B32351255E3D66B1F0B7EE30670218D4 /* PBXTargetDependency */,
+			);
+			name = "Pods-SpellbookTests";
+			productName = "Pods-SpellbookTests";
+			productReference = F564D6F6DE7C5552283645D4FD38F09C /* Pods_SpellbookTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		BC9CCECC52010AB911ED929825AB69E2 /* Pods-Spellbook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE3668BB5EDC65C3BF7ED68A414BDA93 /* Build configuration list for PBXNativeTarget "Pods-Spellbook" */;
+			buildPhases = (
+				0404999B5772343604833982BE18C66D /* Headers */,
+				58CEFDDA38D439B22B8ABED88B28CCCA /* Sources */,
+				83823909D8681DA4ED16DB226E379F12 /* Frameworks */,
+				9BFBFB675F6602858892EBB44DC4A7C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5B842914A05E90808D6671EBB00C7E35 /* PBXTargetDependency */,
+			);
+			name = "Pods-Spellbook";
+			productName = "Pods-Spellbook";
+			productReference = DB218E9F4485ED21697A6D4BAC51F89B /* Pods_Spellbook.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 0C85A5DB63D6692D9E93100EF50546F2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BC9CCECC52010AB911ED929825AB69E2 /* Pods-Spellbook */,
+				4A6380F27F7724BE52822F0893BB0C8E /* Pods-Spellbook-SpellbookUITests */,
+				647487ADD574591EE1B816723497D7AD /* Pods-SpellbookTests */,
+				63678F9A594800CBC7006B45EAB7886B /* SWXMLHash */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3E16434C8065633A4F04A10EDA899107 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9BFBFB675F6602858892EBB44DC4A7C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AE440E27B2DEA2026D54873A0376328D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C40255664FB4755739EC6CAA0E95DE1D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0E8B2E4BBE578C8DEDC38A8FA207E256 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC41F18FF545A80BC7DB7DE2148DABCE /* Pods-SpellbookTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		58CEFDDA38D439B22B8ABED88B28CCCA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14FEBF1F3D4945C084237A86399A6CFB /* Pods-Spellbook-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C34EC43ECC2A4214C7710C5C69BDB1F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D80B224850F41DE99AF0BA0EF522727 /* shim.swift in Sources */,
+				C4385AA23D686AA3F6891DC1B21868D4 /* SWXMLHash-dummy.m in Sources */,
+				7C9560533D526220DD0B524C63648440 /* SWXMLHash.swift in Sources */,
+				995F7F4AEC0BA9D85FF2C2235285ED73 /* XMLIndexer+XMLIndexerDeserializable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB2C27280BF17AB311A956ED6E40AA71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6640B9C1B67E8B1DFD8F37220D829939 /* Pods-Spellbook-SpellbookUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5B842914A05E90808D6671EBB00C7E35 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SWXMLHash;
+			target = 63678F9A594800CBC7006B45EAB7886B /* SWXMLHash */;
+			targetProxy = F0FF9F2EF3F32438244FA2D2A0B05DD7 /* PBXContainerItemProxy */;
+		};
+		B32351255E3D66B1F0B7EE30670218D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-Spellbook";
+			target = BC9CCECC52010AB911ED929825AB69E2 /* Pods-Spellbook */;
+			targetProxy = 044861FC0C83D15D082B70612B8D1266 /* PBXContainerItemProxy */;
+		};
+		F70DFE7CDD79C4A100E7EC072F8A1F68 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SWXMLHash;
+			target = 63678F9A594800CBC7006B45EAB7886B /* SWXMLHash */;
+			targetProxy = FA24010855702F4E2BCEA269E14CA897 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		072DB4D1AACEA41EEB3AFB8F15509500 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D64B454009D2EE1F5380919773AA1E5F /* Pods-SpellbookTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SpellbookTests/Pods-SpellbookTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SpellbookTests/Pods-SpellbookTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		17E89BFB789BA2BF81F9740E281CF8BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30E75B5D026BCD65B1026DF9E36313BD /* Pods-Spellbook.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Spellbook/Pods-Spellbook-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Spellbook/Pods-Spellbook.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		196DFA3E4A09A28224918543529A1885 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		201841BA6ACD524A5D3596BC8A981F0E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4EC83BC173D2A36A111FB382E6A1C4B /* SWXMLHash.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SWXMLHash/SWXMLHash-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SWXMLHash/SWXMLHash-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/SWXMLHash/SWXMLHash.modulemap";
+				PRODUCT_MODULE_NAME = SWXMLHash;
+				PRODUCT_NAME = SWXMLHash;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		78F6917DEE8A901753CE6FEF145E1078 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0EE5006468522FB83C579766998552DC /* Pods-Spellbook-SpellbookUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Spellbook-SpellbookUITests/Pods-Spellbook-SpellbookUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Spellbook-SpellbookUITests/Pods-Spellbook-SpellbookUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		91A0D2E18047C2FC5E780E06CA3BF9A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4F5EFF5AFC0C79585D68720FA6842A7D /* Pods-SpellbookTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-SpellbookTests/Pods-SpellbookTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SpellbookTests/Pods-SpellbookTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9A1FD145F6E83DE78CCCA725C473C70C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4AC67A66D3C96CF6AD6796FD9C0CB7FD /* SWXMLHash.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SWXMLHash/SWXMLHash-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SWXMLHash/SWXMLHash-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/SWXMLHash/SWXMLHash.modulemap";
+				PRODUCT_MODULE_NAME = SWXMLHash;
+				PRODUCT_NAME = SWXMLHash;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B01D14FDC83DCF9D4BE53066BEA96D05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		B2174AD75D1007080B6762973ADB2F6A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4E40BD8D350D00ECA9289D319A26F7C /* Pods-Spellbook-SpellbookUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Spellbook-SpellbookUITests/Pods-Spellbook-SpellbookUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Spellbook-SpellbookUITests/Pods-Spellbook-SpellbookUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C8E5E11F51AA5E6570EA6F31A29AA5B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FCCBBD7C21BF890946B80C1B0B33C09 /* Pods-Spellbook.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Spellbook/Pods-Spellbook-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Spellbook/Pods-Spellbook.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				196DFA3E4A09A28224918543529A1885 /* Debug */,
+				B01D14FDC83DCF9D4BE53066BEA96D05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CDBECF51EF291DCA04A1978ACC8621B /* Build configuration list for PBXNativeTarget "Pods-Spellbook-SpellbookUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B2174AD75D1007080B6762973ADB2F6A /* Debug */,
+				78F6917DEE8A901753CE6FEF145E1078 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A4CDC4EE6A81F3DE4852408A87B5B644 /* Build configuration list for PBXNativeTarget "SWXMLHash" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				201841BA6ACD524A5D3596BC8A981F0E /* Debug */,
+				9A1FD145F6E83DE78CCCA725C473C70C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C473342956FC2776C5D4034AEDC53B79 /* Build configuration list for PBXNativeTarget "Pods-SpellbookTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91A0D2E18047C2FC5E780E06CA3BF9A9 /* Debug */,
+				072DB4D1AACEA41EEB3AFB8F15509500 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DE3668BB5EDC65C3BF7ED68A414BDA93 /* Build configuration list for PBXNativeTarget "Pods-Spellbook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8E5E11F51AA5E6570EA6F31A29AA5B2 /* Debug */,
+				17E89BFB789BA2BF81F9740E281CF8BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

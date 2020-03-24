@@ -15,25 +15,30 @@ class SortController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var firstLevelLabel: UILabel!
-    @IBOutlet weak var firstLevelPicker: UIPickerView!
+    @IBOutlet weak var firstLevelChoice: UILabel!
     @IBOutlet weak var firstLevelArrow: SortDirectionButton!
     
+    
     @IBOutlet weak var secondLevelLabel: UILabel!
-    @IBOutlet weak var secondLevelPicker: UIPickerView!
+    @IBOutlet weak var secondLevelChoice: UILabel!
     @IBOutlet weak var secondLevelArrow: SortDirectionButton!
     
     static let searchIcon = UIImage(named: "search_icon.png")?.withRenderingMode(.alwaysOriginal)
     static let xIcon = UIImage(named: "x_icon.png")?.withRenderingMode(.alwaysOriginal)
     
-    var boss: ViewController?
+    private let main = Controllers.mainController
+    
+    // Create the pickers
+    private let firstLevelPicker = UIPickerView()
+    private let secondLevelPicker = UIPickerView()
     
     // The data for the sort pickers is the names of the sort fields
     // Create this via an IICE
     // This way, doesn't need modification if sort fields are added/removed/reordered
     static let sortPickerData: [String] = {
         var data: [String] = []
-        for i in 0...(SortField.count-1) {
-            data.append(SortField(rawValue: i)!.displayName)
+        for sf in SortField.allCases {
+            data.append(sf.displayName)
         }
         return data
     }()
@@ -53,126 +58,20 @@ class SortController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     let pickerFont = UIFont.systemFont(ofSize: pickerFontSize())
     let searchFont = UIFont.systemFont(ofSize: CGFloat(20))
     
-    // Whether to use default values
-    var sort1Default = false
-    var sort2Default = false
-    var classDefault = false
-    
-    // The default values
-    let sort1DefaultText = "Sort 1"
-    let sort2DefaultText = "Sort 2"
-    let classDefaultText = "Class"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Set the delegates and data sources for the pickers
-        sortPicker1.delegate = self as UIPickerViewDelegate
-        sortPicker2.delegate = self as UIPickerViewDelegate
-        classPicker.delegate = self as UIPickerViewDelegate
-        sortPicker1.dataSource = self as UIPickerViewDataSource
-        sortPicker2.dataSource = self as UIPickerViewDataSource
-        classPicker.dataSource = self as UIPickerViewDataSource
 
-        
         // Set the callback functions for the sort arrows
-        sortArrow1.addTarget(self, action: #selector(sortArrowClicked(sender:)), for: .touchUpInside)
-        sortArrow2.addTarget(self, action: #selector(sortArrowClicked(sender:)), for: .touchUpInside)
+        firstLevelArrow.addTarget(self, action: #selector(sortArrowClicked(sender:)), for: .touchUpInside)
+        secondLevelArrow.addTarget(self, action: #selector(sortArrowClicked(sender:)), for: .touchUpInside)
+        
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        boss = self.parent as? ViewController
     }
     
-    func setViewDimensions() {
-
-        // Get the view dimensions
-        let viewRect = self.view.bounds
-        let viewWidth = viewRect.size.width
-        let viewHeight = viewRect.size.height
-        
-        // Padding amounts
-        let searchButtonLeftPadding = CGFloat(5)
-        
-        // Factors used in calculating heights
-        let pickerHeightFactor = CGFloat(1)
-        let pickerHeight = pickerHeightFactor * viewHeight
-        let searchButtonFactor = CGFloat(0.6)
-        let searchFieldFactor = CGFloat(0.7)
-        let clearButtonFactor = CGFloat(0.5)
-        
-        // Detrmine the sizes of the elements
-        let sort1Width = sort1Fraction * viewWidth
-        let arrow1Width = arrow1Fraction * viewWidth
-        let padding1Width = padding1Fraction * viewWidth
-        let sort2Width = sort2Fraction * viewWidth
-        let arrow2Width = arrow2Fraction * viewWidth
-        let padding2Width = padding2Fraction * viewWidth
-        let classWidth = classFraction * viewWidth
-        let searchButtonWidth = searchButtonFactor * (viewWidth - sort1Width - arrow1Width - sort2Width - arrow2Width - classWidth)
-        let searchButtonHeight = searchButtonWidth
-        let searchFieldHeight = searchFieldFactor * viewHeight
-        let clearButtonHeight = clearButtonFactor * viewHeight
-        let clearButtonWidth = clearButtonHeight
-        let searchFieldWidth = viewWidth - searchButtonWidth - clearButtonWidth - searchButtonLeftPadding - padding1Width - padding2Width
-        
-        //print("searchFieldWidth is: \(searchFieldWidth)")
-        //print("clearButtonWidth is: \(clearButtonWidth)")
-        //print("searchButtonWidth is: \(searchButtonWidth)")
-        //print("viewWidth is: \(viewWidth)")
-        
-        //sortPicker1.backgroundColor = UIColor.yellow
-        //searchButton.backgroundColor = UIColor.green
-        //sortArrow1.backgroundColor = UIColor.orange
-        //clearButton.backgroundColor = UIColor.purple
-        
-        // Set the element dimensions
-        var currentX = CGFloat(0)
-        let pickerY = (viewHeight - pickerHeight) / 2
-        
-        let sort1Frame = CGRect(x: currentX, y: pickerY, width: sort1Width, height: pickerHeight)
-        sortPicker1.frame = sort1Frame
-        currentX += sort1Width
-        
-        let arrow1Frame = CGRect(x: currentX, y: pickerY, width: arrow1Width, height: pickerHeight)
-        sortArrow1.frame = arrow1Frame
-        currentX += arrow1Width + padding1Width
-        
-        let sort2Frame = CGRect(x: currentX, y: pickerY, width: sort2Width, height: pickerHeight)
-        sortPicker2.frame = sort2Frame
-        currentX += sort2Width
-        
-        let arrow2Frame = CGRect(x: currentX, y: pickerY, width: arrow2Width, height: pickerHeight)
-        sortArrow2.frame = arrow2Frame
-        currentX += arrow2Width + padding2Width
-        
-        let classFrame = CGRect(x: currentX, y: pickerY, width: classWidth, height: pickerHeight)
-        classPicker.frame = classFrame
-        currentX += classWidth + searchButtonLeftPadding
-        
-        let searchFieldY = (viewHeight - searchFieldHeight) / 2
-        let searchButtonY = 1.2 * (viewHeight - searchButtonHeight) / 2
-        let clearButtonY = (viewHeight - clearButtonHeight) / 2
-        //print("searchButton x is: \(currentX)")
-        let searchButtonFrame = CGRect(x: currentX, y: searchButtonY, width: searchButtonWidth, height: searchButtonHeight)
-        searchButton.frame = searchButtonFrame
-        
-        // The clear button and the search field are initially hidden, but take up the same space as the three pickers and the two search arrows
-        // The search field is vertically centered within the view
-        let searchFieldFrame = CGRect(x: 0, y: searchFieldY, width: searchFieldWidth, height: searchFieldHeight)
-        searchField.frame = searchFieldFrame
-        
-        let clearFrame = CGRect(x: searchFieldWidth, y: clearButtonY, width: clearButtonWidth, height: clearButtonHeight)
-        clearButton.frame = clearFrame
-        
-        //print("searchHeight is: \(searchButtonHeight)")
-        //print("searchFieldHeight is: \(searchFieldHeight)")
-        //print("searchButton's height is: \(searchButton.frame.height)")
-        //print("clearButton's height is: \(clearButton.frame.height)")
-        
-    }
     
     // Number of columns of data
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -181,11 +80,7 @@ class SortController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     // Number of rows of data
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if (pickerView.tag == 0) || (pickerView.tag == 1) {
-            return sortPickerData.count
-        } else {
-            return classPickerData.count
-        }
+        return SortController.sortPickerData.count
     }
     
     // Title for each row
@@ -193,38 +88,17 @@ class SortController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         var label = UILabel()
         if let v = view as? UILabel { label = v }
         label.font = pickerFont
-        
-        // For entries other than the first
-        if (row != 0) {
-            let sort = (pickerView.tag <= 1)
-            label.text = sort ? sortPickerData[row] : classPickerData[row]
-        
-        // For the first entry
-        } else {
-            switch (pickerView.tag) {
-            case 0:
-                label.text = sort1Default ? sort1DefaultText : sortPickerData[row]
-                break
-            case 1:
-                label.text = sort2Default ? sort2DefaultText : sortPickerData[row]
-                break
-            case 2:
-                label.text = classDefault ? classDefaultText : classPickerData[row]
-                break
-            default: // Shouldn't ever get here
-                print("Picker view tag error")
-            }
-        }
+        label.text = SortController.sortPickerData[row]
         return label
     }
     
     // Get the current state of the widgets that affect sorting
     // Namely, the two sort picker and the direction arrows
     func getSortValues() -> (Int,Int,Bool,Bool) {
-        let index1 = sortPicker1.selectedRow(inComponent: 0)
-        let index2 = sortPicker2.selectedRow(inComponent: 0)
-        let reverse1 = sortArrow1.pointingUp()
-        let reverse2 = sortArrow2.pointingUp()
+        let index1 = firstLevelPicker.selectedRow(inComponent: 0)
+        let index2 = secondLevelPicker.selectedRow(inComponent: 0)
+        let reverse1 = firstLevelArrow.pointingUp()
+        let reverse2 = secondLevelArrow.pointingUp()
         return ( index1, index2, reverse1, reverse2 )
     }
     
@@ -236,29 +110,29 @@ class SortController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         var index2 = 0
         if pickerView.tag == 0 {
             index1 = row
-            index2 = sortPicker2.selectedRow(inComponent: 0)
+            index2 = secondLevelPicker.selectedRow(inComponent: 0)
         } else {
-            index1 = sortPicker1.selectedRow(inComponent: 0)
+            index1 = firstLevelPicker.selectedRow(inComponent: 0)
             index2 = row
         }
         
         // Get the direction of the sort arrows
-        let reverse1 = sortArrow1.pointingUp()
-        let reverse2 = sortArrow2.pointingUp()
+        let reverse1 = firstLevelArrow.pointingUp()
+        let reverse2 = secondLevelArrow.pointingUp()
         
         if (index2 == 0) || (index1 == 0) {
-            boss!.tableController!.singleSort(sortField: SortField.Name, reverse: reverse1)
+            main.tableController!.singleSort(sortField: SortField.Name, reverse: reverse1)
         } else {
-            boss!.tableController!.doubleSort(sortField1: SortField.Name, sortField2: SortField.Name, reverse1: reverse1, reverse2: reverse2)
+            main.tableController!.doubleSort(sortField1: SortField.Name, sortField2: SortField.Name, reverse1: reverse1, reverse2: reverse2)
         }
         
         //Update the character profile
-        boss!.characterProfile.setFirstSortField(SortField(rawValue: index1)!)
-        boss!.characterProfile.setSecondSortField(SortField(rawValue: index2)!)
+        main.characterProfile.setFirstSortField(SortField(rawValue: index1)!)
+        main.characterProfile.setSecondSortField(SortField(rawValue: index2)!)
             
-        
+    
         // Either way, we want to save the character profile
-        boss!.saveCharacterProfile()
+        main.saveCharacterProfile()
         
     }
     
@@ -267,30 +141,59 @@ class SortController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         sender.onPress()
         let ( index1, index2, reverse1, reverse2 ) = getSortValues()
         //print("The sort values are \(index1), \(index2), \(reverse1), \(reverse2)")
-        boss!.tableController!.doubleSort(sortField1: SortField.Name, sortField2: SortField.Name, reverse1: reverse1, reverse2: reverse2)
-        boss!.characterProfile.setFirstSortReverse(reverse1)
-        boss!.characterProfile.setSecondSortReverse(reverse2)
-        boss!.saveCharacterProfile()
+        main.tableController!.doubleSort(sortField1: SortField.Name, sortField2: SortField.Name, reverse1: reverse1, reverse2: reverse2)
+        main.characterProfile.setFirstSortReverse(reverse1)
+        main.characterProfile.setSecondSortReverse(reverse2)
+        main.saveCharacterProfile()
     }
     
     
     func setSortStatus(sort1: SortField, sort2: SortField, reverse1: Bool, reverse2: Bool) {
-        // Set the pickers
-        sortPicker1.selectRow(sort1.rawValue, inComponent: 0, animated: false)
-        sortPicker2.selectRow(sort2.rawValue, inComponent: 0, animated: false)
+        // Set the text for the choice labels
+        firstLevelChoice.text = main.characterProfile.getFirstSortField().displayName
+        secondLevelChoice.text = main.characterProfile.getSecondSortField().displayName
         
         // Set the arrow directions
         if (reverse1) {
-            sortArrow1.setUp()
+            firstLevelArrow.setUp()
         } else {
-            sortArrow1.setDown()
+            firstLevelArrow.setDown()
         }
         
         if (reverse2) {
-            sortArrow2.setUp()
+            secondLevelArrow.setUp()
         } else {
-            sortArrow2.setDown()
+            secondLevelArrow.setDown()
         }
+    }
+    
+    @objc func openPickerWindow(sender: UILabel, level: Int) {
+        
+        // Create the view
+        let tintColor: UIColor = UIColor(red: 101.0/255.0, green: 98.0/255.0, blue: 164.0/255.0, alpha: 1.0)
+        let inputView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 240))
+        let picker = (level == 1) ? firstLevelPicker : secondLevelPicker
+        picker.tintColor = tintColor
+        picker.center.x = inputView.center.x
+        let doneButton = UIButton(frame: CGRect(x: 100/2, y: 0, width: 100, height: 50))
+        doneButton.setTitle("Done", for: UIControl.State.normal)
+        doneButton.setTitle("Done", for: UIControl.State.highlighted)
+        doneButton.setTitleColor(tintColor, for: UIControl.State.normal)
+        doneButton.setTitleColor(tintColor, for: UIControl.State.highlighted)
+        inputView.addSubview(doneButton) // add Button to UIView
+        doneButton.addTarget(self, action: "doneButton:", forControlEvents: UIControl.Event.TouchUpInside) // set button click event
+        
+        let cancelButton = UIButton(frame: CGRect(x: self.view.frame.size.width - 3*(100/2), y: 0, width: 100, height: 50))
+        cancelButton.setTitle("Cancel", for: UIControl.State.normal)
+        cancelButton.setTitle("Cancel", for: UIControl.State.highlighted)
+        cancelButton.setTitleColor(tintColor, for: UIControl.State.normal)
+        cancelButton.setTitleColor(tintColor, for: UIControl.State.highlighted)
+        inputView.addSubview(cancelButton) // add Button to UIView
+        cancelButton.addTarget(self, action: "cancelPicker:", forControlEvents: UIControl.Event.TouchUpInside) // set button click event
+        sender.inputView = inputView
+
+        
+        
     }
 
 

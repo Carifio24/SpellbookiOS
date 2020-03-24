@@ -371,7 +371,7 @@ class SpellTableViewController: UITableViewController {
         // Only do something if the velocity is high enough
         if (abs(yVelocity) <= 5) { return }
         
-        let toHide: Bool = yVelocity < -5 // True if scrolling down, false if scrolling up
+        let toHide: Bool = (yVelocity < -5) && !main.filterVisible // True if scrolling down, false if scrolling up
         navController.setNavigationBarHidden(toHide, animated: true)
     }
 

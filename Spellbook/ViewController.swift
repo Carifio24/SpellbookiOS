@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SWXMLHash
 
 class ViewController: UIViewController {
     
@@ -25,6 +26,7 @@ class ViewController: UIViewController {
     // Child controllers
     var tableController: SpellTableViewController?
     var spellWindowController: SpellWindowController?
+    var sortController: SortController?
     
     // First appearance or not
     var firstAppearance: Bool = true
@@ -47,12 +49,21 @@ class ViewController: UIViewController {
     
     // The UIViews that hold the child controllers
     @IBOutlet weak var tableView: UIView!
+    @IBOutlet weak var sortView: UIView!
+    @IBOutlet weak var levelFilterView: UIView!
+    
+    // The sort/filter container views
+    @IBOutlet weak var sortFilterScroll: UIScrollView!
+    @IBOutlet weak var sortFilterView: UIView!
     
     // Dimensions
     let sortFraction = CGFloat(0.08)
     let labelFraction = CGFloat(0.08)
     // The table will take up the rest of the space
     //let backgroundOffset = CGFloat(27)
+    
+    // Whether or not the filter window is visible
+    var filterVisible = false
     
     // Extreme padding amounts
     let maxHorizPadding = CGFloat(5)
@@ -75,7 +86,7 @@ class ViewController: UIViewController {
     // The navigation bar and its items
     @IBOutlet var navBar: UINavigationItem!
     @IBOutlet var leftMenuButton: UIBarButtonItem!
-    @IBOutlet var refreshButton: UIBarButtonItem!
+    @IBOutlet weak var filterButton: UIBarButtonItem!
     @IBOutlet var rightMenuButton: UIBarButtonItem!
     
     // Status bar
@@ -150,8 +161,8 @@ class ViewController: UIViewController {
         // Set the navigation bar button callbacks
         leftMenuButton.target = self
         leftMenuButton.action = #selector(leftMenuButtonPressed)
-        refreshButton.target = self
-        refreshButton.action = #selector(refreshButtonPressed)
+        filterButton.target = self
+        filterButton.action = #selector(filterButtonPressed)
         rightMenuButton.target = self
         rightMenuButton.action = #selector(rightMenuButtonPressed)
         
@@ -198,6 +209,15 @@ class ViewController: UIViewController {
         
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print("The screen size is \(UIScreen.main.bounds.size)")
+        print("sortFilterView has size \(sortFilterView.frame.size)")
+        print("sortView has size \(sortView.frame.size)")
+        sortFilterScroll.contentSize = sortFilterView.frame.size
+        print("sortFilterScroll has content size \(sortFilterScroll.contentSize)")
+    }
+    
     // This function sets the sizes of the top-level container views
     func setContainerDimensions(screenWidth: CGFloat, screenHeight: CGFloat) {
 
@@ -226,6 +246,8 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "tableSegue" {
             tableController = (segue.destination as! SpellTableViewController)
+        } else if segue.identifier == "sortSegue" {
+            sortController = (segue.destination as! SortController)
         }
     }
     
@@ -474,14 +496,20 @@ class ViewController: UIViewController {
     // For the left menu button on the navigation bar
     @objc func leftMenuButtonPressed() { toggleLeftMenu() }
     
-    // For the refresh button on the navigation bar
-    @objc func refreshButtonPressed() { filter() }
-    
     // For the right menu button on the navigation bar
     @objc func rightMenuButtonPressed() { toggleRightMenu() }
     
-    @objc func endEditing() {
-        
+    // For toggling the sort/filter windows
+    func toggleWindowVisibilities() {
+        filterVisible = !filterVisible
+        tableView.isHidden = filterVisible
+        sortFilterScroll.isHidden = !filterVisible
+        navigationController?.hidesBarsOnSwipe = !filterVisible
     }
-
+    
+    // For the filter button on the navigation bar
+    @objc func filterButtonPressed() { toggleWindowVisibilities() }
+    
+    @objc func endEditing() { }
+    
 }
