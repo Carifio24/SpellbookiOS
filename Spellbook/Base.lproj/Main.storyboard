@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lkr-7e-UgR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lkr-7e-UgR">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -90,6 +90,13 @@
                                                     <segue destination="Bia-P1-cqR" kind="embed" identifier="sortSegue" id="Vc8-0F-lRN"/>
                                                 </connections>
                                             </containerView>
+                                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gNQ-g5-csr" userLabel="Level Filter View">
+                                                <rect key="frame" x="82" y="314" width="240" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                <connections>
+                                                    <segue destination="T5H-YR-kOe" kind="embed" identifier="levelFilterSegue" id="7zZ-rS-Ctj"/>
+                                                </connections>
+                                            </containerView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -104,8 +111,6 @@
                                     <constraint firstItem="xmR-O4-ekD" firstAttribute="leading" secondItem="1Q9-ur-qpw" secondAttribute="leading" id="3Ue-f5-rMp"/>
                                     <constraint firstItem="xmR-O4-ekD" firstAttribute="top" secondItem="1Q9-ur-qpw" secondAttribute="top" id="6hT-Il-G4Q"/>
                                 </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="g4g-sG-JLm"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="7Vx-UG-N7b"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -161,7 +166,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BookBackground.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="ypa-xU-HWY">
-                                <rect key="frame" x="0.0" y="-398.66666666666669" width="414" height="1605.3333333333333"/>
+                                <rect key="frame" x="0.0" y="211.33333333333331" width="414" height="385.33333333333326"/>
                             </imageView>
                             <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CkT-r0-Naw">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
@@ -401,10 +406,10 @@
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="characterCell" id="eWc-8P-YUE" customClass="CharacterSelectionCell" customModule="Spellbook" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="240" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="240" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eWc-8P-YUE" id="Gm4-lB-Pi3">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZ8-kV-TZ5">
@@ -927,13 +932,15 @@
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jve-zY-dFs" userLabel="First Sort Row">
                                         <rect key="frame" x="0.0" y="23" width="404" height="30"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2qY-rc-T4V">
-                                                <rect key="frame" x="181" y="9.3333333333333108" width="42" height="21"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mbV-Im-XqI">
+                                                <rect key="frame" x="153" y="-2.6666666666666856" width="97" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="firstLevelChoiceEntered:" destination="Bia-P1-cqR" eventType="editingDidBegin" id="xBY-i4-YDf"/>
+                                                </connections>
+                                            </textField>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M5O-U1-txP" customClass="SortDirectionButton" customModule="Spellbook" customModuleProvider="target">
                                                 <rect key="frame" x="328" y="0.0" width="40.333333333333314" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -959,13 +966,16 @@
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0MY-0x-bNJ" userLabel="Second Sort Row">
                                         <rect key="frame" x="0.0" y="77.999999999999986" width="404" height="30"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEa-3I-K2X">
-                                                <rect key="frame" x="181" y="3.9999999999999858" width="0.0" height="0.0"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bCa-Rh-ACd">
+                                                <rect key="frame" x="153" y="-2.6666666666666714" width="97" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="firstLevelChoiceClicked:" destination="Bia-P1-cqR" eventType="touchUpInside" id="dgi-wh-NzX"/>
+                                                    <action selector="secondLevelChoiceEntered:" destination="Bia-P1-cqR" eventType="editingDidEnd" id="zd7-h9-DPP"/>
+                                                </connections>
+                                            </textField>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fc-9n-G5H" customClass="SortDirectionButton" customModule="Spellbook" customModuleProvider="target">
                                                 <rect key="frame" x="348" y="0.0" width="40.333333333333314" height="30"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1014,10 +1024,10 @@
                     <connections>
                         <outlet property="contentView" destination="xkf-70-NaE" id="JfV-uk-j83"/>
                         <outlet property="firstLevelArrow" destination="M5O-U1-txP" id="4ds-WA-dp2"/>
-                        <outlet property="firstLevelChoice" destination="2qY-rc-T4V" id="fY9-jm-aSx"/>
+                        <outlet property="firstLevelChoice" destination="mbV-Im-XqI" id="lyJ-zs-ux4"/>
                         <outlet property="firstLevelLabel" destination="NiR-nM-L7W" id="TUg-zz-IMK"/>
                         <outlet property="secondLevelArrow" destination="6fc-9n-G5H" id="nMl-Rp-41X"/>
-                        <outlet property="secondLevelChoice" destination="GEa-3I-K2X" id="WqK-UR-j39"/>
+                        <outlet property="secondLevelChoice" destination="bCa-Rh-ACd" id="uxv-gT-kjx"/>
                         <outlet property="secondLevelLabel" destination="kU0-It-byL" id="plO-JI-d3Q"/>
                         <outlet property="titleLabel" destination="EBL-FR-pln" id="E3P-Km-HUe"/>
                     </connections>
@@ -1025,6 +1035,20 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sTT-An-1gf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1362" y="575"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="HlA-jN-yWc">
+            <objects>
+                <viewController id="T5H-YR-kOe" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6l6-3a-nFV">
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vkb-JQ-ApQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1735" y="135"/>
         </scene>
     </scenes>
     <resources>

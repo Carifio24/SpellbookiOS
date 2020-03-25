@@ -5,6 +5,7 @@ target 'Spellbook' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'SWXMLHash', '~> 5.0.0'
+  pod 'ActionSheetPicker-3.0'
 
   target 'SpellbookTests' do
     inherit! :search_paths

@@ -22,6 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Load all of the view controller subclasses
+        // Useful for generic classes
+        for subclass in subclasses(of: UIViewController.self) {
+            subclass.load()
+        }
+        
         return true
     }
 
@@ -47,6 +54,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    
+    public func address(of object: Any?) -> UnsafeMutableRawPointer {
+        return Unmanaged.passUnretained(object as AnyObject).toOpaque()
+    }
+
+    public func subclasses<T>(of theClass: T) -> [T] {
+        var count: UInt32 = 0, result: [T] = []
+        let allClasses = objc_copyClassList(&count)!
+        let classPtr = address(of: theClass)
+
+        for n in 0 ..< count {
+            let someClass: AnyClass = allClasses[Int(n)]
+            guard let someSuperClass = class_getSuperclass(someClass), address(of: someSuperClass) == classPtr else { continue }
+            result.append(someClass as! T)
+        }
+
+        return result
+    }
 
 }
 

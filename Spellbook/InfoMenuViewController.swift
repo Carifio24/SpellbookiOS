@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SWXMLHash
 
 class InfoMenuViewController: UITableViewController {
     

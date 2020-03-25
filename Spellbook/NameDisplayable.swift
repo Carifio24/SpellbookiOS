@@ -14,6 +14,8 @@ protocol NameDisplayable : CaseIterable, Hashable {
     
     static func fromName(_ s: String) -> Self
     
+    static func allNames() -> [String]
+    
     var displayName: String { get }
     
 }
@@ -29,6 +31,14 @@ extension NameDisplayable {
     
     var displayName: String {
         return Self.displayNameMap[self]
+    }
+    
+    static func allNames() -> [String] {
+        var names: [String] = []
+        for item in Self.allCases {
+            names.append(item.displayName)
+        }
+        return names
     }
     
 }

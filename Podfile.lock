@@ -1,16 +1,20 @@
 PODS:
+  - ActionSheetPicker-3.0 (2.4.2)
   - SWXMLHash (5.0.1)
 
 DEPENDENCIES:
+  - ActionSheetPicker-3.0
   - SWXMLHash (~> 5.0.0)
 
 SPEC REPOS:
   trunk:
+    - ActionSheetPicker-3.0
     - SWXMLHash
 
 SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: 5b62e07b00bd970509cf5ece99cb7447eae5dd0d
   SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
 
-PODFILE CHECKSUM: a463a8eeb6af6980b273c08a387efc9e3f73bc2e
+PODFILE CHECKSUM: e3846bf52025f00e5ed49aa07d8e0a4ecc60c43a
 
 COCOAPODS: 1.9.1

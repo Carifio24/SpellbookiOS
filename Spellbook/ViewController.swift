@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SWXMLHash
+import ActionSheetPicker_3_0
 
 class ViewController: UIViewController {
     
@@ -148,9 +148,9 @@ class ViewController: UIViewController {
         setContainerDimensions(screenWidth: screenRect.size.width, screenHeight: screenRect.size.height)
         
         // Dismiss keyboard when not in the search field
-        let tapper = UITapGestureRecognizer(target: self, action: #selector(endEditing))
-        tapper.cancelsTouchesInView = false
-        view.addGestureRecognizer(tapper)
+        //let tapper = UITapGestureRecognizer(target: self, action: #selector(endEditing))
+        //tapper.cancelsTouchesInView = false
+        //view.addGestureRecognizer(tapper)
         
         // This adds the gesture recognizer for pulling out the side menu
         view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
@@ -216,6 +216,9 @@ class ViewController: UIViewController {
         print("sortView has size \(sortView.frame.size)")
         sortFilterScroll.contentSize = sortFilterView.frame.size
         print("sortFilterScroll has content size \(sortFilterScroll.contentSize)")
+        
+        sortFilterScroll.touchesShouldCancel(in: sortFilterView)
+        sortFilterScroll.canCancelContentTouches = false
     }
     
     // This function sets the sizes of the top-level container views

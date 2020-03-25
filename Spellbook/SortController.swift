@@ -7,21 +7,31 @@
 //
 
 import UIKit
+import ActionSheetPicker_3_0
 
-class SortController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class SortController: UIViewController, UITextFieldDelegate {
     
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var firstLevelLabel: UILabel!
-    @IBOutlet weak var firstLevelChoice: UILabel!
+    @IBOutlet weak var firstLevelChoice: UITextField!
     @IBOutlet weak var firstLevelArrow: SortDirectionButton!
-    
+    @IBAction func firstLevelChoiceEntered(_ sender: Any) {
+        openFirstLevelPicker(sender: sender)
+    }
+    @IBAction func firstLevelChoiceClicked(_ sender: Any) {
+        print("First level choice clicked")
+        openSecondLevelPicker(sender: sender)
+    }
     
     @IBOutlet weak var secondLevelLabel: UILabel!
-    @IBOutlet weak var secondLevelChoice: UILabel!
+    @IBOutlet weak var secondLevelChoice: UITextField!
     @IBOutlet weak var secondLevelArrow: SortDirectionButton!
+    @IBAction func secondLevelChoiceEntered(_ sender: Any) {
+        openPickerWindow(sender: sender as! UITextField, level: 2)
+    }
     
     static let searchIcon = UIImage(named: "search_icon.png")?.withRenderingMode(.alwaysOriginal)
     static let xIcon = UIImage(named: "x_icon.png")?.withRenderingMode(.alwaysOriginal)
@@ -33,15 +43,7 @@ class SortController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     private let secondLevelPicker = UIPickerView()
     
     // The data for the sort pickers is the names of the sort fields
-    // Create this via an IICE
-    // This way, doesn't need modification if sort fields are added/removed/reordered
-    static let sortPickerData: [String] = {
-        var data: [String] = []
-        for sf in SortField.allCases {
-            data.append(sf.displayName)
-        }
-        return data
-    }()
+    static let sortPickerData = SortField.allNames()
     
     
     // The fractional widths of the sort/filter elements
@@ -60,11 +62,14 @@ class SortController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Set the text field delegates
+        firstLevelChoice.delegate = self
+        secondLevelChoice.delegate = self
+    
         // Set the callback functions for the sort arrows
         firstLevelArrow.addTarget(self, action: #selector(sortArrowClicked(sender:)), for: .touchUpInside)
         secondLevelArrow.addTarget(self, action: #selector(sortArrowClicked(sender:)), for: .touchUpInside)
-        
         
     }
     
@@ -167,33 +172,69 @@ class SortController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         }
     }
     
-    @objc func openPickerWindow(sender: UILabel, level: Int) {
-        
-        // Create the view
-        let tintColor: UIColor = UIColor(red: 101.0/255.0, green: 98.0/255.0, blue: 164.0/255.0, alpha: 1.0)
-        let inputView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 240))
-        let picker = (level == 1) ? firstLevelPicker : secondLevelPicker
-        picker.tintColor = tintColor
-        picker.center.x = inputView.center.x
-        let doneButton = UIButton(frame: CGRect(x: 100/2, y: 0, width: 100, height: 50))
-        doneButton.setTitle("Done", for: UIControl.State.normal)
-        doneButton.setTitle("Done", for: UIControl.State.highlighted)
-        doneButton.setTitleColor(tintColor, for: UIControl.State.normal)
-        doneButton.setTitleColor(tintColor, for: UIControl.State.highlighted)
-        inputView.addSubview(doneButton) // add Button to UIView
-        doneButton.addTarget(self, action: "doneButton:", forControlEvents: UIControl.Event.TouchUpInside) // set button click event
-        
-        let cancelButton = UIButton(frame: CGRect(x: self.view.frame.size.width - 3*(100/2), y: 0, width: 100, height: 50))
-        cancelButton.setTitle("Cancel", for: UIControl.State.normal)
-        cancelButton.setTitle("Cancel", for: UIControl.State.highlighted)
-        cancelButton.setTitleColor(tintColor, for: UIControl.State.normal)
-        cancelButton.setTitleColor(tintColor, for: UIControl.State.highlighted)
-        inputView.addSubview(cancelButton) // add Button to UIView
-        cancelButton.addTarget(self, action: "cancelPicker:", forControlEvents: UIControl.Event.TouchUpInside) // set button click event
-        sender.inputView = inputView
+//    func openPickerWindow(sender: UILabel, level: Int) {
+//
+//        // Create the view
+//        let tintColor: UIColor = UIColor(red: 101.0/255.0, green: 98.0/255.0, blue: 164.0/255.0, alpha: 1.0)
+//        let inputView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 240))
+//        let picker = (level == 1) ? firstLevelPicker : secondLevelPicker
+//        picker.tintColor = tintColor
+//        picker.center.x = inputView.center.x
+//        let doneButton = UIButton(frame: CGRect(x: 100/2, y: 0, width: 100, height: 50))
+//        doneButton.setTitle("Done", for: UIControl.State.normal)
+//        doneButton.setTitle("Done", for: UIControl.State.highlighted)
+//        doneButton.setTitleColor(tintColor, for: UIControl.State.normal)
+//        doneButton.setTitleColor(tintColor, for: UIControl.State.highlighted)
+//        inputView.addSubview(doneButton) // add Button to UIView
+//        doneButton.addTarget(self, action: "doneButton:", forControlEvents: UIControl.Event.TouchUpInside) // set button click event
+//
+//        let cancelButton = UIButton(frame: CGRect(x: self.view.frame.size.width - 3*(100/2), y: 0, width: 100, height: 50))
+//        cancelButton.setTitle("Cancel", for: UIControl.State.normal)
+//        cancelButton.setTitle("Cancel", for: UIControl.State.highlighted)
+//        cancelButton.setTitleColor(tintColor, for: UIControl.State.normal)
+//        cancelButton.setTitleColor(tintColor, for: UIControl.State.highlighted)
+//        inputView.addSubview(cancelButton) // add Button to UIView
+//        cancelButton.addTarget(self, action: "cancelPicker:", forControlEvents: UIControl.Event.TouchUpInside) // set button click event
+//        sender.inputView = inputView
+//    }
+    
+    func sortLabelClicked(sender: Any, level: Int) {
+        openPickerWindow(sender: sender, level: level)
+    }
+    
+    // Selector functions for each of the two labels
+    @objc func openFirstLevelPicker(sender: Any) { sortLabelClicked(sender: sender, level: 1) }
+    @objc func openSecondLevelPicker(sender: Any) { sortLabelClicked(sender: sender, level: 2) }
+    
+    // The function to open the picker window
+    func openPickerWindow(sender: Any, level: Int) {
+        let titleNumber = (level == 2) ? "Second" : "First"
+        let title = titleNumber + " level sorting"
+        let actionSheetPicker = ActionSheetStringPicker.show(withTitle: title, rows: SortController.sortPickerData, initialSelection: 0,
+            doneBlock: {
+                picker, index, value in
+                let valueStr = value as! String
+                let sf = SortField.fromName(valueStr)
+                self.main.characterProfile.setFirstSortField(sf)
+                self.main.saveCharacterProfile()
+                
+            },
+            cancel: { picker in return },
+            origin: sender)
+        actionSheetPicker?.show()
+    }
+    
+    private func textFieldShouldReturn(_ textField: Any) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
 
-        
-        
+    private func textFieldShouldBeginEditing(_ textField: Any) -> Bool {
+        return true
+    }
+    
+    @objc func iWasTouched(sender: Any) {
+        print("I was touched: \(sender)")
     }
 
 

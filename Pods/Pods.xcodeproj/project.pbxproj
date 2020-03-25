@@ -3,25 +3,49 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07A25AF8D87621ED2CB80525162D9B9B /* Pods-Spellbook-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B0C585E4655B926E6ACC377548B023C /* Pods-Spellbook-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		14FEBF1F3D4945C084237A86399A6CFB /* Pods-Spellbook-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 866FB571543B27090826280BE073EEB4 /* Pods-Spellbook-dummy.m */; };
-		5FCFCBC82481CF30D9D923879F0196F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		606AAD1EB982DF12FE065BB6EF7A99D1 /* Pods-Spellbook-SpellbookUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 31C4877BC0947397DCBA91A9959DC7C4 /* Pods-Spellbook-SpellbookUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6640B9C1B67E8B1DFD8F37220D829939 /* Pods-Spellbook-SpellbookUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D359C4DE1F7BAF1D0AD6213079264B5B /* Pods-Spellbook-SpellbookUITests-dummy.m */; };
+		00DFB7240B7B74DE34A5CF777D7A0022 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCED636ED1EAAF37C6FFF211EFDF8D3 /* ActionSheetStringPicker.m */; };
+		19460DDCE181412F56BF673D454DCC2A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
+		1A2CEF7FC1C8BD63FFBA2F8A2A7ECE69 /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AFA86C7BBB68792A56CE8F0807367D2 /* AbstractActionSheetPicker.m */; };
+		1CD39DB36E257E75AEDF367E73C0F18B /* ActionSheetDistancePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E90D4F3B2E4BE051D0E2AA02FEA87625 /* ActionSheetDistancePicker.m */; };
+		263E0858E4E9504DA6F152BED1A13D65 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
+		32165B3A0682954DD05178C9A7ED1187 /* ActionSheetStringPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 5266E844E2F992FB2C899745FDB74652 /* ActionSheetStringPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		393947AAEFD86BEEAB4737B1CF906D5F /* Pods-Spellbook-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B0C585E4655B926E6ACC377548B023C /* Pods-Spellbook-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3C99F666A03D126A532B981C376D36E2 /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = D85C8AA85D363FE8952344B0F6CF0E67 /* ActionSheetDatePicker.m */; };
+		501D9D8444A4AC2A50E059E60053F48A /* ActionSheetLocalePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CF76B9E867082B9C9322B849589B348 /* ActionSheetLocalePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		54D224241A014C4C6DCBD2026B429D60 /* ActionSheetDatePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EE297C0F60EE12783446D796DF7C432 /* ActionSheetDatePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		59789CE08DF6F1682B65A0DB845F18BE /* ActionSheetPicker-3.0-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B991827380A81DC43954DE4D10FDC50 /* ActionSheetPicker-3.0-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5E99A3596F5F638076161D06AB2CCC56 /* ActionSheetMultipleStringPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 87E02B9563CEAF9C65BC49AEBA46B51E /* ActionSheetMultipleStringPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61EE5ED52B7595E35B0BD57761511FED /* ActionSheetPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = C5BAD067822D83FE7172253DAF0E5D06 /* ActionSheetPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6833B5B341C0214934D7449BBFDF7529 /* Pods-SpellbookTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EADC2DD846C765D4970F61336E224BE /* Pods-SpellbookTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		75BB5235832D0B55AF3F0B310706855D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		76DBC17F9562AB31555EE50DA2B8E905 /* SWXMLHash-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 233B462C47DFEAE43B6981AD57B7D641 /* SWXMLHash-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7C9560533D526220DD0B524C63648440 /* SWXMLHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E8B2F170D8BDE52B4523A4461E7AE58 /* SWXMLHash.swift */; };
-		84C786223AFD6AC185B08AFB3D743541 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		995F7F4AEC0BA9D85FF2C2235285ED73 /* XMLIndexer+XMLIndexerDeserializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CE164FE792F4F73C59B977972DC136 /* XMLIndexer+XMLIndexerDeserializable.swift */; };
-		9D80B224850F41DE99AF0BA0EF522727 /* shim.swift in Sources */ = {isa = PBXBuildFile; fileRef = B733D2C44ADC7967E21F58DFB4C43579 /* shim.swift */; };
-		BD276717C9C33FE24234D209004966DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		C4385AA23D686AA3F6891DC1B21868D4 /* SWXMLHash-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F710317A38AF0A218C0F0F161E886EB /* SWXMLHash-dummy.m */; };
+		699E002C8D7C7E93FD6931B152485A00 /* Pods-Spellbook-SpellbookUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D359C4DE1F7BAF1D0AD6213079264B5B /* Pods-Spellbook-SpellbookUITests-dummy.m */; };
+		6A79626FEC7404480D85B72A4580773F /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 782963AEED0624FC8CED2FBCB52956A3 /* DistancePickerView.m */; };
+		7201235914FA344CF0F37B31C94DF58F /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A9174AFAF882850E195C4F1E24438E11 /* SWActionSheet.m */; };
+		75BB5235832D0B55AF3F0B310706855D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
+		76DBC17F9562AB31555EE50DA2B8E905 /* SWXMLHash-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AFD79F6889D5CA842CFEFFD6891F5DB7 /* SWXMLHash-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		790ACC8CB03660B20EA6E21F4CB66FCF /* Pods-Spellbook-SpellbookUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 31C4877BC0947397DCBA91A9959DC7C4 /* Pods-Spellbook-SpellbookUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7A5FA2AF26C1E051151BC66F3C8639F8 /* ActionSheetCustomPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DD0EF75DFE95F4782E6CFB46DFF994E /* ActionSheetCustomPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7C9560533D526220DD0B524C63648440 /* SWXMLHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92B13F1CC74C4BF060C50B47D847AB5 /* SWXMLHash.swift */; };
+		83651C970DF8263E1D00CBAE47DC3665 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312B988EF117AE4DE76A268D970131FE /* UIKit.framework */; };
+		84C786223AFD6AC185B08AFB3D743541 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
+		8D01CD38433E9556E3B23A6DD76F5C26 /* Pods-Spellbook-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 866FB571543B27090826280BE073EEB4 /* Pods-Spellbook-dummy.m */; };
+		962434DC73678E1EDD58CF3104E3EAAF /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = DD49C096A85F8CA9803ED766027E916F /* ActionSheetCustomPicker.m */; };
+		995F7F4AEC0BA9D85FF2C2235285ED73 /* XMLIndexer+XMLIndexerDeserializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F91BCF8013E5637A4A535E5AC9EF125 /* XMLIndexer+XMLIndexerDeserializable.swift */; };
+		9D80B224850F41DE99AF0BA0EF522727 /* shim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C96056F098CA67F44BC038331E9EE49 /* shim.swift */; };
+		A1237D1EEF827FF68FD99A8DD8BE73BF /* DistancePickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1748B03981AF408E59AEE9B65C263434 /* DistancePickerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C0B1DE05CABBD89231D61791493DAC2C /* ActionSheetCustomPickerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = EA149721A38E5DC49638E9EC4780589E /* ActionSheetCustomPickerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C0FA04F6BE68E3E316F447CF9CBE3664 /* ActionSheetMultipleStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA6AD1A6606DE1758156AABCEB7500C /* ActionSheetMultipleStringPicker.m */; };
+		C31A1EC6B8C14C595A14E46A9C8A34DB /* ActionSheetPicker-3.0-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EC489C65CE50159894CE9BAE808EDA /* ActionSheetPicker-3.0-dummy.m */; };
+		C4385AA23D686AA3F6891DC1B21868D4 /* SWXMLHash-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5035D0CE0BE20BE3137CCE0218BC97C6 /* SWXMLHash-dummy.m */; };
+		C462C9DD4B11CE445E2C0DC761452AA2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
+		C65D0EE0041E43E7211946FD5B1E2CAD /* SWActionSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = F12675FDFA9BC2D9B6D0A7FB6E27C501 /* SWActionSheet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C8E3B6D1D900E64A816A45FBD10D5354 /* AbstractActionSheetPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAAAB80B8D81C0B435392BA109073ED /* AbstractActionSheetPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DC41F18FF545A80BC7DB7DE2148DABCE /* Pods-SpellbookTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7F72FA0D3A454B897841C51728FD79 /* Pods-SpellbookTests-dummy.m */; };
+		E0FAE2EEEE2AF98B6EA1B8B6F0B898BD /* ActionSheetDistancePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = BA0369C859A32B26466F4BE18DCA66B5 /* ActionSheetDistancePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F7A0DE31C56C4B610D8F93B6339D0D80 /* ActionSheetLocalePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B226C864F49DEE44D551DA79945288 /* ActionSheetLocalePicker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +56,28 @@
 			remoteGlobalIDString = BC9CCECC52010AB911ED929825AB69E2;
 			remoteInfo = "Pods-Spellbook";
 		};
-		F0FF9F2EF3F32438244FA2D2A0B05DD7 /* PBXContainerItemProxy */ = {
+		1AF4F8E8C11714957E262292366D5155 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A43B25DDF20FCB9228471F8F5135C866;
+			remoteInfo = "ActionSheetPicker-3.0";
+		};
+		270B34C0F19D208EDB0A2F5BDE3F9284 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A43B25DDF20FCB9228471F8F5135C866;
+			remoteInfo = "ActionSheetPicker-3.0";
+		};
+		4AF96A050E79F5A388D1FE7F1C5AF75C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 63678F9A594800CBC7006B45EAB7886B;
 			remoteInfo = SWXMLHash;
 		};
-		FA24010855702F4E2BCEA269E14CA897 /* PBXContainerItemProxy */ = {
+		F9780DB68E08956A90BCD724E1A00C02 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -50,50 +88,87 @@
 
 /* Begin PBXFileReference section */
 		01C189D693BABCB43D79995744968215 /* Pods-Spellbook-SpellbookUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Spellbook-SpellbookUITests-Info.plist"; sourceTree = "<group>"; };
-		071CAF490C3B9B0D95DFA91465F984CD /* SWXMLHash-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SWXMLHash-prefix.pch"; sourceTree = "<group>"; };
 		081AF8E7B25B9DA2B4EED7005EDC17D7 /* Pods-Spellbook-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Spellbook-acknowledgements.markdown"; sourceTree = "<group>"; };
+		0CF76B9E867082B9C9322B849589B348 /* ActionSheetLocalePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetLocalePicker.h; path = Pickers/ActionSheetLocalePicker.h; sourceTree = "<group>"; };
+		0DCED636ED1EAAF37C6FFF211EFDF8D3 /* ActionSheetStringPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetStringPicker.m; path = Pickers/ActionSheetStringPicker.m; sourceTree = "<group>"; };
 		0EE5006468522FB83C579766998552DC /* Pods-Spellbook-SpellbookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Spellbook-SpellbookUITests.release.xcconfig"; sourceTree = "<group>"; };
-		1E8B2F170D8BDE52B4523A4461E7AE58 /* SWXMLHash.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SWXMLHash.swift; path = Source/SWXMLHash.swift; sourceTree = "<group>"; };
-		233B462C47DFEAE43B6981AD57B7D641 /* SWXMLHash-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SWXMLHash-umbrella.h"; sourceTree = "<group>"; };
-		2F710317A38AF0A218C0F0F161E886EB /* SWXMLHash-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SWXMLHash-dummy.m"; sourceTree = "<group>"; };
+		16D0752A6503C19641A311E3A84E2517 /* ActionSheetPicker-3.0.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "ActionSheetPicker-3.0.modulemap"; sourceTree = "<group>"; };
+		1748B03981AF408E59AEE9B65C263434 /* DistancePickerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DistancePickerView.h; path = Pickers/DistancePickerView.h; sourceTree = "<group>"; };
+		195BFBC75E1EAD2C0F9A2D29CD5386BF /* SWXMLHash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SWXMLHash.debug.xcconfig; sourceTree = "<group>"; };
+		1FEF63A9446399FA24401B62FD12F9A2 /* ActionSheetPicker-3.0-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ActionSheetPicker-3.0-Info.plist"; sourceTree = "<group>"; };
+		28845B1EF56F50AB284400D9EDC4A321 /* ActionSheetPicker-3.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "ActionSheetPicker-3.0.debug.xcconfig"; sourceTree = "<group>"; };
+		2B991827380A81DC43954DE4D10FDC50 /* ActionSheetPicker-3.0-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ActionSheetPicker-3.0-umbrella.h"; sourceTree = "<group>"; };
 		30E75B5D026BCD65B1026DF9E36313BD /* Pods-Spellbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Spellbook.release.xcconfig"; sourceTree = "<group>"; };
+		312B988EF117AE4DE76A268D970131FE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		31C4877BC0947397DCBA91A9959DC7C4 /* Pods-Spellbook-SpellbookUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Spellbook-SpellbookUITests-umbrella.h"; sourceTree = "<group>"; };
-		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		3FCCBBD7C21BF890946B80C1B0B33C09 /* Pods-Spellbook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Spellbook.debug.xcconfig"; sourceTree = "<group>"; };
+		42B226C864F49DEE44D551DA79945288 /* ActionSheetLocalePicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetLocalePicker.m; path = Pickers/ActionSheetLocalePicker.m; sourceTree = "<group>"; };
+		436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		48EC350E808E5CDA41EFEB2808FB79A2 /* Pods-Spellbook-SpellbookUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Spellbook-SpellbookUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		4AC67A66D3C96CF6AD6796FD9C0CB7FD /* SWXMLHash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SWXMLHash.release.xcconfig; sourceTree = "<group>"; };
 		4B0C585E4655B926E6ACC377548B023C /* Pods-Spellbook-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Spellbook-umbrella.h"; sourceTree = "<group>"; };
+		4CAAAB80B8D81C0B435392BA109073ED /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AbstractActionSheetPicker.h; path = Pickers/AbstractActionSheetPicker.h; sourceTree = "<group>"; };
 		4F5EFF5AFC0C79585D68720FA6842A7D /* Pods-SpellbookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SpellbookTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5035D0CE0BE20BE3137CCE0218BC97C6 /* SWXMLHash-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SWXMLHash-dummy.m"; sourceTree = "<group>"; };
+		5266E844E2F992FB2C899745FDB74652 /* ActionSheetStringPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetStringPicker.h; path = Pickers/ActionSheetStringPicker.h; sourceTree = "<group>"; };
+		5468D3871A66D39BAB4F7050ABDA2B65 /* SWXMLHash-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SWXMLHash-Info.plist"; sourceTree = "<group>"; };
 		5C7F72FA0D3A454B897841C51728FD79 /* Pods-SpellbookTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SpellbookTests-dummy.m"; sourceTree = "<group>"; };
-		5D59CEC622BC39647EF889453BE7427F /* SWXMLHash.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SWXMLHash.modulemap; sourceTree = "<group>"; };
 		5EADC2DD846C765D4970F61336E224BE /* Pods-SpellbookTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SpellbookTests-umbrella.h"; sourceTree = "<group>"; };
+		626859FBDE8B7C5A7B1512F9AF3DCD16 /* ActionSheetPicker-3.0-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ActionSheetPicker-3.0-prefix.pch"; sourceTree = "<group>"; };
 		65F37CA36D6446F9451B54B99133E2BA /* Pods_Spellbook_SpellbookUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Spellbook_SpellbookUITests.framework; path = "Pods-Spellbook-SpellbookUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69655695A589A0FC7FD459A46355D0B7 /* Pods-Spellbook-SpellbookUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Spellbook-SpellbookUITests.modulemap"; sourceTree = "<group>"; };
 		6C1B5B21B0CD43C34ED9A9C9A7BCA60E /* Pods-SpellbookTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SpellbookTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		6D17742B5CDBCA9C9530E569D89E6EFE /* SWXMLHash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SWXMLHash.release.xcconfig; sourceTree = "<group>"; };
+		6DD0EF75DFE95F4782E6CFB46DFF994E /* ActionSheetCustomPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPicker.h; path = Pickers/ActionSheetCustomPicker.h; sourceTree = "<group>"; };
 		6ED2D5DBAD7EA8A21252143F798F3E11 /* Pods-Spellbook-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Spellbook-acknowledgements.plist"; sourceTree = "<group>"; };
+		6F91BCF8013E5637A4A535E5AC9EF125 /* XMLIndexer+XMLIndexerDeserializable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "XMLIndexer+XMLIndexerDeserializable.swift"; path = "Source/XMLIndexer+XMLIndexerDeserializable.swift"; sourceTree = "<group>"; };
+		782963AEED0624FC8CED2FBCB52956A3 /* DistancePickerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DistancePickerView.m; path = Pickers/DistancePickerView.m; sourceTree = "<group>"; };
+		7AFA86C7BBB68792A56CE8F0807367D2 /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AbstractActionSheetPicker.m; path = Pickers/AbstractActionSheetPicker.m; sourceTree = "<group>"; };
+		7C96056F098CA67F44BC038331E9EE49 /* shim.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = shim.swift; path = Source/shim.swift; sourceTree = "<group>"; };
+		7EE297C0F60EE12783446D796DF7C432 /* ActionSheetDatePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetDatePicker.h; path = Pickers/ActionSheetDatePicker.h; sourceTree = "<group>"; };
 		80D9B48B6C8D218DECCE9330A3176A44 /* Pods-Spellbook-SpellbookUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Spellbook-SpellbookUITests-frameworks.sh"; sourceTree = "<group>"; };
 		866FB571543B27090826280BE073EEB4 /* Pods-Spellbook-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Spellbook-dummy.m"; sourceTree = "<group>"; };
+		87E02B9563CEAF9C65BC49AEBA46B51E /* ActionSheetMultipleStringPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetMultipleStringPicker.h; path = Pickers/ActionSheetMultipleStringPicker.h; sourceTree = "<group>"; };
+		96FF62FA231BF1F80DCE0DD97C69666E /* SWXMLHash-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SWXMLHash-prefix.pch"; sourceTree = "<group>"; };
 		97D014AD6344E543FEDB1FD1F8F2BFEC /* SWXMLHash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SWXMLHash.framework; path = SWXMLHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A17942F4B1F5A17C5CB97A72D526BC9 /* Pods-Spellbook-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Spellbook-Info.plist"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A9174AFAF882850E195C4F1E24438E11 /* SWActionSheet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SWActionSheet.m; path = Pickers/SWActionSheet.m; sourceTree = "<group>"; };
 		AD478447492BB4BFBC2880E1DE727189 /* Pods-SpellbookTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SpellbookTests-Info.plist"; sourceTree = "<group>"; };
-		B0CE164FE792F4F73C59B977972DC136 /* XMLIndexer+XMLIndexerDeserializable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "XMLIndexer+XMLIndexerDeserializable.swift"; path = "Source/XMLIndexer+XMLIndexerDeserializable.swift"; sourceTree = "<group>"; };
+		AFD79F6889D5CA842CFEFFD6891F5DB7 /* SWXMLHash-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SWXMLHash-umbrella.h"; sourceTree = "<group>"; };
 		B4E40BD8D350D00ECA9289D319A26F7C /* Pods-Spellbook-SpellbookUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Spellbook-SpellbookUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		B733D2C44ADC7967E21F58DFB4C43579 /* shim.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = shim.swift; path = Source/shim.swift; sourceTree = "<group>"; };
+		B7349F0CDF23B5CDA14B497447AFC3AC /* ActionSheetPicker-3.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "ActionSheetPicker-3.0.release.xcconfig"; sourceTree = "<group>"; };
 		B82CAF350347DC2952B0EF82BFD2C2C3 /* Pods-Spellbook.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Spellbook.modulemap"; sourceTree = "<group>"; };
-		BCA7FB05518B7E49E008814451BCE87D /* SWXMLHash-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SWXMLHash-Info.plist"; sourceTree = "<group>"; };
+		B92B13F1CC74C4BF060C50B47D847AB5 /* SWXMLHash.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SWXMLHash.swift; path = Source/SWXMLHash.swift; sourceTree = "<group>"; };
+		BA0369C859A32B26466F4BE18DCA66B5 /* ActionSheetDistancePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetDistancePicker.h; path = Pickers/ActionSheetDistancePicker.h; sourceTree = "<group>"; };
+		BFA6AD1A6606DE1758156AABCEB7500C /* ActionSheetMultipleStringPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetMultipleStringPicker.m; path = Pickers/ActionSheetMultipleStringPicker.m; sourceTree = "<group>"; };
+		C1EC489C65CE50159894CE9BAE808EDA /* ActionSheetPicker-3.0-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ActionSheetPicker-3.0-dummy.m"; sourceTree = "<group>"; };
 		C53696E3DBDC6FA7D111270F15A2C1F5 /* Pods-Spellbook-SpellbookUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Spellbook-SpellbookUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		C5BAD067822D83FE7172253DAF0E5D06 /* ActionSheetPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetPicker.h; path = Pickers/ActionSheetPicker.h; sourceTree = "<group>"; };
 		D359C4DE1F7BAF1D0AD6213079264B5B /* Pods-Spellbook-SpellbookUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Spellbook-SpellbookUITests-dummy.m"; sourceTree = "<group>"; };
 		D64B454009D2EE1F5380919773AA1E5F /* Pods-SpellbookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SpellbookTests.release.xcconfig"; sourceTree = "<group>"; };
+		D6E470A0C684D4FBC08BDF7A28A2A38B /* ActionSheetPicker_3_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ActionSheetPicker_3_0.framework; path = "ActionSheetPicker-3.0.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D85C8AA85D363FE8952344B0F6CF0E67 /* ActionSheetDatePicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetDatePicker.m; path = Pickers/ActionSheetDatePicker.m; sourceTree = "<group>"; };
+		D97FD5D13F20440C6C20CF7C9025CE24 /* SWXMLHash.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SWXMLHash.modulemap; sourceTree = "<group>"; };
 		DB218E9F4485ED21697A6D4BAC51F89B /* Pods_Spellbook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Spellbook.framework; path = "Pods-Spellbook.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD49C096A85F8CA9803ED766027E916F /* ActionSheetCustomPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetCustomPicker.m; path = Pickers/ActionSheetCustomPicker.m; sourceTree = "<group>"; };
 		E019A7F761266E93C3D8EBB01437E0B4 /* Pods-SpellbookTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SpellbookTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		E90D4F3B2E4BE051D0E2AA02FEA87625 /* ActionSheetDistancePicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetDistancePicker.m; path = Pickers/ActionSheetDistancePicker.m; sourceTree = "<group>"; };
+		EA149721A38E5DC49638E9EC4780589E /* ActionSheetCustomPickerDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPickerDelegate.h; path = Pickers/ActionSheetCustomPickerDelegate.h; sourceTree = "<group>"; };
 		EAFFD16A6441A94F0452C3B3852DB0AF /* Pods-SpellbookTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SpellbookTests.modulemap"; sourceTree = "<group>"; };
 		EC7A54AA9EA44DD02913339D82A4C7AB /* Pods-Spellbook-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Spellbook-frameworks.sh"; sourceTree = "<group>"; };
-		F4EC83BC173D2A36A111FB382E6A1C4B /* SWXMLHash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SWXMLHash.debug.xcconfig; sourceTree = "<group>"; };
+		F12675FDFA9BC2D9B6D0A7FB6E27C501 /* SWActionSheet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SWActionSheet.h; path = Pickers/SWActionSheet.h; sourceTree = "<group>"; };
 		F564D6F6DE7C5552283645D4FD38F09C /* Pods_SpellbookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SpellbookTests.framework; path = "Pods-SpellbookTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1C5AB4B2FC3CE80C6056AA1B6CEDBDA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				263E0858E4E9504DA6F152BED1A13D65 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2E4FD65D24F318FC0E0F721F2926EBA9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -102,11 +177,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		49ACC537705962C27C38949827DAE64A /* Frameworks */ = {
+		5CB46C5BAA16D47CA55D00459B31D084 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FCFCBC82481CF30D9D923879F0196F1 /* Foundation.framework in Frameworks */,
+				C462C9DD4B11CE445E2C0DC761452AA2 /* Foundation.framework in Frameworks */,
+				83651C970DF8263E1D00CBAE47DC3665 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,11 +194,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83823909D8681DA4ED16DB226E379F12 /* Frameworks */ = {
+		97B22A471BBCB72D2C44706396DAFC3D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD276717C9C33FE24234D209004966DD /* Foundation.framework in Frameworks */,
+				19460DDCE181412F56BF673D454DCC2A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,17 +222,6 @@
 			path = "Target Support Files/Pods-Spellbook-SpellbookUITests";
 			sourceTree = "<group>";
 		};
-		0C85A5DB63D6692D9E93100EF50546F2 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				DB218E9F4485ED21697A6D4BAC51F89B /* Pods_Spellbook.framework */,
-				65F37CA36D6446F9451B54B99133E2BA /* Pods_Spellbook_SpellbookUITests.framework */,
-				F564D6F6DE7C5552283645D4FD38F09C /* Pods_SpellbookTests.framework */,
-				97D014AD6344E543FEDB1FD1F8F2BFEC /* SWXMLHash.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		0CA00009BC119DD86F91C95B8720B873 /* Pods-SpellbookTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,24 +238,33 @@
 			path = "Target Support Files/Pods-SpellbookTests";
 			sourceTree = "<group>";
 		};
-		21FFAEB3824076235DB40BAB4E8CA867 /* Pods */ = {
+		1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				327796D1307E15D5CF841D4E393C456B /* SWXMLHash */,
+				E2983683FD097A93297E2F5D4E382B36 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		52DA33B466BED7EE918C688DFDA0ED3D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E398C8E8B216325E5249AF2256A2AFAA /* ActionSheetPicker-3.0 */,
+				A1CB19CD7585281FFE48A69E3A372B93 /* SWXMLHash */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		327796D1307E15D5CF841D4E393C456B /* SWXMLHash */ = {
+		5A5A786B764A493ED6B22863AB5BB34C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B733D2C44ADC7967E21F58DFB4C43579 /* shim.swift */,
-				1E8B2F170D8BDE52B4523A4461E7AE58 /* SWXMLHash.swift */,
-				B0CE164FE792F4F73C59B977972DC136 /* XMLIndexer+XMLIndexerDeserializable.swift */,
-				F6455E5C2A4C1856ED9F92D51AA2DD01 /* Support Files */,
+				D6E470A0C684D4FBC08BDF7A28A2A38B /* ActionSheetPicker_3_0.framework */,
+				DB218E9F4485ED21697A6D4BAC51F89B /* Pods_Spellbook.framework */,
+				65F37CA36D6446F9451B54B99133E2BA /* Pods_Spellbook_SpellbookUITests.framework */,
+				F564D6F6DE7C5552283645D4FD38F09C /* Pods_SpellbookTests.framework */,
+				97D014AD6344E543FEDB1FD1F8F2BFEC /* SWXMLHash.framework */,
 			);
-			name = SWXMLHash;
-			path = SWXMLHash;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		79AA06075FCFA07EB1D17B0EBA11B298 /* Targets Support Files */ = {
@@ -203,46 +277,95 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		C0834CEBB1379A84116EF29F93051C60 /* iOS */ = {
+		79E3CEA84FA609393E66D15686878834 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */,
+				16D0752A6503C19641A311E3A84E2517 /* ActionSheetPicker-3.0.modulemap */,
+				C1EC489C65CE50159894CE9BAE808EDA /* ActionSheetPicker-3.0-dummy.m */,
+				1FEF63A9446399FA24401B62FD12F9A2 /* ActionSheetPicker-3.0-Info.plist */,
+				626859FBDE8B7C5A7B1512F9AF3DCD16 /* ActionSheetPicker-3.0-prefix.pch */,
+				2B991827380A81DC43954DE4D10FDC50 /* ActionSheetPicker-3.0-umbrella.h */,
+				28845B1EF56F50AB284400D9EDC4A321 /* ActionSheetPicker-3.0.debug.xcconfig */,
+				B7349F0CDF23B5CDA14B497447AFC3AC /* ActionSheetPicker-3.0.release.xcconfig */,
 			);
-			name = iOS;
+			name = "Support Files";
+			path = "../Target Support Files/ActionSheetPicker-3.0";
+			sourceTree = "<group>";
+		};
+		A1CB19CD7585281FFE48A69E3A372B93 /* SWXMLHash */ = {
+			isa = PBXGroup;
+			children = (
+				7C96056F098CA67F44BC038331E9EE49 /* shim.swift */,
+				B92B13F1CC74C4BF060C50B47D847AB5 /* SWXMLHash.swift */,
+				6F91BCF8013E5637A4A535E5AC9EF125 /* XMLIndexer+XMLIndexerDeserializable.swift */,
+				B8FE0F85EAD0D3DCFF1B0D06071CD766 /* Support Files */,
+			);
+			name = SWXMLHash;
+			path = SWXMLHash;
+			sourceTree = "<group>";
+		};
+		B8FE0F85EAD0D3DCFF1B0D06071CD766 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D97FD5D13F20440C6C20CF7C9025CE24 /* SWXMLHash.modulemap */,
+				5035D0CE0BE20BE3137CCE0218BC97C6 /* SWXMLHash-dummy.m */,
+				5468D3871A66D39BAB4F7050ABDA2B65 /* SWXMLHash-Info.plist */,
+				96FF62FA231BF1F80DCE0DD97C69666E /* SWXMLHash-prefix.pch */,
+				AFD79F6889D5CA842CFEFFD6891F5DB7 /* SWXMLHash-umbrella.h */,
+				195BFBC75E1EAD2C0F9A2D29CD5386BF /* SWXMLHash.debug.xcconfig */,
+				6D17742B5CDBCA9C9530E569D89E6EFE /* SWXMLHash.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SWXMLHash";
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				21FFAEB3824076235DB40BAB4E8CA867 /* Pods */,
-				0C85A5DB63D6692D9E93100EF50546F2 /* Products */,
+				1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */,
+				52DA33B466BED7EE918C688DFDA0ED3D /* Pods */,
+				5A5A786B764A493ED6B22863AB5BB34C /* Products */,
 				79AA06075FCFA07EB1D17B0EBA11B298 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+		E2983683FD097A93297E2F5D4E382B36 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				C0834CEBB1379A84116EF29F93051C60 /* iOS */,
+				436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */,
+				312B988EF117AE4DE76A268D970131FE /* UIKit.framework */,
 			);
-			name = Frameworks;
+			name = iOS;
 			sourceTree = "<group>";
 		};
-		F6455E5C2A4C1856ED9F92D51AA2DD01 /* Support Files */ = {
+		E398C8E8B216325E5249AF2256A2AFAA /* ActionSheetPicker-3.0 */ = {
 			isa = PBXGroup;
 			children = (
-				5D59CEC622BC39647EF889453BE7427F /* SWXMLHash.modulemap */,
-				2F710317A38AF0A218C0F0F161E886EB /* SWXMLHash-dummy.m */,
-				BCA7FB05518B7E49E008814451BCE87D /* SWXMLHash-Info.plist */,
-				071CAF490C3B9B0D95DFA91465F984CD /* SWXMLHash-prefix.pch */,
-				233B462C47DFEAE43B6981AD57B7D641 /* SWXMLHash-umbrella.h */,
-				F4EC83BC173D2A36A111FB382E6A1C4B /* SWXMLHash.debug.xcconfig */,
-				4AC67A66D3C96CF6AD6796FD9C0CB7FD /* SWXMLHash.release.xcconfig */,
+				4CAAAB80B8D81C0B435392BA109073ED /* AbstractActionSheetPicker.h */,
+				7AFA86C7BBB68792A56CE8F0807367D2 /* AbstractActionSheetPicker.m */,
+				6DD0EF75DFE95F4782E6CFB46DFF994E /* ActionSheetCustomPicker.h */,
+				DD49C096A85F8CA9803ED766027E916F /* ActionSheetCustomPicker.m */,
+				EA149721A38E5DC49638E9EC4780589E /* ActionSheetCustomPickerDelegate.h */,
+				7EE297C0F60EE12783446D796DF7C432 /* ActionSheetDatePicker.h */,
+				D85C8AA85D363FE8952344B0F6CF0E67 /* ActionSheetDatePicker.m */,
+				BA0369C859A32B26466F4BE18DCA66B5 /* ActionSheetDistancePicker.h */,
+				E90D4F3B2E4BE051D0E2AA02FEA87625 /* ActionSheetDistancePicker.m */,
+				0CF76B9E867082B9C9322B849589B348 /* ActionSheetLocalePicker.h */,
+				42B226C864F49DEE44D551DA79945288 /* ActionSheetLocalePicker.m */,
+				87E02B9563CEAF9C65BC49AEBA46B51E /* ActionSheetMultipleStringPicker.h */,
+				BFA6AD1A6606DE1758156AABCEB7500C /* ActionSheetMultipleStringPicker.m */,
+				C5BAD067822D83FE7172253DAF0E5D06 /* ActionSheetPicker.h */,
+				5266E844E2F992FB2C899745FDB74652 /* ActionSheetStringPicker.h */,
+				0DCED636ED1EAAF37C6FFF211EFDF8D3 /* ActionSheetStringPicker.m */,
+				1748B03981AF408E59AEE9B65C263434 /* DistancePickerView.h */,
+				782963AEED0624FC8CED2FBCB52956A3 /* DistancePickerView.m */,
+				F12675FDFA9BC2D9B6D0A7FB6E27C501 /* SWActionSheet.h */,
+				A9174AFAF882850E195C4F1E24438E11 /* SWActionSheet.m */,
+				79E3CEA84FA609393E66D15686878834 /* Support Files */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/SWXMLHash";
+			name = "ActionSheetPicker-3.0";
+			path = "ActionSheetPicker-3.0";
 			sourceTree = "<group>";
 		};
 		F9853064A315322806999F86B67F9675 /* Pods-Spellbook */ = {
@@ -265,11 +388,19 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		0404999B5772343604833982BE18C66D /* Headers */ = {
+		47940B0B4B21C54E9A14731896E9599E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07A25AF8D87621ED2CB80525162D9B9B /* Pods-Spellbook-umbrella.h in Headers */,
+				790ACC8CB03660B20EA6E21F4CB66FCF /* Pods-Spellbook-SpellbookUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6C05FCC82D98D0EFCF4E194F7CAB2B91 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				393947AAEFD86BEEAB4737B1CF906D5F /* Pods-Spellbook-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,11 +420,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F4CFE1E5F054B4DA1B03115862A0A9BA /* Headers */ = {
+		F797236E9943400DC9B18DA5F8395299 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				606AAD1EB982DF12FE065BB6EF7A99D1 /* Pods-Spellbook-SpellbookUITests-umbrella.h in Headers */,
+				C8E3B6D1D900E64A816A45FBD10D5354 /* AbstractActionSheetPicker.h in Headers */,
+				7A5FA2AF26C1E051151BC66F3C8639F8 /* ActionSheetCustomPicker.h in Headers */,
+				C0B1DE05CABBD89231D61791493DAC2C /* ActionSheetCustomPickerDelegate.h in Headers */,
+				54D224241A014C4C6DCBD2026B429D60 /* ActionSheetDatePicker.h in Headers */,
+				E0FAE2EEEE2AF98B6EA1B8B6F0B898BD /* ActionSheetDistancePicker.h in Headers */,
+				501D9D8444A4AC2A50E059E60053F48A /* ActionSheetLocalePicker.h in Headers */,
+				5E99A3596F5F638076161D06AB2CCC56 /* ActionSheetMultipleStringPicker.h in Headers */,
+				59789CE08DF6F1682B65A0DB845F18BE /* ActionSheetPicker-3.0-umbrella.h in Headers */,
+				61EE5ED52B7595E35B0BD57761511FED /* ActionSheetPicker.h in Headers */,
+				32165B3A0682954DD05178C9A7ED1187 /* ActionSheetStringPicker.h in Headers */,
+				A1237D1EEF827FF68FD99A8DD8BE73BF /* DistancePickerView.h in Headers */,
+				C65D0EE0041E43E7211946FD5B1E2CAD /* SWActionSheet.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,17 +444,18 @@
 /* Begin PBXNativeTarget section */
 		4A6380F27F7724BE52822F0893BB0C8E /* Pods-Spellbook-SpellbookUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8CDBECF51EF291DCA04A1978ACC8621B /* Build configuration list for PBXNativeTarget "Pods-Spellbook-SpellbookUITests" */;
+			buildConfigurationList = FB20B5B74BDE19FFB67E810F3245E769 /* Build configuration list for PBXNativeTarget "Pods-Spellbook-SpellbookUITests" */;
 			buildPhases = (
-				F4CFE1E5F054B4DA1B03115862A0A9BA /* Headers */,
-				DB2C27280BF17AB311A956ED6E40AA71 /* Sources */,
-				49ACC537705962C27C38949827DAE64A /* Frameworks */,
-				3E16434C8065633A4F04A10EDA899107 /* Resources */,
+				47940B0B4B21C54E9A14731896E9599E /* Headers */,
+				821185CBA3499C5D843AB75776FD705A /* Sources */,
+				97B22A471BBCB72D2C44706396DAFC3D /* Frameworks */,
+				CDD841C42F5CDA71A57DFBCF577FEC05 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F70DFE7CDD79C4A100E7EC072F8A1F68 /* PBXTargetDependency */,
+				32CE33C52576F53FABC7A553BB4D48C1 /* PBXTargetDependency */,
+				6ACBB6566C99780C903B06D645408D64 /* PBXTargetDependency */,
 			);
 			name = "Pods-Spellbook-SpellbookUITests";
 			productName = "Pods-Spellbook-SpellbookUITests";
@@ -356,19 +499,38 @@
 			productReference = F564D6F6DE7C5552283645D4FD38F09C /* Pods_SpellbookTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		BC9CCECC52010AB911ED929825AB69E2 /* Pods-Spellbook */ = {
+		A43B25DDF20FCB9228471F8F5135C866 /* ActionSheetPicker-3.0 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DE3668BB5EDC65C3BF7ED68A414BDA93 /* Build configuration list for PBXNativeTarget "Pods-Spellbook" */;
+			buildConfigurationList = 543AFABDB667AF073C3569847B1008C0 /* Build configuration list for PBXNativeTarget "ActionSheetPicker-3.0" */;
 			buildPhases = (
-				0404999B5772343604833982BE18C66D /* Headers */,
-				58CEFDDA38D439B22B8ABED88B28CCCA /* Sources */,
-				83823909D8681DA4ED16DB226E379F12 /* Frameworks */,
-				9BFBFB675F6602858892EBB44DC4A7C7 /* Resources */,
+				F797236E9943400DC9B18DA5F8395299 /* Headers */,
+				77D271DFD4264F58AC8B3DA2985D4C12 /* Sources */,
+				5CB46C5BAA16D47CA55D00459B31D084 /* Frameworks */,
+				0B560EB734A24D3FFC20F9A9D2AC0465 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				5B842914A05E90808D6671EBB00C7E35 /* PBXTargetDependency */,
+			);
+			name = "ActionSheetPicker-3.0";
+			productName = "ActionSheetPicker-3.0";
+			productReference = D6E470A0C684D4FBC08BDF7A28A2A38B /* ActionSheetPicker_3_0.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		BC9CCECC52010AB911ED929825AB69E2 /* Pods-Spellbook */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E3B3697080D41CCBB280182F384592E /* Build configuration list for PBXNativeTarget "Pods-Spellbook" */;
+			buildPhases = (
+				6C05FCC82D98D0EFCF4E194F7CAB2B91 /* Headers */,
+				03E9A919CDAF4D2FB5828AD09D7D3AB1 /* Sources */,
+				1C5AB4B2FC3CE80C6056AA1B6CEDBDA5 /* Frameworks */,
+				8627DB2389222FD396A15152495559EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CEE54C3F94FE21C844044358A36665D8 /* PBXTargetDependency */,
+				74B97A41734375962D102C62EFF74E09 /* PBXTargetDependency */,
 			);
 			name = "Pods-Spellbook";
 			productName = "Pods-Spellbook";
@@ -385,7 +547,7 @@
 				LastUpgradeCheck = 1100;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -393,10 +555,11 @@
 				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 0C85A5DB63D6692D9E93100EF50546F2 /* Products */;
+			productRefGroup = 5A5A786B764A493ED6B22863AB5BB34C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				A43B25DDF20FCB9228471F8F5135C866 /* ActionSheetPicker-3.0 */,
 				BC9CCECC52010AB911ED929825AB69E2 /* Pods-Spellbook */,
 				4A6380F27F7724BE52822F0893BB0C8E /* Pods-Spellbook-SpellbookUITests */,
 				647487ADD574591EE1B816723497D7AD /* Pods-SpellbookTests */,
@@ -406,14 +569,14 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3E16434C8065633A4F04A10EDA899107 /* Resources */ = {
+		0B560EB734A24D3FFC20F9A9D2AC0465 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9BFBFB675F6602858892EBB44DC4A7C7 /* Resources */ = {
+		8627DB2389222FD396A15152495559EE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -434,22 +597,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CDD841C42F5CDA71A57DFBCF577FEC05 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		03E9A919CDAF4D2FB5828AD09D7D3AB1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D01CD38433E9556E3B23A6DD76F5C26 /* Pods-Spellbook-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0E8B2E4BBE578C8DEDC38A8FA207E256 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				DC41F18FF545A80BC7DB7DE2148DABCE /* Pods-SpellbookTests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		58CEFDDA38D439B22B8ABED88B28CCCA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				14FEBF1F3D4945C084237A86399A6CFB /* Pods-Spellbook-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,22 +634,51 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DB2C27280BF17AB311A956ED6E40AA71 /* Sources */ = {
+		77D271DFD4264F58AC8B3DA2985D4C12 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6640B9C1B67E8B1DFD8F37220D829939 /* Pods-Spellbook-SpellbookUITests-dummy.m in Sources */,
+				1A2CEF7FC1C8BD63FFBA2F8A2A7ECE69 /* AbstractActionSheetPicker.m in Sources */,
+				962434DC73678E1EDD58CF3104E3EAAF /* ActionSheetCustomPicker.m in Sources */,
+				3C99F666A03D126A532B981C376D36E2 /* ActionSheetDatePicker.m in Sources */,
+				1CD39DB36E257E75AEDF367E73C0F18B /* ActionSheetDistancePicker.m in Sources */,
+				F7A0DE31C56C4B610D8F93B6339D0D80 /* ActionSheetLocalePicker.m in Sources */,
+				C0FA04F6BE68E3E316F447CF9CBE3664 /* ActionSheetMultipleStringPicker.m in Sources */,
+				C31A1EC6B8C14C595A14E46A9C8A34DB /* ActionSheetPicker-3.0-dummy.m in Sources */,
+				00DFB7240B7B74DE34A5CF777D7A0022 /* ActionSheetStringPicker.m in Sources */,
+				6A79626FEC7404480D85B72A4580773F /* DistancePickerView.m in Sources */,
+				7201235914FA344CF0F37B31C94DF58F /* SWActionSheet.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		821185CBA3499C5D843AB75776FD705A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				699E002C8D7C7E93FD6931B152485A00 /* Pods-Spellbook-SpellbookUITests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5B842914A05E90808D6671EBB00C7E35 /* PBXTargetDependency */ = {
+		32CE33C52576F53FABC7A553BB4D48C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ActionSheetPicker-3.0";
+			target = A43B25DDF20FCB9228471F8F5135C866 /* ActionSheetPicker-3.0 */;
+			targetProxy = 1AF4F8E8C11714957E262292366D5155 /* PBXContainerItemProxy */;
+		};
+		6ACBB6566C99780C903B06D645408D64 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SWXMLHash;
 			target = 63678F9A594800CBC7006B45EAB7886B /* SWXMLHash */;
-			targetProxy = F0FF9F2EF3F32438244FA2D2A0B05DD7 /* PBXContainerItemProxy */;
+			targetProxy = F9780DB68E08956A90BCD724E1A00C02 /* PBXContainerItemProxy */;
+		};
+		74B97A41734375962D102C62EFF74E09 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SWXMLHash;
+			target = 63678F9A594800CBC7006B45EAB7886B /* SWXMLHash */;
+			targetProxy = 4AF96A050E79F5A388D1FE7F1C5AF75C /* PBXContainerItemProxy */;
 		};
 		B32351255E3D66B1F0B7EE30670218D4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -487,15 +686,89 @@
 			target = BC9CCECC52010AB911ED929825AB69E2 /* Pods-Spellbook */;
 			targetProxy = 044861FC0C83D15D082B70612B8D1266 /* PBXContainerItemProxy */;
 		};
-		F70DFE7CDD79C4A100E7EC072F8A1F68 /* PBXTargetDependency */ = {
+		CEE54C3F94FE21C844044358A36665D8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = SWXMLHash;
-			target = 63678F9A594800CBC7006B45EAB7886B /* SWXMLHash */;
-			targetProxy = FA24010855702F4E2BCEA269E14CA897 /* PBXContainerItemProxy */;
+			name = "ActionSheetPicker-3.0";
+			target = A43B25DDF20FCB9228471F8F5135C866 /* ActionSheetPicker-3.0 */;
+			targetProxy = 270B34C0F19D208EDB0A2F5BDE3F9284 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		0316F2AD77ED44C5AA3A54A3509E0A69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7349F0CDF23B5CDA14B497447AFC3AC /* ActionSheetPicker-3.0.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ActionSheetPicker-3.0/ActionSheetPicker-3.0-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ActionSheetPicker-3.0/ActionSheetPicker-3.0-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/ActionSheetPicker-3.0/ActionSheetPicker-3.0.modulemap";
+				PRODUCT_MODULE_NAME = ActionSheetPicker_3_0;
+				PRODUCT_NAME = ActionSheetPicker_3_0;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		03958DEE98862CFB43864D8123DC8472 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4E40BD8D350D00ECA9289D319A26F7C /* Pods-Spellbook-SpellbookUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Spellbook-SpellbookUITests/Pods-Spellbook-SpellbookUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Spellbook-SpellbookUITests/Pods-Spellbook-SpellbookUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		072DB4D1AACEA41EEB3AFB8F15509500 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D64B454009D2EE1F5380919773AA1E5F /* Pods-SpellbookTests.release.xcconfig */;
@@ -535,7 +808,7 @@
 			};
 			name = Release;
 		};
-		17E89BFB789BA2BF81F9740E281CF8BE /* Release */ = {
+		08D1DD571647B22E0C05E78D722CFBB5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 30E75B5D026BCD65B1026DF9E36313BD /* Pods-Spellbook.release.xcconfig */;
 			buildSettings = {
@@ -640,7 +913,7 @@
 		};
 		201841BA6ACD524A5D3596BC8A981F0E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F4EC83BC173D2A36A111FB382E6A1C4B /* SWXMLHash.debug.xcconfig */;
+			baseConfigurationReference = 195BFBC75E1EAD2C0F9A2D29CD5386BF /* SWXMLHash.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -673,7 +946,7 @@
 			};
 			name = Debug;
 		};
-		78F6917DEE8A901753CE6FEF145E1078 /* Release */ = {
+		53E97DE70FA064A11A22B848DF5A639D /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0EE5006468522FB83C579766998552DC /* Pods-Spellbook-SpellbookUITests.release.xcconfig */;
 			buildSettings = {
@@ -711,6 +984,79 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		573294C9AA28AFA52B183C74811A8F9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FCCBBD7C21BF890946B80C1B0B33C09 /* Pods-Spellbook.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Spellbook/Pods-Spellbook-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Spellbook/Pods-Spellbook.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		729F5FEC28B67E3751FBFADB556B0D19 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28845B1EF56F50AB284400D9EDC4A321 /* ActionSheetPicker-3.0.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ActionSheetPicker-3.0/ActionSheetPicker-3.0-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ActionSheetPicker-3.0/ActionSheetPicker-3.0-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/ActionSheetPicker-3.0/ActionSheetPicker-3.0.modulemap";
+				PRODUCT_MODULE_NAME = ActionSheetPicker_3_0;
+				PRODUCT_NAME = ActionSheetPicker_3_0;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		91A0D2E18047C2FC5E780E06CA3BF9A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -752,7 +1098,7 @@
 		};
 		9A1FD145F6E83DE78CCCA725C473C70C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4AC67A66D3C96CF6AD6796FD9C0CB7FD /* SWXMLHash.release.xcconfig */;
+			baseConfigurationReference = 6D17742B5CDBCA9C9530E569D89E6EFE /* SWXMLHash.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -846,85 +1192,18 @@
 			};
 			name = Release;
 		};
-		B2174AD75D1007080B6762973ADB2F6A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4E40BD8D350D00ECA9289D319A26F7C /* Pods-Spellbook-SpellbookUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Spellbook-SpellbookUITests/Pods-Spellbook-SpellbookUITests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Spellbook-SpellbookUITests/Pods-Spellbook-SpellbookUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		C8E5E11F51AA5E6570EA6F31A29AA5B2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3FCCBBD7C21BF890946B80C1B0B33C09 /* Pods-Spellbook.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Spellbook/Pods-Spellbook-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Spellbook/Pods-Spellbook.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2E3B3697080D41CCBB280182F384592E /* Build configuration list for PBXNativeTarget "Pods-Spellbook" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				573294C9AA28AFA52B183C74811A8F9A /* Debug */,
+				08D1DD571647B22E0C05E78D722CFBB5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -934,11 +1213,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8CDBECF51EF291DCA04A1978ACC8621B /* Build configuration list for PBXNativeTarget "Pods-Spellbook-SpellbookUITests" */ = {
+		543AFABDB667AF073C3569847B1008C0 /* Build configuration list for PBXNativeTarget "ActionSheetPicker-3.0" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B2174AD75D1007080B6762973ADB2F6A /* Debug */,
-				78F6917DEE8A901753CE6FEF145E1078 /* Release */,
+				729F5FEC28B67E3751FBFADB556B0D19 /* Debug */,
+				0316F2AD77ED44C5AA3A54A3509E0A69 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -961,11 +1240,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DE3668BB5EDC65C3BF7ED68A414BDA93 /* Build configuration list for PBXNativeTarget "Pods-Spellbook" */ = {
+		FB20B5B74BDE19FFB67E810F3245E769 /* Build configuration list for PBXNativeTarget "Pods-Spellbook-SpellbookUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C8E5E11F51AA5E6570EA6F31A29AA5B2 /* Debug */,
-				17E89BFB789BA2BF81F9740E281CF8BE /* Release */,
+				03958DEE98862CFB43864D8123DC8472 /* Debug */,
+				53E97DE70FA064A11A22B848DF5A639D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
