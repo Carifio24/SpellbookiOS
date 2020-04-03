@@ -9,7 +9,11 @@
 import Foundation
 
 enum CastingTimeType: Int, Comparable, QuantityType {
+    
     case Action=0, BonusAction, Reaction, Time
+    
+    static var spanningType: CastingTimeType = Time
+    static var defaultValue: Int = Spellbook.SECOND_PER_ROUND
     
     private static let parseNameMap = [
         Action : "action",
@@ -44,20 +48,6 @@ enum CastingTimeType: Int, Comparable, QuantityType {
 
 
 class CastingTime : Quantity<CastingTimeType, TimeUnit> {
-    
-    // Number of seconds in one round
-    private static let SECONDS_PER_ROUND = 6
-    
-    ///// Specialized constructors
-    
-    // If no unit is given, assume seconds (if no unit is given, we shouldn't have a string description either)
-    convenience init(type: CastingTimeType, secs: Int) {
-        self.init(type: type, value: secs, unit: TimeUnit.second)
-    }
-    
-    convenience init() {
-        self.init(type: CastingTimeType.Action, secs: CastingTime.SECONDS_PER_ROUND)
-    }
     
     ///// Methods
     
@@ -99,7 +89,7 @@ class CastingTime : Quantity<CastingTimeType, TimeUnit> {
                 }
             }
             if (type != nil) {
-                let inRounds = value * SECONDS_PER_ROUND
+                let inRounds = value * CastingTimeType.defaultValue
                 return CastingTime(type: type!, value: inRounds, unit: TimeUnit.second, str: s)
             }
             

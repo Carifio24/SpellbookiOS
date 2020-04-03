@@ -12,6 +12,8 @@ enum TimeUnit : Int, Unit {
     
     case second=1, round=6, minute=60, hour=3600, day=86400, year=31536000
     
+    static var defaultUnit = second
+    
     static internal var names: [TimeUnit:Array<String>] = [
         second: ["second", "seconds", "s", "s."],
         round: ["round", "rounds", "rd", "rd."],

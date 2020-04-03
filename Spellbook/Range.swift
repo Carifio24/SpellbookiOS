@@ -10,7 +10,11 @@ import Foundation
 
 // An enum class for the various types of Distance
 enum RangeType: Int, Comparable, QuantityType {
+    
     case Special=0, SelfDistance, Touch, Sight, Ranged, Unlimited
+    
+    static var spanningType: RangeType = .Ranged
+    static var defaultValue: Int = 0
     
     internal static var displayNameMap = EnumMap<RangeType,String> { e in
         switch (e) {
@@ -28,24 +32,10 @@ enum RangeType: Int, Comparable, QuantityType {
             return "Unlimited"
         }
     }
-    
-    func isSpanningType() -> Bool {
-        return self == .Ranged
-    }
+
 }
 
 class Range : Quantity<RangeType, LengthUnit> {
-    
-    ///// Specialized constructors
-    
-    // If no unit is given, assume feet (if no unit is given, we shouldn't have a string description either)
-    convenience init(type: RangeType, length: Int) {
-        self.init(type: type, value: length, unit: LengthUnit.foot)
-    }
-    
-    convenience init() {
-        self.init(type: RangeType.SelfDistance, length: 0)
-    }
     
     ///// Methods
     
@@ -87,7 +77,7 @@ class Range : Quantity<RangeType, LengthUnit> {
         if (s.starts(with: RangeType.SelfDistance.displayName)) {
             let sSplit = s.split(separator: " ", maxSplits: 1)
             if (sSplit.count == 1) {
-                return Range(type: RangeType.SelfDistance, length: 0)
+                return Range(type: RangeType.SelfDistance, value: 0)
             } else {
                 var distStr = String(sSplit[1])
                 if ( !(distStr.hasPrefix("(") && distStr.hasSuffix(")")) ) {

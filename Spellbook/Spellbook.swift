@@ -12,6 +12,8 @@ public class Spellbook {
     
     static let MIN_SPELL_LEVEL = 0
     static let MAX_SPELL_LEVEL = 9
+    
+    static let SECOND_PER_ROUND = 6
 
 	var spells: Array<Spell> = []
 	var N_SPELLS: Int = 0

@@ -18,6 +18,7 @@ protocol Unit: Hashable {
     func value() -> Int
     
     static func fromString(_ s: String) throws -> Self
+    static var defaultUnit: Self { get }
 }
 
 extension Unit {

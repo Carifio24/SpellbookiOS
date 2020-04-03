@@ -1,4 +1,4 @@
-enum Sourcebook: Int, NameDisplayable {
+enum Sourcebook: Int, NameConstructible {
 	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG
     
     internal static var displayNameMap = EnumMap<Sourcebook,String> { e in

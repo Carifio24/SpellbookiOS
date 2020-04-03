@@ -1,4 +1,4 @@
-enum CasterClass: Int, NameDisplayable {
+enum CasterClass: Int, NameConstructible {
 	case Bard=0, Cleric, Druid, Paladin, Ranger, Sorcerer, Warlock, Wizard
     
     internal static var displayNameMap = EnumMap<CasterClass,String> { e in
@@ -21,6 +21,6 @@ enum CasterClass: Int, NameDisplayable {
             return "Wizard"
         }
     }
-    
+
     static let count = CasterClass.allCases.count
 }

@@ -11,8 +11,9 @@ import Foundation
 typealias StatusPropertySetter = (SpellStatus, Bool) -> Void
 typealias StatusPropertyGetter = (SpellStatus) -> Bool
 typealias Filter<T> = (T) -> Bool
-typealias Visibilities<T:CaseIterable & Hashable> = EnumMap<T,Bool>
+typealias Visibilities<T:NameDisplayable & CaseIterable & Hashable> = EnumMap<T,Bool>
 //typealias Visibilities<T:Hashable> = [T:Bool]
+//typealias EnumInfo<T:NameDisplayable> = ((T) -> Bool, String, String)
 typealias EnumInfo = (Any.Type, Bool, (Any) -> Bool, String, String)
 
 class RangeInfo<U:Unit> {
@@ -98,6 +99,10 @@ class CharacterProfile {
     private static let hiddenCastingTimeTypesKey: String = "HiddenCastingTimeTypes"
     private static let hiddenDurationTypesKey: String = "HiddenDurationTypes"
     private static let hiddenRangeTypesKey: String = "HiddenRangeTypes"
+    private static let ritualKey: String = "Ritual"
+    private static let notRitualKey: String = "NotRitual"
+    private static let concentrationKey: String = "Concentration"
+    private static let notConcentrationKey: String = "NotConcentration"
     private static let versionCodeKey: String = "VersionCode"
     
     // Keys for storing range filter info
@@ -126,9 +131,13 @@ class CharacterProfile {
     private var castingTimeRangeInfo: RangeInfo<TimeUnit>
     private var durationRangeInfo: RangeInfo<TimeUnit>
     private var rangeRangeInfo: RangeInfo<LengthUnit>
+    private var ritualFilter: Bool
+    private var notRitualFilter: Bool
+    private var concentrationFilter: Bool
+    private var notConcentrationFilter: Bool
+
     
-    
-    init(name: String, spellStatuses: [String:SpellStatus], sortField1: SortField, sortField2: SortField, reverse1: Bool, reverse2: Bool, statusFilter: StatusFilterField, minSpellLevel: Int, maxSpellLevel: Int, sourcebookVisibilities: Visibilities<Sourcebook>, casterVisibilities: Visibilities<CasterClass>, schoolVisibilities: Visibilities<School>, castingTimeTypeVisibilities: Visibilities<CastingTimeType>, durationTypeVisibilities: Visibilities<DurationType>, rangeTypeVisibilities: Visibilities<RangeType>, castingTimeRangeInfo: RangeInfo<TimeUnit>, durationRangeInfo: RangeInfo<TimeUnit>, rangeRangeInfo: RangeInfo<LengthUnit>) {
+    init(name: String, spellStatuses: [String:SpellStatus], sortField1: SortField, sortField2: SortField, reverse1: Bool, reverse2: Bool, statusFilter: StatusFilterField, minSpellLevel: Int, maxSpellLevel: Int, sourcebookVisibilities: Visibilities<Sourcebook>, casterVisibilities: Visibilities<CasterClass>, schoolVisibilities: Visibilities<School>, castingTimeTypeVisibilities: Visibilities<CastingTimeType>, durationTypeVisibilities: Visibilities<DurationType>, rangeTypeVisibilities: Visibilities<RangeType>, castingTimeRangeInfo: RangeInfo<TimeUnit>, durationRangeInfo: RangeInfo<TimeUnit>, rangeRangeInfo: RangeInfo<LengthUnit>, ritualFilter: Bool, notRitualFilter: Bool, concentrationFilter: Bool, notConcentrationFilter: Bool) {
         self.charName = name
         self.spellStatuses = spellStatuses
         self.sortField1 = sortField1
@@ -147,10 +156,14 @@ class CharacterProfile {
         self.castingTimeRangeInfo = castingTimeRangeInfo
         self.durationRangeInfo = durationRangeInfo
         self.rangeRangeInfo = rangeRangeInfo
+        self.ritualFilter = ritualFilter
+        self.notRitualFilter = notRitualFilter
+        self.concentrationFilter = concentrationFilter
+        self.notConcentrationFilter = notConcentrationFilter
     }
     
     convenience init(name: String, spellStatuses: [String:SpellStatus]) {
-        self.init(name: name, spellStatuses: spellStatuses, sortField1: SortField.Name, sortField2: SortField.Name, reverse1: false, reverse2: false, statusFilter: StatusFilterField.All, minSpellLevel: Spellbook.MIN_SPELL_LEVEL, maxSpellLevel: Spellbook.MAX_SPELL_LEVEL, sourcebookVisibilities: CharacterProfile.defaultSourcebookVisibilities, casterVisibilities: CharacterProfile.defaultCasterVisibilities, schoolVisibilities: CharacterProfile.defaultSchoolVisibilities, castingTimeTypeVisibilities: CharacterProfile.defaultCastingTimeTypeVisibilities, durationTypeVisibilities: CharacterProfile.defaultDurationTypeVisibilities, rangeTypeVisibilities: CharacterProfile.defaultRangeTypeVisibilities, castingTimeRangeInfo: CharacterProfile.defaultCastingTimeRangeInfo, durationRangeInfo: CharacterProfile.defaultDurationRangeInfo, rangeRangeInfo: CharacterProfile.defaultRangeRangeInfo)
+        self.init(name: name, spellStatuses: spellStatuses, sortField1: SortField.Name, sortField2: SortField.Name, reverse1: false, reverse2: false, statusFilter: StatusFilterField.All, minSpellLevel: Spellbook.MIN_SPELL_LEVEL, maxSpellLevel: Spellbook.MAX_SPELL_LEVEL, sourcebookVisibilities: CharacterProfile.defaultSourcebookVisibilities, casterVisibilities: CharacterProfile.defaultCasterVisibilities, schoolVisibilities: CharacterProfile.defaultSchoolVisibilities, castingTimeTypeVisibilities: CharacterProfile.defaultCastingTimeTypeVisibilities, durationTypeVisibilities: CharacterProfile.defaultDurationTypeVisibilities, rangeTypeVisibilities: CharacterProfile.defaultRangeTypeVisibilities, castingTimeRangeInfo: CharacterProfile.defaultCastingTimeRangeInfo, durationRangeInfo: CharacterProfile.defaultDurationRangeInfo, rangeRangeInfo: CharacterProfile.defaultRangeRangeInfo, ritualFilter: true, notRitualFilter: true, concentrationFilter: true, notConcentrationFilter: true)
     }
     
     convenience init(name: String) {
@@ -207,6 +220,12 @@ class CharacterProfile {
         minSpellLevel = sion[CharacterProfile.minSpellLevelKey].int ?? Spellbook.MIN_SPELL_LEVEL
         maxSpellLevel = sion[CharacterProfile.maxSpellLevelKey].int ?? Spellbook.MAX_SPELL_LEVEL
         
+        // Ritual and concentration filters
+        ritualFilter = sion[CharacterProfile.ritualKey].bool ?? true
+        notRitualFilter = sion[CharacterProfile.notRitualKey].bool ?? true
+        concentrationFilter = sion[CharacterProfile.concentrationKey].bool ?? true
+        notConcentrationFilter = sion[CharacterProfile.notConcentrationKey].bool ?? true
+        
     }
     
     // To SION
@@ -257,6 +276,12 @@ class CharacterProfile {
         sion[CharacterProfile.castingTimeRangeKey] = rangeInfoToSION(castingTimeRangeInfo)
         sion[CharacterProfile.durationRangeKey] = rangeInfoToSION(durationRangeInfo)
         sion[CharacterProfile.rangeRangeKey] = rangeInfoToSION(rangeRangeInfo)
+        
+        // Put in the concentration and ritual filters
+        sion[CharacterProfile.ritualKey] = SION(ritualFilter)
+        sion[CharacterProfile.notRitualKey] = SION(notRitualFilter)
+        sion[CharacterProfile.concentrationKey] = SION(concentrationFilter)
+        sion[CharacterProfile.notConcentrationKey] = SION(notConcentrationFilter)
 
         // Put in the version code
         sion[CharacterProfile.versionCodeKey] = SION(Constants.VERSION_CODE)
@@ -267,6 +292,15 @@ class CharacterProfile {
     // As a JSON string
     func asJSONString() -> String {
         return asSION().json
+    }
+    
+    // Getting the ritual and concentration filters
+    func getRitualFilter(_ b: Bool) -> Bool {
+        return b ? ritualFilter : notRitualFilter
+    }
+    
+    func getConcentrationFilter(_ b: Bool) -> Bool {
+        return b ? concentrationFilter : notConcentrationFilter
     }
     
     // For converting a RangeInfo<T> to a SION array
@@ -330,19 +364,19 @@ class CharacterProfile {
     func knownSelected() -> Bool { return (statusFilter == StatusFilterField.Known) }
     
     // Get only the visible values, with the given transformation applied to them
-    func getTransformedVisibleValues<E:NameDisplayable, T>(type: E.Type, b: Bool, transform: (E) -> T)-> [T] {
+    func getTransformedVisibleValues<E:NameConstructible, T>(type: E.Type, b: Bool, transform: (E) -> T)-> [T] {
         let visibilityMap = getTypeMap(type)
         if (visibilityMap == nil) { return [] }
         return E.allCases.filter({visibilityMap![$0] == b}).map({transform($0)})
     }
     
     // Get the visible values
-    func getVisibleValues<E:NameDisplayable>(type: E.Type, b: Bool) -> [E] {
+    func getVisibleValues<E:NameConstructible>(type: E.Type, b: Bool = true) -> [E] {
         return getTransformedVisibleValues(type: type, b: b, transform: { e in return e })
     }
     
     // Get the display names of the visible values
-    func getVisibleValueNames<E:NameDisplayable>(type: E.Type, b: Bool) -> [String] {
+    func getVisibleValueNames<E:NameConstructible>(type: E.Type, b: Bool = true) -> [String] {
         return getTransformedVisibleValues(type: type, b: b, transform: { e in return e.displayName })
     }
     
@@ -427,8 +461,30 @@ class CharacterProfile {
         setRangeValue(quantityType, unitType, unit, { rangeInfo, val in rangeInfo.maxUnit = val } )
     }
     
+    // For getting range filter data
+    private func getRangeValue<E:QuantityType, U:Unit, V>(_ quantityType: E.Type, _ unitType: U.Type, _ getter: (RangeInfo<U>) -> V) -> V {
+        let rangeInfo = getQuantityRangeInfo(E.self, U.self)!
+        return getter(rangeInfo)
+    }
+    
+    func getMinValue<E:QuantityType, U:Unit>(quantityType: E.Type, unitType: U.Type) -> Int {
+        return getRangeValue(quantityType, unitType, { $0.minValue })
+    }
+    
+    func getMaxValue<E:QuantityType, U:Unit>(quantityType: E.Type, unitType: U.Type) -> Int {
+        return getRangeValue(quantityType, unitType, { $0.maxValue })
+    }
+    
+    func getMinUnit<E:QuantityType, U:Unit>(quantityType: E.Type, unitType: U.Type) -> U {
+        return getRangeValue(quantityType, unitType, { $0.minUnit })
+    }
+    
+    func getMaxUnit<E:QuantityType, U:Unit>(quantityType: E.Type, unitType: U.Type) -> U {
+        return getRangeValue(quantityType, unitType, { $0.maxUnit })
+    }
+ 
     // Which map to use for a given type
-    func getTypeMap<E:CaseIterable & Hashable>(_ t : E.Type) -> Visibilities<E>? {
+    func getTypeMap<E:NameDisplayable>(_ t : E.Type) -> Visibilities<E>? {
         let id = ObjectIdentifier(t)
         switch (id) {
         case ObjectIdentifier(Sourcebook.self):
@@ -511,30 +567,39 @@ class CharacterProfile {
         }
     }
     
+    // For getting the bounds of range types
+    func getBounds<Q:QuantityType, U:Unit, T:Quantity<Q,U>>(type: T.Type) -> (T,T) {
+        let info = getQuantityRangeInfo(Q.self, U.self)!
+        let minQuantity = T.init(type: Q.spanningType, value: info.minValue, unit: info.minUnit, str: "")
+        let maxQuantity = T.init(type: Q.spanningType, value: info.maxValue, unit: info.maxUnit, str: "")
+        return (minQuantity, maxQuantity)
+    }
+    
+    
     // Get, set, and toggle the visibility of a certain value
-    func getVisibility<E:NameDisplayable>(_ e: E) -> Bool {
+    func getVisibility<E:NameConstructible>(_ e: E) -> Bool {
         let map = getTypeMap(E.self)
         return map?[e] ?? false
     }
     
-    func setVisibility<E:NameDisplayable>(_ e: E, _ b: Bool) {
+    func setVisibility<E:NameConstructible>(_ e: E, _ b: Bool) {
         let map = getTypeMap(E.self)
         map?[e] = b
     }
     
-    func toggleVisibility<E:NameDisplayable>(_ e: E) {
+    func toggleVisibility<E:NameConstructible>(_ e: E) {
         setVisibility(e, !getVisibility(e))
     }
     
     
     // Whether or not the spanning type is visible
     func getSpanningTypeVisibility<E:QuantityType>(_ type: E.Type) -> Bool {
-        return getVisibility(E.spanningType())
+        return getVisibility(E.spanningType)
     }
     
     // Constructing a map from a list of hidden values
     // Used for JSON decoding
-    private static func mapFromHiddenNames<E:NameDisplayable>(type: E.Type, nonTrivialFilter: Bool, sion: SION, key: String) -> Visibilities<E> {
+    private static func mapFromHiddenNames<E:NameConstructible>(type: E.Type, nonTrivialFilter: Bool, sion: SION, key: String) -> Visibilities<E> {
         
         print("The type is \(type)")
         

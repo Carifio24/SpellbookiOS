@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     // Child controllers
     var tableController: SpellTableViewController?
     var spellWindowController: SpellWindowController?
-    var sortController: SortController?
+    var sortFilterController: SortFilterTableController?
     
     // First appearance or not
     var firstAppearance: Bool = true
@@ -49,12 +49,8 @@ class ViewController: UIViewController {
     
     // The UIViews that hold the child controllers
     @IBOutlet weak var tableView: UIView!
-    @IBOutlet weak var sortView: UIView!
-    @IBOutlet weak var levelFilterView: UIView!
-    
-    // The sort/filter container views
-    @IBOutlet weak var sortFilterScroll: UIScrollView!
     @IBOutlet weak var sortFilterView: UIView!
+    @IBOutlet weak var sortFilterTableView: UIView!
     
     // Dimensions
     let sortFraction = CGFloat(0.08)
@@ -211,14 +207,6 @@ class ViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        print("The screen size is \(UIScreen.main.bounds.size)")
-        print("sortFilterView has size \(sortFilterView.frame.size)")
-        print("sortView has size \(sortView.frame.size)")
-        sortFilterScroll.contentSize = sortFilterView.frame.size
-        print("sortFilterScroll has content size \(sortFilterScroll.contentSize)")
-        
-        sortFilterScroll.touchesShouldCancel(in: sortFilterView)
-        sortFilterScroll.canCancelContentTouches = false
     }
     
     // This function sets the sizes of the top-level container views
@@ -249,8 +237,8 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "tableSegue" {
             tableController = (segue.destination as! SpellTableViewController)
-        } else if segue.identifier == "sortSegue" {
-            sortController = (segue.destination as! SortController)
+        } else if segue.identifier == "sortFilterTableSegue" {
+            sortFilterController = (segue.destination as! SortFilterTableController)
         }
     }
     
@@ -506,7 +494,7 @@ class ViewController: UIViewController {
     func toggleWindowVisibilities() {
         filterVisible = !filterVisible
         tableView.isHidden = filterVisible
-        sortFilterScroll.isHidden = !filterVisible
+        sortFilterTableView.isHidden = !filterVisible
         navigationController?.hidesBarsOnSwipe = !filterVisible
     }
     

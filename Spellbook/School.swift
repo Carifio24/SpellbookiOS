@@ -1,4 +1,4 @@
-enum School: Int, Comparable, NameDisplayable {
+enum School: Int, Comparable, NameConstructible {
 	case Abjuration=0, Conjuration, Divination, Enchantment, Evocation, Illusion, Necromancy, Transmutation
     
     internal static var displayNameMap = EnumMap<School,String> { e in

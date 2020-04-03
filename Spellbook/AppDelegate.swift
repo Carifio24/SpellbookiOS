@@ -25,9 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Load all of the view controller subclasses
         // Useful for generic classes
-        for subclass in subclasses(of: UIViewController.self) {
-            subclass.load()
-        }
+//        for subclass in subclasses(of: UIViewController.self) {
+//            subclass.load()
+//        }
+        
         
         return true
     }

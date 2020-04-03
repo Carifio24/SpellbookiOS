@@ -87,7 +87,12 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
         b.setLevel(Int(obj["level"].double!))
     }
 
-    b.setCastingTime(obj["casting_time"].string!)
+    let castingTimeString = obj["casting_time"].string!
+    do {
+        try b.setCastingTime(CastingTime.fromString(castingTimeString))
+    } catch {
+        b.setCastingTime(CastingTime())
+    }
 
 	// Material, if necessary
 	if has_key(obj: obj, key: "material") {

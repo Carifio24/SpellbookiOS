@@ -11,7 +11,7 @@ public class Spell {
 	let ritual: Bool
 	let duration: Duration
     let concentration: Bool
-	let castingTime: String
+	let castingTime: CastingTime
 	let level: Int
 	let school: School
 	let classes: Array<CasterClass>
@@ -19,7 +19,7 @@ public class Spell {
     let sourcebook: Sourcebook
 
 	// Constructor
-    init(name: String, description: String, higherLevel: String, page: Int, range: Range, components: Array<Bool>, material: String, ritual: Bool, duration: Duration, concentration: Bool, castingTime: String, level: Int, school: School, classes: Array<CasterClass>, subclasses: Array<SubClass>, sourcebook: Sourcebook) {
+    init(name: String, description: String, higherLevel: String, page: Int, range: Range, components: Array<Bool>, material: String, ritual: Bool, duration: Duration, concentration: Bool, castingTime: CastingTime, level: Int, school: School, classes: Array<CasterClass>, subclasses: Array<SubClass>, sourcebook: Sourcebook) {
         self.name = name; self.description = description; self.higherLevel = higherLevel;
         self.page = page; self.range = range; self.components = components; self.material = material;
         self.ritual = ritual; self.duration = duration; self.concentration = concentration;
@@ -29,7 +29,7 @@ public class Spell {
     
     // Default constructor (for convenience, when necessary)
     convenience init() {
-        self.init(name: "", description: "", higherLevel: "", page: 0, range: Range(), components: [false,false,false], material: "", ritual: false, duration: Duration(), concentration: false, castingTime: "", level: 0, school: School.Abjuration, classes: [], subclasses: [], sourcebook: Sourcebook.PlayersHandbook)
+        self.init(name: "", description: "", higherLevel: "", page: 0, range: Range(), components: [false,false,false], material: "", ritual: false, duration: Duration(), concentration: false, castingTime: CastingTime(), level: 0, school: School.Abjuration, classes: [], subclasses: [], sourcebook: Sourcebook.PlayersHandbook)
     }
     
 
@@ -85,6 +85,7 @@ public class Spell {
         }
         return text
     }
+    
 
 }
 

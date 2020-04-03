@@ -130,7 +130,7 @@ class SpellWindowController: UIViewController {
         
         // Do the same for the body of the spell text
         schoolLevelLabel.attributedText = schoolLevelText(spell)
-        castingTimeLabel.attributedText = propertyText(name: "Casting time", text: spell.castingTime)
+        castingTimeLabel.attributedText = propertyText(name: "Casting time", text: spell.castingTime.string())
         durationLabel.attributedText = propertyText(name: "Duration", text: spell.duration.string())
         locationLabel.attributedText = propertyText(name: "Location", text: locationText(spell))
         componentsLabel.attributedText = propertyText(name: "Components", text: spell.componentsString())

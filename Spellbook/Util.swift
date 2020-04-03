@@ -60,3 +60,18 @@ func getOneKey<Key:CaseIterable,Value:Equatable>(enumMap: EnumMap<Key,Value>, va
         return nil
     }
 }
+
+func firstLetterCapitalized(_ s: String) -> String {
+    var t = String(s)
+    t = t.lowercased()
+    return t.prefix(1).capitalized + t.dropFirst()
+}
+
+func firstLetterOfWordsCapitalized(_ s: String) -> String {
+    let t = String(s)
+    var words = t.split(separator: " ").map({ String($0) })
+    for i in 0...words.count-1 {
+        words[i] = firstLetterCapitalized(words[i])
+    }
+    return words.joined(separator: " ")
+}

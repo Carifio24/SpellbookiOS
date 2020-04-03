@@ -13,6 +13,9 @@ enum DurationType: Int, Comparable, QuantityType {
     
     case Special=0, Instantaneous, Spanning, UntilDispelled
     
+    static var spanningType: DurationType = Spanning
+    static var defaultValue: Int = 0
+    
     internal static var displayNameMap = EnumMap<DurationType,String> { e in
         switch (e) {
         case .Special:
@@ -26,25 +29,10 @@ enum DurationType: Int, Comparable, QuantityType {
         }
     }
     
-    func isSpanningType() -> Bool {
-        return self == .Spanning
-    }
-    
 }
 
 class Duration : Quantity<DurationType, TimeUnit> {
-    
-    ///// Specialized constructors
-    
-    // If no unit is given, assume seconds (if no unit is given, we shouldn't have a string description either)
-    convenience init(type: DurationType, secs: Int) {
-        self.init(type: type, value: secs, unit: TimeUnit.second)
-    }
-    
-    convenience init() {
-        self.init(type: DurationType.Instantaneous, secs: 0)
-    }
-    
+
     ///// Methods
     
     // The time, in seconds
@@ -74,14 +62,14 @@ class Duration : Quantity<DurationType, TimeUnit> {
         // Instantaneous and special
         for type in [DurationType.Instantaneous, DurationType.Special] {
             if (s.starts(with: type.displayName)) {
-                return Duration(type: type, secs: 0)
+                return Duration(type: type, value: 0)
             }
             
         }
         
         // Until dispelled
         if (s.starts(with: "Until dispelled")) {
-            return Duration(type: DurationType.UntilDispelled, secs: 0)
+            return Duration(type: DurationType.UntilDispelled, value: 0)
         }
         
         // Spanning

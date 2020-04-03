@@ -12,6 +12,8 @@ enum LengthUnit : Int, Unit {
 
     case foot=1, mile=5280
     
+    static var defaultUnit = foot
+    
     static internal var names: [LengthUnit:Array<String>] = [
         foot: ["foot", "feet", "ft", "ft."],
         mile: ["mile", "miles", "mi", "mi."]

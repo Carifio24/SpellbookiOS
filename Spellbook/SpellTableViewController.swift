@@ -9,6 +9,7 @@
 // Type aliases for making closures
 typealias SpellStatusSetter = (Spell, Bool) -> Void
 typealias SpellStatusGetter = (Spell) -> Bool
+typealias SpellFilter<T> = (Spell,T) -> Bool
 
 import UIKit
 
@@ -34,6 +35,14 @@ class SpellTableViewController: UITableViewController {
     let spellWindowSegueIdentifier = "spellWindowSegue"
     let spellWindowIdentifier = "spellWindow"
     static let estimatedHeight = CGFloat(60)
+    
+    // Filters
+    static let sourcebookFilter: SpellFilter<Sourcebook> = { $0.sourcebook == $1 }
+    static let casterClassesFilter: SpellFilter<CasterClass> = { $0.usableByClass($1) }
+    static let schoolFilter: SpellFilter<School> = { $0.school == $1 }
+    static let castingTimeTypeFilter: SpellFilter<CastingTimeType> = { $0.castingTime.type == $1 }
+    static let durationTypeFilter: SpellFilter<DurationType> = { $0.duration.type == $1 }
+    static let rangeTypeFilter: SpellFilter<RangeType> = { $0.range.type == $1 }
     
     // The button images
     // It's too costly to do the re-rendering every time, so we just do it once
@@ -153,7 +162,7 @@ class SpellTableViewController: UITableViewController {
         
         // Cell formatting
         cell.layoutMargins = UIEdgeInsets(top: 2, left: 0, bottom: 2, right: 0)
-        cell.selectionStyle = .none
+        cell.selectionStyle = .gray
         cell.isUserInteractionEnabled = true
         cell.backgroundColor = UIColor.clear
         
@@ -197,14 +206,11 @@ class SpellTableViewController: UITableViewController {
         return cell
     }
     
-    // Function to get the spells to currently display
+    
     func updateSpellArray() {
-        spellArray = []
-        for tpl in spells {
-            if tpl.1 {
-                spellArray.append(tpl.0)
-            }
-        }
+        // Filter out the items with a true value in the second component,
+        // then extract just the first component (the spell)
+        spellArray = spells.filter({$0.1}).map({$0.0})
     }
     
     
@@ -256,15 +262,75 @@ class SpellTableViewController: UITableViewController {
         updateSpellArray()
     }
     
+    internal func filterThroughArray<E:CaseIterable>(spell: Spell, type: E.Type, filter: (Spell,E) -> Bool) -> Bool {
+        for e in E.allCases {
+            if filter(spell, e) {
+                return false
+            }
+        }
+        return true
+    }
+    
+    internal func filterAgainstBounds<Q:Comparable,U:Unit>(spell s: Spell, bounds: (Quantity<Q,U>,Quantity<Q,U>)?, quantityGetter: (Spell) -> Quantity<Q,U>) -> Bool {
+        
+        // If the bounds are nil, this check should be skipped
+        if (bounds == nil) { return false }
+        
+        // Get the quantity
+        // If it isn't of the spanning type, return false
+        let quantity = quantityGetter(s)
+        if quantity.isTypeSpanning() {
+            return ( (quantity < bounds!.0) || (quantity > bounds!.1) )
+        } else {
+            return false
+        }
+        
+    }
+    
     // Determine whether or not a single row should be filtered
-    func filterItem(isClass: Bool, isText: Bool, s: Spell, cc: CasterClass, text: String, profile: CharacterProfile) -> Bool {
+    func filterItem(spell s: Spell, profile cp: CharacterProfile, visibleSourcebooks: [Sourcebook], visibleClasses: [CasterClass], visibleSchools: [School], visibleCastingTimeTypes: [CastingTimeType], visibleDurationTypes: [DurationType], visibleRangeTypes: [RangeType], castingTimeBounds: (CastingTime,CastingTime), durationBounds: (Duration,Duration), rangeBounds: (Range,Range), isText: Bool, text: String) -> Bool {
         let spname = s.name.lowercased()
-        var toHide = (isClass && !s.usableByClass(cc))
-        toHide = toHide || (profile.knownSelected() && !profile.isKnown(s))
-        toHide = toHide || (profile.preparedSelected() && !profile.isPrepared(s))
-        toHide = toHide || (profile.favoritesSelected() && !profile.isFavorite(s))
+        
+        // Run through the various filtering fields
+        
+        // Level
+        let level = s.level
+        if (level > cp.getMaxSpellLevel()) || (level < cp.getMinSpellLevel()) { return true }
+        
+        // Sourcebooks
+        if filterThroughArray(spell: s, type: Sourcebook.self, filter: SpellTableViewController.sourcebookFilter) { return true }
+        
+        // Classes
+        if filterThroughArray(spell: s, type: CasterClass.self, filter: SpellTableViewController.casterClassesFilter) { return true }
+        
+        // Schools
+        if filterThroughArray(spell: s, type: School.self, filter: SpellTableViewController.schoolFilter) { return true }
+        
+        // Casting time types
+        if filterThroughArray(spell: s, type: CastingTimeType.self, filter: SpellTableViewController.castingTimeTypeFilter) { return true }
+        
+        // Duration types
+        if filterThroughArray(spell: s, type: DurationType.self, filter: SpellTableViewController.durationTypeFilter) { return true }
+        
+        // Range types
+        if filterThroughArray(spell: s, type: RangeType.self, filter: SpellTableViewController.rangeTypeFilter) { return true }
+        
+        // Casting time bounds
+        if filterAgainstBounds(spell: s, bounds: castingTimeBounds, quantityGetter: { $0.castingTime }) { return true }
+        
+        // Duration bounds
+        if filterAgainstBounds(spell: s, bounds: durationBounds, quantityGetter: { $0.duration }) { return true }
+        
+        // Range bounds
+        if filterAgainstBounds(spell: s, bounds: rangeBounds, quantityGetter: { $0.range }) { return true }
+        
+        // The rest of the filtering conditions
+        var toHide = (cp.favoritesSelected() && !cp.isFavorite(s))
+        toHide = toHide || (cp.knownSelected() && !cp.isKnown(s))
+        toHide = toHide || (cp.preparedSelected() && !cp.isPrepared(s))
+        toHide = toHide || !cp.getRitualFilter(s.ritual)
+        toHide = toHide || !cp.getConcentrationFilter(s.concentration)
         toHide = toHide || (isText && !spname.starts(with: text))
-        toHide = toHide || (!(profile.getVisibility(s.sourcebook)))
         return toHide
     }
     
@@ -280,17 +346,22 @@ class SpellTableViewController: UITableViewController {
         //print("Prepared selected: \(main?.characterProfile.preparedSelected())")
         
         // First, we filter the data
-        let classIndex: Int? = nil
-        let isClass = (classIndex != 0) && (classIndex != nil)
-        var cc: CasterClass = CasterClass.Wizard
         let isText = false
         let searchText = ""
-        if isClass {
-            cc = CasterClass(rawValue: classIndex!-1)!
-        }
+        
         let cp = main.characterProfile
+        let visibleSourcebooks = cp.getVisibleValues(type: Sourcebook.self)
+        let visibleClasses = cp.getVisibleValues(type: CasterClass.self)
+        let visibleSchools = cp.getVisibleValues(type: School.self)
+        let visibleCastingTimeTypes = cp.getVisibleValues(type: CastingTimeType.self)
+        let visibleDurationTypes = cp.getVisibleValues(type: DurationType.self)
+        let visibleRangeTypes = cp.getVisibleValues(type: RangeType.self)
+        let castingTimeBounds = cp.getBounds(type: CastingTime.self)
+        let durationBounds = cp.getBounds(type: Duration.self)
+        let rangeBounds = cp.getBounds(type: Range.self)
+        
         for i in 0...spells.count-1 {
-            let filter = filterItem(isClass: isClass, isText: isText, s: spells[i].0, cc: cc, text: searchText, profile: cp)
+            let filter = filterItem(spell: spells[i].0, profile: cp, visibleSourcebooks: visibleSourcebooks, visibleClasses: visibleClasses, visibleSchools: visibleSchools, visibleCastingTimeTypes: visibleCastingTimeTypes, visibleDurationTypes: visibleDurationTypes, visibleRangeTypes: visibleRangeTypes, castingTimeBounds: castingTimeBounds, durationBounds: durationBounds, rangeBounds: rangeBounds, isText: isText, text: searchText)
             spells[i] = (spells[i].0, !filter)
         }
             
@@ -306,6 +377,8 @@ class SpellTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         print("Pressed at row \(indexPath.row)")
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     
         if indexPath.row >= spellArray.count { return }
         let storyboard = self.storyboard

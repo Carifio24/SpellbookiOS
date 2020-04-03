@@ -9,7 +9,7 @@
 
 import Foundation
 
-enum SortField: Int, NameDisplayable {
+enum SortField: Int, NameConstructible {
     case Name=0, School, Level, Range, Duration
     
     private static let spellComparators: [SortField:IntComparatorFunc<Spell>] = [

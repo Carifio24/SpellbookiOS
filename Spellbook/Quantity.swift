@@ -8,28 +8,44 @@
 
 import Foundation
 
-class Quantity<QuantityType, UnitType: Unit> where QuantityType:Comparable {
+class Quantity<ValueType: QuantityType, UnitType: Unit> where ValueType:Comparable {
     
-    let type: QuantityType
+    let type: ValueType
     let value: Int
     let unit: UnitType
     let str: String
     
     // Constructors
-    init(type: QuantityType, value: Int, unit: UnitType, str: String) {
+    required init(type: ValueType, value: Int, unit: UnitType, str: String) {
         self.type = type
         self.value = value
         self.unit = unit
         self.str = str
     }
     
-    convenience init(type: QuantityType, value: Int, unit: UnitType) {
+    convenience init(type: ValueType, value: Int, unit: UnitType) {
         self.init(type: type, value: value, unit: unit, str: "")
+    }
+    
+    convenience init(type: ValueType, value: Int) {
+        self.init(type: type, value: value, unit: UnitType.defaultUnit)
+    }
+    
+    convenience init(type: ValueType) {
+        self.init(type: type, value: ValueType.defaultValue)
+    }
+    
+    convenience init() {
+        self.init(type: ValueType.spanningType)
     }
     
     // Methods
     func baseValue() -> Int {
         return value * unit.value()
+    }
+    
+    func isTypeSpanning() -> Bool {
+        return type.isSpanningType()
     }
     
 }

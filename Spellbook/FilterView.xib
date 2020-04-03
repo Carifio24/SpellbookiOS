@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilterView" customModule="Spellbook" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="p9B-O6-cXa" id="72p-fF-v01"/>
+                <outlet property="filterButton" destination="2gE-9A-ohA" id="s0U-3i-mLZ"/>
+                <outlet property="nameLabel" destination="Ac4-Id-pu8" id="ndB-az-5FS"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="60" height="24"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p9B-O6-cXa">
+                    <rect key="frame" x="0.0" y="0.0" width="60" height="24"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2gE-9A-ohA" customClass="ToggleButton" customModule="Spellbook" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="1" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="2gE-9A-ohA" secondAttribute="height" multiplier="1:1" id="FJa-Pn-fFy"/>
+                            </constraints>
+                            <state key="normal" image="star.png"/>
+                        </button>
+                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ac4-Id-pu8">
+                            <rect key="frame" x="23" y="1" width="31" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="2gE-9A-ohA" firstAttribute="leading" secondItem="p9B-O6-cXa" secondAttribute="leading" id="3Nh-4U-CdU"/>
+                        <constraint firstItem="Ac4-Id-pu8" firstAttribute="top" secondItem="p9B-O6-cXa" secondAttribute="top" id="Jw3-PH-sI3"/>
+                        <constraint firstItem="2gE-9A-ohA" firstAttribute="top" secondItem="p9B-O6-cXa" secondAttribute="top" id="f04-9y-6DO"/>
+                        <constraint firstItem="Ac4-Id-pu8" firstAttribute="leading" secondItem="2gE-9A-ohA" secondAttribute="trailing" id="tAk-yN-ixw"/>
+                        <constraint firstAttribute="trailing" secondItem="Ac4-Id-pu8" secondAttribute="trailing" id="wEX-qY-qIe"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="p9B-O6-cXa" secondAttribute="trailing" id="HIk-C2-Dhj"/>
+                <constraint firstItem="p9B-O6-cXa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="MbW-sz-h24"/>
+                <constraint firstItem="p9B-O6-cXa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="RTB-xt-cmM"/>
+                <constraint firstAttribute="bottom" secondItem="p9B-O6-cXa" secondAttribute="bottom" id="tQs-di-6To"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-111.59420289855073" y="-427.23214285714283"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="star.png" width="166.55999755859375" height="159.83999633789062"/>
+    </resources>
+</document>

@@ -8,21 +8,21 @@
 
 import Foundation
 
-protocol QuantityType: NameDisplayable {
+protocol QuantityType: NameConstructible {
     
     // Is the quantity type the spanning type
     func isSpanningType() -> Bool
     
-    // Static method to get the spanning type
-    static func spanningType() -> Self
+    // Static values for spanning type and default value
+    static var spanningType: Self { get }
+    static var defaultValue: Int { get }
     
 }
 
 extension QuantityType {
-    static func spanningType() -> Self {
-        for qt in Self.allCases {
-            if qt.isSpanningType() { return qt }
-        }
-        return Self.allCases.first!
+    
+    func isSpanningType() -> Bool {
+        return self == Self.spanningType
     }
+    
 }
