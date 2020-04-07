@@ -989,7 +989,7 @@
                                                         <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="joA-Af-UTu" userLabel="Min Level Entry">
                                                             <rect key="frame" x="71" y="47" width="97" height="34"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="≤Spell Level≤" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSN-Th-gCz" userLabel="Level Range Label">
                                                             <rect key="frame" x="68" y="53" width="103" height="21"/>
@@ -1001,7 +1001,7 @@
                                                         <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J7c-VH-n4d" userLabel="Max Level Entry">
                                                             <rect key="frame" x="104" y="47" width="32" height="34"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                         </textField>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1030,27 +1030,26 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Ritual &amp; Concentration" id="frc-Ky-4av">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="dtO-KC-wNN">
-                                        <rect key="frame" x="0.0" y="167.33333241939545" width="404" height="1.1920928955078125e-07"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dtO-KC-wNN" translatesAutoresizingMaskIntoConstraints="NO" id="WGz-Dt-vtO">
-                                            <rect key="frame" x="0.0" y="0.0" width="404" height="1.1920928955078125e-07"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="dtO-KC-wNN">
+                                        <rect key="frame" x="0.0" y="167.33333241939545" width="404" height="44"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dtO-KC-wNN" translatesAutoresizingMaskIntoConstraints="NO" id="WGz-Dt-vtO">
+                                            <rect key="frame" x="0.0" y="0.0" width="404" height="44"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pQx-ja-Blk" userLabel="Ritual View">
-                                                    <rect key="frame" x="0.0" y="0.0" width="86.666666666666671" height="135"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pQx-ja-Blk" userLabel="Ritual View">
+                                                    <rect key="frame" x="0.0" y="0.0" width="197" height="44"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ritual" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Per-3u-39Q" userLabel="Ritual Label">
-                                                            <rect key="frame" x="0.0" y="0.0" width="86.666666666666671" height="20"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="197" height="20"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" name="CloisterBlack-Light" family="Cloister Black" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xHd-Pn-WBE">
-                                                            <rect key="frame" x="0.0" y="20" width="86.666666666666671" height="115"/>
+                                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xHd-Pn-WBE">
+                                                            <rect key="frame" x="0.0" y="20" width="197" height="60"/>
                                                             <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="2gS-Yr-bwA"/>
+                                                                <constraint firstAttribute="height" constant="60" id="2gS-Yr-bwA"/>
                                                             </constraints>
                                                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xCy-nX-NGq">
                                                                 <size key="itemSize" width="128" height="128"/>
@@ -1059,14 +1058,13 @@
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             </collectionViewFlowLayout>
                                                             <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" id="9m7-IC-edr" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
-                                                                    <rect key="frame" x="-20.666666666666668" y="0.0" width="128" height="128"/>
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="9m7-IC-edr" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                                    <rect key="frame" x="34.666666666666664" y="0.0" width="128" height="128"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5Wy-Y7-3R4">
+                                                                    <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Wy-Y7-3R4">
                                                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
                                                                         <subviews>
-                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RuJ-QZ-gJV" customClass="FilterView" customModule="Spellbook" customModuleProvider="target">
+                                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RuJ-QZ-gJV" customClass="FilterView" customModule="Spellbook" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             </view>
@@ -1098,19 +1096,22 @@
                                                         <constraint firstItem="xHd-Pn-WBE" firstAttribute="bottom" secondItem="pQx-ja-Blk" secondAttribute="bottom" id="z9M-oY-EmZ"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VJ4-t6-YHw" userLabel="Concentration View">
-                                                    <rect key="frame" x="96.666666666666657" y="0.0" width="86.666666666666657" height="135"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VJ4-t6-YHw" userLabel="Concentration View">
+                                                    <rect key="frame" x="207" y="0.0" width="197" height="44"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Concentration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcu-U8-36u" userLabel="Concentration Label">
-                                                            <rect key="frame" x="0.0" y="0.0" width="86.666666666666671" height="20"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="197" height="20"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <fontDescription key="fontDescription" name="CloisterBlack-Light" family="Cloister Black" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="N7L-zz-vFg">
-                                                            <rect key="frame" x="0.0" y="20" width="240" height="115"/>
+                                                            <rect key="frame" x="0.0" y="20" width="240" height="60"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="60" id="wOd-g3-UXw"/>
+                                                            </constraints>
                                                             <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="U1X-Wa-sZs">
                                                                 <size key="itemSize" width="128" height="128"/>
                                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -1118,14 +1119,13 @@
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             </collectionViewFlowLayout>
                                                             <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" id="vaj-JQ-hq6" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="vaj-JQ-hq6" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                                     <rect key="frame" x="56" y="0.0" width="128" height="128"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1na-Fe-aSv">
+                                                                    <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1na-Fe-aSv">
                                                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <subviews>
-                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbD-NQ-eBs" customClass="FilterView" customModule="Spellbook" customModuleProvider="target">
+                                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xbD-NQ-eBs" customClass="FilterView" customModule="Spellbook" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             </view>
@@ -1169,45 +1169,143 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="WGz-Dt-vtO" secondAttribute="trailing" id="Pwo-HK-YAL"/>
+                                            <constraint firstAttribute="bottom" secondItem="WGz-Dt-vtO" secondAttribute="bottom" id="XEE-Sv-WAF"/>
+                                            <constraint firstItem="WGz-Dt-vtO" firstAttribute="leading" secondItem="dtO-KC-wNN" secondAttribute="leading" id="aaC-Zg-ueu"/>
+                                            <constraint firstItem="WGz-Dt-vtO" firstAttribute="top" secondItem="dtO-KC-wNN" secondAttribute="top" id="iSa-GR-Mja"/>
+                                        </constraints>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Sourcebooks" id="Uc6-ig-o2H">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="0oD-y2-RBm">
-                                        <rect key="frame" x="0.0" y="223.33333253860474" width="404" height="1.1920928955078125e-07"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0oD-y2-RBm" id="9Ee-tq-rSO">
-                                            <rect key="frame" x="0.0" y="0.0" width="404" height="1.1920928955078125e-07"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="0oD-y2-RBm">
+                                        <rect key="frame" x="0.0" y="267.33333241939545" width="404" height="44"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0oD-y2-RBm" translatesAutoresizingMaskIntoConstraints="NO" id="9Ee-tq-rSO">
+                                            <rect key="frame" x="0.0" y="0.0" width="404" height="44"/>
+                                            <subviews>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" canCancelContentTouches="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ucY-xJ-tb2">
+                                                    <rect key="frame" x="0.0" y="0.0" width="404" height="44"/>
+                                                    <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="190" id="8uE-yU-1g0"/>
+                                                    </constraints>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="myl-Li-nhX">
+                                                        <size key="itemSize" width="128" height="128"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="LR8-S2-cAX" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eyw-BM-ZK5">
+                                                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c1r-XI-oZr" customClass="FilterView" customModule="Spellbook" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </view>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="c1r-XI-oZr" firstAttribute="leading" secondItem="Eyw-BM-ZK5" secondAttribute="leading" id="Lmz-6f-1VV"/>
+                                                                    <constraint firstItem="c1r-XI-oZr" firstAttribute="top" secondItem="Eyw-BM-ZK5" secondAttribute="top" id="QVs-LL-McA"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="c1r-XI-oZr" secondAttribute="bottom" id="bbW-vz-GY8"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="c1r-XI-oZr" secondAttribute="trailing" id="vwS-XV-yFH"/>
+                                                                </constraints>
+                                                            </collectionViewCellContentView>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <connections>
+                                                                <outlet property="filterView" destination="c1r-XI-oZr" id="kMc-YJ-pMq"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                </collectionView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="ucY-xJ-tb2" secondAttribute="trailing" id="HNn-k0-KbH"/>
+                                                <constraint firstItem="ucY-xJ-tb2" firstAttribute="height" secondItem="9Ee-tq-rSO" secondAttribute="height" id="MKm-Fy-LBW"/>
+                                                <constraint firstItem="ucY-xJ-tb2" firstAttribute="leading" secondItem="9Ee-tq-rSO" secondAttribute="leading" id="P2i-mt-eLJ"/>
+                                                <constraint firstAttribute="bottom" secondItem="ucY-xJ-tb2" secondAttribute="bottom" id="UsE-bY-2hy"/>
+                                                <constraint firstItem="ucY-xJ-tb2" firstAttribute="top" secondItem="9Ee-tq-rSO" secondAttribute="top" id="av1-je-2bL"/>
+                                                <constraint firstItem="ucY-xJ-tb2" firstAttribute="width" secondItem="9Ee-tq-rSO" secondAttribute="width" id="gBd-rS-EXS"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="9Ee-tq-rSO" firstAttribute="top" secondItem="0oD-y2-RBm" secondAttribute="top" id="SF3-1o-Qx9"/>
+                                            <constraint firstItem="9Ee-tq-rSO" firstAttribute="width" secondItem="0oD-y2-RBm" secondAttribute="width" id="bK3-Bu-Vos"/>
+                                            <constraint firstAttribute="trailing" secondItem="9Ee-tq-rSO" secondAttribute="trailing" id="n4F-Za-tR4"/>
+                                            <constraint firstAttribute="bottom" secondItem="9Ee-tq-rSO" secondAttribute="bottom" id="ulu-y6-Byq"/>
+                                            <constraint firstItem="9Ee-tq-rSO" firstAttribute="height" secondItem="0oD-y2-RBm" secondAttribute="height" id="vZ9-7g-b3C"/>
+                                            <constraint firstItem="9Ee-tq-rSO" firstAttribute="leading" secondItem="0oD-y2-RBm" secondAttribute="leading" id="xMl-He-lTO"/>
+                                        </constraints>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Caster Classes" id="xK7-Zo-yV4">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="zTN-rR-9Nm">
-                                        <rect key="frame" x="0.0" y="279.33333265781403" width="404" height="1.1920928955078125e-07"/>
+                                        <rect key="frame" x="0.0" y="367.33333241939545" width="404" height="1.1920928955078125e-07"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zTN-rR-9Nm" id="yiC-XH-9pF">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zTN-rR-9Nm" id="yiC-XH-9pF">
                                             <rect key="frame" x="0.0" y="0.0" width="404" height="1.1920928955078125e-07"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="zvC-Lh-JiR">
-                                        <rect key="frame" x="0.0" y="279.33333277702332" width="404" height="1.1920928955078125e-07"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zvC-Lh-JiR" id="bul-Ag-C72">
-                                            <rect key="frame" x="0.0" y="0.0" width="404" height="1.1920928955078125e-07"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="i5j-N0-UE5">
-                                        <rect key="frame" x="0.0" y="279.3333328962326" width="404" height="1.1920928955078125e-07"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="i5j-N0-UE5" id="h6b-yk-LJP">
-                                            <rect key="frame" x="0.0" y="0.0" width="404" height="1.1920928955078125e-07"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Pg5-Gb-k5L">
+                                                    <rect key="frame" x="0.0" y="0.0" width="404" height="44"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="160" id="6jU-Vt-YAZ"/>
+                                                    </constraints>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IBv-GN-eD4">
+                                                        <size key="itemSize" width="128" height="128"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="ivf-rg-qoA" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1en-JT-doz">
+                                                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R1J-Bk-sOt" customClass="FilterView" customModule="Spellbook" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </view>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="R1J-Bk-sOt" firstAttribute="top" secondItem="1en-JT-doz" secondAttribute="top" id="0jJ-6C-sPB"/>
+                                                                    <constraint firstItem="R1J-Bk-sOt" firstAttribute="leading" secondItem="1en-JT-doz" secondAttribute="leading" id="11d-Fe-nLQ"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="R1J-Bk-sOt" secondAttribute="bottom" id="cK3-OU-OGt"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="R1J-Bk-sOt" secondAttribute="trailing" id="qXg-gN-f7q"/>
+                                                                </constraints>
+                                                            </collectionViewCellContentView>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <connections>
+                                                                <outlet property="filterView" destination="R1J-Bk-sOt" id="dJg-8h-SZO"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                </collectionView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="Pg5-Gb-k5L" firstAttribute="width" secondItem="yiC-XH-9pF" secondAttribute="width" id="0I9-lr-Y5k"/>
+                                                <constraint firstItem="Pg5-Gb-k5L" firstAttribute="leading" secondItem="yiC-XH-9pF" secondAttribute="leading" id="4FI-Lh-Hv8"/>
+                                                <constraint firstItem="Pg5-Gb-k5L" firstAttribute="height" secondItem="yiC-XH-9pF" secondAttribute="height" id="ILj-Ag-FUY"/>
+                                                <constraint firstAttribute="trailing" secondItem="Pg5-Gb-k5L" secondAttribute="trailing" id="Vfs-vv-Ld5"/>
+                                                <constraint firstAttribute="bottom" secondItem="Pg5-Gb-k5L" secondAttribute="bottom" id="cbH-GA-CyE"/>
+                                                <constraint firstItem="Pg5-Gb-k5L" firstAttribute="top" secondItem="yiC-XH-9pF" secondAttribute="top" id="hkt-s1-NDC"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -1215,27 +1313,61 @@
                             <tableViewSection headerTitle="Schools" id="KXt-Ef-W5i">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="FBJ-Am-j11">
-                                        <rect key="frame" x="0.0" y="335.33333301544189" width="404" height="1.1920928955078125e-07"/>
+                                        <rect key="frame" x="0.0" y="423.33333253860474" width="404" height="1.1920928955078125e-07"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FBJ-Am-j11" id="0Q1-T7-kc2">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FBJ-Am-j11" id="0Q1-T7-kc2">
                                             <rect key="frame" x="0.0" y="0.0" width="404" height="1.1920928955078125e-07"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="bj6-tt-x6m">
-                                        <rect key="frame" x="0.0" y="335.33333313465118" width="404" height="1.1920928955078125e-07"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bj6-tt-x6m" id="QV6-IS-Z8l">
-                                            <rect key="frame" x="0.0" y="0.0" width="404" height="1.1920928955078125e-07"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="mli-YH-97P">
-                                        <rect key="frame" x="0.0" y="335.33333325386047" width="404" height="1.1920928955078125e-07"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mli-YH-97P" id="4pa-3F-tHO">
-                                            <rect key="frame" x="0.0" y="0.0" width="404" height="1.1920928955078125e-07"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mgR-uj-ME1">
+                                                    <rect key="frame" x="0.0" y="0.0" width="404" height="290"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="290" id="3g8-em-6WY"/>
+                                                    </constraints>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dZ1-sb-gt4">
+                                                        <size key="itemSize" width="128" height="128"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="l2R-a5-9D9" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gfd-Qa-VSe">
+                                                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xy6-WQ-Dee" customClass="FilterView" customModule="Spellbook" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </view>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="xy6-WQ-Dee" secondAttribute="trailing" id="4RE-QQ-mqf"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="xy6-WQ-Dee" secondAttribute="bottom" id="6g7-Ha-M4O"/>
+                                                                    <constraint firstItem="xy6-WQ-Dee" firstAttribute="top" secondItem="gfd-Qa-VSe" secondAttribute="top" id="B0s-Pq-zsN"/>
+                                                                    <constraint firstItem="xy6-WQ-Dee" firstAttribute="leading" secondItem="gfd-Qa-VSe" secondAttribute="leading" id="e4n-Wb-Tyc"/>
+                                                                </constraints>
+                                                            </collectionViewCellContentView>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <connections>
+                                                                <outlet property="filterView" destination="xy6-WQ-Dee" id="urb-La-XJt"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                </collectionView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="mgR-uj-ME1" firstAttribute="height" secondItem="0Q1-T7-kc2" secondAttribute="height" id="3mt-1R-8lR"/>
+                                                <constraint firstItem="mgR-uj-ME1" firstAttribute="width" secondItem="0Q1-T7-kc2" secondAttribute="width" id="Hmr-hD-evf"/>
+                                                <constraint firstAttribute="trailing" secondItem="mgR-uj-ME1" secondAttribute="trailing" id="IlV-yV-ylt"/>
+                                                <constraint firstItem="mgR-uj-ME1" firstAttribute="top" secondItem="0Q1-T7-kc2" secondAttribute="top" id="aFc-uM-3hZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="mgR-uj-ME1" secondAttribute="bottom" id="iWR-fQ-XEG"/>
+                                                <constraint firstItem="mgR-uj-ME1" firstAttribute="leading" secondItem="0Q1-T7-kc2" secondAttribute="leading" id="mit-Er-aXe"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -1243,23 +1375,23 @@
                             <tableViewSection headerTitle="Casting Time" id="HVY-Fn-Lqb">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="qRd-kW-lUF">
-                                        <rect key="frame" x="0.0" y="391.33333337306976" width="404" height="1.1920928955078125e-07"/>
+                                        <rect key="frame" x="0.0" y="479.33333265781403" width="404" height="1.1920928955078125e-07"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qRd-kW-lUF" id="rya-Wz-sh3">
                                             <rect key="frame" x="0.0" y="0.0" width="404" height="1.1920928955078125e-07"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="2zz-yN-Xsd">
-                                        <rect key="frame" x="0.0" y="391.33333349227905" width="404" height="1.1920928955078125e-07"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="2zz-yN-Xsd">
+                                        <rect key="frame" x="0.0" y="479.33333277702332" width="404" height="1.1920928955078125e-07"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2zz-yN-Xsd" id="aAO-iz-Ui0">
                                             <rect key="frame" x="0.0" y="0.0" width="404" height="1.1920928955078125e-07"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ONH-W8-KG2">
-                                        <rect key="frame" x="0.0" y="391.33333361148834" width="404" height="1.1920928955078125e-07"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ONH-W8-KG2">
+                                        <rect key="frame" x="0.0" y="479.3333328962326" width="404" height="1.1920928955078125e-07"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ONH-W8-KG2" id="R5R-Gu-WcP">
                                             <rect key="frame" x="0.0" y="0.0" width="404" height="1.1920928955078125e-07"/>
@@ -1270,8 +1402,8 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Duration" id="PqD-SN-STr">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="XiV-Pn-pZr">
-                                        <rect key="frame" x="0.0" y="447.33333373069763" width="404" height="1.1920928955078125e-07"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="XiV-Pn-pZr">
+                                        <rect key="frame" x="0.0" y="535.33333301544189" width="404" height="1.1920928955078125e-07"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XiV-Pn-pZr" id="44B-dZ-MzD">
                                             <rect key="frame" x="0.0" y="0.0" width="404" height="1.1920928955078125e-07"/>
@@ -1279,7 +1411,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="w9v-AG-PZx">
-                                        <rect key="frame" x="0.0" y="447.33333384990692" width="404" height="1.1920928955078125e-07"/>
+                                        <rect key="frame" x="0.0" y="535.33333313465118" width="404" height="1.1920928955078125e-07"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="w9v-AG-PZx" id="fxz-Zh-fXj">
                                             <rect key="frame" x="0.0" y="0.0" width="404" height="1.1920928955078125e-07"/>
@@ -1287,7 +1419,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="4HR-E0-79E">
-                                        <rect key="frame" x="0.0" y="447.33333396911621" width="404" height="1.1920928955078125e-07"/>
+                                        <rect key="frame" x="0.0" y="535.33333325386047" width="404" height="1.1920928955078125e-07"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4HR-E0-79E" id="hWH-Zp-w5e">
                                             <rect key="frame" x="0.0" y="0.0" width="404" height="1.1920928955078125e-07"/>
@@ -1299,7 +1431,7 @@
                             <tableViewSection headerTitle="Range" id="0Tt-iI-n2o">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="WRd-nc-Yz7">
-                                        <rect key="frame" x="0.0" y="503.3333340883255" width="404" height="1.1920928955078125e-07"/>
+                                        <rect key="frame" x="0.0" y="591.33333337306976" width="404" height="1.1920928955078125e-07"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WRd-nc-Yz7" id="aRw-jQ-UJC">
                                             <rect key="frame" x="0.0" y="0.0" width="404" height="1.1920928955078125e-07"/>
@@ -1307,7 +1439,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Mo2-5X-QhB">
-                                        <rect key="frame" x="0.0" y="503.33333420753479" width="404" height="1.1920928955078125e-07"/>
+                                        <rect key="frame" x="0.0" y="591.33333349227905" width="404" height="1.1920928955078125e-07"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mo2-5X-QhB" id="4h1-mP-XW9">
                                             <rect key="frame" x="0.0" y="0.0" width="404" height="1.1920928955078125e-07"/>
@@ -1315,7 +1447,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Rah-NL-2UP">
-                                        <rect key="frame" x="0.0" y="503.33333432674408" width="404" height="1.1920928955078125e-07"/>
+                                        <rect key="frame" x="0.0" y="591.33333361148834" width="404" height="1.1920928955078125e-07"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rah-NL-2UP" id="86M-kV-i53">
                                             <rect key="frame" x="0.0" y="0.0" width="404" height="1.1920928955078125e-07"/>
@@ -1327,9 +1459,17 @@
                         </sections>
                     </tableView>
                     <connections>
+                        <outlet property="casterGrid" destination="Pg5-Gb-k5L" id="ock-34-pgZ"/>
                         <outlet property="concentrationGrid" destination="N7L-zz-vFg" id="jd8-Wn-KRU"/>
+                        <outlet property="firstSortArrow" destination="n0U-Lk-Dt4" id="Dsc-pG-20K"/>
+                        <outlet property="firstSortChoice" destination="eEN-Ho-WP4" id="Rl9-hZ-xXz"/>
+                        <outlet property="maxLevelEntry" destination="J7c-VH-n4d" id="SKP-89-TAz"/>
+                        <outlet property="minLevelEntry" destination="joA-Af-UTu" id="ITu-7M-Mm7"/>
                         <outlet property="ritualGrid" destination="xHd-Pn-WBE" id="CV1-Wu-Y1c"/>
-                        <outlet property="ritualLayout" destination="xCy-nX-NGq" id="4k9-8E-4xa"/>
+                        <outlet property="schoolGrid" destination="mgR-uj-ME1" id="4jc-Lh-hMF"/>
+                        <outlet property="secondSortArrow" destination="dVJ-wT-Uee" id="EdA-Xt-zzQ"/>
+                        <outlet property="secondSortChoice" destination="joA-Af-UTu" id="aij-2l-xbZ"/>
+                        <outlet property="sourcebookGrid" destination="ucY-xJ-tb2" id="CEH-Gm-voN"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bze-se-Gzf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -29,7 +29,7 @@
                             </constraints>
                             <state key="normal" image="star.png"/>
                         </button>
-                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ac4-Id-pu8">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ac4-Id-pu8">
                             <rect key="frame" x="23" y="1" width="31" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
@@ -39,7 +39,7 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstItem="2gE-9A-ohA" firstAttribute="leading" secondItem="p9B-O6-cXa" secondAttribute="leading" id="3Nh-4U-CdU"/>
-                        <constraint firstItem="Ac4-Id-pu8" firstAttribute="top" secondItem="p9B-O6-cXa" secondAttribute="top" id="Jw3-PH-sI3"/>
+                        <constraint firstItem="Ac4-Id-pu8" firstAttribute="centerY" secondItem="2gE-9A-ohA" secondAttribute="centerY" id="Z6u-Ls-oDS"/>
                         <constraint firstItem="2gE-9A-ohA" firstAttribute="top" secondItem="p9B-O6-cXa" secondAttribute="top" id="f04-9y-6DO"/>
                         <constraint firstItem="Ac4-Id-pu8" firstAttribute="leading" secondItem="2gE-9A-ohA" secondAttribute="trailing" id="tAk-yN-ixw"/>
                         <constraint firstAttribute="trailing" secondItem="Ac4-Id-pu8" secondAttribute="trailing" id="wEX-qY-qIe"/>
@@ -51,7 +51,9 @@
                 <constraint firstAttribute="trailing" secondItem="p9B-O6-cXa" secondAttribute="trailing" id="HIk-C2-Dhj"/>
                 <constraint firstItem="p9B-O6-cXa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="MbW-sz-h24"/>
                 <constraint firstItem="p9B-O6-cXa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="RTB-xt-cmM"/>
+                <constraint firstItem="p9B-O6-cXa" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="SHJ-74-goj"/>
                 <constraint firstAttribute="bottom" secondItem="p9B-O6-cXa" secondAttribute="bottom" id="tQs-di-6To"/>
+                <constraint firstItem="p9B-O6-cXa" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="vxf-EL-jnV"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

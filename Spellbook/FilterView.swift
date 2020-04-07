@@ -10,8 +10,8 @@ import UIKit
 
 class FilterView: UIView {
     
-    static let imageHeight = CGFloat(20)
-    static let imageWidth = CGFloat(20)
+    static let imageHeight = CGFloat(30)
+    static let imageWidth = CGFloat(30)
     private static let starEmpty = UIImage(named: "star_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: FilterView.imageWidth, height: FilterView.imageHeight)
     private static let starFilledGray = UIImage(named: "star.png")?.withRenderingMode(.alwaysOriginal).resized(width: FilterView.imageWidth, height: FilterView.imageHeight)
     

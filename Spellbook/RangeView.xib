@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RangeView" customModule="Spellbook" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="MWb-5d-deI" id="aDJ-p3-QzI"/>
+                <outlet property="maxUnitChoice" destination="1tw-UB-EQS" id="lNL-fn-KeH"/>
+                <outlet property="maxValueEntry" destination="MHV-zW-TN5" id="aZh-5V-sCN"/>
+                <outlet property="minUnitChoice" destination="CwB-3p-V4N" id="ID0-Ty-lw8"/>
+                <outlet property="minValueEntry" destination="CwB-3p-V4N" id="GGC-dc-dKN"/>
+                <outlet property="rangeTextLabel" destination="Rns-Ct-KVL" id="CnU-Rx-Qdh"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="248" height="88"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MWb-5d-deI" userLabel="Content View">
+                    <rect key="frame" x="0.0" y="0.0" width="248" height="88"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M7c-3w-Jw4" userLabel="Min Value Entry">
+                            <rect key="frame" x="102" y="47" width="35" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CwB-3p-V4N" userLabel="Min Unit Choice">
+                            <rect key="frame" x="71" y="47" width="97" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rns-Ct-KVL" userLabel="Range Text Label">
+                            <rect key="frame" x="99" y="53" width="42" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MHV-zW-TN5" userLabel="Max Value Entry">
+                            <rect key="frame" x="71" y="47" width="97" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1tw-UB-EQS" userLabel="Max Unit Choice">
+                            <rect key="frame" x="71" y="47" width="97" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="1tw-UB-EQS" firstAttribute="leading" secondItem="MHV-zW-TN5" secondAttribute="trailing" id="5Py-LJ-VDM"/>
+                        <constraint firstItem="CwB-3p-V4N" firstAttribute="leading" secondItem="M7c-3w-Jw4" secondAttribute="trailing" id="AgY-qe-3jb"/>
+                        <constraint firstItem="M7c-3w-Jw4" firstAttribute="centerY" secondItem="MWb-5d-deI" secondAttribute="centerY" id="OhM-BS-Twd"/>
+                        <constraint firstItem="1tw-UB-EQS" firstAttribute="centerY" secondItem="MWb-5d-deI" secondAttribute="centerY" id="aiA-eU-egm"/>
+                        <constraint firstItem="M7c-3w-Jw4" firstAttribute="leading" secondItem="MWb-5d-deI" secondAttribute="leading" id="cZW-8t-me9"/>
+                        <constraint firstItem="Rns-Ct-KVL" firstAttribute="centerY" secondItem="MWb-5d-deI" secondAttribute="centerY" id="f7z-68-y18"/>
+                        <constraint firstItem="CwB-3p-V4N" firstAttribute="centerY" secondItem="MWb-5d-deI" secondAttribute="centerY" id="irH-9U-E3P"/>
+                        <constraint firstItem="MHV-zW-TN5" firstAttribute="centerY" secondItem="MWb-5d-deI" secondAttribute="centerY" id="r1H-r8-Kml"/>
+                        <constraint firstItem="Rns-Ct-KVL" firstAttribute="leading" secondItem="CwB-3p-V4N" secondAttribute="trailing" id="sep-aL-AgH"/>
+                        <constraint firstItem="Rns-Ct-KVL" firstAttribute="leading" secondItem="MHV-zW-TN5" secondAttribute="trailing" id="vBy-si-AEG"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="MWb-5d-deI" secondAttribute="bottom" id="01c-kE-ZjU"/>
+                <constraint firstItem="MWb-5d-deI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="2Tt-FD-tC5"/>
+                <constraint firstItem="MWb-5d-deI" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="Dt7-Kw-Gab"/>
+                <constraint firstItem="MWb-5d-deI" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="EEJ-8Q-gh4"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="MWb-5d-deI" secondAttribute="trailing" id="j6w-7l-iSG"/>
+                <constraint firstItem="MWb-5d-deI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="k5J-Wn-tVK"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="144.92753623188406" y="137.27678571428569"/>
+        </view>
+    </objects>
+</document>

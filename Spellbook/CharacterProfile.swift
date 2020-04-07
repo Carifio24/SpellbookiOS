@@ -176,6 +176,7 @@ class CharacterProfile {
     
     init(sion: SION) {
         
+        //print("Initializing character from:")
         //print(sion.toJSON())
         
         spellStatuses = [:]
@@ -482,6 +483,18 @@ class CharacterProfile {
     func getMaxUnit<E:QuantityType, U:Unit>(quantityType: E.Type, unitType: U.Type) -> U {
         return getRangeValue(quantityType, unitType, { $0.maxUnit })
     }
+    
+    
+    func setRitualFilter(filter f: Bool, value b: Bool) {
+        if f { ritualFilter = b }
+        else { notRitualFilter = b }
+    }
+    func setConcentrationFilter(filter f: Bool, value b: Bool) {
+        if f { concentrationFilter = b }
+        else { notConcentrationFilter = b }
+    }
+    func toggleRitualFilter(_ f: Bool) { setRitualFilter(filter: f, value: !getRitualFilter(f)) }
+    func toggleConcentrationFilter(_ f: Bool) { setConcentrationFilter(filter: f, value: !getConcentrationFilter(f)) }
  
     // Which map to use for a given type
     func getTypeMap<E:NameDisplayable>(_ t : E.Type) -> Visibilities<E>? {

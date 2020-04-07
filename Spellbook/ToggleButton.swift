@@ -69,7 +69,7 @@ class ToggleButton: UIButton {
         updateImage()
     }
     
-    func updateImage() {
+    private func updateImage() {
         let toSet: UIImage = on ? imageT : imageF
         setImage(toSet, for: .normal)
     }
@@ -86,9 +86,7 @@ class ToggleButton: UIButton {
     }
     
     // Get the button's state
-    func state() -> Bool {
-        return on
-    }
+    func state() -> Bool { return on }
     
     func offImageHeight() -> CGFloat { return imageF.size.height }
     func onImageHeight() -> CGFloat { return imageT.size.height }

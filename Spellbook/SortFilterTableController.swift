@@ -23,16 +23,36 @@ class SortFilterTableController: UITableViewController {
         SectionInfo(name: "Sorting Options", collapsed: false)
     ]
     
+    // Text fields
+    @IBOutlet weak var firstSortChoice: UITextField!
+    @IBOutlet weak var secondSortChoice: UITextField!
+    @IBOutlet weak var minLevelEntry: UITextField!
+    @IBOutlet weak var maxLevelEntry: UITextField!
+    
+    // Sort direction arrows
+    @IBOutlet weak var firstSortArrow: ToggleButton!
+    @IBOutlet weak var secondSortArrow: ToggleButton!
+    
+    // Text field delegates
+    let firstSortDelegate = TextFieldChooserDelegate<SortField>(getter: {cp in return cp.getFirstSortField()}, setter: {cp, sf in cp.setFirstSortField(sf)})
+    let secondSortDelegate = TextFieldChooserDelegate<SortField>(getter: {cp in return cp.getSecondSortField()}, setter: {cp, sf in cp.setSecondSortField(sf)})
+    let minLevelDelegate = LevelTextFieldDelegate(setter: {cp, level in cp.setMinSpellLevel(level)})
+    let maxLevelDelegate = LevelTextFieldDelegate(setter: {cp, level in cp.setMaxSpellLevel(level)})
+    
     // Filtering grids
     @IBOutlet weak var ritualGrid: UICollectionView!
     @IBOutlet weak var concentrationGrid: UICollectionView!
-    
-    // Layout objects
-    @IBOutlet weak var ritualLayout: UICollectionViewFlowLayout!
-    
+    @IBOutlet weak var sourcebookGrid: UICollectionView!
+    @IBOutlet weak var casterGrid: UICollectionView!
+    @IBOutlet weak var schoolGrid: UICollectionView!
     
     // Grid delegates
-    let yesNoDataSource = FilterGridDataSource<YesNo>(reuseIdentifier: SortFilterTableController.reuseIdentifier, columns: 2)
+    let ritualDelegate = RitualConcentrationFilterDelegate(filterType: BooleanFilterType.Ritual)
+    let concentrationDelegate = RitualConcentrationFilterDelegate(filterType: BooleanFilterType.Concentration)
+    let sourcebookDelegate = FilterGridDelegate<Sourcebook>()
+    let casterDelegate = FilterGridDelegate<CasterClass>()
+    let schoolDelegate = FilterGridDelegate<School>()
+    var gridsAndDelegates: [(UICollectionView, UICollectionViewDataSourceDelegate)] = []
     
     
     override func viewDidLoad() {
@@ -43,16 +63,44 @@ class SortFilterTableController: UITableViewController {
         //ritualGrid.register(nib, forCellWithReuseIdentifier: SortFilterTableController.reuseIdentifier)
         //concentrationGrid.register(nib, forCellWithReuseIdentifier: SortFilterTableController.reuseIdentifier)
         
-        // Set the delegates
-        ritualGrid.delegate = yesNoDataSource
-        concentrationGrid.delegate = yesNoDataSource
-        ritualGrid.dataSource = yesNoDataSource
-        concentrationGrid.dataSource = yesNoDataSource
-        ritualGrid.reloadData()
-        concentrationGrid.reloadData()
-        print(ritualGrid.numberOfSections)
-        print(concentrationGrid.numberOfSections)
-        print(ritualGrid.numberOfItems(inSection: 0))
+        // Set the text field delegates
+        firstSortChoice.delegate = firstSortDelegate
+        secondSortChoice.delegate = secondSortDelegate
+        minLevelEntry.delegate = minLevelDelegate
+        maxLevelEntry.delegate = maxLevelDelegate
+        
+        
+        // Set the sort arrow images and callbacks
+//        let arrows: ToggleButton = [ firstSortArrow, secondSortArrow ]
+//        for arrow in arrows {
+//            arrow.setTrueImage(image: Images.upArrow!)
+//            arrow.setFalseImage(image: Images.downArrow!)
+//        }
+        
+        
+        // Set the grid delegates and layouts
+        gridsAndDelegates = [
+            (ritualGrid, ritualDelegate),
+            (concentrationGrid, concentrationDelegate),
+            (sourcebookGrid, sourcebookDelegate),
+            (casterGrid, casterDelegate),
+            (schoolGrid, schoolDelegate)
+        ]
+        for (grid, delegate) in gridsAndDelegates {
+            grid.dataSource = delegate
+            grid.delegate = delegate
+        }
+        for (grid, _) in gridsAndDelegates {
+            let layout = (grid.collectionViewLayout as! UICollectionViewFlowLayout)
+            layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
+    
+//        ritualGrid.reloadData()
+//        concentrationGrid.reloadData()
+//        sourcebookGrid.reloadData()
+        print(sourcebookGrid.numberOfSections)
+        print(sourcebookGrid.numberOfSections)
+        print(sourcebookGrid.numberOfItems(inSection: 0))
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -80,6 +128,21 @@ class SortFilterTableController: UITableViewController {
         //header.textLabel?.numberOfLines = 0 // Commented out just for now
         header.backgroundColor = UIColor.clear
         header.backgroundView?.backgroundColor = UIColor.clear
+    }
+    
+    func onCharacterProfileUpdate(profile cp: CharacterProfile) {
+        
+        // Update the sort names
+        firstSortChoice.text = cp.getFirstSortField().displayName
+        secondSortChoice.text = cp.getSecondSortField().displayName
+        
+        // Update the spell levels
+        
+        
+        // Reload the data for the grids
+        for (grid, _) in gridsAndDelegates {
+            grid.reloadData()
+        }
     }
 
     
