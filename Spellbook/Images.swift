@@ -14,4 +14,9 @@ class Images {
     static let upArrow = UIImage(named: "up_arrow.png")?.withRenderingMode(.alwaysOriginal)
     static let downArrow = UIImage(named: "down_arrow.png")?.withRenderingMode(.alwaysOriginal)
     
+    // Up and down arrows, scaled
+    static let scaledArrowHeight = 30
+    static let upArrowScaled = upArrow?.resized(width: Images.scaledArrowHeight, height: Images.scaledArrowHeight)
+    static let downArrowScaled = downArrow?.resized(width: Images.scaledArrowHeight, height: Images.scaledArrowHeight)
+    
 }

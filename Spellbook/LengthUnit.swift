@@ -19,19 +19,5 @@ enum LengthUnit : Int, Unit {
         mile: ["mile", "miles", "mi", "mi."]
     ]
     
-    func value() -> Int { return self.rawValue }
-    
-    // Create a LengthUnit instance from a String
-    static func fromString(_ s: String) throws -> LengthUnit {
-        let t = s.lowercased()
-        for (unit, arr) in names {
-            for name in arr {
-                if (t == name) {
-                    return unit
-                }
-            }
-        }
-        print(s)
-        throw SpellbookError.UnitStringError
-    }
+    var value: Int { return self.rawValue }
 }

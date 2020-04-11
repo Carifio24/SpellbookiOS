@@ -48,7 +48,7 @@ func singleComparator(propertyTC: @escaping IntComparatorFunc<Spell>, reverse: B
 
 // Create the single-comparator function by SortField
 func spellComparator(sortField: SortField, reverse: Bool) -> ComparatorFunc<Spell> {
-    return singleComparator(propertyTC: sortField.comparator(), reverse: reverse)
+    return singleComparator(propertyTC: sortField.comparator, reverse: reverse)
 }
 
 // Create the single-comparator function by index
@@ -83,7 +83,7 @@ func doubleComparator(propertyTC1: @escaping IntComparatorFunc<Spell>, propertyT
 
 // Create the double-comparator function by SortField
 func spellComparator(sortField1: SortField, sortField2: SortField, reverse1: Bool, reverse2: Bool) -> ComparatorFunc<Spell> {
-    return doubleComparator(propertyTC1: sortField1.comparator(), propertyTC2: sortField2.comparator(), reverse1: reverse1, reverse2: reverse2)
+    return doubleComparator(propertyTC1: sortField1.comparator, propertyTC2: sortField2.comparator, reverse1: reverse1, reverse2: reverse2)
 }
 
 

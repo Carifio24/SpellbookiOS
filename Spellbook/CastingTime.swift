@@ -61,7 +61,7 @@ class CastingTime : Quantity<CastingTimeType, TimeUnit> {
         if (!str.isEmpty) { return str }
         
         if (type == CastingTimeType.Time) {
-            let unitStr = (value == 1) ? unit.singularName() : unit.pluralName()
+            let unitStr = (value == 1) ? unit.singularName : unit.pluralName
             return String(describing: value) + " " + unitStr
         } else {
             var typeStr = " " + type.parseName

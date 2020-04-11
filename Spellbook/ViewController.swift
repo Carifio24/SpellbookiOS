@@ -290,16 +290,12 @@ class ViewController: UIViewController {
         }
     }
     
-    // This method sets the sort settings
-    func setSortSettings() {
-        let sf1 = characterProfile.getFirstSortField()
-        let sf2 = characterProfile.getSecondSortField()
-        let rev1 = characterProfile.getFirstSortReverse()
-        let rev2 = characterProfile.getSecondSortReverse()
+    func setFilterStatus() {
+        sideMenuController!.setFilterStatus(profile: characterProfile)
     }
     
-    func setFilterSettings() {
-        sideMenuController!.setFilterStatus(profile: characterProfile)
+    func setSortFilterSettings() {
+        sortFilterController?.onCharacterProfileUpdate()
     }
     
     func setCharacterProfile(cp: CharacterProfile, initialLoad: Bool) {
@@ -307,12 +303,12 @@ class ViewController: UIViewController {
         characterProfile = cp
         settings.setCharacterName(name: cp.name())
         setSideMenuCharacterName()
+        setSortFilterSettings()
         saveSettings()
         saveCharacterProfile()
         
-        // Set the sort and filter settings
-        setSortSettings()
-        setFilterSettings()
+        // Set side menu filter status
+        setFilterStatus()
         
         // Filter and sort
         if !initialLoad {

@@ -50,7 +50,7 @@ class Duration : Quantity<DurationType, TimeUnit> {
         case DurationType.UntilDispelled:
             return "Until dispelled"
         case DurationType.Spanning:
-            let secs: String = (value == 1) ? unit.singularName() : unit.pluralName()
+            let secs: String = (value == 1) ? unit.singularName : unit.pluralName
             return secs + " s"
         }
         return "" // We'll never get here, as the above cases exhaust the enum

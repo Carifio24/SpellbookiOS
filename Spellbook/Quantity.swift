@@ -10,6 +10,10 @@ import Foundation
 
 class Quantity<ValueType: QuantityType, UnitType: Unit> where ValueType:Comparable {
     
+    // Get the associated types
+    let quantityType = ValueType.self
+    let unitType = UnitType.self
+    
     let type: ValueType
     let value: Int
     let unit: UnitType
@@ -41,7 +45,7 @@ class Quantity<ValueType: QuantityType, UnitType: Unit> where ValueType:Comparab
     
     // Methods
     func baseValue() -> Int {
-        return value * unit.value()
+        return value * unit.value
     }
     
     func isTypeSpanning() -> Bool {

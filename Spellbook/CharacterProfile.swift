@@ -176,8 +176,8 @@ class CharacterProfile {
     
     init(sion: SION) {
         
-        //print("Initializing character from:")
-        //print(sion.toJSON())
+        print("Initializing character from:")
+        print(sion.toJSON())
         
         spellStatuses = [:]
         charName = sion[CharacterProfile.charNameKey].string!
@@ -307,8 +307,8 @@ class CharacterProfile {
     // For converting a RangeInfo<T> to a SION array
     private func rangeInfoToSION<U:Unit>(_ rangeInfo: RangeInfo<U>) -> SION {
         var rangeSION: SION = [:]
-        rangeSION[CharacterProfile.rangeFilterKeys[0]] = SION(rangeInfo.minUnit.pluralName())
-        rangeSION[CharacterProfile.rangeFilterKeys[1]] = SION(rangeInfo.maxUnit.pluralName())
+        rangeSION[CharacterProfile.rangeFilterKeys[0]] = SION(rangeInfo.minUnit.pluralName)
+        rangeSION[CharacterProfile.rangeFilterKeys[1]] = SION(rangeInfo.maxUnit.pluralName)
         rangeSION[CharacterProfile.rangeFilterKeys[2]] = SION(rangeInfo.minValue)
         rangeSION[CharacterProfile.rangeFilterKeys[3]] = SION(rangeInfo.maxValue)
         return rangeSION
@@ -652,8 +652,8 @@ class CharacterProfile {
         }
         
         // If we do have the key, parse the dictionary
-        let minUnitString = rangeInfoSION![SION(CharacterProfile.rangeFilterKeys[0])]!.string ?? defaultRange.minUnit.pluralName()
-        let maxUnitString = rangeInfoSION![SION(CharacterProfile.rangeFilterKeys[1])]!.string ?? defaultRange.maxUnit.pluralName()
+        let minUnitString = rangeInfoSION![SION(CharacterProfile.rangeFilterKeys[0])]!.string ?? defaultRange.minUnit.pluralName
+        let maxUnitString = rangeInfoSION![SION(CharacterProfile.rangeFilterKeys[1])]!.string ?? defaultRange.maxUnit.pluralName
         let minUnit = (try? U.fromString(minUnitString)) ?? defaultRange.minUnit
         let maxUnit = (try? U.fromString(maxUnitString)) ?? defaultRange.maxUnit
         let minValue = rangeInfoSION![SION(CharacterProfile.rangeFilterKeys[2])]!.int ?? defaultRange.minValue

@@ -9,20 +9,28 @@
 import UIKit
 import ActionSheetPicker_3_0
 
-class TextFieldChooserDelegate<T:NameConstructible>: NSObject, UITextFieldDelegate {
+class TextFieldChooserDelegate<T:CaseIterable & Equatable>: NSObject, UITextFieldDelegate {
     
     typealias ProfileSetter = (CharacterProfile, T) -> Void
     typealias ProfileGetter = (CharacterProfile) -> T
+    typealias NameGetter = (T) -> String
+    typealias NameConstructor = (String) -> T
     
-    let pickerData = T.allCases.map({ $0.displayName })
     let title = String(describing: T.self)
     let main = Controllers.mainController
-    let setter: ProfileSetter
-    let getter: ProfileGetter
     
-    init(getter: @escaping ProfileGetter, setter: @escaping ProfileSetter) {
-        self.setter = setter
-        self.getter = getter
+    let pickerData: [String]
+    let profileSetter: ProfileSetter
+    let profileGetter: ProfileGetter
+    let nameGetter: NameGetter
+    let nameConstructor: NameConstructor
+    
+    init(profileGetter: @escaping ProfileGetter, profileSetter: @escaping ProfileSetter, nameGetter: @escaping NameGetter, nameConstructor: @escaping NameConstructor) {
+        self.profileSetter = profileSetter
+        self.profileGetter = profileGetter
+        self.nameGetter = nameGetter
+        self.nameConstructor = nameConstructor
+        pickerData = T.allCases.map({ nameGetter($0) })
     }
     
 
@@ -34,7 +42,7 @@ class TextFieldChooserDelegate<T:NameConstructible>: NSObject, UITextFieldDelega
     func openPickerWindow(sender: UITextField) {
         
         // Get the index of the selected option
-        let selectedItem = getter(self.main.characterProfile)
+        let selectedItem = profileGetter(self.main.characterProfile)
         let selectedIndex = T.allCases.firstIndex(of: selectedItem) as! Int
         
         // Create the action sheet picker
@@ -44,10 +52,11 @@ class TextFieldChooserDelegate<T:NameConstructible>: NSObject, UITextFieldDelega
                  doneBlock: {
                      picker, index, value in
                      let valueStr = value as! String
-                     let item = T.fromName(valueStr)
-                     self.setter(self.main.characterProfile, item)
+                     let item = self.nameConstructor(valueStr)
+                     self.profileSetter(self.main.characterProfile, item)
                      self.main.saveCharacterProfile()
-                     sender.text = item.displayName
+                     self.main.sort()
+                     sender.text = self.nameGetter(item)
                      sender.endEditing(true)
                      return
                      },
@@ -57,6 +66,32 @@ class TextFieldChooserDelegate<T:NameConstructible>: NSObject, UITextFieldDelega
         
     }
     
+}
+
+// Specific cases for types that implement NameConstructible and Unit protocols
+// These didn't seem worth their own files, since all that needs to be overwritten is the constructor
+// because the name getter and constructor come directly from the protocol
+
+
+class NameConstructibleChooserDelegate<T:NameConstructible>: TextFieldChooserDelegate<T> {
     
-    
+    init(getter: @escaping ProfileGetter, setter: @escaping ProfileSetter) {
+        super.init(profileGetter: getter, profileSetter: setter,
+                   nameGetter: { $0.displayName },
+                   nameConstructor: { return T.fromName($0) })
+    }
+}
+
+class UnitChooserDelegate<U:Unit> : TextFieldChooserDelegate<U> {
+    init(getter: @escaping ProfileGetter, setter: @escaping ProfileSetter) {
+        super.init(profileGetter: getter, profileSetter: setter,
+               nameGetter: { $0.pluralName },
+               nameConstructor: {
+                do {
+                    return try U.fromString($0)
+                } catch {
+                    return U.defaultUnit
+                }
+            })
+    }
 }

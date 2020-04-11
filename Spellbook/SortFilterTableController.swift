@@ -34,8 +34,8 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var secondSortArrow: ToggleButton!
     
     // Text field delegates
-    let firstSortDelegate = TextFieldChooserDelegate<SortField>(getter: {cp in return cp.getFirstSortField()}, setter: {cp, sf in cp.setFirstSortField(sf)})
-    let secondSortDelegate = TextFieldChooserDelegate<SortField>(getter: {cp in return cp.getSecondSortField()}, setter: {cp, sf in cp.setSecondSortField(sf)})
+    let firstSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getFirstSortField() }, setter: { cp, sf in cp.setFirstSortField(sf) })
+    let secondSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getSecondSortField() }, setter: { cp, sf in cp.setSecondSortField(sf) })
     let minLevelDelegate = LevelTextFieldDelegate(setter: {cp, level in cp.setMinSpellLevel(level)})
     let maxLevelDelegate = LevelTextFieldDelegate(setter: {cp, level in cp.setMaxSpellLevel(level)})
     
@@ -45,6 +45,15 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var sourcebookGrid: UICollectionView!
     @IBOutlet weak var casterGrid: UICollectionView!
     @IBOutlet weak var schoolGrid: UICollectionView!
+    @IBOutlet weak var castingTimeGrid: UICollectionView!
+    @IBOutlet weak var durationGrid: UICollectionView!
+    @IBOutlet weak var rangeGrid: UICollectionView!
+    
+    // Range views
+    @IBOutlet weak var castingTimeRange: RangeView!
+    @IBOutlet weak var durationRange: RangeView!
+    @IBOutlet weak var rangeRange: RangeView!
+    
     
     // Grid delegates
     let ritualDelegate = RitualConcentrationFilterDelegate(filterType: BooleanFilterType.Ritual)
@@ -52,6 +61,9 @@ class SortFilterTableController: UITableViewController {
     let sourcebookDelegate = FilterGridDelegate<Sourcebook>()
     let casterDelegate = FilterGridDelegate<CasterClass>()
     let schoolDelegate = FilterGridDelegate<School>()
+    let castingTimeDelegate = FilterGridDelegate<CastingTimeType>()
+    let durationDelegate = FilterGridDelegate<DurationType>()
+    let rangeDelegate = FilterGridDelegate<RangeType>()
     var gridsAndDelegates: [(UICollectionView, UICollectionViewDataSourceDelegate)] = []
     
     
@@ -84,23 +96,42 @@ class SortFilterTableController: UITableViewController {
             (concentrationGrid, concentrationDelegate),
             (sourcebookGrid, sourcebookDelegate),
             (casterGrid, casterDelegate),
-            (schoolGrid, schoolDelegate)
+            (schoolGrid, schoolDelegate),
+            (castingTimeGrid, castingTimeDelegate),
+            (durationGrid, durationDelegate),
+            (rangeGrid, rangeDelegate)
         ]
         for (grid, delegate) in gridsAndDelegates {
             grid.dataSource = delegate
             grid.delegate = delegate
+            grid.backgroundColor = UIColor.systemGreen
         }
-        for (grid, _) in gridsAndDelegates {
-            let layout = (grid.collectionViewLayout as! UICollectionViewFlowLayout)
-            layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        }
-    
-//        ritualGrid.reloadData()
-//        concentrationGrid.reloadData()
-//        sourcebookGrid.reloadData()
-        print(sourcebookGrid.numberOfSections)
-        print(sourcebookGrid.numberOfSections)
-        print(sourcebookGrid.numberOfItems(inSection: 0))
+//        for (grid, _) in gridsAndDelegates {
+//            let layout = (grid.collectionViewLayout as! UICollectionViewFlowLayout)
+//            layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+//        }
+        
+        // Just a test
+        print("The column width for the sourcebook delegate is \(sourcebookDelegate.columnWidth)")
+        
+        // Set the range layout types
+        castingTimeRange.setType(CastingTime.self)
+        durationRange.setType(Duration.self)
+        rangeRange.setType(Range.self)
+        
+        // Set the range positions
+        // This is needed after the grid view is populated
+        let rangeConstraints = [
+            castingTimeRange.topAnchor.constraint(equalTo: castingTimeGrid.bottomAnchor),
+            durationRange.topAnchor.constraint(equalTo: durationGrid.bottomAnchor),
+            rangeRange.topAnchor.constraint(equalTo: rangeGrid.bottomAnchor)
+        ]
+        NSLayoutConstraint.activate(rangeConstraints)
+        
+        // Update the layout
+        //self.view.setNeedsUpdateConstraints()
+        //self.view.setNeedsLayout()
+
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -108,7 +139,6 @@ class SortFilterTableController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-    
 
     // MARK: - Table view data source
 
@@ -130,19 +160,20 @@ class SortFilterTableController: UITableViewController {
         header.backgroundView?.backgroundColor = UIColor.clear
     }
     
-    func onCharacterProfileUpdate(profile cp: CharacterProfile) {
+    func onCharacterProfileUpdate() {
+        
+        let cp = Controllers.mainController.characterProfile
         
         // Update the sort names
         firstSortChoice.text = cp.getFirstSortField().displayName
         secondSortChoice.text = cp.getSecondSortField().displayName
         
         // Update the spell levels
-        
+        minLevelEntry.text = String(cp.getMinSpellLevel())
+        maxLevelEntry.text = String(cp.getMaxSpellLevel())
         
         // Reload the data for the grids
-        for (grid, _) in gridsAndDelegates {
-            grid.reloadData()
-        }
+        for (grid, _) in gridsAndDelegates { grid.reloadData() }
     }
 
     

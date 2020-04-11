@@ -37,9 +37,7 @@ class LevelTextFieldDelegate: NSObject, UITextFieldDelegate {
     }
     
     private func textViewDidBeginEditing(_ textView: UITextView) {
-        DispatchQueue.main.async {
-            textView.selectAll(nil)
-        }
+        textView.selectAll(nil)
     }
     
 }

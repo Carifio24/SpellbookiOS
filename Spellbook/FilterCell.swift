@@ -12,20 +12,25 @@ class FilterCell: UICollectionViewCell {
 
     @IBOutlet weak var filterView: FilterView!
     
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        setNeedsLayout()
-        layoutIfNeeded()
-        //print("Calling preferred layout attributes")
-        let size = contentView.systemLayoutSizeFitting(layoutAttributes.size)
-        var frame = layoutAttributes.frame
-        frame.size.height = ceil(size.height)
-        frame.size.width = filterView.filterButton.frame.size.width + filterView.nameLabel.frame.size.width
-        layoutAttributes.frame = frame
-        //print(filterView.nameLabel.frame.size.width)
-        //print("Item name is \(filterView.nameLabel.text!)")
-        //print(layoutAttributes.frame.size)
-        return layoutAttributes
-    }
+//    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+//        filterView.frame = self.bounds
+//        return layoutAttributes
+//    }
+    
+//    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+//        setNeedsLayout()
+//        layoutIfNeeded()
+//        //print("Calling preferred layout attributes")
+//        let size = contentView.systemLayoutSizeFitting(layoutAttributes.size)
+//        var frame = layoutAttributes.frame
+//        frame.size.height = ceil(size.height)
+//        frame.size.width = filterView.filterButton.frame.size.width + filterView.nameLabel.frame.size.width
+//        layoutAttributes.frame = frame
+//        //print(filterView.nameLabel.frame.size.width)
+//        //print("Item name is \(filterView.nameLabel.text!)")
+//        //print(layoutAttributes.frame.size)
+//        return layoutAttributes
+//    }
     
     
     

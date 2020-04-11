@@ -8,14 +8,14 @@
 
 import Foundation
 
-protocol Unit: Hashable {
+protocol Unit: Hashable & CaseIterable {
     
     static var names: [Self:Array<String>] { get }
     
-    func singularName() -> String
-    func pluralName() -> String
-    func abbreviation() -> String
-    func value() -> Int
+    var singularName: String { get }
+    var pluralName: String { get }
+    var abbreviation: String { get }
+    var value: Int { get }
     
     static func fromString(_ s: String) throws -> Self
     static var defaultUnit: Self { get }
@@ -23,16 +23,30 @@ protocol Unit: Hashable {
 
 extension Unit {
     
-    func singularName() -> String {
+    var singularName: String {
         return Self.names[self]![0]
     }
     
-    func pluralName() -> String {
+    var pluralName: String {
         return Self.names[self]![1]
     }
     
-    func abbreviation() -> String {
+    var abbreviation: String {
         return Self.names[self]![2]
+    }
+    
+    // Create a Unit instance from a String
+    static func fromString(_ s: String) throws -> Self {
+        let t = s.lowercased()
+        for (unit, arr) in names {
+            for name in arr {
+                if (t == name) {
+                    return unit
+                }
+            }
+        }
+        print(s)
+        throw SpellbookError.UnitStringError
     }
     
 }

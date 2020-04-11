@@ -23,22 +23,8 @@ enum TimeUnit : Int, Unit {
         year: ["year", "years", "yr", "yr."]
     ]
     
-    func value() -> Int { return self.rawValue }
+    var value: Int { return self.rawValue }
     
-    func inSeconds() -> Int { return value() }
-    
-    // Create a TimeUnit instance from a String
-    static func fromString(_ s: String) throws -> TimeUnit {
-        let t = s.lowercased()
-        for (unit, arr) in names {
-            for name in arr {
-                if (t == name) {
-                    return unit
-                }
-            }
-        }
-        print(s)
-        throw SpellbookError.UnitStringError
-    }
+    func inSeconds() -> Int { return value }
     
 }

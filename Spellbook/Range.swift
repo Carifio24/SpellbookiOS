@@ -56,7 +56,7 @@ class Range : Quantity<RangeType, LengthUnit> {
                 return type.displayName + "(" + String(value) + " foot radius)"
             }
         case RangeType.Ranged:
-            let ft: String = (value == 1) ? unit.singularName() : unit.pluralName()
+            let ft: String = (value == 1) ? unit.singularName : unit.pluralName
             return String(value) + " " + ft
             
         }
