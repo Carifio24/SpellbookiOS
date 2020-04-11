@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FilterGridDelegate<T:NameConstructible>: NSObject, UICollectionViewDataSourceDelegate, UICollectionViewDelegateFlowLayout {
+class FilterGridDelegate<T:NameConstructible>: NSObject, UICollectionViewDataSourceDelegate, UICollectionViewDelegateFlowLayout, DesiredHeightDelegate {
     
     
     let items = T.allCases.map({ $0 })
@@ -17,14 +17,14 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, UICollectionViewDataSou
     let columns: Int
     let rows: Int
     private let gridWidth: CGFloat
-    let columnWidth: CGFloat
+    private let columnWidth: CGFloat
+    private let rowHeight: CGFloat = FilterView.imageHeight
+    private let main = Controllers.mainController
     //private let sectionInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     private let sectionInsets = UIEdgeInsets(top: 5,
                                      left: 5,
                                      bottom: 5,
                                      right: 5)
-    
-    private let main = Controllers.mainController
     
     init(gridWidth: CGFloat) {
         
@@ -49,17 +49,9 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, UICollectionViewDataSou
         columns = Int(floor( (gridWidth - horizontalSpacing) / (maxWidth + horizontalSpacing) ))
         rows = Int(ceil(Double(items.count) / Double(columns)))
         
-        print("The total width is \(gridWidth)")
-        print("maxWidth is \(maxWidth)")
-        print("horizontalSpacing is \(horizontalSpacing)")
-        print("Hence, there are \(columns) columns")
-        
         // Determine the width of each column
         let usableWidth = gridWidth - CGFloat(columns + 1) * horizontalSpacing
         columnWidth = usableWidth / CGFloat(columns)
-        
-        print("and columnWidth is \(columnWidth)")
-        print("========")
     }
     
     override convenience init() {
@@ -100,9 +92,6 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView,
             layout collectionViewLayout: UICollectionViewLayout,
             sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        print("Width is \(columnWidth)")
-        print("Height is \(FilterView.imageHeight)")
         return CGSize(width: columnWidth, height: FilterView.imageHeight)
         
     }
@@ -125,6 +114,13 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, UICollectionViewDataSou
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return sectionInsets.top
+    }
+    
+    func desiredHeight() -> CGFloat {
+        print("There are \(rows) rows, each with height \(rowHeight)")
+        let height = CGFloat(rows + 1) * sectionInsets.top + CGFloat(rows) * rowHeight
+        print("The desired height is \(height)")
+        return height
     }
     
 

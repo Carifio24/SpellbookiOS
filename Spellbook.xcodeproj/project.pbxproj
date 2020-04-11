@@ -102,6 +102,7 @@
 		8E61494B24199ED800842A18 /* dungeon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E61494924199CBC00842A18 /* dungeon.ttf */; };
 		8E92CC65243BCE2100EB78B2 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC64243BCE2100EB78B2 /* Images.swift */; };
 		8E92CC67243BD49900EB78B2 /* LevelTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC66243BD49900EB78B2 /* LevelTextFieldDelegate.swift */; };
+		8E92CC6B244173D800EB78B2 /* DesiredHeightDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC6A244173D800EB78B2 /* DesiredHeightDelegate.swift */; };
 		8EBF1792243A4B15004C17FA /* TextFieldChooserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */; };
 		8ED0B932242BE9E800A085F4 /* down_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED0B931242BE9E800A085F4 /* down_arrow.png */; };
 		8ED0B936242E514F00A085F4 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED0B935242E514F00A085F4 /* FilterView.swift */; };
@@ -237,6 +238,7 @@
 		8E61494924199CBC00842A18 /* dungeon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dungeon.ttf; sourceTree = SOURCE_ROOT; };
 		8E92CC64243BCE2100EB78B2 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		8E92CC66243BD49900EB78B2 /* LevelTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTextFieldDelegate.swift; sourceTree = "<group>"; };
+		8E92CC6A244173D800EB78B2 /* DesiredHeightDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesiredHeightDelegate.swift; sourceTree = "<group>"; };
 		8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldChooserDelegate.swift; sourceTree = "<group>"; };
 		8ED0B931242BE9E800A085F4 /* down_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_arrow.png; sourceTree = SOURCE_ROOT; };
 		8ED0B935242E514F00A085F4 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				8E6148CA241991C000842A18 /* AppDelegate.swift */,
 				8E6148DF241991C100842A18 /* Assets.xcassets */,
 				8E177F9A2432F34B005146B6 /* SortFilterTableController.swift */,
+				8E92CC6A244173D800EB78B2 /* DesiredHeightDelegate.swift */,
 				8E92CC66243BD49900EB78B2 /* LevelTextFieldDelegate.swift */,
 				8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */,
 				8E02F7712437F39200A3050C /* CombinationProtocols.swift */,
@@ -795,6 +798,7 @@
 				8E6148E7241991C200842A18 /* InfoMenuCell.swift in Sources */,
 				8E61490C241991C200842A18 /* EnumUtilities.swift in Sources */,
 				8E614919241991C200842A18 /* FromRightDismissAnimator.swift in Sources */,
+				8E92CC6B244173D800EB78B2 /* DesiredHeightDelegate.swift in Sources */,
 				8E61490E241991C200842A18 /* Extensions.swift in Sources */,
 				8E02F76A2436B5E200A3050C /* FilterCell.swift in Sources */,
 				8E61491B241991C200842A18 /* SpellbookError.swift in Sources */,

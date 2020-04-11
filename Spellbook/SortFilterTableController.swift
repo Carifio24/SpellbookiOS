@@ -56,19 +56,23 @@ class SortFilterTableController: UITableViewController {
     
     
     // Grid delegates
-    let ritualDelegate = RitualConcentrationFilterDelegate(filterType: BooleanFilterType.Ritual)
-    let concentrationDelegate = RitualConcentrationFilterDelegate(filterType: BooleanFilterType.Concentration)
-    let sourcebookDelegate = FilterGridDelegate<Sourcebook>()
-    let casterDelegate = FilterGridDelegate<CasterClass>()
-    let schoolDelegate = FilterGridDelegate<School>()
-    let castingTimeDelegate = FilterGridDelegate<CastingTimeType>()
-    let durationDelegate = FilterGridDelegate<DurationType>()
-    let rangeDelegate = FilterGridDelegate<RangeType>()
-    var gridsAndDelegates: [(UICollectionView, UICollectionViewDataSourceDelegate)] = []
+    private let ritualDelegate = RitualConcentrationFilterDelegate(filterType: BooleanFilterType.Ritual)
+    private let concentrationDelegate = RitualConcentrationFilterDelegate(filterType: BooleanFilterType.Concentration)
+    private let sourcebookDelegate = FilterGridDelegate<Sourcebook>()
+    private let casterDelegate = FilterGridDelegate<CasterClass>()
+    private let schoolDelegate = FilterGridDelegate<School>()
+    private let castingTimeDelegate = FilterGridDelegate<CastingTimeType>()
+    private let durationDelegate = FilterGridDelegate<DurationType>()
+    private let rangeDelegate = FilterGridDelegate<RangeType>()
+    private var gridsAndDelegates: [(UICollectionView, UICollectionViewDataSourceDelegate)] = []
+    private var rowHeights: [Int:CGFloat] = [:]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.estimatedRowHeight = SpellTableViewController.estimatedHeight
+        tableView.rowHeight = UITableView.automaticDimension
         
         // Register the cell files
         //let nib = UINib(nibName: "FilterView", bundle: nil)
@@ -106,13 +110,26 @@ class SortFilterTableController: UITableViewController {
             grid.delegate = delegate
             grid.backgroundColor = UIColor.systemGreen
         }
+        
+        // Set the grids to the correct heights
+        let gridsAndHeights: [(UICollectionView, CGFloat)] = [
+            (sourcebookGrid, sourcebookDelegate.desiredHeight()),
+            (casterGrid, casterDelegate.desiredHeight()),
+            (schoolGrid, schoolDelegate.desiredHeight()),
+            (castingTimeGrid, castingTimeDelegate.desiredHeight()),
+            (durationGrid, durationDelegate.desiredHeight()),
+            (rangeGrid, rangeDelegate.desiredHeight())
+        ]
+        var constraints: [NSLayoutConstraint] = []
+        for (grid, height) in gridsAndHeights {
+            constraints.append(NSLayoutConstraint(item: grid, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: height))
+        }
+        NSLayoutConstraint.activate(constraints)
+        
 //        for (grid, _) in gridsAndDelegates {
 //            let layout = (grid.collectionViewLayout as! UICollectionViewFlowLayout)
 //            layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
 //        }
-        
-        // Just a test
-        print("The column width for the sourcebook delegate is \(sourcebookDelegate.columnWidth)")
         
         // Set the range layout types
         castingTimeRange.setType(CastingTime.self)
@@ -127,6 +144,8 @@ class SortFilterTableController: UITableViewController {
             rangeRange.topAnchor.constraint(equalTo: rangeGrid.bottomAnchor)
         ]
         NSLayoutConstraint.activate(rangeConstraints)
+        
+        tableView.reloadData()
         
         // Update the layout
         //self.view.setNeedsUpdateConstraints()
@@ -159,6 +178,15 @@ class SortFilterTableController: UITableViewController {
         header.backgroundColor = UIColor.clear
         header.backgroundView?.backgroundColor = UIColor.clear
     }
+    
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        let height = rowHeights[indexPath.row]
+//        if height != nil {
+//            print("Height for row \(indexPath.row) is \(height)")
+//            return height!
+//        }
+//        return UITableView.automaticDimension
+//    }
     
     func onCharacterProfileUpdate() {
         
