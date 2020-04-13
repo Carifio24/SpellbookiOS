@@ -15,6 +15,7 @@ class ToggleButton: UIButton {
     private var imageF: UIImage
     private var on: Bool
     private var callback: () -> Void
+    private var longPressCallback: () -> Void = { return }
     
     // Constructors
     init(_ imageF: UIImage, _ imageT: UIImage, _ on: Bool = false, _ callback: @escaping () -> Void = { () in () }) {
@@ -61,6 +62,10 @@ class ToggleButton: UIButton {
         
         // Set what happens when the button is pressed
         self.addTarget(self, action: #selector(onClicked(sender:)), for: .touchUpInside)
+        
+        // Set what happens when the button is long pressed
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onLongPressed(_:)))
+        self.addGestureRecognizer(longPressRecognizer)
     }
     
     // Set the button to the desired state
@@ -85,6 +90,11 @@ class ToggleButton: UIButton {
         callback = cb
     }
     
+    // Set the long press callback for the button
+    func setLongPressCallback(_ cb: @escaping () -> Void) {
+        longPressCallback = cb
+    }
+    
     // Get the button's state
     func state() -> Bool { return on }
     
@@ -99,6 +109,13 @@ class ToggleButton: UIButton {
     func setFalseImage(image: UIImage) {
         imageF = image
         if (!on) { updateImage() }
+    }
+    
+    // What to do when long pressed
+    @objc func onLongPressed(_ gesture: UILongPressGestureRecognizer) {
+        if gesture.state == UIGestureRecognizer.State.began {
+            longPressCallback()
+        }
     }
     
 //    // Set the image height and width

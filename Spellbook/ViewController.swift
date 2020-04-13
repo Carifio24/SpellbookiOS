@@ -280,10 +280,10 @@ class ViewController: UIViewController {
     }
     
     func setSideMenuCharacterName() {
-        //print("Setting side menu name with \(characterProfile.name())")
+        //print("Setting side menu name with \(characterProfile.getName())")
         if (sideMenuController!.characterLabel != nil) {
             //print("Here")
-            sideMenuController!.characterLabel.text = "Character: " + characterProfile.name()
+            sideMenuController!.characterLabel.text = "Character: " + characterProfile.getName()
         } else {
             //print("label is nil")
             return
@@ -301,7 +301,7 @@ class ViewController: UIViewController {
     func setCharacterProfile(cp: CharacterProfile, initialLoad: Bool) {
         
         characterProfile = cp
-        settings.setCharacterName(name: cp.name())
+        settings.setCharacterName(name: cp.getName())
         setSideMenuCharacterName()
         setSortFilterSettings()
         saveSettings()
@@ -359,7 +359,7 @@ class ViewController: UIViewController {
     }
     
     func saveCharacterProfile() {
-        let location = profileLocation(name: characterProfile.name())
+        let location = profileLocation(name: characterProfile.getName())
         //print("Saving profile for \(characterProfile.name) to \(location)")
         characterProfile.save(filename: location)
     }
@@ -369,7 +369,7 @@ class ViewController: UIViewController {
         //print("Beginning deleteCharacterProfile with name: \(name)")
         let fileManager = FileManager.default
         do {
-            let deletingCurrent = (name == characterProfile.name())
+            let deletingCurrent = (name == characterProfile.getName())
             try fileManager.removeItem(at: location)
             let characters = characterList()
             updateSelectionList()
@@ -495,7 +495,13 @@ class ViewController: UIViewController {
     }
     
     // For the filter button on the navigation bar
-    @objc func filterButtonPressed() { toggleWindowVisibilities() }
+    @objc func filterButtonPressed() {
+        if filterVisible {
+            sort()
+            filter()
+        }
+        toggleWindowVisibilities()
+    }
     
     @objc func endEditing() { }
     

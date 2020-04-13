@@ -11,18 +11,22 @@ import UIKit
 class RangeView: UIView {
     
     typealias BoundsGetter = (CharacterProfile) -> (Int, String, Int, String)
+    typealias DefaultBoundsGetter = () -> (Int, String, Int, String)
 
     @IBOutlet var contentView: UIView!
+    @IBOutlet weak var selectionRow: UIView!
     @IBOutlet weak var minValueEntry: UITextField!
     @IBOutlet weak var minUnitChoice: UITextField!
     @IBOutlet weak var rangeTextLabel: UILabel!
     @IBOutlet weak var maxValueEntry: UITextField!
     @IBOutlet weak var maxUnitChoice: UITextField!
+    @IBOutlet weak var restoreDefaultsButton: UIButton!
     
     var minUnitDelegate: UITextFieldDelegate?
     var maxUnitDelegate: UITextFieldDelegate?
     
     var boundsGetter: BoundsGetter?
+    var defaultBoundsGetter: DefaultBoundsGetter?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,7 +45,7 @@ class RangeView: UIView {
         contentView.frame = self.bounds
     }
     
-    func setType<Q:QuantityType, U:Unit, T:Quantity<Q,U>>(_ type: T.Type) {
+    func setType<Q:QuantityType, U:Unit, T:Quantity<Q,U>>(_ type: T.Type, centerText: String) {
         
         // Create and set the delegates for the units
         minUnitDelegate = UnitChooserDelegate<U>(
@@ -58,19 +62,49 @@ class RangeView: UIView {
             let bounds = cp.getBounds(type: T.self)
             return (bounds.0.value, bounds.0.unit.pluralName, bounds.1.value, bounds.1.unit.pluralName)
         }
+        defaultBoundsGetter = {
+            let defaultBounds = CharacterProfile.getDefaultBounds(type: T.self)
+            return (defaultBounds.0.value, defaultBounds.0.unit.pluralName, defaultBounds.1.value, defaultBounds.1.unit.pluralName)
+        }
+        
+        // We can set the center label now, since that won't change when the character profile changes
+        rangeTextLabel.text = "≤" + centerText + "≤"
+        
+        // Set up the restore defaults button
+        restoreDefaultsButton.addTarget(self, action: #selector(setDefaultValues), for: .touchUpInside)
+        
+    }
     
+    
+    func setValues(minValue: Int, minUnitName: String, maxValue: Int, maxUnitName: String) {
+        minValueEntry.text = String(minValue)
+        minUnitChoice.text = minUnitName
+        maxValueEntry.text = String(maxValue)
+        maxUnitChoice.text = maxUnitName
+    }
+    
+    @objc func setDefaultValues() {
+        if (defaultBoundsGetter != nil) {
+            let (minValue, minUnitName, maxValue, maxUnitName) = defaultBoundsGetter!()
+            setValues(minValue: minValue, minUnitName: minUnitName, maxValue: maxValue, maxUnitName: maxUnitName)
+        }
     }
     
     
     // Set the unit text based on the character profile
     // To be called when the character profile is changed
     func updateValues() {
-        let profile = Controllers.mainController.characterProfile
-        let (minValue, minUnitName, maxValue, maxUnitName) = boundsGetter!(profile)
-        minValueEntry.text = String(minValue)
-        minUnitChoice.text = minUnitName
-        maxValueEntry.text = String(maxValue)
-        maxUnitChoice.text = maxUnitName
+        if (boundsGetter != nil) {
+            let profile = Controllers.mainController.characterProfile
+            let (minValue, minUnitName, maxValue, maxUnitName) = boundsGetter!(profile)
+            setValues(minValue: minValue, minUnitName: minUnitName, maxValue: maxValue, maxUnitName: maxUnitName)
+        }
+    }
+
+    func desiredHeight() -> CGFloat {
+        print("selectionRow has height \(selectionRow.frame.size.height)")
+        print("restoreDefaultsButton has height \(restoreDefaultsButton.frame.size.height)")
+        return selectionRow.frame.size.height + CGFloat(10) + restoreDefaultsButton.frame.size.height
     }
     
     

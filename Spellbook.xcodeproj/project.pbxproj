@@ -17,7 +17,7 @@
 		8E02F7642436378400A3050C /* FilterGridDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02F7632436378400A3050C /* FilterGridDelegate.swift */; };
 		8E02F76624363BAD00A3050C /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E02F76524363BAD00A3050C /* FilterView.xib */; };
 		8E02F76A2436B5E200A3050C /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02F7692436B5E200A3050C /* FilterCell.swift */; };
-		8E02F7702437EC8800A3050C /* RitualConcentrationFilterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02F76F2437EC8800A3050C /* RitualConcentrationFilterDelegate.swift */; };
+		8E02F7702437EC8800A3050C /* YesNoFilterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02F76F2437EC8800A3050C /* YesNoFilterDelegate.swift */; };
 		8E02F7722437F39200A3050C /* CombinationProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02F7712437F39200A3050C /* CombinationProtocols.swift */; };
 		8E02F7742438EF1400A3050C /* RangeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E02F7732438EF1400A3050C /* RangeView.xib */; };
 		8E02F7762438F04000A3050C /* RangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02F7752438F04000A3050C /* RangeView.swift */; };
@@ -102,7 +102,6 @@
 		8E61494B24199ED800842A18 /* dungeon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E61494924199CBC00842A18 /* dungeon.ttf */; };
 		8E92CC65243BCE2100EB78B2 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC64243BCE2100EB78B2 /* Images.swift */; };
 		8E92CC67243BD49900EB78B2 /* LevelTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC66243BD49900EB78B2 /* LevelTextFieldDelegate.swift */; };
-		8E92CC6B244173D800EB78B2 /* DesiredHeightDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC6A244173D800EB78B2 /* DesiredHeightDelegate.swift */; };
 		8EBF1792243A4B15004C17FA /* TextFieldChooserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */; };
 		8ED0B932242BE9E800A085F4 /* down_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED0B931242BE9E800A085F4 /* down_arrow.png */; };
 		8ED0B936242E514F00A085F4 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED0B935242E514F00A085F4 /* FilterView.swift */; };
@@ -151,7 +150,7 @@
 		8E02F7632436378400A3050C /* FilterGridDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterGridDelegate.swift; sourceTree = "<group>"; };
 		8E02F76524363BAD00A3050C /* FilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
 		8E02F7692436B5E200A3050C /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
-		8E02F76F2437EC8800A3050C /* RitualConcentrationFilterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RitualConcentrationFilterDelegate.swift; sourceTree = "<group>"; };
+		8E02F76F2437EC8800A3050C /* YesNoFilterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YesNoFilterDelegate.swift; sourceTree = "<group>"; };
 		8E02F7712437F39200A3050C /* CombinationProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinationProtocols.swift; sourceTree = "<group>"; };
 		8E02F7732438EF1400A3050C /* RangeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RangeView.xib; sourceTree = "<group>"; };
 		8E02F7752438F04000A3050C /* RangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeView.swift; sourceTree = "<group>"; };
@@ -238,7 +237,6 @@
 		8E61494924199CBC00842A18 /* dungeon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dungeon.ttf; sourceTree = SOURCE_ROOT; };
 		8E92CC64243BCE2100EB78B2 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		8E92CC66243BD49900EB78B2 /* LevelTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTextFieldDelegate.swift; sourceTree = "<group>"; };
-		8E92CC6A244173D800EB78B2 /* DesiredHeightDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesiredHeightDelegate.swift; sourceTree = "<group>"; };
 		8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldChooserDelegate.swift; sourceTree = "<group>"; };
 		8ED0B931242BE9E800A085F4 /* down_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_arrow.png; sourceTree = SOURCE_ROOT; };
 		8ED0B935242E514F00A085F4 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
@@ -324,7 +322,6 @@
 				8E6148CA241991C000842A18 /* AppDelegate.swift */,
 				8E6148DF241991C100842A18 /* Assets.xcassets */,
 				8E177F9A2432F34B005146B6 /* SortFilterTableController.swift */,
-				8E92CC6A244173D800EB78B2 /* DesiredHeightDelegate.swift */,
 				8E92CC66243BD49900EB78B2 /* LevelTextFieldDelegate.swift */,
 				8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */,
 				8E02F7712437F39200A3050C /* CombinationProtocols.swift */,
@@ -344,7 +341,7 @@
 				8E6148C5241991C000842A18 /* EnumUtilities.swift */,
 				8E6148C7241991C000842A18 /* Extensions.swift */,
 				8E02F7692436B5E200A3050C /* FilterCell.swift */,
-				8E02F76F2437EC8800A3050C /* RitualConcentrationFilterDelegate.swift */,
+				8E02F76F2437EC8800A3050C /* YesNoFilterDelegate.swift */,
 				8E02F7632436378400A3050C /* FilterGridDelegate.swift */,
 				8E02F7732438EF1400A3050C /* RangeView.xib */,
 				8E02F7752438F04000A3050C /* RangeView.swift */,
@@ -752,7 +749,7 @@
 				8E6148F3241991C200842A18 /* SpellWindowController.swift in Sources */,
 				8E6148F6241991C200842A18 /* FromRightPushAnimator.swift in Sources */,
 				8E614915241991C200842A18 /* Settings.swift in Sources */,
-				8E02F7702437EC8800A3050C /* RitualConcentrationFilterDelegate.swift in Sources */,
+				8E02F7702437EC8800A3050C /* YesNoFilterDelegate.swift in Sources */,
 				8E6148FC241991C200842A18 /* HashableType.swift in Sources */,
 				8E6148E8241991C200842A18 /* SearchButton.swift in Sources */,
 				8E614909241991C200842A18 /* CharacterSelectionCell.swift in Sources */,
@@ -798,7 +795,6 @@
 				8E6148E7241991C200842A18 /* InfoMenuCell.swift in Sources */,
 				8E61490C241991C200842A18 /* EnumUtilities.swift in Sources */,
 				8E614919241991C200842A18 /* FromRightDismissAnimator.swift in Sources */,
-				8E92CC6B244173D800EB78B2 /* DesiredHeightDelegate.swift in Sources */,
 				8E61490E241991C200842A18 /* Extensions.swift in Sources */,
 				8E02F76A2436B5E200A3050C /* FilterCell.swift in Sources */,
 				8E61491B241991C200842A18 /* SpellbookError.swift in Sources */,

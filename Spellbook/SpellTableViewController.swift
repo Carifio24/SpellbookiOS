@@ -262,8 +262,8 @@ class SpellTableViewController: UITableViewController {
         updateSpellArray()
     }
     
-    internal func filterThroughArray<E:CaseIterable>(spell: Spell, type: E.Type, filter: (Spell,E) -> Bool) -> Bool {
-        for e in E.allCases {
+    internal func filterThroughArray<E:CaseIterable>(spell: Spell, values: [E], filter: (Spell,E) -> Bool) -> Bool {
+        for e in values {
             if filter(spell, e) {
                 return false
             }
@@ -298,22 +298,22 @@ class SpellTableViewController: UITableViewController {
         if (level > cp.getMaxSpellLevel()) || (level < cp.getMinSpellLevel()) { return true }
         
         // Sourcebooks
-        if filterThroughArray(spell: s, type: Sourcebook.self, filter: SpellTableViewController.sourcebookFilter) { return true }
+        if filterThroughArray(spell: s, values: visibleSourcebooks, filter: SpellTableViewController.sourcebookFilter) { return true }
         
         // Classes
-        if filterThroughArray(spell: s, type: CasterClass.self, filter: SpellTableViewController.casterClassesFilter) { return true }
+        if filterThroughArray(spell: s, values: visibleClasses, filter: SpellTableViewController.casterClassesFilter) { return true }
         
         // Schools
-        if filterThroughArray(spell: s, type: School.self, filter: SpellTableViewController.schoolFilter) { return true }
+        if filterThroughArray(spell: s, values: visibleSchools, filter: SpellTableViewController.schoolFilter) { return true }
         
         // Casting time types
-        if filterThroughArray(spell: s, type: CastingTimeType.self, filter: SpellTableViewController.castingTimeTypeFilter) { return true }
+        if filterThroughArray(spell: s, values: visibleCastingTimeTypes, filter: SpellTableViewController.castingTimeTypeFilter) { return true }
         
         // Duration types
-        if filterThroughArray(spell: s, type: DurationType.self, filter: SpellTableViewController.durationTypeFilter) { return true }
+        if filterThroughArray(spell: s, values: visibleDurationTypes, filter: SpellTableViewController.durationTypeFilter) { return true }
         
         // Range types
-        if filterThroughArray(spell: s, type: RangeType.self, filter: SpellTableViewController.rangeTypeFilter) { return true }
+        if filterThroughArray(spell: s, values: visibleRangeTypes, filter: SpellTableViewController.rangeTypeFilter) { return true }
         
         // Casting time bounds
         if filterAgainstBounds(spell: s, bounds: castingTimeBounds, quantityGetter: { $0.castingTime }) { return true }
@@ -359,6 +359,10 @@ class SpellTableViewController: UITableViewController {
         let castingTimeBounds = cp.getBounds(type: CastingTime.self)
         let durationBounds = cp.getBounds(type: Duration.self)
         let rangeBounds = cp.getBounds(type: Range.self)
+        
+        for sourcebook in visibleSourcebooks {
+            print(sourcebook.displayName)
+        }
         
         for i in 0...spells.count-1 {
             let filter = filterItem(spell: spells[i].0, profile: cp, visibleSourcebooks: visibleSourcebooks, visibleClasses: visibleClasses, visibleSchools: visibleSchools, visibleCastingTimeTypes: visibleCastingTimeTypes, visibleDurationTypes: visibleDurationTypes, visibleRangeTypes: visibleRangeTypes, castingTimeBounds: castingTimeBounds, durationBounds: durationBounds, rangeBounds: rangeBounds, isText: isText, text: searchText)

@@ -78,7 +78,7 @@ class CharacterProfile {
     private static let defaultRangeRangeInfo = RangeInfo<LengthUnit>(minUnit: LengthUnit.foot, maxUnit: LengthUnit.mile, minValue: 0, maxValue: 1)
     
     // Keys for loading/saving
-    private static let charNameKey: String = "CharacterName"
+    private static let nameKey: String = "CharacterName"
     private static let spellsKey: String = "Spells"
     private static let spellNameKey: String = "SpellName"
     private static let favoriteKey: String = "Favorite"
@@ -113,7 +113,7 @@ class CharacterProfile {
     
     
     // Member values
-    private var charName: String
+    private var name: String
     private var spellStatuses: [String : SpellStatus]
     private var sortField1: SortField
     private var sortField2: SortField
@@ -138,7 +138,7 @@ class CharacterProfile {
 
     
     init(name: String, spellStatuses: [String:SpellStatus], sortField1: SortField, sortField2: SortField, reverse1: Bool, reverse2: Bool, statusFilter: StatusFilterField, minSpellLevel: Int, maxSpellLevel: Int, sourcebookVisibilities: Visibilities<Sourcebook>, casterVisibilities: Visibilities<CasterClass>, schoolVisibilities: Visibilities<School>, castingTimeTypeVisibilities: Visibilities<CastingTimeType>, durationTypeVisibilities: Visibilities<DurationType>, rangeTypeVisibilities: Visibilities<RangeType>, castingTimeRangeInfo: RangeInfo<TimeUnit>, durationRangeInfo: RangeInfo<TimeUnit>, rangeRangeInfo: RangeInfo<LengthUnit>, ritualFilter: Bool, notRitualFilter: Bool, concentrationFilter: Bool, notConcentrationFilter: Bool) {
-        self.charName = name
+        self.name = name
         self.spellStatuses = spellStatuses
         self.sortField1 = sortField1
         self.sortField2 = sortField2
@@ -180,7 +180,7 @@ class CharacterProfile {
         print(sion.toJSON())
         
         spellStatuses = [:]
-        charName = sion[CharacterProfile.charNameKey].string!
+        name = sion[CharacterProfile.nameKey].string!
         for (_, v) in sion[CharacterProfile.spellsKey] {
             let spellName: String = v[CharacterProfile.spellNameKey].string!
             let fav = v[CharacterProfile.favoriteKey].bool!
@@ -236,7 +236,7 @@ class CharacterProfile {
         var sion = SION([:])
         
         // Set the character name
-        sion[SION(CharacterProfile.charNameKey)] = SION(charName)
+        sion[SION(CharacterProfile.nameKey)] = SION(name)
         
         // Set the spell statuses
         var spellsSION = SION([])
@@ -351,7 +351,7 @@ class CharacterProfile {
         return ( isFavorite(s) || isPrepared(s) || isKnown(s) )
     }
     
-    func name() -> String { return charName }
+    func getName() -> String { return name }
     func getStatusFilter() -> StatusFilterField { return statusFilter }
     func getFirstSortField() -> SortField { return sortField1 }
     func getSecondSortField() -> SortField { return sortField2 }
@@ -588,6 +588,13 @@ class CharacterProfile {
         return (minQuantity, maxQuantity)
     }
     
+    static func getDefaultBounds<Q:QuantityType, U:Unit, T:Quantity<Q,U>>(type: T.Type) -> (T,T) {
+        let info = getDefaultQuantityRangeInfo(Q.self, U.self)!
+        let minQuantity = T.init(type: Q.spanningType, value: info.minValue, unit: info.minUnit, str: "")
+        let maxQuantity = T.init(type: Q.spanningType, value: info.maxValue, unit: info.maxUnit, str: "")
+        return (minQuantity, maxQuantity)
+    }
+    
     
     // Get, set, and toggle the visibility of a certain value
     func getVisibility<E:NameConstructible>(_ e: E) -> Bool {
@@ -667,6 +674,7 @@ class CharacterProfile {
     // Save to a file
     func save(filename: URL) {
         do {
+            print("Saving character profile for \(name)")
             //print(asJSONString())
             try asJSONString().write(to: filename, atomically: false, encoding: .utf8)
         } catch let e {

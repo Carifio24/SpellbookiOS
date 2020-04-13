@@ -94,7 +94,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     override func viewDidAppear(_ animated: Bool) {
         
         // Set the character label
-        let name = main?.characterProfile.name()
+        let name = main?.characterProfile.getName()
         if (name != nil) {
             characterLabel.text = "Character: " + name!
         }

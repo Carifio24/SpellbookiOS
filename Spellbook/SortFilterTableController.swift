@@ -49,15 +49,18 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var durationGrid: UICollectionView!
     @IBOutlet weak var rangeGrid: UICollectionView!
     
+    // Constraints governing the bottoms of the quantity type grids
+    @IBOutlet weak var castingTimeBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var durationBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var rangeBottomConstraint: NSLayoutConstraint!
+    
     // Range views
     @IBOutlet weak var castingTimeRange: RangeView!
-    @IBOutlet weak var durationRange: RangeView!
-    @IBOutlet weak var rangeRange: RangeView!
-    
+    private var rangeViews: [RangeView] = []
     
     // Grid delegates
-    private let ritualDelegate = RitualConcentrationFilterDelegate(filterType: BooleanFilterType.Ritual)
-    private let concentrationDelegate = RitualConcentrationFilterDelegate(filterType: BooleanFilterType.Concentration)
+    private let ritualDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getRitualFilter(f) }, statusToggler: { cp, f in cp.toggleRitualFilter(f) })
+    private let concentrationDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getConcentrationFilter(f) }, statusToggler: { cp, f in cp.toggleConcentrationFilter(f) })
     private let sourcebookDelegate = FilterGridDelegate<Sourcebook>()
     private let casterDelegate = FilterGridDelegate<CasterClass>()
     private let schoolDelegate = FilterGridDelegate<School>()
@@ -65,11 +68,24 @@ class SortFilterTableController: UITableViewController {
     private let durationDelegate = FilterGridDelegate<DurationType>()
     private let rangeDelegate = FilterGridDelegate<RangeType>()
     private var gridsAndDelegates: [(UICollectionView, UICollectionViewDataSourceDelegate)] = []
-    private var rowHeights: [Int:CGFloat] = [:]
+    
+    // For handling touches wrt keyboard dismissal
+    var tapGesture: UITapGestureRecognizer?
+    var isKeyboardOpen = false
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // For keyboard listening
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
+
+        // For dismissing the keyboard when tapping outside of a TextField
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture!.cancelsTouchesInView = true
+        tapGesture!.isEnabled = false
+        view.addGestureRecognizer(tapGesture!)
         
         tableView.estimatedRowHeight = SpellTableViewController.estimatedHeight
         tableView.rowHeight = UITableView.automaticDimension
@@ -113,6 +129,8 @@ class SortFilterTableController: UITableViewController {
         
         // Set the grids to the correct heights
         let gridsAndHeights: [(UICollectionView, CGFloat)] = [
+            (ritualGrid, ritualDelegate.desiredHeight()),
+            (concentrationGrid, concentrationDelegate.desiredHeight()),
             (sourcebookGrid, sourcebookDelegate.desiredHeight()),
             (casterGrid, casterDelegate.desiredHeight()),
             (schoolGrid, schoolDelegate.desiredHeight()),
@@ -120,36 +138,32 @@ class SortFilterTableController: UITableViewController {
             (durationGrid, durationDelegate.desiredHeight()),
             (rangeGrid, rangeDelegate.desiredHeight())
         ]
+        
         var constraints: [NSLayoutConstraint] = []
         for (grid, height) in gridsAndHeights {
             constraints.append(NSLayoutConstraint(item: grid, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: height))
         }
         NSLayoutConstraint.activate(constraints)
         
-//        for (grid, _) in gridsAndDelegates {
-//            let layout = (grid.collectionViewLayout as! UICollectionViewFlowLayout)
-//            layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-//        }
-        
         // Set the range layout types
-        castingTimeRange.setType(CastingTime.self)
-        durationRange.setType(Duration.self)
-        rangeRange.setType(Range.self)
+        castingTimeRange.setType(CastingTime.self, centerText: "Other Time")
+//        durationRange.setType(Duration.self, centerText: "Finite Duration")
+//        rangeRange.setType(Range.self, centerText: "Finite Range")
+//        gridsRangeInfo = [
+//            (castingTimeGrid, castingTimeRange, castingTimeBottomConstraint),
+//            (durationGrid, durationRange, durationBottomConstraint),
+//            (rangeGrid, rangeRange, rangeBottomConstraint)
+//        ]
         
-        // Set the range positions
-        // This is needed after the grid view is populated
-        let rangeConstraints = [
-            castingTimeRange.topAnchor.constraint(equalTo: castingTimeGrid.bottomAnchor),
-            durationRange.topAnchor.constraint(equalTo: durationGrid.bottomAnchor),
-            rangeRange.topAnchor.constraint(equalTo: rangeGrid.bottomAnchor)
-        ]
+        
+        // Set the heights of the range cells
+        rangeViews = [ castingTimeRange ]
+        var rangeConstraints: [NSLayoutConstraint] = []
+        for rangeView in rangeViews {
+            rangeConstraints.append(NSLayoutConstraint(item: rangeView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: rangeView.desiredHeight()))
+        }
         NSLayoutConstraint.activate(rangeConstraints)
-        
-        tableView.reloadData()
-        
-        // Update the layout
-        //self.view.setNeedsUpdateConstraints()
-        //self.view.setNeedsLayout()
+        print("The casting time range has height \(castingTimeRange.frame.size.height)")
 
         
         // Uncomment the following line to preserve selection between presentations
@@ -164,7 +178,12 @@ class SortFilterTableController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int { return 9 }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section == 0 ? 2 : 1
+        switch (section) {
+        case 0, 6:
+            return 2
+        default:
+            return 1
+        }
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -202,6 +221,31 @@ class SortFilterTableController: UITableViewController {
         
         // Reload the data for the grids
         for (grid, _) in gridsAndDelegates { grid.reloadData() }
+        
+        // Update the range values
+        for rangeView in rangeViews { rangeView.updateValues() }
+        
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    // These two methods will give use the following behavior:
+    // If the keyboard is closed, the tap gesture does nothing
+    // If the keyboard is open, tapping will close the keyboard
+    //  BUT the touch won't carry through to the view controller
+    //  i.e., I can't accidentally press a button while closing a keyboard
+    @objc func keyboardWillAppear() {
+        print("In keyboardWillAppear")
+        isKeyboardOpen = true
+        tapGesture?.isEnabled = true
+    }
+
+    @objc func keyboardWillDisappear() {
+        print("In keyboardWillDisappear")
+        isKeyboardOpen = false
+        tapGesture?.isEnabled = false
     }
 
     

@@ -8,19 +8,19 @@
 
 import UIKit
 
-class FilterGridDelegate<T:NameConstructible>: NSObject, UICollectionViewDataSourceDelegate, UICollectionViewDelegateFlowLayout, DesiredHeightDelegate {
+class FilterGridDelegate<T:NameConstructible>: NSObject, UICollectionViewDataSourceDelegate, UICollectionViewDelegateFlowLayout {
     
+
+    let reuseIdentifier = "filterCell"
     
     let items = T.allCases.map({ $0 })
-    let reuseIdentifier = "filterCell"
-    private var itemButtonMap: [T:UIButton] = [:]
+    private var itemButtonMap: [T:ToggleButton] = [:]
     let columns: Int
     let rows: Int
     private let gridWidth: CGFloat
     private let columnWidth: CGFloat
     private let rowHeight: CGFloat = FilterView.imageHeight
     private let main = Controllers.mainController
-    //private let sectionInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     private let sectionInsets = UIEdgeInsets(top: 5,
                                      left: 5,
                                      bottom: 5,
@@ -30,7 +30,9 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, UICollectionViewDataSou
         
         self.gridWidth = gridWidth
         
-        // Determine the number of rows and columns
+        // Determine the number of rows and columns of the grid, based on the grid width
+        // Since all of our grids have fixed size, this is all that we need
+        // But this process could be easily adjusted for a fixed-height grid as well
         var maxWidth: CGFloat = 0
         let label = UILabel()
         for item in items {
@@ -66,7 +68,6 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("In cellForItemAt: row \(indexPath.row)")
         let cell: FilterCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! FilterCell
         let item = items[indexPath.row]
         cell.backgroundColor = .clear
@@ -81,13 +82,20 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, UICollectionViewDataSou
             print(self.main.characterProfile.getVisibility(item))
             self.main.saveCharacterProfile()
         })
+        cell.filterView.filterButton.setLongPressCallback({
+            for (value, button) in self.itemButtonMap {
+                if (value != item && button.state()) {
+                    button.sendActions(for: .touchUpInside)
+                }
+            }
+        })
         itemButtonMap[item] = cell.filterView.filterButton
         cell.backgroundColor = UIColor.systemPink
         //print("Exiting cellForItemAt: row \(indexPath.row)")
         return cell
     }
     
-    func buttonForItem(_ t: T) -> UIButton? { return itemButtonMap[t] }
+    func buttonForItem(_ t: T) -> ToggleButton? { return itemButtonMap[t] }
     
     func collectionView(_ collectionView: UICollectionView,
             layout collectionViewLayout: UICollectionViewLayout,
