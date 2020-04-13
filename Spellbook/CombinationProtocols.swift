@@ -8,4 +8,13 @@
 
 import Foundation
 
-protocol UICollectionViewDataSourceDelegate: UICollectionViewDataSource, UICollectionViewDelegate {}
+protocol UICollectionViewDataFlowDelegate: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {}
+
+@objc protocol AllGridSelector {
+    func buttons() -> [ToggleButton]
+    func selectAll()
+}
+
+protocol FilterGridProtocol: AllGridSelector, UICollectionViewDataFlowDelegate {
+    func desiredHeight() -> CGFloat
+}

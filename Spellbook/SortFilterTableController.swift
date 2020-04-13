@@ -33,6 +33,14 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var firstSortArrow: ToggleButton!
     @IBOutlet weak var secondSortArrow: ToggleButton!
     
+    // Select all buttons
+    @IBOutlet weak var selectAllSourcebooks: UIButton!
+    @IBOutlet weak var selectAllClasses: UIButton!
+    @IBOutlet weak var selectAllSchools: UIButton!
+    @IBOutlet weak var selectAllCastingTimeTypes: UIButton!
+    @IBOutlet weak var selectAllDurationTypes: UIButton!
+    @IBOutlet weak var selectAllRangeTypes: UIButton!
+    
     // Text field delegates
     let firstSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getFirstSortField() }, setter: { cp, sf in cp.setFirstSortField(sf) })
     let secondSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getSecondSortField() }, setter: { cp, sf in cp.setSecondSortField(sf) })
@@ -67,7 +75,7 @@ class SortFilterTableController: UITableViewController {
     private let castingTimeDelegate = FilterGridDelegate<CastingTimeType>()
     private let durationDelegate = FilterGridDelegate<DurationType>()
     private let rangeDelegate = FilterGridDelegate<RangeType>()
-    private var gridsAndDelegates: [(UICollectionView, UICollectionViewDataSourceDelegate)] = []
+    private var gridsAndDelegates: [(UICollectionView, FilterGridProtocol)] = []
     
     // For handling touches wrt keyboard dismissal
     var tapGesture: UITapGestureRecognizer?
@@ -110,7 +118,7 @@ class SortFilterTableController: UITableViewController {
 //        }
         
         
-        // Set the grid delegates and layouts
+        // Set the grid delegates and heights
         gridsAndDelegates = [
             (ritualGrid, ritualDelegate),
             (concentrationGrid, concentrationDelegate),
@@ -121,29 +129,23 @@ class SortFilterTableController: UITableViewController {
             (durationGrid, durationDelegate),
             (rangeGrid, rangeDelegate)
         ]
+        var constraints: [NSLayoutConstraint] = []
         for (grid, delegate) in gridsAndDelegates {
             grid.dataSource = delegate
             grid.delegate = delegate
+            constraints.append(NSLayoutConstraint(item: grid, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: delegate.desiredHeight()))
             grid.backgroundColor = UIColor.systemGreen
         }
-        
-        // Set the grids to the correct heights
-        let gridsAndHeights: [(UICollectionView, CGFloat)] = [
-            (ritualGrid, ritualDelegate.desiredHeight()),
-            (concentrationGrid, concentrationDelegate.desiredHeight()),
-            (sourcebookGrid, sourcebookDelegate.desiredHeight()),
-            (casterGrid, casterDelegate.desiredHeight()),
-            (schoolGrid, schoolDelegate.desiredHeight()),
-            (castingTimeGrid, castingTimeDelegate.desiredHeight()),
-            (durationGrid, durationDelegate.desiredHeight()),
-            (rangeGrid, rangeDelegate.desiredHeight())
-        ]
-        
-        var constraints: [NSLayoutConstraint] = []
-        for (grid, height) in gridsAndHeights {
-            constraints.append(NSLayoutConstraint(item: grid, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: height))
-        }
         NSLayoutConstraint.activate(constraints)
+        
+        // Set up the select all buttons
+        selectAllSourcebooks.addTarget(self, action: #selector(selectAllSourcebookButtons(_:)), for: .touchUpInside)
+        selectAllClasses.addTarget(self, action: #selector(selectAllClassButtons(_:)), for: .touchUpInside)
+        selectAllSchools.addTarget(self, action: #selector(selectAllSchoolButtons(_:)), for: .touchUpInside)
+        selectAllCastingTimeTypes.addTarget(self, action: #selector(selectAllCastingTimeTypeButtons(_:)), for: .touchUpInside)
+        selectAllDurationTypes.addTarget(self, action: #selector(selectAllDurationTypeButtons(_:)), for: .touchUpInside)
+        selectAllRangeTypes.addTarget(self, action: #selector(selectAllRangeTypeButtons(_:)), for: .touchUpInside)
+        
         
         // Set the range layout types
         castingTimeRange.setType(CastingTime.self, centerText: "Other Time")
@@ -180,10 +182,12 @@ class SortFilterTableController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch (section) {
-        case 0, 6:
-            return 2
-        default:
+        case 1, 2:
             return 1
+        case 6:
+            return 3
+        default:
+            return 2
         }
     }
     
@@ -249,6 +253,14 @@ class SortFilterTableController: UITableViewController {
         tapGesture?.isEnabled = false
     }
 
+    // For selecting all of the grid buttons
+    func selectAllButtons(delegate: FilterGridProtocol) { delegate.selectAll() }
+    @objc func selectAllSourcebookButtons(_ sender: UIButton) { selectAllButtons(delegate: sourcebookDelegate) }
+    @objc func selectAllClassButtons(_ sender: UIButton) { selectAllButtons(delegate: casterDelegate) }
+    @objc func selectAllSchoolButtons(_ sender: UIButton) { selectAllButtons(delegate: schoolDelegate) }
+    @objc func selectAllCastingTimeTypeButtons(_ sender: UIButton) { selectAllButtons(delegate: castingTimeDelegate) }
+    @objc func selectAllDurationTypeButtons(_ sender: UIButton) { selectAllButtons(delegate: durationDelegate) }
+    @objc func selectAllRangeTypeButtons(_ sender: UIButton) { selectAllButtons(delegate: rangeDelegate) }
     
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

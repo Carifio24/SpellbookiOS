@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FilterGridDelegate<T:NameConstructible>: NSObject, UICollectionViewDataSourceDelegate, UICollectionViewDelegateFlowLayout {
+class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
     
 
     let reuseIdentifier = "filterCell"
@@ -96,6 +96,14 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, UICollectionViewDataSou
     }
     
     func buttonForItem(_ t: T) -> ToggleButton? { return itemButtonMap[t] }
+    func buttons() -> [ToggleButton] { return Array(itemButtonMap.values) }
+    @objc func selectAll() {
+        for (_, button) in itemButtonMap {
+            if !button.state() {
+                button.sendActions(for: .touchUpInside)
+            }
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView,
             layout collectionViewLayout: UICollectionViewLayout,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YesNoFilterDelegate: NSObject, UICollectionViewDataSourceDelegate, UICollectionViewDelegateFlowLayout {
+class YesNoFilterDelegate: NSObject, FilterGridProtocol {
     
     typealias StatusToggler = (CharacterProfile, Bool) -> Void
     typealias StatusGetter = (CharacterProfile, Bool) -> Bool
@@ -122,6 +122,14 @@ class YesNoFilterDelegate: NSObject, UICollectionViewDataSourceDelegate, UIColle
     
     func buttonForItem(_ b: Bool) -> ToggleButton? { return itemButtonMap[b] }
     func buttonForItem(_ t: YesNo) -> ToggleButton? { return buttonForItem(t.bool) }
+    func buttons() -> [ToggleButton] { return Array(itemButtonMap.values) }
+    @objc func selectAll() {
+        for (_, button) in itemButtonMap {
+            if !button.state() {
+                button.sendActions(for: .touchUpInside)
+            }
+        }
+    }
     
     
 
