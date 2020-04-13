@@ -164,6 +164,7 @@ class SortFilterTableController: UITableViewController {
         }
         NSLayoutConstraint.activate(rangeConstraints)
         print("The casting time range has height \(castingTimeRange.frame.size.height)")
+        print("The casting time range has width \(castingTimeRange.frame.size.width)")
 
         
         // Uncomment the following line to preserve selection between presentations

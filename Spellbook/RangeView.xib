@@ -21,7 +21,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="456" height="82"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MWb-5d-deI" userLabel="Content View">
@@ -31,13 +31,13 @@
                             <rect key="frame" x="0.0" y="5" width="456" height="34"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M7c-3w-Jw4" userLabel="Min Value Entry">
-                                    <rect key="frame" x="35" y="0.0" width="32" height="34"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="32" height="34"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 </textField>
                                 <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CwB-3p-V4N" userLabel="Min Unit Choice">
-                                    <rect key="frame" x="75" y="0.0" width="97" height="34"/>
+                                    <rect key="frame" x="35" y="0.0" width="32" height="34"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -87,7 +87,7 @@
                             </state>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="KWX-VS-ioe" firstAttribute="top" secondItem="9Eb-Af-QsG" secondAttribute="bottom" constant="10" id="2oY-QZ-0Bi"/>
                         <constraint firstItem="9Eb-Af-QsG" firstAttribute="top" secondItem="MWb-5d-deI" secondAttribute="top" id="3YA-5v-LrO"/>
@@ -102,10 +102,9 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="MWb-5d-deI" secondAttribute="bottom" id="01c-kE-ZjU"/>
-                <constraint firstItem="MWb-5d-deI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="2Tt-FD-tC5"/>
+                <constraint firstItem="MWb-5d-deI" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="7LR-Pg-Xaf"/>
                 <constraint firstItem="MWb-5d-deI" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="Dt7-Kw-Gab"/>
-                <constraint firstItem="MWb-5d-deI" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="EEJ-8Q-gh4"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="MWb-5d-deI" secondAttribute="trailing" id="j6w-7l-iSG"/>
+                <constraint firstAttribute="width" secondItem="MWb-5d-deI" secondAttribute="width" id="bgh-Tx-a0A"/>
                 <constraint firstItem="MWb-5d-deI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="k5J-Wn-tVK"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
