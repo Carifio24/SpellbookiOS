@@ -50,8 +50,9 @@ class ToggleButton: UIButton {
     
     // What to do when the button is pressed
     @objc private func onClicked(sender: ToggleButton) {
-        callback()
         toggle()
+        callback()
+        print("Toggle button pressed!")
     }
     
     // For initial setup purposes
@@ -90,13 +91,15 @@ class ToggleButton: UIButton {
         callback = cb
     }
     
+    func getCallback() -> () -> Void { return callback }
+    
     // Set the long press callback for the button
     func setLongPressCallback(_ cb: @escaping () -> Void) {
         longPressCallback = cb
     }
     
     // Get the button's state
-    func state() -> Bool { return on }
+    func isSet() -> Bool { return on }
     
     func offImageHeight() -> CGFloat { return imageF.size.height }
     func onImageHeight() -> CGFloat { return imageT.size.height }

@@ -14,6 +14,8 @@ class SortFilterTableController: UITableViewController {
     static let smallerHeaderFont = UIFont(name: "Cloister Black", size: 28)
     static let reuseIdentifier = "filterCell"
     
+    let rangeSections = [ 6 ]
+    
     struct SectionInfo {
         let name: String
         var collapsed: Bool
@@ -58,13 +60,29 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var rangeGrid: UICollectionView!
     
     // Constraints governing the bottoms of the quantity type grids
-    @IBOutlet weak var castingTimeBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var durationBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var rangeBottomConstraint: NSLayoutConstraint!
     
-    // Range views
+    // Range views and their cells
     @IBOutlet weak var castingTimeRange: RangeView!
     private var rangeViews: [RangeView] = []
+    
+    // Whether or not the range views are visible
+    private var castingTimeRangeVisible = true {
+        didSet {
+            let indexPath = IndexPath(row: 2, section: 6)
+            let heightShouldBeZero = !castingTimeRangeVisible
+            let heightIsZero = tableView.rectForRow(at: indexPath).size.height == 0
+            if heightShouldBeZero != heightIsZero {
+                castingTimeRange.isHidden = !castingTimeRangeVisible
+                tableView.beginUpdates()
+                tableView.reloadRows(at: [indexPath], with: .none)
+                tableView.endUpdates()
+            }
+        }
+    }
+    private var durationRangeVisible = true
+    private var rangeRangeVisible = true
     
     // Grid delegates
     private let ritualDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getRitualFilter(f) }, statusToggler: { cp, f in cp.toggleRitualFilter(f) })
@@ -72,7 +90,7 @@ class SortFilterTableController: UITableViewController {
     private let sourcebookDelegate = FilterGridDelegate<Sourcebook>()
     private let casterDelegate = FilterGridDelegate<CasterClass>()
     private let schoolDelegate = FilterGridDelegate<School>()
-    private let castingTimeDelegate = FilterGridDelegate<CastingTimeType>()
+    private var castingTimeDelegate: FilterGridDelegate<CastingTimeType>?
     private let durationDelegate = FilterGridDelegate<DurationType>()
     private let rangeDelegate = FilterGridDelegate<RangeType>()
     private var gridsAndDelegates: [(UICollectionView, FilterGridProtocol)] = []
@@ -91,7 +109,7 @@ class SortFilterTableController: UITableViewController {
 
         // For dismissing the keyboard when tapping outside of a TextField
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tapGesture!.cancelsTouchesInView = true
+        tapGesture!.cancelsTouchesInView = false
         tapGesture!.isEnabled = false
         view.addGestureRecognizer(tapGesture!)
         
@@ -109,13 +127,28 @@ class SortFilterTableController: UITableViewController {
         minLevelEntry.delegate = minLevelDelegate
         maxLevelEntry.delegate = maxLevelDelegate
         
+        // Create the range delegates
+        castingTimeDelegate = FilterGridRangeDelegate<CastingTimeType>(flagSetter: { b in self.castingTimeRangeVisible = b })
+        
+        // The list of range views
+        rangeViews = [ castingTimeRange ]
         
         // Set the sort arrow images and callbacks
-//        let arrows: ToggleButton = [ firstSortArrow, secondSortArrow ]
-//        for arrow in arrows {
-//            arrow.setTrueImage(image: Images.upArrow!)
-//            arrow.setFalseImage(image: Images.downArrow!)
-//        }
+        let arrows = [ firstSortArrow, secondSortArrow ]
+        for arrow in arrows {
+            arrow!.setTrueImage(image: Images.upArrowScaled!)
+            arrow!.setFalseImage(image: Images.downArrowScaled!)
+        }
+        firstSortArrow.setCallback({
+            let main = Controllers.mainController
+            main.characterProfile.setFirstSortReverse(self.firstSortArrow.isSet())
+            main.sort()
+        })
+        secondSortArrow.setCallback({
+            let main = Controllers.mainController
+            main.characterProfile.setSecondSortReverse(self.secondSortArrow.isSet())
+            main.sort()
+        })
         
         
         // Set the grid delegates and heights
@@ -125,7 +158,7 @@ class SortFilterTableController: UITableViewController {
             (sourcebookGrid, sourcebookDelegate),
             (casterGrid, casterDelegate),
             (schoolGrid, schoolDelegate),
-            (castingTimeGrid, castingTimeDelegate),
+            (castingTimeGrid, castingTimeDelegate!),
             (durationGrid, durationDelegate),
             (rangeGrid, rangeDelegate)
         ]
@@ -157,14 +190,15 @@ class SortFilterTableController: UITableViewController {
 //            (rangeGrid, rangeRange, rangeBottomConstraint)
 //        ]
         
-        
         // Set the heights of the range cells
-        rangeViews = [ castingTimeRange ]
-        var rangeConstraints: [NSLayoutConstraint] = []
-        for rangeView in rangeViews {
-            rangeConstraints.append(NSLayoutConstraint(item: rangeView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: rangeView.desiredHeight()))
-        }
-        NSLayoutConstraint.activate(rangeConstraints)
+//        let rangeStackViews: [(RangeView, UIStackView)] = [ (castingTimeRange, castingTimeStackView) ]
+//        var rangeConstraints: [NSLayoutConstraint] = []
+//        for (rangeView, stackView) in rangeStackViews {
+//            let height = rangeView.desiredHeight()
+//            rangeConstraints.append(NSLayoutConstraint(item: rangeView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: height))
+//            //rangeConstraints.append(NSLayoutConstraint(item: stackView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: height))
+//        }
+//        NSLayoutConstraint.activate(rangeConstraints)
         print("The casting time range has height \(castingTimeRange.frame.size.height)")
         print("The casting time range has width \(castingTimeRange.frame.size.width)")
 
@@ -175,6 +209,7 @@ class SortFilterTableController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
 
     // MARK: - Table view data source
 
@@ -203,15 +238,6 @@ class SortFilterTableController: UITableViewController {
         header.backgroundView?.backgroundColor = UIColor.clear
     }
     
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let height = rowHeights[indexPath.row]
-//        if height != nil {
-//            print("Height for row \(indexPath.row) is \(height)")
-//            return height!
-//        }
-//        return UITableView.automaticDimension
-//    }
-    
     func onCharacterProfileUpdate() {
         
         let cp = Controllers.mainController.characterProfile
@@ -229,6 +255,7 @@ class SortFilterTableController: UITableViewController {
         
         // Update the range values
         for rangeView in rangeViews { rangeView.updateValues() }
+        
         
     }
     
@@ -258,9 +285,24 @@ class SortFilterTableController: UITableViewController {
     @objc func selectAllSourcebookButtons(_ sender: UIButton) { selectAllButtons(delegate: sourcebookDelegate) }
     @objc func selectAllClassButtons(_ sender: UIButton) { selectAllButtons(delegate: casterDelegate) }
     @objc func selectAllSchoolButtons(_ sender: UIButton) { selectAllButtons(delegate: schoolDelegate) }
-    @objc func selectAllCastingTimeTypeButtons(_ sender: UIButton) { selectAllButtons(delegate: castingTimeDelegate) }
+    @objc func selectAllCastingTimeTypeButtons(_ sender: UIButton) { selectAllButtons(delegate: castingTimeDelegate!) }
     @objc func selectAllDurationTypeButtons(_ sender: UIButton) { selectAllButtons(delegate: durationDelegate) }
     @objc func selectAllRangeTypeButtons(_ sender: UIButton) { selectAllButtons(delegate: rangeDelegate) }
+    
+    func reloadTableSection(_ section: Int) {
+        if tableView.numberOfSections > section {
+            self.tableView.reloadSections(IndexSet(integer: section), with: .none)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let section = indexPath.section
+        let row = indexPath.row
+        if (!rangeSections.contains(section) || row != 2) {
+            return tableView.rowHeight
+        }
+        return castingTimeRangeVisible ? tableView.rowHeight : 0
+    }
     
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

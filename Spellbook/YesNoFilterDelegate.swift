@@ -125,7 +125,7 @@ class YesNoFilterDelegate: NSObject, FilterGridProtocol {
     func buttons() -> [ToggleButton] { return Array(itemButtonMap.values) }
     @objc func selectAll() {
         for (_, button) in itemButtonMap {
-            if !button.state() {
+            if !button.isSet() {
                 button.sendActions(for: .touchUpInside)
             }
         }

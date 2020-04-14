@@ -84,7 +84,7 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
         })
         cell.filterView.filterButton.setLongPressCallback({
             for (value, button) in self.itemButtonMap {
-                if (value != item && button.state()) {
+                if (value != item && button.isSet()) {
                     button.sendActions(for: .touchUpInside)
                 }
             }
@@ -99,7 +99,7 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
     func buttons() -> [ToggleButton] { return Array(itemButtonMap.values) }
     @objc func selectAll() {
         for (_, button) in itemButtonMap {
-            if !button.state() {
+            if !button.isSet() {
                 button.sendActions(for: .touchUpInside)
             }
         }
@@ -158,6 +158,40 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
 //        return CGSize(width: width, height: height)
 //    }
 //
+    
+    
+}
+
+class FilterGridRangeDelegate<T:QuantityType>: FilterGridDelegate<T> {
+    
+    typealias FlagSetter = (Bool) -> Void
+    
+    var flagSetter: FlagSetter
+    var rangeVisible: Bool = true
+    
+    init(gridWidth: CGFloat, flagSetter: @escaping FlagSetter) {
+        self.flagSetter = flagSetter
+        super.init(gridWidth: gridWidth)
+    }
+    
+    convenience init(flagSetter: @escaping FlagSetter) {
+        self.init(gridWidth: UIScreen.main.bounds.size.width - CGFloat(10), flagSetter: flagSetter)
+    }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! FilterCell
+        if items[indexPath.row] == T.spanningType {
+            let spanningButton = cell.filterView.filterButton!
+            let oldCallback = spanningButton.getCallback()
+            flagSetter(spanningButton.isSet())
+            spanningButton.setCallback({
+                oldCallback()
+                self.flagSetter(spanningButton.isSet())
+            })
+        }
+        return cell
+    }
     
     
 }
