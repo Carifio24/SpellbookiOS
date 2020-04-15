@@ -40,9 +40,9 @@ class RangeView: UIView {
     
     private func setup() {
         Bundle.main.loadNibNamed("RangeView", owner: self, options: nil)
-        contentView.translatesAutoresizingMaskIntoConstraints = false
+        //contentView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(contentView)
-        contentView.frame = self.bounds
+        NSLayoutConstraint.activate([contentView.centerXAnchor.constraint(equalTo: self.centerXAnchor)])
     }
     
     func setType<Q:QuantityType, U:Unit, T:Quantity<Q,U>>(_ type: T.Type, centerText: String) {

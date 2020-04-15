@@ -1572,7 +1572,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pvM-Qr-Lra" translatesAutoresizingMaskIntoConstraints="NO" id="JAV-dj-Ah3">
                                             <rect key="frame" x="0.0" y="0.0" width="404" height="44"/>
                                             <subviews>
-                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Rw-od-xFH" customClass="RangeView" customModule="Spellbook" customModuleProvider="target">
+                                                <view clipsSubviews="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="6Rw-od-xFH" customClass="RangeView" customModule="Spellbook" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="404" height="44"/>
                                                     <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
@@ -1581,8 +1581,8 @@
                                             <constraints>
                                                 <constraint firstItem="6Rw-od-xFH" firstAttribute="top" secondItem="JAV-dj-Ah3" secondAttribute="top" id="4ze-Oq-UgL"/>
                                                 <constraint firstAttribute="bottom" secondItem="6Rw-od-xFH" secondAttribute="bottom" id="6wC-Kd-Nt1"/>
-                                                <constraint firstAttribute="trailing" secondItem="6Rw-od-xFH" secondAttribute="trailing" id="JGm-cJ-efp"/>
-                                                <constraint firstItem="6Rw-od-xFH" firstAttribute="leading" secondItem="JAV-dj-Ah3" secondAttribute="leading" id="h2K-SZ-0Mg"/>
+                                                <constraint firstAttribute="trailing" secondItem="6Rw-od-xFH" secondAttribute="trailing" id="Rj7-a0-BCd"/>
+                                                <constraint firstItem="6Rw-od-xFH" firstAttribute="leading" secondItem="JAV-dj-Ah3" secondAttribute="leading" id="uM9-F7-9mx"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
