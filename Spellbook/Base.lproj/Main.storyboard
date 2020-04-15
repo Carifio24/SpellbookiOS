@@ -1574,7 +1574,7 @@
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="6Rw-od-xFH" customClass="RangeView" customModule="Spellbook" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="404" height="44"/>
-                                                    <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1684,12 +1684,38 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" translatesAutoresizingMaskIntoConstraints="NO" id="tbN-c4-dis">
+                                        <rect key="frame" x="0.0" y="975.33333241939545" width="404" height="44"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tbN-c4-dis" translatesAutoresizingMaskIntoConstraints="NO" id="whE-ey-TJA">
+                                            <rect key="frame" x="0.0" y="0.0" width="404" height="44"/>
+                                            <subviews>
+                                                <view clipsSubviews="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="FD2-Qg-HRU" customClass="RangeView" customModule="Spellbook" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="404" height="44"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="FD2-Qg-HRU" firstAttribute="leading" secondItem="whE-ey-TJA" secondAttribute="leading" id="N4l-4J-kyk"/>
+                                                <constraint firstAttribute="bottom" secondItem="FD2-Qg-HRU" secondAttribute="bottom" id="Vde-2L-udK"/>
+                                                <constraint firstItem="FD2-Qg-HRU" firstAttribute="top" secondItem="whE-ey-TJA" secondAttribute="top" id="aYO-x5-Cp9"/>
+                                                <constraint firstAttribute="trailing" secondItem="FD2-Qg-HRU" secondAttribute="trailing" id="cj7-wA-B3w"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="whE-ey-TJA" secondAttribute="trailing" id="7Nk-v2-liD"/>
+                                            <constraint firstAttribute="bottom" secondItem="whE-ey-TJA" secondAttribute="bottom" id="VGC-SV-LYB"/>
+                                            <constraint firstItem="whE-ey-TJA" firstAttribute="top" secondItem="tbN-c4-dis" secondAttribute="top" id="fcL-Ae-AvG"/>
+                                            <constraint firstItem="whE-ey-TJA" firstAttribute="leading" secondItem="tbN-c4-dis" secondAttribute="leading" id="pQU-gG-qxS"/>
+                                        </constraints>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Range" id="0Tt-iI-n2o">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0RE-bZ-TbX">
-                                        <rect key="frame" x="0.0" y="1031.3333323001862" width="404" height="44"/>
+                                        <rect key="frame" x="0.0" y="1075.3333324193954" width="404" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0RE-bZ-TbX" id="0N7-ua-z5h">
                                             <rect key="frame" x="0.0" y="0.0" width="404" height="44"/>
@@ -1721,7 +1747,7 @@
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="WRd-nc-Yz7">
-                                        <rect key="frame" x="0.0" y="1075.3333323001862" width="404" height="1.1920928955078125e-07"/>
+                                        <rect key="frame" x="0.0" y="1119.3333324193954" width="404" height="1.1920928955078125e-07"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WRd-nc-Yz7" translatesAutoresizingMaskIntoConstraints="NO" id="aRw-jQ-UJC">
                                             <rect key="frame" x="0.0" y="0.0" width="404" height="1.1920928955078125e-07"/>
@@ -1775,6 +1801,32 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" translatesAutoresizingMaskIntoConstraints="NO" id="WA6-59-P5b">
+                                        <rect key="frame" x="0.0" y="1119.3333325386047" width="404" height="44"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WA6-59-P5b" translatesAutoresizingMaskIntoConstraints="NO" id="DBN-Ls-VUB">
+                                            <rect key="frame" x="0.0" y="0.0" width="404" height="44"/>
+                                            <subviews>
+                                                <view clipsSubviews="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="mFk-xC-Jl9" customClass="RangeView" customModule="Spellbook" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="404" height="44"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="mFk-xC-Jl9" firstAttribute="top" secondItem="DBN-Ls-VUB" secondAttribute="top" id="DE7-Dw-3nX"/>
+                                                <constraint firstAttribute="trailing" secondItem="mFk-xC-Jl9" secondAttribute="trailing" id="Oh0-Fc-p94"/>
+                                                <constraint firstAttribute="bottom" secondItem="mFk-xC-Jl9" secondAttribute="bottom" id="iyq-yL-wCe"/>
+                                                <constraint firstItem="mFk-xC-Jl9" firstAttribute="leading" secondItem="DBN-Ls-VUB" secondAttribute="leading" id="met-AR-Gnj"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="DBN-Ls-VUB" firstAttribute="leading" secondItem="WA6-59-P5b" secondAttribute="leading" id="22z-pU-jdo"/>
+                                            <constraint firstAttribute="bottom" secondItem="DBN-Ls-VUB" secondAttribute="bottom" id="FKt-hj-rzw"/>
+                                            <constraint firstAttribute="trailing" secondItem="DBN-Ls-VUB" secondAttribute="trailing" id="JVI-4j-xcd"/>
+                                            <constraint firstItem="DBN-Ls-VUB" firstAttribute="top" secondItem="WA6-59-P5b" secondAttribute="top" id="ueG-47-GfZ"/>
+                                        </constraints>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -1786,12 +1838,14 @@
                         <outlet property="concentrationGrid" destination="N7L-zz-vFg" id="jd8-Wn-KRU"/>
                         <outlet property="durationBottomConstraint" destination="xfQ-0a-CNo" id="BH0-I3-8Ht"/>
                         <outlet property="durationGrid" destination="BQH-xx-TQG" id="x8m-xs-Jbo"/>
+                        <outlet property="durationRange" destination="FD2-Qg-HRU" id="wiC-Sl-SnM"/>
                         <outlet property="firstSortArrow" destination="n0U-Lk-Dt4" id="Dsc-pG-20K"/>
                         <outlet property="firstSortChoice" destination="eEN-Ho-WP4" id="Rl9-hZ-xXz"/>
                         <outlet property="maxLevelEntry" destination="fGI-iz-fhU" id="Cfz-bc-DzP"/>
                         <outlet property="minLevelEntry" destination="wpk-lR-N0a" id="fHY-q3-hp0"/>
                         <outlet property="rangeBottomConstraint" destination="fkR-sQ-FdI" id="whU-di-CbT"/>
                         <outlet property="rangeGrid" destination="6bV-GR-rub" id="ME7-fp-uXf"/>
+                        <outlet property="rangeRange" destination="mFk-xC-Jl9" id="p1S-4S-Axb"/>
                         <outlet property="ritualGrid" destination="xHd-Pn-WBE" id="CV1-Wu-Y1c"/>
                         <outlet property="schoolGrid" destination="mgR-uj-ME1" id="4jc-Lh-hMF"/>
                         <outlet property="secondSortArrow" destination="dVJ-wT-Uee" id="EdA-Xt-zzQ"/>

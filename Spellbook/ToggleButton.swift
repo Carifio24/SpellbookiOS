@@ -52,7 +52,6 @@ class ToggleButton: UIButton {
     @objc private func onClicked(sender: ToggleButton) {
         toggle()
         callback()
-        print("Toggle button pressed!")
     }
     
     // For initial setup purposes

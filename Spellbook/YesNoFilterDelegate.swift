@@ -53,9 +53,6 @@ class YesNoFilterDelegate: NSObject, FilterGridProtocol {
         // Determine the width of each column
         let usableWidth = gridWidth - CGFloat(columns + 1) * horizontalSpacing
         columnWidth = usableWidth / CGFloat(columns)
-        print("The grid width is \(gridWidth)")
-        print("The column width is \(columnWidth)")
-        print("There are \(columns) columns and \(rows) rows")
         
     }
     
@@ -81,7 +78,7 @@ class YesNoFilterDelegate: NSObject, FilterGridProtocol {
             self.statusToggler(self.main.characterProfile, bool)
             self.main.saveCharacterProfile()
           })
-        cell.backgroundColor = UIColor.systemPink
+        //cell.backgroundColor = UIColor.systemPink
         itemButtonMap[bool] = cell.filterView.filterButton
         return cell
     }
@@ -89,8 +86,6 @@ class YesNoFilterDelegate: NSObject, FilterGridProtocol {
     func collectionView(_ collectionView: UICollectionView,
             layout collectionViewLayout: UICollectionViewLayout,
             sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print("The column width is \(columnWidth)")
-        print("The row height is \(FilterView.imageHeight)")
         return CGSize(width: columnWidth, height: FilterView.imageHeight)
     }
     
@@ -114,9 +109,9 @@ class YesNoFilterDelegate: NSObject, FilterGridProtocol {
     }
     
     func desiredHeight() -> CGFloat {
-        print("There are \(rows) rows, each with height \(rowHeight)")
+        //print("There are \(rows) rows, each with height \(rowHeight)")
         let height = CGFloat(rows + 1) * sectionInsets.top + CGFloat(rows) * rowHeight
-        print("The desired height is \(height)")
+        //print("The desired height is \(height)")
         return height
     }
     

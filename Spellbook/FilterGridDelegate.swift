@@ -90,7 +90,7 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
             }
         })
         itemButtonMap[item] = cell.filterView.filterButton
-        cell.backgroundColor = UIColor.systemPink
+        //cell.backgroundColor = UIColor.systemPink
         //print("Exiting cellForItemAt: row \(indexPath.row)")
         return cell
     }
@@ -133,9 +133,9 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
     }
     
     func desiredHeight() -> CGFloat {
-        print("There are \(rows) rows, each with height \(rowHeight)")
+        //print("There are \(rows) rows, each with height \(rowHeight)")
         let height = CGFloat(rows + 1) * sectionInsets.top + CGFloat(rows) * rowHeight
-        print("The desired height is \(height)")
+        //print("The desired height is \(height)")
         return height
     }
     
@@ -167,7 +167,6 @@ class FilterGridRangeDelegate<T:QuantityType>: FilterGridDelegate<T> {
     typealias FlagSetter = (Bool) -> Void
     
     var flagSetter: FlagSetter
-    var rangeVisible: Bool = true
     
     init(gridWidth: CGFloat, flagSetter: @escaping FlagSetter) {
         self.flagSetter = flagSetter

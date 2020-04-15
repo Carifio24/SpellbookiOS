@@ -360,10 +360,6 @@ class SpellTableViewController: UITableViewController {
         let durationBounds = cp.getBounds(type: Duration.self)
         let rangeBounds = cp.getBounds(type: Range.self)
         
-        for sourcebook in visibleSourcebooks {
-            print(sourcebook.displayName)
-        }
-        
         for i in 0...spells.count-1 {
             let filter = filterItem(spell: spells[i].0, profile: cp, visibleSourcebooks: visibleSourcebooks, visibleClasses: visibleClasses, visibleSchools: visibleSchools, visibleCastingTimeTypes: visibleCastingTimeTypes, visibleDurationTypes: visibleDurationTypes, visibleRangeTypes: visibleRangeTypes, castingTimeBounds: castingTimeBounds, durationBounds: durationBounds, rangeBounds: rangeBounds, isText: isText, text: searchText)
             spells[i] = (spells[i].0, !filter)

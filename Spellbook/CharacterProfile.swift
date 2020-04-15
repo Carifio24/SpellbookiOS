@@ -176,8 +176,8 @@ class CharacterProfile {
     
     init(sion: SION) {
         
-        print("Initializing character from:")
-        print(sion.toJSON())
+        //print("Initializing character from:")
+        //print(sion.toJSON())
         
         spellStatuses = [:]
         name = sion[CharacterProfile.nameKey].string!
@@ -621,7 +621,7 @@ class CharacterProfile {
     // Used for JSON decoding
     private static func mapFromHiddenNames<E:NameConstructible>(type: E.Type, nonTrivialFilter: Bool, sion: SION, key: String) -> Visibilities<E> {
         
-        print("The type is \(type)")
+        //print("The type is \(type)")
         
         // The default map
         var map = CharacterProfile.getDefaultTypeMap(E.self)!.copy()
@@ -674,7 +674,6 @@ class CharacterProfile {
     // Save to a file
     func save(filename: URL) {
         do {
-            print("Saving character profile for \(name)")
             //print(asJSONString())
             try asJSONString().write(to: filename, atomically: false, encoding: .utf8)
         } catch let e {

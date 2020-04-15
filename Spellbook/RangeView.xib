@@ -86,7 +86,7 @@
                             </state>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="KWX-VS-ioe" firstAttribute="top" secondItem="9Eb-Af-QsG" secondAttribute="bottom" constant="10" id="2oY-QZ-0Bi"/>
                         <constraint firstItem="9Eb-Af-QsG" firstAttribute="top" secondItem="MWb-5d-deI" secondAttribute="top" id="3YA-5v-LrO"/>
@@ -102,7 +102,6 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="MWb-5d-deI" secondAttribute="bottom" id="01c-kE-ZjU"/>
                 <constraint firstItem="MWb-5d-deI" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="Dt7-Kw-Gab"/>
-                <constraint firstItem="MWb-5d-deI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="MVl-r9-lLk"/>
                 <constraint firstItem="MWb-5d-deI" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="R96-XG-9gd"/>
                 <constraint firstAttribute="width" secondItem="MWb-5d-deI" secondAttribute="width" id="bgh-Tx-a0A"/>
                 <constraint firstItem="MWb-5d-deI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="k5J-Wn-tVK"/>
