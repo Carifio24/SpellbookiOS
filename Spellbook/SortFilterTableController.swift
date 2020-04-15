@@ -31,6 +31,7 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var minLevelEntry: UITextField!
     @IBOutlet weak var maxLevelEntry: UITextField!
     
+    
     // Sort direction arrows
     @IBOutlet weak var firstSortArrow: ToggleButton!
     @IBOutlet weak var secondSortArrow: ToggleButton!
@@ -70,15 +71,7 @@ class SortFilterTableController: UITableViewController {
     // Whether or not the range views are visible
     private var castingTimeRangeVisible = true {
         didSet {
-            let indexPath = IndexPath(row: 2, section: 6)
-            let heightShouldBeZero = !castingTimeRangeVisible
-            let heightIsZero = tableView.rectForRow(at: indexPath).size.height == 0
-            if heightShouldBeZero != heightIsZero {
-                castingTimeRange.isHidden = !castingTimeRangeVisible
-                tableView.beginUpdates()
-                tableView.reloadRows(at: [indexPath], with: .none)
-                tableView.endUpdates()
-            }
+            setRangeVisibility(rangeView: castingTimeRange, cellIndexPath: IndexPath(row: 2, section: 6), isVisible: castingTimeRangeVisible)
         }
     }
     private var durationRangeVisible = true
@@ -111,7 +104,7 @@ class SortFilterTableController: UITableViewController {
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGesture!.cancelsTouchesInView = false
         tapGesture!.isEnabled = false
-        view.addGestureRecognizer(tapGesture!)
+        //view.addGestureRecognizer(tapGesture!)
         
         tableView.estimatedRowHeight = SpellTableViewController.estimatedHeight
         tableView.rowHeight = UITableView.automaticDimension
@@ -124,6 +117,7 @@ class SortFilterTableController: UITableViewController {
         // Set the text field delegates
         firstSortChoice.delegate = firstSortDelegate
         secondSortChoice.delegate = secondSortDelegate
+        firstSortChoice.isUserInteractionEnabled = true
         minLevelEntry.delegate = minLevelDelegate
         maxLevelEntry.delegate = maxLevelDelegate
         
@@ -236,6 +230,17 @@ class SortFilterTableController: UITableViewController {
         //header.textLabel?.numberOfLines = 0 // Commented out just for now
         header.backgroundColor = UIColor.clear
         header.backgroundView?.backgroundColor = UIColor.clear
+    }
+    
+    func setRangeVisibility(rangeView: RangeView, cellIndexPath indexPath: IndexPath, isVisible: Bool) {
+        let heightShouldBeZero = !isVisible
+        let heightIsZero = tableView.rectForRow(at: indexPath).size.height == 0
+        if heightShouldBeZero != heightIsZero {
+            rangeView.isHidden = !isVisible
+            tableView.beginUpdates()
+            tableView.reloadRows(at: [indexPath], with: .none)
+            tableView.endUpdates()
+        }
     }
     
     func onCharacterProfileUpdate() {
