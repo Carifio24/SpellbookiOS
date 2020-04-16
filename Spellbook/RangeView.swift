@@ -60,15 +60,17 @@ class RangeView: UIView {
         // Create the function that will get the values for the unit bounds
         boundsGetter = { cp in
             let bounds = cp.getBounds(type: T.self)
-            return (bounds.0.value, bounds.0.unit.pluralName, bounds.1.value, bounds.1.unit.pluralName)
+            let textGetter: (U) -> String = SizeUtils.unitTextGetter(U.self)
+            return (bounds.0.value, textGetter(bounds.0.unit), bounds.1.value, textGetter(bounds.1.unit))
         }
         defaultBoundsGetter = {
             let defaultBounds = CharacterProfile.getDefaultBounds(type: T.self)
-            return (defaultBounds.0.value, defaultBounds.0.unit.pluralName, defaultBounds.1.value, defaultBounds.1.unit.pluralName)
+            let textGetter: (U) -> String = SizeUtils.unitTextGetter(U.self)
+            return (defaultBounds.0.value, textGetter(defaultBounds.0.unit), defaultBounds.1.value, textGetter(defaultBounds.1.unit))
         }
         
         // We can set the center label now, since that won't change when the character profile changes
-        rangeTextLabel.text = "≤" + centerText + "≤"
+        rangeTextLabel.text = " ≤ " + centerText + " ≤ "
         
         // Set up the restore defaults button
         restoreDefaultsButton.addTarget(self, action: #selector(setDefaultValues), for: .touchUpInside)
@@ -78,8 +80,8 @@ class RangeView: UIView {
     
     func setValues(minValue: Int, minUnitName: String, maxValue: Int, maxUnitName: String) {
         minValueEntry.text = String(minValue)
-        minUnitChoice.text = minUnitName
         maxValueEntry.text = String(maxValue)
+        minUnitChoice.text = minUnitName
         maxUnitChoice.text = maxUnitName
     }
     

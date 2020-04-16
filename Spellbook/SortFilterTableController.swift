@@ -105,15 +105,17 @@ class SortFilterTableController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("Screen width is \(SizeUtils.nativeScreenWidth)")
+        
         // For keyboard listening
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
 
         // For dismissing the keyboard when tapping outside of a TextField
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tapGesture!.cancelsTouchesInView = false
+        tapGesture!.cancelsTouchesInView = true
         tapGesture!.isEnabled = false
-        //view.addGestureRecognizer(tapGesture!)
+        view.addGestureRecognizer(tapGesture!)
         
         tableView.estimatedRowHeight = SpellTableViewController.estimatedHeight
         tableView.rowHeight = UITableView.automaticDimension
@@ -195,14 +197,12 @@ class SortFilterTableController: UITableViewController {
 //        ]
         
         // Set the heights of the range cells
-//        let rangeStackViews: [(RangeView, UIStackView)] = [ (castingTimeRange, castingTimeStackView) ]
-//        var rangeConstraints: [NSLayoutConstraint] = []
-//        for (rangeView, stackView) in rangeStackViews {
-//            let height = rangeView.desiredHeight()
-//            rangeConstraints.append(NSLayoutConstraint(item: rangeView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: height))
-//            //rangeConstraints.append(NSLayoutConstraint(item: stackView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: height))
-//        }
-//        NSLayoutConstraint.activate(rangeConstraints)
+        var rangeConstraints: [NSLayoutConstraint] = []
+        for rangeView in rangeViews {
+            let height = rangeView.desiredHeight()
+            rangeConstraints.append(NSLayoutConstraint(item: rangeView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: height))
+        }
+        NSLayoutConstraint.activate(rangeConstraints)
 
         
         // Uncomment the following line to preserve selection between presentations
@@ -282,13 +282,13 @@ class SortFilterTableController: UITableViewController {
     //  BUT the touch won't carry through to the view controller
     //  i.e., I can't accidentally press a button while closing a keyboard
     @objc func keyboardWillAppear() {
-        print("In keyboardWillAppear")
+        //print("In keyboardWillAppear")
         isKeyboardOpen = true
         tapGesture?.isEnabled = true
     }
 
     @objc func keyboardWillDisappear() {
-        print("In keyboardWillDisappear")
+        //print("In keyboardWillDisappear")
         isKeyboardOpen = false
         tapGesture?.isEnabled = false
     }

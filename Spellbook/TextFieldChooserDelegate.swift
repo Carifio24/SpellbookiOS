@@ -85,7 +85,7 @@ class NameConstructibleChooserDelegate<T:NameConstructible>: TextFieldChooserDel
 class UnitChooserDelegate<U:Unit> : TextFieldChooserDelegate<U> {
     init(getter: @escaping ProfileGetter, setter: @escaping ProfileSetter) {
         super.init(profileGetter: getter, profileSetter: setter,
-               nameGetter: { $0.pluralName },
+               nameGetter: SizeUtils.unitTextGetter(U.self),
                nameConstructor: {
                 do {
                     return try U.fromString($0)

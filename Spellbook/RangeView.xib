@@ -80,7 +80,7 @@
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWX-VS-ioe" userLabel="Restore Defaults Button">
                             <rect key="frame" x="0.0" y="52" width="456" height="30"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" title="Restore Default Range">
                                 <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                             </state>
