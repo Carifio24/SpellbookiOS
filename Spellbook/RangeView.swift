@@ -24,6 +24,8 @@ class RangeView: UIView {
     
     var minUnitDelegate: UITextFieldDelegate?
     var maxUnitDelegate: UITextFieldDelegate?
+    var minValueDelegate: UITextFieldDelegate?
+    var maxValueDelegate: UITextFieldDelegate?
     
     var boundsGetter: BoundsGetter?
     var defaultBoundsGetter: DefaultBoundsGetter?
@@ -50,12 +52,19 @@ class RangeView: UIView {
         // Create and set the delegates for the units
         minUnitDelegate = UnitChooserDelegate<U>(
             getter: { cp in return cp.getMinUnit(quantityType: Q.self, unitType: U.self) },
-            setter: { cp, unit in return cp.setMinUnit(quantityType: Q.self, unitType: U.self, unit: unit) })
+            setter: { cp, unit in cp.setMinUnit(quantityType: Q.self, unitType: U.self, unit: unit) })
         maxUnitDelegate = UnitChooserDelegate<U>(
             getter: { cp in return cp.getMaxUnit(quantityType: Q.self, unitType: U.self) },
-            setter: { cp, unit in return cp.setMaxUnit(quantityType: Q.self, unitType: U.self, unit: unit) })
+            setter: { cp, unit in cp.setMaxUnit(quantityType: Q.self, unitType: U.self, unit: unit) })
         minUnitChoice.delegate = minUnitDelegate!
         maxUnitChoice.delegate = maxUnitDelegate!
+        
+        // Create and set the delegates for the values
+        minValueDelegate = NumberFieldDelegate(maxCharacters: 3, setter: { cp, value in cp.setMinValue(quantityType: Q.self, unitType: U.self, value: value)})
+        maxValueDelegate = NumberFieldDelegate(maxCharacters: 3, setter: { cp, value in cp.setMaxValue(quantityType: Q.self, unitType: U.self, value: value)})
+        minValueEntry.delegate = minValueDelegate!
+        maxValueEntry.delegate = maxValueDelegate!
+        
         
         // Create the function that will get the values for the unit bounds
         boundsGetter = { cp in

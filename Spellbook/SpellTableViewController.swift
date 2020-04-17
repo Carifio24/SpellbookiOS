@@ -372,12 +372,22 @@ class SpellTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    // If one of the side menus is open, we want to close the menu rather than select a cell
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if main.isLeftMenuOpen {
+            main.toggleLeftMenu()
+            return nil
+        } else if main.isRightMenuOpen {
+            main.toggleRightMenu()
+            return nil
+        }
+        return indexPath
+    }
+    
     
     // Set what happens when a cell is selected
     // For us, that's creating a segue to a view with the spell info
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        print("Pressed at row \(indexPath.row)")
         
         tableView.deselectRow(at: indexPath, animated: true)
     
@@ -448,8 +458,6 @@ class SpellTableViewController: UITableViewController {
         let toHide: Bool = (yVelocity < -5) && !main.filterVisible // True if scrolling down, false if scrolling up
         navController.setNavigationBarHidden(toHide, animated: true)
     }
-
-    
     
     
     

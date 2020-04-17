@@ -9,7 +9,7 @@
 import UIKit
 import ActionSheetPicker_3_0
 
-class ViewController: UIViewController, UISearchBarDelegate {
+class ViewController: UIViewController, UISearchBarDelegate, SWRevealViewControllerDelegate {
     
     // Spellbook
     let spellbook = Spellbook(jsonStr: try! String(contentsOf: Bundle.main.url(forResource: "Spells", withExtension: "json")!))
@@ -33,6 +33,10 @@ class ViewController: UIViewController, UISearchBarDelegate {
     
     // The side menu controller
     var sideMenuController: SideMenuController?
+    
+    // Whether or not the side menus are open
+    var isLeftMenuOpen = false
+    var isRightMenuOpen = false
     
     // Settings, character profile, and selection window
     var settings = Settings()
@@ -106,6 +110,9 @@ class ViewController: UIViewController, UISearchBarDelegate {
         
         // For updating the status bar
         setNeedsStatusBarAppearanceUpdate()
+        
+        // Set the reveal controller delegate
+        Controllers.revealController.delegate = self
         
         // Set the status bar color
 //        let statusBarBGColor = UIColor.black
@@ -549,7 +556,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
     }
 
 
-    //MARK: UISearchBarDelegate
+    // MARK: UISearchBarDelegate
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         hideSearchBar()
         searchBar.text = ""
@@ -558,5 +565,26 @@ class ViewController: UIViewController, UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filter()
+    }
+    
+    // MARK: SWRevealViewControllerDelegate
+    func revealController(_ revealController: SWRevealViewController!, didMoveTo position: FrontViewPosition) {
+        
+        // Set flags according to what menus are open
+        // The enum names don't entirely make sense to me - I determined how the states match up via experimentation
+        switch(position) {
+        case FrontViewPosition.left: // Main screen open
+            isLeftMenuOpen = false
+            isRightMenuOpen = false
+        case FrontViewPosition.right: // Left side menu open
+            isLeftMenuOpen = true
+            isRightMenuOpen = false
+        case FrontViewPosition.leftSide: // Right side menu open
+            isRightMenuOpen = true
+            isLeftMenuOpen = false
+        default:
+            isLeftMenuOpen = false
+            isRightMenuOpen = false
+        }
     }
 }

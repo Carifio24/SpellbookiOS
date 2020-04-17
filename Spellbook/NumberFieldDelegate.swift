@@ -8,14 +8,15 @@
 
 import Foundation
 
-class LevelTextFieldDelegate: NSObject, UITextFieldDelegate {
+class NumberFieldDelegate: NSObject, UITextFieldDelegate {
     
-    typealias LevelBoundSetter = (CharacterProfile, Int) -> Void
+    typealias IntSetter = (CharacterProfile, Int) -> Void
     
-    static let maxCharacters = 1
-    let setter: LevelBoundSetter
+    let maxCharacters: Int
+    let setter: IntSetter
     
-    init(setter: @escaping LevelBoundSetter) {
+    init(maxCharacters: Int, setter: @escaping IntSetter) {
+        self.maxCharacters = maxCharacters
         self.setter = setter
     }
     
@@ -28,16 +29,16 @@ class LevelTextFieldDelegate: NSObject, UITextFieldDelegate {
         }
         
         let newLength = currentLength + string.count - range.length
-        return newLength <= LevelTextFieldDelegate.maxCharacters
+        return newLength <= maxCharacters
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let level = Int(textField.text ?? "") else { return }
-        setter(Controllers.mainController.characterProfile, level)
+        guard let value = Int(textField.text ?? "") else { return }
+        setter(Controllers.mainController.characterProfile, value)
     }
     
-    private func textViewDidBeginEditing(_ textView: UITextView) {
-        textView.selectAll(nil)
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.selectAll(nil)
     }
     
 }

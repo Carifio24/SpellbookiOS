@@ -46,8 +46,6 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     
     override func viewDidLoad() {
         
-        print("Entering viewDidLoad")
-        
         super.viewDidLoad()
         
         // Update status bar

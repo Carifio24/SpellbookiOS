@@ -45,8 +45,8 @@ class SortFilterTableController: UITableViewController {
     // Text field delegates
     let firstSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getFirstSortField() }, setter: { cp, sf in cp.setFirstSortField(sf) })
     let secondSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getSecondSortField() }, setter: { cp, sf in cp.setSecondSortField(sf) })
-    let minLevelDelegate = LevelTextFieldDelegate(setter: {cp, level in cp.setMinSpellLevel(level)})
-    let maxLevelDelegate = LevelTextFieldDelegate(setter: {cp, level in cp.setMaxSpellLevel(level)})
+    let minLevelDelegate = NumberFieldDelegate(maxCharacters: 1, setter: {cp, level in cp.setMinSpellLevel(level)})
+    let maxLevelDelegate = NumberFieldDelegate(maxCharacters: 1, setter: {cp, level in cp.setMaxSpellLevel(level)})
     
     // Filtering grids
     @IBOutlet weak var ritualGrid: UICollectionView!
