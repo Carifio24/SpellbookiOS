@@ -155,7 +155,7 @@ class SpellWindowController: UIViewController {
         
         // Set the scroll view content size
         scrollView.contentSize = self.view.frame.size
-        print("Scroll enabled: \(scrollView.isScrollEnabled)")
+        //print("Scroll enabled: \(scrollView.isScrollEnabled)")
     }
     
     

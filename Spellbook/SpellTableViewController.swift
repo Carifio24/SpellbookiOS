@@ -399,11 +399,11 @@ class SpellTableViewController: UITableViewController {
         let spellWindowController = storyboard?.instantiateViewController(withIdentifier: spellWindowIdentifier) as! SpellWindowController
         spellWindowController.transitioningDelegate = spellWindowController
         //view.window?.layer.add(Transitions.fromRightTransition, forKey: kCATransition)
-        print("Presenting...")
+        //print("Presenting...")
         self.present(spellWindowController, animated: true, completion: nil)
         spellWindowController.spell = spell
         spellWindowController.spellIndex = spellIndex
-        print("")
+        //print("")
     }
     
     

@@ -20,6 +20,10 @@ class ViewController: UIViewController, UISearchBarDelegate, SWRevealViewControl
     var profilesDirectory = URL(fileURLWithPath: "")
     let settingsFile = "Settings.json"
     
+    // Images for the filter/list navigation bar item
+    static let filterIcon = UIImage(named: "FilterIcon")
+    static let listIcon = UIImage(named: "ListIcon")
+    
     // The background image
     @IBOutlet weak var backgroundView: UIImageView!
     
@@ -53,7 +57,6 @@ class ViewController: UIViewController, UISearchBarDelegate, SWRevealViewControl
     
     // The UIViews that hold the child controllers
     @IBOutlet weak var tableView: UIView!
-    @IBOutlet weak var sortFilterView: UIView!
     @IBOutlet weak var sortFilterTableView: UIView!
     
     // Dimensions
@@ -516,6 +519,8 @@ class ViewController: UIViewController, UISearchBarDelegate, SWRevealViewControl
         tableView.isHidden = filterVisible
         sortFilterTableView.isHidden = !filterVisible
         navigationController?.hidesBarsOnSwipe = !filterVisible
+        searchButton.isEnabled = !filterVisible
+        filterButton.image = filterVisible ? ViewController.listIcon : ViewController.filterIcon
     }
     
     // For the filter button on the navigation bar

@@ -273,15 +273,11 @@ class SortFilterTableController: UITableViewController {
     
     @objc func onTapped() {
         let main = Controllers.mainController
-        print("In onTapped")
         if isKeyboardOpen {
-            print("keyboard open")
             view.endEditing(true)
         } else if main.isLeftMenuOpen {
-            print("left menu open")
             main.toggleLeftMenu()
         } else if main.isRightMenuOpen {
-            print("right menu open")
             main.toggleRightMenu()
         }
     }
