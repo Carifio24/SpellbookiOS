@@ -13,6 +13,7 @@ class SortFilterTableController: UITableViewController {
     static let headerFont = UIFont(name: "Cloister Black", size: 35)
     static let smallerHeaderFont = UIFont(name: "Cloister Black", size: 28)
     static let reuseIdentifier = "filterCell"
+    static let estimatedHeight = CGFloat(60)
     
     struct SectionInfo {
         let name: String
@@ -110,12 +111,12 @@ class SortFilterTableController: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
 
         // For dismissing the keyboard when tapping outside of a TextField
-        tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTapped))
         tapGesture!.cancelsTouchesInView = true
-        tapGesture!.isEnabled = false
         view.addGestureRecognizer(tapGesture!)
         
-        tableView.estimatedRowHeight = SpellTableViewController.estimatedHeight
+        // Set the table view heights to be automatically determined
+        tableView.estimatedRowHeight = SortFilterTableController.estimatedHeight
         tableView.rowHeight = UITableView.automaticDimension
         
         // Register the cell files
@@ -270,8 +271,19 @@ class SortFilterTableController: UITableViewController {
         
     }
     
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
+    @objc func onTapped() {
+        let main = Controllers.mainController
+        print("In onTapped")
+        if isKeyboardOpen {
+            print("keyboard open")
+            view.endEditing(true)
+        } else if main.isLeftMenuOpen {
+            print("left menu open")
+            main.toggleLeftMenu()
+        } else if main.isRightMenuOpen {
+            print("right menu open")
+            main.toggleRightMenu()
+        }
     }
     
     // These two methods will give use the following behavior:
@@ -282,13 +294,11 @@ class SortFilterTableController: UITableViewController {
     @objc func keyboardWillAppear() {
         //print("In keyboardWillAppear")
         isKeyboardOpen = true
-        tapGesture?.isEnabled = true
     }
 
     @objc func keyboardWillDisappear() {
         //print("In keyboardWillDisappear")
         isKeyboardOpen = false
-        tapGesture?.isEnabled = false
     }
 
     // For selecting all of the grid buttons

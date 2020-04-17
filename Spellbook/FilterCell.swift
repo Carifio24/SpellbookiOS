@@ -42,7 +42,7 @@ class FilterCell: UICollectionViewCell {
         guard alpha >= 0.01 else { return nil }
         guard self.point(inside: point, with: event) else { return nil }
 
-        // add one of these blocks for each button in our collection view cell we want to actually work
+        // Add one of these blocks for each button in our collection view cell we want to actually work
         if self.filterView.filterButton.point(inside: convert(point, to: self.filterView.filterButton), with: event) {
             return self.filterView.filterButton
         }
