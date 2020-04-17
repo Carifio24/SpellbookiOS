@@ -104,8 +104,8 @@ class RangeView: UIView {
     }
 
     func desiredHeight() -> CGFloat {
-        print("selectionRow has height \(selectionRow.frame.size.height)")
-        print("restoreDefaultsButton has height \(restoreDefaultsButton.frame.size.height)")
+        //print("selectionRow has height \(selectionRow.frame.size.height)")
+        //print("restoreDefaultsButton has height \(restoreDefaultsButton.frame.size.height)")
         return selectionRow.frame.size.height + CGFloat(10) + restoreDefaultsButton.frame.size.height
     }
     

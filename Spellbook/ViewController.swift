@@ -9,7 +9,7 @@
 import UIKit
 import ActionSheetPicker_3_0
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UISearchBarDelegate {
     
     // Spellbook
     let spellbook = Spellbook(jsonStr: try! String(contentsOf: Bundle.main.url(forResource: "Spells", withExtension: "json")!))
@@ -82,8 +82,19 @@ class ViewController: UIViewController {
     // The navigation bar and its items
     @IBOutlet var navBar: UINavigationItem!
     @IBOutlet var leftMenuButton: UIBarButtonItem!
+    @IBOutlet weak var searchButton: UIBarButtonItem!
     @IBOutlet weak var filterButton: UIBarButtonItem!
     @IBOutlet var rightMenuButton: UIBarButtonItem!
+    private var rightNavBarItems: [UIBarButtonItem] = []
+    private var titleView: UIView?
+    
+    // What to do when the search button is pressed
+    @IBAction func searchButtonPressed(_ sender: Any) {
+        showSearchBar()
+    }
+    
+    // The search bar itself
+    let searchBar = UISearchBar()
     
     // Status bar
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -192,16 +203,22 @@ class ViewController: UIViewController {
             openCharacterCreationDialog(mustComplete: true)
         }
         
+        // The buttons on the right side of the navigation bar
+        rightNavBarItems = [ rightMenuButton, filterButton, searchButton ]
+        
+        // Set up the search bar
+        searchBar.delegate = self
+        searchBar.showsCancelButton = true
+        searchBar.searchBarStyle = UISearchBar.Style.minimal
+        self.titleView = navigationItem.titleView
+        
+        
         // The view has appeared, so we can set firstAppearance to false
         firstAppearance = false
         
         // Initial sort and filter
         //sort()
         //filter()
-        
-        // Testing
-        //pickerView.backgroundColor = UIColor.red
-        //labelView.backgroundColor = UIColor.blue
         
     }
     
@@ -505,4 +522,41 @@ class ViewController: UIViewController {
     
     @objc func endEditing() { }
     
+    
+    // For showing the search bar
+    func showSearchBar() {
+        navigationItem.titleView = searchBar
+        searchBar.alpha = 0
+        navigationItem.setLeftBarButton(nil, animated: true)
+        navigationItem.setRightBarButtonItems(nil, animated: true)
+        self.searchBar.alpha = 1
+        self.searchBar.becomeFirstResponder()
+//        UIView.animate(withDuration: 0.5, animations: {
+//
+//          }, completion: { finished in
+//
+//        })
+    }
+    
+    func hideSearchBar() {
+        navigationItem.setLeftBarButton(leftMenuButton, animated: true)
+        navigationItem.setRightBarButtonItems(rightNavBarItems, animated: true)
+        UIView.animate(withDuration: 0.3, animations: {
+            self.navigationItem.titleView = self.titleView
+        }, completion: { finished in
+
+      })
+    }
+
+
+    //MARK: UISearchBarDelegate
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        hideSearchBar()
+        searchBar.text = ""
+        filter()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filter()
+    }
 }

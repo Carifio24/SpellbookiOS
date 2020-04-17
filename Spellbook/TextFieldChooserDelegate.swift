@@ -13,8 +13,8 @@ class TextFieldChooserDelegate<T:CaseIterable & Equatable>: NSObject, UITextFiel
     
     typealias ProfileSetter = (CharacterProfile, T) -> Void
     typealias ProfileGetter = (CharacterProfile) -> T
-    typealias NameGetter = (T) -> String
-    typealias NameConstructor = (String) -> T
+    typealias StringGetter = (T) -> String
+    typealias StringConstructor = (String) -> T
     
     let title = String(describing: T.self)
     let main = Controllers.mainController
@@ -22,13 +22,15 @@ class TextFieldChooserDelegate<T:CaseIterable & Equatable>: NSObject, UITextFiel
     let pickerData: [String]
     let profileSetter: ProfileSetter
     let profileGetter: ProfileGetter
-    let nameGetter: NameGetter
-    let nameConstructor: NameConstructor
+    let nameGetter: StringGetter
+    let textSetter: StringGetter
+    let nameConstructor: StringConstructor
     
-    init(profileGetter: @escaping ProfileGetter, profileSetter: @escaping ProfileSetter, nameGetter: @escaping NameGetter, nameConstructor: @escaping NameConstructor) {
+    init(profileGetter: @escaping ProfileGetter, profileSetter: @escaping ProfileSetter, nameGetter: @escaping StringGetter, textSetter: @escaping StringGetter, nameConstructor: @escaping StringConstructor) {
         self.profileSetter = profileSetter
         self.profileGetter = profileGetter
         self.nameGetter = nameGetter
+        self.textSetter = textSetter
         self.nameConstructor = nameConstructor
         pickerData = T.allCases.map({ nameGetter($0) })
     }
@@ -56,7 +58,7 @@ class TextFieldChooserDelegate<T:CaseIterable & Equatable>: NSObject, UITextFiel
                      self.profileSetter(self.main.characterProfile, item)
                      self.main.saveCharacterProfile()
                      self.main.sort()
-                     sender.text = self.nameGetter(item)
+                     sender.text = self.textSetter(item)
                      sender.endEditing(true)
                      return
                      },
@@ -78,6 +80,7 @@ class NameConstructibleChooserDelegate<T:NameConstructible>: TextFieldChooserDel
     init(getter: @escaping ProfileGetter, setter: @escaping ProfileSetter) {
         super.init(profileGetter: getter, profileSetter: setter,
                    nameGetter: { $0.displayName },
+                   textSetter: { $0.displayName },
                    nameConstructor: { return T.fromName($0) })
     }
 }
@@ -85,7 +88,8 @@ class NameConstructibleChooserDelegate<T:NameConstructible>: TextFieldChooserDel
 class UnitChooserDelegate<U:Unit> : TextFieldChooserDelegate<U> {
     init(getter: @escaping ProfileGetter, setter: @escaping ProfileSetter) {
         super.init(profileGetter: getter, profileSetter: setter,
-               nameGetter: SizeUtils.unitTextGetter(U.self),
+                   nameGetter: { $0.pluralName },
+                   textSetter: SizeUtils.unitTextGetter(U.self),
                nameConstructor: {
                 do {
                     return try U.fromString($0)

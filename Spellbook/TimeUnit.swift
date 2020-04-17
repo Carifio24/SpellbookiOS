@@ -16,11 +16,11 @@ enum TimeUnit : Int, Unit {
     
     static internal var names: [TimeUnit:Array<String>] = [
         second: ["second", "seconds", "s", "s."],
-        round: ["round", "rounds", "rd", "rd."],
-        minute: ["minute", "minutes", "min", "min."],
+        round: ["round", "rounds", "rds", "rds."],
+        minute: ["minute", "minutes", "mins", "mins."],
         hour: ["hour", "hours", "hrs", "hrs."],
-        day: ["day", "days", "dy", "dy."],
-        year: ["year", "years", "yr", "yr."]
+        day: ["day", "days", "days", "days"],
+        year: ["year", "years", "yrs", "yrs."]
     ]
     
     var value: Int { return self.rawValue }

@@ -105,8 +105,6 @@ class SortFilterTableController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Screen width is \(SizeUtils.nativeScreenWidth)")
-        
         // For keyboard listening
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)

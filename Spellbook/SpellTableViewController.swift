@@ -330,7 +330,7 @@ class SpellTableViewController: UITableViewController {
         toHide = toHide || (cp.preparedSelected() && !cp.isPrepared(s))
         toHide = toHide || !cp.getRitualFilter(s.ritual)
         toHide = toHide || !cp.getConcentrationFilter(s.concentration)
-        toHide = toHide || (isText && !spname.starts(with: text))
+        toHide = toHide || (isText && !spname.contains(text))
         return toHide
     }
     
@@ -346,8 +346,8 @@ class SpellTableViewController: UITableViewController {
         //print("Prepared selected: \(main?.characterProfile.preparedSelected())")
         
         // First, we filter the data
-        let isText = false
-        let searchText = ""
+        let searchText = main.searchBar.text?.lowercased() ?? ""
+        let isText = !searchText.isEmpty
         
         let cp = main.characterProfile
         let visibleSourcebooks = cp.getVisibleValues(type: Sourcebook.self)
@@ -371,6 +371,7 @@ class SpellTableViewController: UITableViewController {
         // Repopulate the table
         tableView.reloadData()
     }
+    
     
     // Set what happens when a cell is selected
     // For us, that's creating a segue to a view with the spell info
