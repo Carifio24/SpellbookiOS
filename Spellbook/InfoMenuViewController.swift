@@ -107,6 +107,8 @@ class InfoMenuViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         // Get the relevant section
         let sectionIndex = indexPath.section
         let section = sections[sectionIndex]

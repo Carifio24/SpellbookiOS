@@ -20,13 +20,13 @@ class SpellcastingInfoController: UIViewController {
     let maxBotPadding = CGFloat(3)
     let minHorizPadding = CGFloat(1)
     let minTopPadding = CGFloat(20)
-    let minBotPadding = CGFloat(1)
+    let minBotPadding = CGFloat(0)
     
     // Padding amounts
     let leftPaddingFraction = CGFloat(0.01)
     let rightPaddingFraction = CGFloat(0.01)
     let topPaddingFraction = CGFloat(0.01)
-    let bottomPaddingFraction = CGFloat(0.01)
+    let bottomPaddingFraction = CGFloat(0)
     
     // The info
     var infoTitle: String = String()
@@ -106,7 +106,7 @@ class SpellcastingInfoController: UIViewController {
         infoLabel.sizeToFit()
         
         // Let the scroll view how large its contents are
-        scrollView.contentSize = CGSize(width: usableWidth, height: titleLabel.frame.height + infoLabel.frame.height + 10)
+        scrollView.contentSize = CGSize(width: usableWidth, height: titleLabel.frame.height + infoLabel.frame.height + 30)
         
     }
     

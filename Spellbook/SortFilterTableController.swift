@@ -258,6 +258,10 @@ class SortFilterTableController: UITableViewController {
         firstSortChoice.text = cp.getFirstSortField().displayName
         secondSortChoice.text = cp.getSecondSortField().displayName
         
+        // Set the sort arrows
+        firstSortArrow.set(cp.getFirstSortReverse())
+        secondSortArrow.set(cp.getSecondSortReverse())
+        
         // Update the spell levels
         minLevelEntry.text = String(cp.getMinSpellLevel())
         maxLevelEntry.text = String(cp.getMaxSpellLevel())
@@ -271,16 +275,22 @@ class SortFilterTableController: UITableViewController {
         
     }
     
-    @objc func onTapped() {
-        let main = Controllers.mainController
+    @objc func dismissKeyboard() {
         if isKeyboardOpen {
             view.endEditing(true)
-        } else if main.isLeftMenuOpen {
-            main.toggleLeftMenu()
-        } else if main.isRightMenuOpen {
-            main.toggleRightMenu()
         }
     }
+    
+    @objc func onTapped() {
+        //let main = Controllers.mainController
+        dismissKeyboard()
+//        if main.isLeftMenuOpen {
+//            main.toggleLeftMenu()
+//        } else if main.isRightMenuOpen {
+//            main.toggleRightMenu()
+//        }
+    }
+    
     
     // These two methods will give use the following behavior:
     // If the keyboard is closed, the tap gesture does nothing
@@ -290,11 +300,13 @@ class SortFilterTableController: UITableViewController {
     @objc func keyboardWillAppear() {
         //print("In keyboardWillAppear")
         isKeyboardOpen = true
+        Controllers.mainController.passThroughView.blocking = true
     }
 
     @objc func keyboardWillDisappear() {
         //print("In keyboardWillDisappear")
         isKeyboardOpen = false
+        Controllers.mainController.passThroughView.blocking = false
     }
 
     // For selecting all of the grid buttons

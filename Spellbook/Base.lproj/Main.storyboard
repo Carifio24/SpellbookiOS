@@ -86,9 +86,14 @@
                                     <segue destination="gUc-pC-jXJ" kind="embed" identifier="sortFilterTableSegue" id="2ay-he-JsR"/>
                                 </connections>
                             </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YSN-5x-scJ" customClass="PassThroughView" customModule="Spellbook" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ngx-bD-cJd" firstAttribute="trailing" secondItem="YSN-5x-scJ" secondAttribute="trailing" id="0Im-DC-hgh"/>
                             <constraint firstItem="N4d-fT-FYa" firstAttribute="centerX" secondItem="ngx-bD-cJd" secondAttribute="centerX" id="2dF-oK-5GY"/>
                             <constraint firstItem="N4d-fT-FYa" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="Bcf-1A-9EU"/>
                             <constraint firstItem="NhI-7k-eSx" firstAttribute="leading" secondItem="ngx-bD-cJd" secondAttribute="leading" constant="5" id="GXU-mC-aSF"/>
@@ -96,9 +101,12 @@
                             <constraint firstItem="Zki-DA-IIL" firstAttribute="width" secondItem="ngx-bD-cJd" secondAttribute="width" constant="-10" id="VdX-qK-4qD"/>
                             <constraint firstItem="NhI-7k-eSx" firstAttribute="height" secondItem="ngx-bD-cJd" secondAttribute="height" constant="-2" id="XGC-6P-fJ1"/>
                             <constraint firstItem="Zki-DA-IIL" firstAttribute="leading" secondItem="ngx-bD-cJd" secondAttribute="leading" constant="5" id="XSd-V4-GGz"/>
+                            <constraint firstItem="ngx-bD-cJd" firstAttribute="bottom" secondItem="YSN-5x-scJ" secondAttribute="bottom" id="acA-7D-XGT"/>
                             <constraint firstItem="N4d-fT-FYa" firstAttribute="centerY" secondItem="ngx-bD-cJd" secondAttribute="centerY" id="c98-Yb-PNm"/>
                             <constraint firstItem="N4d-fT-FYa" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="f9e-4o-wEO"/>
+                            <constraint firstItem="YSN-5x-scJ" firstAttribute="top" secondItem="ngx-bD-cJd" secondAttribute="top" id="fB5-I9-2e0"/>
                             <constraint firstItem="NhI-7k-eSx" firstAttribute="top" secondItem="ngx-bD-cJd" secondAttribute="top" constant="1" id="imb-HL-m5R"/>
+                            <constraint firstItem="YSN-5x-scJ" firstAttribute="leading" secondItem="ngx-bD-cJd" secondAttribute="leading" id="qVR-DP-HiZ"/>
                             <constraint firstItem="NhI-7k-eSx" firstAttribute="width" secondItem="ngx-bD-cJd" secondAttribute="width" constant="-10" id="wj8-xU-6Qy"/>
                             <constraint firstItem="Zki-DA-IIL" firstAttribute="height" secondItem="ngx-bD-cJd" secondAttribute="height" constant="-2" id="zIX-nD-Wh3"/>
                         </constraints>
@@ -123,6 +131,7 @@
                         <outlet property="filterButton" destination="xzy-eg-hL5" id="AK0-rm-t0K"/>
                         <outlet property="leftMenuButton" destination="sKB-QI-6JB" id="ekf-ud-MrQ"/>
                         <outlet property="navBar" destination="4C6-oA-EBd" id="J2V-pj-cfN"/>
+                        <outlet property="passThroughView" destination="YSN-5x-scJ" id="oGH-vj-Hus"/>
                         <outlet property="rightMenuButton" destination="Y5e-Fl-Wnb" id="qbT-Ra-anH"/>
                         <outlet property="searchButton" destination="Wf9-GO-CA9" id="lUe-NG-Ll1"/>
                         <outlet property="sortFilterTableView" destination="NhI-7k-eSx" id="1ec-09-cfT"/>

@@ -27,6 +27,10 @@ class ViewController: UIViewController, UISearchBarDelegate, SWRevealViewControl
     // The background image
     @IBOutlet weak var backgroundView: UIImageView!
     
+    // The pass-through view
+    @IBOutlet weak var passThroughView: PassThroughView!
+    
+    
     // Child controllers
     var tableController: SpellTableViewController?
     var spellWindowController: SpellWindowController?
@@ -174,6 +178,12 @@ class ViewController: UIViewController, UISearchBarDelegate, SWRevealViewControl
         
         // Get the side menu controller
         sideMenuController = self.revealViewController()?.rearViewController as? SideMenuController
+        
+        // Set the pass-through view action
+        passThroughView.whenPressed = {
+            let _ = self.closeMenuIfOpen()
+            self.sortFilterController?.dismissKeyboard()
+        }
         
         // Set the navigation bar button callbacks
         leftMenuButton.target = self
@@ -525,6 +535,8 @@ class ViewController: UIViewController, UISearchBarDelegate, SWRevealViewControl
     
     // For the filter button on the navigation bar
     @objc func filterButtonPressed() {
+        //toggleWindowVisibilities()
+        sortFilterController?.dismissKeyboard()
         if filterVisible {
             sort()
             filter()
@@ -559,6 +571,16 @@ class ViewController: UIViewController, UISearchBarDelegate, SWRevealViewControl
 
       })
     }
+    
+    func closeMenuIfOpen() -> Bool {
+        let toClose = isLeftMenuOpen || isRightMenuOpen
+        if isLeftMenuOpen {
+            toggleLeftMenu()
+        } else if isRightMenuOpen {
+            toggleRightMenu()
+        }
+        return toClose
+    }
 
 
     // MARK: UISearchBarDelegate
@@ -591,5 +613,6 @@ class ViewController: UIViewController, UISearchBarDelegate, SWRevealViewControl
             isLeftMenuOpen = false
             isRightMenuOpen = false
         }
+        passThroughView.blocking = isLeftMenuOpen || isRightMenuOpen
     }
 }

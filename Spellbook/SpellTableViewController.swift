@@ -374,13 +374,7 @@ class SpellTableViewController: UITableViewController {
     
     // If one of the side menus is open, we want to close the menu rather than select a cell
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if main.isLeftMenuOpen {
-            main.toggleLeftMenu()
-            return nil
-        } else if main.isRightMenuOpen {
-            main.toggleRightMenu()
-            return nil
-        }
+        //return main.closeMenuIfOpen() ? nil : indexPath
         return indexPath
     }
     
@@ -392,7 +386,6 @@ class SpellTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     
         if indexPath.row >= spellArray.count { return }
-        let storyboard = self.storyboard
         let spellIndex = indexPath.row
         let spell = spellArray[spellIndex]
 
