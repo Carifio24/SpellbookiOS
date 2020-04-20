@@ -390,6 +390,7 @@ class SpellTableViewController: UITableViewController {
         let spell = spellArray[spellIndex]
 
         let spellWindowController = storyboard?.instantiateViewController(withIdentifier: spellWindowIdentifier) as! SpellWindowController
+        spellWindowController.modalPresentationStyle = .fullScreen
         spellWindowController.transitioningDelegate = spellWindowController
         //view.window?.layer.add(Transitions.fromRightTransition, forKey: kCATransition)
         //print("Presenting...")

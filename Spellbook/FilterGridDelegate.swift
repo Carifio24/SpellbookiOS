@@ -79,7 +79,6 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
         cell.filterView.filterButton.set(main.characterProfile.getVisibility(item))
         cell.filterView.filterButton.setCallback({
             self.main.characterProfile.toggleVisibility(item)
-            print(self.main.characterProfile.getVisibility(item))
             self.main.saveCharacterProfile()
         })
         cell.filterView.filterButton.setLongPressCallback({

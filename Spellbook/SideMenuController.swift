@@ -69,16 +69,21 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         let statusFilterHeight = CGFloat(171)
         let characterLabelHeight = CGFloat(20)
         let selectionButtonHeight = CGFloat(20)
+        let belowFilterPadding = CGFloat(15)
         let belowCharacterLabelPadding = CGFloat(14)
+        let notchTopPadding = CGFloat(35)
         
         // Set up the view positioning
         var currentY = CGFloat(topPadding)
+        if UIDevice.current.hasNotch {
+            currentY += notchTopPadding
+        }
         sideMenuHeader.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth, height: headerHeight)
         
         currentY += (headerHeight + tablePadding)
         statusFilterView.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: statusFilterHeight)
         
-        currentY += statusFilterHeight
+        currentY += (statusFilterHeight + belowFilterPadding)
         characterLabel.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: characterLabelHeight)
         
         currentY += characterLabelHeight + belowCharacterLabelPadding
@@ -130,9 +135,10 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         let screenRect = UIScreen.main.bounds
         let popupWidth = CGFloat(0.8 * screenRect.size.width)
         let popupHeight = CGFloat(0.35 * screenRect.size.height)
+        
         controller.width = popupWidth
         controller.height = popupHeight
-        let popupVC = PopupViewController(contentController: controller, popupWidth: popupWidth, popupHeight: popupHeight)
+        let popupVC = PopupViewController(contentController: controller, popupWidth: controller.width, popupHeight: controller.height)
         main!.selectionWindow = controller
         self.present(popupVC, animated: true, completion: nil)
     }

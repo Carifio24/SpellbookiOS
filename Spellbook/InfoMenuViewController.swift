@@ -189,6 +189,7 @@ class InfoMenuViewController: UITableViewController {
         controller.infoTitle = title
         controller.infoText = text
         controller.transitioningDelegate = controller
+        controller.modalPresentationStyle = .fullScreen
         self.present(controller, animated: true, completion: nil)
     }
  

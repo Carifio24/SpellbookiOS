@@ -10,17 +10,15 @@ import UIKit
 
 class PassThroughView: UIView {
     
-    var blocking: Bool
+    var blocking: Bool = false
     var whenPressed: () -> Void = { return }
     
     required init?(coder: NSCoder) {
-        self.blocking = false
         super.init(coder: coder)
         setup()
     }
     
     override init(frame: CGRect) {
-        self.blocking = false
         super.init(frame: frame)
         setup()
     }

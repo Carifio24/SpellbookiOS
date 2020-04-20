@@ -100,6 +100,9 @@ class SpellWindowController: UIViewController {
             self.main.saveCharacterProfile()
         })
         
+        // Set the content view to fill the screen
+        contentView.frame = UIScreen.main.bounds
+        
         
     }
     

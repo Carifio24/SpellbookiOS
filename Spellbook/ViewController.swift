@@ -262,7 +262,8 @@ class ViewController: UIViewController, UISearchBarDelegate, SWRevealViewControl
         
         // Finally, the SpellTableViewController
         // Note that we don't need to adjust the tableController's view differently - the TableViewController seems to be able to handle this part itself
-        tableController?.setTableDimensions(leftPadding: leftPadding, bottomPadding: bottomPadding, usableHeight: ViewController.usableHeight, usableWidth: ViewController.usableWidth, tableTopPadding: tableView.frame.height * 0.04)
+        let tableTopPadding = UIDevice.current.hasNotch ? CGFloat(40) : CGFloat(20)
+        tableController?.setTableDimensions(leftPadding: leftPadding, bottomPadding: bottomPadding, usableHeight: ViewController.usableHeight, usableWidth: ViewController.usableWidth, tableTopPadding: tableTopPadding)
     }
     
     override func didReceiveMemoryWarning() {
@@ -451,9 +452,11 @@ class ViewController: UIViewController, UISearchBarDelegate, SWRevealViewControl
             let screenRect = UIScreen.main.bounds
             let popupWidth = CGFloat(0.8 * screenRect.size.width)
             let popupHeight = CGFloat(0.25 * screenRect.size.height)
-            controller.width = popupWidth
-            controller.height = popupHeight
-            let popupVC = PopupViewController(contentController: controller, popupWidth: popupWidth, popupHeight: popupHeight)
+            let maxPopupHeight = CGFloat(250)
+            let maxPopupWidth = CGFloat(350)
+            controller.width = popupWidth <= maxPopupWidth ? popupWidth : maxPopupWidth
+            controller.height = popupHeight <= maxPopupHeight ? popupHeight : maxPopupHeight
+            let popupVC = PopupViewController(contentController: controller, popupWidth: controller.width, popupHeight: controller.height)
             if mustComplete {
                 controller.cancelButton.isHidden = true
                 popupVC.canTapOutsideToDismiss = false
