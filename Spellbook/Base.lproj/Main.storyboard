@@ -1294,7 +1294,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guk-qs-zl5">
-                                                    <rect key="frame" x="0.0" y="0.0" width="404" height="44"/>
+                                                    <rect key="frame" x="171" y="0.0" width="72" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <state key="normal" title="Select All">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1304,10 +1304,9 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="guk-qs-zl5" secondAttribute="trailing" id="KzN-Om-Ylz"/>
-                                                <constraint firstItem="guk-qs-zl5" firstAttribute="leading" secondItem="1eD-cA-0OW" secondAttribute="leading" id="LHW-CF-KJG"/>
                                                 <constraint firstAttribute="bottom" secondItem="guk-qs-zl5" secondAttribute="bottom" id="Q5H-Pr-OkL"/>
                                                 <constraint firstItem="guk-qs-zl5" firstAttribute="top" secondItem="1eD-cA-0OW" secondAttribute="top" id="VtK-EM-70D"/>
+                                                <constraint firstItem="guk-qs-zl5" firstAttribute="centerX" secondItem="1eD-cA-0OW" secondAttribute="centerX" id="kax-sK-SSD"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1392,7 +1391,8 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYg-Q9-9x5">
-                                                    <rect key="frame" x="0.0" y="0.0" width="404" height="44"/>
+                                                    <rect key="frame" x="171" y="0.0" width="72" height="44"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <state key="normal" title="Select All">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1402,10 +1402,9 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="OYg-Q9-9x5" firstAttribute="leading" secondItem="JKF-Vo-k2p" secondAttribute="leading" id="E1v-wr-FLE"/>
                                                 <constraint firstItem="OYg-Q9-9x5" firstAttribute="top" secondItem="JKF-Vo-k2p" secondAttribute="top" id="MVU-cH-J8G"/>
                                                 <constraint firstAttribute="bottom" secondItem="OYg-Q9-9x5" secondAttribute="bottom" id="OBy-PG-bee"/>
-                                                <constraint firstAttribute="trailing" secondItem="OYg-Q9-9x5" secondAttribute="trailing" id="w7v-ry-cTs"/>
+                                                <constraint firstItem="OYg-Q9-9x5" firstAttribute="centerX" secondItem="JKF-Vo-k2p" secondAttribute="centerX" id="ldc-lr-msD"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1485,7 +1484,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZy-nb-ciq">
-                                                    <rect key="frame" x="0.0" y="0.0" width="404" height="44"/>
+                                                    <rect key="frame" x="171" y="0.0" width="72" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <state key="normal" title="Select All">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1495,9 +1494,8 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="nZy-nb-ciq" firstAttribute="leading" secondItem="AKH-uO-fOJ" secondAttribute="leading" id="28u-xi-6iT"/>
                                                 <constraint firstAttribute="bottom" secondItem="nZy-nb-ciq" secondAttribute="bottom" id="55g-20-UlX"/>
-                                                <constraint firstAttribute="trailing" secondItem="nZy-nb-ciq" secondAttribute="trailing" id="kJS-i5-3hq"/>
+                                                <constraint firstItem="nZy-nb-ciq" firstAttribute="centerX" secondItem="AKH-uO-fOJ" secondAttribute="centerX" id="6CY-7n-L6W"/>
                                                 <constraint firstItem="nZy-nb-ciq" firstAttribute="top" secondItem="AKH-uO-fOJ" secondAttribute="top" id="uNs-Rm-N59"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1576,7 +1574,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sa0-16-VCO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="404" height="44"/>
+                                                    <rect key="frame" x="171" y="0.0" width="72" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <state key="normal" title="Select All">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1587,9 +1585,8 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="Sa0-16-VCO" firstAttribute="top" secondItem="Oyg-Yg-SER" secondAttribute="top" id="J0u-Oo-Lbj"/>
-                                                <constraint firstAttribute="trailing" secondItem="Sa0-16-VCO" secondAttribute="trailing" id="PWj-AA-I4r"/>
+                                                <constraint firstItem="Sa0-16-VCO" firstAttribute="centerX" secondItem="Oyg-Yg-SER" secondAttribute="centerX" id="OdG-hu-znd"/>
                                                 <constraint firstAttribute="bottom" secondItem="Sa0-16-VCO" secondAttribute="bottom" id="dG0-1Q-Nkw"/>
-                                                <constraint firstItem="Sa0-16-VCO" firstAttribute="leading" secondItem="Oyg-Yg-SER" secondAttribute="leading" id="peM-Bg-uWy"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1697,7 +1694,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nyl-3h-nNE">
-                                                    <rect key="frame" x="0.0" y="0.0" width="404" height="44"/>
+                                                    <rect key="frame" x="171" y="0.0" width="72" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <state key="normal" title="Select All">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1707,10 +1704,9 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="nyl-3h-nNE" firstAttribute="leading" secondItem="1cD-XJ-hFG" secondAttribute="leading" id="7P2-HL-PRW"/>
                                                 <constraint firstAttribute="bottom" secondItem="nyl-3h-nNE" secondAttribute="bottom" id="N2I-rU-z32"/>
                                                 <constraint firstItem="nyl-3h-nNE" firstAttribute="top" secondItem="1cD-XJ-hFG" secondAttribute="top" id="O6v-pS-q3W"/>
-                                                <constraint firstAttribute="trailing" secondItem="nyl-3h-nNE" secondAttribute="trailing" id="stH-oV-6DX"/>
+                                                <constraint firstItem="nyl-3h-nNE" firstAttribute="centerX" secondItem="1cD-XJ-hFG" secondAttribute="centerX" id="eMa-jp-Lyr"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1807,14 +1803,14 @@
                             <tableViewSection headerTitle="Range" id="0Tt-iI-n2o">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0RE-bZ-TbX">
-                                        <rect key="frame" x="0.0" y="1075.3333323001862" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="1075.3333324193954" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0RE-bZ-TbX" id="0N7-ua-z5h">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aJC-yJ-yfH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="404" height="44"/>
+                                                    <rect key="frame" x="171" y="0.0" width="72" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <state key="normal" title="Select All">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1825,9 +1821,8 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="aJC-yJ-yfH" firstAttribute="top" secondItem="0N7-ua-z5h" secondAttribute="top" id="EHw-3q-nGD"/>
-                                                <constraint firstAttribute="trailing" secondItem="aJC-yJ-yfH" secondAttribute="trailing" id="Gry-j5-YEG"/>
                                                 <constraint firstAttribute="bottom" secondItem="aJC-yJ-yfH" secondAttribute="bottom" id="Nj0-JA-eNr"/>
-                                                <constraint firstItem="aJC-yJ-yfH" firstAttribute="leading" secondItem="0N7-ua-z5h" secondAttribute="leading" id="aSQ-M9-aqF"/>
+                                                <constraint firstItem="aJC-yJ-yfH" firstAttribute="centerX" secondItem="0N7-ua-z5h" secondAttribute="centerX" id="fqX-GW-m18"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1839,7 +1834,7 @@
                                         </constraints>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="WRd-nc-Yz7">
-                                        <rect key="frame" x="0.0" y="1119.3333323001862" width="414" height="1.1920928955078125e-07"/>
+                                        <rect key="frame" x="0.0" y="1119.3333324193954" width="414" height="1.1920928955078125e-07"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WRd-nc-Yz7" translatesAutoresizingMaskIntoConstraints="NO" id="aRw-jQ-UJC">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="1.1920928955078125e-07"/>
@@ -1894,7 +1889,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" translatesAutoresizingMaskIntoConstraints="NO" id="WA6-59-P5b">
-                                        <rect key="frame" x="0.0" y="1119.3333324193954" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="1119.3333325386047" width="414" height="44"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WA6-59-P5b" translatesAutoresizingMaskIntoConstraints="NO" id="DBN-Ls-VUB">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <subviews>
@@ -1946,7 +1941,7 @@
                         <outlet property="selectAllClasses" destination="OYg-Q9-9x5" id="Ud7-8O-yto"/>
                         <outlet property="selectAllDurationTypes" destination="nyl-3h-nNE" id="PnB-XN-DmI"/>
                         <outlet property="selectAllRangeTypes" destination="aJC-yJ-yfH" id="dQK-rU-2Tb"/>
-                        <outlet property="selectAllSchools" destination="Sa0-16-VCO" id="8bs-xu-ugc"/>
+                        <outlet property="selectAllSchools" destination="nZy-nb-ciq" id="YQU-7u-E1k"/>
                         <outlet property="selectAllSourcebooks" destination="guk-qs-zl5" id="CM8-33-PhB"/>
                         <outlet property="sourcebookGrid" destination="ucY-xJ-tb2" id="CEH-Gm-voN"/>
                     </connections>

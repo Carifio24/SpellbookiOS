@@ -79,7 +79,8 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWX-VS-ioe" userLabel="Restore Defaults Button">
-                            <rect key="frame" x="0.0" y="44" width="456" height="38"/>
+                            <rect key="frame" x="146.5" y="44" width="163" height="38"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" title="Restore Default Range">
                                 <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -93,8 +94,7 @@
                         <constraint firstItem="9Eb-Af-QsG" firstAttribute="leading" secondItem="MWb-5d-deI" secondAttribute="leading" id="HGC-Ry-mig"/>
                         <constraint firstAttribute="trailing" secondItem="9Eb-Af-QsG" secondAttribute="trailing" id="Hga-Ad-7E0"/>
                         <constraint firstAttribute="bottom" secondItem="KWX-VS-ioe" secondAttribute="bottom" id="Yr8-Tt-cx8"/>
-                        <constraint firstItem="KWX-VS-ioe" firstAttribute="leading" secondItem="MWb-5d-deI" secondAttribute="leading" id="lTE-Lc-zVe"/>
-                        <constraint firstAttribute="trailing" secondItem="KWX-VS-ioe" secondAttribute="trailing" id="rzs-jZ-gNm"/>
+                        <constraint firstItem="KWX-VS-ioe" firstAttribute="centerX" secondItem="MWb-5d-deI" secondAttribute="centerX" id="m0i-dC-f7Y"/>
                     </constraints>
                 </view>
             </subviews>
