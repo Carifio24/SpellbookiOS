@@ -34,7 +34,7 @@ class CharacterCreationController: UIViewController {
         super.viewDidLoad()
         
         print("In viewDidLoad()")
-        setLayout()
+        //setLayout()
         print("Finished setting layout")
         setButtonFunctions()
         print("Finished setting button functions")

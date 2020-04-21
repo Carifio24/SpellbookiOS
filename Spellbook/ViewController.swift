@@ -209,17 +209,17 @@ class ViewController: UIViewController, UISearchBarDelegate, SWRevealViewControl
         
         // Load the character profile
         let characters = characterList()
-        if settings.charName != nil {
-            let name = settings.charName
-            //print("case 1")
-            //print("name is \(name!)")
-            loadCharacterProfile(name: name!, initialLoad: true)
-        } else if characters.count > 0 {
-            //print("case 2")
-            //print("characters[0] is \(characters[0])")
-            loadCharacterProfile(name: characters[0], initialLoad: true)
-        } else {
-            //print("case 3")
+        do {
+            if settings.charName == nil || settings.charName!.isEmpty {
+                if characters.count > 0 {
+                    try loadCharacterProfile(name: characters[0], initialLoad: true)
+                } else {
+                    openCharacterCreationDialog(mustComplete: true)
+                }
+            } else {
+                try loadCharacterProfile(name: settings.charName!, initialLoad: true)
+            }
+        } catch {
             openCharacterCreationDialog(mustComplete: true)
         }
         
@@ -378,7 +378,7 @@ class ViewController: UIViewController, UISearchBarDelegate, SWRevealViewControl
         return profilesDirectory.appendingPathComponent(charFile)
     }
     
-    func loadCharacterProfile(name: String, initialLoad: Bool) {
+    func loadCharacterProfile(name: String, initialLoad: Bool) throws {
         let location = profileLocation(name: name)
         //print("Location is: \(location)")
         if var profileText = try? String(contentsOf: location) {
@@ -391,8 +391,7 @@ class ViewController: UIViewController, UISearchBarDelegate, SWRevealViewControl
             }
         } else {
             print("Error reading profile")
-            settings.setCharacterName(name: nil)
-            return
+            throw SpellbookError.BadCharacterProfileError
         }
     }
     
@@ -416,7 +415,11 @@ class ViewController: UIViewController, UISearchBarDelegate, SWRevealViewControl
             if deletingCurrent {
                 if characters.count > 0 {
                     //print("The new character's name is: \(characters[0])")
-                    loadCharacterProfile(name: characters[0], initialLoad: false)
+                    do {
+                        try loadCharacterProfile(name: characters[0], initialLoad: false)
+                    } catch {
+                        openCharacterCreationDialog(mustComplete: true)
+                    }
                 }
             }
         } catch let e {
@@ -452,11 +455,15 @@ class ViewController: UIViewController, UISearchBarDelegate, SWRevealViewControl
             let screenRect = UIScreen.main.bounds
             let popupWidth = CGFloat(0.8 * screenRect.size.width)
             let popupHeight = CGFloat(0.25 * screenRect.size.height)
-            let maxPopupHeight = CGFloat(250)
+            let maxPopupHeight = CGFloat(170)
             let maxPopupWidth = CGFloat(350)
-            controller.width = popupWidth <= maxPopupWidth ? popupWidth : maxPopupWidth
-            controller.height = popupHeight <= maxPopupHeight ? popupHeight : maxPopupHeight
-            let popupVC = PopupViewController(contentController: controller, popupWidth: controller.width, popupHeight: controller.height)
+            print(popupHeight <= maxPopupHeight)
+            let height = popupHeight <= maxPopupHeight ? popupHeight : maxPopupHeight
+            let width = popupWidth <= maxPopupWidth ? popupWidth : maxPopupWidth
+            print("Popup height and width are \(popupHeight), \(popupWidth)")
+            print("The screen heights are \(SizeUtils.screenHeight), \(SizeUtils.screenWidth)")
+            print("Character creation prompt will have width \(width), height \(height)")
+            let popupVC = PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
             if mustComplete {
                 controller.cancelButton.isHidden = true
                 popupVC.canTapOutsideToDismiss = false

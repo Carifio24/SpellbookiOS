@@ -15,6 +15,13 @@ protocol UICollectionViewDataFlowDelegate: UICollectionViewDataSource, UICollect
     func selectAll()
 }
 
-protocol FilterGridProtocol: AllGridSelector, UICollectionViewDataFlowDelegate {
+@objc protocol HeightProvider {
     func desiredHeight() -> CGFloat
+}
+
+@objc protocol WidthProvider {
+    func desiredWidth() -> CGFloat
+}
+
+protocol FilterGridProtocol: HeightProvider, AllGridSelector, UICollectionViewDataFlowDelegate {
 }

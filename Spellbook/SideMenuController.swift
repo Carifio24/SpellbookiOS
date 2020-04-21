@@ -131,16 +131,23 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     @objc func selectionButtonPressed() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "characterSelection") as! CharacterSelectionController
-
-        let screenRect = UIScreen.main.bounds
-        let popupWidth = CGFloat(0.8 * screenRect.size.width)
-        let popupHeight = CGFloat(0.35 * screenRect.size.height)
         
-        controller.width = popupWidth
-        controller.height = popupHeight
-        let popupVC = PopupViewController(contentController: controller, popupWidth: controller.width, popupHeight: controller.height)
+        
+        let popupHeight = 0.5 * SizeUtils.screenHeight
+        let popupWidth = 0.75 * SizeUtils.screenWidth
+        let maxPopupHeight = CGFloat(320)
+        let maxPopupWidth = CGFloat(370)
+        print(popupHeight <= maxPopupHeight)
+        let height = popupHeight <= maxPopupHeight ? popupHeight : maxPopupHeight
+        let width = popupWidth <= maxPopupWidth ? popupWidth : maxPopupWidth
+        print("Popup height and width are \(popupHeight), \(popupWidth)")
+        print("The screen heights are \(SizeUtils.screenHeight), \(SizeUtils.screenWidth)")
+        print("Character selection prompt will have width \(width), height \(height)")
+        
+        let popupVC = PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
         main!.selectionWindow = controller
         self.present(popupVC, animated: true, completion: nil)
+        //self.present(controller, animated: true, completion: nil)
     }
 
     func setFilterStatus(profile: CharacterProfile) {

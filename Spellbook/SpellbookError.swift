@@ -1,5 +1,5 @@
 enum SpellbookError : Error {
-	case BadYNError, UnitStringError, SelfRadiusError
+	case BadYNError, UnitStringError, SelfRadiusError, BadCharacterProfileError
 }
 
 extension SpellbookError : CustomStringConvertible {
@@ -11,6 +11,8 @@ extension SpellbookError : CustomStringConvertible {
                 return "Not a valid unit string"
         case .SelfRadiusError:
             return "Error parsing radius of spell with range Self"
+        case .BadCharacterProfileError:
+            return "Error reading character profile"
 		}
 	}
 }

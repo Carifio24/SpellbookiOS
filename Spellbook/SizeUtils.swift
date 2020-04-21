@@ -10,7 +10,13 @@ import Foundation
 
 class SizeUtils {
 
-    static let nativeScreenWidth = UIScreen.main.nativeBounds.size.width
+    static let nativeScreenBounds = UIScreen.main.nativeBounds
+    static let nativeScreenWidth = SizeUtils.nativeScreenBounds.size.width
+    static let nativeScreenHeight = SizeUtils.nativeScreenBounds.size.height
+    
+    static let screenBounds = UIScreen.main.bounds
+    static let screenWidth = SizeUtils.screenBounds.size.width
+    static let screenHeight = SizeUtils.screenBounds.size.height
 
     static func pickerFontSize() -> CGFloat {
         let nativeWidth = SizeUtils.nativeScreenWidth

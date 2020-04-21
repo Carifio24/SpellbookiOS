@@ -31,15 +31,18 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         print("There are \(characters.count) characters")
         
         // Set the view dimensions
-        setDimensions()
+        //setDimensions()
         
         // Set this as the data source and delegate for the table
         tableView.delegate = self
         tableView.dataSource = self
         
+        // Set the cell height
+        tableView.estimatedRowHeight = CGFloat(40)
+        tableView.rowHeight = UITableView.automaticDimension
+        
         // Set the table cell type
-        tableView.register(CharacterSelectionCell.self, forCellReuseIdentifier: cellReuseIdentifier)
-        tableView.separatorStyle = .none
+        //tableView.register(CharacterSelectionCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         
         // Set the button function
         newCharacterButton.addTarget(self, action: #selector(newCharacterButtonPressed), for: UIControl.Event.touchUpInside)
@@ -48,6 +51,15 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         print("About to load data")
         tableView.reloadData()
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        // Turn off scrolling if the content height is less than the table's height
+        print(tableView.contentSize.height)
+        print(tableView.frame.size.height)
+        tableView.isScrollEnabled = tableView.contentSize.height > tableView.frame.size.height
     }
     
     func setDimensions() {
@@ -105,14 +117,11 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! CharacterSelectionCell
+        cell.deleteButton.addTarget(self, action: #selector(deleteButtonPressed(sender:)), for: UIControl.Event.touchUpInside)
+        cell.deleteButton.tag = indexPath.row
+        cell.deleteButton.setImage(CharacterSelectionCell.deleteIcon, for: UIControl.State.normal)
         let name = characters[indexPath.row]
-        cell.name = name
-        cell.width = width
-        cell.iconButton.tag = indexPath.row
-        cell.nameLabel.frame = CGRect(x: 0, y: 0, width: width, height: CharacterSelectionCell.cellHeight)
-        let iconX = CGFloat(width - CharacterSelectionCell.iconWidth)
-        let iconY = CGFloat(0.5 * (CharacterSelectionCell.cellHeight - CharacterSelectionCell.iconHeight) )
-        cell.iconButton.frame = CGRect(x: iconX, y: iconY, width: CharacterSelectionCell.iconWidth, height: CharacterSelectionCell.iconHeight)
+        cell.nameLabel.text = name
         return cell
     }
     
@@ -120,8 +129,12 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         print("Pressed at \(indexPath.row)")
         print("Name is \(characters[indexPath.row])")
         let name = characters[indexPath.row]
-        main.loadCharacterProfile(name: name, initialLoad: false)
-        Controllers.revealController.view.makeToast("Character selected: " + name, duration: Constants.toastDuration)
+        do {
+            try main.loadCharacterProfile(name: name, initialLoad: false)
+            Controllers.revealController.view.makeToast("Character selected: " + name, duration: Constants.toastDuration)
+        } catch {
+            Controllers.revealController.view.makeToast("Error loading character profile: " + name, duration: Constants.toastDuration)
+        }
         self.dismiss(animated: true, completion: dismissOperations)
     }
     
@@ -138,9 +151,12 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         let screenRect = UIScreen.main.bounds
         let popupWidth = CGFloat(0.8 * screenRect.size.width)
         let popupHeight = CGFloat(0.25 * screenRect.size.height)
-        controller.width = popupWidth
-        controller.height = popupHeight
-        let popupVC = PopupViewController(contentController: controller, popupWidth: popupWidth, popupHeight: popupHeight)
+        let maxPopupHeight = CGFloat(170)
+        let maxPopupWidth = CGFloat(350)
+        let height = popupHeight <= maxPopupHeight ? popupHeight : maxPopupHeight
+        let width = popupWidth <= maxPopupWidth ? popupWidth : maxPopupWidth
+        
+        let popupVC = PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
         if mustComplete {
             controller.cancelButton.isHidden = true
             popupVC.canTapOutsideToDismiss = false
@@ -149,7 +165,7 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         self.present(popupVC, animated: true)
     }
     
-    func createDeletionPrompt(name: String) {
+    @objc func createDeletionPrompt(name: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "deletePrompt") as! DeletionPromptController
         controller.main = main
@@ -158,9 +174,14 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         let screenRect = UIScreen.main.bounds
         let popupWidth = CGFloat(0.8 * screenRect.size.width)
         let popupHeight = CGFloat(0.25 * screenRect.size.height)
-        controller.width = popupWidth
-        controller.height = popupHeight
-        let popupVC = PopupViewController(contentController: controller, popupWidth: popupWidth, popupHeight: popupHeight)
+        let maxPopupHeight = CGFloat(105)
+        let maxPopupWidth = CGFloat(350)
+        let height = popupHeight <= maxPopupHeight ? popupHeight : maxPopupHeight
+        let width = popupWidth <= maxPopupWidth ? popupWidth : maxPopupWidth
+        print("Popup height and width are \(popupHeight), \(popupWidth)")
+        print("The screen heights are \(SizeUtils.screenHeight), \(SizeUtils.screenWidth)")
+        print("Deletion prompt will have width \(width), height \(height)")
+        let popupVC = PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
         self.present(popupVC, animated: true)
     }
     
@@ -168,6 +189,9 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     func updateCharacterTable() {
         characters = main.characterList()
         tableView.reloadData()
+        print(tableView.contentSize.height)
+        print(tableView.frame.size.height)
+        tableView.isScrollEnabled = tableView.contentSize.height > tableView.frame.size.height
     }
     
     func dismissOperations() {
@@ -177,6 +201,14 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     
     func pressNewCharacterButton() {
         newCharacterButton.sendActions(for: UIControl.Event.touchUpInside)
+    }
+    
+    @objc func deleteButtonPressed(sender: UIButton) {
+        let buttonOriginInTable = sender.convert(CGPoint.zero, to: tableView)
+        let indexPath = tableView.indexPathForRow(at: buttonOriginInTable)
+        if (indexPath == nil) { return }
+        let name = characters[indexPath!.row]
+        createDeletionPrompt(name: name)
     }
 
     
