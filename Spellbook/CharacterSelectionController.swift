@@ -28,7 +28,7 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         
         // Get the current characters list
         characters = main.characterList()
-        print("There are \(characters.count) characters")
+        //print("There are \(characters.count) characters")
         
         // Set the view dimensions
         //setDimensions()
@@ -48,7 +48,7 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         newCharacterButton.addTarget(self, action: #selector(newCharacterButtonPressed), for: UIControl.Event.touchUpInside)
         
         // Load the data
-        print("About to load data")
+        //print("About to load data")
         tableView.reloadData()
         
     }
@@ -57,8 +57,8 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         super.viewDidLayoutSubviews()
         
         // Turn off scrolling if the content height is less than the table's height
-        print(tableView.contentSize.height)
-        print(tableView.frame.size.height)
+        //print(tableView.contentSize.height)
+        //print(tableView.frame.size.height)
         tableView.isScrollEnabled = tableView.contentSize.height > tableView.frame.size.height
     }
     
@@ -74,9 +74,9 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         
         backgroundView.frame = CGRect(x: 0, y: 0, width: width, height: height)
         
-        print("Popup type: CharacterSelectionController")
-        print("Popup width: \(width)")
-        print("Popup height: \(height)")
+        //print("Popup type: CharacterSelectionController")
+        //print("Popup width: \(width)")
+        //print("Popup height: \(height)")
 
         let titleX = CGFloat(width / 2)
         let titleY = view.frame.origin.y + topPadding
@@ -126,8 +126,8 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Pressed at \(indexPath.row)")
-        print("Name is \(characters[indexPath.row])")
+        //print("Pressed at \(indexPath.row)")
+        //print("Name is \(characters[indexPath.row])")
         let name = characters[indexPath.row]
         do {
             try main.loadCharacterProfile(name: name, initialLoad: false)
@@ -140,7 +140,7 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     
     @objc func newCharacterButtonPressed() {
         let mustComplete = (main.characterList().count == 0)
-        print("Pressed new character button, mustComplete: \(mustComplete)")
+        //print("Pressed new character button, mustComplete: \(mustComplete)")
         displayNewCharacterWindow(mustComplete: mustComplete)
     }
     
@@ -178,9 +178,9 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         let maxPopupWidth = CGFloat(350)
         let height = popupHeight <= maxPopupHeight ? popupHeight : maxPopupHeight
         let width = popupWidth <= maxPopupWidth ? popupWidth : maxPopupWidth
-        print("Popup height and width are \(popupHeight), \(popupWidth)")
-        print("The screen heights are \(SizeUtils.screenHeight), \(SizeUtils.screenWidth)")
-        print("Deletion prompt will have width \(width), height \(height)")
+        //print("Popup height and width are \(popupHeight), \(popupWidth)")
+        //print("The screen heights are \(SizeUtils.screenHeight), \(SizeUtils.screenWidth)")
+        //print("Deletion prompt will have width \(width), height \(height)")
         let popupVC = PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
         self.present(popupVC, animated: true)
     }
@@ -189,13 +189,13 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     func updateCharacterTable() {
         characters = main.characterList()
         tableView.reloadData()
-        print(tableView.contentSize.height)
-        print(tableView.frame.size.height)
+        //print(tableView.contentSize.height)
+        //print(tableView.frame.size.height)
         tableView.isScrollEnabled = tableView.contentSize.height > tableView.frame.size.height
     }
     
     func dismissOperations() {
-        print("In dismissOperations()")
+        //print("In dismissOperations()")
         main.selectionWindow = nil
     }
     

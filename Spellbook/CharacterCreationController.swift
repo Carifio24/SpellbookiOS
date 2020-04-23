@@ -33,18 +33,16 @@ class CharacterCreationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("In viewDidLoad()")
+        //print("In viewDidLoad()")
         //setLayout()
-        print("Finished setting layout")
+        //print("Finished setting layout")
         setButtonFunctions()
-        print("Finished setting button functions")
+        //print("Finished setting button functions")
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("Starting viewDidAppear")
         super.viewDidAppear(animated)
-        print("Finished viewDidAppear")
     }
     
     func setLayout() {
@@ -60,9 +58,9 @@ class CharacterCreationController: UIViewController {
         self.view.sendSubviewToBack(backgroundView)
         backgroundView.frame = CGRect(x: 0, y: 0, width: width, height: height)
         
-        print("Popup type: DeletionPromptController")
-        print("Popup width: \(width)")
-        print("Popup height: \(height)")
+        //print("Popup type: DeletionPromptController")
+        //print("Popup width: \(width)")
+        //print("Popup height: \(height)")
         
         let titleX = CGFloat(width / 2)
         let titleY = view.frame.origin.y + topPadding
@@ -73,7 +71,7 @@ class CharacterCreationController: UIViewController {
         let messageX = CGFloat(width / 2)
         let messageY = titleY + creationTitle.frame.height
         creationMessage.center.x = messageX
-        print("creationMessageX is \(messageX)")
+        //print("creationMessageX is \(messageX)")
         creationMessage.frame.origin.y = messageY
         creationMessage.sizeToFit()
         
@@ -84,12 +82,12 @@ class CharacterCreationController: UIViewController {
         let cancelButtonX = CGFloat(width - rightPadding - 2 * buttonWidth)
         let buttonsY = height - bottomPadding - buttonHeight
         cancelButton.frame = CGRect(x: cancelButtonX, y: buttonsY, width: buttonWidth, height: buttonHeight)
-        print(buttonsY)
-        print(cancelButtonX)
+        //print(buttonsY)
+        //print(cancelButtonX)
         
         let createButtonX = CGFloat(cancelButtonX + buttonWidth)
         createButton.frame = CGRect(x: createButtonX, y: buttonsY, width: buttonWidth, height: buttonHeight)
-        print(createButtonX)
+        //print(createButtonX)
         
         if main.characterList().count == 0 {
             cancelButton.isHidden = true

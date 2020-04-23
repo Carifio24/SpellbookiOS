@@ -49,15 +49,7 @@ class ViewController: UIViewController, UISearchBarDelegate, SWRevealViewControl
     // Settings, character profile, and selection window
     var settings = Settings()
     var characterProfile = CharacterProfile()
-    var selectionWindow: CharacterSelectionController? {
-        didSet {
-            if selectionWindow != nil {
-                print("Set selectionWindow to \(selectionWindow!)")
-            } else {
-                print("Set selectionWindow to nil")
-            }
-        }
-    }
+    var selectionWindow: CharacterSelectionController?
     
     // The UIViews that hold the child controllers
     @IBOutlet weak var tableView: UIView!
@@ -457,12 +449,11 @@ class ViewController: UIViewController, UISearchBarDelegate, SWRevealViewControl
             let popupHeight = CGFloat(0.25 * screenRect.size.height)
             let maxPopupHeight = CGFloat(170)
             let maxPopupWidth = CGFloat(350)
-            print(popupHeight <= maxPopupHeight)
             let height = popupHeight <= maxPopupHeight ? popupHeight : maxPopupHeight
             let width = popupWidth <= maxPopupWidth ? popupWidth : maxPopupWidth
-            print("Popup height and width are \(popupHeight), \(popupWidth)")
-            print("The screen heights are \(SizeUtils.screenHeight), \(SizeUtils.screenWidth)")
-            print("Character creation prompt will have width \(width), height \(height)")
+            //print("Popup height and width are \(popupHeight), \(popupWidth)")
+            //print("The screen heights are \(SizeUtils.screenHeight), \(SizeUtils.screenWidth)")
+            //print("Character creation prompt will have width \(width), height \(height)")
             let popupVC = PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
             if mustComplete {
                 controller.cancelButton.isHidden = true

@@ -272,7 +272,6 @@ class SortFilterTableController: UITableViewController {
         // Update the range values
         for rangeView in rangeViews { rangeView.updateValues() }
         
-        
     }
     
     @objc func dismissKeyboard() {

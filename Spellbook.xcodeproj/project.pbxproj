@@ -21,6 +21,7 @@
 		8E02F7722437F39200A3050C /* CombinationProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02F7712437F39200A3050C /* CombinationProtocols.swift */; };
 		8E02F7742438EF1400A3050C /* RangeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E02F7732438EF1400A3050C /* RangeView.xib */; };
 		8E02F7762438F04000A3050C /* RangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02F7752438F04000A3050C /* RangeView.swift */; };
+		8E13F1E3244E1B15004CCC18 /* trash_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E13F1E2244E1B14004CCC18 /* trash_icon.png */; };
 		8E177F9B2432F34B005146B6 /* SortFilterTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E177F9A2432F34B005146B6 /* SortFilterTableController.swift */; };
 		8E6148E2241991C200842A18 /* Spells.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E61489B241991BE00842A18 /* Spells.json */; };
 		8E6148E3241991C200842A18 /* TimeUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E61489C241991BE00842A18 /* TimeUnit.swift */; };
@@ -100,8 +101,9 @@
 		8E61494624199B2D00842A18 /* x_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E61493D24199B2D00842A18 /* x_icon.png */; };
 		8E61494A24199ED500842A18 /* cloister_black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E61494824199CBC00842A18 /* cloister_black.ttf */; };
 		8E61494B24199ED800842A18 /* dungeon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E61494924199CBC00842A18 /* dungeon.ttf */; };
+		8E7BD0DD244A6BEF00090C40 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BD0DC244A6BEF00090C40 /* PassThroughView.swift */; };
 		8E92CC65243BCE2100EB78B2 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC64243BCE2100EB78B2 /* Images.swift */; };
-		8E92CC67243BD49900EB78B2 /* LevelTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC66243BD49900EB78B2 /* LevelTextFieldDelegate.swift */; };
+		8E92CC67243BD49900EB78B2 /* NumberFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC66243BD49900EB78B2 /* NumberFieldDelegate.swift */; };
 		8EBF1792243A4B15004C17FA /* TextFieldChooserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */; };
 		8ED0B932242BE9E800A085F4 /* down_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED0B931242BE9E800A085F4 /* down_arrow.png */; };
 		8ED0B936242E514F00A085F4 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED0B935242E514F00A085F4 /* FilterView.swift */; };
@@ -154,6 +156,7 @@
 		8E02F7712437F39200A3050C /* CombinationProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinationProtocols.swift; sourceTree = "<group>"; };
 		8E02F7732438EF1400A3050C /* RangeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RangeView.xib; sourceTree = "<group>"; };
 		8E02F7752438F04000A3050C /* RangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeView.swift; sourceTree = "<group>"; };
+		8E13F1E2244E1B14004CCC18 /* trash_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash_icon.png; sourceTree = "<group>"; };
 		8E177F9A2432F34B005146B6 /* SortFilterTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFilterTableController.swift; sourceTree = "<group>"; };
 		8E61489B241991BE00842A18 /* Spells.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Spells.json; sourceTree = "<group>"; };
 		8E61489C241991BE00842A18 /* TimeUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUnit.swift; sourceTree = "<group>"; };
@@ -235,8 +238,9 @@
 		8E61493D24199B2D00842A18 /* x_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x_icon.png; sourceTree = SOURCE_ROOT; };
 		8E61494824199CBC00842A18 /* cloister_black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = cloister_black.ttf; sourceTree = SOURCE_ROOT; };
 		8E61494924199CBC00842A18 /* dungeon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dungeon.ttf; sourceTree = SOURCE_ROOT; };
+		8E7BD0DC244A6BEF00090C40 /* PassThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassThroughView.swift; sourceTree = "<group>"; };
 		8E92CC64243BCE2100EB78B2 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
-		8E92CC66243BD49900EB78B2 /* LevelTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTextFieldDelegate.swift; sourceTree = "<group>"; };
+		8E92CC66243BD49900EB78B2 /* NumberFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFieldDelegate.swift; sourceTree = "<group>"; };
 		8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldChooserDelegate.swift; sourceTree = "<group>"; };
 		8ED0B931242BE9E800A085F4 /* down_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_arrow.png; sourceTree = SOURCE_ROOT; };
 		8ED0B935242E514F00A085F4 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
@@ -322,7 +326,7 @@
 				8E6148CA241991C000842A18 /* AppDelegate.swift */,
 				8E6148DF241991C100842A18 /* Assets.xcassets */,
 				8E177F9A2432F34B005146B6 /* SortFilterTableController.swift */,
-				8E92CC66243BD49900EB78B2 /* LevelTextFieldDelegate.swift */,
+				8E92CC66243BD49900EB78B2 /* NumberFieldDelegate.swift */,
 				8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */,
 				8E02F7712437F39200A3050C /* CombinationProtocols.swift */,
 				8E6148B6241991BF00842A18 /* BookBackground.jpeg */,
@@ -384,6 +388,7 @@
 				8E6148D0241991C100842A18 /* SpellParse.swift */,
 				8E6148D5241991C100842A18 /* SpellStatus.swift */,
 				8E6148AE241991BF00842A18 /* SpellTableViewController.swift */,
+				8E7BD0DC244A6BEF00090C40 /* PassThroughView.swift */,
 				8E6148AC241991BF00842A18 /* SpellWindowController.swift */,
 				8E6148D1241991C100842A18 /* StatusFilterController.swift */,
 				8E6148A3241991BF00842A18 /* StatusFilterField.swift */,
@@ -461,6 +466,7 @@
 		8E61493424199B0F00842A18 /* ButtonImages */ = {
 			isa = PBXGroup;
 			children = (
+				8E13F1E2244E1B14004CCC18 /* trash_icon.png */,
 				8E61493524199B2D00842A18 /* book_empty.png */,
 				8E61493A24199B2D00842A18 /* book_filled.png */,
 				8ED0B931242BE9E800A085F4 /* down_arrow.png */,
@@ -612,6 +618,7 @@
 				8E6148FD241991C200842A18 /* BookBackground.jpeg in Resources */,
 				8E61494524199B2D00842A18 /* star.png in Resources */,
 				8E614926241991C200842A18 /* Assets.xcassets in Resources */,
+				8E13F1E3244E1B15004CCC18 /* trash_icon.png in Resources */,
 				8E02F7742438EF1400A3050C /* RangeView.xib in Resources */,
 				8E6148E2241991C200842A18 /* Spells.json in Resources */,
 				8E61494A24199ED500842A18 /* cloister_black.ttf in Resources */,
@@ -745,6 +752,7 @@
 			files = (
 				8E61490B241991C200842A18 /* SortDirectionButton.swift in Sources */,
 				8E614928241991C200842A18 /* Spellbook.swift in Sources */,
+				8E7BD0DD244A6BEF00090C40 /* PassThroughView.swift in Sources */,
 				8E61491D241991C200842A18 /* SpellcastingInfoController.swift in Sources */,
 				8E6148F3241991C200842A18 /* SpellWindowController.swift in Sources */,
 				8E6148F6241991C200842A18 /* FromRightPushAnimator.swift in Sources */,
@@ -818,7 +826,7 @@
 				39F306A62378A4310078FA83 /* SWRevealViewController.m in Sources */,
 				8E61491F241991C200842A18 /* Transitions.swift in Sources */,
 				8E6148E5241991C200842A18 /* Duration.swift in Sources */,
-				8E92CC67243BD49900EB78B2 /* LevelTextFieldDelegate.swift in Sources */,
+				8E92CC67243BD49900EB78B2 /* NumberFieldDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -998,6 +1006,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = RSR87G74R7;
 				INFOPLIST_FILE = Spellbook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1005,6 +1014,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dnd.jon.Spellbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1024,6 +1034,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = RSR87G74R7;
 				INFOPLIST_FILE = Spellbook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1031,6 +1042,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 2.9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dnd.jon.Spellbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

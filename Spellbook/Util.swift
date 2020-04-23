@@ -75,3 +75,15 @@ func firstLetterOfWordsCapitalized(_ s: String) -> String {
     }
     return words.joined(separator: " ")
 }
+
+
+func intFromSION(_ sion: SION, defaultValue: Int = 0) -> Int {
+    switch (sion.type) {
+    case SION.ContentType.int:
+        return sion.int!
+    case SION.ContentType.double:
+        return Int(sion.double!)
+    default:
+        return defaultValue
+    }
+}

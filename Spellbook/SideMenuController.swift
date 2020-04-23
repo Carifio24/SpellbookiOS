@@ -137,12 +137,11 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         let popupWidth = 0.75 * SizeUtils.screenWidth
         let maxPopupHeight = CGFloat(320)
         let maxPopupWidth = CGFloat(370)
-        print(popupHeight <= maxPopupHeight)
         let height = popupHeight <= maxPopupHeight ? popupHeight : maxPopupHeight
         let width = popupWidth <= maxPopupWidth ? popupWidth : maxPopupWidth
-        print("Popup height and width are \(popupHeight), \(popupWidth)")
-        print("The screen heights are \(SizeUtils.screenHeight), \(SizeUtils.screenWidth)")
-        print("Character selection prompt will have width \(width), height \(height)")
+        //print("Popup height and width are \(popupHeight), \(popupWidth)")
+        //print("The screen heights are \(SizeUtils.screenHeight), \(SizeUtils.screenWidth)")
+        //print("Character selection prompt will have width \(width), height \(height)")
         
         let popupVC = PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
         main!.selectionWindow = controller

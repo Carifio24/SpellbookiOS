@@ -218,8 +218,8 @@ class CharacterProfile {
         statusFilter = StatusFilterField.fromName(filterStr)!
         
         // Min and max spell levels
-        minSpellLevel = sion[CharacterProfile.minSpellLevelKey].int ?? Spellbook.MIN_SPELL_LEVEL
-        maxSpellLevel = sion[CharacterProfile.maxSpellLevelKey].int ?? Spellbook.MAX_SPELL_LEVEL
+        minSpellLevel = intFromSION(sion[CharacterProfile.minSpellLevelKey], defaultValue: Spellbook.MIN_SPELL_LEVEL)
+        maxSpellLevel = intFromSION(sion[CharacterProfile.maxSpellLevelKey], defaultValue: Spellbook.MAX_SPELL_LEVEL)
         
         // Ritual and concentration filters
         ritualFilter = sion[CharacterProfile.ritualKey].bool ?? true
@@ -663,13 +663,13 @@ class CharacterProfile {
         let maxUnitString = rangeInfoSION![SION(CharacterProfile.rangeFilterKeys[1])]!.string ?? defaultRange.maxUnit.pluralName
         let minUnit = (try? U.fromString(minUnitString)) ?? defaultRange.minUnit
         let maxUnit = (try? U.fromString(maxUnitString)) ?? defaultRange.maxUnit
-        let minValue = rangeInfoSION![SION(CharacterProfile.rangeFilterKeys[2])]!.int ?? defaultRange.minValue
-        let maxValue = rangeInfoSION![SION(CharacterProfile.rangeFilterKeys[3])]!.int ?? defaultRange.maxValue
+        
+        let minValue = intFromSION(rangeInfoSION![SION(CharacterProfile.rangeFilterKeys[2])]!, defaultValue: defaultRange.minValue)
+        let maxValue = intFromSION(rangeInfoSION![SION(CharacterProfile.rangeFilterKeys[3])]!, defaultValue: defaultRange.maxValue)
         
         return RangeInfo(minUnit: minUnit, maxUnit: maxUnit, minValue: minValue, maxValue: maxValue)
         
     }
-    
     
     // Save to a file
     func save(filename: URL) {

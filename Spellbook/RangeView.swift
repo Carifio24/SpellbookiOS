@@ -92,6 +92,10 @@ class RangeView: UIView {
         maxValueEntry.text = String(maxValue)
         minUnitChoice.text = minUnitName
         maxUnitChoice.text = maxUnitName
+        for textField in [ minValueEntry, maxValueEntry, minUnitChoice, maxUnitChoice ] {
+            textField!.sizeToFit()
+        }
+        
     }
     
     @objc func setDefaultValues() {

@@ -35,6 +35,7 @@ class NumberFieldDelegate: NSObject, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let value = Int(textField.text ?? "") else { return }
         setter(Controllers.mainController.characterProfile, value)
+        Controllers.mainController.saveCharacterProfile()
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
