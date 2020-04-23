@@ -54,13 +54,13 @@ class Range : Quantity<RangeType, LengthUnit> {
         case RangeType.SelfDistance:
             if (self.value > 0) {
                 return type.displayName + "(" + String(value) + " foot radius)"
+            } else {
+                return type.displayName
             }
         case RangeType.Ranged:
             let ft: String = (value == 1) ? unit.singularName : unit.pluralName
             return String(value) + " " + ft
-            
         }
-        return "" // We'll never get here, as the above cases exhaust the enum
     }
     
     // Create a Distance from its string description
