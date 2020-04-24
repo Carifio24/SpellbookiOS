@@ -462,6 +462,28 @@ class CharacterProfile {
         setRangeValue(quantityType, unitType, unit, { rangeInfo, val in rangeInfo.maxUnit = val } )
     }
     
+    func setRangeInfo<Q:QuantityType, U:Unit>(_ quantityType: Q.Type, _ unitType: U.Type, rangeInfo: RangeInfo<U>) {
+        let id = ObjectIdentifier(quantityType)
+        switch (id) {
+        case ObjectIdentifier(CastingTimeType.self):
+            castingTimeRangeInfo = rangeInfo as! RangeInfo<TimeUnit>
+        case ObjectIdentifier(DurationType.self):
+            durationRangeInfo = rangeInfo as! RangeInfo<TimeUnit>
+        case ObjectIdentifier(RangeType.self):
+            rangeRangeInfo = rangeInfo as! RangeInfo<LengthUnit>
+        default:
+            return
+        }
+    }
+    
+    func setRangeInfo<Q:QuantityType, U:Unit, T:Quantity<Q,U>>(_ type: T.Type, rangeInfo: RangeInfo<U>) {
+        setRangeInfo(Q.self, U.self, rangeInfo: rangeInfo)
+    }
+    
+    func setRangeBoundsToDefault<Q:QuantityType, U:Unit, T:Quantity<Q,U>>(type: T.Type) {
+        setRangeInfo(type, rangeInfo: CharacterProfile.getDefaultQuantityRangeInfo(type)!)
+    }
+    
     // For getting range filter data
     private func getRangeValue<E:QuantityType, U:Unit, V>(_ quantityType: E.Type, _ unitType: U.Type, _ getter: (RangeInfo<U>) -> V) -> V {
         let rangeInfo = getQuantityRangeInfo(E.self, U.self)!
@@ -563,6 +585,10 @@ class CharacterProfile {
         default:
             return nil
         }
+    }
+    
+    static func getDefaultQuantityRangeInfo<Q:QuantityType, U:Unit, T:Quantity<Q,U>>(_ type: T.Type) -> RangeInfo<U>? {
+        return getDefaultQuantityRangeInfo(Q.self, U.self)
     }
     
     // Range info for a given type

@@ -12,6 +12,7 @@ class RangeView: UIView {
     
     typealias BoundsGetter = (CharacterProfile) -> (Int, String, Int, String)
     typealias DefaultBoundsGetter = () -> (Int, String, Int, String)
+    typealias ProfileDefaulter = (CharacterProfile) -> Void
 
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var selectionRow: UIView!
@@ -29,6 +30,7 @@ class RangeView: UIView {
     
     var boundsGetter: BoundsGetter?
     var defaultBoundsGetter: DefaultBoundsGetter?
+    var profileDefaulter: ProfileDefaulter?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -78,6 +80,12 @@ class RangeView: UIView {
             return (defaultBounds.0.value, textGetter(defaultBounds.0.unit), defaultBounds.1.value, textGetter(defaultBounds.1.unit))
         }
         
+        // Create the function that will be called to set the character profile bounds to the default
+        profileDefaulter = { cp in
+            cp.setRangeBoundsToDefault(type: T.self)
+        }
+        
+        
         // We can set the center label now, since that won't change when the character profile changes
         rangeTextLabel.text = " ≤ " + centerText + " ≤ "
         
@@ -102,6 +110,9 @@ class RangeView: UIView {
         if (defaultBoundsGetter != nil) {
             let (minValue, minUnitName, maxValue, maxUnitName) = defaultBoundsGetter!()
             setValues(minValue: minValue, minUnitName: minUnitName, maxValue: maxValue, maxUnitName: maxUnitName)
+            let main = Controllers.mainController
+            profileDefaulter!(main.characterProfile)
+            main.saveCharacterProfile()
         }
     }
     
