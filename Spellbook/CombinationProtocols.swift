@@ -13,6 +13,7 @@ protocol UICollectionViewDataFlowDelegate: UICollectionViewDataSource, UICollect
 @objc protocol AllGridSelector {
     func buttons() -> [ToggleButton]
     func selectAll()
+    func unselectAll()
 }
 
 @objc protocol HeightProvider {
@@ -23,5 +24,5 @@ protocol UICollectionViewDataFlowDelegate: UICollectionViewDataSource, UICollect
     func desiredWidth() -> CGFloat
 }
 
-protocol FilterGridProtocol: HeightProvider, AllGridSelector, UICollectionViewDataFlowDelegate {
+protocol FilterGridProtocol: HeightProvider, WidthProvider, AllGridSelector, UICollectionViewDataFlowDelegate {
 }

@@ -62,8 +62,8 @@ class RangeView: UIView {
         maxUnitChoice.delegate = maxUnitDelegate!
         
         // Create and set the delegates for the values
-        minValueDelegate = NumberFieldDelegate(maxCharacters: 3, setter: { cp, value in cp.setMinValue(quantityType: Q.self, unitType: U.self, value: value)})
-        maxValueDelegate = NumberFieldDelegate(maxCharacters: 3, setter: { cp, value in cp.setMaxValue(quantityType: Q.self, unitType: U.self, value: value)})
+        minValueDelegate = NumberFieldDelegate(maxCharacters: 3, setter: { cp, value in cp.setMinValue(quantityType: Q.self, unitType: U.self, value: value) })
+        maxValueDelegate = NumberFieldDelegate(maxCharacters: 3, setter: { cp, value in cp.setMaxValue(quantityType: Q.self, unitType: U.self, value: value) })
         minValueEntry.delegate = minValueDelegate!
         maxValueEntry.delegate = maxValueDelegate!
         

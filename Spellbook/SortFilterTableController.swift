@@ -317,6 +317,15 @@ class SortFilterTableController: UITableViewController {
     @objc func selectAllDurationTypeButtons(_ sender: UIButton) { selectAllButtons(delegate: durationDelegate!) }
     @objc func selectAllRangeTypeButtons(_ sender: UIButton) { selectAllButtons(delegate: rangeDelegate!) }
     
+    // For unselecting all of the grid buttons
+    func unselectAllButtons(delegate: FilterGridProtocol) { delegate.unselectAll() }
+    @objc func unselectAllSourcebookButtons(_ sender: UIButton) { unselectAllButtons(delegate: sourcebookDelegate) }
+    @objc func unselectAllClassButtons(_ sender: UIButton) { unselectAllButtons(delegate: casterDelegate) }
+    @objc func unselectAllSchoolButtons(_ sender: UIButton) { unselectAllButtons(delegate: schoolDelegate) }
+    @objc func unselectAllCastingTimeTypeButtons(_ sender: UIButton) { unselectAllButtons(delegate: castingTimeDelegate!) }
+    @objc func unselectAllDurationTypeButtons(_ sender: UIButton) { unselectAllButtons(delegate: durationDelegate!) }
+    @objc func unselectAllRangeTypeButtons(_ sender: UIButton) { unselectAllButtons(delegate: rangeDelegate!) }
+    
     func reloadTableSection(_ section: Int) {
         //print("In reloadTableSection with section = \(section))")
         //print("numberOfSections is \(tableView.numberOfSections)")

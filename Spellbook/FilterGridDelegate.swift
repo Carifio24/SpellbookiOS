@@ -54,6 +54,7 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
         // Determine the width of each column
         let usableWidth = gridWidth - CGFloat(columns + 1) * horizontalSpacing
         columnWidth = usableWidth / CGFloat(columns)
+        //columnWidth = min(maxWidth, maxAllowedWidth)
     }
     
     override convenience init() {
@@ -96,13 +97,16 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
     
     func buttonForItem(_ t: T) -> ToggleButton? { return itemButtonMap[t] }
     func buttons() -> [ToggleButton] { return Array(itemButtonMap.values) }
-    @objc func selectAll() {
+    
+    func setAll(_ tf: Bool) {
         for (_, button) in itemButtonMap {
-            if !button.isSet() {
+            if button.isSet() != tf {
                 button.sendActions(for: .touchUpInside)
             }
         }
     }
+    @objc func selectAll() { setAll(true) }
+    @objc func unselectAll() { setAll(false) }
     
     func collectionView(_ collectionView: UICollectionView,
             layout collectionViewLayout: UICollectionViewLayout,
@@ -136,6 +140,11 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
         let height = CGFloat(rows + 1) * sectionInsets.top + CGFloat(rows) * rowHeight
         //print("The desired height is \(height)")
         return height
+    }
+    
+    func desiredWidth() -> CGFloat {
+        let width = CGFloat(columns + 1) * sectionInsets.left + CGFloat(columns) * columnWidth
+        return width
     }
     
 
