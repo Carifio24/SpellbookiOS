@@ -53,8 +53,8 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
         
         // Determine the width of each column
         let usableWidth = gridWidth - CGFloat(columns + 1) * horizontalSpacing
-        columnWidth = usableWidth / CGFloat(columns)
-        //columnWidth = min(maxWidth, maxAllowedWidth)
+        let maxAllowedWidth = usableWidth / CGFloat(columns)
+        columnWidth = (maxWidth + maxAllowedWidth) / 2
     }
     
     override convenience init() {

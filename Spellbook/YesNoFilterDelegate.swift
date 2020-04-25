@@ -52,7 +52,8 @@ class YesNoFilterDelegate: NSObject, FilterGridProtocol {
         
         // Determine the width of each column
         let usableWidth = gridWidth - CGFloat(columns + 1) * horizontalSpacing
-        columnWidth = usableWidth / CGFloat(columns)
+        let maxAllowedWidth = usableWidth / CGFloat(columns)
+        columnWidth = (maxWidth + maxAllowedWidth) / 2
         
     }
     
@@ -115,16 +116,24 @@ class YesNoFilterDelegate: NSObject, FilterGridProtocol {
         return height
     }
     
+    func desiredWidth() -> CGFloat {
+        let width = CGFloat(columns + 1) * sectionInsets.left + CGFloat(columns) * columnWidth
+        return width
+    }
+    
     func buttonForItem(_ b: Bool) -> ToggleButton? { return itemButtonMap[b] }
     func buttonForItem(_ t: YesNo) -> ToggleButton? { return buttonForItem(t.bool) }
+    
     func buttons() -> [ToggleButton] { return Array(itemButtonMap.values) }
-    @objc func selectAll() {
+    func setAll(_ tf: Bool) {
         for (_, button) in itemButtonMap {
-            if !button.isSet() {
+            if button.isSet() != tf {
                 button.sendActions(for: .touchUpInside)
             }
         }
     }
+    @objc func selectAll() { setAll(true) }
+    @objc func unselectAll() { setAll(false) }
     
     
 

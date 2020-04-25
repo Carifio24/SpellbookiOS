@@ -172,6 +172,7 @@ class SortFilterTableController: UITableViewController {
             grid.dataSource = delegate
             grid.delegate = delegate
             constraints.append(NSLayoutConstraint(item: grid, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: delegate.desiredHeight()))
+            constraints.append(NSLayoutConstraint(item: grid, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: delegate.desiredWidth()))
             //grid.backgroundColor = UIColor.systemGreen
         }
         NSLayoutConstraint.activate(constraints)
