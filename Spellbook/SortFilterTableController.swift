@@ -43,6 +43,10 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var selectAllDurationTypes: UIButton!
     @IBOutlet weak var selectAllRangeTypes: UIButton!
     
+    // Unselect all buttons
+    @IBOutlet weak var unselectAllSourcebooks: UIButton!
+    
+    
     // Text field delegates
     let firstSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getFirstSortField() }, setter: { cp, sf in cp.setFirstSortField(sf) })
     let secondSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getSecondSortField() }, setter: { cp, sf in cp.setSecondSortField(sf) })
@@ -178,12 +182,16 @@ class SortFilterTableController: UITableViewController {
         NSLayoutConstraint.activate(constraints)
         
         // Set up the select all buttons
+        selectAllSourcebooks.sizeToFit()
         selectAllSourcebooks.addTarget(self, action: #selector(selectAllSourcebookButtons(_:)), for: .touchUpInside)
         selectAllClasses.addTarget(self, action: #selector(selectAllClassButtons(_:)), for: .touchUpInside)
         selectAllSchools.addTarget(self, action: #selector(selectAllSchoolButtons(_:)), for: .touchUpInside)
         selectAllCastingTimeTypes.addTarget(self, action: #selector(selectAllCastingTimeTypeButtons(_:)), for: .touchUpInside)
         selectAllDurationTypes.addTarget(self, action: #selector(selectAllDurationTypeButtons(_:)), for: .touchUpInside)
         selectAllRangeTypes.addTarget(self, action: #selector(selectAllRangeTypeButtons(_:)), for: .touchUpInside)
+        
+        // Set up the unselect all buttons
+        unselectAllSourcebooks.addTarget(self, action: #selector(unselectAllSourcebookButtons(_:)), for: .touchUpInside)
         
         
         // Set the range layout types
