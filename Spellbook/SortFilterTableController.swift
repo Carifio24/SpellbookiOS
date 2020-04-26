@@ -45,7 +45,12 @@ class SortFilterTableController: UITableViewController {
     
     // Unselect all buttons
     @IBOutlet weak var unselectAllSourcebooks: UIButton!
+    @IBOutlet weak var unselectAllClasses: UIButton!
+    @IBOutlet weak var unselectAllSchools: UIButton!
     
+    @IBOutlet weak var unselectAllCastingTimeTypes: UIButton!
+    @IBOutlet weak var unselectAllDurationTypes: UIButton!
+    @IBOutlet weak var unselectAllRangeTypes: UIButton!
     
     // Text field delegates
     let firstSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getFirstSortField() }, setter: { cp, sf in cp.setFirstSortField(sf) })
@@ -182,7 +187,7 @@ class SortFilterTableController: UITableViewController {
         NSLayoutConstraint.activate(constraints)
         
         // Set up the select all buttons
-        selectAllSourcebooks.sizeToFit()
+        //selectAllSourcebooks.sizeToFit()
         selectAllSourcebooks.addTarget(self, action: #selector(selectAllSourcebookButtons(_:)), for: .touchUpInside)
         selectAllClasses.addTarget(self, action: #selector(selectAllClassButtons(_:)), for: .touchUpInside)
         selectAllSchools.addTarget(self, action: #selector(selectAllSchoolButtons(_:)), for: .touchUpInside)
@@ -192,6 +197,11 @@ class SortFilterTableController: UITableViewController {
         
         // Set up the unselect all buttons
         unselectAllSourcebooks.addTarget(self, action: #selector(unselectAllSourcebookButtons(_:)), for: .touchUpInside)
+        unselectAllClasses.addTarget(self, action: #selector(unselectAllClassButtons(_:)), for: .touchUpInside)
+        unselectAllSchools.addTarget(self, action: #selector(unselectAllSchoolButtons(_:)), for: .touchUpInside)
+        unselectAllCastingTimeTypes.addTarget(self, action: #selector(unselectAllCastingTimeTypeButtons(_:)), for: .touchUpInside)
+        unselectAllDurationTypes.addTarget(self, action: #selector(unselectAllDurationTypeButtons(_:)), for: .touchUpInside)
+        unselectAllRangeTypes.addTarget(self, action: #selector(unselectAllRangeTypeButtons(_:)), for: .touchUpInside)
         
         
         // Set the range layout types

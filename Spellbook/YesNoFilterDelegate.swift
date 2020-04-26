@@ -47,13 +47,16 @@ class YesNoFilterDelegate: NSObject, FilterGridProtocol {
         // To find the number of columns, we find the largest solution to
         // n * maxWidth + (n + 1) * horizontalSpacing <= gridWidth
         let horizontalSpacing = self.sectionInsets.left
-        columns = Int(floor( (gridWidth - horizontalSpacing) / (maxWidth + horizontalSpacing) ))
+        let maxColumns = Int(floor( (gridWidth - horizontalSpacing) / (maxWidth + horizontalSpacing) ))
+        columns = min(maxColumns, self.items.count)
         rows = Int(ceil(Double(self.items.count) / Double(columns)))
         
         // Determine the width of each column
         let usableWidth = gridWidth - CGFloat(columns + 1) * horizontalSpacing
-        let maxAllowedWidth = usableWidth / CGFloat(columns)
-        columnWidth = (maxWidth + maxAllowedWidth) / 2
+        //let maxAllowedWidth = usableWidth / CGFloat(columns)
+        //columnWidth = (maxWidth + maxAllowedWidth) / 2
+        //columnWidth = maxAllowedWidth
+        columnWidth = maxWidth
         
     }
     
@@ -118,6 +121,7 @@ class YesNoFilterDelegate: NSObject, FilterGridProtocol {
     
     func desiredWidth() -> CGFloat {
         let width = CGFloat(columns + 1) * sectionInsets.left + CGFloat(columns) * columnWidth
+        print("desiredWidth is \(width)")
         return width
     }
     
