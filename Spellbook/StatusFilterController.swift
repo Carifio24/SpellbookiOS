@@ -145,7 +145,7 @@ class StatusFilterController: UITableViewController {
         let sff = StatusFilterField(rawValue: indexPath.row)!
         //print(sff.name())
         mainWindowController.characterProfile.setStatusFilter(sff)
-        mainWindowController.tableController?.filter()
+        mainWindowController.filter()
         mainWindowController.saveCharacterProfile()
         mainWindowController.toggleLeftMenu()
     }

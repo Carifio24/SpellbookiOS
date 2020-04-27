@@ -68,17 +68,103 @@
                     <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" image="BookBackground.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="N4d-fT-FYa">
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" image="BookBackground.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="N4d-fT-FYa">
                                 <rect key="frame" x="0.0" y="-17" width="414" height="896"/>
-                            </imageView>
-                            <containerView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zki-DA-IIL" userLabel="Table">
-                                <rect key="frame" x="5" y="1" width="404" height="860"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sbA-fH-uxW">
+                                <rect key="frame" x="5" y="2" width="404" height="894"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <segue destination="JVI-Jh-KoD" kind="embed" identifier="tableSegue" id="7Jl-uo-L8y"/>
-                                </connections>
-                            </containerView>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" translatesAutoresizingMaskIntoConstraints="NO" id="OEM-X7-X6S" customClass="SpellDataCell" customModule="Spellbook" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="404" height="29.333333969116211"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OEM-X7-X6S" translatesAutoresizingMaskIntoConstraints="NO" id="P8j-J3-IBW">
+                                            <rect key="frame" x="0.0" y="0.0" width="404" height="29.333333969116211"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hwp-Ma-O0t">
+                                                    <rect key="frame" x="1" y="5" width="0.0" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ber-Ky-GUN">
+                                                    <rect key="frame" x="1" y="-3" width="0.0" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jt9-iC-lBj">
+                                                    <rect key="frame" x="6" y="-3" width="0.0" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Drq-Hj-phV" customClass="ToggleButton" customModule="Spellbook" customModuleProvider="target">
+                                                    <rect key="frame" x="4" y="0.0" width="0.0" height="0.0"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                                    </accessibility>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Drq-Hj-phV" secondAttribute="height" multiplier="1:1" id="Uqq-eS-mEo"/>
+                                                    </constraints>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lz6-YL-C9A" customClass="ToggleButton" customModule="Spellbook" customModuleProvider="target">
+                                                    <rect key="frame" x="6" y="0.0" width="0.0" height="0.0"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                                    </accessibility>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="lz6-YL-C9A" secondAttribute="height" multiplier="1:1" id="zRl-LO-Azy"/>
+                                                    </constraints>
+                                                    <state key="normal" image="book_empty.png"/>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E77-8a-dm0" customClass="ToggleButton" customModule="Spellbook" customModuleProvider="target">
+                                                    <rect key="frame" x="5" y="0.0" width="0.0" height="0.0"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                                    </accessibility>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="E77-8a-dm0" secondAttribute="height" multiplier="1:1" id="Hfv-If-l23"/>
+                                                    </constraints>
+                                                    <state key="normal" image="wand_empty.png"/>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="E77-8a-dm0" firstAttribute="width" secondItem="P8j-J3-IBW" secondAttribute="width" multiplier="0.1" id="6V5-7M-57b"/>
+                                                <constraint firstItem="jt9-iC-lBj" firstAttribute="leading" secondItem="Ber-Ky-GUN" secondAttribute="trailing" constant="5" id="Bw8-Cz-BCZ"/>
+                                                <constraint firstItem="E77-8a-dm0" firstAttribute="centerY" secondItem="P8j-J3-IBW" secondAttribute="centerY" id="Ftb-GW-WHZ"/>
+                                                <constraint firstItem="Hwp-Ma-O0t" firstAttribute="trailing" secondItem="P8j-J3-IBW" secondAttribute="trailing" multiplier="0.7" constant="-10" id="I7i-Oq-j7x"/>
+                                                <constraint firstItem="Ber-Ky-GUN" firstAttribute="top" secondItem="Hwp-Ma-O0t" secondAttribute="bottom" constant="1" id="JWh-HC-ACT"/>
+                                                <constraint firstItem="lz6-YL-C9A" firstAttribute="width" secondItem="P8j-J3-IBW" secondAttribute="width" multiplier="1:10" id="S61-Ha-gmC"/>
+                                                <constraint firstItem="Drq-Hj-phV" firstAttribute="width" secondItem="P8j-J3-IBW" secondAttribute="width" multiplier="1:10" id="SeT-Md-ahI"/>
+                                                <constraint firstItem="jt9-iC-lBj" firstAttribute="bottom" secondItem="Ber-Ky-GUN" secondAttribute="bottom" id="UTb-EN-Ve0"/>
+                                                <constraint firstItem="E77-8a-dm0" firstAttribute="leading" secondItem="Drq-Hj-phV" secondAttribute="trailing" constant="1" id="bTz-gs-5cw"/>
+                                                <constraint firstItem="Drq-Hj-phV" firstAttribute="centerY" secondItem="P8j-J3-IBW" secondAttribute="centerY" id="dxe-JZ-jWg"/>
+                                                <constraint firstItem="lz6-YL-C9A" firstAttribute="centerY" secondItem="P8j-J3-IBW" secondAttribute="centerY" id="euW-Hb-HHv"/>
+                                                <constraint firstItem="Hwp-Ma-O0t" firstAttribute="leading" secondItem="Ber-Ky-GUN" secondAttribute="leading" id="fvT-Zt-QQ5"/>
+                                                <constraint firstItem="Hwp-Ma-O0t" firstAttribute="top" secondItem="P8j-J3-IBW" secondAttribute="top" constant="5" id="hnU-cQ-C7g"/>
+                                                <constraint firstItem="lz6-YL-C9A" firstAttribute="leading" secondItem="E77-8a-dm0" secondAttribute="trailing" constant="1" id="oxg-J9-Qz8"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ber-Ky-GUN" secondAttribute="bottom" constant="3" id="sCH-sj-aM0"/>
+                                                <constraint firstItem="Hwp-Ma-O0t" firstAttribute="leading" secondItem="P8j-J3-IBW" secondAttribute="leading" constant="1" id="wb6-G7-SKK"/>
+                                                <constraint firstItem="Drq-Hj-phV" firstAttribute="leading" secondItem="Hwp-Ma-O0t" secondAttribute="trailing" constant="3" id="yIt-T6-VVZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="favoriteButton" destination="Drq-Hj-phV" id="xsW-ZA-g3P"/>
+                                            <outlet property="knownButton" destination="lz6-YL-C9A" id="rWU-qb-7ff"/>
+                                            <outlet property="levelSchoolLabel" destination="Ber-Ky-GUN" id="2wR-JP-M4e"/>
+                                            <outlet property="nameLabel" destination="Hwp-Ma-O0t" id="PL4-5W-01N"/>
+                                            <outlet property="preparedButton" destination="E77-8a-dm0" id="Jg1-jl-BYj"/>
+                                            <outlet property="sourcebookLabel" destination="jt9-iC-lBj" id="7HZ-jk-KFE"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                             <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NhI-7k-eSx">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -86,28 +172,24 @@
                                     <segue destination="gUc-pC-jXJ" kind="embed" identifier="sortFilterTableSegue" id="2ay-he-JsR"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YSN-5x-scJ" customClass="PassThroughView" customModule="Spellbook" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YSN-5x-scJ" customClass="PassThroughView" customModule="Spellbook" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ngx-bD-cJd" firstAttribute="trailing" secondItem="YSN-5x-scJ" secondAttribute="trailing" id="0Im-DC-hgh"/>
-                            <constraint firstItem="N4d-fT-FYa" firstAttribute="centerX" secondItem="ngx-bD-cJd" secondAttribute="centerX" id="2dF-oK-5GY"/>
+                            <constraint firstAttribute="bottom" secondItem="YSN-5x-scJ" secondAttribute="bottom" id="8Tr-12-yV9"/>
                             <constraint firstItem="ngx-bD-cJd" firstAttribute="bottom" secondItem="NhI-7k-eSx" secondAttribute="bottom" id="920-1t-dNU"/>
-                            <constraint firstItem="N4d-fT-FYa" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="Bcf-1A-9EU"/>
+                            <constraint firstItem="YSN-5x-scJ" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="IPR-P8-8Oe"/>
                             <constraint firstItem="ngx-bD-cJd" firstAttribute="trailing" secondItem="NhI-7k-eSx" secondAttribute="trailing" id="MpU-OG-1V3"/>
-                            <constraint firstAttribute="bottom" secondItem="N4d-fT-FYa" secondAttribute="bottom" id="VnN-LC-e1c"/>
-                            <constraint firstItem="ngx-bD-cJd" firstAttribute="bottom" secondItem="YSN-5x-scJ" secondAttribute="bottom" id="acA-7D-XGT"/>
-                            <constraint firstItem="N4d-fT-FYa" firstAttribute="centerY" secondItem="ngx-bD-cJd" secondAttribute="centerY" id="c98-Yb-PNm"/>
-                            <constraint firstItem="N4d-fT-FYa" firstAttribute="trailing" secondItem="ngx-bD-cJd" secondAttribute="trailing" id="dMm-VQ-miM"/>
-                            <constraint firstItem="N4d-fT-FYa" firstAttribute="leading" secondItem="ngx-bD-cJd" secondAttribute="leading" id="dld-eh-VME"/>
-                            <constraint firstItem="N4d-fT-FYa" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="f9e-4o-wEO"/>
-                            <constraint firstItem="YSN-5x-scJ" firstAttribute="top" secondItem="ngx-bD-cJd" secondAttribute="top" id="fB5-I9-2e0"/>
+                            <constraint firstItem="sbA-fH-uxW" firstAttribute="leading" secondItem="ngx-bD-cJd" secondAttribute="leading" constant="5" id="Nja-O9-SDT"/>
+                            <constraint firstItem="YSN-5x-scJ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="QO2-vO-P8k"/>
+                            <constraint firstItem="YSN-5x-scJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="RdT-xb-128"/>
+                            <constraint firstItem="sbA-fH-uxW" firstAttribute="trailing" secondItem="ngx-bD-cJd" secondAttribute="trailing" constant="-5" id="Zua-z0-jLt"/>
+                            <constraint firstAttribute="bottom" secondItem="sbA-fH-uxW" secondAttribute="bottom" id="ej6-1q-lQh"/>
                             <constraint firstItem="NhI-7k-eSx" firstAttribute="leading" secondItem="ngx-bD-cJd" secondAttribute="leading" id="fGR-9p-26h"/>
-                            <constraint firstItem="N4d-fT-FYa" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="mPN-e1-6Ts"/>
-                            <constraint firstItem="YSN-5x-scJ" firstAttribute="leading" secondItem="ngx-bD-cJd" secondAttribute="leading" id="qVR-DP-HiZ"/>
+                            <constraint firstItem="sbA-fH-uxW" firstAttribute="top" secondItem="ngx-bD-cJd" secondAttribute="top" constant="2" id="qP3-rh-qbP"/>
                             <constraint firstItem="NhI-7k-eSx" firstAttribute="top" secondItem="ngx-bD-cJd" secondAttribute="top" id="ssK-8K-BdO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ngx-bD-cJd"/>
@@ -136,7 +218,7 @@
                         <outlet property="rightMenuButton" destination="Y5e-Fl-Wnb" id="qbT-Ra-anH"/>
                         <outlet property="searchButton" destination="Wf9-GO-CA9" id="lUe-NG-Ll1"/>
                         <outlet property="sortFilterTableView" destination="NhI-7k-eSx" id="1ec-09-cfT"/>
-                        <outlet property="tableView" destination="Zki-DA-IIL" id="zng-zq-EQv"/>
+                        <outlet property="spellTable" destination="sbA-fH-uxW" id="cFB-nV-X4j"/>
                         <segue destination="Hvh-tu-LB9" kind="presentation" identifier="spellWindowSegue" id="ukF-lH-283"/>
                     </connections>
                 </viewController>
@@ -640,21 +722,21 @@
             <objects>
                 <viewController id="JVI-Jh-KoD" customClass="SpellTableViewController" customModule="Spellbook" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tme-7o-uA4">
-                        <rect key="frame" x="0.0" y="0.0" width="404" height="860"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="YKh-J0-HHG" customClass="SpellDataCell" customModule="Spellbook" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="404" height="9"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="9"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YKh-J0-HHG" id="LqU-yp-EDJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="404" height="9"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="9"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ts-wS-DoM">
-                                            <rect key="frame" x="1" y="5" width="271.66666666666669" height="0.0"/>
+                                            <rect key="frame" x="1" y="5" width="278.66666666666669" height="0.0"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -672,7 +754,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pco-Pz-fIs" customClass="ToggleButton" customModule="Spellbook" customModuleProvider="target">
-                                            <rect key="frame" x="275.66666666666669" y="-15.666666666666666" width="40.666666666666686" height="40.333333333333336"/>
+                                            <rect key="frame" x="282.66666666666669" y="-16.333333333333332" width="41.666666666666686" height="41.666666666666664"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" button="YES" image="YES"/>
                                             </accessibility>
@@ -681,7 +763,7 @@
                                             </constraints>
                                         </button>
                                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYp-vY-mId" customClass="ToggleButton" customModule="Spellbook" customModuleProvider="target">
-                                            <rect key="frame" x="358.66666666666669" y="-15.666666666666666" width="40.333333333333314" height="40.333333333333336"/>
+                                            <rect key="frame" x="367.66666666666669" y="-16.333333333333332" width="41.333333333333314" height="41.666666666666664"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" button="YES" image="YES"/>
                                             </accessibility>
@@ -691,7 +773,7 @@
                                             <state key="normal" image="book_empty.png"/>
                                         </button>
                                         <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWc-eu-3za" customClass="ToggleButton" customModule="Spellbook" customModuleProvider="target">
-                                            <rect key="frame" x="317.33333333333331" y="-15.666666666666666" width="40.333333333333314" height="40.333333333333336"/>
+                                            <rect key="frame" x="325.33333333333331" y="-16.333333333333332" width="41.333333333333314" height="41.666666666666664"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" button="YES" image="YES"/>
                                             </accessibility>
@@ -736,6 +818,7 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F8f-U8-Mcq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -932,7 +1015,7 @@
             <objects>
                 <navigationController hidesBarsOnSwipe="YES" id="dND-bH-GRC" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="NSG-YX-7wq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSG-YX-7wq">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -988,7 +1071,7 @@
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n0U-Lk-Dt4" userLabel="First Level Arrow" customClass="ToggleButton" customModule="Spellbook" customModuleProvider="target">
-                                                            <rect key="frame" x="223" y="6" width="18" height="24"/>
+                                                            <rect key="frame" x="223" y="6" width="24" height="24"/>
                                                             <state key="normal" image="down_arrow.png"/>
                                                         </button>
                                                     </subviews>
@@ -1166,7 +1249,7 @@
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             </collectionViewFlowLayout>
                                                             <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="9m7-IC-edr" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="9m7-IC-edr" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                                     <rect key="frame" x="37" y="0.0" width="128" height="128"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Wy-Y7-3R4">
@@ -1224,7 +1307,7 @@
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             </collectionViewFlowLayout>
                                                             <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="vaj-JQ-hq6" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="vaj-JQ-hq6" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                                     <rect key="frame" x="37" y="0.0" width="128" height="128"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1na-Fe-aSv">

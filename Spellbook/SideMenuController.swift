@@ -23,7 +23,6 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     var statusController: StatusFilterController?
     
     var main: ViewController?
-    var mainTable: SpellTableViewController?
     
     let backgroundOffset = CGFloat(27)
     
@@ -52,7 +51,6 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         setNeedsStatusBarAppearanceUpdate()
         
         main = Controllers.mainController
-        mainTable = main?.tableController
         
         // Get the view dimensions
         let viewRect = self.view.bounds

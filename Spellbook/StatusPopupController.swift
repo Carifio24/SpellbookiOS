@@ -30,10 +30,8 @@ class StatusPopupController: UIViewController {
     var spell: Spell = Spell()
     var height = CGFloat(0)
     var width = CGFloat(0)
-    var mainTable: SpellTableViewController? = nil
     var main: ViewController? = nil {
         didSet {
-            mainTable = main!.tableController
             profile = main!.characterProfile
         }
     }

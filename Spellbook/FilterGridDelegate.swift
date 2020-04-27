@@ -52,7 +52,7 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
         rows = Int(ceil(Double(items.count) / Double(columns)))
         
         // Determine the width of each column
-        let usableWidth = gridWidth - CGFloat(columns + 1) * horizontalSpacing
+        //let usableWidth = gridWidth - CGFloat(columns + 1) * horizontalSpacing
         //let maxAllowedWidth = usableWidth / CGFloat(columns)
         //columnWidth = (maxWidth + maxAllowedWidth) / 2
         //columnWidth = maxAllowedWidth

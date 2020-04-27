@@ -123,7 +123,7 @@ class SpellTableViewController: UITableViewController {
     func setTableDimensions(leftPadding: CGFloat, bottomPadding: CGFloat, usableHeight: CGFloat, usableWidth: CGFloat, tableTopPadding: CGFloat) {
         
         // Set the table dimensions
-        let tableFrame = CGRect(x: leftPadding, y: tableTopPadding, width: usableWidth, height: usableHeight - bottomPadding)
+        let tableFrame = CGRect(x: leftPadding, y: tableTopPadding, width: Controllers.mainController.view.frame.size.width, height: Controllers.mainController.view.frame.size.height - bottomPadding)
         tableView.frame = tableFrame
     }
     
