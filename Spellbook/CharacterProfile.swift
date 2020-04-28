@@ -204,6 +204,20 @@ class CharacterProfile {
         durationTypeVisibilities = CharacterProfile.mapFromHiddenNames(type: DurationType.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenDurationTypesKey)
         rangeTypeVisibilities = CharacterProfile.mapFromHiddenNames(type: RangeType.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenRangeTypesKey)
         
+        // Handle sourcebook visibilities (for loading from old profiles)
+        let booksSION = sion[CharacterProfile.booksFilterKey]
+        if booksSION.type != SION.ContentType.error {
+            for (k, v) in booksSION {
+                let sbCode = k.string
+                let tf = v.bool
+                if (sbCode == nil) || (tf == nil) { continue }
+                let sb = Sourcebook.fromCode(sbCode!)
+                if (sb != nil) {
+                    sourcebookVisibilities[sb!] = tf!
+                }
+            }
+        }
+        
         // Quantity range information
         castingTimeRangeInfo = CharacterProfile.rangeInfoFromSION(sion: sion, key: CharacterProfile.castingTimeRangeKey, rangeType: CastingTimeType.self, unitType: TimeUnit.self)
         durationRangeInfo = CharacterProfile.rangeInfoFromSION(sion: sion, key: CharacterProfile.durationRangeKey, rangeType: DurationType.self, unitType: TimeUnit.self)

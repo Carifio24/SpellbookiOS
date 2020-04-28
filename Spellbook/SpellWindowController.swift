@@ -117,8 +117,8 @@ class SpellWindowController: UIViewController {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
                 case UISwipeGestureRecognizer.Direction.right:
-                    main.filter()
-                    main.saveCharacterProfile()
+                    self.main.filter()
+                    self.main.saveCharacterProfile()
                     self.dismiss(animated: true, completion: nil)
                 default:
                     break

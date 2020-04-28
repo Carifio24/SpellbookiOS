@@ -68,9 +68,8 @@
                     <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" image="BookBackground.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="N4d-fT-FYa">
-                                <rect key="frame" x="0.0" y="-17" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" image="BookBackground.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="N4d-fT-FYa">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sbA-fH-uxW">
                                 <rect key="frame" x="5" y="2" width="404" height="894"/>
@@ -179,14 +178,18 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="N4d-fT-FYa" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="7DT-vk-47V"/>
                             <constraint firstAttribute="bottom" secondItem="YSN-5x-scJ" secondAttribute="bottom" id="8Tr-12-yV9"/>
                             <constraint firstItem="ngx-bD-cJd" firstAttribute="bottom" secondItem="NhI-7k-eSx" secondAttribute="bottom" id="920-1t-dNU"/>
                             <constraint firstItem="YSN-5x-scJ" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="IPR-P8-8Oe"/>
+                            <constraint firstItem="N4d-fT-FYa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="L7N-Dh-jvE"/>
                             <constraint firstItem="ngx-bD-cJd" firstAttribute="trailing" secondItem="NhI-7k-eSx" secondAttribute="trailing" id="MpU-OG-1V3"/>
                             <constraint firstItem="sbA-fH-uxW" firstAttribute="leading" secondItem="ngx-bD-cJd" secondAttribute="leading" constant="5" id="Nja-O9-SDT"/>
                             <constraint firstItem="YSN-5x-scJ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="QO2-vO-P8k"/>
                             <constraint firstItem="YSN-5x-scJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="RdT-xb-128"/>
                             <constraint firstItem="sbA-fH-uxW" firstAttribute="trailing" secondItem="ngx-bD-cJd" secondAttribute="trailing" constant="-5" id="Zua-z0-jLt"/>
+                            <constraint firstAttribute="bottom" secondItem="N4d-fT-FYa" secondAttribute="bottom" id="bxt-MF-dbP"/>
+                            <constraint firstItem="N4d-fT-FYa" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="eAx-eb-DU3"/>
                             <constraint firstAttribute="bottom" secondItem="sbA-fH-uxW" secondAttribute="bottom" id="ej6-1q-lQh"/>
                             <constraint firstItem="NhI-7k-eSx" firstAttribute="leading" secondItem="ngx-bD-cJd" secondAttribute="leading" id="fGR-9p-26h"/>
                             <constraint firstItem="sbA-fH-uxW" firstAttribute="top" secondItem="ngx-bD-cJd" secondAttribute="top" constant="2" id="qP3-rh-qbP"/>

@@ -200,6 +200,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         passThroughView.whenPressed = {
             let _ = self.closeMenuIfOpen()
             self.sortFilterController?.dismissKeyboard()
+            self.searchBar.endEditing(true)
         }
         
         // For the swipe-to-filter functionality
@@ -210,6 +211,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             refreshControl.addTarget(self, action: #selector(handlePullDown(_:)), for: UIControl.Event.valueChanged)
             return refreshControl
         }()
+        
         
         // Set the navigation bar button callbacks
         leftMenuButton.target = self
@@ -256,6 +258,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         searchBar.delegate = self
         searchBar.showsCancelButton = true
         searchBar.searchBarStyle = UISearchBar.Style.minimal
+        searchBar.placeholder = "Search by name"
+        searchBar.barStyle = .black
         self.titleView = navigationItem.titleView
         
         // If the view hasn't appeared before
@@ -623,8 +627,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        //passThroughView.blocking = false
         filter()
     }
+
+    
+//    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+//        passThroughView.blocking = false
+//        return true
+//    }
+//
+//    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+//        passThroughView.blocking = false
+//    }
+//
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        passThroughView.blocking = false
+//    }
+
     
     // MARK: SWRevealViewControllerDelegate
     func revealController(_ revealController: SWRevealViewController!, didMoveTo position: FrontViewPosition) {

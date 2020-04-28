@@ -85,6 +85,7 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
             self.main.saveCharacterProfile()
         })
         cell.filterView.filterButton.setLongPressCallback({
+            if !cell.filterView.filterButton.isSet() { cell.filterView.filterButton.sendActions(for: .touchUpInside) }
             for (value, button) in self.itemButtonMap {
                 if (value != item && button.isSet()) {
                     button.sendActions(for: .touchUpInside)
