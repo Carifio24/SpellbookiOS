@@ -111,6 +111,17 @@ class SortFilterTableController: UITableViewController {
     var tapGesture: UITapGestureRecognizer?
     var isKeyboardOpen = false
     
+    // Identifying the sections in the table
+    private let SORT_SECTION = 0
+    private let LEVEL_SECTION = 1
+    private let RITUAL_CONCENTRATION_SECTION = 2
+    private let COMPONENTS_SECTION = 3
+    private let SOURCEBOOK_SECTION = 4
+    private let CASTER_SECTION = 5
+    private let SCHOOL_SECTION = 6
+    private let CASTING_TIME_SECTION = 7
+    private let DURATION_SECTION = 8
+    private let RANGE_SECTION = 9
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -237,9 +248,9 @@ class SortFilterTableController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch (section) {
-        case 1, 2:
+        case LEVEL_SECTION, RITUAL_CONCENTRATION_SECTION:
             return 1
-        case 6, 7, 8:
+        case CASTING_TIME_SECTION, DURATION_SECTION, RANGE_SECTION:
             return 3
         default:
             return 2

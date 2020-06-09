@@ -19,6 +19,8 @@ class YesNoFilterDelegate: NSObject, FilterGridProtocol {
     let items = YesNo.allCases.map({ $0 })
     let columns: Int
     let rows: Int
+    var centered: Bool
+    private let unfilledRowWidth: CGFloat
     private let gridWidth: CGFloat
     private let columnWidth: CGFloat
     private let rowHeight: CGFloat = FilterView.imageHeight
@@ -30,10 +32,11 @@ class YesNoFilterDelegate: NSObject, FilterGridProtocol {
                                      bottom: 5,
                                      right: 5)
     
-    init(statusGetter: @escaping StatusGetter, statusToggler: @escaping StatusToggler, gridWidth: CGFloat) {
+    init(statusGetter: @escaping StatusGetter, statusToggler: @escaping StatusToggler, gridWidth: CGFloat, centered: Bool = false) {
         self.gridWidth = gridWidth
         self.statusToggler = statusToggler
         self.statusGetter = statusGetter
+        self.centered = centered
         
         // We want to determine whether we need 1 row or two
         // Since our only options are "Yes" or "No" for the item text,
@@ -58,10 +61,17 @@ class YesNoFilterDelegate: NSObject, FilterGridProtocol {
         //columnWidth = maxAllowedWidth
         columnWidth = maxWidth
         
+        if (centered) {
+            let unfilledCount = rows * columns - items.count
+            unfilledRowWidth = maxWidth * CGFloat(unfilledCount) / CGFloat(columns)
+        } else {
+            unfilledRowWidth = columnWidth
+        }
+        
     }
     
-    convenience init(statusGetter: @escaping StatusGetter, statusToggler: @escaping StatusToggler) {
-        self.init(statusGetter: statusGetter, statusToggler: statusToggler, gridWidth: YesNoFilterDelegate.defaultWidth)
+    convenience init(statusGetter: @escaping StatusGetter, statusToggler: @escaping StatusToggler, centered: Bool = false) {
+        self.init(statusGetter: statusGetter, statusToggler: statusToggler, gridWidth: YesNoFilterDelegate.defaultWidth, centered: centered)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -90,7 +100,17 @@ class YesNoFilterDelegate: NSObject, FilterGridProtocol {
     func collectionView(_ collectionView: UICollectionView,
             layout collectionViewLayout: UICollectionViewLayout,
             sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: columnWidth, height: FilterView.imageHeight)
+        
+        // If we're using centering and are on the last row (and it isn't filled), use the unfilled row width
+        // Otherwise, just the standard column width
+        var width = columnWidth
+        if (centered) {
+            let unfilledWidthNeeded = indexPath.row * columns > items.count
+            if (unfilledWidthNeeded) {
+                width = unfilledRowWidth
+            }
+        }
+        return CGSize(width: width, height: FilterView.imageHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView,

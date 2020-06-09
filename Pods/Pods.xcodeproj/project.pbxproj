@@ -7,45 +7,76 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00DFB7240B7B74DE34A5CF777D7A0022 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DCED636ED1EAAF37C6FFF211EFDF8D3 /* ActionSheetStringPicker.m */; };
-		19460DDCE181412F56BF673D454DCC2A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
-		1A2CEF7FC1C8BD63FFBA2F8A2A7ECE69 /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AFA86C7BBB68792A56CE8F0807367D2 /* AbstractActionSheetPicker.m */; };
-		1CD39DB36E257E75AEDF367E73C0F18B /* ActionSheetDistancePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = E90D4F3B2E4BE051D0E2AA02FEA87625 /* ActionSheetDistancePicker.m */; };
-		263E0858E4E9504DA6F152BED1A13D65 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
-		32165B3A0682954DD05178C9A7ED1187 /* ActionSheetStringPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 5266E844E2F992FB2C899745FDB74652 /* ActionSheetStringPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		393947AAEFD86BEEAB4737B1CF906D5F /* Pods-Spellbook-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B0C585E4655B926E6ACC377548B023C /* Pods-Spellbook-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3C99F666A03D126A532B981C376D36E2 /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = D85C8AA85D363FE8952344B0F6CF0E67 /* ActionSheetDatePicker.m */; };
-		501D9D8444A4AC2A50E059E60053F48A /* ActionSheetLocalePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 0CF76B9E867082B9C9322B849589B348 /* ActionSheetLocalePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		54D224241A014C4C6DCBD2026B429D60 /* ActionSheetDatePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EE297C0F60EE12783446D796DF7C432 /* ActionSheetDatePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		59789CE08DF6F1682B65A0DB845F18BE /* ActionSheetPicker-3.0-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B991827380A81DC43954DE4D10FDC50 /* ActionSheetPicker-3.0-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5E99A3596F5F638076161D06AB2CCC56 /* ActionSheetMultipleStringPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 87E02B9563CEAF9C65BC49AEBA46B51E /* ActionSheetMultipleStringPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		61EE5ED52B7595E35B0BD57761511FED /* ActionSheetPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = C5BAD067822D83FE7172253DAF0E5D06 /* ActionSheetPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		00D8A969079A4F90B75F07C5D55B7B97 /* FlexLayout+Private.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816B830F51022E39D339C11E49F47B28 /* FlexLayout+Private.swift */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC"; }; };
+		00DFB7240B7B74DE34A5CF777D7A0022 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CD44D67E09C9B70131F3D8F768CDE2 /* ActionSheetStringPicker.m */; };
+		05D0B532E646F815559E9719D652B5CB /* UIView+Yoga.h in Headers */ = {isa = PBXBuildFile; fileRef = 914A8591252D870BEC1D3CD2B817A056 /* UIView+Yoga.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0CD9AF4CC93B5087D9E4DD02E7ED6BD8 /* YGLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D8A3A5AA43B5588E34ED01BF8B428FC /* YGLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		139D1CA17694565155350AC5C7319411 /* Percent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75EC8BBCA3669C8A61DCDAF7076E6F6 /* Percent.swift */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC"; }; };
+		16F1FCE32A33BCF725CC83ABDCD953A0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
+		17C3C640A143487C78BA74F0ED89DC15 /* FlexLayout-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EF729D98652FC95205812B483D83B611 /* FlexLayout-dummy.m */; };
+		1A2CEF7FC1C8BD63FFBA2F8A2A7ECE69 /* AbstractActionSheetPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3F9B00BB4B66D59E37B36F6D63C7A6 /* AbstractActionSheetPicker.m */; };
+		1B75AF9E3F8AD4D76E2DE5403A08714E /* YGLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FCEEF4FA9821CDCFCD348143356C6398 /* YGLayout.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC"; }; };
+		1CD39DB36E257E75AEDF367E73C0F18B /* ActionSheetDistancePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AD34E86816E23B1B6977EBB607A02C55 /* ActionSheetDistancePicker.m */; };
+		2C4A421CCD2AED344F88F63CE00645F5 /* Yoga.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379784DAEFDB1A230393A7116631485E /* Yoga.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC"; }; };
+		2DBCD2DA628D650C3573E51C0C0E2A24 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D42C6D146E4C30F31ACC77387CF193DF /* Utils.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC"; }; };
+		3026F7AC1E4A05B475B9B007418B3713 /* FlexLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 4987AABCEA0A253DA62DE60DE2313C7C /* FlexLayout.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		32165B3A0682954DD05178C9A7ED1187 /* ActionSheetStringPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F412FF1746C4054D27389E1A7BD42BE /* ActionSheetStringPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		335B4F0601EF3117138C2B76D5F0A60A /* UIView+Yoga.mm in Sources */ = {isa = PBXBuildFile; fileRef = 328522B9460CED01BE35C9D05CB972CD /* UIView+Yoga.mm */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC"; }; };
+		33A4C0BD93BC6D2F576FA8ED6303E89F /* YGLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = F5082AA0019AA76D7AF8E38417FBD02D /* YGLayout.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3C99F666A03D126A532B981C376D36E2 /* ActionSheetDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = ADE01C76B74F1EA8F091D713B2B3AF30 /* ActionSheetDatePicker.m */; };
+		4463C85393F7EA8FBE7214A7257D3BDB /* YGNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 78CABC507B3BEB527DF9130098894A3E /* YGNode.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		459014FCBA4E401419F2C73E981ECA62 /* Pods-Spellbook-SpellbookUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D359C4DE1F7BAF1D0AD6213079264B5B /* Pods-Spellbook-SpellbookUITests-dummy.m */; };
+		501D9D8444A4AC2A50E059E60053F48A /* ActionSheetLocalePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D34E2E900AE7CBC8AC14299BC3BC1AA /* ActionSheetLocalePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		54D224241A014C4C6DCBD2026B429D60 /* ActionSheetDatePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CBE024B9156D5D31C43CBBE2783DDF6 /* ActionSheetDatePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		59789CE08DF6F1682B65A0DB845F18BE /* ActionSheetPicker-3.0-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C3DFC15CD58BE7BE2EA45C329AC5C47 /* ActionSheetPicker-3.0-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5E99A3596F5F638076161D06AB2CCC56 /* ActionSheetMultipleStringPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = CBF0F7B64EDC42D0C08367E4376059DB /* ActionSheetMultipleStringPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		61EE5ED52B7595E35B0BD57761511FED /* ActionSheetPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 45D7DF521C069D6999BAE2FD3CE9A0AE /* ActionSheetPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6833B5B341C0214934D7449BBFDF7529 /* Pods-SpellbookTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EADC2DD846C765D4970F61336E224BE /* Pods-SpellbookTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		699E002C8D7C7E93FD6931B152485A00 /* Pods-Spellbook-SpellbookUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D359C4DE1F7BAF1D0AD6213079264B5B /* Pods-Spellbook-SpellbookUITests-dummy.m */; };
-		6A79626FEC7404480D85B72A4580773F /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 782963AEED0624FC8CED2FBCB52956A3 /* DistancePickerView.m */; };
-		7201235914FA344CF0F37B31C94DF58F /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A9174AFAF882850E195C4F1E24438E11 /* SWActionSheet.m */; };
+		691BDF4C0D1BE70FDCD5AAD0687D58A5 /* YGLayoutExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0063A20817C28444EAFF60AEC3E03E1E /* YGLayoutExtensions.swift */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC"; }; };
+		6A79626FEC7404480D85B72A4580773F /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D3696E4AD62AFAEF77CA7D32BE9420 /* DistancePickerView.m */; };
+		7201235914FA344CF0F37B31C94DF58F /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = ADAA8B97999D03483487940C97E118D4 /* SWActionSheet.m */; };
+		749119819BF4538D61B1CDDB5C21DAC8 /* Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 622E387DDFDD7544BDEE7A51FA110582 /* Utils.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		75BB5235832D0B55AF3F0B310706855D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
-		76DBC17F9562AB31555EE50DA2B8E905 /* SWXMLHash-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AFD79F6889D5CA842CFEFFD6891F5DB7 /* SWXMLHash-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		790ACC8CB03660B20EA6E21F4CB66FCF /* Pods-Spellbook-SpellbookUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 31C4877BC0947397DCBA91A9959DC7C4 /* Pods-Spellbook-SpellbookUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7A5FA2AF26C1E051151BC66F3C8639F8 /* ActionSheetCustomPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DD0EF75DFE95F4782E6CFB46DFF994E /* ActionSheetCustomPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7C9560533D526220DD0B524C63648440 /* SWXMLHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92B13F1CC74C4BF060C50B47D847AB5 /* SWXMLHash.swift */; };
+		76DBC17F9562AB31555EE50DA2B8E905 /* SWXMLHash-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F985CB7A1980FC31D7BBABA0A903400 /* SWXMLHash-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79585F133D5559AA07ACC86738462BF7 /* YGNodePrint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5DA3A88CA6351EF5F6FD31C76C9F113C /* YGNodePrint.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC"; }; };
+		7A5FA2AF26C1E051151BC66F3C8639F8 /* ActionSheetCustomPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 0E8648B110262584844175AA75B35B56 /* ActionSheetCustomPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7C9560533D526220DD0B524C63648440 /* SWXMLHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = A901F88D5E51B0CAE08AF5997B8BB38A /* SWXMLHash.swift */; };
 		83651C970DF8263E1D00CBAE47DC3665 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 312B988EF117AE4DE76A268D970131FE /* UIKit.framework */; };
+		83EB89EED74BABE4BF37887D1DC20727 /* Yoga.h in Headers */ = {isa = PBXBuildFile; fileRef = 063DEEC08D70A1A8B72DF22F399F170D /* Yoga.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84C786223AFD6AC185B08AFB3D743541 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
-		8D01CD38433E9556E3B23A6DD76F5C26 /* Pods-Spellbook-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 866FB571543B27090826280BE073EEB4 /* Pods-Spellbook-dummy.m */; };
-		962434DC73678E1EDD58CF3104E3EAAF /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = DD49C096A85F8CA9803ED766027E916F /* ActionSheetCustomPicker.m */; };
-		995F7F4AEC0BA9D85FF2C2235285ED73 /* XMLIndexer+XMLIndexerDeserializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F91BCF8013E5637A4A535E5AC9EF125 /* XMLIndexer+XMLIndexerDeserializable.swift */; };
-		9D80B224850F41DE99AF0BA0EF522727 /* shim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C96056F098CA67F44BC038331E9EE49 /* shim.swift */; };
-		A1237D1EEF827FF68FD99A8DD8BE73BF /* DistancePickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1748B03981AF408E59AEE9B65C263434 /* DistancePickerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C0B1DE05CABBD89231D61791493DAC2C /* ActionSheetCustomPickerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = EA149721A38E5DC49638E9EC4780589E /* ActionSheetCustomPickerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C0FA04F6BE68E3E316F447CF9CBE3664 /* ActionSheetMultipleStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA6AD1A6606DE1758156AABCEB7500C /* ActionSheetMultipleStringPicker.m */; };
-		C31A1EC6B8C14C595A14E46A9C8A34DB /* ActionSheetPicker-3.0-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C1EC489C65CE50159894CE9BAE808EDA /* ActionSheetPicker-3.0-dummy.m */; };
-		C4385AA23D686AA3F6891DC1B21868D4 /* SWXMLHash-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5035D0CE0BE20BE3137CCE0218BC97C6 /* SWXMLHash-dummy.m */; };
+		8E5F87A9539A21CB6B76E843CC4DDFDC /* YGLayout+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 59A0036D70A1F95B90D2F875AA8431E7 /* YGLayout+Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		962434DC73678E1EDD58CF3104E3EAAF /* ActionSheetCustomPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B877C44D74E0B2261441BB75CA0CBD57 /* ActionSheetCustomPicker.m */; };
+		995F7F4AEC0BA9D85FF2C2235285ED73 /* XMLIndexer+XMLIndexerDeserializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840543AC1DB4730726B2CA4EE196EA50 /* XMLIndexer+XMLIndexerDeserializable.swift */; };
+		9BEA8B0D3DE661379BE3F2B5951CE43E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
+		9D80B224850F41DE99AF0BA0EF522727 /* shim.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9FFAA29205E7234606685F485B80057 /* shim.swift */; };
+		9D8F14EE0C4705E81163DDC0ADCEC9B1 /* YGNodePrint.h in Headers */ = {isa = PBXBuildFile; fileRef = 93C4E0E0F4774B7D21DEFE8ED1ACFD12 /* YGNodePrint.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A1237D1EEF827FF68FD99A8DD8BE73BF /* DistancePickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 500068309C94D56A823D5D98C51DA9C5 /* DistancePickerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A4D7E4AD769A318CCE25CA25F6AD270E /* YGEnums.h in Headers */ = {isa = PBXBuildFile; fileRef = F620EDACBF7EEE9F54062ABDF1A0EA5C /* YGEnums.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B0F97DE7AB3B6638A0B1328A7D5E9FFC /* YGLayout.mm in Sources */ = {isa = PBXBuildFile; fileRef = 851112BEB3DCC18A6A4B00B386D86267 /* YGLayout.mm */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC"; }; };
+		B28087562E022EF68C6958209A34A816 /* Pods-Spellbook-SpellbookUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 31C4877BC0947397DCBA91A9959DC7C4 /* Pods-Spellbook-SpellbookUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B6CBC3BD6AE6F21A51D42923D27EB45C /* Pods-Spellbook-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 866FB571543B27090826280BE073EEB4 /* Pods-Spellbook-dummy.m */; };
+		C0B1DE05CABBD89231D61791493DAC2C /* ActionSheetCustomPickerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2FF684139B9EFA3FED5DD1AC88893E76 /* ActionSheetCustomPickerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C0FA04F6BE68E3E316F447CF9CBE3664 /* ActionSheetMultipleStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E02E6E842570D20FC3C0CDFA6DE2A52 /* ActionSheetMultipleStringPicker.m */; };
+		C31A1EC6B8C14C595A14E46A9C8A34DB /* ActionSheetPicker-3.0-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CB5CA2021D490E03326426AF05592D52 /* ActionSheetPicker-3.0-dummy.m */; };
+		C4385AA23D686AA3F6891DC1B21868D4 /* SWXMLHash-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CC86F7A4EB62E2ACCAFAC7643A83B01 /* SWXMLHash-dummy.m */; };
 		C462C9DD4B11CE445E2C0DC761452AA2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
-		C65D0EE0041E43E7211946FD5B1E2CAD /* SWActionSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = F12675FDFA9BC2D9B6D0A7FB6E27C501 /* SWActionSheet.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C8E3B6D1D900E64A816A45FBD10D5354 /* AbstractActionSheetPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CAAAB80B8D81C0B435392BA109073ED /* AbstractActionSheetPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C65D0EE0041E43E7211946FD5B1E2CAD /* SWActionSheet.h in Headers */ = {isa = PBXBuildFile; fileRef = F02690964E2016695041BFD9656883C9 /* SWActionSheet.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C8E3B6D1D900E64A816A45FBD10D5354 /* AbstractActionSheetPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = F2949F2285170CED5E4639D60A420F61 /* AbstractActionSheetPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CE7D4A72514A4F33EB06E04B53E42DF5 /* Yoga-internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A5C3F7EEF6A8F4AEB555CD612E7496 /* Yoga-internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CFD3104639C08E70FAAB18577791709F /* FlexLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DE266C1A9108BF11940FB933279D27 /* FlexLayout.swift */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC"; }; };
+		D0C2DDEC8FE5C18D4E434BBB4C541657 /* YGStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = C761E0708A95D6C6723E4F6AE0E6E57C /* YGStyle.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D3BB134F0BF8375CB57CB3D6BA51E488 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */; };
 		DC41F18FF545A80BC7DB7DE2148DABCE /* Pods-SpellbookTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7F72FA0D3A454B897841C51728FD79 /* Pods-SpellbookTests-dummy.m */; };
-		E0FAE2EEEE2AF98B6EA1B8B6F0B898BD /* ActionSheetDistancePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = BA0369C859A32B26466F4BE18DCA66B5 /* ActionSheetDistancePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F7A0DE31C56C4B610D8F93B6339D0D80 /* ActionSheetLocalePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B226C864F49DEE44D551DA79945288 /* ActionSheetLocalePicker.m */; };
+		E0FAE2EEEE2AF98B6EA1B8B6F0B898BD /* ActionSheetDistancePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = EE3ECA3D4AAF8CDD22E9EA34D786F3FB /* ActionSheetDistancePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E18F006BDE41BC893BAEDDD086B75B43 /* YGNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127C6E3B3F980329880D83CA981F7810 /* YGNode.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC"; }; };
+		EC69780C6DB0F19A3390AD5C274927CF /* FlexLayout+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D464E01ADFF8B1D38127446DE84426A1 /* FlexLayout+Enum.swift */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC"; }; };
+		EE3CD03188BB4CA794506507E3212A38 /* FlexLayout-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 62459073BEF9186AF3F3C1DB623C7DD5 /* FlexLayout-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EF174FDBE48AF77A7A9561F07BD9271D /* UIView+FlexLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E13F4834F5563BE2791D6799F39FC1 /* UIView+FlexLayout.swift */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC"; }; };
+		F2C73BB13803630053D1E2C8947483B1 /* YGStyle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E6DFCC0A655EA7837AE478989675FE /* YGStyle.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC"; }; };
+		F7A0DE31C56C4B610D8F93B6339D0D80 /* ActionSheetLocalePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BBD4A443EFC288628AA40FB67FE5662 /* ActionSheetLocalePicker.m */; };
+		FBC4118D714639A0A17A3FFF86230383 /* YGMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 5014DD042E8A51AEA37857ED6F6CAE46 /* YGMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FBE710076D8843D7CD63CE6526899FEE /* YGEnums.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E8892E3E758C4FC810716CDC856B76AC /* YGEnums.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC"; }; };
+		FDCB850936B60F27279522C9B6C7E497 /* Pods-Spellbook-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4B0C585E4655B926E6ACC377548B023C /* Pods-Spellbook-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,28 +87,42 @@
 			remoteGlobalIDString = BC9CCECC52010AB911ED929825AB69E2;
 			remoteInfo = "Pods-Spellbook";
 		};
-		1AF4F8E8C11714957E262292366D5155 /* PBXContainerItemProxy */ = {
+		14756B12893F835502A796C36A08CF9A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9B669057662AC2963D287EC448129F48;
+			remoteInfo = FlexLayout;
+		};
+		2D2C1E80EDD856A51AD5E9E53873CD54 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = A43B25DDF20FCB9228471F8F5135C866;
 			remoteInfo = "ActionSheetPicker-3.0";
 		};
-		270B34C0F19D208EDB0A2F5BDE3F9284 /* PBXContainerItemProxy */ = {
+		4C27AC4C86682A95711DF9A322415F29 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A43B25DDF20FCB9228471F8F5135C866;
-			remoteInfo = "ActionSheetPicker-3.0";
+			remoteGlobalIDString = 9B669057662AC2963D287EC448129F48;
+			remoteInfo = FlexLayout;
 		};
-		4AF96A050E79F5A388D1FE7F1C5AF75C /* PBXContainerItemProxy */ = {
+		944357C666B538328F08F4025B5148FA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 63678F9A594800CBC7006B45EAB7886B;
 			remoteInfo = SWXMLHash;
 		};
-		F9780DB68E08956A90BCD724E1A00C02 /* PBXContainerItemProxy */ = {
+		9CF1D824B4819E90EBCC138F0687AECC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A43B25DDF20FCB9228471F8F5135C866;
+			remoteInfo = "ActionSheetPicker-3.0";
+		};
+		B8DF3774C24B5FB637726BE966906948 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -87,85 +132,121 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0063A20817C28444EAFF60AEC3E03E1E /* YGLayoutExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YGLayoutExtensions.swift; path = Sources/YogaKit/YGLayoutExtensions.swift; sourceTree = "<group>"; };
 		01C189D693BABCB43D79995744968215 /* Pods-Spellbook-SpellbookUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Spellbook-SpellbookUITests-Info.plist"; sourceTree = "<group>"; };
+		0259DEA10EEFF26204B9B5957918D131 /* FlexLayout.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FlexLayout.debug.xcconfig; sourceTree = "<group>"; };
+		063DEEC08D70A1A8B72DF22F399F170D /* Yoga.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Yoga.h; path = Sources/yoga/Yoga.h; sourceTree = "<group>"; };
+		07A5C3F7EEF6A8F4AEB555CD612E7496 /* Yoga-internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Yoga-internal.h"; path = "Sources/yoga/Yoga-internal.h"; sourceTree = "<group>"; };
 		081AF8E7B25B9DA2B4EED7005EDC17D7 /* Pods-Spellbook-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Spellbook-acknowledgements.markdown"; sourceTree = "<group>"; };
-		0CF76B9E867082B9C9322B849589B348 /* ActionSheetLocalePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetLocalePicker.h; path = Pickers/ActionSheetLocalePicker.h; sourceTree = "<group>"; };
-		0DCED636ED1EAAF37C6FFF211EFDF8D3 /* ActionSheetStringPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetStringPicker.m; path = Pickers/ActionSheetStringPicker.m; sourceTree = "<group>"; };
+		0E8648B110262584844175AA75B35B56 /* ActionSheetCustomPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPicker.h; path = Pickers/ActionSheetCustomPicker.h; sourceTree = "<group>"; };
 		0EE5006468522FB83C579766998552DC /* Pods-Spellbook-SpellbookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Spellbook-SpellbookUITests.release.xcconfig"; sourceTree = "<group>"; };
-		16D0752A6503C19641A311E3A84E2517 /* ActionSheetPicker-3.0.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "ActionSheetPicker-3.0.modulemap"; sourceTree = "<group>"; };
-		1748B03981AF408E59AEE9B65C263434 /* DistancePickerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DistancePickerView.h; path = Pickers/DistancePickerView.h; sourceTree = "<group>"; };
-		195BFBC75E1EAD2C0F9A2D29CD5386BF /* SWXMLHash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SWXMLHash.debug.xcconfig; sourceTree = "<group>"; };
-		1FEF63A9446399FA24401B62FD12F9A2 /* ActionSheetPicker-3.0-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ActionSheetPicker-3.0-Info.plist"; sourceTree = "<group>"; };
-		28845B1EF56F50AB284400D9EDC4A321 /* ActionSheetPicker-3.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "ActionSheetPicker-3.0.debug.xcconfig"; sourceTree = "<group>"; };
-		2B991827380A81DC43954DE4D10FDC50 /* ActionSheetPicker-3.0-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ActionSheetPicker-3.0-umbrella.h"; sourceTree = "<group>"; };
+		0F985CB7A1980FC31D7BBABA0A903400 /* SWXMLHash-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SWXMLHash-umbrella.h"; sourceTree = "<group>"; };
+		127C6E3B3F980329880D83CA981F7810 /* YGNode.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = YGNode.cpp; path = Sources/yoga/YGNode.cpp; sourceTree = "<group>"; };
+		19965FD5A54F90E75B774F4AE389FDD9 /* SWXMLHash.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SWXMLHash.modulemap; sourceTree = "<group>"; };
+		21E6DFCC0A655EA7837AE478989675FE /* YGStyle.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = YGStyle.cpp; path = Sources/yoga/YGStyle.cpp; sourceTree = "<group>"; };
+		25DE266C1A9108BF11940FB933279D27 /* FlexLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FlexLayout.swift; path = Sources/FlexLayout.swift; sourceTree = "<group>"; };
+		2FF684139B9EFA3FED5DD1AC88893E76 /* ActionSheetCustomPickerDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPickerDelegate.h; path = Pickers/ActionSheetCustomPickerDelegate.h; sourceTree = "<group>"; };
 		30E75B5D026BCD65B1026DF9E36313BD /* Pods-Spellbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Spellbook.release.xcconfig"; sourceTree = "<group>"; };
 		312B988EF117AE4DE76A268D970131FE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		31C4877BC0947397DCBA91A9959DC7C4 /* Pods-Spellbook-SpellbookUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Spellbook-SpellbookUITests-umbrella.h"; sourceTree = "<group>"; };
+		31E15688183B38B2863D57F5D4DB0D00 /* ActionSheetPicker-3.0-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ActionSheetPicker-3.0-prefix.pch"; sourceTree = "<group>"; };
+		328522B9460CED01BE35C9D05CB972CD /* UIView+Yoga.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = "UIView+Yoga.mm"; path = "Sources/YogaKit/UIView+Yoga.mm"; sourceTree = "<group>"; };
+		330200B5ECADF6DDBA3B6938642A1999 /* ActionSheetPicker-3.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "ActionSheetPicker-3.0.release.xcconfig"; sourceTree = "<group>"; };
+		379784DAEFDB1A230393A7116631485E /* Yoga.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = Yoga.cpp; path = Sources/yoga/Yoga.cpp; sourceTree = "<group>"; };
+		3D8A3A5AA43B5588E34ED01BF8B428FC /* YGLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGLayout.h; path = Sources/YogaKit/YGLayout.h; sourceTree = "<group>"; };
 		3FCCBBD7C21BF890946B80C1B0B33C09 /* Pods-Spellbook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Spellbook.debug.xcconfig"; sourceTree = "<group>"; };
-		42B226C864F49DEE44D551DA79945288 /* ActionSheetLocalePicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetLocalePicker.m; path = Pickers/ActionSheetLocalePicker.m; sourceTree = "<group>"; };
 		436BAA54A31999B53B3CC7115C55FE50 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		45D7DF521C069D6999BAE2FD3CE9A0AE /* ActionSheetPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetPicker.h; path = Pickers/ActionSheetPicker.h; sourceTree = "<group>"; };
 		48EC350E808E5CDA41EFEB2808FB79A2 /* Pods-Spellbook-SpellbookUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Spellbook-SpellbookUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		4987AABCEA0A253DA62DE60DE2313C7C /* FlexLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FlexLayout.h; path = Sources/SupportingFiles/FlexLayout.h; sourceTree = "<group>"; };
 		4B0C585E4655B926E6ACC377548B023C /* Pods-Spellbook-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Spellbook-umbrella.h"; sourceTree = "<group>"; };
-		4CAAAB80B8D81C0B435392BA109073ED /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AbstractActionSheetPicker.h; path = Pickers/AbstractActionSheetPicker.h; sourceTree = "<group>"; };
+		4BBD4A443EFC288628AA40FB67FE5662 /* ActionSheetLocalePicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetLocalePicker.m; path = Pickers/ActionSheetLocalePicker.m; sourceTree = "<group>"; };
+		4C3F9B00BB4B66D59E37B36F6D63C7A6 /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AbstractActionSheetPicker.m; path = Pickers/AbstractActionSheetPicker.m; sourceTree = "<group>"; };
+		4F412FF1746C4054D27389E1A7BD42BE /* ActionSheetStringPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetStringPicker.h; path = Pickers/ActionSheetStringPicker.h; sourceTree = "<group>"; };
 		4F5EFF5AFC0C79585D68720FA6842A7D /* Pods-SpellbookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SpellbookTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5035D0CE0BE20BE3137CCE0218BC97C6 /* SWXMLHash-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SWXMLHash-dummy.m"; sourceTree = "<group>"; };
-		5266E844E2F992FB2C899745FDB74652 /* ActionSheetStringPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetStringPicker.h; path = Pickers/ActionSheetStringPicker.h; sourceTree = "<group>"; };
-		5468D3871A66D39BAB4F7050ABDA2B65 /* SWXMLHash-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SWXMLHash-Info.plist"; sourceTree = "<group>"; };
+		500068309C94D56A823D5D98C51DA9C5 /* DistancePickerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DistancePickerView.h; path = Pickers/DistancePickerView.h; sourceTree = "<group>"; };
+		5014DD042E8A51AEA37857ED6F6CAE46 /* YGMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGMacros.h; path = Sources/yoga/YGMacros.h; sourceTree = "<group>"; };
+		55D3696E4AD62AFAEF77CA7D32BE9420 /* DistancePickerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DistancePickerView.m; path = Pickers/DistancePickerView.m; sourceTree = "<group>"; };
+		59A0036D70A1F95B90D2F875AA8431E7 /* YGLayout+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "YGLayout+Private.h"; path = "Sources/YogaKit/YGLayout+Private.h"; sourceTree = "<group>"; };
 		5C7F72FA0D3A454B897841C51728FD79 /* Pods-SpellbookTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SpellbookTests-dummy.m"; sourceTree = "<group>"; };
+		5D34E2E900AE7CBC8AC14299BC3BC1AA /* ActionSheetLocalePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetLocalePicker.h; path = Pickers/ActionSheetLocalePicker.h; sourceTree = "<group>"; };
+		5DA3A88CA6351EF5F6FD31C76C9F113C /* YGNodePrint.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = YGNodePrint.cpp; path = Sources/yoga/YGNodePrint.cpp; sourceTree = "<group>"; };
 		5EADC2DD846C765D4970F61336E224BE /* Pods-SpellbookTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SpellbookTests-umbrella.h"; sourceTree = "<group>"; };
-		626859FBDE8B7C5A7B1512F9AF3DCD16 /* ActionSheetPicker-3.0-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ActionSheetPicker-3.0-prefix.pch"; sourceTree = "<group>"; };
+		601EF107428C508A4E2BDE19725D22A8 /* SWXMLHash-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SWXMLHash-Info.plist"; sourceTree = "<group>"; };
+		61347E34FB57D2EA047D71F5B697EB3C /* FlexLayout-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FlexLayout-Info.plist"; sourceTree = "<group>"; };
+		622E387DDFDD7544BDEE7A51FA110582 /* Utils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = Sources/yoga/Utils.h; sourceTree = "<group>"; };
+		62459073BEF9186AF3F3C1DB623C7DD5 /* FlexLayout-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FlexLayout-umbrella.h"; sourceTree = "<group>"; };
 		65F37CA36D6446F9451B54B99133E2BA /* Pods_Spellbook_SpellbookUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Spellbook_SpellbookUITests.framework; path = "Pods-Spellbook-SpellbookUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69655695A589A0FC7FD459A46355D0B7 /* Pods-Spellbook-SpellbookUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Spellbook-SpellbookUITests.modulemap"; sourceTree = "<group>"; };
 		6C1B5B21B0CD43C34ED9A9C9A7BCA60E /* Pods-SpellbookTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SpellbookTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		6D17742B5CDBCA9C9530E569D89E6EFE /* SWXMLHash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SWXMLHash.release.xcconfig; sourceTree = "<group>"; };
-		6DD0EF75DFE95F4782E6CFB46DFF994E /* ActionSheetCustomPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPicker.h; path = Pickers/ActionSheetCustomPicker.h; sourceTree = "<group>"; };
+		6CBE024B9156D5D31C43CBBE2783DDF6 /* ActionSheetDatePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetDatePicker.h; path = Pickers/ActionSheetDatePicker.h; sourceTree = "<group>"; };
+		6E02E6E842570D20FC3C0CDFA6DE2A52 /* ActionSheetMultipleStringPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetMultipleStringPicker.m; path = Pickers/ActionSheetMultipleStringPicker.m; sourceTree = "<group>"; };
 		6ED2D5DBAD7EA8A21252143F798F3E11 /* Pods-Spellbook-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Spellbook-acknowledgements.plist"; sourceTree = "<group>"; };
-		6F91BCF8013E5637A4A535E5AC9EF125 /* XMLIndexer+XMLIndexerDeserializable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "XMLIndexer+XMLIndexerDeserializable.swift"; path = "Source/XMLIndexer+XMLIndexerDeserializable.swift"; sourceTree = "<group>"; };
-		782963AEED0624FC8CED2FBCB52956A3 /* DistancePickerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DistancePickerView.m; path = Pickers/DistancePickerView.m; sourceTree = "<group>"; };
-		7AFA86C7BBB68792A56CE8F0807367D2 /* AbstractActionSheetPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AbstractActionSheetPicker.m; path = Pickers/AbstractActionSheetPicker.m; sourceTree = "<group>"; };
-		7C96056F098CA67F44BC038331E9EE49 /* shim.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = shim.swift; path = Source/shim.swift; sourceTree = "<group>"; };
-		7EE297C0F60EE12783446D796DF7C432 /* ActionSheetDatePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetDatePicker.h; path = Pickers/ActionSheetDatePicker.h; sourceTree = "<group>"; };
+		743425493BD2C5D26A7C0EDABF1E2768 /* FlexLayout-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FlexLayout-prefix.pch"; sourceTree = "<group>"; };
+		77CD44D67E09C9B70131F3D8F768CDE2 /* ActionSheetStringPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetStringPicker.m; path = Pickers/ActionSheetStringPicker.m; sourceTree = "<group>"; };
+		78CABC507B3BEB527DF9130098894A3E /* YGNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGNode.h; path = Sources/yoga/YGNode.h; sourceTree = "<group>"; };
+		7C3DFC15CD58BE7BE2EA45C329AC5C47 /* ActionSheetPicker-3.0-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ActionSheetPicker-3.0-umbrella.h"; sourceTree = "<group>"; };
+		7CC86F7A4EB62E2ACCAFAC7643A83B01 /* SWXMLHash-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SWXMLHash-dummy.m"; sourceTree = "<group>"; };
+		7CEC13EC78C830803398B1C912BA8AE8 /* FlexLayout.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FlexLayout.modulemap; sourceTree = "<group>"; };
 		80D9B48B6C8D218DECCE9330A3176A44 /* Pods-Spellbook-SpellbookUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Spellbook-SpellbookUITests-frameworks.sh"; sourceTree = "<group>"; };
+		816B830F51022E39D339C11E49F47B28 /* FlexLayout+Private.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "FlexLayout+Private.swift"; path = "Sources/Impl/FlexLayout+Private.swift"; sourceTree = "<group>"; };
+		8283FF069566EE7E650F6A813096D47E /* ActionSheetPicker-3.0-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ActionSheetPicker-3.0-Info.plist"; sourceTree = "<group>"; };
+		840543AC1DB4730726B2CA4EE196EA50 /* XMLIndexer+XMLIndexerDeserializable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "XMLIndexer+XMLIndexerDeserializable.swift"; path = "Source/XMLIndexer+XMLIndexerDeserializable.swift"; sourceTree = "<group>"; };
+		851112BEB3DCC18A6A4B00B386D86267 /* YGLayout.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = YGLayout.mm; path = Sources/YogaKit/YGLayout.mm; sourceTree = "<group>"; };
+		85444968DCB1800028A885E094B1E380 /* FlexLayout.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FlexLayout.release.xcconfig; sourceTree = "<group>"; };
 		866FB571543B27090826280BE073EEB4 /* Pods-Spellbook-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Spellbook-dummy.m"; sourceTree = "<group>"; };
-		87E02B9563CEAF9C65BC49AEBA46B51E /* ActionSheetMultipleStringPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetMultipleStringPicker.h; path = Pickers/ActionSheetMultipleStringPicker.h; sourceTree = "<group>"; };
-		96FF62FA231BF1F80DCE0DD97C69666E /* SWXMLHash-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SWXMLHash-prefix.pch"; sourceTree = "<group>"; };
+		914A8591252D870BEC1D3CD2B817A056 /* UIView+Yoga.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+Yoga.h"; path = "Sources/YogaKit/UIView+Yoga.h"; sourceTree = "<group>"; };
+		93C4E0E0F4774B7D21DEFE8ED1ACFD12 /* YGNodePrint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGNodePrint.h; path = Sources/yoga/YGNodePrint.h; sourceTree = "<group>"; };
+		94CE7E412561E40A104A7076DF778819 /* SWXMLHash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SWXMLHash.debug.xcconfig; sourceTree = "<group>"; };
 		97D014AD6344E543FEDB1FD1F8F2BFEC /* SWXMLHash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SWXMLHash.framework; path = SWXMLHash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A17942F4B1F5A17C5CB97A72D526BC9 /* Pods-Spellbook-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Spellbook-Info.plist"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A9174AFAF882850E195C4F1E24438E11 /* SWActionSheet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SWActionSheet.m; path = Pickers/SWActionSheet.m; sourceTree = "<group>"; };
+		A901F88D5E51B0CAE08AF5997B8BB38A /* SWXMLHash.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SWXMLHash.swift; path = Source/SWXMLHash.swift; sourceTree = "<group>"; };
+		AD34E86816E23B1B6977EBB607A02C55 /* ActionSheetDistancePicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetDistancePicker.m; path = Pickers/ActionSheetDistancePicker.m; sourceTree = "<group>"; };
 		AD478447492BB4BFBC2880E1DE727189 /* Pods-SpellbookTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SpellbookTests-Info.plist"; sourceTree = "<group>"; };
-		AFD79F6889D5CA842CFEFFD6891F5DB7 /* SWXMLHash-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SWXMLHash-umbrella.h"; sourceTree = "<group>"; };
+		ADAA8B97999D03483487940C97E118D4 /* SWActionSheet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SWActionSheet.m; path = Pickers/SWActionSheet.m; sourceTree = "<group>"; };
+		ADE01C76B74F1EA8F091D713B2B3AF30 /* ActionSheetDatePicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetDatePicker.m; path = Pickers/ActionSheetDatePicker.m; sourceTree = "<group>"; };
 		B4E40BD8D350D00ECA9289D319A26F7C /* Pods-Spellbook-SpellbookUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Spellbook-SpellbookUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		B7349F0CDF23B5CDA14B497447AFC3AC /* ActionSheetPicker-3.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "ActionSheetPicker-3.0.release.xcconfig"; sourceTree = "<group>"; };
+		B55B177E2F63350038A283F2D34944AE /* ActionSheetPicker-3.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "ActionSheetPicker-3.0.debug.xcconfig"; sourceTree = "<group>"; };
 		B82CAF350347DC2952B0EF82BFD2C2C3 /* Pods-Spellbook.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Spellbook.modulemap"; sourceTree = "<group>"; };
-		B92B13F1CC74C4BF060C50B47D847AB5 /* SWXMLHash.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SWXMLHash.swift; path = Source/SWXMLHash.swift; sourceTree = "<group>"; };
-		BA0369C859A32B26466F4BE18DCA66B5 /* ActionSheetDistancePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetDistancePicker.h; path = Pickers/ActionSheetDistancePicker.h; sourceTree = "<group>"; };
-		BFA6AD1A6606DE1758156AABCEB7500C /* ActionSheetMultipleStringPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetMultipleStringPicker.m; path = Pickers/ActionSheetMultipleStringPicker.m; sourceTree = "<group>"; };
-		C1EC489C65CE50159894CE9BAE808EDA /* ActionSheetPicker-3.0-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ActionSheetPicker-3.0-dummy.m"; sourceTree = "<group>"; };
+		B877C44D74E0B2261441BB75CA0CBD57 /* ActionSheetCustomPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetCustomPicker.m; path = Pickers/ActionSheetCustomPicker.m; sourceTree = "<group>"; };
+		B9FFAA29205E7234606685F485B80057 /* shim.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = shim.swift; path = Source/shim.swift; sourceTree = "<group>"; };
+		BDCFC3421179ABDCFCCA8EDA7812C267 /* SWXMLHash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SWXMLHash.release.xcconfig; sourceTree = "<group>"; };
+		C0E13F4834F5563BE2791D6799F39FC1 /* UIView+FlexLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+FlexLayout.swift"; path = "Sources/Impl/UIView+FlexLayout.swift"; sourceTree = "<group>"; };
 		C53696E3DBDC6FA7D111270F15A2C1F5 /* Pods-Spellbook-SpellbookUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Spellbook-SpellbookUITests-acknowledgements.plist"; sourceTree = "<group>"; };
-		C5BAD067822D83FE7172253DAF0E5D06 /* ActionSheetPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetPicker.h; path = Pickers/ActionSheetPicker.h; sourceTree = "<group>"; };
+		C72B5FCB4FAF78A4CFE9E3AAD40B09B8 /* FlexLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FlexLayout.framework; path = FlexLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C761E0708A95D6C6723E4F6AE0E6E57C /* YGStyle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGStyle.h; path = Sources/yoga/YGStyle.h; sourceTree = "<group>"; };
+		CB5CA2021D490E03326426AF05592D52 /* ActionSheetPicker-3.0-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ActionSheetPicker-3.0-dummy.m"; sourceTree = "<group>"; };
+		CBF0F7B64EDC42D0C08367E4376059DB /* ActionSheetMultipleStringPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetMultipleStringPicker.h; path = Pickers/ActionSheetMultipleStringPicker.h; sourceTree = "<group>"; };
 		D359C4DE1F7BAF1D0AD6213079264B5B /* Pods-Spellbook-SpellbookUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Spellbook-SpellbookUITests-dummy.m"; sourceTree = "<group>"; };
+		D42C6D146E4C30F31ACC77387CF193DF /* Utils.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = Utils.cpp; path = Sources/yoga/Utils.cpp; sourceTree = "<group>"; };
+		D464E01ADFF8B1D38127446DE84426A1 /* FlexLayout+Enum.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "FlexLayout+Enum.swift"; path = "Sources/Impl/FlexLayout+Enum.swift"; sourceTree = "<group>"; };
 		D64B454009D2EE1F5380919773AA1E5F /* Pods-SpellbookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SpellbookTests.release.xcconfig"; sourceTree = "<group>"; };
 		D6E470A0C684D4FBC08BDF7A28A2A38B /* ActionSheetPicker_3_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ActionSheetPicker_3_0.framework; path = "ActionSheetPicker-3.0.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D85C8AA85D363FE8952344B0F6CF0E67 /* ActionSheetDatePicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetDatePicker.m; path = Pickers/ActionSheetDatePicker.m; sourceTree = "<group>"; };
-		D97FD5D13F20440C6C20CF7C9025CE24 /* SWXMLHash.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SWXMLHash.modulemap; sourceTree = "<group>"; };
+		D75EC8BBCA3669C8A61DCDAF7076E6F6 /* Percent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Percent.swift; path = Sources/Percent.swift; sourceTree = "<group>"; };
+		DA044A8B6AD769C7715D9F62B87ED3D7 /* ActionSheetPicker-3.0.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "ActionSheetPicker-3.0.modulemap"; sourceTree = "<group>"; };
 		DB218E9F4485ED21697A6D4BAC51F89B /* Pods_Spellbook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Spellbook.framework; path = "Pods-Spellbook.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD49C096A85F8CA9803ED766027E916F /* ActionSheetCustomPicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetCustomPicker.m; path = Pickers/ActionSheetCustomPicker.m; sourceTree = "<group>"; };
 		E019A7F761266E93C3D8EBB01437E0B4 /* Pods-SpellbookTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SpellbookTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		E90D4F3B2E4BE051D0E2AA02FEA87625 /* ActionSheetDistancePicker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ActionSheetDistancePicker.m; path = Pickers/ActionSheetDistancePicker.m; sourceTree = "<group>"; };
-		EA149721A38E5DC49638E9EC4780589E /* ActionSheetCustomPickerDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetCustomPickerDelegate.h; path = Pickers/ActionSheetCustomPickerDelegate.h; sourceTree = "<group>"; };
+		E8892E3E758C4FC810716CDC856B76AC /* YGEnums.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = YGEnums.cpp; path = Sources/yoga/YGEnums.cpp; sourceTree = "<group>"; };
 		EAFFD16A6441A94F0452C3B3852DB0AF /* Pods-SpellbookTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SpellbookTests.modulemap"; sourceTree = "<group>"; };
 		EC7A54AA9EA44DD02913339D82A4C7AB /* Pods-Spellbook-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Spellbook-frameworks.sh"; sourceTree = "<group>"; };
-		F12675FDFA9BC2D9B6D0A7FB6E27C501 /* SWActionSheet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SWActionSheet.h; path = Pickers/SWActionSheet.h; sourceTree = "<group>"; };
+		EE3ECA3D4AAF8CDD22E9EA34D786F3FB /* ActionSheetDistancePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ActionSheetDistancePicker.h; path = Pickers/ActionSheetDistancePicker.h; sourceTree = "<group>"; };
+		EF729D98652FC95205812B483D83B611 /* FlexLayout-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FlexLayout-dummy.m"; sourceTree = "<group>"; };
+		F02690964E2016695041BFD9656883C9 /* SWActionSheet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SWActionSheet.h; path = Pickers/SWActionSheet.h; sourceTree = "<group>"; };
+		F2949F2285170CED5E4639D60A420F61 /* AbstractActionSheetPicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AbstractActionSheetPicker.h; path = Pickers/AbstractActionSheetPicker.h; sourceTree = "<group>"; };
+		F5082AA0019AA76D7AF8E38417FBD02D /* YGLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGLayout.h; path = Sources/yoga/YGLayout.h; sourceTree = "<group>"; };
 		F564D6F6DE7C5552283645D4FD38F09C /* Pods_SpellbookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SpellbookTests.framework; path = "Pods-SpellbookTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F620EDACBF7EEE9F54062ABDF1A0EA5C /* YGEnums.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGEnums.h; path = Sources/yoga/YGEnums.h; sourceTree = "<group>"; };
+		FCEEF4FA9821CDCFCD348143356C6398 /* YGLayout.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = YGLayout.cpp; path = Sources/yoga/YGLayout.cpp; sourceTree = "<group>"; };
+		FE49822140C5B744CC48E6BA00A9FCC9 /* SWXMLHash-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SWXMLHash-prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1C5AB4B2FC3CE80C6056AA1B6CEDBDA5 /* Frameworks */ = {
+		094B35ED5733F98AD622E3C0FA3033EC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				263E0858E4E9504DA6F152BED1A13D65 /* Foundation.framework in Frameworks */,
+				9BEA8B0D3DE661379BE3F2B5951CE43E /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +255,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				84C786223AFD6AC185B08AFB3D743541 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		303691291D3003B11126FDC4F49955B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				16F1FCE32A33BCF725CC83ABDCD953A0 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,11 +283,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		97B22A471BBCB72D2C44706396DAFC3D /* Frameworks */ = {
+		92B6C4EA6CE92D9A9889AA39C9C873B4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19460DDCE181412F56BF673D454DCC2A /* Foundation.framework in Frameworks */,
+				D3BB134F0BF8375CB57CB3D6BA51E488 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +311,21 @@
 			path = "Target Support Files/Pods-Spellbook-SpellbookUITests";
 			sourceTree = "<group>";
 		};
+		0366F8466DA7E0C3F5B1ACD8B163B710 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7CEC13EC78C830803398B1C912BA8AE8 /* FlexLayout.modulemap */,
+				EF729D98652FC95205812B483D83B611 /* FlexLayout-dummy.m */,
+				61347E34FB57D2EA047D71F5B697EB3C /* FlexLayout-Info.plist */,
+				743425493BD2C5D26A7C0EDABF1E2768 /* FlexLayout-prefix.pch */,
+				62459073BEF9186AF3F3C1DB623C7DD5 /* FlexLayout-umbrella.h */,
+				0259DEA10EEFF26204B9B5957918D131 /* FlexLayout.debug.xcconfig */,
+				85444968DCB1800028A885E094B1E380 /* FlexLayout.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FlexLayout";
+			sourceTree = "<group>";
+		};
 		0CA00009BC119DD86F91C95B8720B873 /* Pods-SpellbookTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +342,50 @@
 			path = "Target Support Files/Pods-SpellbookTests";
 			sourceTree = "<group>";
 		};
+		0F93109DE98B665FE296A0758EE2DB10 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				19965FD5A54F90E75B774F4AE389FDD9 /* SWXMLHash.modulemap */,
+				7CC86F7A4EB62E2ACCAFAC7643A83B01 /* SWXMLHash-dummy.m */,
+				601EF107428C508A4E2BDE19725D22A8 /* SWXMLHash-Info.plist */,
+				FE49822140C5B744CC48E6BA00A9FCC9 /* SWXMLHash-prefix.pch */,
+				0F985CB7A1980FC31D7BBABA0A903400 /* SWXMLHash-umbrella.h */,
+				94CE7E412561E40A104A7076DF778819 /* SWXMLHash.debug.xcconfig */,
+				BDCFC3421179ABDCFCCA8EDA7812C267 /* SWXMLHash.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SWXMLHash";
+			sourceTree = "<group>";
+		};
+		11A07C66A113B2F473E886B4B4238835 /* ActionSheetPicker-3.0 */ = {
+			isa = PBXGroup;
+			children = (
+				F2949F2285170CED5E4639D60A420F61 /* AbstractActionSheetPicker.h */,
+				4C3F9B00BB4B66D59E37B36F6D63C7A6 /* AbstractActionSheetPicker.m */,
+				0E8648B110262584844175AA75B35B56 /* ActionSheetCustomPicker.h */,
+				B877C44D74E0B2261441BB75CA0CBD57 /* ActionSheetCustomPicker.m */,
+				2FF684139B9EFA3FED5DD1AC88893E76 /* ActionSheetCustomPickerDelegate.h */,
+				6CBE024B9156D5D31C43CBBE2783DDF6 /* ActionSheetDatePicker.h */,
+				ADE01C76B74F1EA8F091D713B2B3AF30 /* ActionSheetDatePicker.m */,
+				EE3ECA3D4AAF8CDD22E9EA34D786F3FB /* ActionSheetDistancePicker.h */,
+				AD34E86816E23B1B6977EBB607A02C55 /* ActionSheetDistancePicker.m */,
+				5D34E2E900AE7CBC8AC14299BC3BC1AA /* ActionSheetLocalePicker.h */,
+				4BBD4A443EFC288628AA40FB67FE5662 /* ActionSheetLocalePicker.m */,
+				CBF0F7B64EDC42D0C08367E4376059DB /* ActionSheetMultipleStringPicker.h */,
+				6E02E6E842570D20FC3C0CDFA6DE2A52 /* ActionSheetMultipleStringPicker.m */,
+				45D7DF521C069D6999BAE2FD3CE9A0AE /* ActionSheetPicker.h */,
+				4F412FF1746C4054D27389E1A7BD42BE /* ActionSheetStringPicker.h */,
+				77CD44D67E09C9B70131F3D8F768CDE2 /* ActionSheetStringPicker.m */,
+				500068309C94D56A823D5D98C51DA9C5 /* DistancePickerView.h */,
+				55D3696E4AD62AFAEF77CA7D32BE9420 /* DistancePickerView.m */,
+				F02690964E2016695041BFD9656883C9 /* SWActionSheet.h */,
+				ADAA8B97999D03483487940C97E118D4 /* SWActionSheet.m */,
+				450D5B1809DC8892A49AD38CE6A599F4 /* Support Files */,
+			);
+			name = "ActionSheetPicker-3.0";
+			path = "ActionSheetPicker-3.0";
+			sourceTree = "<group>";
+		};
 		1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,19 +394,63 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		52DA33B466BED7EE918C688DFDA0ED3D /* Pods */ = {
+		41B0BE1ECCCD46BFBB2EA5B9F351CA2A /* FlexLayout */ = {
 			isa = PBXGroup;
 			children = (
-				E398C8E8B216325E5249AF2256A2AFAA /* ActionSheetPicker-3.0 */,
-				A1CB19CD7585281FFE48A69E3A372B93 /* SWXMLHash */,
+				4987AABCEA0A253DA62DE60DE2313C7C /* FlexLayout.h */,
+				25DE266C1A9108BF11940FB933279D27 /* FlexLayout.swift */,
+				D464E01ADFF8B1D38127446DE84426A1 /* FlexLayout+Enum.swift */,
+				816B830F51022E39D339C11E49F47B28 /* FlexLayout+Private.swift */,
+				D75EC8BBCA3669C8A61DCDAF7076E6F6 /* Percent.swift */,
+				C0E13F4834F5563BE2791D6799F39FC1 /* UIView+FlexLayout.swift */,
+				914A8591252D870BEC1D3CD2B817A056 /* UIView+Yoga.h */,
+				328522B9460CED01BE35C9D05CB972CD /* UIView+Yoga.mm */,
+				D42C6D146E4C30F31ACC77387CF193DF /* Utils.cpp */,
+				622E387DDFDD7544BDEE7A51FA110582 /* Utils.h */,
+				E8892E3E758C4FC810716CDC856B76AC /* YGEnums.cpp */,
+				F620EDACBF7EEE9F54062ABDF1A0EA5C /* YGEnums.h */,
+				FCEEF4FA9821CDCFCD348143356C6398 /* YGLayout.cpp */,
+				3D8A3A5AA43B5588E34ED01BF8B428FC /* YGLayout.h */,
+				F5082AA0019AA76D7AF8E38417FBD02D /* YGLayout.h */,
+				851112BEB3DCC18A6A4B00B386D86267 /* YGLayout.mm */,
+				59A0036D70A1F95B90D2F875AA8431E7 /* YGLayout+Private.h */,
+				0063A20817C28444EAFF60AEC3E03E1E /* YGLayoutExtensions.swift */,
+				5014DD042E8A51AEA37857ED6F6CAE46 /* YGMacros.h */,
+				127C6E3B3F980329880D83CA981F7810 /* YGNode.cpp */,
+				78CABC507B3BEB527DF9130098894A3E /* YGNode.h */,
+				5DA3A88CA6351EF5F6FD31C76C9F113C /* YGNodePrint.cpp */,
+				93C4E0E0F4774B7D21DEFE8ED1ACFD12 /* YGNodePrint.h */,
+				21E6DFCC0A655EA7837AE478989675FE /* YGStyle.cpp */,
+				C761E0708A95D6C6723E4F6AE0E6E57C /* YGStyle.h */,
+				379784DAEFDB1A230393A7116631485E /* Yoga.cpp */,
+				063DEEC08D70A1A8B72DF22F399F170D /* Yoga.h */,
+				07A5C3F7EEF6A8F4AEB555CD612E7496 /* Yoga-internal.h */,
+				0366F8466DA7E0C3F5B1ACD8B163B710 /* Support Files */,
 			);
-			name = Pods;
+			name = FlexLayout;
+			path = FlexLayout;
 			sourceTree = "<group>";
 		};
-		5A5A786B764A493ED6B22863AB5BB34C /* Products */ = {
+		450D5B1809DC8892A49AD38CE6A599F4 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				DA044A8B6AD769C7715D9F62B87ED3D7 /* ActionSheetPicker-3.0.modulemap */,
+				CB5CA2021D490E03326426AF05592D52 /* ActionSheetPicker-3.0-dummy.m */,
+				8283FF069566EE7E650F6A813096D47E /* ActionSheetPicker-3.0-Info.plist */,
+				31E15688183B38B2863D57F5D4DB0D00 /* ActionSheetPicker-3.0-prefix.pch */,
+				7C3DFC15CD58BE7BE2EA45C329AC5C47 /* ActionSheetPicker-3.0-umbrella.h */,
+				B55B177E2F63350038A283F2D34944AE /* ActionSheetPicker-3.0.debug.xcconfig */,
+				330200B5ECADF6DDBA3B6938642A1999 /* ActionSheetPicker-3.0.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/ActionSheetPicker-3.0";
+			sourceTree = "<group>";
+		};
+		6B58628C9056151949E9BBA5B255E645 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				D6E470A0C684D4FBC08BDF7A28A2A38B /* ActionSheetPicker_3_0.framework */,
+				C72B5FCB4FAF78A4CFE9E3AAD40B09B8 /* FlexLayout.framework */,
 				DB218E9F4485ED21697A6D4BAC51F89B /* Pods_Spellbook.framework */,
 				65F37CA36D6446F9451B54B99133E2BA /* Pods_Spellbook_SpellbookUITests.framework */,
 				F564D6F6DE7C5552283645D4FD38F09C /* Pods_SpellbookTests.framework */,
@@ -277,46 +469,26 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		79E3CEA84FA609393E66D15686878834 /* Support Files */ = {
+		A4D4BC1A85D9EDB5948DABEEFC21CCAE /* SWXMLHash */ = {
 			isa = PBXGroup;
 			children = (
-				16D0752A6503C19641A311E3A84E2517 /* ActionSheetPicker-3.0.modulemap */,
-				C1EC489C65CE50159894CE9BAE808EDA /* ActionSheetPicker-3.0-dummy.m */,
-				1FEF63A9446399FA24401B62FD12F9A2 /* ActionSheetPicker-3.0-Info.plist */,
-				626859FBDE8B7C5A7B1512F9AF3DCD16 /* ActionSheetPicker-3.0-prefix.pch */,
-				2B991827380A81DC43954DE4D10FDC50 /* ActionSheetPicker-3.0-umbrella.h */,
-				28845B1EF56F50AB284400D9EDC4A321 /* ActionSheetPicker-3.0.debug.xcconfig */,
-				B7349F0CDF23B5CDA14B497447AFC3AC /* ActionSheetPicker-3.0.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/ActionSheetPicker-3.0";
-			sourceTree = "<group>";
-		};
-		A1CB19CD7585281FFE48A69E3A372B93 /* SWXMLHash */ = {
-			isa = PBXGroup;
-			children = (
-				7C96056F098CA67F44BC038331E9EE49 /* shim.swift */,
-				B92B13F1CC74C4BF060C50B47D847AB5 /* SWXMLHash.swift */,
-				6F91BCF8013E5637A4A535E5AC9EF125 /* XMLIndexer+XMLIndexerDeserializable.swift */,
-				B8FE0F85EAD0D3DCFF1B0D06071CD766 /* Support Files */,
+				B9FFAA29205E7234606685F485B80057 /* shim.swift */,
+				A901F88D5E51B0CAE08AF5997B8BB38A /* SWXMLHash.swift */,
+				840543AC1DB4730726B2CA4EE196EA50 /* XMLIndexer+XMLIndexerDeserializable.swift */,
+				0F93109DE98B665FE296A0758EE2DB10 /* Support Files */,
 			);
 			name = SWXMLHash;
 			path = SWXMLHash;
 			sourceTree = "<group>";
 		};
-		B8FE0F85EAD0D3DCFF1B0D06071CD766 /* Support Files */ = {
+		C48F73C6BD66AB14E54822E4D4FA82A9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D97FD5D13F20440C6C20CF7C9025CE24 /* SWXMLHash.modulemap */,
-				5035D0CE0BE20BE3137CCE0218BC97C6 /* SWXMLHash-dummy.m */,
-				5468D3871A66D39BAB4F7050ABDA2B65 /* SWXMLHash-Info.plist */,
-				96FF62FA231BF1F80DCE0DD97C69666E /* SWXMLHash-prefix.pch */,
-				AFD79F6889D5CA842CFEFFD6891F5DB7 /* SWXMLHash-umbrella.h */,
-				195BFBC75E1EAD2C0F9A2D29CD5386BF /* SWXMLHash.debug.xcconfig */,
-				6D17742B5CDBCA9C9530E569D89E6EFE /* SWXMLHash.release.xcconfig */,
+				11A07C66A113B2F473E886B4B4238835 /* ActionSheetPicker-3.0 */,
+				41B0BE1ECCCD46BFBB2EA5B9F351CA2A /* FlexLayout */,
+				A4D4BC1A85D9EDB5948DABEEFC21CCAE /* SWXMLHash */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/SWXMLHash";
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -324,8 +496,8 @@
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				1628BF05B4CAFDCC3549A101F5A10A17 /* Frameworks */,
-				52DA33B466BED7EE918C688DFDA0ED3D /* Pods */,
-				5A5A786B764A493ED6B22863AB5BB34C /* Products */,
+				C48F73C6BD66AB14E54822E4D4FA82A9 /* Pods */,
+				6B58628C9056151949E9BBA5B255E645 /* Products */,
 				79AA06075FCFA07EB1D17B0EBA11B298 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -337,35 +509,6 @@
 				312B988EF117AE4DE76A268D970131FE /* UIKit.framework */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		E398C8E8B216325E5249AF2256A2AFAA /* ActionSheetPicker-3.0 */ = {
-			isa = PBXGroup;
-			children = (
-				4CAAAB80B8D81C0B435392BA109073ED /* AbstractActionSheetPicker.h */,
-				7AFA86C7BBB68792A56CE8F0807367D2 /* AbstractActionSheetPicker.m */,
-				6DD0EF75DFE95F4782E6CFB46DFF994E /* ActionSheetCustomPicker.h */,
-				DD49C096A85F8CA9803ED766027E916F /* ActionSheetCustomPicker.m */,
-				EA149721A38E5DC49638E9EC4780589E /* ActionSheetCustomPickerDelegate.h */,
-				7EE297C0F60EE12783446D796DF7C432 /* ActionSheetDatePicker.h */,
-				D85C8AA85D363FE8952344B0F6CF0E67 /* ActionSheetDatePicker.m */,
-				BA0369C859A32B26466F4BE18DCA66B5 /* ActionSheetDistancePicker.h */,
-				E90D4F3B2E4BE051D0E2AA02FEA87625 /* ActionSheetDistancePicker.m */,
-				0CF76B9E867082B9C9322B849589B348 /* ActionSheetLocalePicker.h */,
-				42B226C864F49DEE44D551DA79945288 /* ActionSheetLocalePicker.m */,
-				87E02B9563CEAF9C65BC49AEBA46B51E /* ActionSheetMultipleStringPicker.h */,
-				BFA6AD1A6606DE1758156AABCEB7500C /* ActionSheetMultipleStringPicker.m */,
-				C5BAD067822D83FE7172253DAF0E5D06 /* ActionSheetPicker.h */,
-				5266E844E2F992FB2C899745FDB74652 /* ActionSheetStringPicker.h */,
-				0DCED636ED1EAAF37C6FFF211EFDF8D3 /* ActionSheetStringPicker.m */,
-				1748B03981AF408E59AEE9B65C263434 /* DistancePickerView.h */,
-				782963AEED0624FC8CED2FBCB52956A3 /* DistancePickerView.m */,
-				F12675FDFA9BC2D9B6D0A7FB6E27C501 /* SWActionSheet.h */,
-				A9174AFAF882850E195C4F1E24438E11 /* SWActionSheet.m */,
-				79E3CEA84FA609393E66D15686878834 /* Support Files */,
-			);
-			name = "ActionSheetPicker-3.0";
-			path = "ActionSheetPicker-3.0";
 			sourceTree = "<group>";
 		};
 		F9853064A315322806999F86B67F9675 /* Pods-Spellbook */ = {
@@ -388,19 +531,32 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		47940B0B4B21C54E9A14731896E9599E /* Headers */ = {
+		216C917C68366E1FCDC1A5CB86EFC410 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				790ACC8CB03660B20EA6E21F4CB66FCF /* Pods-Spellbook-SpellbookUITests-umbrella.h in Headers */,
+				B28087562E022EF68C6958209A34A816 /* Pods-Spellbook-SpellbookUITests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6C05FCC82D98D0EFCF4E194F7CAB2B91 /* Headers */ = {
+		3050AEDA1D62ABA50077C673B8D14D45 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				393947AAEFD86BEEAB4737B1CF906D5F /* Pods-Spellbook-umbrella.h in Headers */,
+				EE3CD03188BB4CA794506507E3212A38 /* FlexLayout-umbrella.h in Headers */,
+				3026F7AC1E4A05B475B9B007418B3713 /* FlexLayout.h in Headers */,
+				05D0B532E646F815559E9719D652B5CB /* UIView+Yoga.h in Headers */,
+				749119819BF4538D61B1CDDB5C21DAC8 /* Utils.h in Headers */,
+				A4D7E4AD769A318CCE25CA25F6AD270E /* YGEnums.h in Headers */,
+				8E5F87A9539A21CB6B76E843CC4DDFDC /* YGLayout+Private.h in Headers */,
+				33A4C0BD93BC6D2F576FA8ED6303E89F /* YGLayout.h in Headers */,
+				0CD9AF4CC93B5087D9E4DD02E7ED6BD8 /* YGLayout.h in Headers */,
+				FBC4118D714639A0A17A3FFF86230383 /* YGMacros.h in Headers */,
+				4463C85393F7EA8FBE7214A7257D3BDB /* YGNode.h in Headers */,
+				9D8F14EE0C4705E81163DDC0ADCEC9B1 /* YGNodePrint.h in Headers */,
+				D0C2DDEC8FE5C18D4E434BBB4C541657 /* YGStyle.h in Headers */,
+				CE7D4A72514A4F33EB06E04B53E42DF5 /* Yoga-internal.h in Headers */,
+				83EB89EED74BABE4BF37887D1DC20727 /* Yoga.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +565,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				76DBC17F9562AB31555EE50DA2B8E905 /* SWXMLHash-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A707F107F23C0FE7559627D32B6FEDDC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDCB850936B60F27279522C9B6C7E497 /* Pods-Spellbook-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,18 +608,19 @@
 /* Begin PBXNativeTarget section */
 		4A6380F27F7724BE52822F0893BB0C8E /* Pods-Spellbook-SpellbookUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FB20B5B74BDE19FFB67E810F3245E769 /* Build configuration list for PBXNativeTarget "Pods-Spellbook-SpellbookUITests" */;
+			buildConfigurationList = BBCB89ECB0FBB0DE3A66615559554594 /* Build configuration list for PBXNativeTarget "Pods-Spellbook-SpellbookUITests" */;
 			buildPhases = (
-				47940B0B4B21C54E9A14731896E9599E /* Headers */,
-				821185CBA3499C5D843AB75776FD705A /* Sources */,
-				97B22A471BBCB72D2C44706396DAFC3D /* Frameworks */,
-				CDD841C42F5CDA71A57DFBCF577FEC05 /* Resources */,
+				216C917C68366E1FCDC1A5CB86EFC410 /* Headers */,
+				DEABD5924005718EC9BBEEDB339BF9D0 /* Sources */,
+				303691291D3003B11126FDC4F49955B8 /* Frameworks */,
+				9C5C2BAB629FDD4D6C86E35455E51C9B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				32CE33C52576F53FABC7A553BB4D48C1 /* PBXTargetDependency */,
-				6ACBB6566C99780C903B06D645408D64 /* PBXTargetDependency */,
+				D44ECED781FD1884CDCD1267D6AA3E12 /* PBXTargetDependency */,
+				CFE01425BD88F7A36A73A3635A3A35B9 /* PBXTargetDependency */,
+				14E7B073A24DBBEDF8AB56458F0B918F /* PBXTargetDependency */,
 			);
 			name = "Pods-Spellbook-SpellbookUITests";
 			productName = "Pods-Spellbook-SpellbookUITests";
@@ -499,6 +664,24 @@
 			productReference = F564D6F6DE7C5552283645D4FD38F09C /* Pods_SpellbookTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		9B669057662AC2963D287EC448129F48 /* FlexLayout */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 380AC7FD038F256696BF7BE8559A53DD /* Build configuration list for PBXNativeTarget "FlexLayout" */;
+			buildPhases = (
+				3050AEDA1D62ABA50077C673B8D14D45 /* Headers */,
+				00221B9E2A4AF780A47F2830D2DD5F3A /* Sources */,
+				094B35ED5733F98AD622E3C0FA3033EC /* Frameworks */,
+				48E21983C63AFB0969F03AB1BD591FF2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FlexLayout;
+			productName = FlexLayout;
+			productReference = C72B5FCB4FAF78A4CFE9E3AAD40B09B8 /* FlexLayout.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		A43B25DDF20FCB9228471F8F5135C866 /* ActionSheetPicker-3.0 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 543AFABDB667AF073C3569847B1008C0 /* Build configuration list for PBXNativeTarget "ActionSheetPicker-3.0" */;
@@ -519,18 +702,19 @@
 		};
 		BC9CCECC52010AB911ED929825AB69E2 /* Pods-Spellbook */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2E3B3697080D41CCBB280182F384592E /* Build configuration list for PBXNativeTarget "Pods-Spellbook" */;
+			buildConfigurationList = ECA7212C1CB447EC1CDCB904BE5341B7 /* Build configuration list for PBXNativeTarget "Pods-Spellbook" */;
 			buildPhases = (
-				6C05FCC82D98D0EFCF4E194F7CAB2B91 /* Headers */,
-				03E9A919CDAF4D2FB5828AD09D7D3AB1 /* Sources */,
-				1C5AB4B2FC3CE80C6056AA1B6CEDBDA5 /* Frameworks */,
-				8627DB2389222FD396A15152495559EE /* Resources */,
+				A707F107F23C0FE7559627D32B6FEDDC /* Headers */,
+				F1CA5B2D71A3A0F0D7127592F7A5F905 /* Sources */,
+				92B6C4EA6CE92D9A9889AA39C9C873B4 /* Frameworks */,
+				C52787390FF33656F47EAE198979487F /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				CEE54C3F94FE21C844044358A36665D8 /* PBXTargetDependency */,
-				74B97A41734375962D102C62EFF74E09 /* PBXTargetDependency */,
+				454D7EB0945B3A9A7BCC32F592508D4B /* PBXTargetDependency */,
+				FDF7B771BF435036B526D88A5D11B86C /* PBXTargetDependency */,
+				012C3B38B3999B0FDADAE483D9738BBC /* PBXTargetDependency */,
 			);
 			name = "Pods-Spellbook";
 			productName = "Pods-Spellbook";
@@ -555,11 +739,12 @@
 				Base,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 5A5A786B764A493ED6B22863AB5BB34C /* Products */;
+			productRefGroup = 6B58628C9056151949E9BBA5B255E645 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				A43B25DDF20FCB9228471F8F5135C866 /* ActionSheetPicker-3.0 */,
+				9B669057662AC2963D287EC448129F48 /* FlexLayout */,
 				BC9CCECC52010AB911ED929825AB69E2 /* Pods-Spellbook */,
 				4A6380F27F7724BE52822F0893BB0C8E /* Pods-Spellbook-SpellbookUITests */,
 				647487ADD574591EE1B816723497D7AD /* Pods-SpellbookTests */,
@@ -576,7 +761,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8627DB2389222FD396A15152495559EE /* Resources */ = {
+		48E21983C63AFB0969F03AB1BD591FF2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C5C2BAB629FDD4D6C86E35455E51C9B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -597,7 +789,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CDD841C42F5CDA71A57DFBCF577FEC05 /* Resources */ = {
+		C52787390FF33656F47EAE198979487F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -607,11 +799,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		03E9A919CDAF4D2FB5828AD09D7D3AB1 /* Sources */ = {
+		00221B9E2A4AF780A47F2830D2DD5F3A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D01CD38433E9556E3B23A6DD76F5C26 /* Pods-Spellbook-dummy.m in Sources */,
+				EC69780C6DB0F19A3390AD5C274927CF /* FlexLayout+Enum.swift in Sources */,
+				00D8A969079A4F90B75F07C5D55B7B97 /* FlexLayout+Private.swift in Sources */,
+				17C3C640A143487C78BA74F0ED89DC15 /* FlexLayout-dummy.m in Sources */,
+				CFD3104639C08E70FAAB18577791709F /* FlexLayout.swift in Sources */,
+				139D1CA17694565155350AC5C7319411 /* Percent.swift in Sources */,
+				EF174FDBE48AF77A7A9561F07BD9271D /* UIView+FlexLayout.swift in Sources */,
+				335B4F0601EF3117138C2B76D5F0A60A /* UIView+Yoga.mm in Sources */,
+				2DBCD2DA628D650C3573E51C0C0E2A24 /* Utils.cpp in Sources */,
+				FBE710076D8843D7CD63CE6526899FEE /* YGEnums.cpp in Sources */,
+				1B75AF9E3F8AD4D76E2DE5403A08714E /* YGLayout.cpp in Sources */,
+				B0F97DE7AB3B6638A0B1328A7D5E9FFC /* YGLayout.mm in Sources */,
+				691BDF4C0D1BE70FDCD5AAD0687D58A5 /* YGLayoutExtensions.swift in Sources */,
+				E18F006BDE41BC893BAEDDD086B75B43 /* YGNode.cpp in Sources */,
+				79585F133D5559AA07ACC86738462BF7 /* YGNodePrint.cpp in Sources */,
+				F2C73BB13803630053D1E2C8947483B1 /* YGStyle.cpp in Sources */,
+				2C4A421CCD2AED344F88F63CE00645F5 /* Yoga.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,34 +858,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		821185CBA3499C5D843AB75776FD705A /* Sources */ = {
+		DEABD5924005718EC9BBEEDB339BF9D0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				699E002C8D7C7E93FD6931B152485A00 /* Pods-Spellbook-SpellbookUITests-dummy.m in Sources */,
+				459014FCBA4E401419F2C73E981ECA62 /* Pods-Spellbook-SpellbookUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1CA5B2D71A3A0F0D7127592F7A5F905 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6CBC3BD6AE6F21A51D42923D27EB45C /* Pods-Spellbook-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		32CE33C52576F53FABC7A553BB4D48C1 /* PBXTargetDependency */ = {
+		012C3B38B3999B0FDADAE483D9738BBC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SWXMLHash;
+			target = 63678F9A594800CBC7006B45EAB7886B /* SWXMLHash */;
+			targetProxy = B8DF3774C24B5FB637726BE966906948 /* PBXContainerItemProxy */;
+		};
+		14E7B073A24DBBEDF8AB56458F0B918F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SWXMLHash;
+			target = 63678F9A594800CBC7006B45EAB7886B /* SWXMLHash */;
+			targetProxy = 944357C666B538328F08F4025B5148FA /* PBXContainerItemProxy */;
+		};
+		454D7EB0945B3A9A7BCC32F592508D4B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "ActionSheetPicker-3.0";
 			target = A43B25DDF20FCB9228471F8F5135C866 /* ActionSheetPicker-3.0 */;
-			targetProxy = 1AF4F8E8C11714957E262292366D5155 /* PBXContainerItemProxy */;
-		};
-		6ACBB6566C99780C903B06D645408D64 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SWXMLHash;
-			target = 63678F9A594800CBC7006B45EAB7886B /* SWXMLHash */;
-			targetProxy = F9780DB68E08956A90BCD724E1A00C02 /* PBXContainerItemProxy */;
-		};
-		74B97A41734375962D102C62EFF74E09 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SWXMLHash;
-			target = 63678F9A594800CBC7006B45EAB7886B /* SWXMLHash */;
-			targetProxy = 4AF96A050E79F5A388D1FE7F1C5AF75C /* PBXContainerItemProxy */;
+			targetProxy = 9CF1D824B4819E90EBCC138F0687AECC /* PBXContainerItemProxy */;
 		};
 		B32351255E3D66B1F0B7EE30670218D4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -686,89 +901,27 @@
 			target = BC9CCECC52010AB911ED929825AB69E2 /* Pods-Spellbook */;
 			targetProxy = 044861FC0C83D15D082B70612B8D1266 /* PBXContainerItemProxy */;
 		};
-		CEE54C3F94FE21C844044358A36665D8 /* PBXTargetDependency */ = {
+		CFE01425BD88F7A36A73A3635A3A35B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FlexLayout;
+			target = 9B669057662AC2963D287EC448129F48 /* FlexLayout */;
+			targetProxy = 4C27AC4C86682A95711DF9A322415F29 /* PBXContainerItemProxy */;
+		};
+		D44ECED781FD1884CDCD1267D6AA3E12 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "ActionSheetPicker-3.0";
 			target = A43B25DDF20FCB9228471F8F5135C866 /* ActionSheetPicker-3.0 */;
-			targetProxy = 270B34C0F19D208EDB0A2F5BDE3F9284 /* PBXContainerItemProxy */;
+			targetProxy = 2D2C1E80EDD856A51AD5E9E53873CD54 /* PBXContainerItemProxy */;
+		};
+		FDF7B771BF435036B526D88A5D11B86C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FlexLayout;
+			target = 9B669057662AC2963D287EC448129F48 /* FlexLayout */;
+			targetProxy = 14756B12893F835502A796C36A08CF9A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0316F2AD77ED44C5AA3A54A3509E0A69 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B7349F0CDF23B5CDA14B497447AFC3AC /* ActionSheetPicker-3.0.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/ActionSheetPicker-3.0/ActionSheetPicker-3.0-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/ActionSheetPicker-3.0/ActionSheetPicker-3.0-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/ActionSheetPicker-3.0/ActionSheetPicker-3.0.modulemap";
-				PRODUCT_MODULE_NAME = ActionSheetPicker_3_0;
-				PRODUCT_NAME = ActionSheetPicker_3_0;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		03958DEE98862CFB43864D8123DC8472 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4E40BD8D350D00ECA9289D319A26F7C /* Pods-Spellbook-SpellbookUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Spellbook-SpellbookUITests/Pods-Spellbook-SpellbookUITests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Spellbook-SpellbookUITests/Pods-Spellbook-SpellbookUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		072DB4D1AACEA41EEB3AFB8F15509500 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D64B454009D2EE1F5380919773AA1E5F /* Pods-SpellbookTests.release.xcconfig */;
@@ -808,7 +961,7 @@
 			};
 			name = Release;
 		};
-		08D1DD571647B22E0C05E78D722CFBB5 /* Release */ = {
+		073F5FCC8FDD16DC976AD2D915599A03 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 30E75B5D026BCD65B1026DF9E36313BD /* Pods-Spellbook.release.xcconfig */;
 			buildSettings = {
@@ -913,7 +1066,7 @@
 		};
 		201841BA6ACD524A5D3596BC8A981F0E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 195BFBC75E1EAD2C0F9A2D29CD5386BF /* SWXMLHash.debug.xcconfig */;
+			baseConfigurationReference = 94CE7E412561E40A104A7076DF778819 /* SWXMLHash.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -946,7 +1099,78 @@
 			};
 			name = Debug;
 		};
-		53E97DE70FA064A11A22B848DF5A639D /* Release */ = {
+		5ABAD9F144CE47625888312A2639F1E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 85444968DCB1800028A885E094B1E380 /* FlexLayout.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/FlexLayout/FlexLayout-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FlexLayout/FlexLayout-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/FlexLayout/FlexLayout.modulemap";
+				PRODUCT_MODULE_NAME = FlexLayout;
+				PRODUCT_NAME = FlexLayout;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		635243A944AA2762B054E4517D4DC8FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B55B177E2F63350038A283F2D34944AE /* ActionSheetPicker-3.0.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/ActionSheetPicker-3.0/ActionSheetPicker-3.0-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ActionSheetPicker-3.0/ActionSheetPicker-3.0-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/ActionSheetPicker-3.0/ActionSheetPicker-3.0.modulemap";
+				PRODUCT_MODULE_NAME = ActionSheetPicker_3_0;
+				PRODUCT_NAME = ActionSheetPicker_3_0;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		66126A10671F884F8FED863897378B9E /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0EE5006468522FB83C579766998552DC /* Pods-Spellbook-SpellbookUITests.release.xcconfig */;
 			buildSettings = {
@@ -985,47 +1209,9 @@
 			};
 			name = Release;
 		};
-		573294C9AA28AFA52B183C74811A8F9A /* Debug */ = {
+		6F64FE506C7E89088D21C614F4A92F9E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3FCCBBD7C21BF890946B80C1B0B33C09 /* Pods-Spellbook.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Spellbook/Pods-Spellbook-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Spellbook/Pods-Spellbook.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		729F5FEC28B67E3751FBFADB556B0D19 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28845B1EF56F50AB284400D9EDC4A321 /* ActionSheetPicker-3.0.debug.xcconfig */;
+			baseConfigurationReference = 330200B5ECADF6DDBA3B6938642A1999 /* ActionSheetPicker-3.0.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1051,7 +1237,43 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		81129365E3734B66B4DAF9B9D37AC6C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0259DEA10EEFF26204B9B5957918D131 /* FlexLayout.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/FlexLayout/FlexLayout-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FlexLayout/FlexLayout-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/FlexLayout/FlexLayout.modulemap";
+				PRODUCT_MODULE_NAME = FlexLayout;
+				PRODUCT_NAME = FlexLayout;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1098,7 +1320,7 @@
 		};
 		9A1FD145F6E83DE78CCCA725C473C70C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6D17742B5CDBCA9C9530E569D89E6EFE /* SWXMLHash.release.xcconfig */;
+			baseConfigurationReference = BDCFC3421179ABDCFCCA8EDA7812C267 /* SWXMLHash.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -1192,14 +1414,90 @@
 			};
 			name = Release;
 		};
+		C11C84800671E3CCD7CB54155FCC38E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FCCBBD7C21BF890946B80C1B0B33C09 /* Pods-Spellbook.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Spellbook/Pods-Spellbook-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Spellbook/Pods-Spellbook.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CD6E8A8DF4DF3E1BDD6AD5F3BCC1ADC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4E40BD8D350D00ECA9289D319A26F7C /* Pods-Spellbook-SpellbookUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Spellbook-SpellbookUITests/Pods-Spellbook-SpellbookUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Spellbook-SpellbookUITests/Pods-Spellbook-SpellbookUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2E3B3697080D41CCBB280182F384592E /* Build configuration list for PBXNativeTarget "Pods-Spellbook" */ = {
+		380AC7FD038F256696BF7BE8559A53DD /* Build configuration list for PBXNativeTarget "FlexLayout" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				573294C9AA28AFA52B183C74811A8F9A /* Debug */,
-				08D1DD571647B22E0C05E78D722CFBB5 /* Release */,
+				81129365E3734B66B4DAF9B9D37AC6C4 /* Debug */,
+				5ABAD9F144CE47625888312A2639F1E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1216,8 +1514,8 @@
 		543AFABDB667AF073C3569847B1008C0 /* Build configuration list for PBXNativeTarget "ActionSheetPicker-3.0" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				729F5FEC28B67E3751FBFADB556B0D19 /* Debug */,
-				0316F2AD77ED44C5AA3A54A3509E0A69 /* Release */,
+				635243A944AA2762B054E4517D4DC8FE /* Debug */,
+				6F64FE506C7E89088D21C614F4A92F9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1231,6 +1529,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		BBCB89ECB0FBB0DE3A66615559554594 /* Build configuration list for PBXNativeTarget "Pods-Spellbook-SpellbookUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD6E8A8DF4DF3E1BDD6AD5F3BCC1ADC3 /* Debug */,
+				66126A10671F884F8FED863897378B9E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C473342956FC2776C5D4034AEDC53B79 /* Build configuration list for PBXNativeTarget "Pods-SpellbookTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1240,11 +1547,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FB20B5B74BDE19FFB67E810F3245E769 /* Build configuration list for PBXNativeTarget "Pods-Spellbook-SpellbookUITests" */ = {
+		ECA7212C1CB447EC1CDCB904BE5341B7 /* Build configuration list for PBXNativeTarget "Pods-Spellbook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				03958DEE98862CFB43864D8123DC8472 /* Debug */,
-				53E97DE70FA064A11A22B848DF5A639D /* Release */,
+				C11C84800671E3CCD7CB54155FCC38E2 /* Debug */,
+				073F5FCC8FDD16DC976AD2D915599A03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

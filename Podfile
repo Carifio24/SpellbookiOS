@@ -6,6 +6,7 @@ target 'Spellbook' do
   use_frameworks!
   pod 'SWXMLHash', '~> 5.0.0'
   pod 'ActionSheetPicker-3.0'
+  pod 'FlexLayout'
 
   target 'SpellbookTests' do
     inherit! :search_paths

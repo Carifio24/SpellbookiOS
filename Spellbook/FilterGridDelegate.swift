@@ -16,18 +16,22 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
     private var itemButtonMap: [T:ToggleButton] = [:]
     let columns: Int
     let rows: Int
+    var centered: Bool
     private let gridWidth: CGFloat
     private let columnWidth: CGFloat
     private let rowHeight: CGFloat = FilterView.imageHeight
+    private let unfilledRowWidth: CGFloat
     private let main = Controllers.mainController
     private let sectionInsets = UIEdgeInsets(top: 5,
                                      left: 5,
                                      bottom: 5,
                                      right: 5)
     
-    init(gridWidth: CGFloat) {
+    
+    init(gridWidth: CGFloat, centered: Bool = false) {
         
         self.gridWidth = gridWidth
+        self.centered = centered
         
         // Determine the number of rows and columns of the grid, based on the grid width
         // Since all of our grids have fixed size, this is all that we need
@@ -48,7 +52,7 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
         // n * maxWidth + (n + 1) * horizontalSpacing <= gridWidth
         let horizontalSpacing = sectionInsets.left
         let maxColumns = Int(floor( (gridWidth - horizontalSpacing) / (maxWidth + horizontalSpacing) ))
-        columns = min(maxColumns, items.count)
+        columns = max(min(maxColumns, items.count), 1)
         rows = Int(ceil(Double(items.count) / Double(columns)))
         
         // Determine the width of each column
@@ -57,6 +61,14 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
         //columnWidth = (maxWidth + maxAllowedWidth) / 2
         //columnWidth = maxAllowedWidth
         columnWidth = maxWidth
+        
+        if (centered) {
+            let unfilledCount = rows * columns - items.count
+            unfilledRowWidth = maxWidth * CGFloat(unfilledCount) / CGFloat(columns)
+        } else {
+            unfilledRowWidth = columnWidth
+        }
+        
     }
     
     override convenience init() {
@@ -114,7 +126,17 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
     func collectionView(_ collectionView: UICollectionView,
             layout collectionViewLayout: UICollectionViewLayout,
             sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: columnWidth, height: FilterView.imageHeight)
+        
+        // If we're using centering and are on the last row (and it isn't filled), use the unfilled row width
+        // Otherwise, just the standard column width
+        var width = columnWidth
+        if (centered) {
+            let unfilledWidthNeeded = indexPath.row * columns > items.count
+            if (unfilledWidthNeeded) {
+                width = unfilledRowWidth
+            }
+        }
+        return CGSize(width: width, height: FilterView.imageHeight)
         
     }
     
