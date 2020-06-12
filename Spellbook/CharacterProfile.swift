@@ -103,6 +103,12 @@ class CharacterProfile {
     private static let notRitualKey: String = "NotRitual"
     private static let concentrationKey: String = "Concentration"
     private static let notConcentrationKey: String = "NotConcentration"
+    private static let verbalKey: String = "Verbal"
+    private static let notVerbalKey: String = "NotVerbal"
+    private static let somaticKey: String = "Somatic"
+    private static let notSomaticKey: String = "NotSomatic"
+    private static let materialKey: String = "Material"
+    private static let notMaterialKey: String = "NotMaterial"
     private static let versionCodeKey: String = "VersionCode"
     
     // Keys for storing range filter info
@@ -135,9 +141,15 @@ class CharacterProfile {
     private var notRitualFilter: Bool
     private var concentrationFilter: Bool
     private var notConcentrationFilter: Bool
+    private var verbalFilter: Bool
+    private var notVerbalFilter: Bool
+    private var somaticFilter: Bool
+    private var notSomaticFilter: Bool
+    private var materialFilter: Bool
+    private var notMaterialFilter: Bool
 
     
-    init(name: String, spellStatuses: [String:SpellStatus], sortField1: SortField, sortField2: SortField, reverse1: Bool, reverse2: Bool, statusFilter: StatusFilterField, minSpellLevel: Int, maxSpellLevel: Int, sourcebookVisibilities: Visibilities<Sourcebook>, casterVisibilities: Visibilities<CasterClass>, schoolVisibilities: Visibilities<School>, castingTimeTypeVisibilities: Visibilities<CastingTimeType>, durationTypeVisibilities: Visibilities<DurationType>, rangeTypeVisibilities: Visibilities<RangeType>, castingTimeRangeInfo: RangeInfo<TimeUnit>, durationRangeInfo: RangeInfo<TimeUnit>, rangeRangeInfo: RangeInfo<LengthUnit>, ritualFilter: Bool, notRitualFilter: Bool, concentrationFilter: Bool, notConcentrationFilter: Bool) {
+    init(name: String, spellStatuses: [String:SpellStatus], sortField1: SortField, sortField2: SortField, reverse1: Bool, reverse2: Bool, statusFilter: StatusFilterField, minSpellLevel: Int, maxSpellLevel: Int, sourcebookVisibilities: Visibilities<Sourcebook>, casterVisibilities: Visibilities<CasterClass>, schoolVisibilities: Visibilities<School>, castingTimeTypeVisibilities: Visibilities<CastingTimeType>, durationTypeVisibilities: Visibilities<DurationType>, rangeTypeVisibilities: Visibilities<RangeType>, castingTimeRangeInfo: RangeInfo<TimeUnit>, durationRangeInfo: RangeInfo<TimeUnit>, rangeRangeInfo: RangeInfo<LengthUnit>, ritualFilter: Bool, notRitualFilter: Bool, concentrationFilter: Bool, notConcentrationFilter: Bool, verbalFilter: Bool, notVerbalFilter: Bool, somaticFilter: Bool, notSomaticFilter: Bool, materialFilter: Bool, notMaterialFilter: Bool) {
         self.name = name
         self.spellStatuses = spellStatuses
         self.sortField1 = sortField1
@@ -160,10 +172,16 @@ class CharacterProfile {
         self.notRitualFilter = notRitualFilter
         self.concentrationFilter = concentrationFilter
         self.notConcentrationFilter = notConcentrationFilter
+        self.verbalFilter = verbalFilter
+        self.notVerbalFilter = notVerbalFilter
+        self.somaticFilter = somaticFilter
+        self.notSomaticFilter = notSomaticFilter
+        self.materialFilter = materialFilter
+        self.notMaterialFilter = notMaterialFilter
     }
     
     convenience init(name: String, spellStatuses: [String:SpellStatus]) {
-        self.init(name: name, spellStatuses: spellStatuses, sortField1: SortField.Name, sortField2: SortField.Name, reverse1: false, reverse2: false, statusFilter: StatusFilterField.All, minSpellLevel: Spellbook.MIN_SPELL_LEVEL, maxSpellLevel: Spellbook.MAX_SPELL_LEVEL, sourcebookVisibilities: CharacterProfile.defaultSourcebookVisibilities, casterVisibilities: CharacterProfile.defaultCasterVisibilities, schoolVisibilities: CharacterProfile.defaultSchoolVisibilities, castingTimeTypeVisibilities: CharacterProfile.defaultCastingTimeTypeVisibilities, durationTypeVisibilities: CharacterProfile.defaultDurationTypeVisibilities, rangeTypeVisibilities: CharacterProfile.defaultRangeTypeVisibilities, castingTimeRangeInfo: CharacterProfile.defaultCastingTimeRangeInfo, durationRangeInfo: CharacterProfile.defaultDurationRangeInfo, rangeRangeInfo: CharacterProfile.defaultRangeRangeInfo, ritualFilter: true, notRitualFilter: true, concentrationFilter: true, notConcentrationFilter: true)
+        self.init(name: name, spellStatuses: spellStatuses, sortField1: SortField.Name, sortField2: SortField.Name, reverse1: false, reverse2: false, statusFilter: StatusFilterField.All, minSpellLevel: Spellbook.MIN_SPELL_LEVEL, maxSpellLevel: Spellbook.MAX_SPELL_LEVEL, sourcebookVisibilities: CharacterProfile.defaultSourcebookVisibilities, casterVisibilities: CharacterProfile.defaultCasterVisibilities, schoolVisibilities: CharacterProfile.defaultSchoolVisibilities, castingTimeTypeVisibilities: CharacterProfile.defaultCastingTimeTypeVisibilities, durationTypeVisibilities: CharacterProfile.defaultDurationTypeVisibilities, rangeTypeVisibilities: CharacterProfile.defaultRangeTypeVisibilities, castingTimeRangeInfo: CharacterProfile.defaultCastingTimeRangeInfo, durationRangeInfo: CharacterProfile.defaultDurationRangeInfo, rangeRangeInfo: CharacterProfile.defaultRangeRangeInfo, ritualFilter: true, notRitualFilter: true, concentrationFilter: true, notConcentrationFilter: true, verbalFilter: true, notVerbalFilter: true, somaticFilter: true, notSomaticFilter: true, materialFilter: true, notMaterialFilter: true)
     }
     
     convenience init(name: String) {
@@ -241,6 +259,14 @@ class CharacterProfile {
         concentrationFilter = sion[CharacterProfile.concentrationKey].bool ?? true
         notConcentrationFilter = sion[CharacterProfile.notConcentrationKey].bool ?? true
         
+        // Component filters
+        verbalFilter = sion[CharacterProfile.verbalKey].bool ?? true
+        notVerbalFilter = sion[CharacterProfile.notVerbalKey].bool ?? true
+        somaticFilter = sion[CharacterProfile.somaticKey].bool ?? true
+        notSomaticFilter = sion[CharacterProfile.notSomaticKey].bool ?? true
+        materialFilter = sion[CharacterProfile.materialKey].bool ?? true
+        notMaterialFilter = sion[CharacterProfile.notMaterialKey].bool ?? true
+        
     }
     
     // To SION
@@ -297,6 +323,14 @@ class CharacterProfile {
         sion[CharacterProfile.notRitualKey] = SION(notRitualFilter)
         sion[CharacterProfile.concentrationKey] = SION(concentrationFilter)
         sion[CharacterProfile.notConcentrationKey] = SION(notConcentrationFilter)
+        
+        // Put in the component filters
+        sion[CharacterProfile.verbalKey] = SION(verbalFilter)
+        sion[CharacterProfile.notVerbalKey] = SION(notVerbalFilter)
+        sion[CharacterProfile.somaticKey] = SION(somaticFilter)
+        sion[CharacterProfile.notSomaticKey] = SION(notSomaticFilter)
+        sion[CharacterProfile.materialKey] = SION(materialFilter)
+        sion[CharacterProfile.notMaterialKey] = SION(notMaterialFilter)
 
         // Put in the version code
         sion[CharacterProfile.versionCodeKey] = SION(Constants.VERSION_CODE)
@@ -310,13 +344,13 @@ class CharacterProfile {
     }
     
     // Getting the ritual and concentration filters
-    func getRitualFilter(_ b: Bool) -> Bool {
-        return b ? ritualFilter : notRitualFilter
-    }
+    func getRitualFilter(_ b: Bool) -> Bool { return b ? ritualFilter : notRitualFilter }
+    func getConcentrationFilter(_ b: Bool) -> Bool { return b ? concentrationFilter : notConcentrationFilter }
     
-    func getConcentrationFilter(_ b: Bool) -> Bool {
-        return b ? concentrationFilter : notConcentrationFilter
-    }
+    // Getting the component filters
+    func getVerbalFilter(_ b: Bool) -> Bool { return b ? verbalFilter : notVerbalFilter }
+    func getSomaticFilter(_ b: Bool) -> Bool { return b ? somaticFilter : notSomaticFilter }
+    func getMaterialFilter(_ b: Bool) -> Bool { return b ? materialFilter : notMaterialFilter }
     
     // For converting a RangeInfo<T> to a SION array
     private func rangeInfoToSION<U:Unit>(_ rangeInfo: RangeInfo<U>) -> SION {
@@ -521,16 +555,34 @@ class CharacterProfile {
     }
     
     
-    func setRitualFilter(filter f: Bool, value b: Bool) {
-        if f { ritualFilter = b }
+    // Setting and toggling for the ritual, concentration, and component filters
+    func setRitualFilter(filter tf: Bool, to b: Bool) {
+        if tf { ritualFilter = b }
         else { notRitualFilter = b }
     }
-    func setConcentrationFilter(filter f: Bool, value b: Bool) {
-        if f { concentrationFilter = b }
+    func setConcentrationFilter(filter tf: Bool, to b: Bool) {
+        if tf { concentrationFilter = b }
         else { notConcentrationFilter = b }
     }
-    func toggleRitualFilter(_ f: Bool) { setRitualFilter(filter: f, value: !getRitualFilter(f)) }
-    func toggleConcentrationFilter(_ f: Bool) { setConcentrationFilter(filter: f, value: !getConcentrationFilter(f)) }
+    func setVerbalFilter(filter tf: Bool, to b: Bool) {
+        if tf { verbalFilter = b}
+        else { notVerbalFilter = b }
+    }
+    func setSomaticFilter(filter tf: Bool, to b: Bool) {
+        if tf { somaticFilter = b }
+        else { notSomaticFilter = b }
+    }
+    func setMaterialFilter(filter tf: Bool, to b: Bool) {
+        if tf { materialFilter = b }
+        else { notMaterialFilter = b }
+    }
+    
+    private func toggleFilter(_ tf: Bool, getter: (Bool) -> Bool, setter: (Bool,Bool) -> ()) { setter(tf, !getter(tf)) }
+    func toggleRitualFilter(_ tf: Bool) { toggleFilter(tf, getter: getRitualFilter, setter: setRitualFilter) }
+    func toggleConcentrationFilter(_ tf: Bool) { toggleFilter(tf, getter: getConcentrationFilter, setter: setConcentrationFilter) }
+    func toggleVerbalFilter(_ tf: Bool) { toggleFilter(tf, getter: getVerbalFilter, setter: setVerbalFilter) }
+    func toggleSomaticFilter(_ tf: Bool) { toggleFilter(tf, getter: getSomaticFilter,  setter: setSomaticFilter )}
+    func toggleMaterialFilter(_ tf: Bool) { toggleFilter(tf, getter: getMaterialFilter, setter: setMaterialFilter )}
  
     // Which map to use for a given type
     func getTypeMap<E:NameDisplayable>(_ t : E.Type) -> Visibilities<E>? {
@@ -721,3 +773,4 @@ class CharacterProfile {
         }
     }
 }
+

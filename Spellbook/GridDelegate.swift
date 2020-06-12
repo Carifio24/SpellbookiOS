@@ -8,18 +8,18 @@
 
 import UIKit
 
-class GridDelegate<ViewType:UIView, Item:CaseIterable>: NSObject, UICollectionViewDelegate {
-
-    typealias DimensionGetter = (ViewType, Item) -> CGFloat
-    typealias ViewCreator = (Item) -> ViewType
-    
-    private let columns: Int
-    private let rows: Int
-    private let widthGetter: DimensionGetter
-    private let heightGetter: DimensionGetter
-    private let viewCreator: ViewCreator
-    private let centered: Bool
-    
-    private let items = Item.allCases.map({ $0 })
-    
-}
+//class GridDelegate<ViewType:UIView, Item:CaseIterable>: NSObject, UICollectionViewDelegate {
+//
+//    typealias DimensionGetter = (ViewType, Item) -> CGFloat
+//    typealias ViewCreator = (Item) -> ViewType
+//
+//    private let columns: Int
+//    private let rows: Int
+//    private let widthGetter: DimensionGetter
+//    private let heightGetter: DimensionGetter
+//    private let viewCreator: ViewCreator
+//    private let centered: Bool
+//
+//    private let items = Item.allCases.map({ $0 })
+//
+//}

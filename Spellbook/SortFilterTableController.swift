@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FlexLayout
 
 class SortFilterTableController: UITableViewController {
     
@@ -61,6 +62,9 @@ class SortFilterTableController: UITableViewController {
     // Filtering grids
     @IBOutlet weak var ritualGrid: UICollectionView!
     @IBOutlet weak var concentrationGrid: UICollectionView!
+    @IBOutlet weak var verbalGrid: UICollectionView!
+    @IBOutlet weak var somaticGrid: UICollectionView!
+    @IBOutlet weak var materialGrid: UICollectionView!
     @IBOutlet weak var sourcebookGrid: UICollectionView!
     @IBOutlet weak var casterGrid: UICollectionView!
     @IBOutlet weak var schoolGrid: UICollectionView!
@@ -77,7 +81,7 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var durationRange: RangeView!
     @IBOutlet weak var rangeRange: RangeView!
     private var rangeViews: [RangeView] = []
-    private let rangeSections = [ 6, 7, 8 ]
+    private var rangeSections: [Int] = []
     
     // Whether or not the range views are visible
     private var castingTimeRangeVisible = true {
@@ -99,6 +103,9 @@ class SortFilterTableController: UITableViewController {
     // Grid delegates
     private let ritualDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getRitualFilter(f) }, statusToggler: { cp, f in cp.toggleRitualFilter(f) })
     private let concentrationDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getConcentrationFilter(f) }, statusToggler: { cp, f in cp.toggleConcentrationFilter(f) })
+    private let verbalDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getVerbalFilter(f) }, statusToggler: { cp, f in cp.toggleVerbalFilter(f) })
+    private let somaticDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getSomaticFilter(f) }, statusToggler: { cp, f in cp.toggleSomaticFilter(f) })
+    private let materialDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getMaterialFilter(f) }, statusToggler: { cp, f in cp.toggleMaterialFilter(f) })
     private let sourcebookDelegate = FilterGridDelegate<Sourcebook>()
     private let casterDelegate = FilterGridDelegate<CasterClass>()
     private let schoolDelegate = FilterGridDelegate<School>()
@@ -106,6 +113,12 @@ class SortFilterTableController: UITableViewController {
     private var durationDelegate: FilterGridRangeDelegate<DurationType>?
     private var rangeDelegate: FilterGridRangeDelegate<RangeType>?
     private var gridsAndDelegates: [(UICollectionView, FilterGridProtocol)] = []
+    
+    // The view that holds the component filter views
+    @IBOutlet weak var verbalView: UIView!
+    @IBOutlet weak var somaticView: UIView!
+    @IBOutlet weak var materialView: UIView!
+    @IBOutlet weak var componentsFlexView: UIView!
     
     // For handling touches wrt keyboard dismissal
     var tapGesture: UITapGestureRecognizer?
@@ -155,6 +168,9 @@ class SortFilterTableController: UITableViewController {
         durationDelegate = FilterGridRangeDelegate<DurationType>(flagSetter: { b in self.durationRangeVisible = b })
         rangeDelegate = FilterGridRangeDelegate<RangeType>(flagSetter: { b in self.rangeRangeVisible = b })
         
+        // The sections with range views
+        rangeSections = [ CASTING_TIME_SECTION, DURATION_SECTION, RANGE_SECTION ]
+        
         // The list of range views, and info about their table section and visibility
         rangeViews = [ castingTimeRange, durationRange, rangeRange ]
         
@@ -180,6 +196,9 @@ class SortFilterTableController: UITableViewController {
         gridsAndDelegates = [
             (ritualGrid, ritualDelegate),
             (concentrationGrid, concentrationDelegate),
+            (verbalGrid, verbalDelegate),
+            (somaticGrid, somaticDelegate),
+            (materialGrid, materialDelegate),
             (sourcebookGrid, sourcebookDelegate),
             (casterGrid, casterDelegate),
             (schoolGrid, schoolDelegate),
@@ -241,14 +260,28 @@ class SortFilterTableController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        // Set up the components flex view
+        componentsFlexView.backgroundColor = UIColor.red
+        print("Screen width: \(SizeUtils.screenWidth)")
+        print("Verbal view width: \(verbalView.frame.size.width)")
+        print("Somatic view width: \(somaticView.frame.size.width)")
+        componentsFlexView.flex.wrap(.wrap).alignItems(.center).padding(12).direction(.row).define { flex in
+            flex.addItem(verbalView)
+            flex.addItem(somaticView)
+            flex.addItem(materialView)
+        }
+    }
+    
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int { return 9 }
+    override func numberOfSections(in tableView: UITableView) -> Int { return 10 }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch (section) {
-        case LEVEL_SECTION, RITUAL_CONCENTRATION_SECTION:
+        case LEVEL_SECTION, RITUAL_CONCENTRATION_SECTION, COMPONENTS_SECTION:
             return 1
         case CASTING_TIME_SECTION, DURATION_SECTION, RANGE_SECTION:
             return 3
@@ -366,11 +399,11 @@ class SortFilterTableController: UITableViewController {
     
     func rangeSectionFlag(_ section: Int) -> Bool {
         switch(section) {
-        case 6:
+        case CASTING_TIME_SECTION:
             return castingTimeRangeVisible
-        case 7:
+        case DURATION_SECTION:
             return durationRangeVisible
-        case 8:
+        case RANGE_SECTION:
             return rangeRangeVisible
         default:
             return false

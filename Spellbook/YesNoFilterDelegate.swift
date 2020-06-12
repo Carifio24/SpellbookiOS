@@ -17,11 +17,8 @@ class YesNoFilterDelegate: NSObject, FilterGridProtocol {
     private static let defaultWidth: CGFloat = 0.5 * (UIScreen.main.bounds.size.width - 10) - 5
     let main = Controllers.mainController
     let items = YesNo.allCases.map({ $0 })
-    let columns: Int
-    let rows: Int
-    var centered: Bool
-    private let unfilledRowWidth: CGFloat
-    private let gridWidth: CGFloat
+    let columns: Int = 2
+    let rows: Int = 1
     private let columnWidth: CGFloat
     private let rowHeight: CGFloat = FilterView.imageHeight
     private var itemButtonMap: [Bool:ToggleButton] = [:]
@@ -32,11 +29,9 @@ class YesNoFilterDelegate: NSObject, FilterGridProtocol {
                                      bottom: 5,
                                      right: 5)
     
-    init(statusGetter: @escaping StatusGetter, statusToggler: @escaping StatusToggler, gridWidth: CGFloat, centered: Bool = false) {
-        self.gridWidth = gridWidth
+    init(statusGetter: @escaping StatusGetter, statusToggler: @escaping StatusToggler) {
         self.statusToggler = statusToggler
         self.statusGetter = statusGetter
-        self.centered = centered
         
         // We want to determine whether we need 1 row or two
         // Since our only options are "Yes" or "No" for the item text,
@@ -45,33 +40,11 @@ class YesNoFilterDelegate: NSObject, FilterGridProtocol {
         let label = UILabel()
         label.text = "Yes"
         label.sizeToFit()
-        let maxWidth = label.frame.size.width + FilterView.imageWidth
+        columnWidth = label.frame.size.width + FilterView.imageWidth
             
-        // To find the number of columns, we find the largest solution to
-        // n * maxWidth + (n + 1) * horizontalSpacing <= gridWidth
-        let horizontalSpacing = self.sectionInsets.left
-        let maxColumns = Int(floor( (gridWidth - horizontalSpacing) / (maxWidth + horizontalSpacing) ))
-        columns = min(maxColumns, self.items.count)
-        rows = Int(ceil(Double(self.items.count) / Double(columns)))
-        
-        // Determine the width of each column
-        //let usableWidth = gridWidth - CGFloat(columns + 1) * horizontalSpacing
-        //let maxAllowedWidth = usableWidth / CGFloat(columns)
-        //columnWidth = (maxWidth + maxAllowedWidth) / 2
-        //columnWidth = maxAllowedWidth
-        columnWidth = maxWidth
-        
-        if (centered) {
-            let unfilledCount = rows * columns - items.count
-            unfilledRowWidth = maxWidth * CGFloat(unfilledCount) / CGFloat(columns)
-        } else {
-            unfilledRowWidth = columnWidth
-        }
-        
-    }
+        // Unlike the more general FilterGridDelegate, we'll put both the yes and no options in the same row
+        // So there are 2 rows and 1 column
     
-    convenience init(statusGetter: @escaping StatusGetter, statusToggler: @escaping StatusToggler, centered: Bool = false) {
-        self.init(statusGetter: statusGetter, statusToggler: statusToggler, gridWidth: YesNoFilterDelegate.defaultWidth, centered: centered)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -100,17 +73,7 @@ class YesNoFilterDelegate: NSObject, FilterGridProtocol {
     func collectionView(_ collectionView: UICollectionView,
             layout collectionViewLayout: UICollectionViewLayout,
             sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        // If we're using centering and are on the last row (and it isn't filled), use the unfilled row width
-        // Otherwise, just the standard column width
-        var width = columnWidth
-        if (centered) {
-            let unfilledWidthNeeded = indexPath.row * columns > items.count
-            if (unfilledWidthNeeded) {
-                width = unfilledRowWidth
-            }
-        }
-        return CGSize(width: width, height: FilterView.imageHeight)
+        return CGSize(width: columnWidth, height: FilterView.imageHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView,
