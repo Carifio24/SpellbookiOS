@@ -23,9 +23,9 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
     private let unfilledRowWidth: CGFloat
     private let main = Controllers.mainController
     private let sectionInsets = UIEdgeInsets(top: 5,
-                                     left: 5,
-                                     bottom: 5,
-                                     right: 5)
+                                             left: 5,
+                                             bottom: 5,
+                                             right: 5)
     
     
     init(gridWidth: CGFloat, centered: Bool = false) {

@@ -1380,193 +1380,39 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oeg-yU-Lxn" userLabel="Components Flex View">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                                    <subviews>
-                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5R5-EV-vw7" userLabel="Verbal View">
-                                                            <rect key="frame" x="19" y="42" width="202" height="44"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verbal" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROY-UM-1iN" userLabel="Verbal Label">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="42.666666666666664" height="20"/>
-                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <fontDescription key="fontDescription" name="CloisterBlack-Light" family="Cloister Black" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aL2-4e-afs">
-                                                                    <rect key="frame" x="0.0" y="20" width="202" height="24"/>
-                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Yh6-Vy-wgG">
-                                                                        <size key="itemSize" width="128" height="128"/>
-                                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                                    </collectionViewFlowLayout>
-                                                                    <cells>
-                                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="b5J-j9-aVR" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
-                                                                            <rect key="frame" x="37" y="0.0" width="128" height="128"/>
-                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5YK-7e-D9l">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                                <subviews>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qc-nY-bPv" customClass="FilterView" customModule="Spellbook" customModuleProvider="target">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                    </view>
-                                                                                </subviews>
-                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                <constraints>
-                                                                                    <constraint firstItem="2qc-nY-bPv" firstAttribute="top" secondItem="5YK-7e-D9l" secondAttribute="top" id="FkY-6W-ZBP"/>
-                                                                                    <constraint firstAttribute="bottom" secondItem="2qc-nY-bPv" secondAttribute="bottom" id="HBM-Q0-Q8c"/>
-                                                                                    <constraint firstItem="2qc-nY-bPv" firstAttribute="leading" secondItem="5YK-7e-D9l" secondAttribute="leading" id="SlN-on-EeT"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="2qc-nY-bPv" secondAttribute="trailing" id="rro-Fk-flJ"/>
-                                                                                </constraints>
-                                                                            </collectionViewCellContentView>
-                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                            <connections>
-                                                                                <outlet property="filterView" destination="2qc-nY-bPv" id="IKc-Ia-hkV"/>
-                                                                            </connections>
-                                                                        </collectionViewCell>
-                                                                    </cells>
-                                                                </collectionView>
-                                                            </subviews>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <constraints>
-                                                                <constraint firstItem="ROY-UM-1iN" firstAttribute="width" secondItem="5R5-EV-vw7" secondAttribute="width" id="0ia-UP-gcw"/>
-                                                                <constraint firstItem="aL2-4e-afs" firstAttribute="centerX" secondItem="5R5-EV-vw7" secondAttribute="centerX" id="1xh-RV-seb"/>
-                                                                <constraint firstItem="ROY-UM-1iN" firstAttribute="leading" secondItem="5R5-EV-vw7" secondAttribute="leading" id="AOx-g7-Qqc"/>
-                                                                <constraint firstItem="ROY-UM-1iN" firstAttribute="top" secondItem="5R5-EV-vw7" secondAttribute="top" id="bP7-RV-jIo"/>
-                                                                <constraint firstItem="aL2-4e-afs" firstAttribute="width" relation="lessThanOrEqual" secondItem="5R5-EV-vw7" secondAttribute="width" id="hsb-aw-6RP"/>
-                                                                <constraint firstItem="aL2-4e-afs" firstAttribute="top" secondItem="ROY-UM-1iN" secondAttribute="bottom" id="lFP-P4-yEx"/>
-                                                                <constraint firstItem="aL2-4e-afs" firstAttribute="bottom" secondItem="5R5-EV-vw7" secondAttribute="bottom" id="ymU-by-NOU"/>
-                                                            </constraints>
-                                                        </view>
-                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cdt-Zi-D67" userLabel="Somatic View">
-                                                            <rect key="frame" x="19" y="42" width="202" height="44"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Somatic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zsr-YM-Y4A" userLabel="Somatic Label">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="53.666666666666664" height="20"/>
-                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <fontDescription key="fontDescription" name="CloisterBlack-Light" family="Cloister Black" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GTv-VT-tEV">
-                                                                    <rect key="frame" x="0.0" y="20" width="202" height="24"/>
-                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MQQ-b1-YCi">
-                                                                        <size key="itemSize" width="128" height="128"/>
-                                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                                    </collectionViewFlowLayout>
-                                                                    <cells>
-                                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="OJc-KR-hvv" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
-                                                                            <rect key="frame" x="37" y="0.0" width="128" height="128"/>
-                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" id="pCE-7e-ylx">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                                <subviews>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C5m-Xy-LYJ" customClass="FilterView" customModule="Spellbook" customModuleProvider="target">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                    </view>
-                                                                                </subviews>
-                                                                                <constraints>
-                                                                                    <constraint firstAttribute="trailing" secondItem="C5m-Xy-LYJ" secondAttribute="trailing" id="IQn-TJ-UeZ"/>
-                                                                                    <constraint firstAttribute="bottom" secondItem="C5m-Xy-LYJ" secondAttribute="bottom" id="hno-C6-XnC"/>
-                                                                                    <constraint firstItem="C5m-Xy-LYJ" firstAttribute="leading" secondItem="pCE-7e-ylx" secondAttribute="leading" id="nZF-rb-IQI"/>
-                                                                                    <constraint firstItem="C5m-Xy-LYJ" firstAttribute="top" secondItem="pCE-7e-ylx" secondAttribute="top" id="zt6-DB-lpS"/>
-                                                                                </constraints>
-                                                                            </collectionViewCellContentView>
-                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                            <connections>
-                                                                                <outlet property="filterView" destination="C5m-Xy-LYJ" id="eoV-3x-CmI"/>
-                                                                            </connections>
-                                                                        </collectionViewCell>
-                                                                    </cells>
-                                                                </collectionView>
-                                                            </subviews>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <constraints>
-                                                                <constraint firstItem="GTv-VT-tEV" firstAttribute="centerX" secondItem="cdt-Zi-D67" secondAttribute="centerX" id="5Vu-Ys-YDG"/>
-                                                                <constraint firstItem="zsr-YM-Y4A" firstAttribute="top" secondItem="cdt-Zi-D67" secondAttribute="top" id="APj-Sf-pcn"/>
-                                                                <constraint firstItem="GTv-VT-tEV" firstAttribute="bottom" secondItem="cdt-Zi-D67" secondAttribute="bottom" id="ChG-PG-wN1"/>
-                                                                <constraint firstItem="zsr-YM-Y4A" firstAttribute="leading" secondItem="cdt-Zi-D67" secondAttribute="leading" id="gbj-QG-YZL"/>
-                                                                <constraint firstItem="GTv-VT-tEV" firstAttribute="top" secondItem="zsr-YM-Y4A" secondAttribute="bottom" id="rEr-dT-kOx"/>
-                                                                <constraint firstItem="zsr-YM-Y4A" firstAttribute="width" secondItem="cdt-Zi-D67" secondAttribute="width" id="xbG-Rg-dAE"/>
-                                                            </constraints>
-                                                        </view>
-                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tBT-qB-kHw" userLabel="Material View">
-                                                            <rect key="frame" x="-87" y="42" width="414" height="44"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Material" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHB-SF-xYg" userLabel="Material Label">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="56" height="20"/>
-                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <fontDescription key="fontDescription" name="CloisterBlack-Light" family="Cloister Black" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Dmd-wg-3Cd">
-                                                                    <rect key="frame" x="0.0" y="20" width="202" height="24"/>
-                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ATY-LS-Re4">
-                                                                        <size key="itemSize" width="128" height="128"/>
-                                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                                    </collectionViewFlowLayout>
-                                                                    <cells>
-                                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="gss-D8-t2Q" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
-                                                                            <rect key="frame" x="37" y="0.0" width="128" height="128"/>
-                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" id="wyj-Cz-amx">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                                <subviews>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="79P-8u-bp2" customClass="FilterView" customModule="Spellbook" customModuleProvider="target">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                    </view>
-                                                                                </subviews>
-                                                                                <constraints>
-                                                                                    <constraint firstAttribute="trailing" secondItem="79P-8u-bp2" secondAttribute="trailing" id="7SN-UG-Ly5"/>
-                                                                                    <constraint firstItem="79P-8u-bp2" firstAttribute="top" secondItem="wyj-Cz-amx" secondAttribute="top" id="BK3-e7-Z46"/>
-                                                                                    <constraint firstAttribute="bottom" secondItem="79P-8u-bp2" secondAttribute="bottom" id="DNi-nN-GB8"/>
-                                                                                    <constraint firstItem="79P-8u-bp2" firstAttribute="leading" secondItem="wyj-Cz-amx" secondAttribute="leading" id="OVu-hY-IKv"/>
-                                                                                </constraints>
-                                                                            </collectionViewCellContentView>
-                                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                            <connections>
-                                                                                <outlet property="filterView" destination="79P-8u-bp2" id="Chm-HS-Qg1"/>
-                                                                            </connections>
-                                                                        </collectionViewCell>
-                                                                    </cells>
-                                                                </collectionView>
-                                                            </subviews>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <constraints>
-                                                                <constraint firstItem="IHB-SF-xYg" firstAttribute="top" secondItem="tBT-qB-kHw" secondAttribute="top" id="3AF-aq-1x6"/>
-                                                                <constraint firstItem="Dmd-wg-3Cd" firstAttribute="centerX" secondItem="tBT-qB-kHw" secondAttribute="centerX" id="4dY-cg-ogN"/>
-                                                                <constraint firstItem="Dmd-wg-3Cd" firstAttribute="top" secondItem="IHB-SF-xYg" secondAttribute="bottom" id="Y3k-iH-Mb7"/>
-                                                                <constraint firstItem="IHB-SF-xYg" firstAttribute="leading" secondItem="tBT-qB-kHw" secondAttribute="leading" id="lhV-km-k0I"/>
-                                                                <constraint firstItem="Dmd-wg-3Cd" firstAttribute="bottom" secondItem="tBT-qB-kHw" secondAttribute="bottom" id="ntd-wk-Bp6"/>
-                                                                <constraint firstItem="IHB-SF-xYg" firstAttribute="width" secondItem="tBT-qB-kHw" secondAttribute="width" id="v1m-HC-Lrp"/>
-                                                            </constraints>
-                                                        </view>
-                                                    </subviews>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MXi-ga-JHo">
+                                                    <rect key="frame" x="87" y="-42.333332061767578" width="240" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                </view>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="VLo-5F-W3G">
+                                                        <size key="itemSize" width="128" height="128"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="1iU-Ri-3U8" customClass="FilterCollectionCell" customModule="Spellbook" customModuleProvider="target">
+                                                            <rect key="frame" x="56" y="0.0" width="128" height="128"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="f53-6G-bom">
+                                                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zqU-mn-guV" customClass="FilterCollectionView" customModule="Spellbook" customModuleProvider="target">
+                                                                        <rect key="frame" x="-56" y="0.0" width="240" height="128"/>
+                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                    </view>
+                                                                </subviews>
+                                                            </collectionViewCellContentView>
+                                                            <connections>
+                                                                <outlet property="filterCollectionView" destination="zqU-mn-guV" id="hd3-XR-kju"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                </collectionView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstItem="oeg-yU-Lxn" firstAttribute="leading" secondItem="mkP-vv-FW7" secondAttribute="leading" id="0Jn-hS-mAY"/>
-                                                <constraint firstAttribute="trailing" secondItem="oeg-yU-Lxn" secondAttribute="trailing" id="0NP-i2-MPH"/>
-                                                <constraint firstItem="oeg-yU-Lxn" firstAttribute="top" secondItem="mkP-vv-FW7" secondAttribute="top" id="OaF-T4-h1v"/>
-                                                <constraint firstAttribute="bottom" secondItem="oeg-yU-Lxn" secondAttribute="bottom" id="bY1-w7-PBK"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -2348,15 +2194,13 @@
                         <outlet property="casterGrid" destination="Pg5-Gb-k5L" id="ock-34-pgZ"/>
                         <outlet property="castingTimeGrid" destination="U0M-CF-QC4" id="vRk-TM-1CW"/>
                         <outlet property="castingTimeRange" destination="6Rw-od-xFH" id="DcY-LG-0Pn"/>
-                        <outlet property="componentsFlexView" destination="oeg-yU-Lxn" id="Rec-zk-0dl"/>
+                        <outlet property="componentsCollectionView" destination="MXi-ga-JHo" id="kSz-zl-3ue"/>
                         <outlet property="concentrationGrid" destination="N7L-zz-vFg" id="jd8-Wn-KRU"/>
                         <outlet property="durationBottomConstraint" destination="xfQ-0a-CNo" id="BH0-I3-8Ht"/>
                         <outlet property="durationGrid" destination="BQH-xx-TQG" id="x8m-xs-Jbo"/>
                         <outlet property="durationRange" destination="FD2-Qg-HRU" id="wiC-Sl-SnM"/>
                         <outlet property="firstSortArrow" destination="n0U-Lk-Dt4" id="Dsc-pG-20K"/>
                         <outlet property="firstSortChoice" destination="eEN-Ho-WP4" id="Rl9-hZ-xXz"/>
-                        <outlet property="materialGrid" destination="Dmd-wg-3Cd" id="BMa-gE-SXb"/>
-                        <outlet property="materialView" destination="tBT-qB-kHw" id="4Uq-oJ-TXc"/>
                         <outlet property="maxLevelEntry" destination="fGI-iz-fhU" id="Cfz-bc-DzP"/>
                         <outlet property="minLevelEntry" destination="wpk-lR-N0a" id="fHY-q3-hp0"/>
                         <outlet property="rangeBottomConstraint" destination="fkR-sQ-FdI" id="whU-di-CbT"/>
@@ -2372,8 +2216,6 @@
                         <outlet property="selectAllRangeTypes" destination="aJC-yJ-yfH" id="dQK-rU-2Tb"/>
                         <outlet property="selectAllSchools" destination="nZy-nb-ciq" id="YQU-7u-E1k"/>
                         <outlet property="selectAllSourcebooks" destination="guk-qs-zl5" id="CM8-33-PhB"/>
-                        <outlet property="somaticGrid" destination="GTv-VT-tEV" id="qxu-5J-lq4"/>
-                        <outlet property="somaticView" destination="cdt-Zi-D67" id="4kF-oC-OIH"/>
                         <outlet property="sourcebookGrid" destination="ucY-xJ-tb2" id="CEH-Gm-voN"/>
                         <outlet property="unselectAllCastingTimeTypes" destination="tWM-Ag-koz" id="qON-c2-zwg"/>
                         <outlet property="unselectAllClasses" destination="Dnw-Pk-9ve" id="eAY-Sp-jTj"/>
@@ -2381,8 +2223,6 @@
                         <outlet property="unselectAllRangeTypes" destination="7av-TH-dDu" id="KCf-Kg-2qT"/>
                         <outlet property="unselectAllSchools" destination="JsU-sj-Z4a" id="eF0-Rm-PqE"/>
                         <outlet property="unselectAllSourcebooks" destination="UKq-ZJ-YO0" id="dVz-fp-6OC"/>
-                        <outlet property="verbalGrid" destination="aL2-4e-afs" id="w0d-EY-Pvm"/>
-                        <outlet property="verbalView" destination="5R5-EV-vw7" id="wmR-Dx-lah"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bze-se-Gzf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

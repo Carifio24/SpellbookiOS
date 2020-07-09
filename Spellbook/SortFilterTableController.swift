@@ -62,9 +62,9 @@ class SortFilterTableController: UITableViewController {
     // Filtering grids
     @IBOutlet weak var ritualGrid: UICollectionView!
     @IBOutlet weak var concentrationGrid: UICollectionView!
-    @IBOutlet weak var verbalGrid: UICollectionView!
-    @IBOutlet weak var somaticGrid: UICollectionView!
-    @IBOutlet weak var materialGrid: UICollectionView!
+    var verbalGrid: UICollectionView!
+    var somaticGrid: UICollectionView!
+    var materialGrid: UICollectionView!
     @IBOutlet weak var sourcebookGrid: UICollectionView!
     @IBOutlet weak var casterGrid: UICollectionView!
     @IBOutlet weak var schoolGrid: UICollectionView!
@@ -113,12 +113,10 @@ class SortFilterTableController: UITableViewController {
     private var durationDelegate: FilterGridRangeDelegate<DurationType>?
     private var rangeDelegate: FilterGridRangeDelegate<RangeType>?
     private var gridsAndDelegates: [(UICollectionView, FilterGridProtocol)] = []
+    private let componentsDelegate = MultiFilterDelegate()
     
-    // The view that holds the component filter views
-    @IBOutlet weak var verbalView: UIView!
-    @IBOutlet weak var somaticView: UIView!
-    @IBOutlet weak var materialView: UIView!
-    @IBOutlet weak var componentsFlexView: UIView!
+    // The collection view that holds the component filters
+    @IBOutlet weak var componentsCollectionView: UICollectionView!
     
     // For handling touches wrt keyboard dismissal
     var tapGesture: UITapGestureRecognizer?
@@ -191,20 +189,37 @@ class SortFilterTableController: UITableViewController {
             main.sort()
         })
         
+        // Initialize the component grids
+        let componentGridCreator: () -> UICollectionView = {
+           let layout = UICollectionViewFlowLayout()
+           layout.scrollDirection = .horizontal
+           let collection = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
+           collection.translatesAutoresizingMaskIntoConstraints = false
+           collection.backgroundColor = UIColor.darkGray
+           collection.isScrollEnabled = true
+          // collection.contentSize = CGSize(width: 2000 , height: 400)
+           return collection
+        }
+        verbalGrid = componentGridCreator()
+        somaticGrid = componentGridCreator()
+        materialGrid = componentGridCreator()
+        verbalGrid.register(FilterCell.self, forCellWithReuseIdentifier: YesNoFilterDelegate.reuseIdentifier)
+        somaticGrid.register(FilterCell.self, forCellWithReuseIdentifier: YesNoFilterDelegate.reuseIdentifier)
+        materialGrid.register(FilterCell.self, forCellWithReuseIdentifier: YesNoFilterDelegate.reuseIdentifier)
         
         // Set the grid delegates and heights
         gridsAndDelegates = [
             (ritualGrid, ritualDelegate),
             (concentrationGrid, concentrationDelegate),
-            (verbalGrid, verbalDelegate),
-            (somaticGrid, somaticDelegate),
-            (materialGrid, materialDelegate),
             (sourcebookGrid, sourcebookDelegate),
             (casterGrid, casterDelegate),
             (schoolGrid, schoolDelegate),
             (castingTimeGrid, castingTimeDelegate!),
             (durationGrid, durationDelegate!),
-            (rangeGrid, rangeDelegate!)
+            (rangeGrid, rangeDelegate!),
+            (verbalGrid, verbalDelegate),
+            (somaticGrid, somaticDelegate),
+            (materialGrid, materialDelegate)
         ]
         var constraints: [NSLayoutConstraint] = []
         for (grid, delegate) in gridsAndDelegates {
@@ -215,6 +230,10 @@ class SortFilterTableController: UITableViewController {
             //grid.backgroundColor = UIColor.systemGreen
         }
         NSLayoutConstraint.activate(constraints)
+        
+        // Set up the component grid layouts
+        componentsCollectionView.delegate = componentsDelegate
+        componentsCollectionView.dataSource = componentsDelegate
         
         // Set up the select all buttons
         //selectAllSourcebooks.sizeToFit()
@@ -263,15 +282,30 @@ class SortFilterTableController: UITableViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         // Set up the components flex view
-        componentsFlexView.backgroundColor = UIColor.red
-        print("Screen width: \(SizeUtils.screenWidth)")
-        print("Verbal view width: \(verbalView.frame.size.width)")
-        print("Somatic view width: \(somaticView.frame.size.width)")
-        componentsFlexView.flex.wrap(.wrap).alignItems(.center).padding(12).direction(.row).define { flex in
-            flex.addItem(verbalView)
-            flex.addItem(somaticView)
-            flex.addItem(materialView)
-        }
+//        componentsFlexView.backgroundColor = UIColor.red
+//        print("Screen width: \(SizeUtils.screenWidth)")
+//        verbalGrid = {
+//           let layout = UICollectionViewFlowLayout()
+//           layout.scrollDirection = .horizontal
+//           let collection = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
+//           collection.translatesAutoresizingMaskIntoConstraints = false
+//           collection.backgroundColor = UIColor.darkGray
+//           collection.isScrollEnabled = true
+//          // collection.contentSize = CGSize(width: 2000 , height: 400)
+//           return collection
+//        }()
+//        verbalGrid.register(FilterCell.self, forCellWithReuseIdentifier: YesNoFilterDelegate.reuseIdentifier)
+//        verbalGrid.delegate = verbalDelegate
+//        verbalGrid.dataSource = verbalDelegate
+//        if (verbalGrid != nil) {
+//            var constraints: [NSLayoutConstraint] = []
+//            constraints.append(NSLayoutConstraint(item: verbalGrid, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: verbalDelegate.desiredHeight()))
+//            constraints.append(NSLayoutConstraint(item: verbalGrid, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: verbalDelegate.desiredWidth()))
+//            NSLayoutConstraint.activate(constraints)
+//        }
+//        componentsFlexView.flex.wrap(.wrap).alignItems(.center).padding(12).direction(.row).define { flex in
+//            flex.addItem(verbalGrid)
+//        }
     }
     
 
