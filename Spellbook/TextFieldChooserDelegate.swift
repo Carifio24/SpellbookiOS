@@ -16,7 +16,7 @@ class TextFieldChooserDelegate<T:CaseIterable & Equatable>: NSObject, UITextFiel
     typealias StringGetter = (T) -> String
     typealias StringConstructor = (String) -> T
     
-    let title = String(describing: T.self)
+    let title: String
     let main = Controllers.mainController
     
     let pickerData: [String]
@@ -26,12 +26,13 @@ class TextFieldChooserDelegate<T:CaseIterable & Equatable>: NSObject, UITextFiel
     let textSetter: StringGetter
     let nameConstructor: StringConstructor
     
-    init(profileGetter: @escaping ProfileGetter, profileSetter: @escaping ProfileSetter, nameGetter: @escaping StringGetter, textSetter: @escaping StringGetter, nameConstructor: @escaping StringConstructor) {
+    init(profileGetter: @escaping ProfileGetter, profileSetter: @escaping ProfileSetter, nameGetter: @escaping StringGetter, textSetter: @escaping StringGetter, nameConstructor: @escaping StringConstructor, title: String) {
         self.profileSetter = profileSetter
         self.profileGetter = profileGetter
         self.nameGetter = nameGetter
         self.textSetter = textSetter
         self.nameConstructor = nameConstructor
+        self.title = title
         pickerData = T.allCases.map({ nameGetter($0) })
     }
     
@@ -77,16 +78,17 @@ class TextFieldChooserDelegate<T:CaseIterable & Equatable>: NSObject, UITextFiel
 
 class NameConstructibleChooserDelegate<T:NameConstructible>: TextFieldChooserDelegate<T> {
     
-    init(getter: @escaping ProfileGetter, setter: @escaping ProfileSetter) {
+    init(getter: @escaping ProfileGetter, setter: @escaping ProfileSetter, title: String) {
         super.init(profileGetter: getter, profileSetter: setter,
                    nameGetter: { $0.displayName },
                    textSetter: { $0.displayName },
-                   nameConstructor: { return T.fromName($0) })
+                   nameConstructor: { return T.fromName($0) },
+                   title: title)
     }
 }
 
 class UnitChooserDelegate<U:Unit> : TextFieldChooserDelegate<U> {
-    init(getter: @escaping ProfileGetter, setter: @escaping ProfileSetter) {
+    init(getter: @escaping ProfileGetter, setter: @escaping ProfileSetter, title: String) {
         super.init(profileGetter: getter, profileSetter: setter,
                    nameGetter: { $0.pluralName },
                    textSetter: SizeUtils.unitTextGetter(U.self),
@@ -96,6 +98,7 @@ class UnitChooserDelegate<U:Unit> : TextFieldChooserDelegate<U> {
                 } catch {
                     return U.defaultUnit
                 }
-            })
+            },
+               title: title)
     }
 }

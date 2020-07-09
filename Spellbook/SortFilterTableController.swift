@@ -53,8 +53,8 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var unselectAllRangeTypes: UIButton!
     
     // Text field delegates
-    let firstSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getFirstSortField() }, setter: { cp, sf in cp.setFirstSortField(sf) })
-    let secondSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getSecondSortField() }, setter: { cp, sf in cp.setSecondSortField(sf) })
+    let firstSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getFirstSortField() }, setter: { cp, sf in cp.setFirstSortField(sf) }, title: "First Sort Field")
+    let secondSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getSecondSortField() }, setter: { cp, sf in cp.setSecondSortField(sf) }, title: "Second Sort Field")
     let minLevelDelegate = NumberFieldDelegate(maxCharacters: 1, setter: {cp, level in cp.setMinSpellLevel(level)})
     let maxLevelDelegate = NumberFieldDelegate(maxCharacters: 1, setter: {cp, level in cp.setMaxSpellLevel(level)})
     
@@ -205,9 +205,9 @@ class SortFilterTableController: UITableViewController {
         
         
         // Set the range layout types
-        castingTimeRange.setType(CastingTime.self, centerText: "Other Time")
-        durationRange.setType(Duration.self, centerText: "Finite Duration")
-        rangeRange.setType(Range.self, centerText: "Finite Range")
+        castingTimeRange.setType(CastingTime.self, centerText: "Other Time", title: "Time Unit")
+        durationRange.setType(Duration.self, centerText: "Finite Duration", title: "Time Unit")
+        rangeRange.setType(Range.self, centerText: "Finite Range", title: "Length Unit")
 //        gridsRangeInfo = [
 //            (castingTimeGrid, castingTimeRange, castingTimeBottomConstraint),
 //            (durationGrid, durationRange, durationBottomConstraint),

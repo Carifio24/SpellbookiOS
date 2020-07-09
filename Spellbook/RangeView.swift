@@ -49,15 +49,15 @@ class RangeView: UIView {
         NSLayoutConstraint.activate([contentView.centerXAnchor.constraint(equalTo: self.centerXAnchor)])
     }
     
-    func setType<Q:QuantityType, U:Unit, T:Quantity<Q,U>>(_ type: T.Type, centerText: String) {
+    func setType<Q:QuantityType, U:Unit, T:Quantity<Q,U>>(_ type: T.Type, centerText: String, title: String) {
         
         // Create and set the delegates for the units
         minUnitDelegate = UnitChooserDelegate<U>(
             getter: { cp in return cp.getMinUnit(quantityType: Q.self, unitType: U.self) },
-            setter: { cp, unit in cp.setMinUnit(quantityType: Q.self, unitType: U.self, unit: unit) })
+            setter: { cp, unit in cp.setMinUnit(quantityType: Q.self, unitType: U.self, unit: unit) }, title: title)
         maxUnitDelegate = UnitChooserDelegate<U>(
             getter: { cp in return cp.getMaxUnit(quantityType: Q.self, unitType: U.self) },
-            setter: { cp, unit in cp.setMaxUnit(quantityType: Q.self, unitType: U.self, unit: unit) })
+            setter: { cp, unit in cp.setMaxUnit(quantityType: Q.self, unitType: U.self, unit: unit) }, title: title)
         minUnitChoice.delegate = minUnitDelegate!
         maxUnitChoice.delegate = maxUnitDelegate!
         
