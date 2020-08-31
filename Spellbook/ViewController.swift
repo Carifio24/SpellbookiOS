@@ -712,6 +712,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.levelSchoolLabel.text = spell.levelSchoolString()
         cell.sourcebookLabel.text = spell.sourcebook.code().uppercased()
         
+        for label in [ cell.nameLabel, cell.levelSchoolLabel, cell.sourcebookLabel ] {
+            label?.textColor = defaultFontColor
+        }
+        
         // Set the button images
         cell.favoriteButton.setTrueImage(image: SpellTableViewController.starFilled!)
         cell.favoriteButton.setFalseImage(image: SpellTableViewController.starEmpty!)

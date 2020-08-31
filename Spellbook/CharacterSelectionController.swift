@@ -41,6 +41,11 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         tableView.estimatedRowHeight = CGFloat(40)
         tableView.rowHeight = UITableView.automaticDimension
         
+        // Set the label fonts
+        for label in [ selectionTitle, selectionMessage ] {
+            label?.textColor = defaultFontColor
+        }
+        
         // Set the table cell type
         //tableView.register(CharacterSelectionCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         

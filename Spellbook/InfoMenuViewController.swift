@@ -44,6 +44,7 @@ class InfoMenuViewController: UITableViewController {
         let titleLabel = UILabel()
         titleLabel.text = "Spellcasting"
         titleLabel.font = UIFont(name: "Cloister Black", size: CGFloat(50))
+        titleLabel.textColor = defaultFontColor
         titleLabel.backgroundColor = UIColor.clear
         titleLabel.frame.size.height = headerHeight
         tableView.tableHeaderView = titleLabel

@@ -29,6 +29,7 @@ class CharacterSelectionCell: UITableViewCell {
     }
     
     func setup() {
+//        nameLabel.textColor = defaultFontColor
 //        self.addSubview(nameLabel)
 //        print("nameLabel height is \(nameLabel.frame.size.height)")
 //        nameLabel.backgroundColor = UIColor.red

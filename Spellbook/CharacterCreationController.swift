@@ -75,6 +75,11 @@ class CharacterCreationController: UIViewController {
         creationMessage.frame.origin.y = messageY
         creationMessage.sizeToFit()
         
+        // Set the label fonts
+        for label in [ creationTitle, creationMessage ] {
+            label?.textColor = defaultFontColor
+        }
+        
         let entryY = messageY + creationMessage.frame.height
         nameEntry.frame.origin = CGPoint(x: leftPadding, y: entryY)
         nameEntry.frame.size.width = usableWidth

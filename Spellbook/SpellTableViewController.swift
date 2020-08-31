@@ -172,6 +172,8 @@ class SpellTableViewController: UITableViewController {
         cell.sourcebookLabel.text = spell.sourcebook.code().uppercased()
         
         cell.nameLabel.textColor = defaultFontColor
+        cell.levelSchoolLabel.textColor = defaultFontColor
+        cell.sourcebookLabel.textColor = defaultFontColor
         
         // Set the label text colors
         for label in [ cell.nameLabel, cell.levelSchoolLabel, cell.sourcebookLabel ] {
