@@ -47,6 +47,7 @@ class SpellcastingInfoController: UIViewController {
         
         // Set the title
         titleLabel.text = infoTitle
+        titleLabel.textColor = defaultFontColor
         
         // Set the info
         fixEscapeCharacters(&infoText)

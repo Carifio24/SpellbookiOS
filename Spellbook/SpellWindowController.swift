@@ -103,6 +103,12 @@ class SpellWindowController: UIViewController {
         // Set the content view to fill the screen
         contentView.frame = UIScreen.main.bounds
         
+        // Set the label fonts
+        let labels = [ spellNameLabel, schoolLevelLabel, locationLabel, concentrationLabel, castingTimeLabel, rangeLabel, componentsLabel, materialsLabel, durationLabel, classesLabel, descriptionLabel, higherLevelLabel ]
+        for label in labels {
+            label?.textColor = defaultFontColor
+        }
+        
         
     }
     
@@ -137,8 +143,8 @@ class SpellWindowController: UIViewController {
         durationLabel.attributedText = propertyText(name: "Duration", text: spell.duration.string())
         locationLabel.attributedText = propertyText(name: "Location", text: locationText(spell))
         componentsLabel.attributedText = propertyText(name: "Components", text: spell.componentsString())
-        if !spell.material.isEmpty {
-            materialsLabel.attributedText = propertyText(name: "Materials", text: spell.material)
+        if !spell.materials.isEmpty {
+            materialsLabel.attributedText = propertyText(name: "Materials", text: spell.materials)
         }
         rangeLabel.attributedText = propertyText(name: "Range", text: spell.range.string())
         concentrationLabel.attributedText = propertyText(name: "Concentration", text: bool_to_yn(yn: spell.concentration))

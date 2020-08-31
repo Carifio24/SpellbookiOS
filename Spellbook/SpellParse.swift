@@ -96,18 +96,16 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
 
 	// Material, if necessary
 	if has_key(obj: obj, key: "material") {
-		b.setMaterial(obj["material"].string!)
+		b.setMaterials(obj["material"].string!)
 	}
 
 	// components
-	var components = [false, false, false]
 	var jarr = obj["components"]
 	for (_, v) in jarr {
-		if v == "V" {components[0] = true; continue}
-		if v == "S" {components[1] = true; continue}
-		if v == "M" {components[2] = true; continue}
+        if v == "V" { b.setVerbal(true); continue }
+        if v == "S" { b.setSomatic(true); continue }
+        if v == "M" { b.setMaterial(true); continue }
 	}
-	b.setComponents(components)
 
 	// Description
 	jstr = String()

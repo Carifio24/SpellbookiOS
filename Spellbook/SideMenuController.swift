@@ -90,6 +90,8 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         // The character selection button callback
         selectionButton.addTarget(self, action: #selector(selectionButtonPressed), for: UIControl.Event.touchUpInside)
         
+        characterLabel.textColor = defaultFontColor
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

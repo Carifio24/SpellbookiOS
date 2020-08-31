@@ -98,7 +98,7 @@ class StatusFilterController: UITableViewController {
         let titleLabel = UILabel()
         titleLabel.text = ""
         titleLabel.font = UIFont.boldSystemFont(ofSize: titleFontSize)
-        titleLabel.textColor = UIColor.black
+        titleLabel.textColor = defaultFontColor
         titleView.addSubview(titleLabel)
         titleView.bringSubviewToFront(titleLabel)
         titleLabel.frame = CGRect(x: leftPadding, y: topPadding, width: titleViewWidth - leftPadding, height: titleViewHeight - topPadding)

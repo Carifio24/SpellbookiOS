@@ -43,6 +43,9 @@ class FilterView: UIView {
         filterButton.setTrueImage(image: FilterView.starFilledGray!)
         filterButton.setFalseImage(image: FilterView.starEmpty!)
         
+        // Set the text color
+        nameLabel.textColor = defaultFontColor
+        
     }
     
 }

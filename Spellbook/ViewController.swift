@@ -866,6 +866,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         toHide = toHide || (cp.preparedSelected() && !cp.isPrepared(s))
         toHide = toHide || !cp.getRitualFilter(s.ritual)
         toHide = toHide || !cp.getConcentrationFilter(s.concentration)
+        toHide = toHide || !cp.getVerbalFilter(s.verbal)
+        toHide = toHide || !cp.getSomaticFilter(s.somatic)
+        toHide = toHide || !cp.getMaterialFilter(s.material)
         toHide = toHide || (isText && !spname.contains(text))
         return toHide
     }

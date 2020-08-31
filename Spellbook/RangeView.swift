@@ -47,6 +47,10 @@ class RangeView: UIView {
         //contentView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(contentView)
         NSLayoutConstraint.activate([contentView.centerXAnchor.constraint(equalTo: self.centerXAnchor)])
+        rangeTextLabel.textColor = defaultFontColor
+        for tf in [ minValueEntry, minUnitChoice, maxValueEntry, maxUnitChoice ] {
+            tf?.textColor = defaultFontColor
+        }
     }
     
     func setType<Q:QuantityType, U:Unit, T:Quantity<Q,U>>(_ type: T.Type, centerText: String, title: String) {

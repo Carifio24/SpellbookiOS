@@ -29,7 +29,18 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var secondSortChoice: UITextField!
     @IBOutlet weak var minLevelEntry: UITextField!
     @IBOutlet weak var maxLevelEntry: UITextField!
+    private var textFields: [UITextField] = []
     
+    // Labels
+    @IBOutlet weak var firstLevelLabel: UILabel!
+    @IBOutlet weak var secondLevelLabel: UILabel!
+    @IBOutlet weak var levelRangeLabel: UILabel!
+    @IBOutlet weak var ritualLabel: UILabel!
+    @IBOutlet weak var concentrationLabel: UILabel!
+    @IBOutlet weak var verbalLabel: UILabel!
+    @IBOutlet weak var somaticLabel: UILabel!
+    @IBOutlet weak var materialLabel: UILabel!
+    private var labels: [UILabel] = []
     
     // Sort direction arrows
     @IBOutlet weak var firstSortArrow: ToggleButton!
@@ -53,8 +64,8 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var unselectAllRangeTypes: UIButton!
     
     // Text field delegates
-    let firstSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getFirstSortField() }, setter: { cp, sf in cp.setFirstSortField(sf) }, title: "First Sort Field")
-    let secondSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getSecondSortField() }, setter: { cp, sf in cp.setSecondSortField(sf) }, title: "Second Sort Field")
+    let firstSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getFirstSortField() }, setter: { cp, sf in cp.setFirstSortField(sf) }, title: "First Level Sorting")
+    let secondSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getSecondSortField() }, setter: { cp, sf in cp.setSecondSortField(sf) }, title: "Second Level Sorting")
     let minLevelDelegate = NumberFieldDelegate(maxCharacters: 1, setter: {cp, level in cp.setMinSpellLevel(level)})
     let maxLevelDelegate = NumberFieldDelegate(maxCharacters: 1, setter: {cp, level in cp.setMaxSpellLevel(level)})
     
@@ -67,6 +78,9 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var castingTimeGrid: UICollectionView!
     @IBOutlet weak var durationGrid: UICollectionView!
     @IBOutlet weak var rangeGrid: UICollectionView!
+    @IBOutlet weak var verbalGrid: UICollectionView!
+    @IBOutlet weak var somaticGrid: UICollectionView!
+    @IBOutlet weak var materialGrid: UICollectionView!
     
     // Constraints governing the bottoms of the quantity type grids
     @IBOutlet weak var durationBottomConstraint: NSLayoutConstraint!
@@ -99,6 +113,9 @@ class SortFilterTableController: UITableViewController {
     // Grid delegates
     private let ritualDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getRitualFilter(f) }, statusToggler: { cp, f in cp.toggleRitualFilter(f) })
     private let concentrationDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getConcentrationFilter(f) }, statusToggler: { cp, f in cp.toggleConcentrationFilter(f) })
+    private let verbalDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getVerbalFilter(f) }, statusToggler: { cp, f in cp.toggleVerbalFilter(f) })
+    private let somaticDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getSomaticFilter(f) }, statusToggler: { cp, f in cp.toggleSomaticFilter(f) })
+    private let materialDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getMaterialFilter(f) }, statusToggler: { cp, f in cp.toggleMaterialFilter(f) })
     private let sourcebookDelegate = FilterGridDelegate<Sourcebook>()
     private let casterDelegate = FilterGridDelegate<CasterClass>()
     private let schoolDelegate = FilterGridDelegate<School>()
@@ -110,6 +127,18 @@ class SortFilterTableController: UITableViewController {
     // For handling touches wrt keyboard dismissal
     var tapGesture: UITapGestureRecognizer?
     var isKeyboardOpen = false
+    
+    // Identifying the sections in the table
+    private let SORT_SECTION = 0
+    private let LEVEL_SECTION = 1
+    private let RITUAL_CONCENTRATION_SECTION = 2
+    private let COMPONENTS_SECTION = 3
+    private let SOURCEBOOK_SECTION = 4
+    private let CASTER_SECTION = 5
+    private let SCHOOL_SECTION = 6
+    private let CASTING_TIME_SECTION = 7
+    private let DURATION_SECTION = 8
+    private let RANGE_SECTION = 9
     
     
     override func viewDidLoad() {
@@ -169,12 +198,15 @@ class SortFilterTableController: UITableViewController {
         gridsAndDelegates = [
             (ritualGrid, ritualDelegate),
             (concentrationGrid, concentrationDelegate),
+            (verbalGrid, verbalDelegate),
+            (somaticGrid, somaticDelegate),
+            (materialGrid, materialDelegate),
             (sourcebookGrid, sourcebookDelegate),
             (casterGrid, casterDelegate),
             (schoolGrid, schoolDelegate),
             (castingTimeGrid, castingTimeDelegate!),
             (durationGrid, durationDelegate!),
-            (rangeGrid, rangeDelegate!)
+            (rangeGrid, rangeDelegate!),
         ]
         var constraints: [NSLayoutConstraint] = []
         for (grid, delegate) in gridsAndDelegates {
@@ -185,6 +217,17 @@ class SortFilterTableController: UITableViewController {
             //grid.backgroundColor = UIColor.systemGreen
         }
         NSLayoutConstraint.activate(constraints)
+        
+        // Set the text color for the labels and the text fields
+        labels = [
+            firstLevelLabel, secondLevelLabel, levelRangeLabel, ritualLabel, concentrationLabel, verbalLabel, somaticLabel, materialLabel
+        ]
+        for label in labels { label.textColor = defaultFontColor }
+        textFields = [
+            firstSortChoice, secondSortChoice, minLevelEntry, maxLevelEntry
+        ]
+        for tf in textFields { tf.textColor = defaultFontColor }
+        
         
         // Set up the select all buttons
         //selectAllSourcebooks.sizeToFit()
@@ -233,13 +276,13 @@ class SortFilterTableController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int { return 9 }
+    override func numberOfSections(in tableView: UITableView) -> Int { return 10 }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch (section) {
-        case 1, 2:
+        case LEVEL_SECTION, RITUAL_CONCENTRATION_SECTION:
             return 1
-        case 6, 7, 8:
+        case CASTING_TIME_SECTION, DURATION_SECTION, RANGE_SECTION:
             return 3
         default:
             return 2
@@ -251,7 +294,7 @@ class SortFilterTableController: UITableViewController {
         let font = section == 2 ? SortFilterTableController.smallerHeaderFont : SortFilterTableController.headerFont
         header.textLabel?.font = font
         header.textLabel?.text = firstLetterOfWordsCapitalized((header.textLabel?.text!)!)
-        header.textLabel?.textColor = UIColor.black
+        header.textLabel?.textColor = defaultFontColor
         header.textLabel?.textAlignment = .center
         //header.textLabel?.numberOfLines = 0 // Commented out just for now
         header.backgroundColor = UIColor.clear
@@ -355,11 +398,11 @@ class SortFilterTableController: UITableViewController {
     
     func rangeSectionFlag(_ section: Int) -> Bool {
         switch(section) {
-        case 6:
+        case CASTING_TIME_SECTION:
             return castingTimeRangeVisible
-        case 7:
+        case DURATION_SECTION:
             return durationRangeVisible
-        case 8:
+        case RANGE_SECTION:
             return rangeRangeVisible
         default:
             return false

@@ -75,6 +75,7 @@ class SideMenuCell: UITableViewCell {
         
         optionLabel.frame = CGRect(x: SideMenuCell.leftPadding + SideMenuCell.iconWidth + SideMenuCell.rightIconPadding, y: SideMenuCell.topPadding, width: SideMenuCell.labelWidth, height: SideMenuCell.cellHeight)
         optionLabel.font = SideMenuCell.font
+        optionLabel.textColor = defaultFontColor
         //optionLabel.backgroundColor = UIColor.red
         self.addSubview(optionLabel)
     }

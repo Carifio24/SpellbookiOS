@@ -19,8 +19,10 @@ public class SpellBuilder {
     private(set) var higherLevel: String = ""
     private(set) var page: Int = 0
     private(set) var range: Range = Range()
-    private(set) var components: Array<Bool> = [false,false,false]
-    private(set) var material: String = ""
+    private(set) var verbal: Bool = false
+    private(set) var somatic: Bool = false
+    private(set) var material: Bool = false
+    private(set) var materials: String = ""
     private(set) var ritual: Bool = false
     private(set) var duration: Duration = Duration()
     private(set) var concentration: Bool = false
@@ -32,34 +34,36 @@ public class SpellBuilder {
     private(set) var sourcebook: Sourcebook = Sourcebook.PlayersHandbook
     
     // Setters
-    func setName(_ nameIn: String) -> SpellBuilder { name = nameIn; return self }
-    func setDescription(_ descIn: String) -> SpellBuilder { description = descIn; return self }
-    func setHigherLevelDesc(_ higherLevelIn: String) -> SpellBuilder { higherLevel = higherLevelIn; return self }
-    func setPage(_ pageIn: Int) -> SpellBuilder { page = pageIn; return self }
-    func setRange(_ rangeIn: Range) -> SpellBuilder { range = rangeIn; return self }
-    func setComponents(_ componentsIn: Array<Bool>) -> SpellBuilder { components = componentsIn; return self }
-    func setMaterial(_ materialIn: String) -> SpellBuilder { material = materialIn; return self }
-    func setRitual(_ ritualIn: Bool) -> SpellBuilder { ritual = ritualIn; return self }
-    func setDuration(_ durationIn: Duration) -> SpellBuilder { duration = durationIn; return self }
-    func setConcentration(_ concentrationIn: Bool) -> SpellBuilder { concentration = concentrationIn; return self }
-    func setCastingTime(_ castingTimeIn: CastingTime) -> SpellBuilder { castingTime = castingTimeIn; return self }
-    func setLevel(_ levelIn: Int) -> SpellBuilder { level = levelIn; return self }
-    func setSchool(_ schoolIn: School) -> SpellBuilder { school = schoolIn; return self }
-    func setClasses(_ classesIn: Array<CasterClass>) -> SpellBuilder { classes = classesIn; return self }
-    func setSubclasses(_ subclassesIn: Array<SubClass>) -> SpellBuilder { subclasses = subclassesIn; return self }
-    func setSourcebook(_ sourcebookIn: Sourcebook) -> SpellBuilder { sourcebook = sourcebookIn; return self }
+    func setName(_ name: String) -> SpellBuilder { self.name = name; return self }
+    func setDescription(_ desc: String) -> SpellBuilder { self.description = desc; return self }
+    func setHigherLevelDesc(_ higherLevel: String) -> SpellBuilder { self.higherLevel = higherLevel; return self }
+    func setPage(_ page: Int) -> SpellBuilder { self.page = page; return self }
+    func setRange(_ range: Range) -> SpellBuilder { self.range = range; return self }
+    func setVerbal(_ verbal: Bool) -> SpellBuilder { self.verbal = verbal; return self }
+    func setSomatic(_ somatic: Bool) -> SpellBuilder { self.somatic = somatic; return self }
+    func setMaterial(_ material: Bool) -> SpellBuilder { self.material = material; return self }
+    func setMaterials(_ materials: String) -> SpellBuilder { self.materials = materials; return self }
+    func setRitual(_ ritual: Bool) -> SpellBuilder { self.ritual = ritual; return self }
+    func setDuration(_ duration: Duration) -> SpellBuilder { self.duration = duration; return self }
+    func setConcentration(_ concentration: Bool) -> SpellBuilder { self.concentration = concentration; return self }
+    func setCastingTime(_ castingTime: CastingTime) -> SpellBuilder { self.castingTime = castingTime; return self }
+    func setLevel(_ level: Int) -> SpellBuilder { self.level = level; return self }
+    func setSchool(_ school: School) -> SpellBuilder { self.school = school; return self }
+    func setClasses(_ classes: Array<CasterClass>) -> SpellBuilder { self.classes = classes; return self }
+    func setSubclasses(_ subclasses: Array<SubClass>) -> SpellBuilder { self.subclasses = subclasses; return self }
+    func setSourcebook(_ sourcebook: Sourcebook) -> SpellBuilder { self.sourcebook = sourcebook; return self }
     
     
     // Build
     func build() -> Spell {
-        return Spell(name: name, description: description, higherLevel: higherLevel, page: page, range: range, components: components, material: material, ritual: ritual, duration: duration, concentration: concentration, castingTime: castingTime, level: level, school: school, classes: classes, subclasses: subclasses, sourcebook: sourcebook)
+        return Spell(name: name, description: description, higherLevel: higherLevel, page: page, range: range, verbal: verbal, somatic: somatic, material: material, materials: materials, ritual: ritual, duration: duration, concentration: concentration, castingTime: castingTime, level: level, school: school, classes: classes, subclasses: subclasses, sourcebook: sourcebook)
     }
     
     // Reset to default values
     func reset() {
         name = ""; description = ""; higherLevel = "";
-        page = 0; range = Range(); components = [false,false,false];
-        material = ""; ritual = false; duration = Duration();
+        page = 0; range = Range(); verbal = false; somatic = false; material = false;
+        materials = ""; ritual = false; duration = Duration();
         concentration = false; castingTime = CastingTime(); level = 0;
         school = School.Abjuration; classes = []; subclasses = [];
         sourcebook = Sourcebook.PlayersHandbook

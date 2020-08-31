@@ -151,3 +151,13 @@ extension UIDevice {
         }
     }
 }
+
+
+// For getting the default font color below iOS 11
+let defaultFontColor: UIColor = {
+    if #available(iOS 11.0, *) {
+        return UIColor(named: "DefaultFontColor")!
+    } else {
+        return UIColor.black
+    }
+}()
