@@ -91,22 +91,22 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var durationRange: RangeView!
     @IBOutlet weak var rangeRange: RangeView!
     private var rangeViews: [RangeView] = []
-    private let rangeSections = [ 6, 7, 8 ]
+    private let rangeSections = [ 7, 8, 9 ]
     
     // Whether or not the range views are visible
     private var castingTimeRangeVisible = true {
         didSet {
-            setRangeVisibility(rangeView: castingTimeRange, cellIndexPath: IndexPath(row: 2, section: 6), isVisible: castingTimeRangeVisible)
+            setRangeVisibility(rangeView: castingTimeRange, cellIndexPath: IndexPath(row: 2, section: 7), isVisible: castingTimeRangeVisible)
         }
     }
     private var durationRangeVisible = true {
        didSet {
-           setRangeVisibility(rangeView: durationRange, cellIndexPath: IndexPath(row: 2, section: 7), isVisible: durationRangeVisible)
+           setRangeVisibility(rangeView: durationRange, cellIndexPath: IndexPath(row: 2, section: 8), isVisible: durationRangeVisible)
        }
     }
     private var rangeRangeVisible = true {
        didSet {
-           setRangeVisibility(rangeView: rangeRange, cellIndexPath: IndexPath(row: 2, section: 8), isVisible: rangeRangeVisible)
+           setRangeVisibility(rangeView: rangeRange, cellIndexPath: IndexPath(row: 2, section: 9), isVisible: rangeRangeVisible)
        }
    }
     

@@ -121,9 +121,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let searchBar = UISearchBar()
     
     // Status bar
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return UIStatusBarStyle.default
-    }
+    private var statusBarStyle: UIStatusBarStyle = .default
+    override var preferredStatusBarStyle: UIStatusBarStyle { print("The style is now \(self.preferredStatusBarStyle.rawValue)" ); return self.statusBarStyle }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -630,6 +629,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //passThroughView.blocking = false
         filter()
     }
+    
+    private func updateStatusBarStyle(_ newStyle: UIStatusBarStyle) {
+        self.statusBarStyle = newStyle
+        self.navigationController?.setNeedsStatusBarAppearanceUpdate()
+    }
 
     
 //    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
@@ -666,6 +670,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             isRightMenuOpen = false
         }
         passThroughView.blocking = isLeftMenuOpen || isRightMenuOpen
+        updateStatusBarStyle(statusBarStyle)
     }
     
     // MARK: - Table view data source
