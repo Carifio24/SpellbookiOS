@@ -1,8 +1,10 @@
 enum CasterClass: Int, NameConstructible {
-	case Bard=0, Cleric, Druid, Paladin, Ranger, Sorcerer, Warlock, Wizard
+	case Artificer=0, Bard, Cleric, Druid, Paladin, Ranger, Sorcerer, Warlock, Wizard
     
     internal static var displayNameMap = EnumMap<CasterClass,String> { e in
         switch(e) {
+        case .Artificer:
+            return "Artificer"
         case .Bard:
             return "Bard"
         case .Cleric:

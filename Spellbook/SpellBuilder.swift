@@ -14,6 +14,7 @@ public class SpellBuilder {
     init() {}
     
     // Member values
+    private(set) var id: Int = 0
     private(set) var name: String = ""
     private(set) var description: String = ""
     private(set) var higherLevel: String = ""
@@ -31,9 +32,11 @@ public class SpellBuilder {
     private(set) var school: School = School.Abjuration
     private(set) var classes: Array<CasterClass> = []
     private(set) var subclasses: Array<SubClass> = []
+    private(set) var tashasExpandedClasses: Array<CasterClass> = []
     private(set) var sourcebook: Sourcebook = Sourcebook.PlayersHandbook
     
     // Setters
+    func setID(_ id: Int) -> SpellBuilder { self.id = id; return self }
     func setName(_ name: String) -> SpellBuilder { self.name = name; return self }
     func setDescription(_ desc: String) -> SpellBuilder { self.description = desc; return self }
     func setHigherLevelDesc(_ higherLevel: String) -> SpellBuilder { self.higherLevel = higherLevel; return self }
@@ -51,22 +54,23 @@ public class SpellBuilder {
     func setSchool(_ school: School) -> SpellBuilder { self.school = school; return self }
     func setClasses(_ classes: Array<CasterClass>) -> SpellBuilder { self.classes = classes; return self }
     func setSubclasses(_ subclasses: Array<SubClass>) -> SpellBuilder { self.subclasses = subclasses; return self }
+    func setTashasExpandedClasses(_ classes: Array<CasterClass>) -> SpellBuilder { self.tashasExpandedClasses = classes; return self }
     func setSourcebook(_ sourcebook: Sourcebook) -> SpellBuilder { self.sourcebook = sourcebook; return self }
     
     
     // Build
     func build() -> Spell {
-        return Spell(name: name, description: description, higherLevel: higherLevel, page: page, range: range, verbal: verbal, somatic: somatic, material: material, materials: materials, ritual: ritual, duration: duration, concentration: concentration, castingTime: castingTime, level: level, school: school, classes: classes, subclasses: subclasses, sourcebook: sourcebook)
+        return Spell(id: id, name: name, description: description, higherLevel: higherLevel, page: page, range: range, verbal: verbal, somatic: somatic, material: material, materials: materials, ritual: ritual, duration: duration, concentration: concentration, castingTime: castingTime, level: level, school: school, classes: classes, subclasses: subclasses, tashasExpandedClasses: tashasExpandedClasses, sourcebook: sourcebook)
     }
     
     // Reset to default values
     func reset() {
-        name = ""; description = ""; higherLevel = "";
+        id = 0; name = ""; description = ""; higherLevel = "";
         page = 0; range = Range(); verbal = false; somatic = false; material = false;
         materials = ""; ritual = false; duration = Duration();
         concentration = false; castingTime = CastingTime(); level = 0;
         school = School.Abjuration; classes = []; subclasses = [];
-        sourcebook = Sourcebook.PlayersHandbook
+        tashasExpandedClasses = []; sourcebook = Sourcebook.PlayersHandbook
     }
     
     // Build and reset

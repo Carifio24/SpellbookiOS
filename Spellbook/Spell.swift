@@ -1,6 +1,7 @@
 public class Spell {
 
 	// Member values
+    let id: Int
     let name: String
 	let description: String
 	let higherLevel: String
@@ -18,22 +19,24 @@ public class Spell {
 	let school: School
 	let classes: Array<CasterClass>
 	let subclasses: Array<SubClass>
+    let tashasExpandedClasses: Array<CasterClass>
     let sourcebook: Sourcebook
 
 	// Constructor
-    init(name: String, description: String, higherLevel: String, page: Int, range: Range, verbal: Bool, somatic: Bool, material: Bool, materials: String, ritual: Bool, duration: Duration, concentration: Bool, castingTime: CastingTime, level: Int, school: School, classes: Array<CasterClass>, subclasses: Array<SubClass>, sourcebook: Sourcebook) {
-        self.name = name; self.description = description; self.higherLevel = higherLevel;
+    init(id: Int, name: String, description: String, higherLevel: String, page: Int, range: Range, verbal: Bool, somatic: Bool, material: Bool, materials: String, ritual: Bool, duration: Duration, concentration: Bool, castingTime: CastingTime, level: Int, school: School, classes: Array<CasterClass>, subclasses: Array<SubClass>, tashasExpandedClasses: Array<CasterClass>, sourcebook: Sourcebook) {
+        self.id = id; self.name = name; self.description = description; self.higherLevel = higherLevel;
         self.page = page; self.range = range;
         self.verbal = verbal; self.somatic = somatic; self.material = material;
         self.materials = materials;
         self.ritual = ritual; self.duration = duration; self.concentration = concentration;
         self.castingTime = castingTime; self.level = level; self.school = school;
-        self.classes = classes; self.subclasses = subclasses; self.sourcebook = sourcebook;
+        self.classes = classes; self.subclasses = subclasses;
+        self.tashasExpandedClasses = tashasExpandedClasses; self.sourcebook = sourcebook;
     }
     
     // Default constructor (for convenience, when necessary)
     convenience init() {
-        self.init(name: "", description: "", higherLevel: "", page: 0, range: Range(), verbal: false, somatic: false, material: false, materials: "", ritual: false, duration: Duration(), concentration: false, castingTime: CastingTime(), level: 0, school: School.Abjuration, classes: [], subclasses: [], sourcebook: Sourcebook.PlayersHandbook)
+        self.init(id: 0, name: "", description: "", higherLevel: "", page: 0, range: Range(), verbal: false, somatic: false, material: false, materials: "", ritual: false, duration: Duration(), concentration: false, castingTime: CastingTime(), level: 0, school: School.Abjuration, classes: [], subclasses: [], tashasExpandedClasses: [], sourcebook: Sourcebook.PlayersHandbook)
     }
     
 
@@ -48,12 +51,12 @@ public class Spell {
 
 	// Classes as a string
 	func classesString() -> String {
-		var classStrings: Array<String> = []
-		for i in 0...classes.count-1 {
-			classStrings.append(Spellbook.casterNames[classes[i].rawValue])
-		}
-		return classStrings.joined(separator: ", ")
+        return classes.map({ cc in cc.displayName }).joined(separator: ", ")
 	}
+    
+    func tashasExpandedClassesString() -> String {
+        return tashasExpandedClasses.map({ cc in cc.displayName }).joined(separator: ", ")
+    }
 
 	// Other member functions
 	func usableByClass(_ cc: CasterClass) -> Bool {
@@ -98,7 +101,7 @@ public class Spell {
 extension Spell : Equatable {
 
 	static public func == (lhs: Spell, rhs: Spell) -> Bool {
-		return lhs.name == rhs.name
+        return lhs.id == rhs.id && lhs.name == rhs.name
 	}
 
 }

@@ -23,6 +23,9 @@
 		8E02F7762438F04000A3050C /* RangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02F7752438F04000A3050C /* RangeView.swift */; };
 		8E13F1E3244E1B15004CCC18 /* trash_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E13F1E2244E1B14004CCC18 /* trash_icon.png */; };
 		8E177F9B2432F34B005146B6 /* SortFilterTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E177F9A2432F34B005146B6 /* SortFilterTableController.swift */; };
+		8E19DA50257C094A002B4F43 /* FilterOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E19DA4F257C094A002B4F43 /* FilterOptionView.swift */; };
+		8E19DA55257C095A002B4F43 /* FilterOptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E19DA54257C095A002B4F43 /* FilterOptionView.xib */; };
+		8E19DA5A257D6D46002B4F43 /* MessageDialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E19DA59257D6D46002B4F43 /* MessageDialogController.swift */; };
 		8E6148E2241991C200842A18 /* Spells.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E61489B241991BE00842A18 /* Spells.json */; };
 		8E6148E3241991C200842A18 /* TimeUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E61489C241991BE00842A18 /* TimeUnit.swift */; };
 		8E6148E4241991C200842A18 /* SourcebookFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E61489D241991BE00842A18 /* SourcebookFilterController.swift */; };
@@ -158,6 +161,9 @@
 		8E02F7752438F04000A3050C /* RangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeView.swift; sourceTree = "<group>"; };
 		8E13F1E2244E1B14004CCC18 /* trash_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash_icon.png; sourceTree = "<group>"; };
 		8E177F9A2432F34B005146B6 /* SortFilterTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFilterTableController.swift; sourceTree = "<group>"; };
+		8E19DA4F257C094A002B4F43 /* FilterOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionView.swift; sourceTree = "<group>"; };
+		8E19DA54257C095A002B4F43 /* FilterOptionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterOptionView.xib; sourceTree = "<group>"; };
+		8E19DA59257D6D46002B4F43 /* MessageDialogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDialogController.swift; sourceTree = "<group>"; };
 		8E61489B241991BE00842A18 /* Spells.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Spells.json; sourceTree = "<group>"; };
 		8E61489C241991BE00842A18 /* TimeUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUnit.swift; sourceTree = "<group>"; };
 		8E61489D241991BE00842A18 /* SourcebookFilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourcebookFilterController.swift; sourceTree = "<group>"; };
@@ -403,6 +409,9 @@
 				8E6148C9241991C000842A18 /* Util.swift */,
 				8E6148B7241991BF00842A18 /* ViewController.swift */,
 				8E02F76124345F6200A3050C /* YesNo.swift */,
+				8E19DA4F257C094A002B4F43 /* FilterOptionView.swift */,
+				8E19DA54257C095A002B4F43 /* FilterOptionView.xib */,
+				8E19DA59257D6D46002B4F43 /* MessageDialogController.swift */,
 			);
 			path = Spellbook;
 			sourceTree = "<group>";
@@ -615,6 +624,7 @@
 				8E61493E24199B2D00842A18 /* book_empty.png in Resources */,
 				397EE97321ACA86800B116B0 /* LaunchScreen.storyboard in Resources */,
 				397EE96E21ACA86400B116B0 /* Main.storyboard in Resources */,
+				8E19DA55257C095A002B4F43 /* FilterOptionView.xib in Resources */,
 				8E6148FD241991C200842A18 /* BookBackground.jpeg in Resources */,
 				8E61494524199B2D00842A18 /* star.png in Resources */,
 				8E614926241991C200842A18 /* Assets.xcassets in Resources */,
@@ -799,6 +809,7 @@
 				8E61491E241991C200842A18 /* Constants.swift in Sources */,
 				8E614908241991C200842A18 /* SION.swift in Sources */,
 				8E614904241991C200842A18 /* Range.swift in Sources */,
+				8E19DA50257C094A002B4F43 /* FilterOptionView.swift in Sources */,
 				8E6148E9241991C200842A18 /* LabelViewController.swift in Sources */,
 				8E6148E7241991C200842A18 /* InfoMenuCell.swift in Sources */,
 				8E61490C241991C200842A18 /* EnumUtilities.swift in Sources */,
@@ -824,6 +835,7 @@
 				8E6148ED241991C200842A18 /* LengthUnit.swift in Sources */,
 				8E61491A241991C200842A18 /* iOSUtils.swift in Sources */,
 				39F306A62378A4310078FA83 /* SWRevealViewController.m in Sources */,
+				8E19DA5A257D6D46002B4F43 /* MessageDialogController.swift in Sources */,
 				8E61491F241991C200842A18 /* Transitions.swift in Sources */,
 				8E6148E5241991C200842A18 /* Duration.swift in Sources */,
 				8E92CC67243BD49900EB78B2 /* NumberFieldDelegate.swift in Sources */,
@@ -1006,7 +1018,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = RSR87G74R7;
 				INFOPLIST_FILE = Spellbook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1014,7 +1026,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.1;
+				MARKETING_VERSION = 2.9.2;
 				PRODUCT_BUNDLE_IDENTIFIER = dnd.jon.Spellbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1034,7 +1046,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
-				CURRENT_PROJECT_VERSION = 21;
+				CURRENT_PROJECT_VERSION = 22;
 				DEVELOPMENT_TEAM = RSR87G74R7;
 				INFOPLIST_FILE = Spellbook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1042,7 +1054,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.1;
+				MARKETING_VERSION = 2.9.2;
 				PRODUCT_BUNDLE_IDENTIFIER = dnd.jon.Spellbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

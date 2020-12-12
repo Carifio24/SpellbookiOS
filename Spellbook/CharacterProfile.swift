@@ -110,6 +110,9 @@ class CharacterProfile {
     private static let materialKey: String = "Material"
     private static let notMaterialKey: String = "NotMaterial"
     private static let versionCodeKey: String = "VersionCode"
+    private static let applyFiltersToListsKey: String = "ApplyFiltersToLists"
+    private static let applyFiltersToSearchKey: String = "ApplyFiltersToSearch"
+    private static let useTCEExpandedListsKey: String = "UseTCEExpandedLists"
     
     // Keys for storing range filter info
     private static let castingTimeRangeKey = "CastingTimeFilters"
@@ -147,9 +150,12 @@ class CharacterProfile {
     private var notSomaticFilter: Bool
     private var materialFilter: Bool
     private var notMaterialFilter: Bool
+    private var applyFiltersToLists: Bool
+    private var applyFiltersToSearch: Bool
+    private var useTCEExpandedLists: Bool
 
     
-    init(name: String, spellStatuses: [String:SpellStatus], sortField1: SortField, sortField2: SortField, reverse1: Bool, reverse2: Bool, statusFilter: StatusFilterField, minSpellLevel: Int, maxSpellLevel: Int, sourcebookVisibilities: Visibilities<Sourcebook>, casterVisibilities: Visibilities<CasterClass>, schoolVisibilities: Visibilities<School>, castingTimeTypeVisibilities: Visibilities<CastingTimeType>, durationTypeVisibilities: Visibilities<DurationType>, rangeTypeVisibilities: Visibilities<RangeType>, castingTimeRangeInfo: RangeInfo<TimeUnit>, durationRangeInfo: RangeInfo<TimeUnit>, rangeRangeInfo: RangeInfo<LengthUnit>, ritualFilter: Bool, notRitualFilter: Bool, concentrationFilter: Bool, notConcentrationFilter: Bool, verbalFilter: Bool, notVerbalFilter: Bool, somaticFilter: Bool, notSomaticFilter: Bool, materialFilter: Bool, notMaterialFilter: Bool) {
+    init(name: String, spellStatuses: [String:SpellStatus], sortField1: SortField, sortField2: SortField, reverse1: Bool, reverse2: Bool, statusFilter: StatusFilterField, minSpellLevel: Int, maxSpellLevel: Int, sourcebookVisibilities: Visibilities<Sourcebook>, casterVisibilities: Visibilities<CasterClass>, schoolVisibilities: Visibilities<School>, castingTimeTypeVisibilities: Visibilities<CastingTimeType>, durationTypeVisibilities: Visibilities<DurationType>, rangeTypeVisibilities: Visibilities<RangeType>, castingTimeRangeInfo: RangeInfo<TimeUnit>, durationRangeInfo: RangeInfo<TimeUnit>, rangeRangeInfo: RangeInfo<LengthUnit>, ritualFilter: Bool, notRitualFilter: Bool, concentrationFilter: Bool, notConcentrationFilter: Bool, verbalFilter: Bool, notVerbalFilter: Bool, somaticFilter: Bool, notSomaticFilter: Bool, materialFilter: Bool, notMaterialFilter: Bool, applyFiltersToLists: Bool, applyFiltersToSearch: Bool, useTCEExpandedLists: Bool) {
         self.name = name
         self.spellStatuses = spellStatuses
         self.sortField1 = sortField1
@@ -178,10 +184,13 @@ class CharacterProfile {
         self.notSomaticFilter = notSomaticFilter
         self.materialFilter = materialFilter
         self.notMaterialFilter = notMaterialFilter
+        self.applyFiltersToLists = applyFiltersToLists
+        self.applyFiltersToSearch = applyFiltersToSearch
+        self.useTCEExpandedLists = useTCEExpandedLists
     }
     
     convenience init(name: String, spellStatuses: [String:SpellStatus]) {
-        self.init(name: name, spellStatuses: spellStatuses, sortField1: SortField.Name, sortField2: SortField.Name, reverse1: false, reverse2: false, statusFilter: StatusFilterField.All, minSpellLevel: Spellbook.MIN_SPELL_LEVEL, maxSpellLevel: Spellbook.MAX_SPELL_LEVEL, sourcebookVisibilities: CharacterProfile.defaultSourcebookVisibilities, casterVisibilities: CharacterProfile.defaultCasterVisibilities, schoolVisibilities: CharacterProfile.defaultSchoolVisibilities, castingTimeTypeVisibilities: CharacterProfile.defaultCastingTimeTypeVisibilities, durationTypeVisibilities: CharacterProfile.defaultDurationTypeVisibilities, rangeTypeVisibilities: CharacterProfile.defaultRangeTypeVisibilities, castingTimeRangeInfo: CharacterProfile.defaultCastingTimeRangeInfo, durationRangeInfo: CharacterProfile.defaultDurationRangeInfo, rangeRangeInfo: CharacterProfile.defaultRangeRangeInfo, ritualFilter: true, notRitualFilter: true, concentrationFilter: true, notConcentrationFilter: true, verbalFilter: true, notVerbalFilter: true, somaticFilter: true, notSomaticFilter: true, materialFilter: true, notMaterialFilter: true)
+        self.init(name: name, spellStatuses: spellStatuses, sortField1: SortField.Name, sortField2: SortField.Name, reverse1: false, reverse2: false, statusFilter: StatusFilterField.All, minSpellLevel: Spellbook.MIN_SPELL_LEVEL, maxSpellLevel: Spellbook.MAX_SPELL_LEVEL, sourcebookVisibilities: CharacterProfile.defaultSourcebookVisibilities, casterVisibilities: CharacterProfile.defaultCasterVisibilities, schoolVisibilities: CharacterProfile.defaultSchoolVisibilities, castingTimeTypeVisibilities: CharacterProfile.defaultCastingTimeTypeVisibilities, durationTypeVisibilities: CharacterProfile.defaultDurationTypeVisibilities, rangeTypeVisibilities: CharacterProfile.defaultRangeTypeVisibilities, castingTimeRangeInfo: CharacterProfile.defaultCastingTimeRangeInfo, durationRangeInfo: CharacterProfile.defaultDurationRangeInfo, rangeRangeInfo: CharacterProfile.defaultRangeRangeInfo, ritualFilter: true, notRitualFilter: true, concentrationFilter: true, notConcentrationFilter: true, verbalFilter: true, notVerbalFilter: true, somaticFilter: true, notSomaticFilter: true, materialFilter: true, notMaterialFilter: true, applyFiltersToLists: true, applyFiltersToSearch: true, useTCEExpandedLists: true)
     }
     
     convenience init(name: String) {
@@ -267,6 +276,11 @@ class CharacterProfile {
         materialFilter = sion[CharacterProfile.materialKey].bool ?? true
         notMaterialFilter = sion[CharacterProfile.notMaterialKey].bool ?? true
         
+        // Filter options
+        applyFiltersToLists = sion[CharacterProfile.applyFiltersToListsKey].bool ?? false
+        applyFiltersToSearch = sion[CharacterProfile.applyFiltersToSearchKey].bool ?? false
+        useTCEExpandedLists = sion[CharacterProfile.useTCEExpandedListsKey].bool ?? false
+        
     }
     
     // To SION
@@ -331,6 +345,11 @@ class CharacterProfile {
         sion[CharacterProfile.notSomaticKey] = SION(notSomaticFilter)
         sion[CharacterProfile.materialKey] = SION(materialFilter)
         sion[CharacterProfile.notMaterialKey] = SION(notMaterialFilter)
+        
+        // Put in the filter options
+        sion[CharacterProfile.applyFiltersToListsKey] = SION(applyFiltersToLists)
+        sion[CharacterProfile.applyFiltersToSearchKey] = SION(applyFiltersToSearch)
+        sion[CharacterProfile.useTCEExpandedListsKey] = SION(useTCEExpandedLists)
 
         // Put in the version code
         sion[CharacterProfile.versionCodeKey] = SION(Constants.VERSION_CODE)
@@ -351,6 +370,11 @@ class CharacterProfile {
     func getVerbalFilter(_ b: Bool) -> Bool { return b ? verbalFilter : notVerbalFilter }
     func getSomaticFilter(_ b: Bool) -> Bool { return b ? somaticFilter : notSomaticFilter }
     func getMaterialFilter(_ b: Bool) -> Bool { return b ? materialFilter : notMaterialFilter }
+    
+    // Getting the filtering options
+    func getApplyFiltersToSearch() -> Bool { return applyFiltersToSearch }
+    func getApplyFiltersToLists() -> Bool { return applyFiltersToLists }
+    func getUseTCEExpandedLists() -> Bool { return useTCEExpandedLists }
     
     // For converting a RangeInfo<T> to a SION array
     private func rangeInfoToSION<U:Unit>(_ rangeInfo: RangeInfo<U>) -> SION {
@@ -398,6 +422,18 @@ class CharacterProfile {
     func oneTrue(_ s: Spell) -> Bool {
         return ( isFavorite(s) || isPrepared(s) || isKnown(s) )
     }
+    func satisfiesFilter(spell: Spell, filter: StatusFilterField) -> Bool {
+        switch (filter) {
+        case StatusFilterField.Favorites:
+            return isFavorite(spell)
+        case StatusFilterField.Prepared:
+            return isPrepared(spell)
+        case StatusFilterField.Known:
+            return isKnown(spell)
+        default:
+            return true
+        }
+    }
     
     func getName() -> String { return name }
     func getStatusFilter() -> StatusFilterField { return statusFilter }
@@ -411,6 +447,7 @@ class CharacterProfile {
     func favoritesSelected() -> Bool { return (statusFilter == StatusFilterField.Favorites) }
     func preparedSelected() -> Bool { return (statusFilter == StatusFilterField.Prepared) }
     func knownSelected() -> Bool { return (statusFilter == StatusFilterField.Known) }
+    func isStatusSet() -> Bool { return (statusFilter != StatusFilterField.All) }
     
     // Get only the visible values, with the given transformation applied to them
     func getTransformedVisibleValues<E:NameConstructible, T>(type: E.Type, b: Bool, transform: (E) -> T)-> [T] {
@@ -489,6 +526,12 @@ class CharacterProfile {
     func setStatusFilter(_ sff: StatusFilterField) { statusFilter = sff }
     func setMinSpellLevel(_ level: Int) { minSpellLevel = level }
     func setMaxSpellLevel(_ level: Int) { maxSpellLevel = level }
+    
+    // Set filtering options
+    func setApplyFiltersToLists(_ b: Bool) { applyFiltersToLists = b }
+    func setApplyFiltersToSearch(_ b: Bool) { applyFiltersToSearch = b }
+    func setUseTCEExpandedLists(_ b: Bool) { useTCEExpandedLists = b }
+    
     
     // For setting range filter data
     private func setRangeValue<E:QuantityType, U:Unit, V>(_ quantityType: E.Type, _ unitType: U.Type, _ value: V, _ setter: (RangeInfo<U>, V) -> Void) {

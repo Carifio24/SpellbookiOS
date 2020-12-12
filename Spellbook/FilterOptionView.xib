@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilterOptionView" customModule="Spellbook" customModuleProvider="target">
+            <connections>
+                <outlet property="chooser" destination="w1P-PH-cVL" id="FSn-HM-K9d"/>
+                <outlet property="contentView" destination="5w9-KQ-0M2" id="Jop-vJ-xwh"/>
+                <outlet property="infoButton" destination="iVz-Bg-BlA" id="ZOS-k0-Ph2"/>
+                <outlet property="label" destination="LRt-DS-A3K" id="pdK-A8-3Gw"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="center" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="579" height="59"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="5w9-KQ-0M2" userLabel="Content View">
+                    <rect key="frame" x="3" y="3" width="573" height="53"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRt-DS-A3K" userLabel="Option Label">
+                            <rect key="frame" x="5" y="3" width="0.0" height="47"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVz-Bg-BlA" userLabel="Info Button">
+                            <rect key="frame" x="489" y="3" width="25" height="47"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" image="InfoIconBlack"/>
+                        </button>
+                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w1P-PH-cVL">
+                            <rect key="frame" x="519" y="3" width="51" height="47"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="onTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </switch>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="w1P-PH-cVL" firstAttribute="leading" secondItem="iVz-Bg-BlA" secondAttribute="trailing" constant="5" id="3UN-bW-ZIN"/>
+                        <constraint firstItem="LRt-DS-A3K" firstAttribute="leading" secondItem="5w9-KQ-0M2" secondAttribute="leading" constant="5" id="D2E-cx-xyf"/>
+                        <constraint firstItem="LRt-DS-A3K" firstAttribute="centerY" secondItem="5w9-KQ-0M2" secondAttribute="centerY" id="H6m-KN-ppq"/>
+                        <constraint firstItem="LRt-DS-A3K" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="iVz-Bg-BlA" secondAttribute="leading" constant="-5" id="Odl-5f-Vfd"/>
+                        <constraint firstAttribute="trailing" secondItem="w1P-PH-cVL" secondAttribute="trailing" constant="5" id="Odo-wO-8Qv"/>
+                        <constraint firstItem="iVz-Bg-BlA" firstAttribute="top" secondItem="5w9-KQ-0M2" secondAttribute="top" constant="3" id="bDm-Lq-aFy"/>
+                        <constraint firstItem="LRt-DS-A3K" firstAttribute="top" secondItem="5w9-KQ-0M2" secondAttribute="top" constant="3" id="ia6-VL-31L"/>
+                        <constraint firstItem="w1P-PH-cVL" firstAttribute="top" secondItem="5w9-KQ-0M2" secondAttribute="top" constant="3" id="n9X-iu-lie"/>
+                        <constraint firstItem="w1P-PH-cVL" firstAttribute="centerY" secondItem="5w9-KQ-0M2" secondAttribute="centerY" id="ohr-Cw-Fny"/>
+                        <constraint firstItem="iVz-Bg-BlA" firstAttribute="centerY" secondItem="5w9-KQ-0M2" secondAttribute="centerY" id="zaj-1U-9bz"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5w9-KQ-0M2" secondAttribute="trailing" constant="3" id="6uJ-Ji-QKu"/>
+                <constraint firstItem="5w9-KQ-0M2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="3" id="YXp-mw-eFL"/>
+                <constraint firstItem="5w9-KQ-0M2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="3" id="rCL-m1-hmM"/>
+                <constraint firstAttribute="bottom" secondItem="5w9-KQ-0M2" secondAttribute="bottom" constant="3" id="vLa-gd-y2D"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-51.449275362318843" y="-205.91517857142856"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="InfoIconBlack" width="25" height="25"/>
+    </resources>
+</document>

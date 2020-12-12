@@ -297,49 +297,66 @@ class SpellTableViewController: UITableViewController {
     }
     
     // Determine whether or not a single row should be filtered
-    func filterItem(spell s: Spell, profile cp: CharacterProfile, visibleSourcebooks: [Sourcebook], visibleClasses: [CasterClass], visibleSchools: [School], visibleCastingTimeTypes: [CastingTimeType], visibleDurationTypes: [DurationType], visibleRangeTypes: [RangeType], castingTimeBounds: (CastingTime,CastingTime), durationBounds: (Duration,Duration), rangeBounds: (Range,Range), isText: Bool, text: String) -> Bool {
-        let spname = s.name.lowercased()
+    func filterItem(spell: Spell, profile cp: CharacterProfile, visibleSourcebooks: [Sourcebook], visibleClasses: [CasterClass], visibleSchools: [School], visibleCastingTimeTypes: [CastingTimeType], visibleDurationTypes: [DurationType], visibleRangeTypes: [RangeType], castingTimeBounds: (CastingTime,CastingTime), durationBounds: (Duration,Duration), rangeBounds: (Range,Range), isText: Bool, text: String) -> Bool {
+        let spellName = spell.name.lowercased()
+        
+        // If we aren't going to filter when searching, and there's search text,
+        // we only need to check whether the spell name contains the search text
+        if (!cp.getApplyFiltersToSearch() && isText) {
+            return !spellName.contains(text);
+        }
+
+        // If we aren't going to filter spell lists, and the current filter isn't ALL
+        // just check if the spell is on the list
+        // (and that it respects any search text)
+        if (!cp.getApplyFiltersToLists() && cp.isStatusSet()) {
+            var hide = !cp.satisfiesFilter(spell: spell, filter: cp.getStatusFilter());
+            if (isText) {
+                hide = hide || !spellName.contains(text);
+            }
+            return hide;
+        }
         
         // Run through the various filtering fields
         
         // Level
-        let level = s.level
+        let level = spell.level
         if (level > cp.getMaxSpellLevel()) || (level < cp.getMinSpellLevel()) { return true }
         
         // Sourcebooks
-        if filterThroughArray(spell: s, values: visibleSourcebooks, filter: SpellTableViewController.sourcebookFilter) { return true }
+        if filterThroughArray(spell: spell, values: visibleSourcebooks, filter: SpellTableViewController.sourcebookFilter) { return true }
         
         // Classes
-        if filterThroughArray(spell: s, values: visibleClasses, filter: SpellTableViewController.casterClassesFilter) { return true }
+        if filterThroughArray(spell: spell, values: visibleClasses, filter: SpellTableViewController.casterClassesFilter) { return true }
         
         // Schools
-        if filterThroughArray(spell: s, values: visibleSchools, filter: SpellTableViewController.schoolFilter) { return true }
+        if filterThroughArray(spell: spell, values: visibleSchools, filter: SpellTableViewController.schoolFilter) { return true }
         
         // Casting time types
-        if filterThroughArray(spell: s, values: visibleCastingTimeTypes, filter: SpellTableViewController.castingTimeTypeFilter) { return true }
+        if filterThroughArray(spell: spell, values: visibleCastingTimeTypes, filter: SpellTableViewController.castingTimeTypeFilter) { return true }
         
         // Duration types
-        if filterThroughArray(spell: s, values: visibleDurationTypes, filter: SpellTableViewController.durationTypeFilter) { return true }
+        if filterThroughArray(spell: spell, values: visibleDurationTypes, filter: SpellTableViewController.durationTypeFilter) { return true }
         
         // Range types
-        if filterThroughArray(spell: s, values: visibleRangeTypes, filter: SpellTableViewController.rangeTypeFilter) { return true }
+        if filterThroughArray(spell: spell, values: visibleRangeTypes, filter: SpellTableViewController.rangeTypeFilter) { return true }
         
         // Casting time bounds
-        if filterAgainstBounds(spell: s, bounds: castingTimeBounds, quantityGetter: { $0.castingTime }) { return true }
+        if filterAgainstBounds(spell: spell, bounds: castingTimeBounds, quantityGetter: { $0.castingTime }) { return true }
         
         // Duration bounds
-        if filterAgainstBounds(spell: s, bounds: durationBounds, quantityGetter: { $0.duration }) { return true }
+        if filterAgainstBounds(spell: spell, bounds: durationBounds, quantityGetter: { $0.duration }) { return true }
         
         // Range bounds
-        if filterAgainstBounds(spell: s, bounds: rangeBounds, quantityGetter: { $0.range }) { return true }
+        if filterAgainstBounds(spell: spell, bounds: rangeBounds, quantityGetter: { $0.range }) { return true }
         
         // The rest of the filtering conditions
-        var toHide = (cp.favoritesSelected() && !cp.isFavorite(s))
-        toHide = toHide || (cp.knownSelected() && !cp.isKnown(s))
-        toHide = toHide || (cp.preparedSelected() && !cp.isPrepared(s))
-        toHide = toHide || !cp.getRitualFilter(s.ritual)
-        toHide = toHide || !cp.getConcentrationFilter(s.concentration)
-        toHide = toHide || (isText && !spname.contains(text))
+        var toHide = (cp.favoritesSelected() && !cp.isFavorite(spell))
+        toHide = toHide || (cp.knownSelected() && !cp.isKnown(spell))
+        toHide = toHide || (cp.preparedSelected() && !cp.isPrepared(spell))
+        toHide = toHide || !cp.getRitualFilter(spell.ritual)
+        toHide = toHide || !cp.getConcentrationFilter(spell.concentration)
+        toHide = toHide || (isText && !spellName.contains(text))
         return toHide
     }
     

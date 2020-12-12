@@ -161,3 +161,66 @@ let defaultFontColor: UIColor = {
         return UIColor.black
     }
 }()
+
+
+
+extension UIApplication {
+
+    enum ColorMode {
+        case dark, light, customColorLowerThanIOS13(_ color: UIColor)
+    }
+
+    private func internalSetStatusBarTextColor(_ mode: ColorMode) {
+        if #available(iOS 13.0, *) {
+            guard let appDelegate = delegate as? AppDelegate else { return }
+
+            var style: UIUserInterfaceStyle
+
+            switch mode {
+                case .dark:
+                    style = .dark
+                default:
+                    style = .light
+            }
+
+            appDelegate.window?.overrideUserInterfaceStyle = style
+        } else {
+            if let statusBar = UIApplication.shared.value(forKey: "statusBar") as? UIView {
+                var color: UIColor
+
+                switch mode {
+                    case .dark:
+                        color = .white
+                    case .light:
+                        color = .black
+                    case .customColorLowerThanIOS13(let customColor):
+                        color = customColor
+                }
+
+                statusBar.setValue(color, forKey: "foregroundColor")
+            }
+        }
+    }
+    
+    func setStatusBarTextColor(_ mode: ColorMode) {
+        UIView.animate(withDuration: 0.3) {
+            self.internalSetStatusBarTextColor(mode)
+        }
+    }
+    
+//    func setStatusBarBackgroundColor(_ color: UIColor) {
+//
+//        var statusBar: UIView?
+//        if let viewWithTag = UIApplication.shared.keyWindow?.viewWithTag(999) {
+//            statusBar = viewWithTag
+//        } else {
+//            statusBar = UIView()
+//            statusBar!.tag = 999
+//            statusBar!.frame = UIApplication.shared.statusBarFrame
+//            UIApplication.shared.keyWindow?.addSubview(statusBar!)
+//            UIApplication.shared.keyWindow?.sendSubviewToBack(statusBar!)
+//        }
+//        statusBar!.backgroundColor = color
+//    }
+    
+}

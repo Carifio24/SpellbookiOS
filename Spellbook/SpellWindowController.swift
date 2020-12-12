@@ -50,6 +50,7 @@ class SpellWindowController: UIViewController {
     @IBOutlet weak var materialsLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var classesLabel: UILabel!
+    @IBOutlet weak var expandedClassesLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var higherLevelLabel: UILabel!
     
@@ -104,10 +105,8 @@ class SpellWindowController: UIViewController {
         contentView.frame = UIScreen.main.bounds
         
         // Set the label fonts
-        let labels = [ spellNameLabel, schoolLevelLabel, locationLabel, concentrationLabel, castingTimeLabel, rangeLabel, componentsLabel, materialsLabel, durationLabel, classesLabel, descriptionLabel, higherLevelLabel ]
-        for label in labels {
-            label?.textColor = defaultFontColor
-        }
+        let labels = [ spellNameLabel, schoolLevelLabel, locationLabel, concentrationLabel, castingTimeLabel, rangeLabel, componentsLabel, materialsLabel, durationLabel, classesLabel, expandedClassesLabel, descriptionLabel, higherLevelLabel ]
+        labels.forEach { $0!.textColor = defaultFontColor }
         
         
     }
@@ -126,6 +125,7 @@ class SpellWindowController: UIViewController {
                     self.main.filter()
                     self.main.saveCharacterProfile()
                     self.dismiss(animated: true, completion: nil)
+                    UIApplication.shared.setStatusBarTextColor(.dark)
                 default:
                     break
             }
@@ -149,6 +149,11 @@ class SpellWindowController: UIViewController {
         rangeLabel.attributedText = propertyText(name: "Range", text: spell.range.string())
         concentrationLabel.attributedText = propertyText(name: "Concentration", text: bool_to_yn(yn: spell.concentration))
         classesLabel.attributedText = propertyText(name: "Classes", text: spell.classesString())
+        print(main.characterProfile.getUseTCEExpandedLists())
+        print(spell.tashasExpandedClasses.count > 0)
+        if (main.characterProfile.getUseTCEExpandedLists() && spell.tashasExpandedClasses.count > 0) {
+            expandedClassesLabel.attributedText = propertyText(name: "TCE Expanded Classes", text: spell.tashasExpandedClassesString())
+        }
         descriptionLabel.attributedText = propertyText(name: "Description", text: spell.description, addLine: true)
         if !spell.higherLevel.isEmpty {
             higherLevelLabel.attributedText = propertyText(name: "Higher level", text: spell.higherLevel, addLine: true)

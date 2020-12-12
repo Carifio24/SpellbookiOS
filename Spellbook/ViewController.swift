@@ -120,10 +120,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // The search bar itself
     let searchBar = UISearchBar()
     
-    // Status bar
-    private var statusBarStyle: UIStatusBarStyle = .default
-    override var preferredStatusBarStyle: UIStatusBarStyle { print("The style is now \(self.preferredStatusBarStyle.rawValue)" ); return self.statusBarStyle }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -161,6 +157,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 //            let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
 //            statusBar?.backgroundColor = statusBarBGColor
 //        }
+        UIApplication.shared.setStatusBarTextColor(.dark)
         
         // Display the build and version number (for testing)
         //print("The iOS version is \(iOSVersion)")
@@ -629,11 +626,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //passThroughView.blocking = false
         filter()
     }
-    
-    private func updateStatusBarStyle(_ newStyle: UIStatusBarStyle) {
-        self.statusBarStyle = newStyle
-        self.navigationController?.setNeedsStatusBarAppearanceUpdate()
-    }
 
     
 //    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
@@ -670,8 +662,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             isRightMenuOpen = false
         }
         passThroughView.blocking = isLeftMenuOpen || isRightMenuOpen
-        updateStatusBarStyle(statusBarStyle)
     }
+    
+    func revealController(_ revealController: SWRevealViewController!, willMoveTo position: FrontViewPosition) {
+        
+        // Set flags according to what menus are open
+        // The enum names don't entirely make sense to me - I determined how the states match up via experimentation
+        var textColor: UIApplication.ColorMode = .dark
+        switch(position) {
+        case FrontViewPosition.left: // Main screen open
+            textColor = .dark
+        case FrontViewPosition.right, FrontViewPosition.leftSide: // Left side menu open
+            textColor = .light
+        default:
+            textColor = .dark
+        }
+        UIApplication.shared.setStatusBarTextColor(textColor)
+    }
+    
+    
     
     // MARK: - Table view data source
 
@@ -836,6 +845,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func filterItem(spell s: Spell, profile cp: CharacterProfile, visibleSourcebooks: [Sourcebook], visibleClasses: [CasterClass], visibleSchools: [School], visibleCastingTimeTypes: [CastingTimeType], visibleDurationTypes: [DurationType], visibleRangeTypes: [RangeType], castingTimeBounds: (CastingTime,CastingTime), durationBounds: (Duration,Duration), rangeBounds: (Range,Range), isText: Bool, text: String) -> Bool {
         let spname = s.name.lowercased()
         
+        // If we aren't going to filter when searching, and there's search text,
+        // we only need to check whether the spell name contains the search text
+        if !cp.getApplyFiltersToSearch() && isText {
+            return !spname.contains(text)
+        }
+        
+        // If we aren't going to filter spell lists, and the current filter isn't ALL
+        // just check if the spell is on the list
+        if !cp.getApplyFiltersToLists() && cp.isStatusSet() {
+            var hide = !cp.satisfiesFilter(spell: s, filter: cp.getStatusFilter())
+            if (isText) {
+                hide = hide || !spname.contains(text)
+            }
+            return hide
+        }
+        
         // Run through the various filtering fields
         
         // Level
@@ -944,6 +969,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.present(spellWindowController, animated: true, completion: nil)
         spellWindowController.spell = spell
         spellWindowController.spellIndex = spellIndex
+        UIApplication.shared.setStatusBarTextColor(.light)
         //print("")
     }
     

@@ -1,5 +1,5 @@
 enum Sourcebook: Int, NameConstructible {
-	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG
+	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG, TashasCOE
     
     internal static var displayNameMap = EnumMap<Sourcebook,String> { e in
         switch (e) {
@@ -9,13 +9,16 @@ enum Sourcebook: Int, NameConstructible {
             return "Xanathar's Guide to Everything"
         case .SwordCoastAG:
             return "Sword Coast Adv. Guide"
+        case .TashasCOE:
+            return "Tasha's Cauldron of Everything"
         }
     }
     
     private static let codeMap: [Sourcebook:String] = [
         PlayersHandbook : "phb",
         XanatharsGTE : "xge",
-        SwordCoastAG : "scag"
+        SwordCoastAG : "scag",
+        TashasCOE: "tce"
     ]
     
     func code() -> String {

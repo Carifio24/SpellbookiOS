@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RangeView: UIView {
+class RangeView: UIView, HeightProvider {
     
     typealias BoundsGetter = (CharacterProfile) -> (Int, String, Int, String)
     typealias DefaultBoundsGetter = () -> (Int, String, Int, String)

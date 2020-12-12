@@ -69,13 +69,17 @@ extension SION : CustomStringConvertible, CustomDebugStringConvertible {
         case .Dictionary(let o):
             guard !o.isEmpty else { return "[:]" }
             let a = sortedKey ? o.map{ $0 }.sorted{ $0.0.description < $1.0.description } : o.map{ $0 }
-            return "[" + t
-                + a.map {
+            var res: String = "[" + t
+            let strMap: [String] = a.map {
                     $0.toString(depth:d+1, separator:s, terminator:t, sortedKey:sortedKey)
                     + g + ":" + g
                     + $1.toString(depth:d+1, separator:s, terminator:t, sortedKey:sortedKey)
-                    }.map{ i + s + $0 }.joined(separator:"," + t) + t
-                + i + "]" + (d == 0 ? t : "")
+                    }
+            let strMapJoined = strMap.map{ i + s + $0 }.joined(separator:"," + t) + t
+                + i + "]"
+            res = res + strMapJoined
+            res = res + (d == 0 ? t : "")
+            return res
         }
     }
     public func toString(space:Int=0)->String {

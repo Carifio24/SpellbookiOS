@@ -1,6 +1,14 @@
 //import SION
 import Foundation
 
+func intGetter(_ sion: SION, key: String) -> Int {
+    if let _ = sion[key].int {
+        return sion[key].int!
+    } else {
+        return Int(sion[key].double!)
+    }
+}
+
 func has_key(obj: SION, key: String) -> Bool {
 	for (k, _) in obj {
 		if k.string! == key {
@@ -8,22 +16,6 @@ func has_key(obj: SION, key: String) -> Bool {
 		}
 	}
 	return false
-}
-
-func schoolFromName(name: String) -> School? {
-	return School(rawValue: Spellbook.schoolNames.firstIndex(of: name)!)
-}
-
-func casterFromName(name: String) -> CasterClass? {
-	return CasterClass(rawValue: Spellbook.casterNames.firstIndex(of: name)!)
-}
-
-func subclassFromName(name: String) -> SubClass? {
-	return SubClass(rawValue: Spellbook.subclassNames.firstIndex(of: name)!)
-}
-
-func sourcebookFromCode(name: String) -> Sourcebook? {
-	return Sourcebook(rawValue: Spellbook.sourcebookCodes.firstIndex(of: name)!)
 }
 
 func load_file(filepath: String) -> String {
@@ -39,12 +31,12 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
 	var jso: SION
 	
 	// Set the values that need no/trivial parsing
-	b.setName(obj["name"].string!)
-	jstr = obj["page"].string!
-    let locationPieces = jstr.components(separatedBy: " ")
-	let page = Int(locationPieces[1])!
-	b.setPage(page)
-    let sourcebook = sourcebookFromCode(name: locationPieces[0])!
+    b.setID(intGetter(obj, key: "id"))
+        .setName(obj["name"].string!)
+        .setPage(intGetter(obj, key: "page"))
+        .setLevel(intGetter(obj, key: "level"))
+    
+    let sourcebook = Sourcebook.fromCode(obj["sourcebook"].string!)!
     b.setSourcebook(sourcebook)
     let durationString = obj["duration"].string! // Use this again later for the concentration part
     do {
@@ -60,32 +52,18 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
         b.setRange(Range())
     }
     
-
 	if has_key(obj: obj, key: "ritual") {
-		let ritualString = try! yn_to_bool(yn: obj["ritual"].string!)
-		b.setRitual(ritualString)
+        b.setRitual(obj["ritual"].bool!)
 	} else {
 		b.setRitual(false)
 	}
     if (durationString.starts(with: "Up to")) {
         b.setConcentration(true)
     } else if has_key(obj: obj, key: "concentration") {
-        let concentrationString = obj["concentration"].string!
-        b.setConcentration(try! yn_to_bool(yn: concentrationString))
+        b.setConcentration(obj["concentration"].bool!)
 	} else {
 		b.setConcentration(false)
 	}
-
-    //print(obj["level"].double)
-    var isInt: Bool = false
-    if let _ = obj["level"].int {
-        isInt = true
-    }
-    if isInt {
-        b.setLevel(Int(obj["level"].int!))
-    } else {
-        b.setLevel(Int(obj["level"].double!))
-    }
 
     let castingTimeString = obj["casting_time"].string!
     do {
@@ -108,51 +86,23 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
 	}
 
 	// Description
-	jstr = String()
-	var firstAdded = false
-	jarr = obj["desc"]
-	for (_, v) in jarr {
-		if !firstAdded {
-			firstAdded = true
-		} else {
-			jstr += "\n"
-		}
-		jstr += v.string!
-	}
-	b.setDescription(jstr)
+    b.setDescription(obj["desc"].string!)
 
 	// Higher level description
-	jstr = String()
-	firstAdded = false
+	var hlString = ""
 	if has_key(obj: obj, key: "higher_level") {
-        jarr = obj["higher_level"]
-		for (_, v) in jarr {
-			if !firstAdded {
-				firstAdded = true
-			} else {
-				jstr += "\n"
-			}
-			jstr += v.string!
-		}
+        hlString = obj["higher_level"].string!
 	}
-    b.setHigherLevelDesc(jstr)
+    b.setHigherLevelDesc(hlString)
 
 	// School
-	jso = obj["school"]
-	var name: String = jso["name"].string!
-	b.setSchool(schoolFromName(name: name)!)
+    b.setSchool(School.fromName(obj["school"].string!))
 
 	// Classes
 	var classes: Array<CasterClass> = []
 	jarr = obj["classes"]
-	for (_, v) in jarr {
-        var name = v["name"].string
-        if name != nil {
-            classes.append(casterFromName(name: name!)!)
-        } else {
-            name = v.string!
-            classes.append(casterFromName(name: name!)!)
-        }
+	for (_, name) in jarr {
+        classes.append(CasterClass.fromName(name.string!))
 	}
 	b.setClasses(classes)
 
@@ -160,12 +110,21 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
 	var subclasses: Array<SubClass> = []
 	if has_key(obj: obj, key: "subclasses") {
 		jarr = obj["subclasses"]
-		for (_, v) in jarr {
-			name = v["name"].string!
-			subclasses.append(subclassFromName(name: name)!)
+		for (_, name) in jarr {
+            subclasses.append(SubClass.fromName(name.string!))
 		}
 		b.setSubclasses(subclasses)
 	}
+    
+    // Classes
+    var expandedClasses: Array<CasterClass> = []
+    if has_key(obj: obj, key: "tce_expanded_classes") {
+        jarr = obj["tce_expanded_classes"]
+        for (_, name) in jarr {
+            expandedClasses.append(CasterClass.fromName(name.string!))
+        }
+    }
+    b.setTashasExpandedClasses(expandedClasses)
 
 	// Return
 	return b.buildAndReset()

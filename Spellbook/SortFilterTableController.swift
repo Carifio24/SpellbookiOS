@@ -46,6 +46,12 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var firstSortArrow: ToggleButton!
     @IBOutlet weak var secondSortArrow: ToggleButton!
     
+    // Filter option views
+    @IBOutlet weak var listsFilterView: FilterOptionView!
+    @IBOutlet weak var searchFilterView: FilterOptionView!
+    @IBOutlet weak var tashasExpandedView: FilterOptionView!
+    private var filterOptionViews: [FilterOptionView] = []
+    
     // Select all buttons
     @IBOutlet weak var selectAllSourcebooks: UIButton!
     @IBOutlet weak var selectAllClasses: UIButton!
@@ -58,10 +64,12 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var unselectAllSourcebooks: UIButton!
     @IBOutlet weak var unselectAllClasses: UIButton!
     @IBOutlet weak var unselectAllSchools: UIButton!
-    
     @IBOutlet weak var unselectAllCastingTimeTypes: UIButton!
     @IBOutlet weak var unselectAllDurationTypes: UIButton!
     @IBOutlet weak var unselectAllRangeTypes: UIButton!
+    
+    // Full level range button
+    @IBOutlet weak var fullLevelRangeButton: UIButton!
     
     // Text field delegates
     let firstSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getFirstSortField() }, setter: { cp, sf in cp.setFirstSortField(sf) }, title: "First Level Sorting")
@@ -91,22 +99,22 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var durationRange: RangeView!
     @IBOutlet weak var rangeRange: RangeView!
     private var rangeViews: [RangeView] = []
-    private let rangeSections = [ 7, 8, 9 ]
+    private var rangeSections: [Int] = []
     
     // Whether or not the range views are visible
     private var castingTimeRangeVisible = true {
         didSet {
-            setRangeVisibility(rangeView: castingTimeRange, cellIndexPath: IndexPath(row: 2, section: 7), isVisible: castingTimeRangeVisible)
+            setRangeVisibility(rangeView: castingTimeRange, cellIndexPath: IndexPath(row: 2, section: self.CASTING_TIME_SECTION), isVisible: castingTimeRangeVisible)
         }
     }
     private var durationRangeVisible = true {
        didSet {
-           setRangeVisibility(rangeView: durationRange, cellIndexPath: IndexPath(row: 2, section: 8), isVisible: durationRangeVisible)
+        setRangeVisibility(rangeView: durationRange, cellIndexPath: IndexPath(row: 2, section: self.DURATION_SECTION), isVisible: durationRangeVisible)
        }
     }
     private var rangeRangeVisible = true {
        didSet {
-           setRangeVisibility(rangeView: rangeRange, cellIndexPath: IndexPath(row: 2, section: 9), isVisible: rangeRangeVisible)
+        setRangeVisibility(rangeView: rangeRange, cellIndexPath: IndexPath(row: 2, section: self.RANGE_SECTION), isVisible: rangeRangeVisible)
        }
    }
     
@@ -130,19 +138,23 @@ class SortFilterTableController: UITableViewController {
     
     // Identifying the sections in the table
     private let SORT_SECTION = 0
-    private let LEVEL_SECTION = 1
-    private let RITUAL_CONCENTRATION_SECTION = 2
-    private let COMPONENTS_SECTION = 3
-    private let SOURCEBOOK_SECTION = 4
-    private let CASTER_SECTION = 5
-    private let SCHOOL_SECTION = 6
-    private let CASTING_TIME_SECTION = 7
-    private let DURATION_SECTION = 8
-    private let RANGE_SECTION = 9
+    private let FILTER_OPTIONS_SECTION = 1
+    private let LEVEL_SECTION = 2
+    private let RITUAL_CONCENTRATION_SECTION = 3
+    private let COMPONENTS_SECTION = 4
+    private let SOURCEBOOK_SECTION = 5
+    private let CASTER_SECTION = 6
+    private let SCHOOL_SECTION = 7
+    private let CASTING_TIME_SECTION = 8
+    private let DURATION_SECTION = 9
+    private let RANGE_SECTION = 10
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // The range sections
+        rangeSections = [ CASTING_TIME_SECTION, DURATION_SECTION, RANGE_SECTION ]
         
         // For keyboard listening
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -246,6 +258,9 @@ class SortFilterTableController: UITableViewController {
         unselectAllDurationTypes.addTarget(self, action: #selector(unselectAllDurationTypeButtons(_:)), for: .touchUpInside)
         unselectAllRangeTypes.addTarget(self, action: #selector(unselectAllRangeTypeButtons(_:)), for: .touchUpInside)
         
+        // Set up the full level range button
+        fullLevelRangeButton.addTarget(self, action: #selector(restoreFullLevelRange), for: .touchUpInside)
+        fullLevelRangeButton.sizeToFit()
         
         // Set the range layout types
         castingTimeRange.setType(CastingTime.self, centerText: "Other Time", title: "Time Unit")
@@ -257,13 +272,29 @@ class SortFilterTableController: UITableViewController {
 //            (rangeGrid, rangeRange, rangeBottomConstraint)
 //        ]
         
-        // Set the heights of the range cells
-        var rangeConstraints: [NSLayoutConstraint] = []
-        for rangeView in rangeViews {
-            let height = rangeView.desiredHeight()
-            rangeConstraints.append(NSLayoutConstraint(item: rangeView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: height))
+        // Set up the filter options
+        filterOptionViews = [ listsFilterView, searchFilterView, tashasExpandedView ]
+        
+        listsFilterView.setOptionTitle("Apply Filters to Spell Lists")
+        listsFilterView.setHelpInfo(title: "Apply Filters to Spell Lists", description: "If selected, filters are applied to the favorite, known, and prepared spell lists. Otherwise, they are not.")
+        listsFilterView.setPropertyFunctions(getter: { cp in return cp.getApplyFiltersToLists() }, setter: { cp, b in cp.setApplyFiltersToLists(b) })
+        
+        searchFilterView.setOptionTitle("Apply Filters to Search")
+        searchFilterView.setHelpInfo(title: "Apply Filters to Search", description: "If selected, filters are applied to search results. Otherwise, search results do not respect the current filters.")
+        searchFilterView.setPropertyFunctions(getter: { cp in return cp.getApplyFiltersToSearch() }, setter: { cp, b in cp.setApplyFiltersToSearch(b) })
+        
+        tashasExpandedView.setOptionTitle("Use Tasha's Expanded Lists")
+        tashasExpandedView.setHelpInfo(title: "Use Tasha's Expanded Lists", description: "Select this option to use the expanded spell lists for each class from Tasha's Cauldron of Everything.")
+        tashasExpandedView.setPropertyFunctions(getter: { cp in return cp.getUseTCEExpandedLists() }, setter: { cp, b in cp.setUseTCEExpandedLists(b) })
+        
+        // Set the heights of the filter option views and the range cells
+        var heightConstraints: [NSLayoutConstraint] = []
+        let constrainedViews: [HeightProvider] = rangeViews + filterOptionViews
+        for view in constrainedViews {
+            let height = view.desiredHeight()
+            heightConstraints.append(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: height))
         }
-        NSLayoutConstraint.activate(rangeConstraints)
+        NSLayoutConstraint.activate(heightConstraints)
 
         
         // Uncomment the following line to preserve selection between presentations
@@ -276,13 +307,13 @@ class SortFilterTableController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int { return 10 }
+    override func numberOfSections(in tableView: UITableView) -> Int { return 11 }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch (section) {
-        case LEVEL_SECTION, RITUAL_CONCENTRATION_SECTION:
+        case RITUAL_CONCENTRATION_SECTION:
             return 1
-        case CASTING_TIME_SECTION, DURATION_SECTION, RANGE_SECTION:
+        case FILTER_OPTIONS_SECTION, CASTING_TIME_SECTION, DURATION_SECTION, RANGE_SECTION:
             return 3
         default:
             return 2
@@ -291,7 +322,7 @@ class SortFilterTableController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header = view as! UITableViewHeaderFooterView
-        let font = section == 2 ? SortFilterTableController.smallerHeaderFont : SortFilterTableController.headerFont
+        let font = section == RITUAL_CONCENTRATION_SECTION ? SortFilterTableController.smallerHeaderFont : SortFilterTableController.headerFont
         header.textLabel?.font = font
         header.textLabel?.text = firstLetterOfWordsCapitalized((header.textLabel?.text!)!)
         header.textLabel?.textColor = defaultFontColor
@@ -332,7 +363,11 @@ class SortFilterTableController: UITableViewController {
         for (grid, _) in gridsAndDelegates { grid.reloadData() }
         
         // Update the range values
-        for rangeView in rangeViews { rangeView.updateValues() }
+        rangeViews.forEach { view in view.updateValues() }
+        
+        // Update the filter options
+        filterOptionViews.forEach { view in view.update() }
+        
         
     }
     
@@ -350,6 +385,14 @@ class SortFilterTableController: UITableViewController {
 //        } else if main.isRightMenuOpen {
 //            main.toggleRightMenu()
 //        }
+    }
+    
+    @objc func restoreFullLevelRange() {
+        minLevelEntry.text = String(Spellbook.MIN_SPELL_LEVEL)
+        maxLevelEntry.text = String(Spellbook.MAX_SPELL_LEVEL)
+        let cp = Controllers.mainController.characterProfile
+        cp.setMinSpellLevel(Spellbook.MIN_SPELL_LEVEL)
+        cp.setMaxSpellLevel(Spellbook.MAX_SPELL_LEVEL)
     }
     
     
@@ -421,60 +464,5 @@ class SortFilterTableController: UITableViewController {
         //print("rangeSectionFlag is \(rangeSectionFlag(section))")
         return rangeSectionFlag(section) ? tableView.rowHeight : 0
     }
-    
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
 }
