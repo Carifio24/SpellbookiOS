@@ -12,7 +12,7 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
     
     let reuseIdentifier = "filterCell"
     
-    let items = T.allCases.map({ $0 })
+    let items = T.allCases.map({ $0 }).sorted(by: { t1, t2 in t1.displayName < t2.displayName })
     private var itemButtonMap: [T:ToggleButton] = [:]
     let columns: Int
     let rows: Int
@@ -75,20 +75,22 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
         let item = items[indexPath.row]
         cell.backgroundColor = .clear
         cell.filterView.nameLabel.text = item.displayName
-        cell.filterView.filterButton.isUserInteractionEnabled = true
+        
+        let button = cell.filterView.filterButton!
+        button.isUserInteractionEnabled = true
         //cell.filterView.nameLabel.sizeToFit()
         //print("Item is \(item.displayName)")
         //print("Visibility is \(main.characterProfile.getVisibility(item))")
-        cell.filterView.filterButton.set(main.characterProfile.getVisibility(item))
-        cell.filterView.filterButton.setCallback({
+        button.set(main.characterProfile.getVisibility(item))
+        button.setCallback({
             self.main.characterProfile.toggleVisibility(item)
             self.main.saveCharacterProfile()
         })
-        cell.filterView.filterButton.setLongPressCallback({
-            if !cell.filterView.filterButton.isSet() { cell.filterView.filterButton.sendActions(for: .touchUpInside) }
-            for (value, button) in self.itemButtonMap {
-                if (value != item && button.isSet()) {
-                    button.sendActions(for: .touchUpInside)
+        button.setLongPressCallback({
+            if !button.isSet() { button.sendActions(for: .touchUpInside) }
+            for (value, btn) in self.itemButtonMap {
+                if (value != item && btn.isSet()) {
+                    btn.sendActions(for: .touchUpInside)
                 }
             }
         })

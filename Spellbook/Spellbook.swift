@@ -14,6 +14,8 @@ public class Spellbook {
     static let MAX_SPELL_LEVEL = 9
     
     static let SECOND_PER_ROUND = 6
+    
+    static let SCAG_CANTRIPS = [ "Booming Blade", "Green-Flame Blade", "Lightning Lure", "Sword Burst"]
 
 	var spells: Array<Spell> = []
 	var N_SPELLS: Int = 0

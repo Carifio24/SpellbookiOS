@@ -260,6 +260,7 @@ class SortFilterTableController: UITableViewController {
         
         // Set up the full level range button
         fullLevelRangeButton.addTarget(self, action: #selector(restoreFullLevelRange), for: .touchUpInside)
+        fullLevelRangeButton.setTitleColor(defaultFontColor, for: .normal)
         fullLevelRangeButton.sizeToFit()
         
         // Set the range layout types

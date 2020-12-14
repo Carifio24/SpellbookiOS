@@ -161,8 +161,6 @@ class InfoMenuViewController: UITableViewController {
         // Instantiate the controller using the storyboard
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "spellcastingInfo") as! SpellcastingInfoController
-        print(storyboard)
-        print(controller)
         
         // Popup dimensions
         let screenRect = UIScreen.main.bounds

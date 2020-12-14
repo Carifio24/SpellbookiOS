@@ -76,13 +76,13 @@ class TextFieldChooserDelegate<T:CaseIterable & Equatable>: NSObject, UITextFiel
 // because the name getter and constructor come directly from the protocol
 
 
-class NameConstructibleChooserDelegate<T:NameConstructible>: TextFieldChooserDelegate<T> {
+class NameConstructibleChooserDelegate<N:NameConstructible>: TextFieldChooserDelegate<N> {
     
     init(getter: @escaping ProfileGetter, setter: @escaping ProfileSetter, title: String) {
         super.init(profileGetter: getter, profileSetter: setter,
                    nameGetter: { $0.displayName },
                    textSetter: { $0.displayName },
-                   nameConstructor: { return T.fromName($0) },
+                   nameConstructor: { return N.fromName($0) },
                    title: title)
     }
 }

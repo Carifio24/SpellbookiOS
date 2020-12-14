@@ -149,8 +149,6 @@ class SpellWindowController: UIViewController {
         rangeLabel.attributedText = propertyText(name: "Range", text: spell.range.string())
         concentrationLabel.attributedText = propertyText(name: "Concentration", text: bool_to_yn(yn: spell.concentration))
         classesLabel.attributedText = propertyText(name: "Classes", text: spell.classesString())
-        print(main.characterProfile.getUseTCEExpandedLists())
-        print(spell.tashasExpandedClasses.count > 0)
         if (main.characterProfile.getUseTCEExpandedLists() && spell.tashasExpandedClasses.count > 0) {
             expandedClassesLabel.attributedText = propertyText(name: "TCE Expanded Classes", text: spell.tashasExpandedClassesString())
         }

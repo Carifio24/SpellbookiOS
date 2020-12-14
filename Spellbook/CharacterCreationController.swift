@@ -124,7 +124,7 @@ class CharacterCreationController: UIViewController {
         // Reject a name that contains an illegal character
         for c in CharacterCreationController.illegalCharacters {
             if name.contains(c) {
-                creationMessage.text = CharacterCreationController.illegalCharacterMessage
+                creationMessage.text = "\(CharacterCreationController.illegalCharacterMessage): \(c)"
                 creationMessage.textColor = UIColor.red
                 return
             }

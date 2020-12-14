@@ -22,22 +22,22 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="5w9-KQ-0M2" userLabel="Content View">
-                    <rect key="frame" x="3" y="3" width="573" height="53"/>
+                    <rect key="frame" x="5" y="5" width="569" height="49"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRt-DS-A3K" userLabel="Option Label">
-                            <rect key="frame" x="5" y="3" width="0.0" height="47"/>
+                            <rect key="frame" x="5" y="3" width="0.0" height="43"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVz-Bg-BlA" userLabel="Info Button">
-                            <rect key="frame" x="489" y="3" width="25" height="47"/>
+                            <rect key="frame" x="485" y="3" width="25" height="43"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" image="InfoIconBlack"/>
                         </button>
                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w1P-PH-cVL">
-                            <rect key="frame" x="519" y="3" width="51" height="47"/>
+                            <rect key="frame" x="515" y="3" width="51" height="43"/>
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="onTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </switch>
@@ -60,10 +60,10 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5w9-KQ-0M2" secondAttribute="trailing" constant="3" id="6uJ-Ji-QKu"/>
-                <constraint firstItem="5w9-KQ-0M2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="3" id="YXp-mw-eFL"/>
-                <constraint firstItem="5w9-KQ-0M2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="3" id="rCL-m1-hmM"/>
-                <constraint firstAttribute="bottom" secondItem="5w9-KQ-0M2" secondAttribute="bottom" constant="3" id="vLa-gd-y2D"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="5w9-KQ-0M2" secondAttribute="trailing" constant="5" id="6uJ-Ji-QKu"/>
+                <constraint firstItem="5w9-KQ-0M2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="YXp-mw-eFL"/>
+                <constraint firstItem="5w9-KQ-0M2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="rCL-m1-hmM"/>
+                <constraint firstAttribute="bottom" secondItem="5w9-KQ-0M2" secondAttribute="bottom" constant="5" id="vLa-gd-y2D"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-51.449275362318843" y="-205.91517857142856"/>

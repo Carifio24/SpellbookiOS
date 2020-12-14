@@ -20,7 +20,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // Filters
     static let sourcebookFilter: SpellFilter<Sourcebook> = { $0.sourcebook == $1 }
-    static let casterClassesFilter: SpellFilter<CasterClass> = { $0.usableByClass($1) }
+    static let casterClassesFilter: SpellFilter<CasterClass> = { $0.usableByClass($1, expanded: true) }
     static let schoolFilter: SpellFilter<School> = { $0.school == $1 }
     static let castingTimeTypeFilter: SpellFilter<CastingTimeType> = { $0.castingTime.type == $1 }
     static let durationTypeFilter: SpellFilter<DurationType> = { $0.duration.type == $1 }
@@ -420,7 +420,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         } else {
             print("Error reading profile")
-            throw SpellbookError.BadCharacterProfileError
+            let error = SpellbookError.BadCharacterProfileError
+            print(error.description)
+            throw error
         }
     }
     
@@ -515,7 +517,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 for spell in spells {
                     if item == spell.0.name {
                         propSetter(spell.0, true)
-                        print(spell.0.name)
+                        //print(spell.0.name)
                         //inSpellbook = true
                         break
                     }
@@ -842,8 +844,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     // Determine whether or not a single row should be filtered
-    func filterItem(spell s: Spell, profile cp: CharacterProfile, visibleSourcebooks: [Sourcebook], visibleClasses: [CasterClass], visibleSchools: [School], visibleCastingTimeTypes: [CastingTimeType], visibleDurationTypes: [DurationType], visibleRangeTypes: [RangeType], castingTimeBounds: (CastingTime,CastingTime), durationBounds: (Duration,Duration), rangeBounds: (Range,Range), isText: Bool, text: String) -> Bool {
-        let spname = s.name.lowercased()
+    func filterItem(spell: Spell, profile cp: CharacterProfile, visibleSourcebooks: [Sourcebook], visibleClasses: [CasterClass], visibleSchools: [School], visibleCastingTimeTypes: [CastingTimeType], visibleDurationTypes: [DurationType], visibleRangeTypes: [RangeType], castingTimeBounds: (CastingTime,CastingTime), durationBounds: (Duration,Duration), rangeBounds: (Range,Range), isText: Bool, text: String) -> Bool {
+        let spname = spell.name.lowercased()
         
         // If we aren't going to filter when searching, and there's search text,
         // we only need to check whether the spell name contains the search text
@@ -854,7 +856,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // If we aren't going to filter spell lists, and the current filter isn't ALL
         // just check if the spell is on the list
         if !cp.getApplyFiltersToLists() && cp.isStatusSet() {
-            var hide = !cp.satisfiesFilter(spell: s, filter: cp.getStatusFilter())
+            var hide = !cp.satisfiesFilter(spell: spell, filter: cp.getStatusFilter())
             if (isText) {
                 hide = hide || !spname.contains(text)
             }
@@ -864,45 +866,45 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Run through the various filtering fields
         
         // Level
-        let level = s.level
+        let level = spell.level
         if (level > cp.getMaxSpellLevel()) || (level < cp.getMinSpellLevel()) { return true }
         
         // Sourcebooks
-        if filterThroughArray(spell: s, values: visibleSourcebooks, filter: ViewController.sourcebookFilter) { return true }
+        if filterThroughArray(spell: spell, values: visibleSourcebooks, filter: ViewController.sourcebookFilter) { return true }
         
         // Classes
-        if filterThroughArray(spell: s, values: visibleClasses, filter: ViewController.casterClassesFilter) { return true }
+        if filterThroughArray(spell: spell, values: visibleClasses, filter: ViewController.casterClassesFilter) { return true }
         
         // Schools
-        if filterThroughArray(spell: s, values: visibleSchools, filter: ViewController.schoolFilter) { return true }
+        if filterThroughArray(spell: spell, values: visibleSchools, filter: ViewController.schoolFilter) { return true }
         
         // Casting time types
-        if filterThroughArray(spell: s, values: visibleCastingTimeTypes, filter: ViewController.castingTimeTypeFilter) { return true }
+        if filterThroughArray(spell: spell, values: visibleCastingTimeTypes, filter: ViewController.castingTimeTypeFilter) { return true }
         
         // Duration types
-        if filterThroughArray(spell: s, values: visibleDurationTypes, filter: ViewController.durationTypeFilter) { return true }
+        if filterThroughArray(spell: spell, values: visibleDurationTypes, filter: ViewController.durationTypeFilter) { return true }
         
         // Range types
-        if filterThroughArray(spell: s, values: visibleRangeTypes, filter: ViewController.rangeTypeFilter) { return true }
+        if filterThroughArray(spell: spell, values: visibleRangeTypes, filter: ViewController.rangeTypeFilter) { return true }
         
         // Casting time bounds
-        if filterAgainstBounds(spell: s, bounds: castingTimeBounds, quantityGetter: { $0.castingTime }) { return true }
+        if filterAgainstBounds(spell: spell, bounds: castingTimeBounds, quantityGetter: { $0.castingTime }) { return true }
         
         // Duration bounds
-        if filterAgainstBounds(spell: s, bounds: durationBounds, quantityGetter: { $0.duration }) { return true }
+        if filterAgainstBounds(spell: spell, bounds: durationBounds, quantityGetter: { $0.duration }) { return true }
         
         // Range bounds
-        if filterAgainstBounds(spell: s, bounds: rangeBounds, quantityGetter: { $0.range }) { return true }
+        if filterAgainstBounds(spell: spell, bounds: rangeBounds, quantityGetter: { $0.range }) { return true }
         
         // The rest of the filtering conditions
-        var toHide = (cp.favoritesSelected() && !cp.isFavorite(s))
-        toHide = toHide || (cp.knownSelected() && !cp.isKnown(s))
-        toHide = toHide || (cp.preparedSelected() && !cp.isPrepared(s))
-        toHide = toHide || !cp.getRitualFilter(s.ritual)
-        toHide = toHide || !cp.getConcentrationFilter(s.concentration)
-        toHide = toHide || !cp.getVerbalFilter(s.verbal)
-        toHide = toHide || !cp.getSomaticFilter(s.somatic)
-        toHide = toHide || !cp.getMaterialFilter(s.material)
+        var toHide = (cp.favoritesSelected() && !cp.isFavorite(spell))
+        toHide = toHide || (cp.knownSelected() && !cp.isKnown(spell))
+        toHide = toHide || (cp.preparedSelected() && !cp.isPrepared(spell))
+        toHide = toHide || !cp.getRitualFilter(spell.ritual)
+        toHide = toHide || !cp.getConcentrationFilter(spell.concentration)
+        toHide = toHide || !cp.getVerbalFilter(spell.verbal)
+        toHide = toHide || !cp.getSomaticFilter(spell.somatic)
+        toHide = toHide || !cp.getMaterialFilter(spell.material)
         toHide = toHide || (isText && !spname.contains(text))
         return toHide
     }

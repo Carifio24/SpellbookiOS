@@ -19,6 +19,7 @@ protocol Unit: Hashable & CaseIterable {
     
     static func fromString(_ s: String) throws -> Self
     static var defaultUnit: Self { get }
+    
 }
 
 extension Unit {
@@ -45,7 +46,6 @@ extension Unit {
                 }
             }
         }
-        print(s)
         throw SpellbookError.UnitStringError
     }
     

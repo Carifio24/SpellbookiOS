@@ -16,7 +16,7 @@ typealias Visibilities<T:NameDisplayable & CaseIterable & Hashable> = EnumMap<T,
 //typealias EnumInfo<T:NameDisplayable> = ((T) -> Bool, String, String)
 typealias EnumInfo = (Any.Type, Bool, (Any) -> Bool, String, String)
 
-class RangeInfo<U:Unit> {
+class RangeInfo<U:Unit> : NSCopying {
     var minUnit: U
     var maxUnit: U
     var minValue: Int
@@ -25,6 +25,16 @@ class RangeInfo<U:Unit> {
     init(minUnit: U, maxUnit: U, minValue: Int, maxValue: Int) {
         self.minUnit = minUnit; self.maxUnit = maxUnit; self.minValue = minValue; self.maxValue = maxValue
     }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        return RangeInfo<U>(minUnit: minUnit, maxUnit: maxUnit, minValue: minValue, maxValue: maxValue)
+    }
+    
+    func copy() -> RangeInfo<U> {
+        return copy(with: nil) as! RangeInfo<U>
+    }
+    
+    
 }
 
 class CharacterProfile {
@@ -190,7 +200,7 @@ class CharacterProfile {
     }
     
     convenience init(name: String, spellStatuses: [String:SpellStatus]) {
-        self.init(name: name, spellStatuses: spellStatuses, sortField1: SortField.Name, sortField2: SortField.Name, reverse1: false, reverse2: false, statusFilter: StatusFilterField.All, minSpellLevel: Spellbook.MIN_SPELL_LEVEL, maxSpellLevel: Spellbook.MAX_SPELL_LEVEL, sourcebookVisibilities: CharacterProfile.defaultSourcebookVisibilities, casterVisibilities: CharacterProfile.defaultCasterVisibilities, schoolVisibilities: CharacterProfile.defaultSchoolVisibilities, castingTimeTypeVisibilities: CharacterProfile.defaultCastingTimeTypeVisibilities, durationTypeVisibilities: CharacterProfile.defaultDurationTypeVisibilities, rangeTypeVisibilities: CharacterProfile.defaultRangeTypeVisibilities, castingTimeRangeInfo: CharacterProfile.defaultCastingTimeRangeInfo, durationRangeInfo: CharacterProfile.defaultDurationRangeInfo, rangeRangeInfo: CharacterProfile.defaultRangeRangeInfo, ritualFilter: true, notRitualFilter: true, concentrationFilter: true, notConcentrationFilter: true, verbalFilter: true, notVerbalFilter: true, somaticFilter: true, notSomaticFilter: true, materialFilter: true, notMaterialFilter: true, applyFiltersToLists: true, applyFiltersToSearch: true, useTCEExpandedLists: true)
+        self.init(name: name, spellStatuses: spellStatuses, sortField1: SortField.Name, sortField2: SortField.Name, reverse1: false, reverse2: false, statusFilter: StatusFilterField.All, minSpellLevel: Spellbook.MIN_SPELL_LEVEL, maxSpellLevel: Spellbook.MAX_SPELL_LEVEL, sourcebookVisibilities: CharacterProfile.defaultSourcebookVisibilities.copy(), casterVisibilities: CharacterProfile.defaultCasterVisibilities.copy(), schoolVisibilities: CharacterProfile.defaultSchoolVisibilities.copy(), castingTimeTypeVisibilities: CharacterProfile.defaultCastingTimeTypeVisibilities.copy(), durationTypeVisibilities: CharacterProfile.defaultDurationTypeVisibilities.copy(), rangeTypeVisibilities: CharacterProfile.defaultRangeTypeVisibilities.copy(), castingTimeRangeInfo: CharacterProfile.defaultCastingTimeRangeInfo.copy(), durationRangeInfo: CharacterProfile.defaultDurationRangeInfo.copy(), rangeRangeInfo: CharacterProfile.defaultRangeRangeInfo.copy(), ritualFilter: true, notRitualFilter: true, concentrationFilter: true, notConcentrationFilter: true, verbalFilter: true, notVerbalFilter: true, somaticFilter: true, notSomaticFilter: true, materialFilter: true, notMaterialFilter: true, applyFiltersToLists: false, applyFiltersToSearch: false, useTCEExpandedLists: false)
     }
     
     convenience init(name: String) {
@@ -206,10 +216,14 @@ class CharacterProfile {
         //print("Initializing character from:")
         //print(sion.toJSON())
         
+        let scagEnding = " (SCAG)"
         spellStatuses = [:]
         name = sion[CharacterProfile.nameKey].string!
         for (_, v) in sion[CharacterProfile.spellsKey] {
-            let spellName: String = v[CharacterProfile.spellNameKey].string!
+            var spellName: String = v[CharacterProfile.spellNameKey].string!
+            if Spellbook.SCAG_CANTRIPS.contains(spellName) {
+                spellName += scagEnding
+            }
             let fav = v[CharacterProfile.favoriteKey].bool!
             let prep = v[CharacterProfile.preparedKey].bool!
             let known = v[CharacterProfile.knownKey].bool!
@@ -788,7 +802,7 @@ class CharacterProfile {
         let rangeInfoSION = sion[key].dictionary
         
         // If we don't have the key (more specifically, if its associated value isn't a dictionary), return the default
-        let defaultRange = CharacterProfile.getDefaultQuantityRangeInfo(rangeType, unitType)!
+        let defaultRange = CharacterProfile.getDefaultQuantityRangeInfo(rangeType, unitType)!.copy()
         if rangeInfoSION == nil {
             return defaultRange as RangeInfo<U>
         }

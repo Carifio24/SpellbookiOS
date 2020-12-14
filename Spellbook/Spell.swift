@@ -59,9 +59,14 @@ public class Spell {
     }
 
 	// Other member functions
-	func usableByClass(_ cc: CasterClass) -> Bool {
-		return classes.contains(cc)
+    func usableByClass(_ cc: CasterClass, expanded: Bool) -> Bool {
+        let regularUsable = classes.contains(cc)
+        return regularUsable || (expanded && tashasExpandedClasses.contains(cc))
 	}
+    
+    func usableByClass(_ cc: CasterClass) -> Bool {
+        return usableByClass(cc, expanded: false)
+    }
 
 	func usableBySubclass(_ sub: SubClass) -> Bool {
 		return subclasses.contains(sub)
