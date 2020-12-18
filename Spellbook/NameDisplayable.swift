@@ -20,6 +20,7 @@ protocol NameConstructible: NameDisplayable, CaseIterable, Hashable {
     static func fromName(_ s: String) -> Self
     static var displayNameMap: EnumMap<Self,String> { get }
     static func allNames() -> [String]
+    static func nameComparator() -> (Self, Self) -> Bool
     
 }
 
@@ -42,6 +43,10 @@ extension NameConstructible {
             names.append(item.displayName)
         }
         return names
+    }
+    
+    static func nameComparator() -> (Self, Self) -> Bool {
+        return { t1, t2 in return t1.displayName < t2.displayName }
     }
     
 }

@@ -10,9 +10,11 @@ import UIKit
 
 class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
     
+    typealias ItemComparator = (T,T) -> Bool
+    
     let reuseIdentifier = "filterCell"
     
-    let items = T.allCases.map({ $0 }).sorted(by: { t1, t2 in t1.displayName < t2.displayName })
+    let items: [T]
     private var itemButtonMap: [T:ToggleButton] = [:]
     let columns: Int
     let rows: Int
@@ -25,12 +27,17 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
                                      bottom: 5,
                                      right: 5)
     
-    init(gridWidth: CGFloat) {
+    init(gridWidth: CGFloat, sortBy: ItemComparator? = nil) {
         
         self.gridWidth = gridWidth
+        var items = T.allCases.map({ $0 })
+        if sortBy != nil {
+            items = items.sorted(by: sortBy!)
+        }
+        self.items = items
         
         // Determine the number of rows and columns of the grid, based on the grid width
-        // Since all of our grids have fixed size, this is all that we need
+        // Since all of our grids have fixed width, this is all that we need
         // But this process could be easily adjusted for a fixed-height grid as well
         var maxWidth: CGFloat = 0
         let label = UILabel()
@@ -59,8 +66,8 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
         columnWidth = maxWidth
     }
     
-    override convenience init() {
-        self.init(gridWidth: UIScreen.main.bounds.size.width - CGFloat(10))
+    convenience init(sortBy:  ItemComparator? = nil) {
+        self.init(gridWidth: UIScreen.main.bounds.size.width - CGFloat(10), sortBy: sortBy)
     }
     
     

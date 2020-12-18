@@ -20,7 +20,7 @@ func has_key(obj: SION, key: String) -> Bool {
 
 func load_file(filepath: String) -> String {
 	let text = try! String(contentsOf: URL(fileURLWithPath: filepath))
-    print(text)
+    //print(text)
 	return text
 }
 
@@ -48,7 +48,7 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
         try b.setRange(Range.fromString(obj["range"].string!))
     } catch let e {
         print("\(e)")
-        print("Defaulted to empty distance")
+        //print("Defaulted to empty distance")
         b.setRange(Range())
     }
     

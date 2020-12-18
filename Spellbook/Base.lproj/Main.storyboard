@@ -1079,13 +1079,13 @@
                                                     <rect key="frame" x="0.0" y="21" width="414" height="36"/>
                                                     <subviews>
                                                         <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eEN-Ho-WP4" userLabel="First Level Choice">
-                                                            <rect key="frame" x="191" y="1" width="32" height="34"/>
+                                                            <rect key="frame" x="190.66666666666666" y="1" width="33" height="34"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n0U-Lk-Dt4" userLabel="First Level Arrow" customClass="ToggleButton" customModule="Spellbook" customModuleProvider="target">
-                                                            <rect key="frame" x="223" y="6" width="18" height="24"/>
+                                                            <rect key="frame" x="223.66666666666666" y="6" width="24" height="24"/>
                                                             <state key="normal" image="down_arrow.png"/>
                                                         </button>
                                                     </subviews>
@@ -1134,13 +1134,13 @@
                                                     <rect key="frame" x="0.0" y="21" width="414" height="36"/>
                                                     <subviews>
                                                         <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zHJ-mu-5Ea" userLabel="Second Level Choice">
-                                                            <rect key="frame" x="191" y="1" width="32" height="34"/>
+                                                            <rect key="frame" x="190.66666666666666" y="1" width="33" height="34"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                         <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dVJ-wT-Uee" userLabel="Second Level Arrow" customClass="ToggleButton" customModule="Spellbook" customModuleProvider="target">
-                                                            <rect key="frame" x="223" y="3" width="30" height="30"/>
+                                                            <rect key="frame" x="223.66666666666666" y="3" width="30" height="30"/>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1269,7 +1269,7 @@
                                                         <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wpk-lR-N0a" userLabel="Min Level Entry">
                                                             <rect key="frame" x="71" y="47" width="97" height="34"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" ≤ Spell Level ≤ " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJ3-0Y-fBq" userLabel="Level Range Label">
@@ -1282,7 +1282,7 @@
                                                         <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fGI-iz-fhU" userLabel="Max Level Entry">
                                                             <rect key="frame" x="104" y="47" width="32" height="34"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                         </textField>
                                                     </subviews>
@@ -2557,14 +2557,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PYC-05-3nc" userLabel="Content View">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pBz-so-y2e">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="35.333333333333336"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pBz-so-y2e">
+                                        <rect key="frame" x="5" y="5" width="404" height="35.333333333333336"/>
                                         <fontDescription key="fontDescription" name="CloisterBlack-Light" family="Cloister Black" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gzb-ZZ-hbM">
-                                        <rect key="frame" x="0.0" y="40.333333333333329" width="414" height="20.333333333333329"/>
+                                        <rect key="frame" x="5" y="45.333333333333329" width="404" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -2572,12 +2572,12 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="pBz-so-y2e" secondAttribute="trailing" id="7hL-L1-YH4"/>
-                                    <constraint firstItem="pBz-so-y2e" firstAttribute="leading" secondItem="PYC-05-3nc" secondAttribute="leading" id="ByM-uM-Tqx"/>
+                                    <constraint firstAttribute="trailing" secondItem="pBz-so-y2e" secondAttribute="trailing" constant="5" id="7hL-L1-YH4"/>
+                                    <constraint firstItem="pBz-so-y2e" firstAttribute="leading" secondItem="PYC-05-3nc" secondAttribute="leading" constant="5" id="ByM-uM-Tqx"/>
                                     <constraint firstItem="Gzb-ZZ-hbM" firstAttribute="top" secondItem="pBz-so-y2e" secondAttribute="bottom" constant="5" id="SFh-en-DRr"/>
-                                    <constraint firstAttribute="trailing" secondItem="Gzb-ZZ-hbM" secondAttribute="trailing" id="YFY-rc-7W0"/>
-                                    <constraint firstItem="Gzb-ZZ-hbM" firstAttribute="leading" secondItem="PYC-05-3nc" secondAttribute="leading" id="gFJ-JS-ugc"/>
-                                    <constraint firstItem="pBz-so-y2e" firstAttribute="top" secondItem="PYC-05-3nc" secondAttribute="top" id="j3U-aX-1MB"/>
+                                    <constraint firstAttribute="trailing" secondItem="Gzb-ZZ-hbM" secondAttribute="trailing" constant="5" id="YFY-rc-7W0"/>
+                                    <constraint firstItem="Gzb-ZZ-hbM" firstAttribute="leading" secondItem="PYC-05-3nc" secondAttribute="leading" constant="5" id="gFJ-JS-ugc"/>
+                                    <constraint firstItem="pBz-so-y2e" firstAttribute="top" secondItem="PYC-05-3nc" secondAttribute="top" constant="5" id="j3U-aX-1MB"/>
                                 </constraints>
                             </view>
                         </subviews>

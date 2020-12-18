@@ -20,7 +20,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // Filters
     static let sourcebookFilter: SpellFilter<Sourcebook> = { $0.sourcebook == $1 }
-    static let casterClassesFilter: SpellFilter<CasterClass> = { $0.usableByClass($1, expanded: true) }
+    static func casterClassesFilter(useExpanded: Bool) -> SpellFilter<CasterClass> {
+        return  { $0.usableByClass($1, expanded: useExpanded) }
+    }
     static let schoolFilter: SpellFilter<School> = { $0.school == $1 }
     static let castingTimeTypeFilter: SpellFilter<CastingTimeType> = { $0.castingTime.type == $1 }
     static let durationTypeFilter: SpellFilter<DurationType> = { $0.duration.type == $1 }
@@ -873,7 +875,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if filterThroughArray(spell: spell, values: visibleSourcebooks, filter: ViewController.sourcebookFilter) { return true }
         
         // Classes
-        if filterThroughArray(spell: spell, values: visibleClasses, filter: ViewController.casterClassesFilter) { return true }
+        if filterThroughArray(spell: spell, values: visibleClasses, filter: ViewController.casterClassesFilter(useExpanded: cp.getUseTCEExpandedLists())) { return true }
         
         // Schools
         if filterThroughArray(spell: spell, values: visibleSchools, filter: ViewController.schoolFilter) { return true }

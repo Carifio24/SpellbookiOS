@@ -124,9 +124,9 @@ class SortFilterTableController: UITableViewController {
     private let verbalDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getVerbalFilter(f) }, statusToggler: { cp, f in cp.toggleVerbalFilter(f) })
     private let somaticDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getSomaticFilter(f) }, statusToggler: { cp, f in cp.toggleSomaticFilter(f) })
     private let materialDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getMaterialFilter(f) }, statusToggler: { cp, f in cp.toggleMaterialFilter(f) })
-    private let sourcebookDelegate = FilterGridDelegate<Sourcebook>()
-    private let casterDelegate = FilterGridDelegate<CasterClass>()
-    private let schoolDelegate = FilterGridDelegate<School>()
+    private let sourcebookDelegate = FilterGridDelegate<Sourcebook>(sortBy: Sourcebook.nameComparator())
+    private let casterDelegate = FilterGridDelegate<CasterClass>(sortBy: CasterClass.nameComparator())
+    private let schoolDelegate = FilterGridDelegate<School>(sortBy: School.nameComparator())
     private var castingTimeDelegate: FilterGridRangeDelegate<CastingTimeType>?
     private var durationDelegate: FilterGridRangeDelegate<DurationType>?
     private var rangeDelegate: FilterGridRangeDelegate<RangeType>?

@@ -586,7 +586,7 @@ class CharacterProfile {
     }
     
     func setRangeBoundsToDefault<Q:QuantityType, U:Unit, T:Quantity<Q,U>>(type: T.Type) {
-        setRangeInfo(type, rangeInfo: CharacterProfile.getDefaultQuantityRangeInfo(type)!)
+        setRangeInfo(type, rangeInfo: CharacterProfile.getDefaultQuantityRangeInfo(type)!.copy())
     }
     
     // For getting range filter data
