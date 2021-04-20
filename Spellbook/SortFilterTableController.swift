@@ -71,6 +71,9 @@ class SortFilterTableController: UITableViewController {
     // Full level range button
     @IBOutlet weak var fullLevelRangeButton: UIButton!
     
+    // Show more/less sourcebooks
+    @IBOutlet weak var showMoreSourcebooksButton: UIButton!
+    
     // Text field delegates
     let firstSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getFirstSortField() }, setter: { cp, sf in cp.setFirstSortField(sf) }, title: "First Level Sorting")
     let secondSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getSecondSortField() }, setter: { cp, sf in cp.setSecondSortField(sf) }, title: "Second Level Sorting")
@@ -124,7 +127,7 @@ class SortFilterTableController: UITableViewController {
     private let verbalDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getVerbalFilter(f) }, statusToggler: { cp, f in cp.toggleVerbalFilter(f) })
     private let somaticDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getSomaticFilter(f) }, statusToggler: { cp, f in cp.toggleSomaticFilter(f) })
     private let materialDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getMaterialFilter(f) }, statusToggler: { cp, f in cp.toggleMaterialFilter(f) })
-    private let sourcebookDelegate = FilterGridDelegate<Sourcebook>(sortBy: Sourcebook.nameComparator())
+    private let sourcebookDelegate = FilterGridFeatureDelegate<Sourcebook>(featuredItems: Sourcebook.coreSourcebooks, sortBy: Sourcebook.coreNameComparator())
     private let casterDelegate = FilterGridDelegate<CasterClass>(sortBy: CasterClass.nameComparator())
     private let schoolDelegate = FilterGridDelegate<School>(sortBy: School.nameComparator())
     private var castingTimeDelegate: FilterGridRangeDelegate<CastingTimeType>?
@@ -263,6 +266,9 @@ class SortFilterTableController: UITableViewController {
         fullLevelRangeButton.setTitleColor(defaultFontColor, for: .normal)
         fullLevelRangeButton.sizeToFit()
         
+        // Set up the show more/less sourcebooks button
+        showMoreSourcebooksButton.addTarget(self, action: #selector(toggleFeaturedSourcebooks(_:)), for: .touchUpInside)
+        
         // Set the range layout types
         castingTimeRange.setType(CastingTime.self, centerText: "Other Time", title: "Time Unit")
         durationRange.setType(Duration.self, centerText: "Finite Duration", title: "Time Unit")
@@ -394,6 +400,20 @@ class SortFilterTableController: UITableViewController {
         let cp = Controllers.mainController.characterProfile
         cp.setMinSpellLevel(Spellbook.MIN_SPELL_LEVEL)
         cp.setMaxSpellLevel(Spellbook.MAX_SPELL_LEVEL)
+    }
+    
+    @objc func toggleFeaturedSourcebooks(_ sender: UIButton) {
+        sourcebookDelegate.toggleUseFeatured()
+        sourcebookGrid.reloadData()
+        let title = sourcebookDelegate.showingFeatured ? "Show More" : "Show Less"
+        showMoreSourcebooksButton.setTitle(title, for: .normal)
+        //reloadTableSection(SOURCEBOOK_SECTION)
+        let constraint = NSLayoutConstraint(item: sourcebookGrid!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: sourcebookDelegate.desiredHeight())
+        NSLayoutConstraint.activate([constraint])
+        self.view.setNeedsUpdateConstraints()
+        //self.tableView.reloadRows(at: [IndexPath(item: 1, section: SOURCEBOOK_SECTION)], with: .automatic)
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
     }
     
     

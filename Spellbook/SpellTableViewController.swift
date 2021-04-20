@@ -37,7 +37,7 @@ class SpellTableViewController: UITableViewController {
     static let estimatedHeight = CGFloat(60)
     
     // Filters
-    static let sourcebookFilter: SpellFilter<Sourcebook> = { $0.sourcebook == $1 }
+    static let sourcebookFilter: SpellFilter<Sourcebook> = { $0.isIn(sourcebook: $1) }
     static let casterClassesFilter: SpellFilter<CasterClass> = { $0.usableByClass($1) }
     static let schoolFilter: SpellFilter<School> = { $0.school == $1 }
     static let castingTimeTypeFilter: SpellFilter<CastingTimeType> = { $0.castingTime.type == $1 }
@@ -169,7 +169,7 @@ class SpellTableViewController: UITableViewController {
         // Set the text for the labels
         cell.nameLabel.text = spell.name
         cell.levelSchoolLabel.text = spell.levelSchoolString()
-        cell.sourcebookLabel.text = spell.sourcebook.code().uppercased()
+        cell.sourcebookLabel.text = spell.sourcebooksString()
         
         cell.nameLabel.textColor = defaultFontColor
         cell.levelSchoolLabel.textColor = defaultFontColor

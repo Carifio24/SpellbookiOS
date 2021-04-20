@@ -1,5 +1,5 @@
 enum SubClass: Int, NameConstructible {
-	case Land, Lore, Draconic, Hunter, Life, Devotion, Berserker, Evocation, Fiend, Thief, OpenHand
+	case Land, Lore, Draconic, Hunter, Life, Devotion, Berserker, Evocation, Fiend, Thief, OpenHand, Graviturgy, Chronurgy
     
     internal static var displayNameMap = EnumMap<SubClass,String> { e in
         switch(e) {
@@ -25,6 +25,10 @@ enum SubClass: Int, NameConstructible {
             return "Thief"
         case .OpenHand:
             return "OpenHand"
+        case .Graviturgy:
+            return "Graviturgy"
+        case .Chronurgy:
+            return "Chronurgy"
         }
     }
 }

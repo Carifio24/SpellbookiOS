@@ -1,5 +1,9 @@
 enum Sourcebook: Int, NameConstructible {
-	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG, TashasCOE
+	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG, TashasCOE, AcquisitionsInc, LostLabKwalish, RimeOTFrostmaiden, ExplorersGTW
+    
+    static let coreSourcebooks = [ PlayersHandbook, XanatharsGTE, TashasCOE ]
+    
+    var isCore: Bool { return Sourcebook.coreSourcebooks.contains(self) }
     
     internal static var displayNameMap = EnumMap<Sourcebook,String> { e in
         switch (e) {
@@ -11,6 +15,14 @@ enum Sourcebook: Int, NameConstructible {
             return "Sword Coast Adv. Guide"
         case .TashasCOE:
             return "Tasha's Cauldron of Everything"
+        case .AcquisitionsInc:
+            return "Acquisitions Incorporated"
+        case .LostLabKwalish:
+            return "Lost Laboratory of Kwalish"
+        case .RimeOTFrostmaiden:
+            return "Rime of the Frostmaiden"
+        case .ExplorersGTW:
+            return "Explorer's Guide to Wildemount"
         }
     }
     
@@ -18,10 +30,14 @@ enum Sourcebook: Int, NameConstructible {
         PlayersHandbook : "phb",
         XanatharsGTE : "xge",
         SwordCoastAG : "scag",
-        TashasCOE: "tce"
+        TashasCOE: "tce",
+        AcquisitionsInc: "ai",
+        LostLabKwalish: "llk",
+        RimeOTFrostmaiden: "rf",
+        ExplorersGTW: "egw"
     ]
     
-    func code() -> String {
+    var code: String {
         return Sourcebook.codeMap[self]!
     }
     
@@ -30,13 +46,21 @@ enum Sourcebook: Int, NameConstructible {
         return getOneKey(dict: Sourcebook.codeMap, value: t)
     }
     
+    static func coreNameComparator() -> (Sourcebook,Sourcebook) -> Bool {
+        return { sb1, sb2 in
+            if sb1.isCore != sb2.isCore {
+                return sb1.isCore
+            }
+            return sb1.displayName < sb2.displayName
+        }
+    }
     
     
     init?(code: String) {
         var matched: Bool = false
         var idx: Int = 0
         for x in Sourcebook.allCases {
-            if code == x.code() {
+            if code == x.code {
                 idx = x.rawValue
                 matched = true
                 break

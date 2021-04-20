@@ -33,11 +33,17 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
 	// Set the values that need no/trivial parsing
     b.setID(intGetter(obj, key: "id"))
         .setName(obj["name"].string!)
-        .setPage(intGetter(obj, key: "page"))
         .setLevel(intGetter(obj, key: "level"))
+        .setSchool(School.fromName(obj["school"].string!))
     
-    let sourcebook = Sourcebook.fromCode(obj["sourcebook"].string!)!
-    b.setSourcebook(sourcebook)
+    let locations = obj["locations"]
+    if !locations.isNil {
+        for location in locations.array! {
+            b.addLocation(sourcebook: Sourcebook.fromCode(location["sourcebook"].string!)!, page: location["page"].int!)
+        }
+    } else {
+        b.setLocations([:])
+    }
     let durationString = obj["duration"].string! // Use this again later for the concentration part
     do {
         try b.setDuration(Duration.fromString(durationString))
@@ -83,6 +89,7 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
         if v == "V" { b.setVerbal(true); continue }
         if v == "S" { b.setSomatic(true); continue }
         if v == "M" { b.setMaterial(true); continue }
+        if v == "R" { b.setRoyalty(true); continue }
 	}
 
 	// Description
@@ -95,36 +102,27 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
 	}
     b.setHigherLevelDesc(hlString)
 
-	// School
-    b.setSchool(School.fromName(obj["school"].string!))
-
 	// Classes
-	var classes: Array<CasterClass> = []
 	jarr = obj["classes"]
 	for (_, name) in jarr {
-        classes.append(CasterClass.fromName(name.string!))
+        b.addClass(CasterClass.fromName(name.string!))
 	}
-	b.setClasses(classes)
 
 	// Subclasses
-	var subclasses: Array<SubClass> = []
 	if has_key(obj: obj, key: "subclasses") {
 		jarr = obj["subclasses"]
 		for (_, name) in jarr {
-            subclasses.append(SubClass.fromName(name.string!))
+            b.addSubclass(SubClass.fromName(name.string!))
 		}
-		b.setSubclasses(subclasses)
 	}
     
     // Classes
-    var expandedClasses: Array<CasterClass> = []
     if has_key(obj: obj, key: "tce_expanded_classes") {
         jarr = obj["tce_expanded_classes"]
         for (_, name) in jarr {
-            expandedClasses.append(CasterClass.fromName(name.string!))
+            b.addTashasExpandedClass(CasterClass.fromName(name.string!))
         }
     }
-    b.setTashasExpandedClasses(expandedClasses)
 
 	// Return
 	return b.buildAndReset()

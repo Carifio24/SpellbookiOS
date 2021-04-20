@@ -19,7 +19,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var spellArray: [Spell] = []
     
     // Filters
-    static let sourcebookFilter: SpellFilter<Sourcebook> = { $0.sourcebook == $1 }
+    static let sourcebookFilter: SpellFilter<Sourcebook> = { $0.isIn(sourcebook: $1) }
     static func casterClassesFilter(useExpanded: Bool) -> SpellFilter<CasterClass> {
         return  { $0.usableByClass($1, expanded: useExpanded) }
     }
@@ -728,7 +728,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Set the text for the labels
         cell.nameLabel.text = spell.name
         cell.levelSchoolLabel.text = spell.levelSchoolString()
-        cell.sourcebookLabel.text = spell.sourcebook.code().uppercased()
+        cell.sourcebookLabel.text = spell.sourcebooksString()
         
         for label in [ cell.nameLabel, cell.levelSchoolLabel, cell.sourcebookLabel ] {
             label?.textColor = defaultFontColor

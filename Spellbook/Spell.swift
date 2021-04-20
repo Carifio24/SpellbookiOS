@@ -5,11 +5,11 @@ public class Spell {
     let name: String
 	let description: String
 	let higherLevel: String
-	let page: Int
 	let range: Range
     let verbal: Bool
     let somatic: Bool
     let material: Bool
+    let royalty: Bool
 	let materials: String
 	let ritual: Bool
 	let duration: Duration
@@ -20,23 +20,23 @@ public class Spell {
 	let classes: Array<CasterClass>
 	let subclasses: Array<SubClass>
     let tashasExpandedClasses: Array<CasterClass>
-    let sourcebook: Sourcebook
+    let locations: [Sourcebook:Int]
 
 	// Constructor
-    init(id: Int, name: String, description: String, higherLevel: String, page: Int, range: Range, verbal: Bool, somatic: Bool, material: Bool, materials: String, ritual: Bool, duration: Duration, concentration: Bool, castingTime: CastingTime, level: Int, school: School, classes: Array<CasterClass>, subclasses: Array<SubClass>, tashasExpandedClasses: Array<CasterClass>, sourcebook: Sourcebook) {
+    init(id: Int, name: String, description: String, higherLevel: String, range: Range, verbal: Bool, somatic: Bool, material: Bool, royalty: Bool, materials: String, ritual: Bool, duration: Duration, concentration: Bool, castingTime: CastingTime, level: Int, school: School, classes: Array<CasterClass>, subclasses: Array<SubClass>, tashasExpandedClasses: Array<CasterClass>, locations: [Sourcebook:Int]) {
         self.id = id; self.name = name; self.description = description; self.higherLevel = higherLevel;
-        self.page = page; self.range = range;
-        self.verbal = verbal; self.somatic = somatic; self.material = material;
+        self.range = range;
+        self.verbal = verbal; self.somatic = somatic; self.material = material; self.royalty = royalty;
         self.materials = materials;
         self.ritual = ritual; self.duration = duration; self.concentration = concentration;
         self.castingTime = castingTime; self.level = level; self.school = school;
         self.classes = classes; self.subclasses = subclasses;
-        self.tashasExpandedClasses = tashasExpandedClasses; self.sourcebook = sourcebook;
+        self.tashasExpandedClasses = tashasExpandedClasses; self.locations = locations;
     }
     
     // Default constructor (for convenience, when necessary)
     convenience init() {
-        self.init(id: 0, name: "", description: "", higherLevel: "", page: 0, range: Range(), verbal: false, somatic: false, material: false, materials: "", ritual: false, duration: Duration(), concentration: false, castingTime: CastingTime(), level: 0, school: School.Abjuration, classes: [], subclasses: [], tashasExpandedClasses: [], sourcebook: Sourcebook.PlayersHandbook)
+        self.init(id: 0, name: "", description: "", higherLevel: "", range: Range(), verbal: false, somatic: false, material: false, royalty: false, materials: "", ritual: false, duration: Duration(), concentration: false, castingTime: CastingTime(), level: 0, school: School.Abjuration, classes: [], subclasses: [], tashasExpandedClasses: [], locations: [:])
     }
     
 
@@ -46,6 +46,7 @@ public class Spell {
 		if verbal {compStr += "V"}
 		if somatic {compStr += "S"}
 		if material {compStr += "M"}
+        if royalty { compStr += "R" }
 		return compStr
 	}
 
@@ -71,6 +72,14 @@ public class Spell {
 	func usableBySubclass(_ sub: SubClass) -> Bool {
 		return subclasses.contains(sub)
 	}
+    
+    func isIn(sourcebook: Sourcebook) -> Bool {
+        return locations[sourcebook] != nil
+    }
+    
+    func sourcebooksString() -> String {
+        return locations.map{$0.key.code}.joined(separator: ", ")
+    }
     
     // School and level as a String
     func levelSchoolString() -> String {

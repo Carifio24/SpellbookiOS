@@ -8,21 +8,23 @@
 
 import UIKit
 
+fileprivate let defaultWidth: CGFloat = UIScreen.main.bounds.size.width - CGFloat(10)
+
 class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
     
     typealias ItemComparator = (T,T) -> Bool
     
     let reuseIdentifier = "filterCell"
     
-    let items: [T]
+    fileprivate(set) var items: [T]
     private var itemButtonMap: [T:ToggleButton] = [:]
     let columns: Int
     let rows: Int
     private let gridWidth: CGFloat
     private let columnWidth: CGFloat
-    private let rowHeight: CGFloat = FilterView.imageHeight
+    fileprivate let rowHeight: CGFloat = FilterView.imageHeight
     private let main = Controllers.mainController
-    private let sectionInsets = UIEdgeInsets(top: 5,
+    fileprivate let sectionInsets = UIEdgeInsets(top: 5,
                                      left: 5,
                                      bottom: 5,
                                      right: 5)
@@ -67,7 +69,7 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
     }
     
     convenience init(sortBy:  ItemComparator? = nil) {
-        self.init(gridWidth: UIScreen.main.bounds.size.width - CGFloat(10), sortBy: sortBy)
+        self.init(gridWidth: defaultWidth, sortBy: sortBy)
     }
     
     
@@ -182,6 +184,44 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
     
 }
 
+class FilterGridFeatureDelegate<T:NameConstructible> : FilterGridDelegate<T> {
+    let featuredItems: [T]
+    let allItems: [T]
+    var featuredRows: Int = 0
+    private(set) var showingFeatured: Bool
+    
+    init(featuredItems: [T], gridWidth: CGFloat, sortBy: ItemComparator? = nil) {
+        var allItems = T.allCases.map({$0})
+        var featured = featuredItems
+        if sortBy != nil {
+            allItems.sort(by: sortBy!)
+            featured.sort(by: sortBy!)
+        }
+        self.featuredItems = featured
+        self.allItems = allItems
+        self.showingFeatured = false
+        super.init(gridWidth: gridWidth, sortBy: sortBy)
+        self.featuredRows = Int(Float(featuredItems.count / self.columns).rounded(.up))
+    }
+    
+    func useFeatured() { self.items = self.featuredItems; self.showingFeatured = true }
+    func useAll() { self.items = self.allItems; self.showingFeatured = false }
+    func toggleUseFeatured() { self.showingFeatured ? self.useAll() : self.useFeatured() }
+    
+    convenience init(featuredItems: [T], sortBy: ItemComparator? = nil) {
+        self.init(featuredItems: featuredItems, gridWidth: defaultWidth, sortBy: sortBy)
+    }
+    
+    override func desiredHeight() -> CGFloat {
+        //print("There are \(rows) rows, each with height \(rowHeight)")
+        let rowsToUse = self.showingFeatured ? self.featuredRows : self.rows
+        let height = CGFloat(rowsToUse + 1) * sectionInsets.top + CGFloat(rowsToUse) * rowHeight
+        print("The desired height is \(height)")
+        return height
+    }
+}
+
+
 class FilterGridRangeDelegate<T:QuantityType>: FilterGridDelegate<T> {
     
     typealias FlagSetter = (Bool) -> Void
@@ -194,7 +234,7 @@ class FilterGridRangeDelegate<T:QuantityType>: FilterGridDelegate<T> {
     }
     
     convenience init(flagSetter: @escaping FlagSetter) {
-        self.init(gridWidth: UIScreen.main.bounds.size.width - CGFloat(10), flagSetter: flagSetter)
+        self.init(gridWidth: defaultWidth, flagSetter: flagSetter)
     }
     
     
@@ -211,6 +251,5 @@ class FilterGridRangeDelegate<T:QuantityType>: FilterGridDelegate<T> {
         }
         return cell
     }
-    
     
 }
