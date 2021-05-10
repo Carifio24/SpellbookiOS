@@ -311,6 +311,9 @@ class SortFilterTableController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
 
     // MARK: - Table view data source
 
@@ -476,11 +479,17 @@ class SortFilterTableController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = indexPath.section
         let row = indexPath.row
+        
+        if (section == SOURCEBOOK_SECTION && row == 0) {
+            return selectAllSourcebooks.frame.size.height + showMoreSourcebooksButton.frame.size.height
+        }
+        
         //print("In heightForRowAt with section \(section), row \(row)")
         if (!rangeSections.contains(section) || row != 2) {
             //print("Default result")
             return tableView.rowHeight
         }
+        
         //print("Not default")
         //print("rangeSectionFlag is \(rangeSectionFlag(section))")
         return rangeSectionFlag(section) ? tableView.rowHeight : 0

@@ -1,6 +1,0 @@
-framework module Pods_Spellbook_SpellbookUITests {
-  umbrella header "Pods-Spellbook-SpellbookUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

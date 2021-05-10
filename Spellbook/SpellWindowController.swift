@@ -199,7 +199,7 @@ class SpellWindowController: UIViewController {
     }
     
     func locationText(_ s: Spell) -> String {
-         return s.locations.map { $0.key.code.uppercased() + ": " + String($0.value) }.joined(separator: ", ")
+         return s.locations.map { $0.key.code.uppercased() + " " + String($0.value) }.joined(separator: ", ")
     }
 
 }

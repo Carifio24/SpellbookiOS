@@ -216,7 +216,7 @@ class FilterGridFeatureDelegate<T:NameConstructible> : FilterGridDelegate<T> {
         //print("There are \(rows) rows, each with height \(rowHeight)")
         let rowsToUse = self.showingFeatured ? self.featuredRows : self.rows
         let height = CGFloat(rowsToUse + 1) * sectionInsets.top + CGFloat(rowsToUse) * rowHeight
-        print("The desired height is \(height)")
+        //print("The desired height is \(height)")
         return height
     }
 }

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4A6380F27F7724BE52822F0893BB0C8E"
-               BuildableName = "Pods_Spellbook_SpellbookUITests.framework"
-               BlueprintName = "Pods-Spellbook-SpellbookUITests"
+               BlueprintIdentifier = "C629F34467F328920FCD50851C1C9155"
+               BuildableName = "Pods_SpellbookUITests.framework"
+               BlueprintName = "Pods-SpellbookUITests"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

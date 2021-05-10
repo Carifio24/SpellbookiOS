@@ -60,14 +60,10 @@ public class Spell {
     }
 
 	// Other member functions
-    func usableByClass(_ cc: CasterClass, expanded: Bool) -> Bool {
+    func usableByClass(_ cc: CasterClass, expanded: Bool = false) -> Bool {
         let regularUsable = classes.contains(cc)
         return regularUsable || (expanded && tashasExpandedClasses.contains(cc))
 	}
-    
-    func usableByClass(_ cc: CasterClass) -> Bool {
-        return usableByClass(cc, expanded: false)
-    }
 
 	func usableBySubclass(_ sub: SubClass) -> Bool {
 		return subclasses.contains(sub)
@@ -78,7 +74,7 @@ public class Spell {
     }
     
     func sourcebooksString() -> String {
-        return locations.map{$0.key.code}.joined(separator: ", ")
+        return locations.map{$0.key.code.uppercased()}.joined(separator: ", ")
     }
     
     // School and level as a String

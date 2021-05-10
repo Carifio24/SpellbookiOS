@@ -111,7 +111,10 @@
 		8ED0B932242BE9E800A085F4 /* down_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED0B931242BE9E800A085F4 /* down_arrow.png */; };
 		8ED0B936242E514F00A085F4 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED0B935242E514F00A085F4 /* FilterView.swift */; };
 		8ED0B9382431392700A085F4 /* NameDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED0B9372431392700A085F4 /* NameDisplayable.swift */; };
-		948C0E55A661EE1C18F63C3D /* Pods_Spellbook_SpellbookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB503BB6FC58E23030A51E31 /* Pods_Spellbook_SpellbookUITests.framework */; };
+		8EEAFCCA2645FB4C00A05D01 /* CharacterProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEAFCC92645FB4C00A05D01 /* CharacterProfileTests.swift */; };
+		8EF6EF0B264668F60059BCE8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0A264668F60059BCE8 /* Version.swift */; };
+		8EF6EF0D26485A2E0059BCE8 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */; };
+		CB83F840FFCD694FF7F68B6C /* Pods_SpellbookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3455F8D46FA0B4CF5F5E0C /* Pods_SpellbookUITests.framework */; };
 		D729E22F478B355AE7821320 /* Pods_Spellbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F52835E1AFE88EEDAA5E6F4 /* Pods_Spellbook.framework */; };
 /* End PBXBuildFile section */
 
@@ -251,7 +254,12 @@
 		8ED0B931242BE9E800A085F4 /* down_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_arrow.png; sourceTree = SOURCE_ROOT; };
 		8ED0B935242E514F00A085F4 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		8ED0B9372431392700A085F4 /* NameDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameDisplayable.swift; sourceTree = "<group>"; };
-		CB503BB6FC58E23030A51E31 /* Pods_Spellbook_SpellbookUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spellbook_SpellbookUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EEAFCC92645FB4C00A05D01 /* CharacterProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProfileTests.swift; sourceTree = "<group>"; };
+		8EF6EF0A264668F60059BCE8 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
+		8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTests.swift; sourceTree = "<group>"; };
+		94AD71A6585758027403E648 /* Pods-SpellbookUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpellbookUITests.debug.xcconfig"; path = "Target Support Files/Pods-SpellbookUITests/Pods-SpellbookUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9F3455F8D46FA0B4CF5F5E0C /* Pods_SpellbookUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpellbookUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B99DF75ACA873A5DE055F227 /* Pods-SpellbookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpellbookUITests.release.xcconfig"; path = "Target Support Files/Pods-SpellbookUITests/Pods-SpellbookUITests.release.xcconfig"; sourceTree = "<group>"; };
 		DE6D2E6E2D786F2DE413830B /* Pods-Spellbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spellbook.release.xcconfig"; path = "Target Support Files/Pods-Spellbook/Pods-Spellbook.release.xcconfig"; sourceTree = "<group>"; };
 		EE3F9E4F2FA898B5DC95F959 /* Pods-Spellbook-SpellbookUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spellbook-SpellbookUITests.debug.xcconfig"; path = "Target Support Files/Pods-Spellbook-SpellbookUITests/Pods-Spellbook-SpellbookUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -277,7 +285,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				948C0E55A661EE1C18F63C3D /* Pods_Spellbook_SpellbookUITests.framework in Frameworks */,
+				CB83F840FFCD694FF7F68B6C /* Pods_SpellbookUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +301,8 @@
 				60E6B430935826708B306334 /* Pods-Spellbook-SpellbookUITests.release.xcconfig */,
 				0B1F6F8D5F47845DF8DF0EC9 /* Pods-SpellbookTests.debug.xcconfig */,
 				58DC16B854EE4ADBC5F4983A /* Pods-SpellbookTests.release.xcconfig */,
+				94AD71A6585758027403E648 /* Pods-SpellbookUITests.debug.xcconfig */,
+				B99DF75ACA873A5DE055F227 /* Pods-SpellbookUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -412,6 +422,7 @@
 				8E19DA4F257C094A002B4F43 /* FilterOptionView.swift */,
 				8E19DA54257C095A002B4F43 /* FilterOptionView.xib */,
 				8E19DA59257D6D46002B4F43 /* MessageDialogController.swift */,
+				8EF6EF0A264668F60059BCE8 /* Version.swift */,
 			);
 			path = Spellbook;
 			sourceTree = "<group>";
@@ -421,6 +432,8 @@
 			children = (
 				397EE97D21ACA86800B116B0 /* SpellbookTests.swift */,
 				397EE97F21ACA86800B116B0 /* Info.plist */,
+				8EEAFCC92645FB4C00A05D01 /* CharacterProfileTests.swift */,
+				8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */,
 			);
 			path = SpellbookTests;
 			sourceTree = "<group>";
@@ -449,8 +462,8 @@
 			children = (
 				39F1046F21AD87F40068A09E /* SION.swift */,
 				7F52835E1AFE88EEDAA5E6F4 /* Pods_Spellbook.framework */,
-				CB503BB6FC58E23030A51E31 /* Pods_Spellbook_SpellbookUITests.framework */,
 				3F089C7503C44FC8DBBE004A /* Pods_SpellbookTests.framework */,
+				9F3455F8D46FA0B4CF5F5E0C /* Pods_SpellbookUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -548,7 +561,6 @@
 				397EE98021ACA86900B116B0 /* Sources */,
 				397EE98121ACA86900B116B0 /* Frameworks */,
 				397EE98221ACA86900B116B0 /* Resources */,
-				72FE75786D316764AD31A658 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -675,23 +687,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		72FE75786D316764AD31A658 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Spellbook-SpellbookUITests/Pods-Spellbook-SpellbookUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Spellbook-SpellbookUITests/Pods-Spellbook-SpellbookUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Spellbook-SpellbookUITests/Pods-Spellbook-SpellbookUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		80D32404DAD258AB3A82DA41 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -746,7 +741,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Spellbook-SpellbookUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-SpellbookUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -806,6 +801,7 @@
 				8E614916241991C200842A18 /* SideMenuController.swift in Sources */,
 				8E6148F5241991C200842A18 /* SpellTableViewController.swift in Sources */,
 				8E6148E4241991C200842A18 /* SourcebookFilterController.swift in Sources */,
+				8EF6EF0B264668F60059BCE8 /* Version.swift in Sources */,
 				8E61491E241991C200842A18 /* Constants.swift in Sources */,
 				8E614908241991C200842A18 /* SION.swift in Sources */,
 				8E614904241991C200842A18 /* Range.swift in Sources */,
@@ -847,6 +843,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				397EE97E21ACA86800B116B0 /* SpellbookTests.swift in Sources */,
+				8EEAFCCA2645FB4C00A05D01 /* CharacterProfileTests.swift in Sources */,
+				8EF6EF0D26485A2E0059BCE8 /* VersionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1019,6 +1017,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
 				CURRENT_PROJECT_VERSION = 26;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = RSR87G74R7;
 				INFOPLIST_FILE = Spellbook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1047,6 +1046,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
 				CURRENT_PROJECT_VERSION = 26;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = RSR87G74R7;
 				INFOPLIST_FILE = Spellbook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1080,6 +1080,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dnd.jon.SpellbookTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "SWRevealViewController/Spellbook-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Spellbook.app/Spellbook";
@@ -1102,6 +1104,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = dnd.jon.SpellbookTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SWRevealViewController/Spellbook-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Spellbook.app/Spellbook";
@@ -1110,7 +1113,7 @@
 		};
 		397EE99421ACA86900B116B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE3F9E4F2FA898B5DC95F959 /* Pods-Spellbook-SpellbookUITests.debug.xcconfig */;
+			baseConfigurationReference = 94AD71A6585758027403E648 /* Pods-SpellbookUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1131,7 +1134,7 @@
 		};
 		397EE99521ACA86900B116B0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 60E6B430935826708B306334 /* Pods-Spellbook-SpellbookUITests.release.xcconfig */;
+			baseConfigurationReference = B99DF75ACA873A5DE055F227 /* Pods-SpellbookUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

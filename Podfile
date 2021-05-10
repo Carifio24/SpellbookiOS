@@ -13,6 +13,7 @@ target 'Spellbook' do
   end
 
   target 'SpellbookUITests' do
+    inherit! :search_paths
     # Pods for testing
   end
 

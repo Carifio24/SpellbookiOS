@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Spellbook
+//@testable import Spellbook
 
 class SpellbookTests: XCTestCase {
 

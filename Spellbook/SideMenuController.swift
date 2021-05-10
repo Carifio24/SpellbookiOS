@@ -11,14 +11,12 @@ import UIKit
 class SideMenuController: UIViewController, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet var backgroundView: UIImageView!
-    
     @IBOutlet var sideMenuHeader: UILabel!
-    
     @IBOutlet var statusFilterView: UIView!
-    
     @IBOutlet var characterLabel: UILabel!
-    
     @IBOutlet var selectionButton: UIButton!
+    @IBOutlet weak var updateInfoLabel: UILabel!
+    @IBOutlet weak var whatsNewButton: UIButton!
     
     var statusController: StatusFilterController?
     
@@ -69,7 +67,11 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         let selectionButtonHeight = CGFloat(20)
         let belowFilterPadding = CGFloat(15)
         let belowCharacterLabelPadding = CGFloat(14)
+        let belowSelectionButtonPadding = CGFloat(14)
         let notchTopPadding = CGFloat(35)
+        let updateInfoLabelHeight = CGFloat(20)
+        let belowUpdateInfoLabelPadding = CGFloat(14)
+        let whatsNewButtonHeight = CGFloat(20)
         
         // Set up the view positioning
         var currentY = CGFloat(topPadding)
@@ -86,6 +88,12 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         
         currentY += characterLabelHeight + belowCharacterLabelPadding
         selectionButton.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: selectionButtonHeight)
+        
+        currentY += selectionButtonHeight + belowSelectionButtonPadding
+        updateInfoLabel.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: updateInfoLabelHeight)
+        
+        currentY += updateInfoLabelHeight + belowUpdateInfoLabelPadding
+        whatsNewButton.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: whatsNewButtonHeight)
         
         // The character selection button callback
         selectionButton.addTarget(self, action: #selector(selectionButtonPressed), for: UIControl.Event.touchUpInside)

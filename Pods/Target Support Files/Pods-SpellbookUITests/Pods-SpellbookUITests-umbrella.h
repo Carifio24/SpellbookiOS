@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_Spellbook_SpellbookUITestsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_Spellbook_SpellbookUITestsVersionString[];
+FOUNDATION_EXPORT double Pods_SpellbookUITestsVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_SpellbookUITestsVersionString[];
 
