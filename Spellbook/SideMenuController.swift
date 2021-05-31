@@ -98,6 +98,9 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         // The character selection button callback
         selectionButton.addTarget(self, action: #selector(selectionButtonPressed), for: UIControl.Event.touchUpInside)
         
+        // The what's new selection button callback
+        whatsNewButton.addTarget(self, action: #selector(updateInfoButtonPressed), for: UIControl.Event.touchUpInside)
+        
         characterLabel.textColor = defaultFontColor
         
     }
@@ -161,6 +164,29 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         if statusController != nil {
             statusController!.setFilter(profile.getStatusFilter())
         }
+    }
+    
+    @objc func updateInfoButtonPressed() {
+        
+        let updateFontSize = CGFloat(14)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "messageDialog") as! MessageDialogController
+        controller.titleText = VersionInfo.updateTitle
+        var updateText = VersionInfo.updateText
+        fixEscapeCharacters(&updateText)
+        updateText = "<span-style=\"font-size: \(updateFontSize)\">\(updateText)</span>"
+        let attrText = updateText.convertHtmlToAttributedStringWithCSS(font: UIFont.systemFont(ofSize: updateFontSize), csscolor: "black", lineheight: 5, csstextalign: "left")
+        controller.attributedMessageText = attrText
+        
+        let popupHeight = 0.33 * SizeUtils.screenHeight
+        let popupWidth = 0.75 * SizeUtils.screenWidth
+        let maxPopupHeight = CGFloat(320)
+        let maxPopupWidth = CGFloat(370)
+        let height = popupHeight <= maxPopupHeight ? popupHeight : maxPopupHeight
+        let width = popupWidth <= maxPopupWidth ? popupWidth : maxPopupWidth
+        
+        let popupVC = PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
+        self.present(popupVC, animated: true, completion: nil)
     }
     
     

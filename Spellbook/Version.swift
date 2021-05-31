@@ -22,8 +22,8 @@ class Version: Comparable {
         self.patch = patch
     }
     
-    func string() -> String {
-        return "\(major).\(minor).\(patch)"
+    func string(separator: String = ".") -> String {
+        return "\(major)\(separator)\(minor)\(separator)\(patch)"
     }
     
     static func fromString(_ str: String) -> Version? {

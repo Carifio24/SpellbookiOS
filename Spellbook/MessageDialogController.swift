@@ -21,12 +21,21 @@ class MessageDialogController: UIViewController {
         didSet { messageLabel?.text = messageText }
     }
     
+    var attributedMessageText: NSAttributedString? = NSAttributedString(string: "") {
+        didSet { messageLabel?.attributedText = attributedMessageText }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.textColor = defaultFontColor
         messageLabel.textColor = defaultFontColor
         titleLabel.text = titleText
-        messageLabel.text = messageText
+        if attributedMessageText != nil {
+            messageLabel.attributedText = attributedMessageText
+        }
+        //titleLabel.sizeToFit()
+        //titleLabel.backgroundColor = UIColor.blue
+        //messageLabel.backgroundColor = UIColor.red
         // Do any additional setup after loading the view.
     }
     
