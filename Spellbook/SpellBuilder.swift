@@ -24,6 +24,7 @@ public class SpellBuilder {
     private(set) var material: Bool = false
     private(set) var royalty: Bool = false
     private(set) var materials: String = ""
+    private(set) var royalties: String = ""
     private(set) var ritual: Bool = false
     private(set) var duration: Duration = Duration()
     private(set) var concentration: Bool = false
@@ -46,6 +47,7 @@ public class SpellBuilder {
     func setMaterial(_ material: Bool) -> SpellBuilder { self.material = material; return self }
     func setRoyalty(_ royalty: Bool) -> SpellBuilder { self.royalty = royalty; return self }
     func setMaterials(_ materials: String) -> SpellBuilder { self.materials = materials; return self }
+    func setRoyalties(_ royalties: String) -> SpellBuilder { self.royalties = royalties; return self }
     func setRitual(_ ritual: Bool) -> SpellBuilder { self.ritual = ritual; return self }
     func setDuration(_ duration: Duration) -> SpellBuilder { self.duration = duration; return self }
     func setConcentration(_ concentration: Bool) -> SpellBuilder { self.concentration = concentration; return self }
@@ -65,14 +67,14 @@ public class SpellBuilder {
     
     // Build
     func build() -> Spell {
-        return Spell(id: id, name: name, description: description, higherLevel: higherLevel, range: range, verbal: verbal, somatic: somatic, material: material, royalty: royalty, materials: materials, ritual: ritual, duration: duration, concentration: concentration, castingTime: castingTime, level: level, school: school, classes: classes, subclasses: subclasses, tashasExpandedClasses: tashasExpandedClasses, locations: locations)
+        return Spell(id: id, name: name, description: description, higherLevel: higherLevel, range: range, verbal: verbal, somatic: somatic, material: material, royalty: royalty, materials: materials, royalties: royalties, ritual: ritual, duration: duration, concentration: concentration, castingTime: castingTime, level: level, school: school, classes: classes, subclasses: subclasses, tashasExpandedClasses: tashasExpandedClasses, locations: locations)
     }
     
     // Reset to default values
     func reset() {
         id = 0; name = ""; description = ""; higherLevel = "";
         range = Range(); verbal = false; somatic = false; material = false; royalty = false;
-        materials = ""; ritual = false; duration = Duration();
+        materials = ""; royalties = ""; ritual = false; duration = Duration();
         concentration = false; castingTime = CastingTime(); level = 0;
         school = School.Abjuration; classes = []; subclasses = [];
         tashasExpandedClasses = []; locations = [:]

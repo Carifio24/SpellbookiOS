@@ -48,6 +48,7 @@ class SpellWindowController: UIViewController {
     @IBOutlet weak var rangeLabel: UILabel!
     @IBOutlet weak var componentsLabel: UILabel!
     @IBOutlet weak var materialsLabel: UILabel!
+    @IBOutlet weak var royaltyLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var classesLabel: UILabel!
     @IBOutlet weak var expandedClassesLabel: UILabel!
@@ -60,6 +61,11 @@ class SpellWindowController: UIViewController {
     @IBOutlet weak var knownButton: ToggleButton!
     
     @IBOutlet weak var backgroundView: UIImageView!
+    
+    // Spacing constraints for the spacing between the components/materials/royalties/duration labels
+    // Since the materials and royalties labels may or may not contain text, we want to add spacing between only in they do
+    @IBOutlet weak var componentsMaterialSpacing: NSLayoutConstraint!
+    @IBOutlet weak var materialRoyaltySpacing: NSLayoutConstraint!
     
     static let spellKey = "spell"
     static let spellIndexKey = "spellIndex"
@@ -134,7 +140,9 @@ class SpellWindowController: UIViewController {
     
     func setSpell(_ spell: Spell) {
         
-        // Set the attributed text on the name label
+        var needsLayoutUpdate = false
+        
+        // Set the text on the name label
         spellNameLabel.text = spell.name
         
         // Do the same for the body of the spell text
@@ -145,6 +153,13 @@ class SpellWindowController: UIViewController {
         componentsLabel.attributedText = propertyText(name: "Components", text: spell.componentsString())
         if !spell.materials.isEmpty {
             materialsLabel.attributedText = propertyText(name: "Materials", text: spell.materials)
+            componentsMaterialSpacing.constant = 2
+            needsLayoutUpdate = true
+        }
+        if spell.royalty {
+            royaltyLabel.attributedText = propertyText(name: "Royalty", text: spell.royalties)
+            materialRoyaltySpacing.constant = 2
+            needsLayoutUpdate = true
         }
         rangeLabel.attributedText = propertyText(name: "Range", text: spell.range.string())
         concentrationLabel.attributedText = propertyText(name: "Concentration", text: bool_to_yn(yn: spell.concentration))
@@ -168,6 +183,12 @@ class SpellWindowController: UIViewController {
         // Set the scroll view content size
         scrollView.contentSize = self.view.frame.size
         //print("Scroll enabled: \(scrollView.isScrollEnabled)")
+        
+        // Update the constraints if necessary
+        if needsLayoutUpdate {
+            self.view.setNeedsLayout()
+            self.view.layoutIfNeeded()
+        }
     }
     
     

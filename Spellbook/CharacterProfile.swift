@@ -295,6 +295,15 @@ class CharacterProfile {
         applyFiltersToSearch = sion[CharacterProfile.applyFiltersToSearchKey].bool ?? false
         useTCEExpandedLists = sion[CharacterProfile.useTCEExpandedListsKey].bool ?? false
         
+        // Any version-specific options
+        let versionCode: String? = sion[CharacterProfile.versionCodeKey].string ?? nil
+        if (versionCode == nil || versionCode! != VersionInfo.currentVersionKey) {
+            let new_v211 = [ Sourcebook.ExplorersGTW, Sourcebook.RimeOTFrostmaiden, Sourcebook.LostLabKwalish, Sourcebook.AcquisitionsInc ]
+            for sb in new_v211 {
+                self.setVisibility(sb, false)
+            }
+        }
+        
     }
     
     // To SION
@@ -366,7 +375,7 @@ class CharacterProfile {
         sion[CharacterProfile.useTCEExpandedListsKey] = SION(useTCEExpandedLists)
 
         // Put in the version code
-        sion[CharacterProfile.versionCodeKey] = SION(Constants.VERSION_CODE)
+        sion[CharacterProfile.versionCodeKey] = SION(VersionInfo.currentVersionKey)
         
         return sion
     }

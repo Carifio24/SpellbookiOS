@@ -11,6 +11,7 @@ public class Spell {
     let material: Bool
     let royalty: Bool
 	let materials: String
+    let royalties: String
 	let ritual: Bool
 	let duration: Duration
     let concentration: Bool
@@ -23,11 +24,11 @@ public class Spell {
     let locations: [Sourcebook:Int]
 
 	// Constructor
-    init(id: Int, name: String, description: String, higherLevel: String, range: Range, verbal: Bool, somatic: Bool, material: Bool, royalty: Bool, materials: String, ritual: Bool, duration: Duration, concentration: Bool, castingTime: CastingTime, level: Int, school: School, classes: Array<CasterClass>, subclasses: Array<SubClass>, tashasExpandedClasses: Array<CasterClass>, locations: [Sourcebook:Int]) {
+    init(id: Int, name: String, description: String, higherLevel: String, range: Range, verbal: Bool, somatic: Bool, material: Bool, royalty: Bool, materials: String, royalties: String, ritual: Bool, duration: Duration, concentration: Bool, castingTime: CastingTime, level: Int, school: School, classes: Array<CasterClass>, subclasses: Array<SubClass>, tashasExpandedClasses: Array<CasterClass>, locations: [Sourcebook:Int]) {
         self.id = id; self.name = name; self.description = description; self.higherLevel = higherLevel;
         self.range = range;
         self.verbal = verbal; self.somatic = somatic; self.material = material; self.royalty = royalty;
-        self.materials = materials;
+        self.materials = materials; self.royalties = royalties;
         self.ritual = ritual; self.duration = duration; self.concentration = concentration;
         self.castingTime = castingTime; self.level = level; self.school = school;
         self.classes = classes; self.subclasses = subclasses;
@@ -36,7 +37,7 @@ public class Spell {
     
     // Default constructor (for convenience, when necessary)
     convenience init() {
-        self.init(id: 0, name: "", description: "", higherLevel: "", range: Range(), verbal: false, somatic: false, material: false, royalty: false, materials: "", ritual: false, duration: Duration(), concentration: false, castingTime: CastingTime(), level: 0, school: School.Abjuration, classes: [], subclasses: [], tashasExpandedClasses: [], locations: [:])
+        self.init(id: 0, name: "", description: "", higherLevel: "", range: Range(), verbal: false, somatic: false, material: false, royalty: false, materials: "", royalties: "", ritual: false, duration: Duration(), concentration: false, castingTime: CastingTime(), level: 0, school: School.Abjuration, classes: [], subclasses: [], tashasExpandedClasses: [], locations: [:])
     }
     
 

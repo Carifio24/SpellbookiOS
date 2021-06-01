@@ -82,6 +82,11 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
 	if has_key(obj: obj, key: "material") {
 		b.setMaterials(obj["material"].string!)
 	}
+    
+    // Royalties, if necessary
+    if has_key(obj: obj, key: "royalty") {
+        b.setRoyalties(obj["royalty"].string!)
+    }
 
 	// components
 	var jarr = obj["components"]
