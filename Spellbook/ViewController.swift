@@ -419,6 +419,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 let profileSION = SION(json: profileText)
                 let profile = CharacterProfile(sion: profileSION)
                 setCharacterProfile(cp: profile, initialLoad: initialLoad)
+                if (self.filterVisible) {
+                    sortFilterController?.view.setNeedsLayout()
+                }
             }
         } else {
             print("Error reading profile")

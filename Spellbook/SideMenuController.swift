@@ -67,7 +67,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         let selectionButtonHeight = CGFloat(20)
         let belowFilterPadding = CGFloat(15)
         let belowCharacterLabelPadding = CGFloat(14)
-        let belowSelectionButtonPadding = CGFloat(14)
+        let belowSelectionButtonPadding = CGFloat(23)
         let notchTopPadding = CGFloat(35)
         let updateInfoLabelHeight = CGFloat(20)
         let belowUpdateInfoLabelPadding = CGFloat(14)
