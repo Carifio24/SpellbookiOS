@@ -344,7 +344,8 @@ class SortFilterTableController: UITableViewController {
     
     func setRangeVisibility(rangeView: RangeView, cellIndexPath indexPath: IndexPath, isVisible: Bool) {
         let heightShouldBeZero = !isVisible
-        let heightIsZero = tableView.rectForRow(at: indexPath).size.height == 0
+        //let heightIsZero = tableView.rectForRow(at: indexPath).size.height == 0
+        let heightIsZero = rangeView.isHidden
         if heightShouldBeZero != heightIsZero {
             rangeView.isHidden = !isVisible
             tableView.beginUpdates()
@@ -360,6 +361,19 @@ class SortFilterTableController: UITableViewController {
         // Update the sort names
         firstSortChoice.text = cp.getFirstSortField().displayName
         secondSortChoice.text = cp.getSecondSortField().displayName
+        
+        firstSortChoice.sizeToFit()
+        secondSortChoice.sizeToFit()
+        let version11 = Version(major: 11, minor: 0, patch: 0)
+        if iOSVersion >= version11 {
+            self.view.setNeedsUpdateConstraints()
+        } else {
+            let desiredLeft: (UIView) -> CGFloat = { view in return (view.superview?.center.x ?? 0) - (view.frame.width / 2) }
+            firstSortChoice.frame.origin = CGPoint(x: desiredLeft(firstSortChoice), y: firstSortChoice.frame.origin.y)
+            secondSortChoice.frame.origin = CGPoint(x: desiredLeft(secondSortChoice), y: secondSortChoice.frame.origin.y)
+            firstSortArrow.frame.origin = CGPoint(x: firstSortChoice.frame.maxX, y: firstSortArrow.frame.origin.y)
+            secondSortArrow.frame.origin = CGPoint(x: secondSortChoice.frame.maxX, y: secondSortArrow.frame.origin.y)
+        }
         
         // Set the sort arrows
         firstSortArrow.set(cp.getFirstSortReverse())
@@ -377,6 +391,12 @@ class SortFilterTableController: UITableViewController {
         
         // Update the filter options
         filterOptionViews.forEach { view in view.update() }
+        
+        castingTimeRangeVisible = cp.getVisibility(CastingTimeType.spanningType)
+        durationRangeVisible = cp.getVisibility(DurationType.spanningType)
+        rangeRangeVisible = cp.getVisibility(RangeType.spanningType)
+        
+        self.tableView.reloadRows(at: [IndexPath(row: 2, section: CASTING_TIME_SECTION), IndexPath(row: 2, section: DURATION_SECTION), IndexPath(row: 2, section: RANGE_SECTION)], with: .none)
         
         
     }

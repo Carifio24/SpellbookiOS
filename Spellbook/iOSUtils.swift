@@ -9,7 +9,8 @@
 import Foundation
 
 // The version of iOS
-let iOSVersion = NSFoundationVersionNumber
+let iOSNSFoundationVersion = NSFoundationVersionNumber
+let iOSVersion = Version.fromString(UIDevice.current.systemVersion) ?? Version(major: 0, minor: 0, patch: 0)
 
 // The iPhone version
 let iPhoneVersion = UIDevice.current.model

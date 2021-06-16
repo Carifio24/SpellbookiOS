@@ -108,6 +108,7 @@
 		8E7BD0DD244A6BEF00090C40 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BD0DC244A6BEF00090C40 /* PassThroughView.swift */; };
 		8E92CC65243BCE2100EB78B2 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC64243BCE2100EB78B2 /* Images.swift */; };
 		8E92CC67243BD49900EB78B2 /* NumberFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC66243BD49900EB78B2 /* NumberFieldDelegate.swift */; };
+		8EA1655826786E8E00C0CAD7 /* Pods_Spellbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F52835E1AFE88EEDAA5E6F4 /* Pods_Spellbook.framework */; };
 		8EBC99CA2651B84A00E18669 /* UpdateInfo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8E7615A8264CFA3F00686033 /* UpdateInfo.xml */; };
 		8EBF1792243A4B15004C17FA /* TextFieldChooserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */; };
 		8ED0B932242BE9E800A085F4 /* down_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED0B931242BE9E800A085F4 /* down_arrow.png */; };
@@ -117,7 +118,6 @@
 		8EF6EF0B264668F60059BCE8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0A264668F60059BCE8 /* Version.swift */; };
 		8EF6EF0D26485A2E0059BCE8 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */; };
 		CB83F840FFCD694FF7F68B6C /* Pods_SpellbookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3455F8D46FA0B4CF5F5E0C /* Pods_SpellbookUITests.framework */; };
-		D729E22F478B355AE7821320 /* Pods_Spellbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F52835E1AFE88EEDAA5E6F4 /* Pods_Spellbook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -273,7 +273,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D729E22F478B355AE7821320 /* Pods_Spellbook.framework in Frameworks */,
+				8EA1655826786E8E00C0CAD7 /* Pods_Spellbook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1027,6 +1027,7 @@
 				CURRENT_PROJECT_VERSION = 27;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = RSR87G74R7;
+				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Spellbook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1056,6 +1057,7 @@
 				CURRENT_PROJECT_VERSION = 27;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = RSR87G74R7;
+				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Spellbook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

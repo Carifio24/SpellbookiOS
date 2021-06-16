@@ -385,6 +385,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             filter()
             updateSelectionList()
         }
+        
+        // Refresh the layout
+        //sortFilterController?.tableView.setContentOffset(.zero, animated: true)
+        //sortFilterController?.view.setNeedsLayout()
+        sortFilterController?.tableView.reloadData()
     }
     
     // Loading the settings
@@ -419,9 +424,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 let profileSION = SION(json: profileText)
                 let profile = CharacterProfile(sion: profileSION)
                 setCharacterProfile(cp: profile, initialLoad: initialLoad)
-                if (self.filterVisible) {
-                    sortFilterController?.view.setNeedsLayout()
-                }
             }
         } else {
             print("Error reading profile")
