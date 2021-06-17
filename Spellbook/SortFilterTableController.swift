@@ -201,11 +201,13 @@ class SortFilterTableController: UITableViewController {
             let main = Controllers.mainController
             main.characterProfile.setFirstSortReverse(self.firstSortArrow.isSet())
             main.sort()
+            main.saveCharacterProfile()
         })
         secondSortArrow.setCallback({
             let main = Controllers.mainController
             main.characterProfile.setSecondSortReverse(self.secondSortArrow.isSet())
             main.sort()
+            main.saveCharacterProfile()
         })
         
         
