@@ -36,7 +36,8 @@ enum Sourcebook: Int, NameConstructible {
         AcquisitionsInc: "ai",
         LostLabKwalish: "llk",
         RimeOTFrostmaiden: "rf",
-        ExplorersGTW: "egw"
+        ExplorersGTW: "egw",
+        FizbansTOD: "ftd"
     ]
     
     var code: String {
