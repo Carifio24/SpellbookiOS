@@ -1,5 +1,5 @@
 enum Sourcebook: Int, NameConstructible {
-	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG, TashasCOE, AcquisitionsInc, LostLabKwalish, RimeOTFrostmaiden, ExplorersGTW
+	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG, TashasCOE, AcquisitionsInc, LostLabKwalish, RimeOTFrostmaiden, ExplorersGTW, FizbansTOD
     
     static let coreSourcebooks = [ PlayersHandbook, XanatharsGTE, TashasCOE ]
     
@@ -23,6 +23,8 @@ enum Sourcebook: Int, NameConstructible {
             return "Rime of the Frostmaiden"
         case .ExplorersGTW:
             return "Explorer's Guide to Wildemount"
+        case .FizbansTOD:
+            return "Fizban's Treasury of Dragons"
         }
     }
     

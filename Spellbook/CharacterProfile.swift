@@ -779,8 +779,6 @@ class CharacterProfile {
     // Used for JSON decoding
     private static func mapFromHiddenNames<E:NameConstructible>(type: E.Type, nonTrivialFilter: Bool, sion: SION, key: String) -> Visibilities<E> {
         
-        //print("The type is \(type)")
-        
         // The default map
         var map = CharacterProfile.getDefaultTypeMap(E.self)!.copy()
         
