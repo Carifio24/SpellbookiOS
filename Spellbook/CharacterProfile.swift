@@ -297,11 +297,23 @@ class CharacterProfile {
         
         // Any version-specific options
         let versionCode: String? = sion[CharacterProfile.versionCodeKey].string ?? nil
-        if (versionCode == nil || versionCode! != VersionInfo.currentVersionKey) {
+        var version: Version? = nil
+        if (versionCode != nil) {
+            //versionCode!.replacingOccurrences(of: "_", with: ".")
+            let array = versionCode!.split(separator: "_")
+            let versionString = array[1...array.count-1].joined(separator: ".")
+            version = Version.fromString(versionString)
+        }
+        let v2_10_0 = Version(major: 2, minor: 10, patch: 0)
+        let v2_11_0 = Version(major: 2, minor: 11, patch: 0)
+        if (version == nil || version! == v2_10_0) {
             let new_v211 = [ Sourcebook.ExplorersGTW, Sourcebook.RimeOTFrostmaiden, Sourcebook.LostLabKwalish, Sourcebook.AcquisitionsInc ]
             for sb in new_v211 {
                 self.setVisibility(sb, false)
             }
+        }
+        if (version == nil || version! >= v2_10_0 && version! <= v2_11_0) {
+            self.setVisibility(Sourcebook.FizbansTOD, false)
         }
         
     }
