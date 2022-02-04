@@ -1,5 +1,5 @@
 enum SubClass: Int, NameConstructible {
-	case Land, Lore, Draconic, Hunter, Life, Devotion, Berserker, Evocation, Fiend, Thief, OpenHand, Graviturgy, Chronurgy
+	case Land, Lore, Draconic, Hunter, Life, Devotion, Berserker, Evocation, Fiend, Thief, OpenHand, Graviturgy, Chronurgy, Arcana, EldritchKnight, ArcaneTrickster, ClockworkSoul, AberrantMind
     
     internal static var displayNameMap = EnumMap<SubClass,String> { e in
         switch(e) {
@@ -29,8 +29,24 @@ enum SubClass: Int, NameConstructible {
             return "Graviturgy"
         case .Chronurgy:
             return "Chronurgy"
+        case .Arcana:
+            return "Arcana"
+        case .EldritchKnight:
+            return "Eldritch Knight"
+        case .ArcaneTrickster:
+            return "Arcane Trickster"
+        case .ClockworkSoul:
+            return "Clockwork Soul"
+        case .AberrantMind:
+            return "Aberrant Mind"
         }
     }
+//
+//    ARCANA(13, "Arcana"),
+//        ELDRITCH_KNIGHT(14, "Eldritch Knight"),
+//        ARCANE_TRICKSTER(15, "Arcane Trickster"),
+//        CLOCKWORK_SOUL(16, "Clockwork Soul"),
+//        ABERRANT_MIND(17, "Aberrant Mind");
 }
 
 // So we can iterate over all values
