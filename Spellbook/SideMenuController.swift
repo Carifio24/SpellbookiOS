@@ -65,8 +65,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         let statusFilterHeight = CGFloat(171)
         let characterLabelHeight = CGFloat(20)
         let selectionButtonHeight = CGFloat(20)
-        let belowFilterPadding = min(max(0.1 * SizeUtils.screenHeight, 25), 40)
-        print(belowFilterPadding)
+        let belowFilterPadding = min(max(0.05 * SizeUtils.screenHeight, 25), 40)
         let belowCharacterLabelPadding = CGFloat(14)
         let belowSelectionButtonPadding = CGFloat(23)
         let notchTopPadding = CGFloat(35)
@@ -85,7 +84,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         sideMenuHeader.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth, height: headerHeight)
         
         currentY += (headerHeight + tablePadding)
-        statusFilterView.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: statusFilterHeight)
+        statusFilterView.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: statusFilterHeight + belowFilterPadding)
         
         currentY += (statusFilterHeight + belowFilterPadding)
         characterLabel.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: characterLabelHeight)
