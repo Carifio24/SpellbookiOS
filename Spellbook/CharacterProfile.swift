@@ -306,6 +306,7 @@ class CharacterProfile {
         }
         let v2_10_0 = Version(major: 2, minor: 10, patch: 0)
         let v2_11_0 = Version(major: 2, minor: 11, patch: 0)
+        let v2_12_0 = Version(major: 2, minor: 12, patch: 0)
         if (version == nil || version! == v2_10_0) {
             let new_v211 = [ Sourcebook.ExplorersGTW, Sourcebook.RimeOTFrostmaiden, Sourcebook.LostLabKwalish, Sourcebook.AcquisitionsInc ]
             for sb in new_v211 {
@@ -314,6 +315,9 @@ class CharacterProfile {
         }
         if (version == nil || version! >= v2_10_0 && version! <= v2_11_0) {
             self.setVisibility(Sourcebook.FizbansTOD, false)
+        }
+        if (version == nil || version! >= v2_10_0 && version! <= v2_12_0) {
+            self.setVisibility(Sourcebook.StrixhavenCOC, false)
         }
         
     }

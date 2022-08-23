@@ -1,5 +1,5 @@
 enum Sourcebook: Int, NameConstructible {
-	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG, TashasCOE, AcquisitionsInc, LostLabKwalish, RimeOTFrostmaiden, ExplorersGTW, FizbansTOD
+	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG, TashasCOE, AcquisitionsInc, LostLabKwalish, RimeOTFrostmaiden, ExplorersGTW, FizbansTOD, StrixhavenCOC
     
     static let coreSourcebooks = [ PlayersHandbook, XanatharsGTE, TashasCOE ]
     
@@ -25,6 +25,8 @@ enum Sourcebook: Int, NameConstructible {
             return "Explorer's Guide to Wildemount"
         case .FizbansTOD:
             return "Fizban's Treasury of Dragons"
+        case .StrixhavenCOC:
+            return "Strixhaven: A Curriculum of Chaos"
         }
     }
     
@@ -37,7 +39,8 @@ enum Sourcebook: Int, NameConstructible {
         LostLabKwalish: "llk",
         RimeOTFrostmaiden: "rf",
         ExplorersGTW: "egw",
-        FizbansTOD: "ftd"
+        FizbansTOD: "ftd",
+        StrixhavenCOC: "scc"
     ]
     
     var code: String {
@@ -59,21 +62,21 @@ enum Sourcebook: Int, NameConstructible {
     }
     
     
-    init?(code: String) {
-        var matched: Bool = false
-        var idx: Int = 0
-        for x in Sourcebook.allCases {
-            if code == x.code {
-                idx = x.rawValue
-                matched = true
-                break
-            }
-        }
-        if !matched {
-            return nil
-        }
-        self.init(rawValue: idx)
-    }
+//    init?(code: String) {
+//        var matched: Bool = false
+//        var idx: Int = 0
+//        for x in Sourcebook.allCases {
+//            if code == x.code {
+//                idx = x.rawValue
+//                matched = true
+//                break
+//            }
+//        }
+//        if !matched {
+//            return nil
+//        }
+//        self.init(rawValue: idx)
+//    }
     
 }
 
