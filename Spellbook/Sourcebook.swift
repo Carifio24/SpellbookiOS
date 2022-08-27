@@ -1,5 +1,5 @@
 enum Sourcebook: Int, NameConstructible {
-	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG, TashasCOE, AcquisitionsInc, LostLabKwalish, RimeOTFrostmaiden, ExplorersGTW, FizbansTOD, StrixhavenCOC
+	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG, TashasCOE, AcquisitionsInc, LostLabKwalish, RimeOTFrostmaiden, ExplorersGTW, FizbansTOD, StrixhavenCOC, AstralAG
     
     static let coreSourcebooks = [ PlayersHandbook, XanatharsGTE, TashasCOE ]
     
@@ -27,6 +27,8 @@ enum Sourcebook: Int, NameConstructible {
             return "Fizban's Treasury of Dragons"
         case .StrixhavenCOC:
             return "Strixhaven: A Curriculum of Chaos"
+        case .AstralAG:
+            return "Astral Adventurer's Guide"
         }
     }
     
@@ -40,7 +42,8 @@ enum Sourcebook: Int, NameConstructible {
         RimeOTFrostmaiden: "rf",
         ExplorersGTW: "egw",
         FizbansTOD: "ftd",
-        StrixhavenCOC: "scc"
+        StrixhavenCOC: "scc",
+        AstralAG: "aag"
     ]
     
     var code: String {

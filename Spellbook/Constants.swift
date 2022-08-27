@@ -10,5 +10,5 @@ import Foundation
 class Constants {
     static let toastDuration: TimeInterval = 1.0
     
-    static let VERSION_CODE = "2.9.1"
+    static let VERSION_CODE = "2.13.1"
 }

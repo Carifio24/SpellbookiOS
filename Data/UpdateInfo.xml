@@ -15,4 +15,10 @@
         <item name="description">The spellbook has been updated to include spells from &lt;b&gt;Strixhaven: A Curriculum of Chaos&lt;/b&gt;.
         </item>
     </section>
+    <section name="v_2_13_1">
+        <item name="title">Version 2.13.1 update</item>
+        <item name="description">The spellbook has been updated to include spells from the
+            &lt;b&gt;Astral Adventurer\'s Guide&lt;/b&gt;.
+            </item>
+    </section>
 </root>
