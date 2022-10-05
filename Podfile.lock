@@ -1,24 +1,34 @@
 PODS:
   - ActionSheetPicker-3.0 (2.4.2)
+  - RxCocoa (6.5.0):
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - RxRelay (6.5.0):
+    - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
   - SWXMLHash (5.0.1)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0
+  - RxCocoa
   - RxSwift
   - SWXMLHash (~> 5.0.0)
 
 SPEC REPOS:
   trunk:
     - ActionSheetPicker-3.0
+    - RxCocoa
+    - RxRelay
     - RxSwift
     - SWXMLHash
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 5b62e07b00bd970509cf5ece99cb7447eae5dd0d
+  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
 
-PODFILE CHECKSUM: 6bbdfb503c6cd1cd289d2aed97df350c8e031707
+PODFILE CHECKSUM: 89069aa80d307286ad822c04f95130d43f124da3
 
 COCOAPODS: 1.9.1

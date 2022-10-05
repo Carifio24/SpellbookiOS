@@ -7,6 +7,7 @@ target 'Spellbook' do
   pod 'SWXMLHash', '~> 5.0.0'
   pod 'ActionSheetPicker-3.0'
   pod 'RxSwift'
+  pod 'RxCocoa'
 
   target 'SpellbookTests' do
     inherit! :search_paths
