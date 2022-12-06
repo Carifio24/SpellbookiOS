@@ -8,6 +8,7 @@ target 'Spellbook' do
   pod 'ActionSheetPicker-3.0'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'ReSwift'
 
   target 'SpellbookTests' do
     inherit! :search_paths
