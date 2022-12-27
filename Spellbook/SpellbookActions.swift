@@ -27,8 +27,8 @@ typealias FilterSchoolAction = FilterItemAction<School>
 typealias FilterClassAction = FilterItemAction<CasterClass>
 typealias FilterSourcebookAction = FilterItemAction<Sourcebook>
 typealias FilterCastingTimeTypeAction = FilterItemAction<CastingTimeType>
-typealias FilterDurationTypeReducer = FilterItemAction<DurationType>
-typealias FilterRangeType = FilterItemAction<RangeType>
+typealias FilterDurationTypeAction = FilterItemAction<DurationType>
+typealias FilterRangeTypeAction = FilterItemAction<RangeType>
 
 
 struct ValueUpdateAction<T: QuantityType, U: Unit>: Action {
