@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import ReSwift
+
+let store = Store<SpellbookAppState>(reducer: appReducer, state: nil)
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

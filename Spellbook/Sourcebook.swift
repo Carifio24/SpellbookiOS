@@ -50,8 +50,8 @@ enum Sourcebook: Int, NameConstructible {
         return Sourcebook.codeMap[self]!
     }
     
-    static func fromCode(_ s: String) -> Sourcebook? {
-        let t = s.lowercased()
+    static func fromCode(_ s: String?) -> Sourcebook? {
+        guard let t = s?.lowercased() else { return nil }
         return getOneKey(dict: Sourcebook.codeMap, value: t)
     }
     

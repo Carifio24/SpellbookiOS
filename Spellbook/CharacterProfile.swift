@@ -130,94 +130,54 @@ class CharacterProfile {
     private static let rangeRangeKey = "RangeFilters"
     private static let rangeFilterKeys = [ "MinUnit", "MaxUnit", "MinText", "MaxText" ]
     
+    // Keys for member values
+    private static let spellFilterStatusKey = "SpellFilterStatus"
+    private static let sortFilterStatusKey = "SortFilterStatus"
+    private static let spellSlotStatusKey = "SpellSlotStatus"
     
     // Member values
     private var name: String
-    private var spellStatuses: [String : SpellStatus]
-    private var sortField1: SortField
-    private var sortField2: SortField
-    private var reverse1: Bool
-    private var reverse2: Bool
-    private var statusFilter: StatusFilterField
-    private var minSpellLevel: Int
-    private var maxSpellLevel: Int
-    private var sourcebookVisibilities: Visibilities<Sourcebook>
-    private var casterVisibilities: Visibilities<CasterClass>
-    private var schoolVisibilities: Visibilities<School>
-    private var castingTimeTypeVisibilities: Visibilities<CastingTimeType>
-    private var durationTypeVisibilities: Visibilities<DurationType>
-    private var rangeTypeVisibilities: Visibilities<RangeType>
-    private var castingTimeRangeInfo: RangeInfo<TimeUnit>
-    private var durationRangeInfo: RangeInfo<TimeUnit>
-    private var rangeRangeInfo: RangeInfo<LengthUnit>
-    private var ritualFilter: Bool
-    private var notRitualFilter: Bool
-    private var concentrationFilter: Bool
-    private var notConcentrationFilter: Bool
-    private var verbalFilter: Bool
-    private var notVerbalFilter: Bool
-    private var somaticFilter: Bool
-    private var notSomaticFilter: Bool
-    private var materialFilter: Bool
-    private var notMaterialFilter: Bool
-    private var applyFiltersToLists: Bool
-    private var applyFiltersToSearch: Bool
-    private var useTCEExpandedLists: Bool
+    private var sortFilterStatus: SortFilterStatus
+    private let spellFilterStatus: SpellFilterStatus
+    private let spellSlotStatus: SpellSlotStatus
 
     
-    init(name: String, spellStatuses: [String:SpellStatus], sortField1: SortField, sortField2: SortField, reverse1: Bool, reverse2: Bool, statusFilter: StatusFilterField, minSpellLevel: Int, maxSpellLevel: Int, sourcebookVisibilities: Visibilities<Sourcebook>, casterVisibilities: Visibilities<CasterClass>, schoolVisibilities: Visibilities<School>, castingTimeTypeVisibilities: Visibilities<CastingTimeType>, durationTypeVisibilities: Visibilities<DurationType>, rangeTypeVisibilities: Visibilities<RangeType>, castingTimeRangeInfo: RangeInfo<TimeUnit>, durationRangeInfo: RangeInfo<TimeUnit>, rangeRangeInfo: RangeInfo<LengthUnit>, ritualFilter: Bool, notRitualFilter: Bool, concentrationFilter: Bool, notConcentrationFilter: Bool, verbalFilter: Bool, notVerbalFilter: Bool, somaticFilter: Bool, notSomaticFilter: Bool, materialFilter: Bool, notMaterialFilter: Bool, applyFiltersToLists: Bool, applyFiltersToSearch: Bool, useTCEExpandedLists: Bool) {
+    init(name: String, sortFilterStatus: SortFilterStatus, spellFilterStatus: SpellFilterStatus, spellSlotStatus: SpellSlotStatus) {
         self.name = name
-        self.spellStatuses = spellStatuses
-        self.sortField1 = sortField1
-        self.sortField2 = sortField2
-        self.reverse1 = reverse1
-        self.reverse2 = reverse2
-        self.statusFilter = statusFilter
-        self.minSpellLevel = minSpellLevel
-        self.maxSpellLevel = maxSpellLevel
-        self.sourcebookVisibilities = sourcebookVisibilities
-        self.casterVisibilities = casterVisibilities
-        self.schoolVisibilities = schoolVisibilities
-        self.castingTimeTypeVisibilities = castingTimeTypeVisibilities
-        self.durationTypeVisibilities = durationTypeVisibilities
-        self.rangeTypeVisibilities = rangeTypeVisibilities
-        self.castingTimeRangeInfo = castingTimeRangeInfo
-        self.durationRangeInfo = durationRangeInfo
-        self.rangeRangeInfo = rangeRangeInfo
-        self.ritualFilter = ritualFilter
-        self.notRitualFilter = notRitualFilter
-        self.concentrationFilter = concentrationFilter
-        self.notConcentrationFilter = notConcentrationFilter
-        self.verbalFilter = verbalFilter
-        self.notVerbalFilter = notVerbalFilter
-        self.somaticFilter = somaticFilter
-        self.notSomaticFilter = notSomaticFilter
-        self.materialFilter = materialFilter
-        self.notMaterialFilter = notMaterialFilter
-        self.applyFiltersToLists = applyFiltersToLists
-        self.applyFiltersToSearch = applyFiltersToSearch
-        self.useTCEExpandedLists = useTCEExpandedLists
+        self.sortFilterStatus = sortFilterStatus
+        self.spellFilterStatus = spellFilterStatus
+        self.spellSlotStatus = spellSlotStatus
     }
     
-    convenience init(name: String, spellStatuses: [String:SpellStatus]) {
-        self.init(name: name, spellStatuses: spellStatuses, sortField1: SortField.Name, sortField2: SortField.Name, reverse1: false, reverse2: false, statusFilter: StatusFilterField.All, minSpellLevel: Spellbook.MIN_SPELL_LEVEL, maxSpellLevel: Spellbook.MAX_SPELL_LEVEL, sourcebookVisibilities: CharacterProfile.defaultSourcebookVisibilities.copy(), casterVisibilities: CharacterProfile.defaultCasterVisibilities.copy(), schoolVisibilities: CharacterProfile.defaultSchoolVisibilities.copy(), castingTimeTypeVisibilities: CharacterProfile.defaultCastingTimeTypeVisibilities.copy(), durationTypeVisibilities: CharacterProfile.defaultDurationTypeVisibilities.copy(), rangeTypeVisibilities: CharacterProfile.defaultRangeTypeVisibilities.copy(), castingTimeRangeInfo: CharacterProfile.defaultCastingTimeRangeInfo.copy(), durationRangeInfo: CharacterProfile.defaultDurationRangeInfo.copy(), rangeRangeInfo: CharacterProfile.defaultRangeRangeInfo.copy(), ritualFilter: true, notRitualFilter: true, concentrationFilter: true, notConcentrationFilter: true, verbalFilter: true, notVerbalFilter: true, somaticFilter: true, notSomaticFilter: true, materialFilter: true, notMaterialFilter: true, applyFiltersToLists: false, applyFiltersToSearch: false, useTCEExpandedLists: false)
+    convenience init(name: String, spellFilterStatus: SpellFilterStatus) {
+        self.init(name: name,
+                  sortFilterStatus: SortFilterStatus(),
+                  spellFilterStatus: spellFilterStatus,
+                  spellSlotStatus:  SpellSlotStatus())
     }
     
     convenience init(name: String) {
-        self.init(name: name, spellStatuses: [:])
+        self.init(name: name, spellFilterStatus: SpellFilterStatus())
     }
     
     convenience init() {
         self.init(name: "")
     }
     
-    init(sion: SION) {
+    convenience init(sion: SION) {
+        self.init(name: sion[CharacterProfile.nameKey].string!,
+                  sortFilterStatus: SortFilterStatus(sion[CharacterProfile.sortFilterStatusKey]),
+                  spellFilterStatus: SpellFilterStatus(sion[CharacterProfile.spellFilterStatusKey]),
+                  spellSlotStatus: SpellSlotStatus(sion[CharacterProfile.spellSlotStatusKey]))
+    }
+    
+    static func fromLegacySION(sion: SION) -> CharacterProfile {
         
         //print("Initializing character from:")
         //print(sion.toJSON())
         
         let scagEnding = " (SCAG)"
-        spellStatuses = [:]
+        let spellStatuses = [:]
         name = sion[CharacterProfile.nameKey].string!
         for (_, v) in sion[CharacterProfile.spellsKey] {
             var spellName: String = v[CharacterProfile.spellNameKey].string!
@@ -230,6 +190,7 @@ class CharacterProfile {
             let status = SpellStatus(favIn: fav, prepIn: prep, knownIn: known)
             spellStatuses[spellName] = status
         }
+        let spellFilterStatus = SpellFilterStatus(map: spellStatuses)
         
         // The sorting fields
         let sortStr1: String = sion[CharacterProfile.sort1Key].string ?? SortField.Name.displayName
@@ -327,82 +288,18 @@ class CharacterProfile {
     }
     
     // To SION
-    func asSION() -> SION {
-        
-        // Create the SION document
-        var sion = SION([:])
-        
-        // Set the character name
-        sion[SION(CharacterProfile.nameKey)] = SION(name)
-        
-        // Set the spell statuses
-        var spellsSION = SION([])
-        var idx: Int = 0
-        for (spellName, status) in spellStatuses {
-            var statusSION = SION([:])
-            statusSION[CharacterProfile.spellNameKey] = SION(spellName)
-            statusSION[CharacterProfile.favoriteKey] = SION(status.favorite)
-            statusSION[CharacterProfile.preparedKey] = SION(status.prepared)
-            statusSION[CharacterProfile.knownKey] = SION(status.known)
-            spellsSION[idx] = statusSION
-            idx += 1
-        }
-        sion[SION(CharacterProfile.spellsKey)] = spellsSION
-        
-        // Set the sort fields and whether or not to reverse directions
-        sion[CharacterProfile.sort1Key] = SION(sortField1.displayName)
-        sion[CharacterProfile.sort2Key] = SION(sortField2.displayName)
-        sion[CharacterProfile.reverse1Key] = SION(reverse1)
-        sion[CharacterProfile.reverse2Key] = SION(reverse2)
-        
-        // Which spell list is selected (All, Favorites, Prepared, Known)
-        sion[CharacterProfile.statusFilterKey] = SION(statusFilter.name())
-        
-        // Min and max spell levels
-        sion[CharacterProfile.minSpellLevelKey] = SION(minSpellLevel)
-        sion[CharacterProfile.maxSpellLevelKey] = SION(maxSpellLevel)
-        
-        // Put in the arrays of hidden enums
-        sion[CharacterProfile.hiddenSourcebooksKey] = stringArrayToSION(getVisibleValueNames(type: Sourcebook.self, b: false))
-        sion[CharacterProfile.hiddenCastersKey] = stringArrayToSION(getVisibleValueNames(type: CasterClass.self, b: false))
-        sion[CharacterProfile.hiddenSchoolsKey] = stringArrayToSION(getVisibleValueNames(type: School.self, b: false))
-        sion[CharacterProfile.hiddenCastingTimeTypesKey] = stringArrayToSION(getVisibleValueNames(type: CastingTimeType.self, b: false))
-        sion[CharacterProfile.hiddenDurationTypesKey] = stringArrayToSION(getVisibleValueNames(type: DurationType.self, b: false))
-        sion[CharacterProfile.hiddenRangeTypesKey] = stringArrayToSION(getVisibleValueNames(type: RangeType.self, b: false))
-        
-        // Put in the range filters
-        sion[CharacterProfile.castingTimeRangeKey] = rangeInfoToSION(castingTimeRangeInfo)
-        sion[CharacterProfile.durationRangeKey] = rangeInfoToSION(durationRangeInfo)
-        sion[CharacterProfile.rangeRangeKey] = rangeInfoToSION(rangeRangeInfo)
-        
-        // Put in the concentration and ritual filters
-        sion[CharacterProfile.ritualKey] = SION(ritualFilter)
-        sion[CharacterProfile.notRitualKey] = SION(notRitualFilter)
-        sion[CharacterProfile.concentrationKey] = SION(concentrationFilter)
-        sion[CharacterProfile.notConcentrationKey] = SION(notConcentrationFilter)
-        
-        // Put in the component filters
-        sion[CharacterProfile.verbalKey] = SION(verbalFilter)
-        sion[CharacterProfile.notVerbalKey] = SION(notVerbalFilter)
-        sion[CharacterProfile.somaticKey] = SION(somaticFilter)
-        sion[CharacterProfile.notSomaticKey] = SION(notSomaticFilter)
-        sion[CharacterProfile.materialKey] = SION(materialFilter)
-        sion[CharacterProfile.notMaterialKey] = SION(notMaterialFilter)
-        
-        // Put in the filter options
-        sion[CharacterProfile.applyFiltersToListsKey] = SION(applyFiltersToLists)
-        sion[CharacterProfile.applyFiltersToSearchKey] = SION(applyFiltersToSearch)
-        sion[CharacterProfile.useTCEExpandedListsKey] = SION(useTCEExpandedLists)
-
-        // Put in the version code
-        sion[CharacterProfile.versionCodeKey] = SION(VersionInfo.currentVersionKey)
-        
-        return sion
+    func toSION() -> SION {
+        return [
+            .nameKey: name,
+            .spellSlotStatusKey: spellSlotStatus.toSION(),
+            .spellFilterStatusKey: spellFilterStatus.toSION(),
+            .sortFilterStatusKey: sortFilterStatus.toSION()
+        ]
     }
     
     // As a JSON string
-    func asJSONString() -> String {
-        return asSION().json
+    func toJSONString() -> String {
+        return toSION().json
     }
     
     // Getting the ritual and concentration filters
@@ -418,26 +315,15 @@ class CharacterProfile {
     func getApplyFiltersToSearch() -> Bool { return applyFiltersToSearch }
     func getApplyFiltersToLists() -> Bool { return applyFiltersToLists }
     func getUseTCEExpandedLists() -> Bool { return useTCEExpandedLists }
-    
+
     // For converting a RangeInfo<T> to a SION array
-    private func rangeInfoToSION<U:Unit>(_ rangeInfo: RangeInfo<U>) -> SION {
+    func rangeInfoToSION<U:Unit>(_ rangeInfo: RangeInfo<U>) -> SION {
         var rangeSION: SION = [:]
         rangeSION[CharacterProfile.rangeFilterKeys[0]] = SION(rangeInfo.minUnit.pluralName)
         rangeSION[CharacterProfile.rangeFilterKeys[1]] = SION(rangeInfo.maxUnit.pluralName)
         rangeSION[CharacterProfile.rangeFilterKeys[2]] = SION(rangeInfo.minValue)
         rangeSION[CharacterProfile.rangeFilterKeys[3]] = SION(rangeInfo.maxValue)
         return rangeSION
-    }
-    
-    // For converting an array of Strings to a SION array
-    private func stringArrayToSION(_ stringArray: [String]) -> SION {
-        var array: SION = []
-        var i: Int = 0
-        for name in stringArray {
-            array[i] = SION(name)
-            i += 1
-        }
-        return array
     }
     
     // For setting spell status properties
@@ -851,7 +737,7 @@ class CharacterProfile {
     func save(filename: URL) {
         do {
             //print(asJSONString())
-            try asJSONString().write(to: filename, atomically: false, encoding: .utf8)
+            try toJSONString().write(to: filename, atomically: false, encoding: .utf8)
         } catch let e {
             print("\(e)")
         }
