@@ -6,29 +6,30 @@
 //  Copyright © 2020 Jonathan Carifio. All rights reserved.
 //
 
+import ReSwift
 import UIKit
 import ActionSheetPicker_3_0
 
-class TextFieldChooserDelegate<T:CaseIterable & Equatable>: NSObject, UITextFieldDelegate {
+class TextFieldChooserDelegate<A: Action, T:CaseIterable & Equatable>: NSObject, UITextFieldDelegate {
     
-    typealias ProfileSetter = (CharacterProfile, T) -> Void
-    typealias ProfileGetter = (CharacterProfile) -> T
+    typealias ActionCreator = (T) -> A
+    typealias ItemProvider = () -> T
     typealias StringGetter = (T) -> String
     typealias StringConstructor = (String) -> T
     
     let title: String
     let main = Controllers.mainController
     
+    let itemProvider: ItemProvider
     let pickerData: [String]
-    let profileSetter: ProfileSetter
-    let profileGetter: ProfileGetter
+    let actionCreator: ActionCreator
     let nameGetter: StringGetter
     let textSetter: StringGetter
     let nameConstructor: StringConstructor
     
-    init(profileGetter: @escaping ProfileGetter, profileSetter: @escaping ProfileSetter, nameGetter: @escaping StringGetter, textSetter: @escaping StringGetter, nameConstructor: @escaping StringConstructor, title: String) {
-        self.profileSetter = profileSetter
-        self.profileGetter = profileGetter
+    init(itemProvider: @escaping ItemProvider, actionCreator: @escaping ActionCreator, nameGetter: @escaping StringGetter, textSetter: @escaping StringGetter, nameConstructor: @escaping StringConstructor, title: String) {
+        self.itemProvider = itemProvider
+        self.actionCreator = actionCreator
         self.nameGetter = nameGetter
         self.textSetter = textSetter
         self.nameConstructor = nameConstructor
@@ -45,7 +46,7 @@ class TextFieldChooserDelegate<T:CaseIterable & Equatable>: NSObject, UITextFiel
     func openPickerWindow(sender: UITextField) {
         
         // Get the index of the selected option
-        let selectedItem = profileGetter(self.main.characterProfile)
+        let selectedItem = self.itemProvider()
         let selectedIndex = T.allCases.firstIndex(of: selectedItem) as! Int
         
         // Create the action sheet picker
@@ -56,9 +57,7 @@ class TextFieldChooserDelegate<T:CaseIterable & Equatable>: NSObject, UITextFiel
                      picker, index, value in
                      let valueStr = value as! String
                      let item = self.nameConstructor(valueStr)
-                     self.profileSetter(self.main.characterProfile, item)
-                     self.main.saveCharacterProfile()
-                     self.main.sort()
+                     store.dispatch(self.actionCreator(item))
                      sender.text = self.textSetter(item)
                      sender.endEditing(true)
                      return
@@ -76,10 +75,11 @@ class TextFieldChooserDelegate<T:CaseIterable & Equatable>: NSObject, UITextFiel
 // because the name getter and constructor come directly from the protocol
 
 
-class NameConstructibleChooserDelegate<N:NameConstructible>: TextFieldChooserDelegate<N> {
+class NameConstructibleChooserDelegate<A:Action, N:NameConstructible>: TextFieldChooserDelegate<A,N> {
     
-    init(getter: @escaping ProfileGetter, setter: @escaping ProfileSetter, title: String) {
-        super.init(profileGetter: getter, profileSetter: setter,
+    init(itemProvider: @escaping ItemProvider, actionCreator: @escaping ActionCreator, title: String) {
+        super.init(itemProvider: itemProvider,
+                   actionCreator: actionCreator,
                    nameGetter: { $0.displayName },
                    textSetter: { $0.displayName },
                    nameConstructor: { return N.fromName($0) },
@@ -87,9 +87,10 @@ class NameConstructibleChooserDelegate<N:NameConstructible>: TextFieldChooserDel
     }
 }
 
-class UnitChooserDelegate<U:Unit> : TextFieldChooserDelegate<U> {
-    init(getter: @escaping ProfileGetter, setter: @escaping ProfileSetter, title: String) {
-        super.init(profileGetter: getter, profileSetter: setter,
+class UnitChooserDelegate<A:Action, U:Unit> : TextFieldChooserDelegate<A,U> {
+    init(itemProvider: @escaping ItemProvider, actionCreator: @escaping ActionCreator, title: String) {
+        super.init(itemProvider: itemProvider,
+                   actionCreator: actionCreator,
                    nameGetter: { $0.pluralName },
                    textSetter: SizeUtils.unitTextGetter(U.self),
                nameConstructor: {

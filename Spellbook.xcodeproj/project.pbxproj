@@ -104,11 +104,21 @@
 		8E61494624199B2D00842A18 /* x_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E61493D24199B2D00842A18 /* x_icon.png */; };
 		8E61494A24199ED500842A18 /* cloister_black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E61494824199CBC00842A18 /* cloister_black.ttf */; };
 		8E61494B24199ED800842A18 /* dungeon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E61494924199CBC00842A18 /* dungeon.ttf */; };
+		8E6E2B7C28BC840200AA6483 /* SpellSlotStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B7B28BC840200AA6483 /* SpellSlotStatus.swift */; };
+		8E6E2B7E28BC8C3F00AA6483 /* SIONUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B7D28BC8C3F00AA6483 /* SIONUtils.swift */; };
+		8E6E2B8028BF2AE100AA6483 /* SpellSlotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B7F28BF2AE000AA6483 /* SpellSlotController.swift */; };
+		8E6E2B8228E9FE4A00AA6483 /* SpellSlotsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B8128E9FE4A00AA6483 /* SpellSlotsViewController.swift */; };
+		8E6E2B8428E9FF2400AA6483 /* SpellbookAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B8328E9FF2400AA6483 /* SpellbookAppState.swift */; };
+		8E6E2B8628EBF16800AA6483 /* SpellFilterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B8528EBF16800AA6483 /* SpellFilterStatus.swift */; };
+		8E6E2B8828ED472900AA6483 /* SortFilterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B8728ED472900AA6483 /* SortFilterStatus.swift */; };
 		8E7615AA264D716900686033 /* VersionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7615A9264D716900686033 /* VersionInfo.swift */; };
 		8E7BD0DD244A6BEF00090C40 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BD0DC244A6BEF00090C40 /* PassThroughView.swift */; };
 		8E92CC65243BCE2100EB78B2 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC64243BCE2100EB78B2 /* Images.swift */; };
 		8E92CC67243BD49900EB78B2 /* NumberFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC66243BD49900EB78B2 /* NumberFieldDelegate.swift */; };
 		8EA1655826786E8E00C0CAD7 /* Pods_Spellbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F52835E1AFE88EEDAA5E6F4 /* Pods_Spellbook.framework */; };
+		8EB3691E293F123900856738 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB3691D293F123900856738 /* AppReducer.swift */; };
+		8EB36920293F133900856738 /* SpellbookActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB3691F293F133900856738 /* SpellbookActions.swift */; };
+		8EB3692229405EAB00856738 /* SpellbookReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB3692129405EAB00856738 /* SpellbookReducers.swift */; };
 		8EBC99CA2651B84A00E18669 /* UpdateInfo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8E7615A8264CFA3F00686033 /* UpdateInfo.xml */; };
 		8EBF1792243A4B15004C17FA /* TextFieldChooserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */; };
 		8ED0B932242BE9E800A085F4 /* down_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED0B931242BE9E800A085F4 /* down_arrow.png */; };
@@ -249,11 +259,21 @@
 		8E61493D24199B2D00842A18 /* x_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x_icon.png; sourceTree = SOURCE_ROOT; };
 		8E61494824199CBC00842A18 /* cloister_black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = cloister_black.ttf; sourceTree = SOURCE_ROOT; };
 		8E61494924199CBC00842A18 /* dungeon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dungeon.ttf; sourceTree = SOURCE_ROOT; };
+		8E6E2B7B28BC840200AA6483 /* SpellSlotStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSlotStatus.swift; sourceTree = "<group>"; };
+		8E6E2B7D28BC8C3F00AA6483 /* SIONUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIONUtils.swift; sourceTree = "<group>"; };
+		8E6E2B7F28BF2AE000AA6483 /* SpellSlotController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSlotController.swift; sourceTree = "<group>"; };
+		8E6E2B8128E9FE4A00AA6483 /* SpellSlotsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSlotsViewController.swift; sourceTree = "<group>"; };
+		8E6E2B8328E9FF2400AA6483 /* SpellbookAppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellbookAppState.swift; sourceTree = "<group>"; };
+		8E6E2B8528EBF16800AA6483 /* SpellFilterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellFilterStatus.swift; sourceTree = "<group>"; };
+		8E6E2B8728ED472900AA6483 /* SortFilterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFilterStatus.swift; sourceTree = "<group>"; };
 		8E7615A8264CFA3F00686033 /* UpdateInfo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = UpdateInfo.xml; path = Data/UpdateInfo.xml; sourceTree = SOURCE_ROOT; };
 		8E7615A9264D716900686033 /* VersionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionInfo.swift; sourceTree = "<group>"; };
 		8E7BD0DC244A6BEF00090C40 /* PassThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassThroughView.swift; sourceTree = "<group>"; };
 		8E92CC64243BCE2100EB78B2 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		8E92CC66243BD49900EB78B2 /* NumberFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFieldDelegate.swift; sourceTree = "<group>"; };
+		8EB3691D293F123900856738 /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
+		8EB3691F293F133900856738 /* SpellbookActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellbookActions.swift; sourceTree = "<group>"; };
+		8EB3692129405EAB00856738 /* SpellbookReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellbookReducers.swift; sourceTree = "<group>"; };
 		8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldChooserDelegate.swift; sourceTree = "<group>"; };
 		8ED0B931242BE9E800A085F4 /* down_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_arrow.png; sourceTree = SOURCE_ROOT; };
 		8ED0B935242E514F00A085F4 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
@@ -342,10 +362,17 @@
 			isa = PBXGroup;
 			children = (
 				397EE96C21ACA86400B116B0 /* Main.storyboard */,
+				8EB3692129405EAB00856738 /* SpellbookReducers.swift */,
+				8EB3691D293F123900856738 /* AppReducer.swift */,
+				8EB3691F293F133900856738 /* SpellbookActions.swift */,
+				8E6E2B8328E9FF2400AA6483 /* SpellbookAppState.swift */,
+				8E6E2B8528EBF16800AA6483 /* SpellFilterStatus.swift */,
 				397EE97121ACA86800B116B0 /* LaunchScreen.storyboard */,
 				8E6148CA241991C000842A18 /* AppDelegate.swift */,
 				8E6148DF241991C100842A18 /* Assets.xcassets */,
 				8E177F9A2432F34B005146B6 /* SortFilterTableController.swift */,
+				8E6E2B7F28BF2AE000AA6483 /* SpellSlotController.swift */,
+				8E6E2B7B28BC840200AA6483 /* SpellSlotStatus.swift */,
 				8E92CC66243BD49900EB78B2 /* NumberFieldDelegate.swift */,
 				8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */,
 				8E02F7712437F39200A3050C /* CombinationProtocols.swift */,
@@ -428,6 +455,9 @@
 				8E19DA59257D6D46002B4F43 /* MessageDialogController.swift */,
 				8EF6EF0A264668F60059BCE8 /* Version.swift */,
 				8E7615A9264D716900686033 /* VersionInfo.swift */,
+				8E6E2B7D28BC8C3F00AA6483 /* SIONUtils.swift */,
+				8E6E2B8128E9FE4A00AA6483 /* SpellSlotsViewController.swift */,
+				8E6E2B8728ED472900AA6483 /* SortFilterStatus.swift */,
 			);
 			path = Spellbook;
 			sourceTree = "<group>";
@@ -762,6 +792,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E6E2B7E28BC8C3F00AA6483 /* SIONUtils.swift in Sources */,
 				8E61490B241991C200842A18 /* SortDirectionButton.swift in Sources */,
 				8E614928241991C200842A18 /* Spellbook.swift in Sources */,
 				8E7BD0DD244A6BEF00090C40 /* PassThroughView.swift in Sources */,
@@ -788,6 +819,7 @@
 				8E92CC65243BCE2100EB78B2 /* Images.swift in Sources */,
 				8E61490D241991C200842A18 /* CharacterSelectionController.swift in Sources */,
 				8E177F9B2432F34B005146B6 /* SortFilterTableController.swift in Sources */,
+				8E6E2B8828ED472900AA6483 /* SortFilterStatus.swift in Sources */,
 				8E6148F9241991C200842A18 /* SortField.swift in Sources */,
 				8E614906241991C200842A18 /* StatusPopupController.swift in Sources */,
 				8E6148EA241991C200842A18 /* StatusFilterField.swift in Sources */,
@@ -801,8 +833,13 @@
 				8E614900241991C200842A18 /* QuantityType.swift in Sources */,
 				8E6148FF241991C200842A18 /* CharacterProfile.swift in Sources */,
 				8E614905241991C200842A18 /* InfoTableViewHeader.swift in Sources */,
+				8EB36920293F133900856738 /* SpellbookActions.swift in Sources */,
 				8E614912241991C200842A18 /* Quantity.swift in Sources */,
+				8E6E2B8628EBF16800AA6483 /* SpellFilterStatus.swift in Sources */,
+				8E6E2B8228E9FE4A00AA6483 /* SpellSlotsViewController.swift in Sources */,
+				8EB3691E293F123900856738 /* AppReducer.swift in Sources */,
 				8E6148F8241991C200842A18 /* StringUtils.swift in Sources */,
+				8E6E2B8028BF2AE100AA6483 /* SpellSlotController.swift in Sources */,
 				8E614927241991C200842A18 /* SpellBuilder.swift in Sources */,
 				8E02F76224345F6200A3050C /* YesNo.swift in Sources */,
 				8E614916241991C200842A18 /* SideMenuController.swift in Sources */,
@@ -813,6 +850,7 @@
 				8E614908241991C200842A18 /* SION.swift in Sources */,
 				8E614904241991C200842A18 /* Range.swift in Sources */,
 				8E19DA50257C094A002B4F43 /* FilterOptionView.swift in Sources */,
+				8EB3692229405EAB00856738 /* SpellbookReducers.swift in Sources */,
 				8E6148E9241991C200842A18 /* LabelViewController.swift in Sources */,
 				8E6148E7241991C200842A18 /* InfoMenuCell.swift in Sources */,
 				8E61490C241991C200842A18 /* EnumUtilities.swift in Sources */,
@@ -824,6 +862,7 @@
 				8E6148FE241991C200842A18 /* ViewController.swift in Sources */,
 				8E6148EF241991C200842A18 /* SizeUtils.swift in Sources */,
 				8E6148F7241991C200842A18 /* InfoMenuViewController.swift in Sources */,
+				8E6E2B7C28BC840200AA6483 /* SpellSlotStatus.swift in Sources */,
 				8ED0B9382431392700A085F4 /* NameDisplayable.swift in Sources */,
 				8E614924241991C200842A18 /* Toast.swift in Sources */,
 				8ED0B936242E514F00A085F4 /* FilterView.swift in Sources */,
@@ -841,6 +880,7 @@
 				39F306A62378A4310078FA83 /* SWRevealViewController.m in Sources */,
 				8E19DA5A257D6D46002B4F43 /* MessageDialogController.swift in Sources */,
 				8E61491F241991C200842A18 /* Transitions.swift in Sources */,
+				8E6E2B8428E9FF2400AA6483 /* SpellbookAppState.swift in Sources */,
 				8E6148E5241991C200842A18 /* Duration.swift in Sources */,
 				8E92CC67243BD49900EB78B2 /* NumberFieldDelegate.swift in Sources */,
 			);

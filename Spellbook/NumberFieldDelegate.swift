@@ -7,17 +7,18 @@
 //
 
 import Foundation
+import ReSwift
 
-class NumberFieldDelegate: NSObject, UITextFieldDelegate {
+class NumberFieldDelegate<ActionType: Action>: NSObject, UITextFieldDelegate {
     
-    typealias IntSetter = (CharacterProfile, Int) -> Void
+    typealias ActionCreator = (Int) -> ActionType
     
     let maxCharacters: Int
-    let setter: IntSetter
+    let actionCreator: ActionCreator
     
-    init(maxCharacters: Int, setter: @escaping IntSetter) {
+    init(maxCharacters: Int, actionCreator: @escaping ActionCreator) {
         self.maxCharacters = maxCharacters
-        self.setter = setter
+        self.actionCreator = actionCreator
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -34,8 +35,7 @@ class NumberFieldDelegate: NSObject, UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let value = Int(textField.text ?? "") else { return }
-        setter(Controllers.mainController.characterProfile, value)
-        Controllers.mainController.saveCharacterProfile()
+        store.dispatch(self.actionCreator(value))
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

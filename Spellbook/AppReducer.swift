@@ -28,7 +28,7 @@ func appReducer(action: Action, state: SpellbookAppState?) -> SpellbookAppState 
             return filterItemReducer(action: action, state: state)
         case let action as FilterRangeTypeAction:
             return filterItemReducer(action: action, state: state)
-        case let action as UpdateProfileAction:
+        case let action as SwitchProfileAction:
             return updateProfileReducer(action: action, state: &state)
         default:
             return state

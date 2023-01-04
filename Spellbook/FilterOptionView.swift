@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import ReSwift
 
 class FilterOptionView: UIView, HeightProvider {
     
-    typealias OptionSetter = (CharacterProfile, Bool) -> Void
-    typealias OptionGetter = (CharacterProfile) -> Bool
+    typealias OptionActionCreator = () -> ToggleFilterOptionAction
+    typealias OptionGetter = () -> Bool
 
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var label: UILabel!
@@ -19,8 +20,8 @@ class FilterOptionView: UIView, HeightProvider {
     @IBOutlet weak var chooser: UISwitch!
     private var infoTitle: String = ""
     private var infoDescription: String = ""
-    private var setter: OptionSetter = { cp, b in return }
-    private var getter: OptionGetter = { cp in return false }
+    private var creator: OptionActionCreator? = nil
+    private var getter: OptionGetter? = nil
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -49,22 +50,19 @@ class FilterOptionView: UIView, HeightProvider {
         self.label.text = title
     }
     
-    func setPropertyFunctions(getter: @escaping OptionGetter, setter: @escaping OptionSetter) {
+    func setPropertyFunctions(getter: @escaping OptionGetter, actionCreator: @escaping OptionActionCreator) {
         self.getter = getter
-        self.setter = setter
-        let profile = Controllers.mainController.characterProfile
-        chooser.setOn(getter(profile), animated: true)
+        self.creator = actionCreator
+        chooser.setOn(getter(), animated: true)
         chooser.addTarget(self, action: #selector(chooserChanged(chooser:)), for: UIControl.Event.valueChanged)
     }
     
     func update() {
-        let profile = Controllers.mainController.characterProfile
-        chooser.isOn = getter(profile)
+        chooser.isOn = getter?() ?? true
     }
     
     @objc private func chooserChanged(chooser: UISwitch) {
-        let profile = Controllers.mainController.characterProfile
-        setter(profile, chooser.isOn)
+        store.dispatch(self.creator)
     }
     
     func desiredHeight() -> CGFloat {

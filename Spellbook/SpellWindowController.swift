@@ -95,16 +95,13 @@ class SpellWindowController: UIViewController {
         
         // Set the button callbacks
         favoriteButton.setCallback({
-            self.main.characterProfile.toggleFavorite(self.spell)
-            self.main.saveCharacterProfile()
+            store.dispatch(TogglePropertyAction(spell: self.spell, property: .Favorites))
         })
         preparedButton.setCallback({
-            self.main.characterProfile.togglePrepared(self.spell)
-            self.main.saveCharacterProfile()
+            store.dispatch(TogglePropertyAction(spell: self.spell, property: .Prepared))
         })
         knownButton.setCallback({
-            self.main.characterProfile.toggleKnown(self.spell)
-            self.main.saveCharacterProfile()
+            store.dispatch(TogglePropertyAction(spell: self.spell, property: .Known))
         })
         
         // Set the content view to fill the screen
@@ -140,6 +137,9 @@ class SpellWindowController: UIViewController {
     
     func setSpell(_ spell: Spell) {
         
+        // Get the character profile
+        guard let profile = store.state.profile else { return }
+        
         var needsLayoutUpdate = false
         
         // Set the text on the name label
@@ -164,16 +164,13 @@ class SpellWindowController: UIViewController {
         rangeLabel.attributedText = propertyText(name: "Range", text: spell.range.string())
         concentrationLabel.attributedText = propertyText(name: "Concentration", text: bool_to_yn(yn: spell.concentration))
         classesLabel.attributedText = propertyText(name: "Classes", text: spell.classesString())
-        if (main.characterProfile.getUseTCEExpandedLists() && spell.tashasExpandedClasses.count > 0) {
+        if (profile.sortFilterStatus.useTashasExpandedLists && spell.tashasExpandedClasses.count > 0) {
             expandedClassesLabel.attributedText = propertyText(name: "TCE Expanded Classes", text: spell.tashasExpandedClassesString())
         }
         descriptionLabel.attributedText = propertyText(name: "Description", text: spell.description, addLine: true)
         if !spell.higherLevel.isEmpty {
             higherLevelLabel.attributedText = propertyText(name: "Higher level", text: spell.higherLevel, addLine: true)
         }
-        
-        // Get the character profile
-        let profile = main.characterProfile
         
         // Set the spell buttons to the correct state
         favoriteButton.set(profile.isFavorite(spell))

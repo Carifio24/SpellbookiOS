@@ -75,11 +75,25 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var showMoreSourcebooksButton: UIButton!
     
     // Text field delegates
-    let firstSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getFirstSortField() }, setter: { cp, sf in cp.setFirstSortField(sf) }, title: "First Level Sorting")
-    let secondSortDelegate = NameConstructibleChooserDelegate<SortField>(getter: { cp in return cp.getSecondSortField() }, setter: { cp, sf in cp.setSecondSortField(sf) }, title: "Second Level Sorting")
-    let minLevelDelegate = NumberFieldDelegate(maxCharacters: 1, setter: {cp, level in cp.setMinSpellLevel(level)})
-    let maxLevelDelegate = NumberFieldDelegate(maxCharacters: 1, setter: {cp, level in cp.setMaxSpellLevel(level)})
-    
+    let firstSortDelegate = NameConstructibleChooserDelegate<SortFieldAction,SortField>(
+        itemProvider: { () in return store.state.profile?.sortFilterStatus.firstSortField ?? SortField.Name },
+        actionCreator: { sf in return SortFieldAction(sortField: sf, level: 1) },
+        title: "First Level Sorting"
+    )
+    let secondSortDelegate = NameConstructibleChooserDelegate<SortFieldAction,SortField>(
+        itemProvider: { () in return store.state.profile?.sortFilterStatus.secondSortField ?? SortField.Name },
+        actionCreator: { sf in return SortFieldAction(sortField: sf, level: 2) },
+        title: "Second Level Sorting"
+    )
+    let minLevelDelegate = NumberFieldDelegate<SpellLevelAction,SortFilterStatus>(
+        maxCharacters: 1,
+        actionCreator: { level in return SpellLevelAction.min(level) }
+    )
+    let maxLevelDelegate = NumberFieldDelegate<SpellLevelAction,SortFilterStatus>(
+        maxCharacters: 1,
+        actionCreator: { level in return SpellLevelAction.max(level) }
+    )
+        
     // Filtering grids
     @IBOutlet weak var ritualGrid: UICollectionView!
     @IBOutlet weak var concentrationGrid: UICollectionView!
@@ -122,11 +136,26 @@ class SortFilterTableController: UITableViewController {
    }
     
     // Grid delegates
-    private let ritualDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getRitualFilter(f) }, statusToggler: { cp, f in cp.toggleRitualFilter(f) })
-    private let concentrationDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getConcentrationFilter(f) }, statusToggler: { cp, f in cp.toggleConcentrationFilter(f) })
-    private let verbalDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getVerbalFilter(f) }, statusToggler: { cp, f in cp.toggleVerbalFilter(f) })
-    private let somaticDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getSomaticFilter(f) }, statusToggler: { cp, f in cp.toggleSomaticFilter(f) })
-    private let materialDelegate = YesNoFilterDelegate(statusGetter: { cp, f in cp.getMaterialFilter(f) }, statusToggler: { cp, f in cp.toggleMaterialFilter(f) })
+    private let ritualDelegate = YesNoFilterDelegate(
+        statusGetter: { tf in return store.state.profile?.sortFilterStatus.getRitualFilter(tf) ?? true },
+        actionCreator: ToggleAction.ritual
+    )
+    private let concentrationDelegate = YesNoFilterDelegate(
+        statusGetter: { tf in return store.state.profile?.sortFilterStatus.getConcentrationFilter(tf) ?? true },
+        actionCreator: ToggleAction.concentration
+    )
+    private let verbalDelegate = YesNoFilterDelegate(
+        statusGetter: { tf in return store.state.profile?.sortFilterStatus.getVerbalFilter(tf) ?? true },
+        actionCreator: ToggleAction.verbal
+    )
+    private let somaticDelegate = YesNoFilterDelegate(
+        statusGetter: { tf in return store.state.profile?.sortFilterStatus.getSomaticFilter(tf) ?? true },
+        actionCreator: ToggleAction.somatic
+    )
+    private let materialDelegate = YesNoFilterDelegate(
+        statusGetter: { tf in return store.state.profile?.sortFilterStatus.getMaterialFilter(tf) ?? true },
+        actionCreator: ToggleAction.material
+    )
     private let sourcebookDelegate = FilterGridFeatureDelegate<Sourcebook>(featuredItems: Sourcebook.coreSourcebooks, sortBy: Sourcebook.coreNameComparator())
     private let casterDelegate = FilterGridDelegate<CasterClass>(sortBy: CasterClass.nameComparator())
     private let schoolDelegate = FilterGridDelegate<School>(sortBy: School.nameComparator())
@@ -198,16 +227,10 @@ class SortFilterTableController: UITableViewController {
             arrow!.setFalseImage(image: Images.downArrowScaled!)
         }
         firstSortArrow.setCallback({
-            let main = Controllers.mainController
-            main.characterProfile.setFirstSortReverse(self.firstSortArrow.isSet())
-            main.sort()
-            main.saveCharacterProfile()
+            store.dispatch(SortReverseAction(reverse: self.firstSortArrow.isSet(), level: 1))
         })
         secondSortArrow.setCallback({
-            let main = Controllers.mainController
-            main.characterProfile.setSecondSortReverse(self.secondSortArrow.isSet())
-            main.sort()
-            main.saveCharacterProfile()
+            store.dispatch(SortReverseAction(reverse: self.secondSortArrow.isSet(), level: 2))
         })
         
         
@@ -286,15 +309,24 @@ class SortFilterTableController: UITableViewController {
         
         listsFilterView.setOptionTitle("Apply Filters to Spell Lists")
         listsFilterView.setHelpInfo(title: "Apply Filters to Spell Lists", description: "If selected, filters are applied to the favorite, known, and prepared spell lists. Otherwise, they are not.")
-        listsFilterView.setPropertyFunctions(getter: { cp in return cp.getApplyFiltersToLists() }, setter: { cp, b in cp.setApplyFiltersToLists(b) })
+        listsFilterView.setPropertyFunctions(
+            getter: { () in return store.state.profile?.sortFilterStatus.applyFiltersToSearch ?? true },
+            actionCreator: ToggleFilterOptionAction.applyFiltersToLists
+        )
         
         searchFilterView.setOptionTitle("Apply Filters to Search")
         searchFilterView.setHelpInfo(title: "Apply Filters to Search", description: "If selected, filters are applied to search results. Otherwise, search results do not respect the current filters.")
-        searchFilterView.setPropertyFunctions(getter: { cp in return cp.getApplyFiltersToSearch() }, setter: { cp, b in cp.setApplyFiltersToSearch(b) })
+        searchFilterView.setPropertyFunctions(
+            getter: { () in return store.state.profile?.sortFilterStatus.applyFiltersToLists ?? true },
+            actionCreator: ToggleFilterOptionAction.applyFiltersToSearch
+        )
         
         tashasExpandedView.setOptionTitle("Use Tasha's Expanded Lists")
         tashasExpandedView.setHelpInfo(title: "Use Tasha's Expanded Lists", description: "Select this option to use the expanded spell lists for each class from Tasha's Cauldron of Everything.")
-        tashasExpandedView.setPropertyFunctions(getter: { cp in return cp.getUseTCEExpandedLists() }, setter: { cp, b in cp.setUseTCEExpandedLists(b) })
+        tashasExpandedView.setPropertyFunctions(
+            getter: { () in return store.state.profile?.sortFilterStatus.useTashasExpandedLists ?? true },
+            actionCreator: ToggleFilterOptionAction.useTashasExpandedLists
+        )
         
         // Set the heights of the filter option views and the range cells
         var heightConstraints: [NSLayoutConstraint] = []
@@ -358,11 +390,12 @@ class SortFilterTableController: UITableViewController {
     
     func onCharacterProfileUpdate() {
         
-        let cp = Controllers.mainController.characterProfile
+        guard let cp = store.state.profile else { return }
+        let sfStatus = cp.sortFilterStatus
         
         // Update the sort names
-        firstSortChoice.text = cp.getFirstSortField().displayName
-        secondSortChoice.text = cp.getSecondSortField().displayName
+        firstSortChoice.text = sfStatus.firstSortField.displayName
+        secondSortChoice.text = sfStatus.secondSortField.displayName
         
         firstSortChoice.sizeToFit()
         secondSortChoice.sizeToFit()
@@ -378,12 +411,12 @@ class SortFilterTableController: UITableViewController {
         }
         
         // Set the sort arrows
-        firstSortArrow.set(cp.getFirstSortReverse())
-        secondSortArrow.set(cp.getSecondSortReverse())
+        firstSortArrow.set(sfStatus.firstSortReverse)
+        secondSortArrow.set(sfStatus.secondSortReverse)
         
         // Update the spell levels
-        minLevelEntry.text = String(cp.getMinSpellLevel())
-        maxLevelEntry.text = String(cp.getMaxSpellLevel())
+        minLevelEntry.text = String(sfStatus.minSpellLevel)
+        maxLevelEntry.text = String(sfStatus.maxSpellLevel)
         
         // Reload the data for the grids
         for (grid, _) in gridsAndDelegates { grid.reloadData() }
@@ -422,9 +455,8 @@ class SortFilterTableController: UITableViewController {
     @objc func restoreFullLevelRange() {
         minLevelEntry.text = String(Spellbook.MIN_SPELL_LEVEL)
         maxLevelEntry.text = String(Spellbook.MAX_SPELL_LEVEL)
-        let cp = Controllers.mainController.characterProfile
-        cp.setMinSpellLevel(Spellbook.MIN_SPELL_LEVEL)
-        cp.setMaxSpellLevel(Spellbook.MAX_SPELL_LEVEL)
+        store.dispatch(SpellLevelAction.min(Spellbook.MIN_SPELL_LEVEL))
+        store.dispatch(SpellLevelAction.max(Spellbook.MAX_SPELL_LEVEL))
     }
     
     @objc func toggleFeaturedSourcebooks(_ sender: UIButton) {

@@ -352,7 +352,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //print("Setting side menu name with \(characterProfile.getName())")
         if (sideMenuController!.characterLabel != nil) {
             //print("Here")
-            sideMenuController!.characterLabel.text = "Character: " + characterProfile.getName()
+            sideMenuController!.characterLabel.text = "Character: " + characterProfile.name
         } else {
             //print("label is nil")
             return
@@ -370,7 +370,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func setCharacterProfile(cp: CharacterProfile, initialLoad: Bool) {
         
         characterProfile = cp
-        settings.setCharacterName(name: cp.getName())
+        settings.setCharacterName(name: cp.name)
         setSideMenuCharacterName()
         setSortFilterSettings()
         saveSettings()
@@ -434,7 +434,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func saveCharacterProfile() {
-        let location = profileLocation(name: characterProfile.getName())
+        let location = profileLocation(name: characterProfile.name)
         //print("Saving profile for \(characterProfile.name) to \(location)")
         characterProfile.save(filename: location)
     }
@@ -444,7 +444,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //print("Beginning deleteCharacterProfile with name: \(name)")
         let fileManager = FileManager.default
         do {
-            let deletingCurrent = (name == characterProfile.getName())
+            let deletingCurrent = (name == characterProfile.name)
             try fileManager.removeItem(at: location)
             let characters = characterList()
             updateSelectionList()
@@ -755,16 +755,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Set the button callbacks
         // Set the callbacks for the buttons
         cell.favoriteButton.setCallback({
-            self.characterProfile.toggleFavorite(cell.spell)
-            self.saveCharacterProfile()
-            })
+            store.dispatch(TogglePropertyAction(spell: cell.spell, property: .Favorites))
+        })
         cell.preparedButton.setCallback({
-            self.characterProfile.togglePrepared(cell.spell)
-            self.saveCharacterProfile()
+            store.dispatch(TogglePropertyAction(spell: cell.spell, property: .Prepared))
         })
         cell.knownButton.setCallback({
-            self.characterProfile.toggleKnown(cell.spell)
-            self.saveCharacterProfile()
+            store.dispatch(TogglePropertyAction(spell: cell.spell, property: .Known))
         })
 
         return cell

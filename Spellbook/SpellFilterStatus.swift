@@ -23,7 +23,7 @@ class SpellFilterStatus {
     private static let preparedProperty: SpellStatusProperty = { status in return status.prepared }
     private static let knownProperty: SpellStatusProperty = { status in return status.known }
     
-    private var spellStatusMap: [Int:SpellStatus]
+    private var spellStatusMap: [Int: SpellStatus]
     let spellFilterFlag: BehaviorRelay<Void> = BehaviorRelay(value: ())
     
     init(map: [Int:SpellStatus]) {
@@ -116,6 +116,36 @@ class SpellFilterStatus {
             spellStatusMap[id] = status
         }
         spellFilterFlag.accept(())
+    }
+    
+    // The property setters
+    func setFavorite(spell: Spell, favorite: Bool) {
+        setProperty(spell: spell, value: favorite, propSetter: { $0.setFavorite($1) })
+    }
+    
+    func setPrepared(spell: Spell, prepared: Bool) {
+        setProperty(spell: spell, value: prepared, propSetter: { $0.setPrepared($1) })
+    }
+    
+    func setKnown(spell: Spell, known: Bool) {
+        setProperty(spell: spell, value: known, propSetter: { $0.setKnown($1) })
+    }
+    
+    // For toggling spell status properties
+    private func toggleProperty(spell: Spell, propGetter: StatusPropertyGetter, propSetter: StatusPropertySetter) {
+        setProperty(spell: spell, value: !isProperty(spell, property: propGetter), propSetter: propSetter)
+    }
+    
+    func toggleFavorite(_ s: Spell) {
+        toggleProperty(spell: s, propGetter: { return $0.favorite }, propSetter: { $0.setFavorite($1) })
+    }
+    
+    func togglePrepared(_ s: Spell) {
+        toggleProperty(spell: s, propGetter: { return $0.prepared }, propSetter: { $0.setPrepared($1) })
+    }
+    
+    func toggleKnown(_ s: Spell) {
+        toggleProperty(spell: s, propGetter: { return $0.known }, propSetter: { $0.setKnown($1) })
     }
 
     func toSION() -> SION {

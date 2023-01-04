@@ -132,7 +132,7 @@ class CharacterCreationController: UIViewController {
         
         // Create the new character profile
         let profile = CharacterProfile(name: name)
-        let charFile: String = profile.getName() + ".json"
+        let charFile: String = profile.name + ".json"
         let profileLocation = main.profilesDirectory.appendingPathComponent(charFile)
         profile.save(filename: profileLocation)
         

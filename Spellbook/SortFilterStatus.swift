@@ -79,23 +79,38 @@ class SortFilterStatus {
     private var visibleClasses = CasterClass.allCases
     private var visibleSchools = School.allCases
     
+    private static let defaultMinCastingTimeValue = 0
+    private static let defaultMaxCastingTimeValue = 24
+    private static let defaultMinCastingTimeUnit = TimeUnit.second
+    private static let defaultMaxCastingTimeUnit = TimeUnit.hour
+    
     private var visibleCastingTimeTypes = CastingTimeType.allCases
-    var minCastingTimeValue = 0
-    var maxCastingTimeValue = 24
-    var minCastingTimeUnit = TimeUnit.second
-    var maxCastingTimeUnit = TimeUnit.hour
+    var minCastingTimeValue = SortFilterStatus.defaultMinCastingTimeValue
+    var maxCastingTimeValue = SortFilterStatus.defaultMaxCastingTimeValue
+    var minCastingTimeUnit = SortFilterStatus.defaultMinCastingTimeUnit
+    var maxCastingTimeUnit = SortFilterStatus.defaultMaxCastingTimeUnit
+    
+    private static let defaultMinDurationValue = 0
+    private static let defaultMaxDurationValue = 30
+    private static let defaultMinDurationUnit = TimeUnit.second
+    private static let defaultMaxDurationUnit = TimeUnit.day
     
     private var visibleDurationTypes = DurationType.allCases
-    var minDurationValue = 0
-    var maxDurationValue = 30
-    var minDurationUnit = TimeUnit.second
-    var maxDurationUnit = TimeUnit.day
+    var minDurationValue = SortFilterStatus.defaultMinDurationValue
+    var maxDurationValue = SortFilterStatus.defaultMaxDurationValue
+    var minDurationUnit = SortFilterStatus.defaultMinDurationUnit
+    var maxDurationUnit = SortFilterStatus.defaultMaxDurationUnit
+    
+    private static let defaultMinRangeValue = 0
+    private static let defaultMaxRangeValue = 1
+    private static let defaultMinRangeUnit = LengthUnit.foot
+    private static let defaultMaxRangeUnit = LengthUnit.mile
     
     private var visibleRangeTypes = RangeType.allCases
-    var minRangeValue = 0
-    var maxRangeValue = 1
-    var minRangeUnit = LengthUnit.foot
-    var maxRangeUnit = LengthUnit.mile
+    var minRangeValue = SortFilterStatus.defaultMinRangeValue
+    var maxRangeValue = SortFilterStatus.defaultMaxRangeValue
+    var minRangeUnit = SortFilterStatus.defaultMinRangeUnit
+    var maxRangeUnit = SortFilterStatus.defaultMaxRangeUnit
     
     private let disposeBag = DisposeBag()
     private let visibilityFlag = BehaviorRelay(value: ())
@@ -136,23 +151,6 @@ class SortFilterStatus {
         return SortFilterStatus.getVisibleValues(visible: visible, visibleValues: visibleRangeTypes)
     }
     
-    // Component filters
-    private func getComponentFilter(_ b: Bool, index: Int) -> Bool {
-        return b ? yesComponents[index] : noComponents[index]
-    }
-    
-    func getVerbalFilter(_ b: Bool) -> Bool {
-        return getComponentFilter(b, index: SortFilterStatus.VERBAL_INDEX)
-    }
-    
-    func getSomaticFilter(_ b: Bool) -> Bool {
-        return getComponentFilter(b, index: SortFilterStatus.SOMATIC_INDEX)
-    }
-    
-    func getMaterialFilter(_ b: Bool) -> Bool {
-        return getComponentFilter(b, index: SortFilterStatus.MATERIAL_INDEX)
-    }
-    
     private func getVisibility<T: Equatable>(item: T, collection: [T]) -> Bool {
         return collection.contains(item)
     }
@@ -181,8 +179,8 @@ class SortFilterStatus {
         return getVisibility(item: rangeType, collection: visibleRangeTypes)
     }
     
-    func setVisibility<T: Equatable>(item: T, collection: inout [T], value: Bool) {
-        if (value) {
+    func setVisibility<T: Equatable>(item: T, collection: inout [T], visible: Bool) {
+        if (visible) {
             collection.removeAll(where: { $0 == item })
         } else {
             collection.append(item)
@@ -190,48 +188,106 @@ class SortFilterStatus {
         visibilityFlag.accept(())
     }
     
-    func setVisibility(_ source: Sourcebook, value: Bool) {
-        setVisibility(item: source, collection: &visibleSources, value: value)
+    func setVisibility(_ source: Sourcebook, visible: Bool) {
+        setVisibility(item: source, collection: &visibleSources, visible: visible)
     }
     
-    func setVisibility(_ school: School, value: Bool) {
-        setVisibility(item: school, collection: &visibleSchools, value: value)
+    func setVisibility(_ school: School, visible: Bool) {
+        setVisibility(item: school, collection: &visibleSchools, visible: visible)
     }
     
-    func setVisibility(_ casterClass: CasterClass, value: Bool) {
-        setVisibility(item: casterClass, collection: &visibleClasses, value: value)
+    func setVisibility(_ casterClass: CasterClass, visible: Bool) {
+        setVisibility(item: casterClass, collection: &visibleClasses, visible: visible)
     }
     
-    func setVisibility(_ castingTimeType: CastingTimeType, value: Bool) {
-        setVisibility(item: castingTimeType, collection: &visibleCastingTimeTypes, value: value)
+    func setVisibility(_ castingTimeType: CastingTimeType, visible: Bool) {
+        setVisibility(item: castingTimeType, collection: &visibleCastingTimeTypes, visible: visible)
     }
     
-    func setVisibility(_ durationType: DurationType, value: Bool) {
-        setVisibility(item: durationType, collection: &visibleDurationTypes, value: value)
+    func setVisibility(_ durationType: DurationType, visible: Bool) {
+        setVisibility(item: durationType, collection: &visibleDurationTypes, visible: visible)
     }
     
-    func setVisibility(_ rangeType: RangeType, value: Bool) {
-        setVisibility(item: rangeType, collection: &visibleRangeTypes, value: value)
+    func setVisibility(_ rangeType: RangeType, visible: Bool) {
+        setVisibility(item: rangeType, collection: &visibleRangeTypes, visible: visible)
     }
     
     func toggleVisibility(_ source: Sourcebook) {
-        setVisibility(source, value: !getVisibility(source))
+        setVisibility(source, visible: !getVisibility(source))
     }
     func toggleVisibility(_ school: School) {
-        setVisibility(school, value: !getVisibility(school))
+        setVisibility(school, visible: !getVisibility(school))
     }
     func toggleVisibility(_ casterClass: CasterClass) {
-        setVisibility(casterClass, value: !getVisibility(casterClass))
+        setVisibility(casterClass, visible: !getVisibility(casterClass))
     }
     func toggleVisibility(_ castingTimeType: CastingTimeType) {
-        setVisibility(castingTimeType, value: !getVisibility(castingTimeType))
+        setVisibility(castingTimeType, visible: !getVisibility(castingTimeType))
     }
     func toggleVisibility(_ durationType: DurationType) {
-        setVisibility(durationType, value: !getVisibility(durationType))
+        setVisibility(durationType, visible: !getVisibility(durationType))
     }
     func toggleVisibility(_ rangeType: RangeType) {
-        setVisibility(rangeType, value: !getVisibility(rangeType))
+        setVisibility(rangeType, visible: !getVisibility(rangeType))
     }
+    
+    // Component filters
+    private func getComponentFilter(_ b: Bool, index: Int) -> Bool {
+        return b ? yesComponents[index] : noComponents[index]
+    }
+    
+    func getVerbalFilter(_ b: Bool) -> Bool {
+        return getComponentFilter(b, index: SortFilterStatus.VERBAL_INDEX)
+    }
+    
+    func getSomaticFilter(_ b: Bool) -> Bool {
+        return getComponentFilter(b, index: SortFilterStatus.SOMATIC_INDEX)
+    }
+    
+    func getMaterialFilter(_ b: Bool) -> Bool {
+        return getComponentFilter(b, index: SortFilterStatus.MATERIAL_INDEX)
+    }
+    
+    private func setComponentFilter(_ tf: Bool, index: Int, value: Bool) {
+        if (tf) {
+            yesComponents[index] = value
+        } else {
+            noComponents[index] = value
+        }
+    }
+    func setVerbalFilter(_ tf: Bool, to value: Bool) { setComponentFilter(tf, index: SortFilterStatus.VERBAL_INDEX, value: value) }
+    func setSomaticFilter(_ tf: Bool, to value: Bool) { setComponentFilter(tf, index: SortFilterStatus.SOMATIC_INDEX, value: value) }
+    func setMaterialFilter(_ tf: Bool, to value: Bool) { setComponentFilter(tf, index: SortFilterStatus.MATERIAL_INDEX, value: value) }
+    
+    // Riual and concentration filters
+    
+    func getRitualFilter(_ tf: Bool) -> Bool { return tf ? yesRitual : noRitual }
+    func getConcentrationFilter(_ tf: Bool) -> Bool { return tf ? yesConcentration : noConcentration }
+    
+    func setRitualFilter(_ tf: Bool, to b: Bool) {
+        if (tf) { yesRitual = b }
+        else { noRitual = b}
+    }
+    func setConcentrationFilter(_ tf: Bool, to b : Bool) {
+        if (tf) { yesConcentration = b }
+        else { noConcentration = b }
+    }
+    
+    // Toggling boolean filters
+    private func toggleFilter(_ tf: Bool, getter: (Bool) -> Bool, setter: (Bool,Bool) -> ()) { setter(tf, !getter(tf)) }
+    func toggleRitualFilter(_ tf: Bool) { toggleFilter(tf, getter: getRitualFilter, setter: setRitualFilter) }
+    func toggleConcentrationFilter(_ tf: Bool) { toggleFilter(tf, getter: getConcentrationFilter, setter: setConcentrationFilter) }
+    func toggleVerbalFilter(_ tf: Bool) { toggleFilter(tf, getter: getVerbalFilter, setter: setVerbalFilter) }
+    func toggleSomaticFilter(_ tf: Bool) { toggleFilter(tf, getter: getSomaticFilter,  setter: setSomaticFilter )}
+    func toggleMaterialFilter(_ tf: Bool) { toggleFilter(tf, getter: getMaterialFilter, setter: setMaterialFilter )}
+    
+    // Status filter
+    func favoritesSelected() -> Bool { return (statusFilterField == StatusFilterField.Favorites) }
+    func preparedSelected() -> Bool { return (statusFilterField == StatusFilterField.Prepared) }
+    func knownSelected() -> Bool { return (statusFilterField == StatusFilterField.Known) }
+    func isStatusSet() -> Bool { return (statusFilterField != StatusFilterField.All) }
+    
+    // Setting bounds
     
     private func boundsToSION<U: Unit>(minValue: Int, minUnit: U, maxValue: Int, maxUnit: U) -> SION {
         var sion: SION = [:]
@@ -271,6 +327,24 @@ class SortFilterStatus {
         let maxUnit = (try? U.fromString(sion[SortFilterStatus.maxUnitKey].string!)) ?? U.defaultUnit
         setter(minValue, minUnit, maxValue, maxUnit)
     }
+    func setCastingTimeBoundsFromSION(sion: SION) { setBoundsFromSION(sion: sion, setter: setCastingTimeBounds) }
+    func setDurationBoundsFromSION(sion: SION) { setBoundsFromSION(sion: sion, setter: setDurationBounds) }
+    func setRangeBoundsFromSION(sion: SION) { setBoundsFromSION(sion: sion, setter: setRangeBounds) }
+    
+    func setMinCastingTimeValue(_ value: Int) { self.minCastingTimeValue = value }
+    func setMaxCastingTimeValue(_ value: Int) { self.maxCastingTimeValue = value }
+    func setMinCastingTimeUnit(_ value: TimeUnit) { self.minCastingTimeUnit = value }
+    func setMaxCastingTimeUnit(_ value: TimeUnit) { self.maxCastingTimeUnit = value }
+    func setMinDurationValue(_ value: Int) { self.minDurationValue = value }
+    func setMaxDurationValue(_ value: Int) { self.maxDurationValue = value }
+    func setMinDurationUnit(_ value: TimeUnit) { self.minDurationUnit = value }
+    func setMaxDurationUnit(_ value: TimeUnit) { self.maxDurationUnit = value }
+    func setMinRangeValue(_ value: Int) { self.minRangeValue = value }
+    func setMaxRangeValue(_ value: Int) { self.maxRangeValue = value }
+    func setMinRangeUnit(_ value: LengthUnit) { self.minRangeUnit = value }
+    func setMaxRangeUnit(_ value: LengthUnit) { self.maxRangeUnit = value }
+    
+    
 
     
     func toSION() -> SION {
@@ -362,6 +436,7 @@ class SortFilterStatus {
         setBoundsFromSION(sion: sion[SortFilterStatus.castingTimeBoundsKey], setter: self.setCastingTimeBounds)
         setBoundsFromSION(sion: sion[SortFilterStatus.durationTypesKey], setter: self.setDurationBounds)
         setBoundsFromSION(sion: sion[SortFilterStatus.rangeTypesKey], setter: self.setRangeBounds)
-        
     }
+    
+    init() {}
 }
