@@ -53,14 +53,9 @@ class RangeView: UIView, HeightProvider {
         }
     }
     
-    func setTypeAndGetters<T:QuantityType, U:Unit, Q:Quantity<T,U>>(_ type: Q.Type,
-                                                                    boundsGetter: @escaping NamedBoundsGetter,
-                                                                    defaultBoundsGetter: @escaping NamedBoundsGetter,
+    func setType<T:QuantityType, U:Unit, Q:Quantity<T,U>>(_ type: Q.Type,
                                                                     centerText: String,
                                                                     title: String) {
-        
-        self.boundsGetter = boundsGetter
-        self.defaultBoundsGetter = defaultBoundsGetter
         
         typealias UnitActionType = UnitUpdateAction<T,U>
         typealias ValueActionType = ValueUpdateAction<T,U>
@@ -86,6 +81,9 @@ class RangeView: UIView, HeightProvider {
         )
         minUnitChoice.delegate = minUnitDelegate
         maxUnitChoice.delegate = maxUnitDelegate
+        
+        // Create the function that will get the values for the unit bounds
+        boundsGetter = { () in return store.state.profile?.sortFilterStatus.getStringBounds(Q.self) ?? (0, "", 1, "") }
         
         // Create and set the delegates for the values
         minValueDelegate = NumberFieldDelegate<ValueActionType>(

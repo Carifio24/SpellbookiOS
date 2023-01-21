@@ -197,19 +197,13 @@ class SpellTableViewController: UITableViewController {
         // Set the button callbacks
         // Set the callbacks for the buttons
         cell.favoriteButton.setCallback({
-            let cp = self.main.characterProfile
-            cp.toggleFavorite(cell.spell)
-            self.main.saveCharacterProfile()
-            })
+            store.dispatch(TogglePropertyAction(spell: spell, property: StatusFilterField.Favorites))
+        })
         cell.preparedButton.setCallback({
-            let cp = self.main.characterProfile
-            cp.togglePrepared(cell.spell)
-            self.main.saveCharacterProfile()
+            store.dispatch(TogglePropertyAction(spell: spell, property: StatusFilterField.Prepared))
         })
         cell.knownButton.setCallback({
-            let cp = self.main.characterProfile
-            cp.toggleKnown(cell.spell)
-            self.main.saveCharacterProfile()
+            store.dispatch(TogglePropertyAction(spell: spell, property: StatusFilterField.Known))
         })
         
         return cell

@@ -89,6 +89,16 @@ class SortFilterStatus {
     var maxCastingTimeValue = SortFilterStatus.defaultMaxCastingTimeValue
     var minCastingTimeUnit = SortFilterStatus.defaultMinCastingTimeUnit
     var maxCastingTimeUnit = SortFilterStatus.defaultMaxCastingTimeUnit
+    var minCastingTime: CastingTime {
+        get {
+            return CastingTime(type: CastingTimeType.spanningType, value: minCastingTimeValue, unit: minCastingTimeUnit)
+        }
+    }
+    var maxCastingTime: CastingTime {
+        get {
+            return CastingTime(type: CastingTimeType.spanningType, value: maxCastingTimeValue, unit: maxCastingTimeUnit)
+        }
+    }
     
     private static let defaultMinDurationValue = 0
     private static let defaultMaxDurationValue = 30
@@ -100,6 +110,16 @@ class SortFilterStatus {
     var maxDurationValue = SortFilterStatus.defaultMaxDurationValue
     var minDurationUnit = SortFilterStatus.defaultMinDurationUnit
     var maxDurationUnit = SortFilterStatus.defaultMaxDurationUnit
+    var minDuration: Duration {
+        get {
+            return Duration(type: DurationType.spanningType, value: minDurationValue, unit: minDurationUnit)
+        }
+    }
+    var maxDuration: Duration {
+        get {
+            return Duration(type: DurationType.spanningType, value: maxDurationValue, unit: maxDurationUnit)
+        }
+    }
     
     private static let defaultMinRangeValue = 0
     private static let defaultMaxRangeValue = 1
@@ -111,6 +131,16 @@ class SortFilterStatus {
     var maxRangeValue = SortFilterStatus.defaultMaxRangeValue
     var minRangeUnit = SortFilterStatus.defaultMinRangeUnit
     var maxRangeUnit = SortFilterStatus.defaultMaxRangeUnit
+    var minRange: Range {
+        get {
+            return Range(type: RangeType.spanningType, value: minRangeValue, unit: minRangeUnit)
+        }
+    }
+    var maxRange: Range {
+        get {
+            return Range(type: RangeType.spanningType, value: maxRangeValue, unit: maxRangeUnit)
+        }
+    }
     
     private let disposeBag = DisposeBag()
     private let visibilityFlag = BehaviorRelay(value: ())
@@ -344,8 +374,52 @@ class SortFilterStatus {
     func setMinRangeUnit(_ value: LengthUnit) { self.minRangeUnit = value }
     func setMaxRangeUnit(_ value: LengthUnit) { self.maxRangeUnit = value }
     
+    func makeStringBounds<U:Unit>(_ getter: () -> (Int, U, Int, U)) -> (Int, String, Int, String) {
+        let (minV, minU, maxV, maxU) = getter()
+        let textGetter = SizeUtils.unitTextGetter(U.self)
+        return (minV, textGetter(minU), maxV, textGetter(maxU))
+    }
     
-
+    func getCastingTimeBounds() -> (Int, TimeUnit, Int, TimeUnit) { return (minCastingTimeValue, minCastingTimeUnit, maxCastingTimeValue, maxCastingTimeUnit) }
+    func getDurationBounds() -> (Int, TimeUnit, Int, TimeUnit) { return (minDurationValue, minDurationUnit, maxDurationValue, maxDurationUnit) }
+    func getRangeBounds() -> (Int, LengthUnit, Int, LengthUnit) { return (minRangeValue, minRangeUnit, maxRangeValue, maxRangeUnit) }
+    func getStringBounds<T:QuantityType, U:Unit, Q:Quantity<T,U>>(_ type: Q.Type) -> (Int, String, Int, String) {
+        switch type {
+            case is CastingTime.Type:
+                return makeStringBounds(getCastingTimeBounds)
+            case is Duration.Type:
+                return makeStringBounds(getDurationBounds)
+            case is Range.Type:
+                return makeStringBounds(getRangeBounds)
+            default:
+                return (0, "", 1, "")
+        }
+    }
+    
+    func getDefaultCastingTimeBounds() -> (Int, TimeUnit, Int, TimeUnit) {
+        return (SortFilterStatus.defaultMinCastingTimeValue, SortFilterStatus.defaultMinCastingTimeUnit,
+                SortFilterStatus.defaultMaxCastingTimeValue, SortFilterStatus.defaultMaxCastingTimeUnit)
+    }
+    func getDefaultDurationBounds() -> (Int, TimeUnit, Int, TimeUnit) {
+        return (SortFilterStatus.defaultMinDurationValue, SortFilterStatus.defaultMinDurationUnit,
+                SortFilterStatus.defaultMaxDurationValue, SortFilterStatus.defaultMaxDurationUnit)
+    }
+    func getDefaultRangeBounds() -> (Int, LengthUnit, Int, LengthUnit) {
+        return (SortFilterStatus.defaultMinRangeValue, SortFilterStatus.defaultMinRangeUnit,
+                SortFilterStatus.defaultMaxRangeValue, SortFilterStatus.defaultMaxRangeUnit)
+    }
+    func getDefaultStringBounds<T:QuantityType, U:Unit, Q:Quantity<T,U>>(_ type: Q.Type) -> (Int, String, Int, String) {
+        switch type {
+            case is CastingTime.Type:
+                return makeStringBounds(getDefaultCastingTimeBounds)
+            case is Duration.Type:
+                return makeStringBounds(getDefaultDurationBounds)
+            case is Range.Type:
+                return makeStringBounds(getDefaultRangeBounds)
+            default:
+                return (0, "", 1, "")
+        }
+    }
     
     func toSION() -> SION {
         var sion: SION = [:]

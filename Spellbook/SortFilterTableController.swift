@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReSwift
 
 class SortFilterTableController: UITableViewController {
     
@@ -85,11 +86,11 @@ class SortFilterTableController: UITableViewController {
         actionCreator: { sf in return SortFieldAction(sortField: sf, level: 2) },
         title: "Second Level Sorting"
     )
-    let minLevelDelegate = NumberFieldDelegate<SpellLevelAction,SortFilterStatus>(
+    let minLevelDelegate = NumberFieldDelegate<SpellLevelAction>(
         maxCharacters: 1,
         actionCreator: { level in return SpellLevelAction.min(level) }
     )
-    let maxLevelDelegate = NumberFieldDelegate<SpellLevelAction,SortFilterStatus>(
+    let maxLevelDelegate = NumberFieldDelegate<SpellLevelAction>(
         maxCharacters: 1,
         actionCreator: { level in return SpellLevelAction.max(level) }
     )
@@ -427,9 +428,9 @@ class SortFilterTableController: UITableViewController {
         // Update the filter options
         filterOptionViews.forEach { view in view.update() }
         
-        castingTimeRangeVisible = cp.getVisibility(CastingTimeType.spanningType)
-        durationRangeVisible = cp.getVisibility(DurationType.spanningType)
-        rangeRangeVisible = cp.getVisibility(RangeType.spanningType)
+        castingTimeRangeVisible = sfStatus.getVisibility(CastingTimeType.spanningType)
+        durationRangeVisible = sfStatus.getVisibility(DurationType.spanningType)
+        rangeRangeVisible = sfStatus.getVisibility(RangeType.spanningType)
         
         self.tableView.reloadRows(at: [IndexPath(row: 2, section: CASTING_TIME_SECTION), IndexPath(row: 2, section: DURATION_SECTION), IndexPath(row: 2, section: RANGE_SECTION)], with: .none)
         
@@ -549,4 +550,11 @@ class SortFilterTableController: UITableViewController {
         return rangeSectionFlag(section) ? tableView.rowHeight : 0
     }
     
+}
+
+// MARK: - StoreSubscriber
+extension SortFilterTableController: StoreSubscriber {
+    func newState(state: SpellbookAppState) {
+        
+    }
 }
