@@ -7,33 +7,37 @@
 //
 
 import ReSwift
+import RxSwift
 
 func identityReducer(action: Action, state: SpellbookAppState) -> SpellbookAppState {
     return state
 }
 
-func sortFieldReducer(action: SortFieldAction, state: SpellbookAppState) -> SpellbookAppState {
+func sortFieldReducer(action: SortFieldAction, state: inout SpellbookAppState) -> SpellbookAppState {
     guard let status = state.profile?.sortFilterStatus else { return state }
     if (action.level == 1) {
         status.firstSortField = action.sortField
     } else if (action.level == 2) {
         status.secondSortField = action.sortField
     }
+    sortSpells(&state)
     return state
 }
 
-func sortReverseReducer(action: SortReverseAction, state: SpellbookAppState) -> SpellbookAppState {
+func sortReverseReducer(action: SortReverseAction, state: inout SpellbookAppState) -> SpellbookAppState {
     guard let status = state.profile?.sortFilterStatus else { return state }
     if (action.level == 1) {
         status.firstSortReverse = action.reverse
     } else if (action.level == 2) {
         status.secondSortReverse = action.reverse
     }
+    sortSpells(&state)
     return state
 }
 
-func filterItemReducer<T:NameConstructible>(action: FilterItemAction<T>, state: SpellbookAppState) -> SpellbookAppState {
-    state.profile?.setVisibility(action.item, action.visible)
+func filterItemReducer<T:NameConstructible>(action: FilterItemAction<T>, state: inout SpellbookAppState) -> SpellbookAppState {
+    state.profile?.sortFilterStatus.setVisibility(action.item, action.visible)
+    filterSpells(&state)
     return state
 }
 //let filterSchoolReducer = filterItemReducer<School>
@@ -44,70 +48,73 @@ func filterItemReducer<T:NameConstructible>(action: FilterItemAction<T>, state: 
 //let filterRangeTypeReducer = filterItemReducer<RangeType>
 
 func sortNeededReducer(action: SortNeededAction, state: inout SpellbookAppState) -> SpellbookAppState {
-    state.sortNeeded = true
+    sortSpells(&state)
     return state
+}
+
+fileprivate func sortSpells(_ state: inout SpellbookAppState) {
+    guard let profile = state.profile else { return }
+    let sortFilterStatus = profile.sortFilterStatus
+    let comparator = spellComparator(sortField1: sortFilterStatus.firstSortField, sortField2: sortFilterStatus.secondSortField, reverse1: sortFilterStatus.firstSortReverse, reverse2: sortFilterStatus.secondSortReverse)
+    state.currentSpellList = state.spellList.sorted { comparator($0, $1) }
+}
+
+fileprivate func filterSpells(_ state: inout SpellbookAppState) {
+    let filter = createFilter(state: state)
+    state.currentSpellList = state.spellList.filter(filter)
 }
 
 func filterNeededReducer(action: FilterNeededAction, state: inout SpellbookAppState) -> SpellbookAppState {
-    state.filterNeeded = true
+    filterSpells(&state)
     return state
 }
 
 
-typealias ValueSetter<T:QuantityType,U:Unit> = (CharacterProfile) -> (T.Type, U.Type, Int) -> Void
-fileprivate func valueUpdateReducer<T:QuantityType,U:Unit>(action: ValueUpdateAction<T,U>, state: SpellbookAppState) -> SpellbookAppState {
+typealias ValueSetter = (SortFilterStatus) -> (Int) -> Void
+fileprivate func valueUpdateReducer<T:QuantityType,U:Unit>(action: ValueUpdateAction<T,U>, state: inout SpellbookAppState, minSetter: ValueSetter, maxSetter: ValueSetter) -> SpellbookAppState {
     guard let profile = state.profile else { return state }
+    let status = profile.sortFilterStatus
     if (action.bound == .Min) {
-        profile.setMinValue(quantityType: action.quantityType, unitType: action.unitType, value: action.value)
+        minSetter(status)(action.value)
     } else {
-        profile.setMaxValue(quantityType: action.quantityType, unitType: action.unitType, value: action.value)
+        maxSetter(status)(action.value)
     }
+    filterSpells(&state)
     return state
 }
-func rangeValueUpdateReducer(action: RangeValueUpdateAction, state: SpellbookAppState) -> SpellbookAppState {
-    return valueUpdateReducer(action: action, state: state)
+func rangeValueUpdateReducer(action: RangeValueUpdateAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    return valueUpdateReducer(action: action, state: &state, minSetter: SortFilterStatus.setMinRangeValue, maxSetter: SortFilterStatus.setMaxRangeValue)
 }
-func durationValueUpdateReducer(action: DurationValueUpdateAction, state: SpellbookAppState) -> SpellbookAppState {
-    return valueUpdateReducer(action: action, state: state)
+func durationValueUpdateReducer(action: DurationValueUpdateAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    return valueUpdateReducer(action: action, state: &state, minSetter: SortFilterStatus.setMinDurationValue, maxSetter: SortFilterStatus.setMaxDurationValue)
 }
-func castingTimeValueUpdateReducer(action: CastingTimeValueUpdateAction, state: SpellbookAppState) -> SpellbookAppState {
-    return valueUpdateReducer(action: action, state: state)
+func castingTimeValueUpdateReducer(action: CastingTimeValueUpdateAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    return valueUpdateReducer(action: action, state: &state, minSetter: SortFilterStatus.setMinCastingTimeValue, maxSetter: SortFilterStatus.setMaxCastingTimeValue)
 }
 
 
-typealias UnitSetter<T:QuantityType,U:Unit> = (CharacterProfile) ->  (T.Type, U.Type, U) -> Void
-fileprivate func unitUpdateReducer<T:QuantityType,U:Unit>(action: UnitUpdateAction<T,U>, state: SpellbookAppState, setter: UnitSetter<T,U>) -> SpellbookAppState {
-    if state.profile != nil {
-        setter(state.profile!)(action.quantityType, type(of: action.unit), action.unit)
+typealias UnitSetter<U:Unit> = (SortFilterStatus) ->  (U) -> Void
+fileprivate func unitUpdateReducer<T:QuantityType,U:Unit>(action: UnitUpdateAction<T,U>, state: inout SpellbookAppState, minSetter: UnitSetter<U>, maxSetter: UnitSetter<U>) -> SpellbookAppState {
+    guard let profile = state.profile else { return state }
+    let status = profile.sortFilterStatus
+    if (action.bound == .Min) {
+        minSetter(status)(action.unit)
+    } else {
+        maxSetter(status)(action.unit)
     }
+    filterSpells(&state)
     return state
 }
-fileprivate func minUnitUpdateReducer<T:QuantityType,U:Unit>(action: UnitUpdateAction<T,U>, state: SpellbookAppState) -> SpellbookAppState {
-    return unitUpdateReducer(action: action, state: state, setter: CharacterProfile.setMinUnit)
-}
-fileprivate func maxUnitUpdateReducer<T:QuantityType,U:Unit>(action: UnitUpdateAction<T,U>, state: SpellbookAppState) -> SpellbookAppState {
-    return unitUpdateReducer(action: action, state: state, setter: CharacterProfile.setMaxUnit)
-}
 
-
-//func minRangeUnitUpdateReducer(action: MinRangeUnitUpdateAction, state: SpellbookAppState) -> SpellbookAppState {
-//    return minUnitUpdateReducer(action: action, state: state)
-//}
-//func maxRangeUnitUpdateReducer(action: MinRangeUnitUpdateAction, state: SpellbookAppState) -> SpellbookAppState {
-//    return maxUnitUpdateReducer(action: action, state: state)
-//}
-//func minDurationUnitUpdateReducer(action: MinDurationUnitUpdateAction, state: SpellbookAppState) -> SpellbookAppState {
-//    return minUnitUpdateReducer(action: action, state: state)
-//}
-//func maxDurationUnitUpdateReducer(action: MinDurationUnitUpdateAction, state: SpellbookAppState) -> SpellbookAppState {
-//    return maxUnitUpdateReducer(action: action, state: state)
-//}
-//func minCastingTimeUnitUpdateReducer(action: MinCastingTimeUnitUpdateAction, state: SpellbookAppState) -> SpellbookAppState {
-//    return minUnitUpdateReducer(action: action, state: state)
-//}
-//func maxCastingTimeUnitUpdateReducer(action: MinCastingTimeUnitUpdateAction, state: SpellbookAppState) -> SpellbookAppState {
-//    return maxUnitUpdateReducer(action: action, state: state)
-//}
+func rangeUnitUpdateReducer(action: RangeUnitUpdateAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    return unitUpdateReducer(action: action, state: &state, minSetter: SortFilterStatus.setMinRangeUnit, maxSetter: SortFilterStatus.setMaxRangeUnit)
+}
+func durationUnitUpdateReducer(action: DurationUnitUpdateAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    return unitUpdateReducer(action: action, state: &state, minSetter: SortFilterStatus.setMinDurationUnit, maxSetter: SortFilterStatus.setMaxDurationUnit)
+}
+func castingTimeUnitUpdateReducer(action: CastingTimeUnitUpdateAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    return unitUpdateReducer(action: action, state: &state, minSetter: SortFilterStatus.setMinCastingTimeUnit, maxSetter: SortFilterStatus.setMaxCastingTimeUnit)
+}
 
 func updateProfileReducer(action: SwitchProfileAction, state: inout SpellbookAppState) -> SpellbookAppState {
     state.profile = action.newProfile

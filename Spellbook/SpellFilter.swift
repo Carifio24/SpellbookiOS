@@ -40,7 +40,7 @@ func filterSpell(spell: Spell, sortFilterStatus: SortFilterStatus, spellFilterSt
     // If we aren't going to filter when searching, and there's search text,
     // we only need to check whether the spell name contains the search text
     if (!sortFilterStatus.applyFiltersToSearch && isText) {
-        return !spellName.contains(text);
+        return spellName.contains(text);
     }
 
     // If we aren't going to filter spell lists, and the current filter isn't ALL
@@ -51,41 +51,41 @@ func filterSpell(spell: Spell, sortFilterStatus: SortFilterStatus, spellFilterSt
         if (isText) {
             hide = hide || !spellName.contains(text);
         }
-        return hide;
+        return !hide;
     }
     
     // Run through the various filtering fields
     
     // Level
     let level = spell.level
-    if (level > sortFilterStatus.maxSpellLevel) || (level < sortFilterStatus.minSpellLevel) { return true }
+    if (level > sortFilterStatus.maxSpellLevel) || (level < sortFilterStatus.minSpellLevel) { return false }
     
     // Sourcebooks
-    if filterThroughArray(spell: spell, values: visibleSources, filter: SpellTableViewController.sourcebookFilter) { return true }
+    if filterThroughArray(spell: spell, values: visibleSources, filter: SpellTableViewController.sourcebookFilter) { return false }
     
     // Classes
-    if filterThroughArray(spell: spell, values: visibleClasses, filter: SpellTableViewController.casterClassesFilter) { return true }
+    if filterThroughArray(spell: spell, values: visibleClasses, filter: SpellTableViewController.casterClassesFilter) { return false }
     
     // Schools
-    if filterThroughArray(spell: spell, values: visibleSchools, filter: SpellTableViewController.schoolFilter) { return true }
+    if filterThroughArray(spell: spell, values: visibleSchools, filter: SpellTableViewController.schoolFilter) { return false }
     
     // Casting time types
-    if filterThroughArray(spell: spell, values: visibleCastingTimeTypes, filter: SpellTableViewController.castingTimeTypeFilter) { return true }
+    if filterThroughArray(spell: spell, values: visibleCastingTimeTypes, filter: SpellTableViewController.castingTimeTypeFilter) { return false }
     
     // Duration types
-    if filterThroughArray(spell: spell, values: visibleDurationTypes, filter: SpellTableViewController.durationTypeFilter) { return true }
+    if filterThroughArray(spell: spell, values: visibleDurationTypes, filter: SpellTableViewController.durationTypeFilter) { return false }
     
     // Range types
-    if filterThroughArray(spell: spell, values: visibleRangeTypes, filter: SpellTableViewController.rangeTypeFilter) { return true }
+    if filterThroughArray(spell: spell, values: visibleRangeTypes, filter: SpellTableViewController.rangeTypeFilter) { return false }
     
     // Casting time bounds
-    if filterAgainstBounds(spell: spell, bounds: castingTimeBounds, quantityGetter: { $0.castingTime }) { return true }
+    if filterAgainstBounds(spell: spell, bounds: castingTimeBounds, quantityGetter: { $0.castingTime }) { return false }
     
     // Duration bounds
-    if filterAgainstBounds(spell: spell, bounds: durationBounds, quantityGetter: { $0.duration }) { return true }
+    if filterAgainstBounds(spell: spell, bounds: durationBounds, quantityGetter: { $0.duration }) { return false }
     
     // Range bounds
-    if filterAgainstBounds(spell: spell, bounds: rangeBounds, quantityGetter: { $0.range }) { return true }
+    if filterAgainstBounds(spell: spell, bounds: rangeBounds, quantityGetter: { $0.range }) { return false }
     
     // The rest of the filtering conditions
     var toHide = (sortFilterStatus.favoritesSelected() && !spellFilterStatus.isFavorite(spell))
@@ -94,15 +94,10 @@ func filterSpell(spell: Spell, sortFilterStatus: SortFilterStatus, spellFilterSt
     toHide = toHide || !sortFilterStatus.getRitualFilter(spell.ritual)
     toHide = toHide || !sortFilterStatus.getConcentrationFilter(spell.concentration)
     toHide = toHide || (isText && !spellName.contains(text))
-    return toHide
+    return !toHide
 }
 
-func createFilter(spells: [Spell], state: SpellbookAppState) -> (Spell) -> Bool {
-    
-    // During initial setup
-    if (spells.count == 0) {
-        return { spell in return false }
-    }
+func createFilter(state: SpellbookAppState) -> (Spell) -> Bool {
     
     // Testing
     //print("Favorites selected: \(main?.characterProfile.favoritesSelected())")

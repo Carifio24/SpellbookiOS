@@ -8,6 +8,7 @@
 
 import UIKit
 import ActionSheetPicker_3_0
+import ReSwift
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, SWRevealViewControllerDelegate {
     
@@ -748,9 +749,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.knownButton.setFalseImage(image: SpellTableViewController.bookEmpty!)
         
         // Set the button statuses
-        cell.favoriteButton.set(characterProfile.isFavorite(spell))
-        cell.preparedButton.set(characterProfile.isPrepared(spell))
-        cell.knownButton.set(characterProfile.isKnown(spell))
+        let sfs = store.state.profile?.spellFilterStatus ?? SpellFilterStatus()
+        cell.favoriteButton.set(sfs.isFavorite(spell))
+        cell.preparedButton.set(sfs.isPrepared(spell))
+        cell.knownButton.set(sfs.isKnown(spell))
         
         // Set the button callbacks
         // Set the callbacks for the buttons
@@ -811,7 +813,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func sort() {
-        doubleSort(sortField1: characterProfile.getFirstSortField(), sortField2: characterProfile.getSecondSortField(), reverse1: characterProfile.getFirstSortReverse(), reverse2: characterProfile.getSecondSortReverse())
+        store.dispatch(SortNeededAction())
     }
     
     // Function to entirely unfilter - i.e., display everything
@@ -845,72 +847,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             return false
         }
         
-    }
-    
-    // Determine whether or not a single row should be filtered
-    func filterItem(spell: Spell, profile cp: CharacterProfile, visibleSourcebooks: [Sourcebook], visibleClasses: [CasterClass], visibleSchools: [School], visibleCastingTimeTypes: [CastingTimeType], visibleDurationTypes: [DurationType], visibleRangeTypes: [RangeType], castingTimeBounds: (CastingTime,CastingTime), durationBounds: (Duration,Duration), rangeBounds: (Range,Range), isText: Bool, text: String) -> Bool {
-        let spname = spell.name.lowercased()
-        
-        // If we aren't going to filter when searching, and there's search text,
-        // we only need to check whether the spell name contains the search text
-        if !cp.getApplyFiltersToSearch() && isText {
-            return !spname.contains(text)
-        }
-        
-        // If we aren't going to filter spell lists, and the current filter isn't ALL
-        // just check if the spell is on the list
-        if !cp.getApplyFiltersToLists() && cp.isStatusSet() {
-            var hide = !cp.satisfiesFilter(spell: spell, filter: cp.getStatusFilter())
-            if (isText) {
-                hide = hide || !spname.contains(text)
-            }
-            return hide
-        }
-        
-        // Run through the various filtering fields
-        
-        // Level
-        let level = spell.level
-        if (level > cp.getMaxSpellLevel()) || (level < cp.getMinSpellLevel()) { return true }
-        
-        // Sourcebooks
-        if filterThroughArray(spell: spell, values: visibleSourcebooks, filter: ViewController.sourcebookFilter) { return true }
-        
-        // Classes
-        if filterThroughArray(spell: spell, values: visibleClasses, filter: ViewController.casterClassesFilter(useExpanded: cp.getUseTCEExpandedLists())) { return true }
-        
-        // Schools
-        if filterThroughArray(spell: spell, values: visibleSchools, filter: ViewController.schoolFilter) { return true }
-        
-        // Casting time types
-        if filterThroughArray(spell: spell, values: visibleCastingTimeTypes, filter: ViewController.castingTimeTypeFilter) { return true }
-        
-        // Duration types
-        if filterThroughArray(spell: spell, values: visibleDurationTypes, filter: ViewController.durationTypeFilter) { return true }
-        
-        // Range types
-        if filterThroughArray(spell: spell, values: visibleRangeTypes, filter: ViewController.rangeTypeFilter) { return true }
-        
-        // Casting time bounds
-        if filterAgainstBounds(spell: spell, bounds: castingTimeBounds, quantityGetter: { $0.castingTime }) { return true }
-        
-        // Duration bounds
-        if filterAgainstBounds(spell: spell, bounds: durationBounds, quantityGetter: { $0.duration }) { return true }
-        
-        // Range bounds
-        if filterAgainstBounds(spell: spell, bounds: rangeBounds, quantityGetter: { $0.range }) { return true }
-        
-        // The rest of the filtering conditions
-        var toHide = (cp.favoritesSelected() && !cp.isFavorite(spell))
-        toHide = toHide || (cp.knownSelected() && !cp.isKnown(spell))
-        toHide = toHide || (cp.preparedSelected() && !cp.isPrepared(spell))
-        toHide = toHide || !cp.getRitualFilter(spell.ritual)
-        toHide = toHide || !cp.getConcentrationFilter(spell.concentration)
-        toHide = toHide || !cp.getVerbalFilter(spell.verbal)
-        toHide = toHide || !cp.getSomaticFilter(spell.somatic)
-        toHide = toHide || !cp.getMaterialFilter(spell.material)
-        toHide = toHide || (isText && !spname.contains(text))
-        return toHide
     }
     
     // Function to filter the table data
@@ -1030,5 +966,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         let toHide: Bool = (yVelocity < -5) && !filterVisible // True if scrolling down, false if scrolling up
         navController.setNavigationBarHidden(toHide, animated: true)
+    }
+}
+
+// MARK: StoreSubscriber
+extension ViewController: StoreSubscriber {
+    func newState(state: SpellbookAppState) {
+        
     }
 }

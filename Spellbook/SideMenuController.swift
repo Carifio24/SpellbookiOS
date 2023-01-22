@@ -111,12 +111,12 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     override func viewDidAppear(_ animated: Bool) {
         
         // Set the character label
-        let name = main?.characterProfile.getName()
+        let name = store.state.profile?.name ?? nil
         if (name != nil) {
             characterLabel.text = "Character: " + name!
         }
         if statusController != nil {
-            statusController!.setFilter(main!.characterProfile.getStatusFilter())
+            statusController!.setFilter(store.state.profile?.sortFilterStatus.statusFilterField ?? StatusFilterField.All)
         }
         
     }
@@ -165,7 +165,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
 
     func setFilterStatus(profile: CharacterProfile) {
         if statusController != nil {
-            statusController!.setFilter(profile.getStatusFilter())
+            statusController!.setFilter(profile.sortFilterStatus.statusFilterField)
         }
     }
     

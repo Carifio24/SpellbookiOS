@@ -324,6 +324,27 @@ class CharacterProfile {
         return rangeSION
     }
     
+    // Which default map to use for a given type
+        static func getDefaultTypeMap<E:CaseIterable & Hashable>(_ t : E.Type) -> Visibilities<E>? {
+            let id = ObjectIdentifier(t)
+            switch (id) {
+            case ObjectIdentifier(Sourcebook.self):
+                return CharacterProfile.defaultSourcebookVisibilities as? Visibilities<E>
+            case ObjectIdentifier(CasterClass.self):
+                return CharacterProfile.defaultCasterVisibilities as? Visibilities<E>
+            case ObjectIdentifier(School.self):
+                return CharacterProfile.defaultSchoolVisibilities as? Visibilities<E>
+            case ObjectIdentifier(CastingTimeType.self):
+                return CharacterProfile.defaultCastingTimeTypeVisibilities as? Visibilities<E>
+            case ObjectIdentifier(DurationType.self):
+                return CharacterProfile.defaultDurationTypeVisibilities as? Visibilities<E>
+            case ObjectIdentifier(RangeType.self):
+                return CharacterProfile.defaultRangeTypeVisibilities as? Visibilities<E>
+            default:
+                return nil
+            }
+        }
+    
     // Constructing a map from a list of hidden values
     // Used for JSON decoding
     private static func mapFromHiddenNames<E:NameConstructible>(type: E.Type, nonTrivialFilter: Bool, sion: SION, key: String) -> Visibilities<E> {
@@ -351,6 +372,7 @@ class CharacterProfile {
         }
         return map
     }
+
     
     // Save to a file
     func save(filename: URL) {

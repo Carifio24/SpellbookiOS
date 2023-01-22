@@ -26,25 +26,20 @@ class StatusPopupController: UIViewController {
     @IBOutlet var preparedButton: UIButton!
     @IBOutlet var knownButton: UIButton!
     
-    var profile = CharacterProfile()
+    var sfs = SpellFilterStatus()
     var spell: Spell = Spell()
     var height = CGFloat(0)
     var width = CGFloat(0)
-    var main: ViewController? = nil {
-        didSet {
-            profile = main!.characterProfile
-        }
-    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Set the images for the icons
-        let cp = main!.characterProfile
-        setFavoriteIcon((cp.isFavorite(spell)))
-        setPreparedIcon(cp.isPrepared(spell))
-        setKnownIcon(cp.isKnown(spell))
+        sfs = store.state.profile?.spellFilterStatus ?? sfs
+        setFavoriteIcon((sfs.isFavorite(spell)))
+        setPreparedIcon(sfs.isPrepared(spell))
+        setKnownIcon(sfs.isKnown(spell))
         
         // Add the button listeners
         favoriteButton.addTarget(self, action: #selector(onFavoriteButtonPressed), for: UIControl.Event.touchUpInside)
@@ -77,20 +72,19 @@ class StatusPopupController: UIViewController {
         let isProperty = !getter(spell)
         setter(spell, isProperty)
         iconSetter(isProperty)
-        main!.filter()
-        main!.saveCharacterProfile()
+        store.dispatch(FilterNeededAction())
     }
     
     @objc private func onFavoriteButtonPressed() {
-        onButtonPress(profile.isFavorite, profile.setFavorite, setFavoriteIcon)
+        onButtonPress(sfs.isFavorite, sfs.setFavorite, setFavoriteIcon)
     }
     
     @objc private func onPreparedButtonPressed() {
-        onButtonPress(profile.isPrepared, profile.setPrepared, setPreparedIcon)
+        onButtonPress(sfs.isPrepared, sfs.setPrepared, setPreparedIcon)
     }
     
     @objc private func onKnownButtonPressed() {
-        onButtonPress(profile.isKnown, profile.setKnown, setKnownIcon)
+        onButtonPress(sfs.isKnown, sfs.setKnown, setKnownIcon)
     }
     
     private func setLayout() {

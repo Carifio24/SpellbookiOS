@@ -62,7 +62,7 @@ class FilterOptionView: UIView, HeightProvider {
     }
     
     @objc private func chooserChanged(chooser: UISwitch) {
-        store.dispatch(self.creator)
+        store.dispatch(self.creator())
     }
     
     func desiredHeight() -> CGFloat {

@@ -9,8 +9,6 @@
 import ReSwift
 
 struct SpellbookAppState {
-    var filterNeeded = false
-    var sortNeeded = false
     var profile: CharacterProfile? = nil
     var spell: Spell? = nil
     var searchQuery: String? = nil

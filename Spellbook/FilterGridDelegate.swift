@@ -90,10 +90,9 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
         //cell.filterView.nameLabel.sizeToFit()
         //print("Item is \(item.displayName)")
         //print("Visibility is \(main.characterProfile.getVisibility(item))")
-        button.set(main.characterProfile.getVisibility(item))
+        button.set(store.state.profile?.sortFilterStatus.getVisibility(item))
         button.setCallback({
-            self.main.characterProfile.toggleVisibility(item)
-            self.main.saveCharacterProfile()
+            store.state.profile?.sortFilterStatus.toggleVisibility(item)
         })
         button.setLongPressCallback({
             if !button.isSet() { button.sendActions(for: .touchUpInside) }

@@ -173,9 +173,9 @@ class SpellWindowController: UIViewController {
         }
         
         // Set the spell buttons to the correct state
-        favoriteButton.set(profile.isFavorite(spell))
-        preparedButton.set(profile.isPrepared(spell))
-        knownButton.set(profile.isKnown(spell))
+        favoriteButton.set(profile.spellFilterStatus.isFavorite(spell))
+        preparedButton.set(profile.spellFilterStatus.isPrepared(spell))
+        knownButton.set(profile.spellFilterStatus.isKnown(spell))
         
         // Set the scroll view content size
         scrollView.contentSize = self.view.frame.size
