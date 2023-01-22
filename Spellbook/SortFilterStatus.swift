@@ -218,46 +218,46 @@ class SortFilterStatus {
         visibilityFlag.accept(())
     }
     
-    func setVisibility(_ source: Sourcebook, visible: Bool) {
+    func setSourceVisibility(_ source: Sourcebook, visible: Bool) {
         setVisibility(item: source, collection: &visibleSources, visible: visible)
     }
     
-    func setVisibility(_ school: School, visible: Bool) {
+    func setSchoolVisibility(_ school: School, visible: Bool) {
         setVisibility(item: school, collection: &visibleSchools, visible: visible)
     }
     
-    func setVisibility(_ casterClass: CasterClass, visible: Bool) {
+    func setClassVisibility(_ casterClass: CasterClass, visible: Bool) {
         setVisibility(item: casterClass, collection: &visibleClasses, visible: visible)
     }
     
-    func setVisibility(_ castingTimeType: CastingTimeType, visible: Bool) {
+    func setCastingTimeTypeVisibility(_ castingTimeType: CastingTimeType, visible: Bool) {
         setVisibility(item: castingTimeType, collection: &visibleCastingTimeTypes, visible: visible)
     }
     
-    func setVisibility(_ durationType: DurationType, visible: Bool) {
+    func setDurationTypeVisibility(_ durationType: DurationType, visible: Bool) {
         setVisibility(item: durationType, collection: &visibleDurationTypes, visible: visible)
     }
     
-    func setVisibility(_ rangeType: RangeType, visible: Bool) {
+    func setRangeTypeVisibility(_ rangeType: RangeType, visible: Bool) {
         setVisibility(item: rangeType, collection: &visibleRangeTypes, visible: visible)
     }
     
-    func toggleVisibility(_ source: Sourcebook) {
+    func toggleSourceVisibility(_ source: Sourcebook) {
         setVisibility(source, visible: !getVisibility(source))
     }
-    func toggleVisibility(_ school: School) {
+    func toggleSchoolVisibility(_ school: School) {
         setVisibility(school, visible: !getVisibility(school))
     }
-    func toggleVisibility(_ casterClass: CasterClass) {
+    func toggleClassVisibility(_ casterClass: CasterClass) {
         setVisibility(casterClass, visible: !getVisibility(casterClass))
     }
-    func toggleVisibility(_ castingTimeType: CastingTimeType) {
+    func toggleCastingTimeTypeVisibility(_ castingTimeType: CastingTimeType) {
         setVisibility(castingTimeType, visible: !getVisibility(castingTimeType))
     }
-    func toggleVisibility(_ durationType: DurationType) {
+    func toggleDurationTypeVisibility(_ durationType: DurationType) {
         setVisibility(durationType, visible: !getVisibility(durationType))
     }
-    func toggleVisibility(_ rangeType: RangeType) {
+    func toggleRangeTypeVisibility(_ rangeType: RangeType) {
         setVisibility(rangeType, visible: !getVisibility(rangeType))
     }
     
