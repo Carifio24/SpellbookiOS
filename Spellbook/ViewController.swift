@@ -852,38 +852,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // Function to filter the table data
     func filter() {
         
-        // During initial setup
-        if (spells.count == 0) { return }
-        
-        // Testing
-        //print("Favorites selected: \(main?.characterProfile.favoritesSelected())")
-        //print("Known selected: \(main?.characterProfile.knownSelected())")
-        //print("Prepared selected: \(main?.characterProfile.preparedSelected())")
-        
-        // First, we filter the data
-        let searchText = searchBar.text?.lowercased() ?? ""
-        let isText = !searchText.isEmpty
-        
-        let visibleSourcebooks = characterProfile.getVisibleValues(type: Sourcebook.self)
-        let visibleClasses = characterProfile.getVisibleValues(type: CasterClass.self)
-        let visibleSchools = characterProfile.getVisibleValues(type: School.self)
-        let visibleCastingTimeTypes = characterProfile.getVisibleValues(type: CastingTimeType.self)
-        let visibleDurationTypes = characterProfile.getVisibleValues(type: DurationType.self)
-        let visibleRangeTypes = characterProfile.getVisibleValues(type: RangeType.self)
-        let castingTimeBounds = characterProfile.getBounds(type: CastingTime.self)
-        let durationBounds = characterProfile.getBounds(type: Duration.self)
-        let rangeBounds = characterProfile.getBounds(type: Range.self)
-        
-        for i in 0...spells.count-1 {
-            let filter = filterItem(spell: spells[i].0, profile: characterProfile, visibleSourcebooks: visibleSourcebooks, visibleClasses: visibleClasses, visibleSchools: visibleSchools, visibleCastingTimeTypes: visibleCastingTimeTypes, visibleDurationTypes: visibleDurationTypes, visibleRangeTypes: visibleRangeTypes, castingTimeBounds: castingTimeBounds, durationBounds: durationBounds, rangeBounds: rangeBounds, isText: isText, text: searchText)
-            spells[i] = (spells[i].0, !filter)
-        }
+        store.dispatch(FilterNeededAction())
             
-        // Get the new spell array
-        updateSpellArray()
-            
-        // Repopulate the table
-        spellTable.reloadData()
+//        // Get the new spell array
+//        updateSpellArray()
+//
+//        // Repopulate the table
+//        spellTable.reloadData()
     }
     
     // If one of the side menus is open, we want to close the menu rather than select a cell
@@ -932,7 +907,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let popupWidth = CGFloat(166)
             controller.width = popupWidth
             controller.height = popupHeight
-            controller.main = self
             let cell = spellTable.cellForRow(at: indexPath!) as! SpellDataCell
             let positionX = CGFloat(0)
             let positionY = cell.frame.maxY

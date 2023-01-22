@@ -11,7 +11,7 @@ import UIKit
 class YesNoFilterDelegate: NSObject, FilterGridProtocol {
     
     typealias StatusGetter = (Bool) -> Bool
-    typealias ActionCreator = (Bool) -> ToggleAction
+    typealias ActionCreator = (Bool) -> ToggleFlagAction
     
     static let reuseIdentifier = "filterCell"
     private static let defaultWidth: CGFloat = 0.5 * (UIScreen.main.bounds.size.width - 10) - 5

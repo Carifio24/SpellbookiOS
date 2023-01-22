@@ -35,14 +35,24 @@ func sortReverseReducer(action: SortReverseAction, state: inout SpellbookAppStat
     return state
 }
 
+func spellLevelReducer(action: SpellLevelAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    guard let status = state.profile?.sortFilterStatus else { return state }
+    if (action.bound == .Min) {
+        status.minSpellLevel = action.level
+    } else {
+        status.maxSpellLevel = action.level
+    }
+    filterSpells(&state)
+    return state
+}
+
 typealias VisibilitySetter<T:NameConstructible> = (SortFilterStatus) -> (T, Bool) -> ()
 fileprivate func filterItemReducer<T:NameConstructible>(
     action: FilterItemAction<T>,
     state: inout SpellbookAppState,
     visibilitySetter: VisibilitySetter<T>
 ) -> SpellbookAppState {
-    guard let profile = store.state.profile else { return state }
-    let status = profile.sortFilterStatus
+    guard let status = store.state.profile?.sortFilterStatus else { return state }
     visibilitySetter(status)(action.item, action.visible)
     filterSpells(&state)
     return state
@@ -56,7 +66,7 @@ func filterSourceReducer(action: FilterItemAction<Sourcebook>, state: inout Spel
 func filterClassReducer(action: FilterItemAction<CasterClass>, state: inout SpellbookAppState) -> SpellbookAppState {
     return filterItemReducer(action: action, state: &state, visibilitySetter: SortFilterStatus.setClassVisibility)
 }
-func filterCastingTimeReducer(action: FilterItemAction<CastingTimeType>, state: inout SpellbookAppState) -> SpellbookAppState {
+func filterCastingTimeTypeReducer(action: FilterItemAction<CastingTimeType>, state: inout SpellbookAppState) -> SpellbookAppState {
     return filterItemReducer(action: action, state: &state, visibilitySetter: SortFilterStatus.setCastingTimeTypeVisibility)
 }
 func filterDurationTypeReducer(action: FilterItemAction<DurationType>, state: inout SpellbookAppState) -> SpellbookAppState {
@@ -72,8 +82,7 @@ fileprivate func toggleItemReducer<T:NameConstructible>(
     state: inout SpellbookAppState,
     visibilityToggler: VisibilityToggler<T>
 ) -> SpellbookAppState {
-    guard let profile = store.state.profile else { return state }
-    let status = profile.sortFilterStatus
+    guard let status = store.state.profile?.sortFilterStatus else { return state }
     visibilityToggler(status)(action.item)
     filterSpells(&state)
     return state
@@ -146,8 +155,7 @@ func castingTimeValueUpdateReducer(action: CastingTimeValueUpdateAction, state: 
 
 typealias UnitSetter<U:Unit> = (SortFilterStatus) ->  (U) -> Void
 fileprivate func unitUpdateReducer<T:QuantityType,U:Unit>(action: UnitUpdateAction<T,U>, state: inout SpellbookAppState, minSetter: UnitSetter<U>, maxSetter: UnitSetter<U>) -> SpellbookAppState {
-    guard let profile = state.profile else { return state }
-    let status = profile.sortFilterStatus
+    guard let status = state.profile?.sortFilterStatus else { return state }
     if (action.bound == .Min) {
         minSetter(status)(action.unit)
     } else {
@@ -164,6 +172,53 @@ func durationUnitUpdateReducer(action: DurationUnitUpdateAction, state: inout Sp
 }
 func castingTimeUnitUpdateReducer(action: CastingTimeUnitUpdateAction, state: inout SpellbookAppState) -> SpellbookAppState {
     return unitUpdateReducer(action: action, state: &state, minSetter: SortFilterStatus.setMinCastingTimeUnit, maxSetter: SortFilterStatus.setMaxCastingTimeUnit)
+}
+
+func setFlagFilterReducer(action: SetFlagAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    guard let status = state.profile?.sortFilterStatus else { return state }
+    switch (action.flag) {
+        case .Ritual:
+            status.setRitualFilter(action.tf, to: action.value)
+            break
+        case .Concentration:
+            status.setConcentrationFilter(action.tf, to: action.value)
+            break
+        case .Verbal:
+            status.setVerbalFilter(action.tf, to: action.value)
+            break
+        case .Somatic:
+            status.setSomaticFilter(action.tf, to: action.value)
+            break
+        case .Material:
+            status.setMaterialFilter(action.tf, to: action.value)
+            break
+    }
+    filterSpells(&state)
+    return state
+}
+
+
+func toggleFlagFilterReducer(action: ToggleFlagAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    guard let status = state.profile?.sortFilterStatus else { return state }
+    switch (action.flag) {
+        case .Ritual:
+            status.toggleRitualFilter(action.value)
+            break
+        case .Concentration:
+            status.toggleConcentrationFilter(action.value)
+            break
+        case .Verbal:
+            status.toggleVerbalFilter(action.value)
+            break
+        case .Somatic:
+            status.toggleSomaticFilter(action.value)
+            break
+        case .Material:
+            status.toggleMaterialFilter(action.value)
+            break
+    }
+    filterSpells(&state)
+    return state
 }
 
 

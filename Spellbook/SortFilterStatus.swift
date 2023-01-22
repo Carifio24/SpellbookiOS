@@ -243,22 +243,22 @@ class SortFilterStatus {
     }
     
     func toggleSourceVisibility(_ source: Sourcebook) {
-        setVisibility(source, visible: !getVisibility(source))
+        setSourceVisibility(source, visible: !getVisibility(source))
     }
     func toggleSchoolVisibility(_ school: School) {
-        setVisibility(school, visible: !getVisibility(school))
+        setSchoolVisibility(school, visible: !getVisibility(school))
     }
     func toggleClassVisibility(_ casterClass: CasterClass) {
-        setVisibility(casterClass, visible: !getVisibility(casterClass))
+        setClassVisibility(casterClass, visible: !getVisibility(casterClass))
     }
     func toggleCastingTimeTypeVisibility(_ castingTimeType: CastingTimeType) {
-        setVisibility(castingTimeType, visible: !getVisibility(castingTimeType))
+        setCastingTimeTypeVisibility(castingTimeType, visible: !getVisibility(castingTimeType))
     }
     func toggleDurationTypeVisibility(_ durationType: DurationType) {
-        setVisibility(durationType, visible: !getVisibility(durationType))
+        setDurationTypeVisibility(durationType, visible: !getVisibility(durationType))
     }
     func toggleRangeTypeVisibility(_ rangeType: RangeType) {
-        setVisibility(rangeType, visible: !getVisibility(rangeType))
+        setRangeTypeVisibility(rangeType, visible: !getVisibility(rangeType))
     }
     
     // Component filters

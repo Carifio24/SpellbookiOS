@@ -122,15 +122,15 @@ struct SetFlagAction: Action {
     static func material(_ tf: Bool, to: Bool) -> SetFlagAction { return SetFlagAction(flag: .Material, tf: tf, value: to) }
 }
 
-struct ToggleAction: Action {
+struct ToggleFlagAction: Action {
     let flag: FlagType
     let value: Bool
     
-    static func ritual(_ value: Bool) -> ToggleAction { return ToggleAction(flag: .Ritual, value: value) }
-    static func concentration(_ value: Bool) -> ToggleAction { return ToggleAction(flag: .Concentration, value: value) }
-    static func verbal(_ value: Bool) -> ToggleAction { return ToggleAction(flag: .Verbal, value: value) }
-    static func somatic(_ value: Bool) -> ToggleAction { return ToggleAction(flag: .Somatic, value: value) }
-    static func material(_ value: Bool) -> ToggleAction { return ToggleAction(flag: .Material, value: value) }
+    static func ritual(_ value: Bool) -> ToggleFlagAction { return ToggleFlagAction(flag: .Ritual, value: value) }
+    static func concentration(_ value: Bool) -> ToggleFlagAction { return ToggleFlagAction(flag: .Concentration, value: value) }
+    static func verbal(_ value: Bool) -> ToggleFlagAction { return ToggleFlagAction(flag: .Verbal, value: value) }
+    static func somatic(_ value: Bool) -> ToggleFlagAction { return ToggleFlagAction(flag: .Somatic, value: value) }
+    static func material(_ value: Bool) -> ToggleFlagAction { return ToggleFlagAction(flag: .Material, value: value) }
 }
 
 struct TogglePropertyAction: Action {

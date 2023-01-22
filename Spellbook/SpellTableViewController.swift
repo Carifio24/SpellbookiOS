@@ -189,10 +189,11 @@ class SpellTableViewController: UITableViewController {
         cell.knownButton.setFalseImage(image: SpellTableViewController.bookEmpty!)
         
         // Set the button statuses
-        let cp = main.characterProfile
-        cell.favoriteButton.set(cp.isFavorite(spell))
-        cell.preparedButton.set(cp.isPrepared(spell))
-        cell.knownButton.set(cp.isKnown(spell))
+        if let spellFilterStatus = store.state.profile?.spellFilterStatus {
+            cell.favoriteButton.set(spellFilterStatus.isFavorite(spell))
+            cell.preparedButton.set(spellFilterStatus.isPrepared(spell))
+            cell.knownButton.set(spellFilterStatus.isKnown(spell))
+        }
         
         // Set the button callbacks
         // Set the callbacks for the buttons
@@ -253,8 +254,7 @@ class SpellTableViewController: UITableViewController {
     }
     
     func sort() {
-        let cp = main.characterProfile
-        doubleSort(sortField1: cp.getFirstSortField(), sortField2: cp.getSecondSortField(), reverse1: cp.getFirstSortReverse(), reverse2: cp.getSecondSortReverse())
+        store.dispatch(SortNeededAction())
     }
     
     // Function to entirely unfilter - i.e., display everything
@@ -293,39 +293,13 @@ class SpellTableViewController: UITableViewController {
     // Function to filter the table data
     func filter() {
         
-        // During initial setup
-        if (spells.count == 0) { return }
-        
-        // Testing
-        //print("Favorites selected: \(main?.characterProfile.favoritesSelected())")
-        //print("Known selected: \(main?.characterProfile.knownSelected())")
-        //print("Prepared selected: \(main?.characterProfile.preparedSelected())")
-        
-        // First, we filter the data
-        let searchText = main.searchBar.text?.lowercased() ?? ""
-        let isText = !searchText.isEmpty
-        
-        let cp = main.characterProfile
-        let visibleSourcebooks = cp.getVisibleValues(type: Sourcebook.self)
-        let visibleClasses = cp.getVisibleValues(type: CasterClass.self)
-        let visibleSchools = cp.getVisibleValues(type: School.self)
-        let visibleCastingTimeTypes = cp.getVisibleValues(type: CastingTimeType.self)
-        let visibleDurationTypes = cp.getVisibleValues(type: DurationType.self)
-        let visibleRangeTypes = cp.getVisibleValues(type: RangeType.self)
-        let castingTimeBounds = cp.getBounds(type: CastingTime.self)
-        let durationBounds = cp.getBounds(type: Duration.self)
-        let rangeBounds = cp.getBounds(type: Range.self)
-        
-        for i in 0...spells.count-1 {
-            let filter = filterItem(spell: spells[i].0, profile: cp, visibleSourcebooks: visibleSourcebooks, visibleClasses: visibleClasses, visibleSchools: visibleSchools, visibleCastingTimeTypes: visibleCastingTimeTypes, visibleDurationTypes: visibleDurationTypes, visibleRangeTypes: visibleRangeTypes, castingTimeBounds: castingTimeBounds, durationBounds: durationBounds, rangeBounds: rangeBounds, isText: isText, text: searchText)
-            spells[i] = (spells[i].0, !filter)
-        }
+        store.dispatchFunction(FilterNeededAction())
             
-        // Get the new spell array
-        updateSpellArray()
-            
-        // Repopulate the table
-        tableView.reloadData()
+//        // Get the new spell array
+//        updateSpellArray()
+//
+//        // Repopulate the table
+//        tableView.reloadData()
     }
     
     // If one of the side menus is open, we want to close the menu rather than select a cell
@@ -373,7 +347,6 @@ class SpellTableViewController: UITableViewController {
             let popupWidth = CGFloat(166)
             controller.width = popupWidth
             controller.height = popupHeight
-            controller.main = main
             let cell = tableView.cellForRow(at: indexPath!) as! SpellDataCell
             let positionX = CGFloat(0)
             let positionY = cell.frame.maxY

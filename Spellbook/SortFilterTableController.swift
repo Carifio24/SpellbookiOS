@@ -139,23 +139,23 @@ class SortFilterTableController: UITableViewController {
     // Grid delegates
     private let ritualDelegate = YesNoFilterDelegate(
         statusGetter: { tf in return store.state.profile?.sortFilterStatus.getRitualFilter(tf) ?? true },
-        actionCreator: ToggleAction.ritual
+        actionCreator: ToggleFlagAction.ritual
     )
     private let concentrationDelegate = YesNoFilterDelegate(
         statusGetter: { tf in return store.state.profile?.sortFilterStatus.getConcentrationFilter(tf) ?? true },
-        actionCreator: ToggleAction.concentration
+        actionCreator: ToggleFlagAction.concentration
     )
     private let verbalDelegate = YesNoFilterDelegate(
         statusGetter: { tf in return store.state.profile?.sortFilterStatus.getVerbalFilter(tf) ?? true },
-        actionCreator: ToggleAction.verbal
+        actionCreator: ToggleFlagAction.verbal
     )
     private let somaticDelegate = YesNoFilterDelegate(
         statusGetter: { tf in return store.state.profile?.sortFilterStatus.getSomaticFilter(tf) ?? true },
-        actionCreator: ToggleAction.somatic
+        actionCreator: ToggleFlagAction.somatic
     )
     private let materialDelegate = YesNoFilterDelegate(
         statusGetter: { tf in return store.state.profile?.sortFilterStatus.getMaterialFilter(tf) ?? true },
-        actionCreator: ToggleAction.material
+        actionCreator: ToggleFlagAction.material
     )
     private let sourcebookDelegate = FilterGridFeatureDelegate<Sourcebook,ToggleSourcebookAction>(
         featuredItems: Sourcebook.coreSourcebooks,
