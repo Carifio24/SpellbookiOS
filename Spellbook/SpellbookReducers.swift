@@ -35,17 +35,68 @@ func sortReverseReducer(action: SortReverseAction, state: inout SpellbookAppStat
     return state
 }
 
-func filterItemReducer<T:NameConstructible>(action: FilterItemAction<T>, state: inout SpellbookAppState) -> SpellbookAppState {
-    state.profile?.sortFilterStatus.setVisibility(action.item, action.visible)
+typealias VisibilitySetter<T:NameConstructible> = (SortFilterStatus) -> (T, Bool) -> ()
+fileprivate func filterItemReducer<T:NameConstructible>(
+    action: FilterItemAction<T>,
+    state: inout SpellbookAppState,
+    visibilitySetter: VisibilitySetter<T>
+) -> SpellbookAppState {
+    guard let profile = store.state.profile else { return state }
+    let status = profile.sortFilterStatus
+    visibilitySetter(status)(action.item, action.visible)
     filterSpells(&state)
     return state
 }
-//let filterSchoolReducer = filterItemReducer<School>
-//let filterClassReducer = filterItemReducer<CasterClass>
-//let filterSourcebookItemReducer = filterItemReducer<Sourcebook>
-//let filterCastingTimeTypeReducer = filterItemReducer<CastingTimeType>
-//let filterDurationTypeReducer = filterItemReducer<DurationType>
-//let filterRangeTypeReducer = filterItemReducer<RangeType>
+func filterSchoolReducer(action: FilterItemAction<School>, state: inout SpellbookAppState) -> SpellbookAppState {
+    return filterItemReducer(action: action, state: &state, visibilitySetter: SortFilterStatus.setSchoolVisibility)
+}
+func filterSourceReducer(action: FilterItemAction<Sourcebook>, state: inout SpellbookAppState) -> SpellbookAppState {
+    return filterItemReducer(action: action, state: &state, visibilitySetter: SortFilterStatus.setSourceVisibility)
+}
+func filterClassReducer(action: FilterItemAction<CasterClass>, state: inout SpellbookAppState) -> SpellbookAppState {
+    return filterItemReducer(action: action, state: &state, visibilitySetter: SortFilterStatus.setClassVisibility)
+}
+func filterCastingTimeReducer(action: FilterItemAction<CastingTimeType>, state: inout SpellbookAppState) -> SpellbookAppState {
+    return filterItemReducer(action: action, state: &state, visibilitySetter: SortFilterStatus.setCastingTimeTypeVisibility)
+}
+func filterDurationTypeReducer(action: FilterItemAction<DurationType>, state: inout SpellbookAppState) -> SpellbookAppState {
+    return filterItemReducer(action: action, state: &state, visibilitySetter: SortFilterStatus.setDurationTypeVisibility)
+}
+func filterRangeTypeReducer(action: FilterItemAction<RangeType>, state: inout SpellbookAppState) -> SpellbookAppState {
+    return filterItemReducer(action: action, state: &state, visibilitySetter: SortFilterStatus.setRangeTypeVisibility)
+}
+
+typealias VisibilityToggler<T:NameConstructible> = (SortFilterStatus) -> (T) -> ()
+fileprivate func toggleItemReducer<T:NameConstructible>(
+    action: ToggleItemAction<T>,
+    state: inout SpellbookAppState,
+    visibilityToggler: VisibilityToggler<T>
+) -> SpellbookAppState {
+    guard let profile = store.state.profile else { return state }
+    let status = profile.sortFilterStatus
+    visibilityToggler(status)(action.item)
+    filterSpells(&state)
+    return state
+}
+func toggleSchoolReducer(action: ToggleItemAction<School>, state: inout SpellbookAppState) -> SpellbookAppState {
+    return toggleItemReducer(action: action, state: &state, visibilityToggler: SortFilterStatus.toggleSchoolVisibility)
+}
+func toggleSourceReducer(action: ToggleItemAction<Sourcebook>, state: inout SpellbookAppState) -> SpellbookAppState {
+    return toggleItemReducer(action: action, state: &state, visibilityToggler: SortFilterStatus.toggleSourceVisibility)
+}
+func toggleClassReducer(action: ToggleItemAction<CasterClass>, state: inout SpellbookAppState) -> SpellbookAppState {
+    return toggleItemReducer(action: action, state: &state, visibilityToggler: SortFilterStatus.toggleClassVisibility)
+}
+func toggleCastingTimeTypeReducer(action: ToggleItemAction<CastingTimeType>, state: inout SpellbookAppState) -> SpellbookAppState {
+    return toggleItemReducer(action: action, state: &state, visibilityToggler: SortFilterStatus.toggleCastingTimeTypeVisibility)
+}
+func toggleDurationTypeReducer(action: ToggleItemAction<DurationType>, state: inout SpellbookAppState) -> SpellbookAppState {
+    return toggleItemReducer(action: action, state: &state, visibilityToggler: SortFilterStatus.toggleDurationTypeVisibility)
+}
+func toggleRangeTypeReducer(action: ToggleItemAction<RangeType>, state: inout SpellbookAppState) -> SpellbookAppState {
+    return toggleItemReducer(action: action, state: &state, visibilityToggler: SortFilterStatus.toggleRangeTypeVisibility)
+}
+
 
 func sortNeededReducer(action: SortNeededAction, state: inout SpellbookAppState) -> SpellbookAppState {
     sortSpells(&state)
@@ -105,7 +156,6 @@ fileprivate func unitUpdateReducer<T:QuantityType,U:Unit>(action: UnitUpdateActi
     filterSpells(&state)
     return state
 }
-
 func rangeUnitUpdateReducer(action: RangeUnitUpdateAction, state: inout SpellbookAppState) -> SpellbookAppState {
     return unitUpdateReducer(action: action, state: &state, minSetter: SortFilterStatus.setMinRangeUnit, maxSetter: SortFilterStatus.setMaxRangeUnit)
 }
@@ -115,6 +165,7 @@ func durationUnitUpdateReducer(action: DurationUnitUpdateAction, state: inout Sp
 func castingTimeUnitUpdateReducer(action: CastingTimeUnitUpdateAction, state: inout SpellbookAppState) -> SpellbookAppState {
     return unitUpdateReducer(action: action, state: &state, minSetter: SortFilterStatus.setMinCastingTimeUnit, maxSetter: SortFilterStatus.setMaxCastingTimeUnit)
 }
+
 
 func updateProfileReducer(action: SwitchProfileAction, state: inout SpellbookAppState) -> SpellbookAppState {
     state.profile = action.newProfile
