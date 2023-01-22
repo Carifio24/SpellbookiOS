@@ -157,12 +157,25 @@ class SortFilterTableController: UITableViewController {
         statusGetter: { tf in return store.state.profile?.sortFilterStatus.getMaterialFilter(tf) ?? true },
         actionCreator: ToggleAction.material
     )
-    private let sourcebookDelegate = FilterGridFeatureDelegate<Sourcebook>(featuredItems: Sourcebook.coreSourcebooks, sortBy: Sourcebook.coreNameComparator())
-    private let casterDelegate = FilterGridDelegate<CasterClass>(sortBy: CasterClass.nameComparator())
-    private let schoolDelegate = FilterGridDelegate<School>(sortBy: School.nameComparator())
-    private var castingTimeDelegate: FilterGridRangeDelegate<CastingTimeType>?
-    private var durationDelegate: FilterGridRangeDelegate<DurationType>?
-    private var rangeDelegate: FilterGridRangeDelegate<RangeType>?
+    private let sourcebookDelegate = FilterGridFeatureDelegate<Sourcebook,ToggleSourcebookAction>(
+        featuredItems: Sourcebook.coreSourcebooks,
+        getter: { sb in return store.state.profile?.sortFilterStatus.getVisibility(sb) ?? true },
+        actionCreator: ToggleSourcebookAction.init,
+        sortBy: Sourcebook.coreNameComparator()
+    )
+    private let casterDelegate = FilterGridDelegate<CasterClass,ToggleClassAction>(
+        getter: { cc in return store.state.profile?.sortFilterStatus.getVisibility(cc) ?? true },
+        actionCreator: ToggleClassAction.init,
+        sortBy: CasterClass.nameComparator()
+    )
+    private let schoolDelegate = FilterGridDelegate<School,ToggleSchoolAction>(
+        getter: { s in return store.state.profile?.sortFilterStatus.getVisibility(s) ?? true },
+        actionCreator: ToggleSchoolAction.init,
+        sortBy: School.nameComparator()
+    )
+    private var castingTimeDelegate: FilterGridRangeDelegate<CastingTimeType,ToggleCastingTimeTypeAction>?
+    private var durationDelegate: FilterGridRangeDelegate<DurationType,ToggleDurationTypeAction>?
+    private var rangeDelegate: FilterGridRangeDelegate<RangeType,ToggleRangeTypeAction>?
     private var gridsAndDelegates: [(UICollectionView, FilterGridProtocol)] = []
     
     // For handling touches wrt keyboard dismissal
@@ -214,9 +227,21 @@ class SortFilterTableController: UITableViewController {
         maxLevelEntry.delegate = maxLevelDelegate
         
         // Create the range delegates
-        castingTimeDelegate = FilterGridRangeDelegate<CastingTimeType>(flagSetter: { b in self.castingTimeRangeVisible = b })
-        durationDelegate = FilterGridRangeDelegate<DurationType>(flagSetter: { b in self.durationRangeVisible = b })
-        rangeDelegate = FilterGridRangeDelegate<RangeType>(flagSetter: { b in self.rangeRangeVisible = b })
+        castingTimeDelegate = FilterGridRangeDelegate<CastingTimeType,ToggleCastingTimeTypeAction>(
+            getter: { ctt in return store.state.profile?.sortFilterStatus.getVisibility(ctt) ?? true },
+            actionCreator: ToggleCastingTimeTypeAction.init,
+            flagSetter: { b in self.castingTimeRangeVisible = b }
+        )
+        durationDelegate = FilterGridRangeDelegate<DurationType,ToggleDurationTypeAction>(
+            getter: { dt in return store.state.profile?.sortFilterStatus.getVisibility(dt) ?? true },
+            actionCreator: ToggleDurationTypeAction.init,
+            flagSetter: { b in self.durationRangeVisible = b }
+        )
+        rangeDelegate = FilterGridRangeDelegate<RangeType,ToggleRangeTypeAction>(
+            getter: { rt in return store.state.profile?.sortFilterStatus.getVisibility(rt) ?? true },
+            actionCreator: ToggleRangeTypeAction.init,
+            flagSetter: { b in self.rangeRangeVisible = b }
+        )
         
         // The list of range views, and info about their table section and visibility
         rangeViews = [ castingTimeRange, durationRange, rangeRange ]

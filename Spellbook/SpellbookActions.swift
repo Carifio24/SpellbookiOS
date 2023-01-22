@@ -34,6 +34,18 @@ typealias FilterCastingTimeTypeAction = FilterItemAction<CastingTimeType>
 typealias FilterDurationTypeAction = FilterItemAction<DurationType>
 typealias FilterRangeTypeAction = FilterItemAction<RangeType>
 
+struct ToggleItemAction<T:NameConstructible>: Action {
+    let item: T
+}
+
+typealias ToggleSchoolAction = ToggleItemAction<School>
+typealias ToggleClassAction = ToggleItemAction<CasterClass>
+typealias ToggleSourcebookAction = ToggleItemAction<Sourcebook>
+typealias ToggleCastingTimeTypeAction = ToggleItemAction<CastingTimeType>
+typealias ToggleDurationTypeAction = ToggleItemAction<DurationType>
+typealias ToggleRangeTypeAction = ToggleItemAction<RangeType>
+
+
 enum Bound { case Min, Max }
 
 struct ValueUpdateAction<T: QuantityType, U: Unit>: Action {
