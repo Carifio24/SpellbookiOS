@@ -124,6 +124,7 @@
 		8ED0B932242BE9E800A085F4 /* down_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED0B931242BE9E800A085F4 /* down_arrow.png */; };
 		8ED0B936242E514F00A085F4 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED0B935242E514F00A085F4 /* FilterView.swift */; };
 		8ED0B9382431392700A085F4 /* NameDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED0B9372431392700A085F4 /* NameDisplayable.swift */; };
+		8EEA28FD297C23D8004971AD /* SpellFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA28FC297C23D8004971AD /* SpellFilter.swift */; };
 		8EEAFCCA2645FB4C00A05D01 /* CharacterProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEAFCC92645FB4C00A05D01 /* CharacterProfileTests.swift */; };
 		8EF6EF0B264668F60059BCE8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0A264668F60059BCE8 /* Version.swift */; };
 		8EF6EF0D26485A2E0059BCE8 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */; };
@@ -278,6 +279,7 @@
 		8ED0B931242BE9E800A085F4 /* down_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_arrow.png; sourceTree = SOURCE_ROOT; };
 		8ED0B935242E514F00A085F4 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		8ED0B9372431392700A085F4 /* NameDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameDisplayable.swift; sourceTree = "<group>"; };
+		8EEA28FC297C23D8004971AD /* SpellFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellFilter.swift; sourceTree = "<group>"; };
 		8EEAFCC92645FB4C00A05D01 /* CharacterProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProfileTests.swift; sourceTree = "<group>"; };
 		8EF6EF0A264668F60059BCE8 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTests.swift; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 				8E6E2B7D28BC8C3F00AA6483 /* SIONUtils.swift */,
 				8E6E2B8128E9FE4A00AA6483 /* SpellSlotsViewController.swift */,
 				8E6E2B8728ED472900AA6483 /* SortFilterStatus.swift */,
+				8EEA28FC297C23D8004971AD /* SpellFilter.swift */,
 			);
 			path = Spellbook;
 			sourceTree = "<group>";
@@ -842,6 +845,7 @@
 				8E6E2B8028BF2AE100AA6483 /* SpellSlotController.swift in Sources */,
 				8E614927241991C200842A18 /* SpellBuilder.swift in Sources */,
 				8E02F76224345F6200A3050C /* YesNo.swift in Sources */,
+				8EEA28FD297C23D8004971AD /* SpellFilter.swift in Sources */,
 				8E614916241991C200842A18 /* SideMenuController.swift in Sources */,
 				8E6148F5241991C200842A18 /* SpellTableViewController.swift in Sources */,
 				8E6148E4241991C200842A18 /* SourcebookFilterController.swift in Sources */,
