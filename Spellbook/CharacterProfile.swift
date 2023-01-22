@@ -204,17 +204,17 @@ class CharacterProfile {
         
         // Visibilities for various quantities
         let sourcebookVisibilities = CharacterProfile.mapFromHiddenNames(type: Sourcebook.self, nonTrivialFilter: true, sion: sion, key: CharacterProfile.hiddenSourcebooksKey)
-        for sb in Sourcebook.allCases { sortFilterStatus.setVisibility(sb, visible: sourcebookVisibilities[sb]) }
+        for sb in Sourcebook.allCases { sortFilterStatus.setSourceVisibility(sb, visible: sourcebookVisibilities[sb]) }
         let casterVisibilities = CharacterProfile.mapFromHiddenNames(type: CasterClass.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenCastersKey)
-        for cc in CasterClass.allCases { sortFilterStatus.setVisibility(cc, visible: casterVisibilities[cc]) }
+        for cc in CasterClass.allCases { sortFilterStatus.setClassVisibility(cc, visible: casterVisibilities[cc]) }
         let schoolVisibilities = CharacterProfile.mapFromHiddenNames(type: School.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenSchoolsKey)
-        for school in School.allCases { sortFilterStatus.setVisibility(school, visible: schoolVisibilities[school]) }
+        for school in School.allCases { sortFilterStatus.setSchoolVisibility(school, visible: schoolVisibilities[school]) }
         let castingTimeTypeVisibilities = CharacterProfile.mapFromHiddenNames(type: CastingTimeType.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenCastingTimeTypesKey)
-        for ctt in CastingTimeType.allCases { sortFilterStatus.setVisibility(ctt, visible: castingTimeTypeVisibilities[ctt]) }
+        for ctt in CastingTimeType.allCases { sortFilterStatus.setCastingTimeTypeVisibility(ctt, visible: castingTimeTypeVisibilities[ctt]) }
         let durationTypeVisibilities = CharacterProfile.mapFromHiddenNames(type: DurationType.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenDurationTypesKey)
-        for dt in DurationType.allCases { sortFilterStatus.setVisibility(dt, visible: durationTypeVisibilities[dt]) }
+        for dt in DurationType.allCases { sortFilterStatus.setDurationTypeVisibility(dt, visible: durationTypeVisibilities[dt]) }
         let rangeTypeVisibilities = CharacterProfile.mapFromHiddenNames(type: RangeType.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenRangeTypesKey)
-        for rt in RangeType.allCases { sortFilterStatus.setVisibility(rt, visible: rangeTypeVisibilities[rt]) }
+        for rt in RangeType.allCases { sortFilterStatus.setRangeTypeVisibility(rt, visible: rangeTypeVisibilities[rt]) }
         
         // Handle sourcebook visibilities (for loading from old profiles)
         let booksSION = sion[CharacterProfile.booksFilterKey]
@@ -280,19 +280,24 @@ class CharacterProfile {
         let v2_12_0 = Version(major: 2, minor: 12, patch: 0)
         let v2_13_0 = Version(major: 2, minor: 13, patch: 0)
         if (version == nil || version! == v2_10_0) {
-            let new_v211 = [ Sourcebook.ExplorersGTW, Sourcebook.RimeOTFrostmaiden, Sourcebook.LostLabKwalish, Sourcebook.AcquisitionsInc ]
+            let new_v211 = [
+                Sourcebook.ExplorersGTW,
+                Sourcebook.RimeOTFrostmaiden,
+                Sourcebook.LostLabKwalish,
+                Sourcebook.AcquisitionsInc
+            ]
             for sb in new_v211 {
-                sortFilterStatus.setVisibility(sb, visible: false)
+                sortFilterStatus.setSourceVisibility(sb, visible: false)
             }
         }
         if (version == nil || version! >= v2_10_0 && version! <= v2_11_0) {
-            sortFilterStatus.setVisibility(Sourcebook.FizbansTOD, visible: false)
+            sortFilterStatus.setSourceVisibility(Sourcebook.FizbansTOD, visible: false)
         }
         if (version == nil || version! >= v2_10_0 && version! <= v2_12_0) {
-            sortFilterStatus.setVisibility(Sourcebook.StrixhavenCOC, visible: false)
+            sortFilterStatus.setSourceVisibility(Sourcebook.StrixhavenCOC, visible: false)
         }
         if (version == nil || version! >= v2_10_0 && version! <= v2_13_0) {
-            sortFilterStatus.setVisibility(Sourcebook.AstralAG, visible: false)
+            sortFilterStatus.setSourceVisibility(Sourcebook.AstralAG, visible: false)
         }
         
         return CharacterProfile(name: name, sortFilterStatus: sortFilterStatus, spellFilterStatus: spellFilterStatus, spellSlotStatus: spellSlotStatus)
