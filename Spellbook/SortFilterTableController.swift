@@ -371,6 +371,15 @@ class SortFilterTableController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        store.subscribe(self) {
+            $0.select {
+                $0.profile?.sortFilterStatus
+            }
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
@@ -414,10 +423,7 @@ class SortFilterTableController: UITableViewController {
         }
     }
     
-    func onCharacterProfileUpdate() {
-        
-        guard let cp = store.state.profile else { return }
-        let sfStatus = cp.sortFilterStatus
+    func onSortFilterStatusUpdate(_ sfStatus: SortFilterStatus) {
         
         // Update the sort names
         firstSortChoice.text = sfStatus.firstSortField.displayName
@@ -579,7 +585,10 @@ class SortFilterTableController: UITableViewController {
 
 // MARK: - StoreSubscriber
 extension SortFilterTableController: StoreSubscriber {
-    func newState(state: SpellbookAppState) {
-        
+    typealias StoreSubscriberStateType = SortFilterStatus?
+    
+    func newState(state: StoreSubscriberStateType) {
+        let status = state ?? SortFilterStatus()
+        self.onSortFilterStatusUpdate(status)
     }
 }

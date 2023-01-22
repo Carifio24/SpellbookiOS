@@ -14,4 +14,5 @@ struct SpellbookAppState {
     var searchQuery: String? = nil
     var spellList: [Spell] = []
     var currentSpellList: [Spell] = []
+    var profileNameList: [String] = []
 }

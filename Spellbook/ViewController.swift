@@ -123,6 +123,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // The search bar itself
     let searchBar = UISearchBar()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        store.subscribe(self) {
+            $0.select {
+                ($0.profile, $0.profile?.sortFilterStatus, $0.profile?.spellFilterStatus)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -349,36 +358,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return charList
     }
     
-    func setSideMenuCharacterName() {
-        //print("Setting side menu name with \(characterProfile.getName())")
-        if (sideMenuController!.characterLabel != nil) {
-            //print("Here")
-            sideMenuController!.characterLabel.text = "Character: " + characterProfile.name
-        } else {
-            //print("label is nil")
-            return
-        }
-    }
-    
-    func setFilterStatus() {
-        sideMenuController!.setFilterStatus(profile: characterProfile)
-    }
-    
-    func setSortFilterSettings() {
-        sortFilterController?.onCharacterProfileUpdate()
-    }
-    
     func setCharacterProfile(cp: CharacterProfile, initialLoad: Bool) {
         
         characterProfile = cp
         settings.setCharacterName(name: cp.name)
-        setSideMenuCharacterName()
-        setSortFilterSettings()
         saveSettings()
         saveCharacterProfile()
-        
-        // Set side menu filter status
-        setFilterStatus()
         
         // Filter and sort
         if !initialLoad {
@@ -449,7 +434,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             try fileManager.removeItem(at: location)
             let characters = characterList()
             updateSelectionList()
-            setSideMenuCharacterName()
             //print("deletingCurrent: \(deletingCurrent)")
             if deletingCurrent {
                 if characters.count > 0 {
@@ -945,7 +929,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 // MARK: StoreSubscriber
 extension ViewController: StoreSubscriber {
-    func newState(state: SpellbookAppState) {
-        
+    typealias StoreSubscriberStateType = (profile: CharacterProfile?, sortFilterStatus: SortFilterStatus?, spellFilterStatus: SpellFilterStatus?)
+    
+    func newState(state: StoreSubscriberStateType) {
+        // TODO: Add implementation
     }
+    
+    
 }

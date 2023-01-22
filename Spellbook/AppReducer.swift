@@ -70,6 +70,10 @@ func appReducer(action: Action, state: SpellbookAppState?) -> SpellbookAppState 
         case let action as ToggleFlagAction:
             return toggleFlagFilterReducer(action: action, state: &state)
         
+        // Search
+        case let action as UpdateSearchQueryAction:
+            return updateSearchQueryReducer(action: action, state: &state)
+        
         // Change character profile
         case let action as SwitchProfileAction:
             return updateProfileReducer(action: action, state: &state)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReSwift
 
 class SideMenuController: UIViewController, UIPopoverPresentationControllerDelegate {
 
@@ -108,6 +109,13 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        store.subscribe(self) {
+            $0.select { $0.profile?.name }
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         
         // Set the character label
@@ -115,10 +123,6 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         if (name != nil) {
             characterLabel.text = "Character: " + name!
         }
-        if statusController != nil {
-            statusController!.setFilter(store.state.profile?.sortFilterStatus.statusFilterField ?? StatusFilterField.All)
-        }
-        
     }
     
     // Connecting to the child controllers
@@ -161,12 +165,6 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         main!.selectionWindow = controller
         self.present(popupVC, animated: true, completion: nil)
         //self.present(controller, animated: true, completion: nil)
-    }
-
-    func setFilterStatus(profile: CharacterProfile) {
-        if statusController != nil {
-            statusController!.setFilter(profile.sortFilterStatus.statusFilterField)
-        }
     }
     
     @objc func updateInfoButtonPressed() {
@@ -219,4 +217,14 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     */
 
+}
+
+// MARK: StoreSubscriber
+extension SideMenuController: StoreSubscriber {
+    typealias StoreSubscriberStateType = String?
+    func newState(state name: StoreSubscriberStateType) {
+        if (name != nil) {
+            characterLabel.text = "Character: " + name!
+        }
+    }
 }

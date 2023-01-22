@@ -159,6 +159,10 @@ struct SetFilterOptionAction: Action {
     static func useTashasExpandedLists(_ value: Bool) -> SetFilterOptionAction { return SetFilterOptionAction(option: .UseTashasExpandedLists, value: value) }
 }
 
+struct UpdateSearchQueryAction: Action {
+    let searchQuery: String
+}
+
 struct SwitchProfileAction: Action {
     let oldProfile: CharacterProfile
     let newProfile: CharacterProfile

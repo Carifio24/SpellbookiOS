@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReSwift
 
 class StatusFilterController: UITableViewController {
     
@@ -37,6 +38,13 @@ class StatusFilterController: UITableViewController {
 
     let titleFontSize = CGFloat(15)
     let titleViewHeight = CGFloat(45)
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        store.subscribe(self) {
+            $0.select { $0.profile?.sortFilterStatus.statusFilterField }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -138,17 +146,11 @@ class StatusFilterController: UITableViewController {
     // Apply the appropriate filtering when a cell is selected
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        
         // Set the filtering variables accordingly
         //print("The row is \(indexPath.row)")
         let sff = StatusFilterField(rawValue: indexPath.row)!
         store.dispatch(StatusFilterAction(statusFilterField: sff))
         
-//        let mainWindowController = Controllers.mainController
-//        mainWindowController.characterProfile.setStatusFilter(sff)
-//        mainWindowController.filter()
-//        mainWindowController.saveCharacterProfile()
-//        mainWindowController.toggleLeftMenu()
     }
     
     func setFilter(_ sff: StatusFilterField) {
@@ -157,4 +159,15 @@ class StatusFilterController: UITableViewController {
         tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.none)
     }
 
+}
+
+// MARK: StoreSubscriber
+extension StatusFilterController: StoreSubscriber {
+    typealias StoreSubscriberStateType = StatusFilterField?
+    
+    func newState(state field: StoreSubscriberStateType) {
+        if (field != nil) {
+            setFilter(field!)
+        }
+    }
 }

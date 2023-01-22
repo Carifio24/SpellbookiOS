@@ -9,6 +9,7 @@
 import Foundation
 import RxRelay
 import RxSwift
+import ReSwift
 
 class SortFilterStatus {
     

@@ -221,6 +221,11 @@ func toggleFlagFilterReducer(action: ToggleFlagAction, state: inout SpellbookApp
     return state
 }
 
+func updateSearchQueryReducer(action: UpdateSearchQueryAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    state.searchQuery = action.searchQuery
+    return state
+}
+
 
 func updateProfileReducer(action: SwitchProfileAction, state: inout SpellbookAppState) -> SpellbookAppState {
     state.profile = action.newProfile

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReSwift
 
 class SpellSlotController: UIViewController {
     
@@ -15,6 +16,13 @@ class SpellSlotController: UIViewController {
     required init?(coder: NSCoder) {
         self.spellSlotStatus = SpellSlotStatus()
         super.init(coder: coder)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        store.subscribe(self) {
+            $0.select { $0.profile?.spellSlotStatus }
+        }
     }
     
     override func viewDidLoad() {
@@ -34,4 +42,15 @@ class SpellSlotController: UIViewController {
     }
     */
 
+}
+
+// MARK: StoreSubscriber
+extension SpellSlotController: StoreSubscriber {
+    typealias StoreSubscriberStateType = SpellSlotStatus?
+    
+    func newState(state: StoreSubscriberStateType) {
+        // TODO: Add implementation
+    }
+    
+    
 }

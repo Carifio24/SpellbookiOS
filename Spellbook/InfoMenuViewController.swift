@@ -1,10 +1,14 @@
 //
-//  CollapsibleTableViewController.swift
+//  InfoMenuViewController.swift
 //  Spellbook
 //
 //  Created by Jonathan Carifio on 12/17/19.
 //  Copyright © 2019 Jonathan Carifio. All rights reserved.
 //
+
+// NB: Unlike most of the other view controllers, this one doesn't subscribe to the store
+// That's because there's no need to interact with the app state here
+// - this controller is just providing an interface for displaying static data
 
 import UIKit
 import SWXMLHash
