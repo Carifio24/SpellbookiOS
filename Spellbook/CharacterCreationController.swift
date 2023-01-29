@@ -10,7 +10,6 @@ import UIKit
 
 class CharacterCreationController: UIViewController {
 
-    
     @IBOutlet weak var backgroundView: UIImageView!
     @IBOutlet weak var creationTitle: UILabel!
     @IBOutlet weak var creationMessage: UILabel!
@@ -94,7 +93,7 @@ class CharacterCreationController: UIViewController {
         createButton.frame = CGRect(x: createButtonX, y: buttonsY, width: buttonWidth, height: buttonHeight)
         //print(createButtonX)
         
-        if main.characterList().count == 0 {
+        if store.state.profileNameList.count == 0 {
             cancelButton.isHidden = true
             cancelable = false
         }
@@ -104,7 +103,7 @@ class CharacterCreationController: UIViewController {
     @objc func createButtonPressed() {
         let name = nameEntry.text!
         
-        let characters = main.characterList()
+        let characters = store.state.profileNameList
         let nChars = characters.count
         
         // Reject an empty name
@@ -134,11 +133,12 @@ class CharacterCreationController: UIViewController {
         let profile = CharacterProfile(name: name)
         let charFile: String = profile.name + ".json"
         let profileLocation = main.profilesDirectory.appendingPathComponent(charFile)
+        store.dispatch(CreateProfileAction(profile: profile))
         profile.save(filename: profileLocation)
         
         // Set it as the current profile if there are no others
         if nChars == 0 {
-            main.setCharacterProfile(cp: profile, initialLoad: false)
+            store.dispatch(SwitchProfileAction(newProfile: profile))
         }
         
         // Update the character selection window, if one is open

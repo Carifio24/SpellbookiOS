@@ -27,7 +27,7 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         super.viewDidLoad()
         
         // Get the current characters list
-        characters = main.characterList()
+        characters = store.state.profileNameList
         //print("There are \(characters.count) characters")
         
         // Set the view dimensions
@@ -144,7 +144,7 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     }
     
     @objc func newCharacterButtonPressed() {
-        let mustComplete = (main.characterList().count == 0)
+        let mustComplete = (store.state.profileNameList.count == 0)
         //print("Pressed new character button, mustComplete: \(mustComplete)")
         displayNewCharacterWindow(mustComplete: mustComplete)
     }
@@ -192,7 +192,7 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     
     
     func updateCharacterTable() {
-        characters = main.characterList()
+        characters = store.state.profileNameList
         tableView.reloadData()
         //print(tableView.contentSize.height)
         //print(tableView.frame.size.height)

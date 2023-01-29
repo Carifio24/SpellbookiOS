@@ -10,7 +10,6 @@ import UIKit
 
 class DeletionPromptController: UIViewController {
 
-    
     @IBOutlet weak var backgroundView: UIImageView!
     @IBOutlet weak var deleteTitle: UILabel!
     @IBOutlet weak var deleteMessage: UILabel!

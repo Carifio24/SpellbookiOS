@@ -226,8 +226,8 @@ func updateSearchQueryReducer(action: UpdateSearchQueryAction, state: inout Spel
     return state
 }
 
-
 func updateProfileReducer(action: SwitchProfileAction, state: inout SpellbookAppState) -> SpellbookAppState {
     state.profile = action.newProfile
     return state
 }
+

@@ -164,11 +164,15 @@ struct UpdateSearchQueryAction: Action {
 }
 
 struct SwitchProfileAction: Action {
-    let oldProfile: CharacterProfile
+    //let oldProfile: CharacterProfile
     let newProfile: CharacterProfile
 }
 
 struct CreateProfileAction: Action {
+    let profile: CharacterProfile
+}
+
+struct DeleteProfileAction: Action {
     let profile: CharacterProfile
 }
 
