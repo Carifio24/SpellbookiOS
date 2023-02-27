@@ -7,3 +7,14 @@
 //
 
 import Foundation
+import Toast_Swift
+
+class Toast {
+    
+    // We make our Toast messages through the main ViewController of the app
+    // which is the SWRevealController
+    // If we ever change this, we only need to change it here
+    static func makeToast(_ message: String, duration: TimeInterval = Constants.toastDuration) {
+        Controllers.revealController.view.makeToast(message, duration: duration)
+    }
+}

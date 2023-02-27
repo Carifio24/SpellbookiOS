@@ -380,12 +380,14 @@ class CharacterProfile {
 
     
     // Save to a file
-    func save(filename: URL) {
+    func save(filename: URL) -> Bool {
         do {
             //print(asJSONString())
             try toJSONString().write(to: filename, atomically: false, encoding: .utf8)
+            return true
         } catch let e {
             print("\(e)")
+            return false
         }
     }
     

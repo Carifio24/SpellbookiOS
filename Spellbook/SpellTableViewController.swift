@@ -12,6 +12,7 @@ typealias SpellStatusGetter = (Spell) -> Bool
 typealias SpellFilter<T> = (Spell,T) -> Bool
 
 import UIKit
+import ReSwift
 
 class SpellTableViewController: UITableViewController {
     
@@ -22,7 +23,6 @@ class SpellTableViewController: UITableViewController {
     // Spellbook
     let spellbook = Spellbook(jsonStr: try! String(contentsOf: Bundle.main.url(forResource: "Spells", withExtension: "json")!))
     
-    var spells: [(Spell, Bool)] = []
     var spellArray: [Spell] = []
     
     // Vertical position in main view
@@ -36,14 +36,6 @@ class SpellTableViewController: UITableViewController {
     let spellWindowIdentifier = "spellWindow"
     static let estimatedHeight = CGFloat(60)
     
-    // Filters
-    static let sourcebookFilter: SpellFilter<Sourcebook> = { $0.isIn(sourcebook: $1) }
-    static let casterClassesFilter: SpellFilter<CasterClass> = { $0.usableByClass($1) }
-    static let schoolFilter: SpellFilter<School> = { $0.school == $1 }
-    static let castingTimeTypeFilter: SpellFilter<CastingTimeType> = { $0.castingTime.type == $1 }
-    static let durationTypeFilter: SpellFilter<DurationType> = { $0.duration.type == $1 }
-    static let rangeTypeFilter: SpellFilter<RangeType> = { $0.range.type == $1 }
-    
     // The button images
     // It's too costly to do the re-rendering every time, so we just do it once
     static let buttonFraction = CGFloat(0.09)
@@ -56,7 +48,6 @@ class SpellTableViewController: UITableViewController {
     static let bookEmpty = UIImage(named: "book_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellTableViewController.imageWidth, height: SpellTableViewController.imageHeight)
     static let bookFilled = UIImage(named: "book_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellTableViewController.imageWidth, height: SpellTableViewController.imageHeight)
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,8 +56,6 @@ class SpellTableViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = SpellTableViewController.estimatedHeight
         tableView.rowHeight = UITableView.automaticDimension
-        
-        //print("profilesDirectory is: \(profilesDirectory)")
         
         // // Long press gesture recognizer (currently we aren't using it)
         //let lpgr = UILongPressGestureRecognizer.init(target: self, action: #selector(handleLongPress))
@@ -101,11 +90,7 @@ class SpellTableViewController: UITableViewController {
         
         // If this is the view's first appearance (i.e. when the app is opening), we initialize spellArray
         if firstAppear {
-            spellArray = []
-            for spell in spellbook.spells {
-                spells.append((spell,true))
-                spellArray.append(spell)
-            }
+            spellArray = store.state.currentSpellList
             tableView.reloadData()
             firstAppear = false
         }
@@ -118,6 +103,11 @@ class SpellTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        store.subscribe(self) {
+            $0.select {
+                $0.currentSpellList
+            }
+        }
     }
     
     func setTableDimensions(leftPadding: CGFloat, bottomPadding: CGFloat, usableHeight: CGFloat, usableWidth: CGFloat, tableTopPadding: CGFloat) {
@@ -210,96 +200,13 @@ class SpellTableViewController: UITableViewController {
         return cell
     }
     
-    
-    func updateSpellArray() {
-        // Filter out the items with a true value in the second component,
-        // then extract just the first component (the spell)
-        spellArray = spells.filter({$0.1}).map({$0.0})
-    }
-    
-    
-    // Function to sort the data by one field
-    func singleSort(sortField: SortField, reverse: Bool) {
-        
-        // Do the sorting
-        let cmp = spellComparator(sortField: sortField, reverse: reverse)
-        spells.sort { return cmp($0.0, $1.0) }
-        
-        // Get the array
-        updateSpellArray()
-
-        // Repopulate the table
-        //print("Reloading")
-        //print(index)
-        tableView.reloadData()
-        //print("Done reloading")
-    }
-    
-    // Function to sort the data by two fields
-    func doubleSort(sortField1: SortField, sortField2: SortField, reverse1: Bool, reverse2: Bool) {
-        
-        // Do the sorting
-        let cmp = spellComparator(sortField1: sortField1, sortField2: sortField2, reverse1: reverse1, reverse2: reverse2)
-        spells.sort { return cmp($0.0, $1.0) }
-        
-        // Get the array
-        updateSpellArray()
-        
-        // Repopulate the table
-        //print("Reloading")
-        //print(index1)
-        //print(index2)
-        tableView.reloadData()
-        //print("Done reloading")
-    }
-    
     func sort() {
         store.dispatch(SortNeededAction())
     }
     
-    // Function to entirely unfilter - i.e., display everything
-    func unfilter() {
-        for i in 0...spells.count-1 {
-            spells[i] = (spells[i].0, true)
-        }
-        updateSpellArray()
-    }
-    
-    internal func filterThroughArray<E:CaseIterable>(spell: Spell, values: [E], filter: (Spell,E) -> Bool) -> Bool {
-        for e in values {
-            if filter(spell, e) {
-                return false
-            }
-        }
-        return true
-    }
-    
-    internal func filterAgainstBounds<Q:Comparable,U:Unit>(spell s: Spell, bounds: (Quantity<Q,U>,Quantity<Q,U>)?, quantityGetter: (Spell) -> Quantity<Q,U>) -> Bool {
-        
-        // If the bounds are nil, this check should be skipped
-        if (bounds == nil) { return false }
-        
-        // Get the quantity
-        // If it isn't of the spanning type, return false
-        let quantity = quantityGetter(s)
-        if quantity.isTypeSpanning() {
-            return ( (quantity < bounds!.0) || (quantity > bounds!.1) )
-        } else {
-            return false
-        }
-        
-    }
-    
     // Function to filter the table data
     func filter() {
-        
         store.dispatchFunction(FilterNeededAction())
-            
-//        // Get the new spell array
-//        updateSpellArray()
-//
-//        // Repopulate the table
-//        tableView.reloadData()
     }
     
     // If one of the side menus is open, we want to close the menu rather than select a cell
@@ -363,7 +270,6 @@ class SpellTableViewController: UITableViewController {
     // Filter on pulldown
     @objc func handlePullDown(_ sender: Any) {
         filter()
-        tableView.reloadData()
         refreshControl!.endRefreshing()
     }
     
@@ -439,4 +345,12 @@ class SpellTableViewController: UITableViewController {
     }
     */
 
+}
+
+// MARK: StoreSubscriber
+extension SpellTableViewController: StoreSubscriber {
+    func newState(state spells: [Spell]) {
+        spellArray = spells
+        tableView.reloadData()
+    }
 }

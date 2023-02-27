@@ -231,3 +231,7 @@ func updateProfileReducer(action: SwitchProfileAction, state: inout SpellbookApp
     return state
 }
 
+func updateCharacterListReducer(action: UpdateCharacterListAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    state.profileNameList = SerializationUtils.characterNameList()
+    return state
+}

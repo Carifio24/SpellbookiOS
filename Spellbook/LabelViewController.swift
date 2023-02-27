@@ -10,7 +10,7 @@ import UIKit
 
 class LabelViewController: UIViewController {
     
-    var boss: ViewController?
+    //var boss: ViewController?
 
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -29,7 +29,7 @@ class LabelViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        boss = self.parent as? ViewController
+        //boss = self.parent as? ViewController
         //setViewDimensions()
     }
     

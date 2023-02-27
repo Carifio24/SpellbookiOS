@@ -240,25 +240,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         }
         
-        // Load the settings
-        loadSettings()
-        
-        // Load the character profile
-        let characters = characterList()
-        do {
-            if settings.charName == nil || settings.charName!.isEmpty {
-                if characters.count > 0 {
-                    try loadCharacterProfile(name: characters[0], initialLoad: true)
-                } else {
-                    openCharacterCreationDialog(mustComplete: true)
-                }
-            } else {
-                try loadCharacterProfile(name: settings.charName!, initialLoad: true)
-            }
-        } catch {
-            openCharacterCreationDialog(mustComplete: true)
-        }
-        
         // The buttons on the right side of the navigation bar
         rightNavBarItems = [ rightMenuButton, filterButton, searchButton ]
         
@@ -335,29 +316,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return false
     }
     
-    // Get the list of characters that currently exist
-    func characterList() -> [String] {
-        var charList: [String] = []
-        let fileManager = FileManager.default
-        let charExt = "json"
-        let charExtLen = charExt.count
-        //print("profilesDirectory is \(profilesDirectory)")
-        let enumerator = fileManager.enumerator(at: profilesDirectory, includingPropertiesForKeys: nil)
-        //while let element = enumerator?.nextObject() as? String {
-        for x in enumerator!.allObjects {
-            let url = x as! URL
-            let element = url.lastPathComponent
-            //print(element)
-            if element.hasSuffix(charExt) {
-                var charName = element
-                charName.removeLast(charExtLen+1)
-                charList.append(charName)
-            }
-        }
-        charList.sort(by: { $0.lowercased() < $1.lowercased() })
-        return charList
-    }
-    
     func setCharacterProfile(cp: CharacterProfile, initialLoad: Bool) {
         
         characterProfile = cp
@@ -369,101 +327,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if !initialLoad {
             sort()
             filter()
-            updateSelectionList()
         }
         
         // Refresh the layout
         //sortFilterController?.tableView.setContentOffset(.zero, animated: true)
         //sortFilterController?.view.setNeedsLayout()
         sortFilterController?.tableView.reloadData()
-    }
-    
-    // Loading the settings
-    func loadSettings() {
-        let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
-        //print("settingsLocation is: \(settingsLocation)")
-        if let settingsText = try? String(contentsOf: settingsLocation) {
-            do {
-                //print("settingsText is: \(settingsText)")
-                let settingsJSON = SION(json: settingsText)
-                settings = Settings(json: settingsJSON)
-            }
-        } else {
-            //print("Error getting settings")
-            settings = Settings()
-            return
-        }
-    }
-    
-    func profileLocation(name: String) -> URL {
-        let charFile = name + ".json"
-        return profilesDirectory.appendingPathComponent(charFile)
-    }
-    
-    func loadCharacterProfile(name: String, initialLoad: Bool) throws {
-        let location = profileLocation(name: name)
-        //print("Location is: \(location)")
-        if var profileText = try? String(contentsOf: location) {
-            do {
-                fixEscapeCharacters(&profileText)
-                //print("profileText is:\n\(profileText)")
-                let profileSION = SION(json: profileText)
-                let profile = CharacterProfile(sion: profileSION)
-                setCharacterProfile(cp: profile, initialLoad: initialLoad)
-            }
-        } else {
-            print("Error reading profile")
-            let error = SpellbookError.BadCharacterProfileError
-            print(error.description)
-            throw error
-        }
-    }
-    
-    func saveCharacterProfile() {
-        let location = profileLocation(name: characterProfile.name)
-        //print("Saving profile for \(characterProfile.name) to \(location)")
-        characterProfile.save(filename: location)
-    }
-    
-    func deleteCharacterProfile(name: String) {
-        let location = profileLocation(name: name)
-        //print("Beginning deleteCharacterProfile with name: \(name)")
-        let fileManager = FileManager.default
-        do {
-            let deletingCurrent = (name == characterProfile.name)
-            try fileManager.removeItem(at: location)
-            let characters = characterList()
-            updateSelectionList()
-            //print("deletingCurrent: \(deletingCurrent)")
-            if deletingCurrent {
-                if characters.count > 0 {
-                    //print("The new character's name is: \(characters[0])")
-                    do {
-                        try loadCharacterProfile(name: characters[0], initialLoad: false)
-                    } catch {
-                        openCharacterCreationDialog(mustComplete: true)
-                    }
-                }
-            }
-        } catch let e {
-            print("\(e)")
-        }
-    }
-    
-    // Saving the settings
-    func saveSettings() {
-        let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
-        settings.save(filename: settingsLocation)
-        //print("Settings are: \(settings.toJSONString())")
-        //print("Saving settings to: \(settingsLocation)")
-    }
-    
-    func updateSelectionList() {
-        //print("In updateSelectionList()")
-        if selectionWindow != nil {
-            //print("Updating...")
-            selectionWindow!.updateCharacterTable()
-        }
     }
     
     func openCharacterCreationDialog(mustComplete: Bool=false) {
@@ -517,25 +386,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         } else {
             return
-        }
-    }
-    
-    func saveSpellsWithProperty(propGetter: SpellStatusGetter, filename: String) {
-        let fileLocation = documentsDirectory.appendingPathComponent(filename)
-        //print("Saving spells to:")
-        //print(fileLocation)
-        var propNames: [String] = []
-        for spell in spells {
-            if propGetter(spell.0) {
-                propNames.append(spell.0.name)
-                //print(spell.0.name)
-            }
-        }
-        let propString = propNames.joined(separator: "\n")
-        do {
-            try propString.write(to: fileLocation, atomically: false, encoding: .utf8)
-        } catch let e {
-            print("\(e)")
         }
     }
     
@@ -932,7 +782,9 @@ extension ViewController: StoreSubscriber {
     typealias StoreSubscriberStateType = (profile: CharacterProfile?, sortFilterStatus: SortFilterStatus?, spellFilterStatus: SpellFilterStatus?)
     
     func newState(state: StoreSubscriberStateType) {
-        // TODO: Add implementation
+        if let profile = state.profile {
+            self.setCharacterProfile(cp: profile, initialLoad: false)
+        }
     }
     
     

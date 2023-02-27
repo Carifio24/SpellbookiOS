@@ -10,7 +10,7 @@ import UIKit
 import ReSwift
 
 typealias SpellbookStore = Store<SpellbookAppState>
-let store = SpellbookStore(reducer: appReducer, state: nil)
+let store = SpellbookStore(reducer: appReducer, state: nil, middleware: [switchProfileMiddleware, switchProfileByNameMiddleware, saveProfileMiddleware, deleteProfileMiddleware])
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

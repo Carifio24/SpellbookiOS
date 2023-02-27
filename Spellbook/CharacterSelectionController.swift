@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReSwift
 
 class CharacterSelectionController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -22,6 +23,15 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     var width = CGFloat(0)
     var characters: [String] = []
     let main: ViewController = Controllers.mainController
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        store.subscribe(self) {
+            $0.select {
+                $0.profileNameList
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,9 +146,9 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         let name = characters[indexPath.row]
         do {
             try main.loadCharacterProfile(name: name, initialLoad: false)
-            Controllers.revealController.view.makeToast("Character selected: " + name, duration: Constants.toastDuration)
+            Toast.makeToast("Character selected: " + name)
         } catch {
-            Controllers.revealController.view.makeToast("Error loading character profile: " + name, duration: Constants.toastDuration)
+            Toast.makeToast("Error loading character profile: " + name)
         }
         self.dismiss(animated: true, completion: dismissOperations)
     }
@@ -190,15 +200,6 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         self.present(popupVC, animated: true)
     }
     
-    
-    func updateCharacterTable() {
-        characters = store.state.profileNameList
-        tableView.reloadData()
-        //print(tableView.contentSize.height)
-        //print(tableView.frame.size.height)
-        tableView.isScrollEnabled = tableView.contentSize.height > tableView.frame.size.height
-    }
-    
     func dismissOperations() {
         //print("In dismissOperations()")
         main.selectionWindow = nil
@@ -217,4 +218,14 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     }
 
     
+}
+
+// MARK: StoreSubscriber
+extension CharacterSelectionController: StoreSubscriber {
+    func newState(state characterNames: [String]) {
+        // Refresh the table
+        characters = characterNames
+        tableView.reloadData()
+        tableView.isScrollEnabled = tableView.contentSize.height > tableView.frame.size.height
+    }
 }

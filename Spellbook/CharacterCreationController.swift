@@ -21,7 +21,6 @@ class CharacterCreationController: UIViewController {
     var width = CGFloat(0)
     let buttonWidth = CGFloat(75)
     let buttonHeight = CGFloat(40)
-    let main = Controllers.mainController
     private var cancelable = false
     
     private static let emptyNameMessage = "The character name cannot be empty"
@@ -131,18 +130,7 @@ class CharacterCreationController: UIViewController {
         
         // Create the new character profile
         let profile = CharacterProfile(name: name)
-        let charFile: String = profile.name + ".json"
-        let profileLocation = main.profilesDirectory.appendingPathComponent(charFile)
         store.dispatch(CreateProfileAction(profile: profile))
-        profile.save(filename: profileLocation)
-        
-        // Set it as the current profile if there are no others
-        if nChars == 0 {
-            store.dispatch(SwitchProfileAction(newProfile: profile))
-        }
-        
-        // Update the character selection window, if one is open
-        main.updateSelectionList()
         
         // Toast message
         Controllers.revealController.view.makeToast("Character created: " + name, duration: Constants.toastDuration)

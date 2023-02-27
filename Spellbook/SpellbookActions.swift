@@ -168,6 +168,10 @@ struct SwitchProfileAction: Action {
     let newProfile: CharacterProfile
 }
 
+struct SwitchProfileByNameAction: Action {
+    let name: String
+}
+
 struct CreateProfileAction: Action {
     let profile: CharacterProfile
 }
@@ -176,6 +180,12 @@ struct DeleteProfileAction: Action {
     let profile: CharacterProfile
 }
 
+struct SaveProfileAction: Action {
+    let profile: CharacterProfile
+}
+
 struct NameChangeAction: Action {
     let name: String
 }
+
+struct UpdateCharacterListAction: Action {}
