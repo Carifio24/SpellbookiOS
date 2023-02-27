@@ -8,6 +8,7 @@ PODS:
     - RxSwift (= 6.5.0)
   - RxSwift (6.5.0)
   - SWXMLHash (5.0.1)
+  - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0
@@ -15,6 +16,7 @@ DEPENDENCIES:
   - RxCocoa
   - RxSwift
   - SWXMLHash (~> 5.0.0)
+  - Toast-Swift (~> 5.0.1)
 
 SPEC REPOS:
   trunk:
@@ -24,6 +26,7 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - SWXMLHash
+    - Toast-Swift
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: 5b62e07b00bd970509cf5ece99cb7447eae5dd0d
@@ -32,7 +35,8 @@ SPEC CHECKSUMS:
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
+  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 6e71d990189358168609132c9e76a5a18cc3a957
+PODFILE CHECKSUM: 925ea6ac714a854b50ee1dffa4a5d5792c49a228
 
 COCOAPODS: 1.9.1

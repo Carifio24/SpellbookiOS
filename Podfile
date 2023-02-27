@@ -6,6 +6,7 @@ target 'Spellbook' do
   use_frameworks!
   pod 'SWXMLHash', '~> 5.0.0'
   pod 'ActionSheetPicker-3.0'
+  pod 'Toast-Swift', '~> 5.0.1'
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'ReSwift'
