@@ -180,9 +180,17 @@ struct DeleteProfileAction: Action {
     let profile: CharacterProfile
 }
 
+struct DeleteProfileByNameAction: Action {
+    let name: String
+}
+
 struct SaveProfileAction: Action {
     let profile: CharacterProfile
 }
+
+struct SaveCurrentProfileAction: Action {}
+
+struct SaveSettingsAction: Action {}
 
 struct NameChangeAction: Action {
     let name: String

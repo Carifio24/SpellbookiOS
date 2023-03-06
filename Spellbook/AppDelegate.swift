@@ -10,7 +10,7 @@ import UIKit
 import ReSwift
 
 typealias SpellbookStore = Store<SpellbookAppState>
-let store = SpellbookStore(reducer: appReducer, state: nil, middleware: [switchProfileMiddleware, switchProfileByNameMiddleware, saveProfileMiddleware, deleteProfileMiddleware])
+let store = SpellbookStore(reducer: appReducer, state: nil, middleware: [switchProfileMiddleware, switchProfileByNameMiddleware, createProfileMiddleware, saveProfileMiddleware, saveCurrentProfileMiddleware, deleteProfileMiddleware, deleteProfileByNameMiddleware])
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -56,7 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        store.dispatch(SaveCurrentProfileAction())
+        store.dispatch(SaveSettingsAction())
     }
 
     

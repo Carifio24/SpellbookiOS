@@ -31,6 +31,11 @@ let switchProfileMiddleware: AppMiddleware = {
             if let profile = store.state.profile {
                 SerializationUtils.saveCharacterProfile(profile: profile)
             }
+            
+            let newProfile = switchAction.newProfile
+            SerializationUtils.settings.setCharacterName(name: newProfile.name)
+            SerializationUtils.saveSettings()
+            Toast.makeToast("Character selected: " + newProfile.name)
             next(action)
         }
     }
@@ -48,6 +53,8 @@ let switchProfileByNameMiddleware: AppMiddleware = {
                 do {
                     dispatch(SwitchProfileAction(newProfile: profile))
                 }
+            } else {
+                Toast.makeToast("Error loading character profile: " + switchAction.name)
             }
         }
     }
@@ -84,6 +91,19 @@ let saveProfileMiddleware: AppMiddleware = { dispatch, getState in
     }
 }
 
+let saveCurrentProfileMiddleware: AppMiddleware = { dispatch, getState in
+    return { next in
+        return { action in
+            guard let saveAction = action as? SaveCurrentProfileAction else {
+                next(action)
+                return
+            }
+            guard let profile = getState()?.profile else { return }
+            dispatch(SaveProfileAction(profile: profile))
+        }
+    }
+}
+
 let deleteProfileMiddleware: AppMiddleware = { dispatch, getState in
     return { next in
         return { action in
@@ -96,6 +116,7 @@ let deleteProfileMiddleware: AppMiddleware = { dispatch, getState in
             let toDelete = deleteAction.profile
             let deleted = SerializationUtils.deleteCharacterProfile(profile: toDelete)
             if (!deleted) { return }
+            Toast.makeToast("Character deleted: " + toDelete.name)
             
             guard let profile = state.profile else { return }
             let deletedCurrent = (toDelete.name == profile.name)
@@ -109,7 +130,24 @@ let deleteProfileMiddleware: AppMiddleware = { dispatch, getState in
                     let newProfile = try SerializationUtils.loadCharacterProfile(name: characters[0])
                     dispatch(SwitchProfileAction(newProfile: newProfile))
                 } catch {
-                    // TODO: Trigger opening of character creation dialog
+                    // TODO: What to do here?
+                }
+            }
+        }
+    }
+}
+
+let deleteProfileByNameMiddleware: AppMiddleware = {
+    dispatch, getState in
+    return { next in
+        return { action in
+            guard let deleteAction = action as? DeleteProfileByNameAction else {
+                next(action)
+                return
+            }
+            if let profile = try? SerializationUtils.loadCharacterProfile(name: deleteAction.name) {
+                do {
+                    dispatch(DeleteProfileAction(profile: profile))
                 }
             }
         }

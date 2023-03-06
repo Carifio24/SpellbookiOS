@@ -125,8 +125,7 @@ class SpellWindowController: UIViewController {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
                 case UISwipeGestureRecognizer.Direction.right:
-                    self.main.filter()
-                    self.main.saveCharacterProfile()
+                    store.dispatch(FilterNeededAction())
                     self.dismiss(animated: true, completion: nil)
                     UIApplication.shared.setStatusBarTextColor(.dark)
                 default:

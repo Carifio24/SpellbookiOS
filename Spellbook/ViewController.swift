@@ -39,9 +39,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // Storage files
     let documentsDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-    let profilesDirectoryName = "Characters"
-    var profilesDirectory = URL(fileURLWithPath: "")
-    let settingsFile = "Settings.json"
     
     // Images for the filter/list navigation bar item
     static let filterIcon = UIImage(named: "FilterIcon")
@@ -69,7 +66,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var isRightMenuOpen = false
     
     // Settings, character profile, and selection window
-    var settings = Settings()
     var characterProfile = CharacterProfile()
     var selectionWindow: CharacterSelectionController?
     
@@ -229,17 +225,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         rightMenuButton.target = self
         rightMenuButton.action = #selector(rightMenuButtonPressed)
         
-        // Create the profiles directory if it doesn't already exist
-        let fileManager = FileManager.default
-        profilesDirectory = documentsDirectory.appendingPathComponent(profilesDirectoryName)
-        if !fileManager.fileExists(atPath: profilesDirectory.path) {
-            do {
-                try fileManager.createDirectory(atPath: profilesDirectory.path, withIntermediateDirectories: true, attributes: nil)
-            } catch let e {
-                print("\(e)")
-            }
-        }
-        
         // The buttons on the right side of the navigation bar
         rightNavBarItems = [ rightMenuButton, filterButton, searchButton ]
         
@@ -319,9 +304,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func setCharacterProfile(cp: CharacterProfile, initialLoad: Bool) {
         
         characterProfile = cp
-        settings.setCharacterName(name: cp.name)
-        saveSettings()
-        saveCharacterProfile()
         
         // Filter and sort
         if !initialLoad {
@@ -786,6 +768,5 @@ extension ViewController: StoreSubscriber {
             self.setCharacterProfile(cp: profile, initialLoad: false)
         }
     }
-    
     
 }

@@ -144,12 +144,7 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         //print("Pressed at \(indexPath.row)")
         //print("Name is \(characters[indexPath.row])")
         let name = characters[indexPath.row]
-        do {
-            try main.loadCharacterProfile(name: name, initialLoad: false)
-            Toast.makeToast("Character selected: " + name)
-        } catch {
-            Toast.makeToast("Error loading character profile: " + name)
-        }
+        store.dispatch(SwitchProfileByNameAction(name: name))
         self.dismiss(animated: true, completion: dismissOperations)
     }
     
