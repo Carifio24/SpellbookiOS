@@ -27,6 +27,19 @@ struct StatusFilterAction: Action {
     let statusFilterField: StatusFilterField
 }
 
+struct SpellLevelAction: Action {
+    let bound: Bound
+    let level: Int
+    
+    static func min(_ level: Int) -> SpellLevelAction {
+        return SpellLevelAction(bound: .Min, level: level)
+    }
+    
+    static func max(_ level: Int) -> SpellLevelAction {
+        return SpellLevelAction(bound: .Max, level: level)
+    }
+}
+
 typealias FilterSchoolAction = FilterItemAction<School>
 typealias FilterClassAction = FilterItemAction<CasterClass>
 typealias FilterSourcebookAction = FilterItemAction<Sourcebook>
@@ -92,19 +105,6 @@ typealias RangeDefaultAction = QuantityRangeDefaultAction<RangeType,LengthUnit,R
 
 struct SortNeededAction: Action {}
 struct FilterNeededAction: Action {}
-
-struct SpellLevelAction: Action {
-    let bound: Bound
-    let level: Int
-    
-    static func min(_ level: Int) -> SpellLevelAction {
-        return SpellLevelAction(bound: .Min, level: level)
-    }
-    
-    static func max(_ level: Int) -> SpellLevelAction {
-        return SpellLevelAction(bound: .Max, level: level)
-    }
-}
 
 enum FlagType {
     case Ritual, Concentration, Verbal, Somatic, Material

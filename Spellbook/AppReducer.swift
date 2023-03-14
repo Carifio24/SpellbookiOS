@@ -18,6 +18,10 @@ func appReducer(action: Action, state: SpellbookAppState?) -> SpellbookAppState 
         case let action as SortReverseAction:
             return sortReverseReducer(action: action, state: &state)
         
+        // Update status filter
+        case let action as StatusFilterAction:
+            return statusFilterReducer(action: action, state: &state)
+        
         // Spell level range
         case let action as SpellLevelAction:
             return spellLevelReducer(action: action, state: &state)
@@ -70,6 +74,15 @@ func appReducer(action: Action, state: SpellbookAppState?) -> SpellbookAppState 
         case let action as ToggleFlagAction:
             return toggleFlagFilterReducer(action: action, state: &state)
         
+        // Toggling whether a spell is on a list or not
+        case let action as TogglePropertyAction:
+            return togglePropertyReducer(action: action, state: &state)
+        
+        // Toggling one of the overall filter options
+        // (e.g. apply filters to search/lists, and use TCE lists)
+        case let action as ToggleFilterOptionAction:
+            return toggleFilterOptionReducer(action: action, state: &state)
+        
         // Search
         case let action as UpdateSearchQueryAction:
             return updateSearchQueryReducer(action: action, state: &state)
@@ -77,6 +90,17 @@ func appReducer(action: Action, state: SpellbookAppState?) -> SpellbookAppState 
         // Change character profile
         case let action as SwitchProfileAction:
             return updateProfileReducer(action: action, state: &state)
+        
+        // Generic sorting and filtering
+        case let action as SortNeededAction:
+            return sortNeededReducer(action: action, state: &state)
+        case let action as FilterNeededAction:
+            return filterNeededReducer(action: action, state: &state)
+        
+        // Update the character list
+        case let action as UpdateCharacterListAction:
+            return updateCharacterListReducer(action: action, state: &state)
+        
         
         // If we somehow get here, just do nothing
         default:
