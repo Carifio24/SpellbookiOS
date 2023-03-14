@@ -509,8 +509,8 @@ class SortFilterStatus {
         visibleRangeTypes = arrayFromSION(sion: rtArray, creator: { RangeType.fromName($0.string!) }, defaultArray: RangeType.allCases)
         
         setBoundsFromSION(sion: sion[SortFilterStatus.castingTimeBoundsKey], setter: self.setCastingTimeBounds)
-        setBoundsFromSION(sion: sion[SortFilterStatus.durationTypesKey], setter: self.setDurationBounds)
-        setBoundsFromSION(sion: sion[SortFilterStatus.rangeTypesKey], setter: self.setRangeBounds)
+        setBoundsFromSION(sion: sion[SortFilterStatus.durationBoundsKey], setter: self.setDurationBounds)
+        setBoundsFromSION(sion: sion[SortFilterStatus.rangeBoundsKey], setter: self.setRangeBounds)
     }
     
     init() {}
