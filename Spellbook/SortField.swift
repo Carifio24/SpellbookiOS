@@ -15,9 +15,9 @@ enum SortField: Int, NameConstructible {
     private static let spellComparators: [SortField:IntComparatorFunc<Spell>] = [
         Name : propertyTriComp({ (_ s: Spell) -> String in return s.name }),
         School : propertyTriComp({ (_ s: Spell) -> School in return s.school }),
-        Level : propertyTriComp({ (_ s:Spell) -> Int in return s.level }),
-        Range : propertyTriComp({ (_ s:Spell) -> Range in return s.range }),
-        Duration : propertyTriComp({ (_ s:Spell) -> Duration in return s.duration }),
+        Level : propertyTriComp({ (_ s: Spell) -> Int in return s.level }),
+        Range : propertyTriComp({ (_ s: Spell) -> Range in return s.range }),
+        Duration : propertyTriComp({ (_ s: Spell) -> Duration in return s.duration }),
         CastingTime : propertyTriComp({ (_ s: Spell) -> CastingTime in return s.castingTime })
     ]
     
