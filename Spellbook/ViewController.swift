@@ -16,8 +16,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let spellbook = Spellbook(jsonStr: try! String(contentsOf: Bundle.main.url(forResource: "Spells", withExtension: "json")!))
     
     // Spell arrays
-    var spells: [(Spell, Bool)] = []
-    var spellArray: [Spell] = []
+    var spells: [Spell] = []
     
     // Filters
     static let sourcebookFilter: SpellFilter<Sourcebook> = { $0.isIn(sourcebook: $1) }
@@ -120,12 +119,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let searchBar = UISearchBar()
     
     override func viewWillAppear(_ animated: Bool) {
+        print("ViewController")
         super.viewWillAppear(animated)
         store.subscribe(self) {
             $0.select {
-                ($0.profile, $0.profile?.sortFilterStatus, $0.profile?.spellFilterStatus)
+                ($0.profile, $0.profile?.sortFilterStatus, $0.profile?.spellFilterStatus, $0.currentSpellList)
             }
         }
+        spells = store.state.currentSpellList
     }
     
     override func viewDidLoad() {
@@ -225,6 +226,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         rightMenuButton.target = self
         rightMenuButton.action = #selector(rightMenuButtonPressed)
         
+        
         // The buttons on the right side of the navigation bar
         rightNavBarItems = [ rightMenuButton, filterButton, searchButton ]
         
@@ -236,14 +238,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         searchBar.barStyle = .black
         self.titleView = navigationItem.titleView
         
-        // If the view hasn't appeared before
-        if firstAppearance {
-            spellArray = []
-            for spell in spellbook.spells {
-                spells.append((spell,true))
-                spellArray.append(spell)
-            }
-            spellTable.reloadData()
+        // Load the character profile
+        let characters = store.state.profileNameList
+        if store.state.profile == nil {
+            openCharacterCreationDialog(mustComplete: true)
         }
         
         // Initial filtering and sorting
@@ -303,6 +301,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func setCharacterProfile(cp: CharacterProfile, initialLoad: Bool) {
         
+        if (characterProfile.name == cp.name) {
+            return
+        }
+        
         characterProfile = cp
         
         // Filter and sort
@@ -358,8 +360,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             for item in fileItems {
                 //var inSpellbook = false
                 for spell in spells {
-                    if item == spell.0.name {
-                        propSetter(spell.0, true)
+                    if item == spell.name {
+                        propSetter(spell, true)
                         //print(spell.0.name)
                         //inSpellbook = true
                         break
@@ -396,8 +398,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //toggleWindowVisibilities()
         sortFilterController?.dismissKeyboard()
         if filterVisible {
-            sort()
-            filter()
+            //sort()
+            //filter()
         }
         toggleWindowVisibilities()
     }
@@ -516,7 +518,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     // Number of rows in TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return spellArray.count
+        return spells.count
     }
     
     // Set the footer height
@@ -538,7 +540,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SpellDataCell
         
         // Get the spell
-        let spell = spellArray[indexPath.row]
+        let spell = spells[indexPath.row]
         cell.spell = spell
         
         // Cell formatting
@@ -585,59 +587,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
     
-    
-    func updateSpellArray() {
-        // Filter out the items with a true value in the second component,
-        // then extract just the first component (the spell)
-        spellArray = spells.filter({$0.1}).map({$0.0})
-    }
-    
-    
-    // Function to sort the data by one field
-    func singleSort(sortField: SortField, reverse: Bool) {
-        
-        // Do the sorting
-        let cmp = spellComparator(sortField: sortField, reverse: reverse)
-        spells.sort { return cmp($0.0, $1.0) }
-        
-        // Get the array
-        updateSpellArray()
-
-        // Repopulate the table
-        //print("Reloading")
-        //print(index)
-        spellTable.reloadData()
-        //print("Done reloading")
-    }
-    
-    // Function to sort the data by two fields
-    func doubleSort(sortField1: SortField, sortField2: SortField, reverse1: Bool, reverse2: Bool) {
-        
-        // Do the sorting
-        let cmp = spellComparator(sortField1: sortField1, sortField2: sortField2, reverse1: reverse1, reverse2: reverse2)
-        spells.sort { return cmp($0.0, $1.0) }
-        
-        // Get the array
-        updateSpellArray()
-        
-        // Repopulate the table
-        //print("Reloading")
-        //print(index1)
-        //print(index2)
-        spellTable.reloadData()
-        //print("Done reloading")
-    }
-    
     func sort() {
         store.dispatch(SortNeededAction())
-    }
-    
-    // Function to entirely unfilter - i.e., display everything
-    func unfilter() {
-        for i in 0...spells.count-1 {
-            spells[i] = (spells[i].0, true)
-        }
-        updateSpellArray()
     }
     
     internal func filterThroughArray<E:CaseIterable>(spell: Spell, values: [E], filter: (Spell,E) -> Bool) -> Bool {
@@ -667,14 +618,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // Function to filter the table data
     func filter() {
-        
         store.dispatch(FilterNeededAction())
-            
-//        // Get the new spell array
-//        updateSpellArray()
-//
-//        // Repopulate the table
-//        spellTable.reloadData()
     }
     
     // If one of the side menus is open, we want to close the menu rather than select a cell
@@ -690,9 +634,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         tableView.deselectRow(at: indexPath, animated: true)
     
-        if indexPath.row >= spellArray.count { return }
+        if indexPath.row >= spells.count { return }
         let spellIndex = indexPath.row
-        let spell = spellArray[spellIndex]
+        let spell = spells[spellIndex]
 
         let spellWindowController = storyboard?.instantiateViewController(withIdentifier: spellWindowIdentifier) as! SpellWindowController
         spellWindowController.modalPresentationStyle = .fullScreen
@@ -715,7 +659,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if indexPath == nil {
             return
         } else if (gestureRecognizer.state == UIGestureRecognizer.State.began) {
-            if indexPath!.row >= spellArray.count { return }
+            if indexPath!.row >= spells.count { return }
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "statusPopup") as! StatusPopupController
             
@@ -729,7 +673,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let position = CGPoint(x: positionX, y: positionY)
             let absPosition = view.convert(position, from: self.spellTable)
             let popupPosition = PopupViewController.PopupPosition.topLeft(absPosition)
-            controller.spell = spellArray[indexPath!.row]
+            controller.spell = spells[indexPath!.row]
             let popupVC = PopupViewController(contentController: controller, position: popupPosition, popupWidth: popupWidth, popupHeight: popupHeight)
             popupVC.backgroundAlpha = 0
             self.present(popupVC, animated: true, completion: nil)
@@ -761,11 +705,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 // MARK: StoreSubscriber
 extension ViewController: StoreSubscriber {
-    typealias StoreSubscriberStateType = (profile: CharacterProfile?, sortFilterStatus: SortFilterStatus?, spellFilterStatus: SpellFilterStatus?)
+    typealias StoreSubscriberStateType = (profile: CharacterProfile?, sortFilterStatus: SortFilterStatus?, spellFilterStatus: SpellFilterStatus?, currentSpellList: [Spell])
     
     func newState(state: StoreSubscriberStateType) {
         if let profile = state.profile {
             self.setCharacterProfile(cp: profile, initialLoad: false)
+        }
+        if (state.currentSpellList != spells) {
+            spells = state.currentSpellList
+            spellTable.reloadData()
         }
     }
     

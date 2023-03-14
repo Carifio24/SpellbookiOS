@@ -31,10 +31,8 @@ let switchProfileMiddleware: AppMiddleware = {
             if let profile = store.state.profile {
                 SerializationUtils.saveCharacterProfile(profile: profile)
             }
-            
+            guard let state = getState() else { return }
             let newProfile = switchAction.newProfile
-            SerializationUtils.settings.setCharacterName(name: newProfile.name)
-            SerializationUtils.saveSettings()
             Toast.makeToast("Character selected: " + newProfile.name)
             next(action)
         }
