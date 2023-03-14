@@ -18,17 +18,15 @@ class SerializationUtils: NSObject {
     static let profilesDirectory: URL = {
         let dir = documentsDirectory.appendingPathComponent(profilesDirectoryName)
         let fileManager = FileManager.default
-        if !fileManager.fileExists(atPath: profilesDirectory.path) {
+        if !fileManager.fileExists(atPath: dir.path) {
             do {
-                try fileManager.createDirectory(atPath: profilesDirectory.path, withIntermediateDirectories: true, attributes: nil)
+                try fileManager.createDirectory(atPath: dir.path, withIntermediateDirectories: true, attributes: nil)
             } catch let e {
                 print("\(e)")
             }
         }
         return dir
     }()
-    
-    static let settings = loadSettings()
     
     static func profileLocation(name: String) -> URL {
         let charFile = name + profilesExtension
@@ -76,17 +74,21 @@ class SerializationUtils: NSObject {
     
     static func loadSettings() -> Settings {
         let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
+        print(settingsLocation.path)
         if let settingsText = try? String(contentsOf: settingsLocation) {
             do {
+                print(settingsText)
                 let settingsJSON = SION(json: settingsText)
-                return Settings(json: settingsJSON)
+                let settings = Settings(json: settingsJSON)
+                print(settings)
+                return settings
             }
         } else {
             return Settings()
         }
     }
     
-    static func saveSettings() {
+    static func saveSettings(_ settings: Settings) {
         let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
         settings.save(filename: settingsLocation)
     }
