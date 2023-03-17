@@ -212,9 +212,9 @@ class SortFilterStatus {
     
     func setVisibility<T: Equatable>(item: T, collection: inout [T], visible: Bool) {
         if (visible) {
-            collection.removeAll(where: { $0 == item })
-        } else {
             collection.append(item)
+        } else {
+            collection.removeAll(where: { $0 == item })
         }
         visibilityFlag.accept(())
     }
