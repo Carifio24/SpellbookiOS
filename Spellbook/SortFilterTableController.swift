@@ -336,14 +336,14 @@ class SortFilterTableController: UITableViewController {
         listsFilterView.setOptionTitle("Apply Filters to Spell Lists")
         listsFilterView.setHelpInfo(title: "Apply Filters to Spell Lists", description: "If selected, filters are applied to the favorite, known, and prepared spell lists. Otherwise, they are not.")
         listsFilterView.setPropertyFunctions(
-            getter: { () in return store.state.profile?.sortFilterStatus.applyFiltersToSearch ?? true },
+            getter: { () in return store.state.profile?.sortFilterStatus.applyFiltersToLists ?? true },
             actionCreator: ToggleFilterOptionAction.applyFiltersToLists
         )
         
         searchFilterView.setOptionTitle("Apply Filters to Search")
         searchFilterView.setHelpInfo(title: "Apply Filters to Search", description: "If selected, filters are applied to search results. Otherwise, search results do not respect the current filters.")
         searchFilterView.setPropertyFunctions(
-            getter: { () in return store.state.profile?.sortFilterStatus.applyFiltersToLists ?? true },
+            getter: { () in return store.state.profile?.sortFilterStatus.applyFiltersToSearch ?? true },
             actionCreator: ToggleFilterOptionAction.applyFiltersToSearch
         )
         
