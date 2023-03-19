@@ -53,7 +53,21 @@ func appReducer(action: Action, state: SpellbookAppState?) -> SpellbookAppState 
             return toggleDurationTypeReducer(action: action, state: &state)
         case let action as ToggleRangeTypeAction:
             return toggleRangeTypeReducer(action: action, state: &state)
-        
+
+        // Select/unselect all functionality
+        case let action as FilterAllSchoolsAction:
+            return filterAllSchoolsReducer(action: action, state: &state)
+        case let action as FilterAllClassesAction:
+            return filterAllClassesReducer(action: action, state: &state)
+        case let action as FilterAllSourcesAction:
+            return filterAllSourcesReducer(action: action, state: &state)
+        case let action as FilterAllCastingTimeTypesAction:
+            return filterAllCastingTimeTypesReducer(action: action, state: &state)
+        case let action as FilterAllDurationTypesAction:
+            return filterAllDurationTypesReducer(action: action, state: &state)
+        case let action as FilterAllRangeTypesAction:
+            return filterAllRangeTypesReducer(action: action, state: &state)
+
         // Updating range values and units
         case let action as CastingTimeValueUpdateAction:
             return castingTimeValueUpdateReducer(action: action, state: &state)

@@ -124,8 +124,8 @@ class FilterGridDelegate<T:NameConstructible, A:Action>: NSObject, FilterGridPro
             }
         }
     }
-    @objc func selectAll() { setAll(true) }
-    @objc func unselectAll() { setAll(false) }
+    @objc func selectAll() { store.dispatch(FilterAllAction<T>(visible: true)) }
+    @objc func unselectAll() { store.dispatch(FilterAllAction<T>(visible: false)) }
     
     func collectionView(_ collectionView: UICollectionView,
             layout collectionViewLayout: UICollectionViewLayout,

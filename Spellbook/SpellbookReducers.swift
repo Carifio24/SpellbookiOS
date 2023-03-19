@@ -113,6 +113,37 @@ func toggleRangeTypeReducer(action: ToggleItemAction<RangeType>, state: inout Sp
     return toggleItemReducer(action: action, state: &state, visibilityToggler: SortFilterStatus.toggleRangeTypeVisibility)
 }
 
+func filterAllReducer<T:NameConstructible & CaseIterable>(setter: (SortFilterStatus) -> (T, Bool) -> Void, action: FilterAllAction<T>, state: inout SpellbookAppState) -> SpellbookAppState {
+    guard let status = state.profile?.sortFilterStatus else { return state }
+    T.allCases.forEach({item in setter(status)(item, action.visible)})
+    filterSpells(&state)
+    return state
+}
+
+func filterAllSchoolsReducer(action: FilterAllSchoolsAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    return filterAllReducer(setter: SortFilterStatus.setSchoolVisibility, action: action, state: &state)
+}
+
+func filterAllClassesReducer(action: FilterAllClassesAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    return filterAllReducer(setter: SortFilterStatus.setClassVisibility, action: action, state: &state)
+}
+
+func filterAllSourcesReducer(action: FilterAllSourcesAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    return filterAllReducer(setter: SortFilterStatus.setSourceVisibility, action: action, state: &state)
+}
+
+func filterAllCastingTimeTypesReducer(action: FilterAllCastingTimeTypesAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    return filterAllReducer(setter: SortFilterStatus.setCastingTimeTypeVisibility, action: action, state: &state)
+}
+
+func filterAllDurationTypesReducer(action: FilterAllDurationTypesAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    return filterAllReducer(setter: SortFilterStatus.setDurationTypeVisibility, action: action, state: &state)
+}
+
+func filterAllRangeTypesReducer(action: FilterAllRangeTypesAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    return filterAllReducer(setter: SortFilterStatus.setRangeTypeVisibility, action: action, state: &state)
+}
+
 
 func sortNeededReducer(action: SortNeededAction, state: inout SpellbookAppState) -> SpellbookAppState {
     sortSpells(&state)
@@ -122,18 +153,17 @@ func sortNeededReducer(action: SortNeededAction, state: inout SpellbookAppState)
 fileprivate func sortSpells(_ state: inout SpellbookAppState) {
     print("In sortSpells")
     guard let profile = state.profile else { return }
-    print(profile)
     let sortFilterStatus = profile.sortFilterStatus
     let comparator = spellComparator(sortField1: sortFilterStatus.firstSortField, sortField2: sortFilterStatus.secondSortField, reverse1: sortFilterStatus.firstSortReverse, reverse2: sortFilterStatus.secondSortReverse)
     state.currentSpellList = state.currentSpellList.sorted { comparator($0, $1) }
-    print(state.currentSpellList.map { $0.name })
+    //print(state.currentSpellList.map { $0.name })
 }
 
 fileprivate func filterSpells(_ state: inout SpellbookAppState) {
     guard let profile = state.profile else { return }
     let filter = createFilter(state: state)
     state.currentSpellList = state.spellList.filter(filter)
-    print(state.currentSpellList.map { $0.name })
+    //print(state.currentSpellList.map { $0.name })
 }
 
 func filterNeededReducer(action: FilterNeededAction, state: inout SpellbookAppState) -> SpellbookAppState {
@@ -151,6 +181,7 @@ fileprivate func valueUpdateReducer<T:QuantityType,U:Unit>(action: ValueUpdateAc
     } else {
         maxSetter(status)(action.value)
     }
+    print("valueUpdateReducer")
     filterSpells(&state)
     return state
 }
