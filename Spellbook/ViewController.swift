@@ -98,8 +98,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let bottomPaddingFraction = CGFloat(0.01)
     
     // Usable height and width
-    static var usableHeight = CGFloat(0)
-    static var usableWidth = CGFloat(0)
+    static var usableHeight = UIScreen.main.bounds.height
+    static var usableWidth = UIScreen.main.bounds.width
     
     // The navigation bar and its items
     @IBOutlet var navBar: UINavigationItem!
@@ -109,6 +109,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet var rightMenuButton: UIBarButtonItem!
     private var rightNavBarItems: [UIBarButtonItem] = []
     private var titleView: UIView?
+    
+    // The button images
+    // It's too costly to do the re-rendering every time, so we just do it once
+    static let buttonFraction = CGFloat(0.09)
+    static let imageWidth = max(ViewController.buttonFraction * ViewController.usableWidth, CGFloat(30))
+    static let imageHeight = ViewController.imageWidth
+    static let starEmpty = UIImage(named: "star_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: ViewController.imageWidth, height: ViewController.imageHeight)
+    static let starFilled = UIImage(named: "star_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: ViewController.imageWidth, height: ViewController.imageHeight)
+    static let wandEmpty = UIImage(named: "wand_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: ViewController.imageWidth, height: ViewController.imageHeight)
+    static let wandFilled = UIImage(named: "wand_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: ViewController.imageWidth, height: ViewController.imageHeight)
+    static let bookEmpty = UIImage(named: "book_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: ViewController.imageWidth, height: ViewController.imageHeight)
+    static let bookFilled = UIImage(named: "book_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: ViewController.imageWidth, height: ViewController.imageHeight)
     
     // What to do when the search button is pressed
     @IBAction func searchButtonPressed(_ sender: Any) {
@@ -259,7 +271,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // This function sets the sizes of the top-level container views
     func setContainerDimensions(screenWidth: CGFloat, screenHeight: CGFloat) {
-
         
         // Get the padding sizes
         let leftPadding = max(min(leftPaddingFraction * screenWidth, maxHorizPadding), minHorizPadding)
@@ -447,12 +458,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         hideSearchBar()
         searchBar.text = ""
-        filter()
+        store.dispatch(UpdateSearchQueryAction(searchQuery: ""))
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         //passThroughView.blocking = false
-        filter()
+        store.dispatch(UpdateSearchQueryAction(searchQuery: searchText))
     }
 
     
@@ -559,12 +570,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         // Set the button images
-        cell.favoriteButton.setTrueImage(image: SpellTableViewController.starFilled!)
-        cell.favoriteButton.setFalseImage(image: SpellTableViewController.starEmpty!)
-        cell.preparedButton.setTrueImage(image: SpellTableViewController.wandFilled!)
-        cell.preparedButton.setFalseImage(image: SpellTableViewController.wandEmpty!)
-        cell.knownButton.setTrueImage(image: SpellTableViewController.bookFilled!)
-        cell.knownButton.setFalseImage(image: SpellTableViewController.bookEmpty!)
+        cell.favoriteButton.setTrueImage(image: ViewController.starFilled!)
+        cell.favoriteButton.setFalseImage(image: ViewController.starEmpty!)
+        cell.preparedButton.setTrueImage(image: ViewController.wandFilled!)
+        cell.preparedButton.setFalseImage(image: ViewController.wandEmpty!)
+        cell.knownButton.setTrueImage(image: ViewController.bookFilled!)
+        cell.knownButton.setFalseImage(image: ViewController.bookEmpty!)
         
         // Set the button statuses
         let sfs = store.state.profile?.spellFilterStatus ?? SpellFilterStatus()
