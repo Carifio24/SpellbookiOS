@@ -352,9 +352,9 @@ class SortFilterStatus {
         self.maxRangeUnit = maxUnit
     }
     private func setBoundsFromSION<U: Unit>(sion: SION, setter: BoundSetter<U>) {
-        let minValue = sion[SortFilterStatus.minValueKey].int ?? 0
+        let minValue = intFromSION(sion[SortFilterStatus.minValueKey], defaultValue: 0)
         let minUnit = (try? U.fromString(sion[SortFilterStatus.minUnitKey].string!)) ?? U.defaultUnit
-        let maxValue = sion[SortFilterStatus.maxValueKey].int ?? 1
+        let maxValue = intFromSION(sion[SortFilterStatus.maxValueKey], defaultValue: 1)
         let maxUnit = (try? U.fromString(sion[SortFilterStatus.maxUnitKey].string!)) ?? U.defaultUnit
         setter(minValue, minUnit, maxValue, maxUnit)
     }
