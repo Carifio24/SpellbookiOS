@@ -170,7 +170,6 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         if mustComplete {
             controller.cancelButton.isHidden = true
             popupVC.canTapOutsideToDismiss = false
-            self.present(popupVC, animated: true)
         }
         self.present(popupVC, animated: true)
     }
