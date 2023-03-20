@@ -33,5 +33,6 @@ struct SpellbookAppState {
         }
         spellList = SpellbookAppState.spellbook.spells
         currentSpellList = spellList
+        profileNameList = SerializationUtils.characterNameList()
     }
 }
