@@ -160,10 +160,8 @@ fileprivate func sortSpells(_ state: inout SpellbookAppState) {
 }
 
 fileprivate func filterSpells(_ state: inout SpellbookAppState) {
-    guard let profile = state.profile else { return }
     let filter = createFilter(state: state)
     state.currentSpellList = state.spellList.filter(filter)
-    //print(state.currentSpellList.map { $0.name })
 }
 
 func filterNeededReducer(action: FilterNeededAction, state: inout SpellbookAppState) -> SpellbookAppState {
@@ -181,7 +179,6 @@ fileprivate func valueUpdateReducer<T:QuantityType,U:Unit>(action: ValueUpdateAc
     } else {
         maxSetter(status)(action.value)
     }
-    print("valueUpdateReducer")
     filterSpells(&state)
     return state
 }
