@@ -105,7 +105,7 @@ class SerializationUtils: NSObject {
             let element = url.lastPathComponent
             if (element.hasSuffix(profilesExtension)) {
                 var name = element
-                name.removeLast(extLen + 1)
+                name.removeLast(extLen)
                 charNames.append(name)
             }
         }
