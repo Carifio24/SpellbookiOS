@@ -28,8 +28,8 @@ class SpellSlotStatus {
     }
     
     convenience init(sion: SION) {
-        let totalSlots = sion[SpellSlotStatus.totalSlotsKey].array?.map{ $0.int ?? 0 } ?? [Int](repeating: 0, count: Spellbook.MAX_SPELL_LEVEL)
-        let usedSlots = sion[SpellSlotStatus.usedSlotsKey].array?.map{ $0.int ?? 0 } ?? [Int](repeating: 0, count: Spellbook.MAX_SPELL_LEVEL)
+        let totalSlots = sion[SpellSlotStatus.totalSlotsKey].array?.map{ intFromSION($0) } ?? [Int](repeating: 0, count: Spellbook.MAX_SPELL_LEVEL)
+        let usedSlots = sion[SpellSlotStatus.usedSlotsKey].array?.map{ intFromSION($0) } ?? [Int](repeating: 0, count: Spellbook.MAX_SPELL_LEVEL)
         self.init(totalSlots: totalSlots, usedSlots: usedSlots)
     }
     
