@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SimpleCheckbox
 
 class SpellSlotCell: UITableViewCell {
 
@@ -16,4 +17,13 @@ class SpellSlotCell: UITableViewCell {
     let level: Int = -1
     let totalSlots: Int = 0
     
+    func setUpCheckboxes() {
+        for _ in 1...totalSlots {
+            let checkbox = Checkbox(frame: CGRect(x: 50, y: 50, width: 25, height: 25))
+            checkbox.borderStyle = .square
+            checkbox.checkedBorderColor = .black
+            checkbox.uncheckedBorderColor = .black
+            checkbox.checkboxFillColor = .black
+        }
+    }
 }
