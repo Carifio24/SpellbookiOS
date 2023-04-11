@@ -116,6 +116,7 @@
 		8E74FA4C29E3D84300E13B91 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 8E74FA4B29E3D84300E13B91 /* Toast */; };
 		8E74FA5029E3DB3800E13B91 /* ReSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8E74FA4F29E3DB3800E13B91 /* ReSwift */; };
 		8E74FA5329E511D300E13B91 /* ActionSheetPicker-3.0 in Frameworks */ = {isa = PBXBuildFile; productRef = 8E74FA5229E511D300E13B91 /* ActionSheetPicker-3.0 */; };
+		8E74FA5629E5194000E13B91 /* SimpleCheckbox in Frameworks */ = {isa = PBXBuildFile; productRef = 8E74FA5529E5194000E13B91 /* SimpleCheckbox */; };
 		8E7615AA264D716900686033 /* VersionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7615A9264D716900686033 /* VersionInfo.swift */; };
 		8E7BD0DD244A6BEF00090C40 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BD0DC244A6BEF00090C40 /* PassThroughView.swift */; };
 		8E92CC65243BCE2100EB78B2 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC64243BCE2100EB78B2 /* Images.swift */; };
@@ -293,6 +294,7 @@
 			files = (
 				8E74FA5329E511D300E13B91 /* ActionSheetPicker-3.0 in Frameworks */,
 				8E74FA4C29E3D84300E13B91 /* Toast in Frameworks */,
+				8E74FA5629E5194000E13B91 /* SimpleCheckbox in Frameworks */,
 				8E74FA4629E3D7C600E13B91 /* SWXMLHash in Frameworks */,
 				8E74FA5029E3DB3800E13B91 /* ReSwift in Frameworks */,
 			);
@@ -553,6 +555,7 @@
 				8E74FA4B29E3D84300E13B91 /* Toast */,
 				8E74FA4F29E3DB3800E13B91 /* ReSwift */,
 				8E74FA5229E511D300E13B91 /* ActionSheetPicker-3.0 */,
+				8E74FA5529E5194000E13B91 /* SimpleCheckbox */,
 			);
 			productName = Spellbook;
 			productReference = 397EE96521ACA86400B116B0 /* Spellbook.app */;
@@ -634,6 +637,7 @@
 				8E74FA4A29E3D84300E13B91 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				8E74FA4E29E3DB3800E13B91 /* XCRemoteSwiftPackageReference "ReSwift" */,
 				8E74FA5129E511D300E13B91 /* XCRemoteSwiftPackageReference "ActionSheetPicker-3" */,
+				8E74FA5429E5194000E13B91 /* XCRemoteSwiftPackageReference "SimpleCheckbox" */,
 			);
 			productRefGroup = 397EE96621ACA86400B116B0 /* Products */;
 			projectDirPath = "";
@@ -1181,6 +1185,14 @@
 				revision = 8d82c21036c2f478a47908a7fc107ec7027abcab;
 			};
 		};
+		8E74FA5429E5194000E13B91 /* XCRemoteSwiftPackageReference "SimpleCheckbox" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BeauNouvelle/SimpleCheckbox.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1203,6 +1215,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8E74FA5129E511D300E13B91 /* XCRemoteSwiftPackageReference "ActionSheetPicker-3" */;
 			productName = "ActionSheetPicker-3.0";
+		};
+		8E74FA5529E5194000E13B91 /* SimpleCheckbox */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E74FA5429E5194000E13B91 /* XCRemoteSwiftPackageReference "SimpleCheckbox" */;
+			productName = SimpleCheckbox;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
