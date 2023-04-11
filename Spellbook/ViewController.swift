@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ActionSheetPicker_3_0
+import CoreActionSheetPicker
 import ReSwift
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, SWRevealViewControllerDelegate {

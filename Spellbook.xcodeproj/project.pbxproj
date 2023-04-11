@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,7 +12,6 @@
 		397EE97E21ACA86800B116B0 /* SpellbookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE97D21ACA86800B116B0 /* SpellbookTests.swift */; };
 		397EE98921ACA86900B116B0 /* SpellbookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE98821ACA86900B116B0 /* SpellbookUITests.swift */; };
 		39F306A62378A4310078FA83 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F306A52378A4310078FA83 /* SWRevealViewController.m */; };
-		5B97D79C1F8C714337F2E991 /* Pods_SpellbookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F089C7503C44FC8DBBE004A /* Pods_SpellbookTests.framework */; };
 		8E02F76224345F6200A3050C /* YesNo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02F76124345F6200A3050C /* YesNo.swift */; };
 		8E02F7642436378400A3050C /* FilterGridDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02F7632436378400A3050C /* FilterGridDelegate.swift */; };
 		8E02F76624363BAD00A3050C /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E02F76524363BAD00A3050C /* FilterView.xib */; };
@@ -113,11 +112,14 @@
 		8E6E2B8428E9FF2400AA6483 /* SpellbookAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B8328E9FF2400AA6483 /* SpellbookAppState.swift */; };
 		8E6E2B8628EBF16800AA6483 /* SpellFilterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B8528EBF16800AA6483 /* SpellFilterStatus.swift */; };
 		8E6E2B8828ED472900AA6483 /* SortFilterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B8728ED472900AA6483 /* SortFilterStatus.swift */; };
+		8E74FA4629E3D7C600E13B91 /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 8E74FA4529E3D7C600E13B91 /* SWXMLHash */; };
+		8E74FA4C29E3D84300E13B91 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 8E74FA4B29E3D84300E13B91 /* Toast */; };
+		8E74FA5029E3DB3800E13B91 /* ReSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8E74FA4F29E3DB3800E13B91 /* ReSwift */; };
+		8E74FA5329E511D300E13B91 /* ActionSheetPicker-3.0 in Frameworks */ = {isa = PBXBuildFile; productRef = 8E74FA5229E511D300E13B91 /* ActionSheetPicker-3.0 */; };
 		8E7615AA264D716900686033 /* VersionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7615A9264D716900686033 /* VersionInfo.swift */; };
 		8E7BD0DD244A6BEF00090C40 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BD0DC244A6BEF00090C40 /* PassThroughView.swift */; };
 		8E92CC65243BCE2100EB78B2 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC64243BCE2100EB78B2 /* Images.swift */; };
 		8E92CC67243BD49900EB78B2 /* NumberFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC66243BD49900EB78B2 /* NumberFieldDelegate.swift */; };
-		8EA1655826786E8E00C0CAD7 /* Pods_Spellbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F52835E1AFE88EEDAA5E6F4 /* Pods_Spellbook.framework */; };
 		8EB3691E293F123900856738 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB3691D293F123900856738 /* AppReducer.swift */; };
 		8EB36920293F133900856738 /* SpellbookActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB3691F293F133900856738 /* SpellbookActions.swift */; };
 		8EB3692229405EAB00856738 /* SpellbookReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB3692129405EAB00856738 /* SpellbookReducers.swift */; };
@@ -131,7 +133,6 @@
 		8EEAFCCA2645FB4C00A05D01 /* CharacterProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEAFCC92645FB4C00A05D01 /* CharacterProfileTests.swift */; };
 		8EF6EF0B264668F60059BCE8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0A264668F60059BCE8 /* Version.swift */; };
 		8EF6EF0D26485A2E0059BCE8 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */; };
-		CB83F840FFCD694FF7F68B6C /* Pods_SpellbookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3455F8D46FA0B4CF5F5E0C /* Pods_SpellbookUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,7 +153,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B1F6F8D5F47845DF8DF0EC9 /* Pods-SpellbookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpellbookTests.debug.xcconfig"; path = "Target Support Files/Pods-SpellbookTests/Pods-SpellbookTests.debug.xcconfig"; sourceTree = "<group>"; };
 		397EE96521ACA86400B116B0 /* Spellbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spellbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		397EE96D21ACA86400B116B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		397EE97221ACA86800B116B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -165,11 +165,6 @@
 		39F1046F21AD87F40068A09E /* SION.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SION.swift; path = "../../Desktop/git/swift-sion/Sources/SION/SION.swift"; sourceTree = "<group>"; };
 		39F306A42378A4310078FA83 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		39F306A52378A4310078FA83 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		3F089C7503C44FC8DBBE004A /* Pods_SpellbookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpellbookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		58DC16B854EE4ADBC5F4983A /* Pods-SpellbookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpellbookTests.release.xcconfig"; path = "Target Support Files/Pods-SpellbookTests/Pods-SpellbookTests.release.xcconfig"; sourceTree = "<group>"; };
-		60E6B430935826708B306334 /* Pods-Spellbook-SpellbookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spellbook-SpellbookUITests.release.xcconfig"; path = "Target Support Files/Pods-Spellbook-SpellbookUITests/Pods-Spellbook-SpellbookUITests.release.xcconfig"; sourceTree = "<group>"; };
-		6254587FB06BAE3430927A80 /* Pods-Spellbook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spellbook.debug.xcconfig"; path = "Target Support Files/Pods-Spellbook/Pods-Spellbook.debug.xcconfig"; sourceTree = "<group>"; };
-		7F52835E1AFE88EEDAA5E6F4 /* Pods_Spellbook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spellbook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E02F76124345F6200A3050C /* YesNo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YesNo.swift; sourceTree = "<group>"; };
 		8E02F7632436378400A3050C /* FilterGridDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterGridDelegate.swift; sourceTree = "<group>"; };
 		8E02F76524363BAD00A3050C /* FilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
@@ -289,11 +284,6 @@
 		8EEAFCC92645FB4C00A05D01 /* CharacterProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProfileTests.swift; sourceTree = "<group>"; };
 		8EF6EF0A264668F60059BCE8 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTests.swift; sourceTree = "<group>"; };
-		94AD71A6585758027403E648 /* Pods-SpellbookUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpellbookUITests.debug.xcconfig"; path = "Target Support Files/Pods-SpellbookUITests/Pods-SpellbookUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		9F3455F8D46FA0B4CF5F5E0C /* Pods_SpellbookUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpellbookUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B99DF75ACA873A5DE055F227 /* Pods-SpellbookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpellbookUITests.release.xcconfig"; path = "Target Support Files/Pods-SpellbookUITests/Pods-SpellbookUITests.release.xcconfig"; sourceTree = "<group>"; };
-		DE6D2E6E2D786F2DE413830B /* Pods-Spellbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spellbook.release.xcconfig"; path = "Target Support Files/Pods-Spellbook/Pods-Spellbook.release.xcconfig"; sourceTree = "<group>"; };
-		EE3F9E4F2FA898B5DC95F959 /* Pods-Spellbook-SpellbookUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spellbook-SpellbookUITests.debug.xcconfig"; path = "Target Support Files/Pods-Spellbook-SpellbookUITests/Pods-Spellbook-SpellbookUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,7 +291,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EA1655826786E8E00C0CAD7 /* Pods_Spellbook.framework in Frameworks */,
+				8E74FA5329E511D300E13B91 /* ActionSheetPicker-3.0 in Frameworks */,
+				8E74FA4C29E3D84300E13B91 /* Toast in Frameworks */,
+				8E74FA4629E3D7C600E13B91 /* SWXMLHash in Frameworks */,
+				8E74FA5029E3DB3800E13B91 /* ReSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +302,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B97D79C1F8C714337F2E991 /* Pods_SpellbookTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,28 +309,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB83F840FFCD694FF7F68B6C /* Pods_SpellbookUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1109E518942E432F6020BD46 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				6254587FB06BAE3430927A80 /* Pods-Spellbook.debug.xcconfig */,
-				DE6D2E6E2D786F2DE413830B /* Pods-Spellbook.release.xcconfig */,
-				EE3F9E4F2FA898B5DC95F959 /* Pods-Spellbook-SpellbookUITests.debug.xcconfig */,
-				60E6B430935826708B306334 /* Pods-Spellbook-SpellbookUITests.release.xcconfig */,
-				0B1F6F8D5F47845DF8DF0EC9 /* Pods-SpellbookTests.debug.xcconfig */,
-				58DC16B854EE4ADBC5F4983A /* Pods-SpellbookTests.release.xcconfig */,
-				94AD71A6585758027403E648 /* Pods-SpellbookUITests.debug.xcconfig */,
-				B99DF75ACA873A5DE055F227 /* Pods-SpellbookUITests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		397EE95C21ACA86300B116B0 = {
 			isa = PBXGroup;
 			children = (
@@ -352,7 +328,6 @@
 				397EE98721ACA86900B116B0 /* SpellbookUITests */,
 				397EE96621ACA86400B116B0 /* Products */,
 				39F1046E21AD87F40068A09E /* Frameworks */,
-				1109E518942E432F6020BD46 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -508,9 +483,6 @@
 			isa = PBXGroup;
 			children = (
 				39F1046F21AD87F40068A09E /* SION.swift */,
-				7F52835E1AFE88EEDAA5E6F4 /* Pods_Spellbook.framework */,
-				3F089C7503C44FC8DBBE004A /* Pods_SpellbookTests.framework */,
-				9F3455F8D46FA0B4CF5F5E0C /* Pods_SpellbookUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -567,17 +539,21 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 397EE98D21ACA86900B116B0 /* Build configuration list for PBXNativeTarget "Spellbook" */;
 			buildPhases = (
-				3BF5CC04C2A985527DBFBB9F /* [CP] Check Pods Manifest.lock */,
 				397EE96121ACA86400B116B0 /* Sources */,
 				397EE96221ACA86400B116B0 /* Frameworks */,
 				397EE96321ACA86400B116B0 /* Resources */,
-				B149EC58FB6CD941EA076568 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Spellbook;
+			packageProductDependencies = (
+				8E74FA4529E3D7C600E13B91 /* SWXMLHash */,
+				8E74FA4B29E3D84300E13B91 /* Toast */,
+				8E74FA4F29E3DB3800E13B91 /* ReSwift */,
+				8E74FA5229E511D300E13B91 /* ActionSheetPicker-3.0 */,
+			);
 			productName = Spellbook;
 			productReference = 397EE96521ACA86400B116B0 /* Spellbook.app */;
 			productType = "com.apple.product-type.application";
@@ -586,7 +562,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 397EE99021ACA86900B116B0 /* Build configuration list for PBXNativeTarget "SpellbookTests" */;
 			buildPhases = (
-				80D32404DAD258AB3A82DA41 /* [CP] Check Pods Manifest.lock */,
 				397EE97521ACA86800B116B0 /* Sources */,
 				397EE97621ACA86800B116B0 /* Frameworks */,
 				397EE97721ACA86800B116B0 /* Resources */,
@@ -605,7 +580,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 397EE99321ACA86900B116B0 /* Build configuration list for PBXNativeTarget "SpellbookUITests" */;
 			buildPhases = (
-				EE7352EE04FC83993404A242 /* [CP] Check Pods Manifest.lock */,
 				397EE98021ACA86900B116B0 /* Sources */,
 				397EE98121ACA86900B116B0 /* Frameworks */,
 				397EE98221ACA86900B116B0 /* Resources */,
@@ -655,6 +629,12 @@
 				Base,
 			);
 			mainGroup = 397EE95C21ACA86300B116B0;
+			packageReferences = (
+				8E74FA4429E3D7C600E13B91 /* XCRemoteSwiftPackageReference "SWXMLHash" */,
+				8E74FA4A29E3D84300E13B91 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				8E74FA4E29E3DB3800E13B91 /* XCRemoteSwiftPackageReference "ReSwift" */,
+				8E74FA5129E511D300E13B91 /* XCRemoteSwiftPackageReference "ActionSheetPicker-3" */,
+			);
 			productRefGroup = 397EE96621ACA86400B116B0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -712,92 +692,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		3BF5CC04C2A985527DBFBB9F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Spellbook-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		80D32404DAD258AB3A82DA41 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SpellbookTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B149EC58FB6CD941EA076568 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Spellbook/Pods-Spellbook-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Spellbook/Pods-Spellbook-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Spellbook/Pods-Spellbook-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EE7352EE04FC83993404A242 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SpellbookUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		397EE96121ACA86400B116B0 /* Sources */ = {
@@ -1073,7 +967,6 @@
 		};
 		397EE98E21ACA86900B116B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6254587FB06BAE3430927A80 /* Pods-Spellbook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1103,7 +996,6 @@
 		};
 		397EE98F21ACA86900B116B0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DE6D2E6E2D786F2DE413830B /* Pods-Spellbook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1132,7 +1024,6 @@
 		};
 		397EE99121ACA86900B116B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B1F6F8D5F47845DF8DF0EC9 /* Pods-SpellbookTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1156,7 +1047,6 @@
 		};
 		397EE99221ACA86900B116B0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58DC16B854EE4ADBC5F4983A /* Pods-SpellbookTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1179,7 +1069,6 @@
 		};
 		397EE99421ACA86900B116B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 94AD71A6585758027403E648 /* Pods-SpellbookUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1200,7 +1089,6 @@
 		};
 		397EE99521ACA86900B116B0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B99DF75ACA873A5DE055F227 /* Pods-SpellbookUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1259,6 +1147,64 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8E74FA4429E3D7C600E13B91 /* XCRemoteSwiftPackageReference "SWXMLHash" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/drmohundro/SWXMLHash.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		8E74FA4A29E3D84300E13B91 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		8E74FA4E29E3DB3800E13B91 /* XCRemoteSwiftPackageReference "ReSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReSwift/ReSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.1.0;
+			};
+		};
+		8E74FA5129E511D300E13B91 /* XCRemoteSwiftPackageReference "ActionSheetPicker-3" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/skywinder/ActionSheetPicker-3.0";
+			requirement = {
+				kind = revision;
+				revision = 8d82c21036c2f478a47908a7fc107ec7027abcab;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8E74FA4529E3D7C600E13B91 /* SWXMLHash */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E74FA4429E3D7C600E13B91 /* XCRemoteSwiftPackageReference "SWXMLHash" */;
+			productName = SWXMLHash;
+		};
+		8E74FA4B29E3D84300E13B91 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E74FA4A29E3D84300E13B91 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
+		8E74FA4F29E3DB3800E13B91 /* ReSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E74FA4E29E3DB3800E13B91 /* XCRemoteSwiftPackageReference "ReSwift" */;
+			productName = ReSwift;
+		};
+		8E74FA5229E511D300E13B91 /* ActionSheetPicker-3.0 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E74FA5129E511D300E13B91 /* XCRemoteSwiftPackageReference "ActionSheetPicker-3" */;
+			productName = "ActionSheetPicker-3.0";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 397EE95D21ACA86300B116B0 /* Project object */;
 }

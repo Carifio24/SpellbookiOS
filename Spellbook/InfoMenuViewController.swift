@@ -140,7 +140,7 @@ class InfoMenuViewController: UITableViewController {
         
         let infoFile = Bundle.main.url(forResource: "SpellcastingInfo", withExtension: "xml")!
         let data = try! String(contentsOf: infoFile)
-        let xmlDoc = SWXMLHash.parse(data)
+        let xmlDoc = XMLHash.parse(data)
         var dataSections: [InfoSection] = []
         
         for section in xmlDoc["root"]["section"].all {

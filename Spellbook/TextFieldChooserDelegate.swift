@@ -8,7 +8,7 @@
 
 import ReSwift
 import UIKit
-import ActionSheetPicker_3_0
+import CoreActionSheetPicker
 
 class TextFieldChooserDelegate<A: Action, T:CaseIterable & Equatable>: NSObject, UITextFieldDelegate {
     

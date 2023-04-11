@@ -19,7 +19,7 @@ class VersionInfo {
     static let (updateTitle, updateText): (String, String) = {
         let infoFile = Bundle.main.url(forResource: "UpdateInfo", withExtension: "xml")!
         let data = try! String(contentsOf: infoFile)
-        let xmlDoc = SWXMLHash.parse(data)
+        let xmlDoc = XMLHash.parse(data)
         do {
             let updateSection = try xmlDoc["root"]["section"].withAttribute("name", VersionInfo.currentVersionKey)
             let updateTitleText = try updateSection["item"].withAttribute("name", "title").element!.text

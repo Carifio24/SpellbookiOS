@@ -7,7 +7,6 @@
 //
 
 import ReSwift
-import RxSwift
 
 func identityReducer(action: Action, state: SpellbookAppState) -> SpellbookAppState {
     return state

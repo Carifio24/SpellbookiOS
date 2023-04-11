@@ -2,34 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/jcarifio/Documents/SpellbookiOS/Spellbook/FromRightDismissAnimator.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/jcarifio/Documents/SpellbookiOS/Spellbook/FromRightPushAnimator.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/jcarifio/Documents/SpellbookiOS/Spellbook/Transitions.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/jcarifio/Documents/SpellbookiOS/Spellbook/SpellcastingInfoPopupController.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/jcarifio/Documents/SpellbookiOS/Spellbook/Extensions.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/jcarifio/Documents/SpellbookiOS/Spellbook/InfoTableViewHeader.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/jcarifio/Documents/SpellbookiOS/Spellbook/Storage.swift">
-   </FileRef>
-   <Group
-      location = "container:"
-      name = "New Group">
-   </Group>
-   <FileRef
-      location = "group:../../../src/AEXML">
-   </FileRef>
-   <FileRef
       location = "self:">
    </FileRef>
 </Workspace>

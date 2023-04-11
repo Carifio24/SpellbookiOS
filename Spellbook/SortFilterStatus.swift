@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import RxRelay
-import RxSwift
 import ReSwift
 
 class SortFilterStatus {
@@ -143,11 +141,6 @@ class SortFilterStatus {
         }
     }
     
-    private let disposeBag = DisposeBag()
-    private let visibilityFlag = BehaviorRelay(value: ())
-    let sortFlag = BehaviorRelay(value: ())
-    let filterFlag = BehaviorRelay(value: ())
-    
     private static func getVisibleValues<T: Equatable>(visible: Bool, visibleValues: [T], allValues: [T]) -> [T] {
         return visible ? visibleValues : complement(items: visibleValues, allItems: allValues)
     }
@@ -216,7 +209,6 @@ class SortFilterStatus {
         } else {
             collection.removeAll(where: { $0 == item })
         }
-        visibilityFlag.accept(())
     }
     
     func setSourceVisibility(_ source: Sourcebook, visible: Bool) {

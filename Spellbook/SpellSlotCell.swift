@@ -16,14 +16,4 @@ class SpellSlotCell: UITableViewCell {
     let level: Int = -1
     let totalSlots: Int = 0
     
-    func setUpCheckboxes() {
-        for _ in 1...totalSlots {
-            let checkbox = UISwitch()
-            if #available(iOS 14.0, *) {
-                checkbox.preferredStyle = UISwitch.Style.checkbox
-            } else {
-                checkbox.preferredStyle = UISwitch.Style.checkbox
-            }
-        }
-    }
 }

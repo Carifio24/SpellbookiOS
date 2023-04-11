@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RxRelay
 
 class SpellFilterStatus {
     
@@ -24,7 +23,6 @@ class SpellFilterStatus {
     private static let knownProperty: SpellStatusProperty = { status in return status.known }
     
     private var spellStatusMap: [Int: SpellStatus]
-    let spellFilterFlag: BehaviorRelay<Void> = BehaviorRelay(value: ())
     
     init(map: [Int:SpellStatus]) {
         self.spellStatusMap = map
@@ -115,7 +113,6 @@ class SpellFilterStatus {
             propSetter(status, true)
             spellStatusMap[id] = status
         }
-        spellFilterFlag.accept(())
     }
     
     // The property setters
