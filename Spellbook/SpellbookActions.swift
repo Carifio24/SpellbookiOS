@@ -208,3 +208,11 @@ struct NameChangeAction: Action {
 }
 
 struct UpdateCharacterListAction: Action {}
+
+struct UseSpellSlotAction: Action {
+    let level: Int
+}
+
+struct GainSpellSlotAction: Action {
+    let level: Int
+}

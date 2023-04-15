@@ -319,3 +319,17 @@ func updateCharacterListReducer(action: UpdateCharacterListAction, state: inout 
     state.profileNameList = SerializationUtils.characterNameList()
     return state
 }
+
+func useSpellSlotReducer(action: UseSpellSlotAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    guard let profile = state.profile else { return state }
+    let status = profile.spellSlotStatus
+    status.useSlot(level: action.level)
+    return state
+}
+
+func gainSpellSlotReducer(action: GainSpellSlotAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    guard let profile = state.profile else { return state }
+    let status = profile.spellSlotStatus
+    status.gainSlot(level: action.level)
+    return state
+}

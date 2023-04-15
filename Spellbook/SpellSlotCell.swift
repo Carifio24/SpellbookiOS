@@ -39,6 +39,10 @@ class SpellSlotCell: UITableViewCell {
         levelLabel.text = "Level \(level):"
     }
     
+    func checkedCount() -> Int {
+        checkboxes.filter({ box in return box.isChecked }).count
+    }
+    
     func setUpCheckboxes() {
         if (level <= 0) { return }
         guard let profile = store.state.profile else { return }
@@ -54,6 +58,15 @@ class SpellSlotCell: UITableViewCell {
             checkbox.uncheckedBorderColor = .black
             checkbox.checkboxFillColor = .black
             checkbox.isChecked = i <= usedSlots
+            
+            checkbox.valueChanged = { isChecked in
+                if (isChecked) {
+                    store.dispatch(UseSpellSlotAction(level: self.level))
+                } else {
+                    store.dispatch(GainSpellSlotAction(level: self.level))
+                }
+            }
+            
             stackView.addArrangedSubview(checkbox)
             checkboxes.append(checkbox)
         }
