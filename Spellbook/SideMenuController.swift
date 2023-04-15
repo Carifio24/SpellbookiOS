@@ -201,9 +201,9 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     @objc func spellSlotsButtonPressed() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: SideMenuController.spellSlotsIdentifier) as! SpellSlotsController
-        controller.modalPresentationStyle = .formSheet
         controller.transitioningDelegate = controller
-        self.present(controller, animated: true, completion: nil)
+        Controllers.mainNavController.pushViewController(controller, animated: true)
+        Controllers.mainController.closeMenuIfOpen()
         UIApplication.shared.setStatusBarTextColor(.light)
     }
     

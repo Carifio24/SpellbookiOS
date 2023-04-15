@@ -658,7 +658,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         spellWindowController.spell = spell
         spellWindowController.spellIndex = spellIndex
         UIApplication.shared.setStatusBarTextColor(.light)
-        //print("")
     }
     
     
