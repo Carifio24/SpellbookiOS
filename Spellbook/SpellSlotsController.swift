@@ -24,6 +24,13 @@ class SpellSlotsController: UITableViewController {
                 $0.profile?.spellSlotStatus
             }
         }
+        
+        // Add the right navigation bar item to allow editing the totals
+        self.navigationItem.rightBarButtonItem =
+                                  UIBarButtonItem(image: UIImage(named: "EditIcon"),
+                                                  style: UIBarButtonItem.Style.plain,
+                                                  target: self,
+                                                  action: #selector(openSlotManager))
     }
 
     override func viewDidLoad() {
@@ -41,6 +48,10 @@ class SpellSlotsController: UITableViewController {
         titleLabel.backgroundColor = UIColor.clear
         titleLabel.frame.size.height = headerHeight
         tableView.tableHeaderView = titleLabel
+    }
+    
+    @objc func openSlotManager() {
+        
     }
     
 

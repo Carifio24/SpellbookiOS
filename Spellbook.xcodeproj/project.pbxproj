@@ -107,7 +107,6 @@
 		8E6551BA29AC63E800A3BC43 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6551B929AC63E800A3BC43 /* Toast.swift */; };
 		8E6E2B7C28BC840200AA6483 /* SpellSlotStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B7B28BC840200AA6483 /* SpellSlotStatus.swift */; };
 		8E6E2B7E28BC8C3F00AA6483 /* SIONUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B7D28BC8C3F00AA6483 /* SIONUtils.swift */; };
-		8E6E2B8028BF2AE100AA6483 /* SpellSlotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B7F28BF2AE000AA6483 /* SpellSlotController.swift */; };
 		8E6E2B8228E9FE4A00AA6483 /* SpellSlotsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B8128E9FE4A00AA6483 /* SpellSlotsController.swift */; };
 		8E6E2B8428E9FF2400AA6483 /* SpellbookAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B8328E9FF2400AA6483 /* SpellbookAppState.swift */; };
 		8E6E2B8628EBF16800AA6483 /* SpellFilterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B8528EBF16800AA6483 /* SpellFilterStatus.swift */; };
@@ -117,6 +116,7 @@
 		8E74FA5029E3DB3800E13B91 /* ReSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8E74FA4F29E3DB3800E13B91 /* ReSwift */; };
 		8E74FA5329E511D300E13B91 /* ActionSheetPicker-3.0 in Frameworks */ = {isa = PBXBuildFile; productRef = 8E74FA5229E511D300E13B91 /* ActionSheetPicker-3.0 */; };
 		8E74FA5629E5194000E13B91 /* SimpleCheckbox in Frameworks */ = {isa = PBXBuildFile; productRef = 8E74FA5529E5194000E13B91 /* SimpleCheckbox */; };
+		8E74FA5829EB5A6C00E13B91 /* SpellSlotsManagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E74FA5729EB5A6C00E13B91 /* SpellSlotsManagerController.swift */; };
 		8E7615AA264D716900686033 /* VersionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7615A9264D716900686033 /* VersionInfo.swift */; };
 		8E7BD0DD244A6BEF00090C40 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BD0DC244A6BEF00090C40 /* PassThroughView.swift */; };
 		8E92CC65243BCE2100EB78B2 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC64243BCE2100EB78B2 /* Images.swift */; };
@@ -263,11 +263,11 @@
 		8E6551B929AC63E800A3BC43 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		8E6E2B7B28BC840200AA6483 /* SpellSlotStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSlotStatus.swift; sourceTree = "<group>"; };
 		8E6E2B7D28BC8C3F00AA6483 /* SIONUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIONUtils.swift; sourceTree = "<group>"; };
-		8E6E2B7F28BF2AE000AA6483 /* SpellSlotController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSlotController.swift; sourceTree = "<group>"; };
 		8E6E2B8128E9FE4A00AA6483 /* SpellSlotsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSlotsController.swift; sourceTree = "<group>"; };
 		8E6E2B8328E9FF2400AA6483 /* SpellbookAppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellbookAppState.swift; sourceTree = "<group>"; };
 		8E6E2B8528EBF16800AA6483 /* SpellFilterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellFilterStatus.swift; sourceTree = "<group>"; };
 		8E6E2B8728ED472900AA6483 /* SortFilterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFilterStatus.swift; sourceTree = "<group>"; };
+		8E74FA5729EB5A6C00E13B91 /* SpellSlotsManagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSlotsManagerController.swift; sourceTree = "<group>"; };
 		8E7615A8264CFA3F00686033 /* UpdateInfo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = UpdateInfo.xml; path = Data/UpdateInfo.xml; sourceTree = SOURCE_ROOT; };
 		8E7615A9264D716900686033 /* VersionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionInfo.swift; sourceTree = "<group>"; };
 		8E7BD0DC244A6BEF00090C40 /* PassThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassThroughView.swift; sourceTree = "<group>"; };
@@ -356,7 +356,6 @@
 				8E6148CA241991C000842A18 /* AppDelegate.swift */,
 				8E6148DF241991C100842A18 /* Assets.xcassets */,
 				8E177F9A2432F34B005146B6 /* SortFilterTableController.swift */,
-				8E6E2B7F28BF2AE000AA6483 /* SpellSlotController.swift */,
 				8E6E2B7B28BC840200AA6483 /* SpellSlotStatus.swift */,
 				8E92CC66243BD49900EB78B2 /* NumberFieldDelegate.swift */,
 				8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */,
@@ -447,6 +446,7 @@
 				8E6551B729AB470400A3BC43 /* SerializationUtils.swift */,
 				8E6551B929AC63E800A3BC43 /* Toast.swift */,
 				8EB5331029D54D0F00952027 /* SpellSlotCell.swift */,
+				8E74FA5729EB5A6C00E13B91 /* SpellSlotsManagerController.swift */,
 			);
 			path = Spellbook;
 			sourceTree = "<group>";
@@ -735,6 +735,7 @@
 				8E6148EA241991C200842A18 /* StatusFilterField.swift in Sources */,
 				8E6148F2241991C200842A18 /* ToggleButton.swift in Sources */,
 				8E614914241991C200842A18 /* CasterClass.swift in Sources */,
+				8E74FA5829EB5A6C00E13B91 /* SpellSlotsManagerController.swift in Sources */,
 				8E02F7762438F04000A3050C /* RangeView.swift in Sources */,
 				8E614917241991C200842A18 /* SpellParse.swift in Sources */,
 				8E614901241991C200842A18 /* School.swift in Sources */,
@@ -750,7 +751,6 @@
 				8E6E2B8228E9FE4A00AA6483 /* SpellSlotsController.swift in Sources */,
 				8EB3691E293F123900856738 /* AppReducer.swift in Sources */,
 				8E6148F8241991C200842A18 /* StringUtils.swift in Sources */,
-				8E6E2B8028BF2AE100AA6483 /* SpellSlotController.swift in Sources */,
 				8E614927241991C200842A18 /* SpellBuilder.swift in Sources */,
 				8E02F76224345F6200A3050C /* YesNo.swift in Sources */,
 				8EEA28FD297C23D8004971AD /* SpellFilter.swift in Sources */,
