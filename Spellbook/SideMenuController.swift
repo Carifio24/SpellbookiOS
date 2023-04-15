@@ -18,6 +18,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     @IBOutlet var selectionButton: UIButton!
     @IBOutlet weak var updateInfoLabel: UILabel!
     @IBOutlet weak var whatsNewButton: UIButton!
+    @IBOutlet weak var spellSlotsButton: UIButton!
     
     var statusController: StatusFilterController?
     
@@ -35,6 +36,8 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     
     private var viewHeight = CGFloat(600)
     private var viewWidth = CGFloat(400)
+    
+    static let spellSlotsIdentifier = "spellSlots"
     
     // Status bar
     // Status bar
@@ -66,9 +69,11 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         let statusFilterHeight = CGFloat(171)
         let characterLabelHeight = CGFloat(20)
         let selectionButtonHeight = CGFloat(20)
+        let spellSlotsButtonHeight = CGFloat(20)
         let belowFilterPadding = min(max(0.05 * SizeUtils.screenHeight, 25), 40)
         let belowCharacterLabelPadding = CGFloat(14)
-        let belowSelectionButtonPadding = CGFloat(23)
+        let belowSelectionButtonPadding = CGFloat(20)
+        let belowSpellSlotsButtonPadding = CGFloat(23)
         let notchTopPadding = CGFloat(35)
         let updateInfoLabelHeight = CGFloat(20)
         let belowUpdateInfoLabelPadding = CGFloat(14)
@@ -93,17 +98,20 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         currentY += characterLabelHeight + belowCharacterLabelPadding
         selectionButton.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: selectionButtonHeight)
         
-        currentY += selectionButtonHeight + belowSelectionButtonPadding
+        currentY += spellSlotsButtonHeight + belowSelectionButtonPadding
+        spellSlotsButton.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: spellSlotsButtonHeight)
+        
+        currentY += selectionButtonHeight + belowSpellSlotsButtonPadding
         updateInfoLabel.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: updateInfoLabelHeight)
         
         currentY += updateInfoLabelHeight + belowUpdateInfoLabelPadding
         whatsNewButton.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: whatsNewButtonHeight)
         
-        // The character selection button callback
         selectionButton.addTarget(self, action: #selector(selectionButtonPressed), for: UIControl.Event.touchUpInside)
         
-        // The what's new selection button callback
         whatsNewButton.addTarget(self, action: #selector(updateInfoButtonPressed), for: UIControl.Event.touchUpInside)
+        
+        spellSlotsButton.addTarget(self, action: #selector(spellSlotsButtonPressed), for: UIControl.Event.touchUpInside)
         
         characterLabel.textColor = defaultFontColor
         
@@ -188,6 +196,15 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         
         let popupVC = PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
         self.present(popupVC, animated: true, completion: nil)
+    }
+    
+    @objc func spellSlotsButtonPressed() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: SideMenuController.spellSlotsIdentifier) as! SpellSlotsController
+        controller.modalPresentationStyle = .formSheet
+        controller.transitioningDelegate = controller
+        self.present(controller, animated: true, completion: nil)
+        UIApplication.shared.setStatusBarTextColor(.light)
     }
     
     

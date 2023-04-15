@@ -34,6 +34,8 @@ class SpellSlotStatus {
     }
     
     func getTotalSlots(level: Int) -> Int { return totalSlots[level - 1] }
+    func getUsedSlots(level: Int) -> Int { return usedSlots[level - 1] }
+    func getAvailableSlots(level: Int) -> Int { return totalSlots[level - 1] - usedSlots[level - 1] }
     
     func setTotalSlots(level: Int, slots: Int) {
         totalSlots[level - 1] = slots

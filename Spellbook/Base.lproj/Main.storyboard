@@ -18,32 +18,42 @@
         <!--Spell Slots Controller-->
         <scene sceneID="pOs-q3-NcA">
             <objects>
-                <tableViewController id="Kxp-zy-QHg" customClass="SpellSlotsController" customModule="Spellbook" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="spellSlots" id="Kxp-zy-QHg" customClass="SpellSlotsController" customModule="Spellbook" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="M2i-Iz-OJB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="WTy-r7-pNM" customClass="SpellSlotCell" customModule="Spellbook" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44.666666030883789" width="414" height="43.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="spellSlotCell" id="WTy-r7-pNM" customClass="SpellSlotCell" customModule="Spellbook" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.666666030883789" width="200" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WTy-r7-pNM" id="wE2-mB-Jkv">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LON-uc-E4h">
-                                            <rect key="frame" x="107" y="-33.666666030883789" width="41.333333333333336" height="20.333333333333332"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOJ-bO-28t">
-                                                    <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="20.333333333333332"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOJ-bO-28t">
+                                            <rect key="frame" x="75" y="-3.6666660308837891" width="50" height="50"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LON-uc-E4h">
+                                            <rect key="frame" x="107" y="-33.666666030883789" width="50" height="50"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </stackView>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="LOJ-bO-28t" firstAttribute="leading" secondItem="wE2-mB-Jkv" secondAttribute="leading" id="3Ze-Ek-Qt0"/>
+                                        <constraint firstItem="LOJ-bO-28t" firstAttribute="centerY" secondItem="wE2-mB-Jkv" secondAttribute="centerY" id="7Bx-iK-xOz"/>
+                                        <constraint firstItem="LON-uc-E4h" firstAttribute="centerY" secondItem="wE2-mB-Jkv" secondAttribute="centerY" id="aOo-59-UoO"/>
+                                        <constraint firstItem="LON-uc-E4h" firstAttribute="leading" secondItem="LOJ-bO-28t" secondAttribute="trailing" constant="5" id="eJt-rH-pCw"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="levelLabel" destination="LOJ-bO-28t" id="K8o-rW-rvQ"/>
                                     <outlet property="stackView" destination="LON-uc-E4h" id="KYa-nJ-7ac"/>
@@ -55,6 +65,8 @@
                             <outlet property="delegate" destination="Kxp-zy-QHg" id="typ-XO-rjH"/>
                         </connections>
                     </tableView>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="200" height="300"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3nr-o7-DoM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1052,6 +1064,15 @@
                                     <color key="titleColor" systemColor="darkTextColor"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qda-26-fCf" userLabel="Spell Slots Button">
+                                <rect key="frame" x="173" y="432" width="67" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Spell Slots">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="baK-Me-bgK"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1061,6 +1082,7 @@
                         <outlet property="characterLabel" destination="xCE-VA-VJs" id="CA9-Ik-AHs"/>
                         <outlet property="selectionButton" destination="8BR-mp-g4U" id="eZ4-yL-ucW"/>
                         <outlet property="sideMenuHeader" destination="wna-nj-ofa" id="xMA-ns-dai"/>
+                        <outlet property="spellSlotsButton" destination="Qda-26-fCf" id="QrG-R1-yGZ"/>
                         <outlet property="statusFilterView" destination="YnO-eH-2iK" id="oGE-MX-zei"/>
                         <outlet property="updateInfoLabel" destination="eFO-b5-jRQ" id="IxA-tb-TSc"/>
                         <outlet property="whatsNewButton" destination="bgJ-32-A8i" id="Irw-f6-JrK"/>

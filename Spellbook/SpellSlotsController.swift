@@ -7,12 +7,24 @@
 //
 
 import UIKit
+import ReSwift
 
 class SpellSlotsController: UITableViewController {
     
     static let backgroundImage = UIImage(named: "BookBackground.jpeg")?.withRenderingMode(.alwaysOriginal)
     
     let headerHeight = CGFloat(57)
+    
+    static let cellReuseIdentifier = "spellSlotCell"
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        store.subscribe(self) {
+            $0.select {
+                $0.profile?.spellSlotStatus
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,5 +53,50 @@ class SpellSlotsController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: - UITableViewController
+    
+    // The title view's height
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    // The title's properties
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.backgroundColor = UIColor.clear
+        view.tintColor = UIColor.clear
+    }
+    
+    // The number of cells
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Spellbook.MAX_SPELL_LEVEL
+    }
+    
+    // The cells for the table
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: SpellSlotsController.cellReuseIdentifier, for: indexPath) as! SpellSlotCell
+        cell.level = indexPath.row + 1
+        return cell
+    }
 
+}
+
+extension SpellSlotsController: StoreSubscriber {
+    typealias StoreSubscriberStateType = SpellSlotStatus?
+    
+    func newState(state: StoreSubscriberStateType) {
+        tableView.reloadData()
+    }
+}
+
+
+extension SpellSlotsController : UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return FromRightPushAnimator()
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return FromRightDismissAnimator()
+    }
 }
