@@ -16,6 +16,7 @@ class SpellSlotsController: UITableViewController {
     let headerHeight = CGFloat(57)
     
     static let cellReuseIdentifier = "spellSlotCell"
+    static let spellSlotsManagerIdentifier = "spellSlotsManager"
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -51,7 +52,9 @@ class SpellSlotsController: UITableViewController {
     }
     
     @objc func openSlotManager() {
-        
+        let controller = storyboard?.instantiateViewController(withIdentifier: SpellSlotsController.spellSlotsManagerIdentifier) as! SpellSlotsManagerController
+        controller.modalPresentationStyle = .popover
+        self.present(controller, animated: true, completion: nil)
     }
     
 

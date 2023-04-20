@@ -333,3 +333,10 @@ func gainSpellSlotReducer(action: GainSpellSlotAction, state: inout SpellbookApp
     status.gainSlot(level: action.level)
     return state
 }
+
+func editTotalSpellSlotsReducer(action: EditTotalSpellSlotsAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    guard let profile = state.profile else { return state }
+    let status = profile.spellSlotStatus
+    status.setTotalSlots(level: action.level, slots: action.totalSlots)
+    return state
+}

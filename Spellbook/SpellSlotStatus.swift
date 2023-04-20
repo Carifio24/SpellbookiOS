@@ -10,8 +10,8 @@ import Foundation
 
 class SpellSlotStatus {
     
-    private var totalSlots: [Int]
-    private var usedSlots: [Int]
+    private(set) var totalSlots: [Int]
+    private(set) var usedSlots: [Int]
     
     private static let totalSlotsKey = "totalSlots"
     private static let usedSlotsKey = "usedSlotsKey"

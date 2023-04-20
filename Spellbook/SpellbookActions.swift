@@ -216,3 +216,8 @@ struct UseSpellSlotAction: Action {
 struct GainSpellSlotAction: Action {
     let level: Int
 }
+
+struct EditTotalSpellSlotsAction: Action {
+    let level: Int
+    let totalSlots: Int
+}

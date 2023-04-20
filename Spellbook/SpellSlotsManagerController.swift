@@ -8,23 +8,55 @@
 
 import UIKit
 
-class SpellSlotsManagerController: UIViewController {
+class SpellSlotsManagerController: UIViewController,
+                                   UICollectionViewDelegate,
+                                   UICollectionViewDataSource {
 
+    @IBOutlet weak var managerGrid: UICollectionView!
+    
+    fileprivate let sectionInsets = UIEdgeInsets(
+                                        top: 5,
+                                        left: 5,
+                                        bottom: 5,
+                                        right: 5)
+    
+    static let reuseIdentifier = "spellSlotsManagerIdentifier"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        managerGrid.delegate = self
+        managerGrid.dataSource = self
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    // MARK: - Collection View Data Source/Delegate
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return Spellbook.MAX_SPELL_LEVEL
     }
-    */
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: SpellSlotsManagerCell = collectionView.dequeueReusableCell(withReuseIdentifier: SpellSlotsManagerController.reuseIdentifier, for: indexPath) as! SpellSlotsManagerCell
+        cell.level = indexPath.row + 1
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+      return sectionInsets
+    }
+
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+      return sectionInsets.left
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.top
+    }
 
 }
