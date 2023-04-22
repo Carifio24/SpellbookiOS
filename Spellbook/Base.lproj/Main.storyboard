@@ -19,14 +19,17 @@
         <scene sceneID="zsG-WN-av0">
             <objects>
                 <viewController storyboardIdentifier="spellSlotsManager" id="arj-OK-vCH" customClass="SpellSlotsManagerController" customModule="Spellbook" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mgd-mi-fI0">
-                        <rect key="frame" x="0.0" y="0.0" width="256" height="329"/>
+                    <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mgd-mi-fI0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="450"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sSJ-tO-fUg">
-                                <rect key="frame" x="8" y="100" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BookBackground.jpeg" id="ovs-I3-fe2" userLabel="Background View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sSJ-tO-fUg">
+                                <rect key="frame" x="0.0" y="44" width="414" height="406"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="heh-LZ-wd0">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -35,7 +38,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="spellSlotsManagerIdentifier" id="UwC-tK-VVv" userLabel="Spell Slots Manager Cell" customClass="SpellSlotsManagerCell" customModule="Spellbook" customModuleProvider="target">
-                                        <rect key="frame" x="56" y="0.0" width="128" height="128"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ugk-N4-f6C" userLabel="Root View">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -60,6 +63,7 @@
                                                 <constraint firstItem="QBV-iE-9Ro" firstAttribute="leading" secondItem="ugk-N4-f6C" secondAttribute="leading" constant="5" id="w3J-L2-OEM"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="levelLabel" destination="QBV-iE-9Ro" id="g3E-Uw-02v"/>
                                             <outlet property="rootView" destination="ugk-N4-f6C" id="SMh-B9-MJP"/>
@@ -71,8 +75,14 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1Pi-bB-6zS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="sSJ-tO-fUg" firstAttribute="top" secondItem="1Pi-bB-6zS" secondAttribute="top" id="3xX-iZ-Kbq"/>
+                            <constraint firstItem="1Pi-bB-6zS" firstAttribute="trailing" secondItem="sSJ-tO-fUg" secondAttribute="trailing" id="FZ0-1X-XQY"/>
+                            <constraint firstItem="1Pi-bB-6zS" firstAttribute="bottom" secondItem="sSJ-tO-fUg" secondAttribute="bottom" id="Y1n-h3-AZK"/>
+                            <constraint firstItem="sSJ-tO-fUg" firstAttribute="leading" secondItem="1Pi-bB-6zS" secondAttribute="leading" id="kHU-kA-Dc6"/>
+                        </constraints>
                     </view>
-                    <size key="freeformSize" width="256" height="329"/>
+                    <size key="freeformSize" width="414" height="450"/>
                     <connections>
                         <outlet property="managerGrid" destination="sSJ-tO-fUg" id="d9r-Pp-anr"/>
                     </connections>

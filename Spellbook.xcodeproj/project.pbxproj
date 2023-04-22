@@ -120,6 +120,7 @@
 		8E74FA5A29EBD7D900E13B91 /* SpellSlotsManagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E74FA5929EBD7D900E13B91 /* SpellSlotsManagerCell.swift */; };
 		8E7615AA264D716900686033 /* VersionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7615A9264D716900686033 /* VersionInfo.swift */; };
 		8E7BD0DD244A6BEF00090C40 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BD0DC244A6BEF00090C40 /* PassThroughView.swift */; };
+		8E7EB4ED29F3B87F00408EA4 /* SpellSlotsManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7EB4EC29F3B87F00408EA4 /* SpellSlotsManagerDelegate.swift */; };
 		8E92CC65243BCE2100EB78B2 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC64243BCE2100EB78B2 /* Images.swift */; };
 		8E92CC67243BD49900EB78B2 /* NumberFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC66243BD49900EB78B2 /* NumberFieldDelegate.swift */; };
 		8EB3691E293F123900856738 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB3691D293F123900856738 /* AppReducer.swift */; };
@@ -273,6 +274,7 @@
 		8E7615A8264CFA3F00686033 /* UpdateInfo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = UpdateInfo.xml; path = Data/UpdateInfo.xml; sourceTree = SOURCE_ROOT; };
 		8E7615A9264D716900686033 /* VersionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionInfo.swift; sourceTree = "<group>"; };
 		8E7BD0DC244A6BEF00090C40 /* PassThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassThroughView.swift; sourceTree = "<group>"; };
+		8E7EB4EC29F3B87F00408EA4 /* SpellSlotsManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSlotsManagerDelegate.swift; sourceTree = "<group>"; };
 		8E92CC64243BCE2100EB78B2 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		8E92CC66243BD49900EB78B2 /* NumberFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFieldDelegate.swift; sourceTree = "<group>"; };
 		8EB3691D293F123900856738 /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
@@ -450,6 +452,7 @@
 				8EB5331029D54D0F00952027 /* SpellSlotCell.swift */,
 				8E74FA5729EB5A6C00E13B91 /* SpellSlotsManagerController.swift */,
 				8E74FA5929EBD7D900E13B91 /* SpellSlotsManagerCell.swift */,
+				8E7EB4EC29F3B87F00408EA4 /* SpellSlotsManagerDelegate.swift */,
 			);
 			path = Spellbook;
 			sourceTree = "<group>";
@@ -725,6 +728,7 @@
 				8E6148F4241991C200842A18 /* SideMenuCell.swift in Sources */,
 				8E614918241991C200842A18 /* StatusFilterController.swift in Sources */,
 				8E6148EC241991C200842A18 /* DeletionPromptController.swift in Sources */,
+				8E7EB4ED29F3B87F00408EA4 /* SpellSlotsManagerDelegate.swift in Sources */,
 				8E614907241991C200842A18 /* PopupViewController.swift in Sources */,
 				8E6148EE241991C200842A18 /* CharacterCreationController.swift in Sources */,
 				8E614911241991C200842A18 /* AppDelegate.swift in Sources */,

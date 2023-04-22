@@ -28,16 +28,20 @@ class SpellSlotsManagerCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        print("From frame")
         setup()
     }
     
     required init?(coder: NSCoder) {
+        print("From coder")
         super.init(coder: coder)
     }
     
     private func setup() {
         resetSubscription()
         
+        let slots = store.state.profile?.spellSlotStatus.getTotalSlots(level: self.level) ?? 0
+        slotsTextField.text = String(slots)
         slotsTextFieldDelegate = NumberFieldDelegate<EditTotalSpellSlotsAction>(
             maxCharacters: 1,
             actionCreator: { (value) in return EditTotalSpellSlotsAction(level: self.level, totalSlots: value) }

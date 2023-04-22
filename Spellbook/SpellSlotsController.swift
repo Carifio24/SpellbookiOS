@@ -53,7 +53,7 @@ class SpellSlotsController: UITableViewController {
     
     @objc func openSlotManager() {
         let controller = storyboard?.instantiateViewController(withIdentifier: SpellSlotsController.spellSlotsManagerIdentifier) as! SpellSlotsManagerController
-        controller.modalPresentationStyle = .popover
+        controller.modalPresentationStyle = .pageSheet
         self.present(controller, animated: true, completion: nil)
     }
     
