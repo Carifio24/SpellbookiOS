@@ -18,7 +18,6 @@ class SpellSlotsManagerDelegate: NSObject, UICollectionViewDelegate,
                                         right: 5)
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("Number of items!")
         return Spellbook.MAX_SPELL_LEVEL
     }
     
@@ -31,7 +30,6 @@ class SpellSlotsManagerDelegate: NSObject, UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        print("Here!")
         return SpellSlotsManagerDelegate.sectionInsets
     }
 

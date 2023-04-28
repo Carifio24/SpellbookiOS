@@ -38,28 +38,29 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="spellSlotsManagerIdentifier" id="UwC-tK-VVv" userLabel="Spell Slots Manager Cell" customClass="SpellSlotsManagerCell" customModule="Spellbook" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="45.333333333333336"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ugk-N4-f6C" userLabel="Root View">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="45.333333333333336"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBV-iE-9Ro">
-                                                    <rect key="frame" x="5" y="53.666666666666657" width="42" height="21"/>
+                                                    <rect key="frame" x="5" y="12.333333333333336" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ay7-l1-Thp">
-                                                    <rect key="frame" x="-32" y="47" width="32" height="34"/>
+                                                    <rect key="frame" x="52" y="5.6666666666666679" width="32" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="QBV-iE-9Ro" firstAttribute="centerY" secondItem="ugk-N4-f6C" secondAttribute="centerY" id="Cw8-Vh-5JJ"/>
+                                                <constraint firstItem="Ay7-l1-Thp" firstAttribute="height" secondItem="ugk-N4-f6C" secondAttribute="height" multiplier="0.75" id="L6N-2N-7ib"/>
                                                 <constraint firstItem="Ay7-l1-Thp" firstAttribute="centerY" secondItem="ugk-N4-f6C" secondAttribute="centerY" id="rTS-4A-yGh"/>
-                                                <constraint firstItem="QBV-iE-9Ro" firstAttribute="leading" secondItem="Ay7-l1-Thp" secondAttribute="trailing" constant="5" id="rgr-TZ-wtn"/>
+                                                <constraint firstItem="Ay7-l1-Thp" firstAttribute="leading" secondItem="QBV-iE-9Ro" secondAttribute="trailing" constant="5" id="rgr-TZ-wtn"/>
                                                 <constraint firstItem="QBV-iE-9Ro" firstAttribute="leading" secondItem="ugk-N4-f6C" secondAttribute="leading" constant="5" id="w3J-L2-OEM"/>
                                             </constraints>
                                         </collectionViewCellContentView>
@@ -1180,7 +1181,7 @@
                                 <rect key="frame" x="-68" y="42" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hC5-Lg-NpH" id="CKz-Hx-6IP">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="201" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1540,7 +1541,7 @@
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             </collectionViewFlowLayout>
                                                             <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="9m7-IC-edr" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="9m7-IC-edr" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                                     <rect key="frame" x="37" y="0.0" width="128" height="128"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Wy-Y7-3R4">
@@ -1598,7 +1599,7 @@
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             </collectionViewFlowLayout>
                                                             <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="vaj-JQ-hq6" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="vaj-JQ-hq6" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                                     <rect key="frame" x="37" y="0.0" width="128" height="128"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1na-Fe-aSv">
@@ -1688,7 +1689,7 @@
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             </collectionViewFlowLayout>
                                                             <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="9Av-vT-BMJ" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="9Av-vT-BMJ" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                                     <rect key="frame" x="37" y="0.0" width="128" height="128"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="kYh-hu-pH6">
@@ -1747,7 +1748,7 @@
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             </collectionViewFlowLayout>
                                                             <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="eJH-NJ-9aR" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="eJH-NJ-9aR" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                                     <rect key="frame" x="37" y="0.0" width="128" height="128"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="hCS-XO-M3z">
@@ -1834,7 +1835,7 @@
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             </collectionViewFlowLayout>
                                                             <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="zjA-aV-cOq" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="zjA-aV-cOq" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                                     <rect key="frame" x="37" y="0.0" width="128" height="128"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="ld3-gq-3Nv">
@@ -1985,7 +1986,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="LR8-S2-cAX" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="LR8-S2-cAX" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eyw-BM-ZK5">
@@ -2107,7 +2108,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="ivf-rg-qoA" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="ivf-rg-qoA" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1en-JT-doz">
@@ -2221,7 +2222,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="l2R-a5-9D9" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="l2R-a5-9D9" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="gfd-Qa-VSe">
@@ -2331,7 +2332,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="XWr-P7-zGZ" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="XWr-P7-zGZ" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="yeu-9c-2EZ">
@@ -2475,7 +2476,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="pZE-d0-NmF" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="pZE-d0-NmF" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="Rbu-PW-9Tz">
@@ -2614,7 +2615,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="Hpd-Dh-ert" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="Hpd-Dh-ert" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="ze1-FN-cRj">
