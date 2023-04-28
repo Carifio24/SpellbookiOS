@@ -120,6 +120,8 @@ func appReducer(action: Action, state: SpellbookAppState?) -> SpellbookAppState 
         return useSpellSlotReducer(action: action, state: &state)
     case let action as GainSpellSlotAction:
         return gainSpellSlotReducer(action: action, state: &state)
+    case let action as EditTotalSpellSlotsAction:
+        return editTotalSpellSlotsReducer(action: action, state: &state)
     
     
     // If we somehow get here, just do nothing

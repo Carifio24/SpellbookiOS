@@ -39,7 +39,9 @@ class SpellSlotsManagerCell: UICollectionViewCell {
         setTextField()
         slotsTextFieldDelegate = NumberFieldDelegate<EditTotalSpellSlotsAction>(
             maxCharacters: 3,
-            actionCreator: { (value) in return EditTotalSpellSlotsAction(level: self.level, totalSlots: value) }
+            actionCreator: { (value) in
+                print("Creating EditTotalSpellSlotsAction")
+                return EditTotalSpellSlotsAction(level: self.level, totalSlots: value) }
         )
         slotsTextField.borderStyle = .roundedRect
         slotsTextField.delegate = slotsTextFieldDelegate

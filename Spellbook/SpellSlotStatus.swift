@@ -76,8 +76,8 @@ class SpellSlotStatus {
     
     func toSION() -> SION {
         var sion: SION = [:]
-        sion[SpellSlotStatus.totalSlotsKey].array = totalSlots.map{ SION($0) }
-        sion[SpellSlotStatus.usedSlotsKey].array = usedSlots.map{ SION($0) }
+        sion[SpellSlotStatus.totalSlotsKey].array = totalSlots.map { SION($0) }
+        sion[SpellSlotStatus.usedSlotsKey].array = usedSlots.map { SION($0) }
         return sion
     }
     

@@ -56,8 +56,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        store.dispatch(SaveCurrentProfileAction())
-        store.dispatch(SaveSettingsAction())
+        if let profile = store.state.profile {
+            SerializationUtils.saveCharacterProfile(profile: profile)
+        }
+        SerializationUtils.saveSettings(store.state.settings)
     }
 
     
