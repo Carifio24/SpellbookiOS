@@ -10,6 +10,7 @@ import UIKit
 
 class SpellSlotsManagerController: UIViewController {
 
+    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var managerGrid: UICollectionView!
     
     static let reuseIdentifier = "spellSlotsManagerIdentifier"
@@ -18,9 +19,14 @@ class SpellSlotsManagerController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print(self.delegate)
         managerGrid.delegate = self.delegate
         managerGrid.dataSource = self.delegate
+        closeButton.addTarget(self, action: #selector(closeAndSave), for: .touchUpInside)
+    }
+    
+    @objc func closeAndSave() {
+        store.dispatch(SaveCurrentProfileAction())
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
