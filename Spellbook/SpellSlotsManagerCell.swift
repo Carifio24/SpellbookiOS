@@ -75,6 +75,8 @@ extension SpellSlotsManagerCell: StoreSubscriber {
     typealias StoreSubscriberStateType = Int?
     
     func newState(state: StoreSubscriberStateType) {
+        print("SpellSlotsManagerCell::newState")
+        print(state)
         setTextField()
     }
 

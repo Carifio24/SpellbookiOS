@@ -99,6 +99,7 @@ extension SpellSlotsController: StoreSubscriber {
     typealias StoreSubscriberStateType = SpellSlotStatus?
     
     func newState(state: StoreSubscriberStateType) {
+        print("Here!")
         tableView.reloadData()
     }
 }

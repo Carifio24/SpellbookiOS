@@ -16,8 +16,7 @@ class SpellSlotCell: UITableViewCell {
     
     var level: Int = 0 {
         didSet {
-            updateLabelText()
-            resetCheckboxes()
+            setup()
         }
     }
     
@@ -27,12 +26,16 @@ class SpellSlotCell: UITableViewCell {
          level: Int) {
         self.level = level
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        updateLabelText()
-        setUpCheckboxes()
     }
     
     required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
+    }
+    
+    func setup() {
+        print("In setup")
+        updateLabelText()
+        setUpCheckboxes()
     }
     
     func updateLabelText() {
@@ -53,10 +56,14 @@ class SpellSlotCell: UITableViewCell {
         }
         for i in 1...status.getTotalSlots(level: level) {
             let checkbox = Checkbox(frame: CGRect(x: 50, y: 50, width: 25, height: 25))
+            let heightConstraint = checkbox.heightAnchor.constraint(equalToConstant: 30)
+            let widthConstraint = checkbox.widthAnchor.constraint(equalToConstant: 30)
+            heightConstraint.isActive = true
+            widthConstraint.isActive = true
             checkbox.borderStyle = .square
             checkbox.checkedBorderColor = .black
             checkbox.uncheckedBorderColor = .black
-            checkbox.checkboxFillColor = .black
+            //checkbox.checkboxFillColor = .black
             checkbox.isChecked = i <= usedSlots
             
             checkbox.valueChanged = { isChecked in
