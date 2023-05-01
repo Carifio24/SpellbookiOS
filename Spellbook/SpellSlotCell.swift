@@ -33,7 +33,6 @@ class SpellSlotCell: UITableViewCell {
     }
     
     func setup() {
-        print("In setup")
         updateLabelText()
         setUpCheckboxes()
     }
@@ -61,9 +60,10 @@ class SpellSlotCell: UITableViewCell {
             heightConstraint.isActive = true
             widthConstraint.isActive = true
             checkbox.borderStyle = .square
+            checkbox.checkmarkStyle = .tick
+            checkbox.checkmarkColor = .black
             checkbox.checkedBorderColor = .black
-            checkbox.uncheckedBorderColor = .black
-            //checkbox.checkboxFillColor = .black
+            checkbox.uncheckedBorderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
             checkbox.isChecked = i <= usedSlots
             
             checkbox.valueChanged = { isChecked in

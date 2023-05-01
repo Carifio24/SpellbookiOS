@@ -22,7 +22,7 @@ class SpellSlotsController: UITableViewController {
         super.viewWillAppear(animated)
         store.subscribe(self) {
             $0.select {
-                $0.profile?.spellSlotStatus
+                $0.profile?.spellSlotStatus.totalSlots
             }
         }
         
@@ -96,10 +96,9 @@ class SpellSlotsController: UITableViewController {
 }
 
 extension SpellSlotsController: StoreSubscriber {
-    typealias StoreSubscriberStateType = SpellSlotStatus?
+    typealias StoreSubscriberStateType = [Int]?
     
     func newState(state: StoreSubscriberStateType) {
-        print("Here!")
         tableView.reloadData()
     }
 }
