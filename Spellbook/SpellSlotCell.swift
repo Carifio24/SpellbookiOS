@@ -14,7 +14,7 @@ class SpellSlotCell: UITableViewCell {
 
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var levelLabel: UILabel!
-    var noSlotsLabel: UILabel?
+    let noSlotsLabel: UILabel = SpellSlotCell.createNoSlotsLabel()
     
     var level: Int = 0 {
         didSet {
@@ -29,7 +29,6 @@ class SpellSlotCell: UITableViewCell {
          level: Int) {
         self.level = level
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.noSlotsLabel = createNoSlotsLabel()
     }
     
     required init?(coder decoder: NSCoder) {
@@ -55,11 +54,8 @@ class SpellSlotCell: UITableViewCell {
         let status = profile.spellSlotStatus
         let usedSlots = status.getUsedSlots(level: level)
         
-        if (self.noSlotsLabel == nil) {
-            self.noSlotsLabel = createNoSlotsLabel()
-        }
         if (status.getTotalSlots(level: level) == 0) {
-            self.stackView.addArrangedSubview(self.noSlotsLabel!)
+            self.stackView.addArrangedSubview(self.noSlotsLabel)
             return
         }
         
@@ -107,10 +103,8 @@ class SpellSlotCell: UITableViewCell {
             checkbox.removeFromSuperview()
         }
         checkboxes = []
-        if self.noSlotsLabel != nil {
-            stackView.removeArrangedSubview(self.noSlotsLabel!)
-            self.noSlotsLabel?.removeFromSuperview()
-        }
+        stackView.removeArrangedSubview(self.noSlotsLabel)
+        self.noSlotsLabel.removeFromSuperview()
     }
     
     func resetItems() {
@@ -118,7 +112,7 @@ class SpellSlotCell: UITableViewCell {
         setUpItems()
     }
     
-    func createNoSlotsLabel() -> UILabel {
+    private static func createNoSlotsLabel() -> UILabel {
         let label = UILabel()
         label.text = "No slots"
         return label
