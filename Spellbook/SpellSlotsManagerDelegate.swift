@@ -52,7 +52,6 @@ class SpellSlotsManagerDelegate: NSObject, UICollectionViewDelegate,
         let insets = SpellSlotsManagerDelegate.sectionInsets
         let cellWidth = collectionView.frame.width / 3 - insets.left - insets.right
         return CGSize(width: cellWidth, height: 50)
-        
     }
 
 }

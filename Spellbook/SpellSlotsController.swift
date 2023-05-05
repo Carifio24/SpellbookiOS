@@ -51,6 +51,11 @@ class SpellSlotsController: UITableViewController {
         tableView.tableHeaderView = titleLabel
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        Controllers.spellSlotsController = nil
+    }
+    
     @objc func openSlotManager() {
         let controller = storyboard?.instantiateViewController(withIdentifier: SpellSlotsController.spellSlotsManagerIdentifier) as! SpellSlotsManagerController
         controller.modalPresentationStyle = .pageSheet

@@ -24,8 +24,15 @@ class SpellSlotsManagerController: UIViewController {
         closeButton.addTarget(self, action: #selector(closeAndSave), for: .touchUpInside)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        Controllers.spellSlotsController?.tableView.reloadData()
+    }
+    
     @objc func closeAndSave() {
         store.dispatch(SaveCurrentProfileAction())
+        
+        // TODO: Find a better way to do this!
         self.dismiss(animated: true, completion: nil)
     }
     

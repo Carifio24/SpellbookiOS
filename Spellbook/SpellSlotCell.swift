@@ -8,6 +8,7 @@
 
 import UIKit
 import SimpleCheckbox
+import ReSwift
 
 class SpellSlotCell: UITableViewCell {
 
@@ -17,6 +18,7 @@ class SpellSlotCell: UITableViewCell {
     var level: Int = 0 {
         didSet {
             setup()
+            resetSubscription()
         }
     }
     
@@ -34,7 +36,7 @@ class SpellSlotCell: UITableViewCell {
     
     func setup() {
         updateLabelText()
-        setUpCheckboxes()
+        resetCheckboxes()
     }
     
     func updateLabelText() {
@@ -79,6 +81,18 @@ class SpellSlotCell: UITableViewCell {
         }
     }
     
+    func resetSubscription() {
+        store.unsubscribe(self)
+        if (self.level <= 0) {
+            return
+        }
+        store.subscribe(self) {
+            $0.select {
+                $0.profile?.spellSlotStatus.totalSlots
+            }
+        }
+    }
+    
     func emptyCheckboxes() {
         checkboxes.forEach({checkbox in
             stackView.removeArrangedSubview(checkbox)
@@ -92,3 +106,10 @@ class SpellSlotCell: UITableViewCell {
     }
 }
 
+extension SpellSlotCell: StoreSubscriber {
+    typealias StoreSubscriberStateType = [Int]?
+    
+    func newState(state: StoreSubscriberStateType) {
+        setup()
+    }
+}

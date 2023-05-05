@@ -151,6 +151,8 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        print(controller)
+        print("adaptivePresentationStyle")
         return UIModalPresentationStyle.none
     }
     
@@ -204,6 +206,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         controller.transitioningDelegate = controller
         Controllers.mainNavController.pushViewController(controller, animated: true)
         Controllers.mainController.closeMenuIfOpen()
+        Controllers.spellSlotsController = controller
         UIApplication.shared.setStatusBarTextColor(.light)
     }
     
