@@ -14,6 +14,7 @@ class SpellSlotCell: UITableViewCell {
 
     @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var levelLabel: UILabel!
+    var noSlotsLabel: UILabel?
     
     var level: Int = 0 {
         didSet {
@@ -28,6 +29,7 @@ class SpellSlotCell: UITableViewCell {
          level: Int) {
         self.level = level
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.noSlotsLabel = createNoSlotsLabel()
     }
     
     required init?(coder decoder: NSCoder) {
@@ -36,7 +38,7 @@ class SpellSlotCell: UITableViewCell {
     
     func setup() {
         updateLabelText()
-        resetCheckboxes()
+        resetItems()
     }
     
     func updateLabelText() {
@@ -47,14 +49,20 @@ class SpellSlotCell: UITableViewCell {
         checkboxes.filter({ box in return box.isChecked }).count
     }
     
-    func setUpCheckboxes() {
+    func setUpItems() {
         if (level <= 0) { return }
         guard let profile = store.state.profile else { return }
         let status = profile.spellSlotStatus
         let usedSlots = status.getUsedSlots(level: level)
+        
+        if (self.noSlotsLabel == nil) {
+            self.noSlotsLabel = createNoSlotsLabel()
+        }
         if (status.getTotalSlots(level: level) == 0) {
+            self.stackView.addArrangedSubview(self.noSlotsLabel!)
             return
         }
+        
         for i in 1...status.getTotalSlots(level: level) {
             let checkbox = Checkbox(frame: CGRect(x: 50, y: 50, width: 25, height: 25))
             let heightConstraint = checkbox.heightAnchor.constraint(equalToConstant: 30)
@@ -93,16 +101,27 @@ class SpellSlotCell: UITableViewCell {
         }
     }
     
-    func emptyCheckboxes() {
-        checkboxes.forEach({checkbox in
+    func emptyItems() {
+        for checkbox in checkboxes {
             stackView.removeArrangedSubview(checkbox)
-        })
+            checkbox.removeFromSuperview()
+        }
         checkboxes = []
+        if self.noSlotsLabel != nil {
+            stackView.removeArrangedSubview(self.noSlotsLabel!)
+            self.noSlotsLabel?.removeFromSuperview()
+        }
     }
     
-    func resetCheckboxes() {
-        emptyCheckboxes()
-        setUpCheckboxes()
+    func resetItems() {
+        emptyItems()
+        setUpItems()
+    }
+    
+    func createNoSlotsLabel() -> UILabel {
+        let label = UILabel()
+        label.text = "No slots"
+        return label
     }
 }
 
