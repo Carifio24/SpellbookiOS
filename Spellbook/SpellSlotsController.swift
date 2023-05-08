@@ -44,6 +44,7 @@ class SpellSlotsController: UITableViewController {
         // The header for the table
         let titleLabel = UILabel()
         titleLabel.text = "Spell Slots"
+        titleLabel.textAlignment = .center
         titleLabel.font = UIFont(name: "Cloister Black", size: CGFloat(50))
         titleLabel.textColor = defaultFontColor
         titleLabel.backgroundColor = UIColor.clear
