@@ -21,4 +21,8 @@
             &lt;b&gt;Astral Adventurer\'s Guide&lt;/b&gt;.
             </item>
     </section>
+    <section name="v_3_0_0">
+        <item name="title">Version 3.0.0 update</item>
+        <item name="description">This update adds the ability to keep track of spell slots for each character.</item>
+    </section>
 </root>
