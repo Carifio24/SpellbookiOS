@@ -667,6 +667,15 @@
                                                     <color key="textColor" systemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urF-TY-K2I" userLabel="Clipboard Button">
+                                                    <rect key="frame" x="354" y="0.0" width="30" height="30"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gX6-Ee-KYH">
                                                     <rect key="frame" x="384" y="0.0" width="30" height="30"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -679,8 +688,11 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="gX6-Ee-KYH" secondAttribute="bottom" id="19f-QI-Hxv"/>
                                                 <constraint firstItem="uZ8-kV-TZ5" firstAttribute="leading" secondItem="Gm4-lB-Pi3" secondAttribute="leading" id="1IN-R8-Jaz"/>
+                                                <constraint firstItem="urF-TY-K2I" firstAttribute="top" secondItem="Gm4-lB-Pi3" secondAttribute="top" id="Khf-IP-EcT"/>
                                                 <constraint firstItem="gX6-Ee-KYH" firstAttribute="top" secondItem="Gm4-lB-Pi3" secondAttribute="top" id="Lxd-Hx-CFu"/>
-                                                <constraint firstItem="uZ8-kV-TZ5" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="gX6-Ee-KYH" secondAttribute="leading" priority="500" id="atx-nE-e6z"/>
+                                                <constraint firstItem="gX6-Ee-KYH" firstAttribute="leading" secondItem="urF-TY-K2I" secondAttribute="trailing" id="Pnt-ya-AOL"/>
+                                                <constraint firstAttribute="bottom" secondItem="urF-TY-K2I" secondAttribute="bottom" id="ZmC-7W-MPB"/>
+                                                <constraint firstItem="uZ8-kV-TZ5" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="urF-TY-K2I" secondAttribute="leading" priority="500" id="atx-nE-e6z"/>
                                                 <constraint firstAttribute="trailing" secondItem="gX6-Ee-KYH" secondAttribute="trailing" id="wjs-q5-x9u"/>
                                                 <constraint firstItem="uZ8-kV-TZ5" firstAttribute="centerY" secondItem="Gm4-lB-Pi3" secondAttribute="centerY" id="ygr-jx-pYO"/>
                                             </constraints>
@@ -693,6 +705,7 @@
                                             <constraint firstAttribute="bottom" secondItem="Gm4-lB-Pi3" secondAttribute="bottom" id="bbF-O1-yyG"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="clipboardButton" destination="urF-TY-K2I" id="6Es-m4-RcE"/>
                                             <outlet property="deleteButton" destination="gX6-Ee-KYH" id="gI6-Sw-Rzg"/>
                                             <outlet property="nameLabel" destination="uZ8-kV-TZ5" id="0tW-jo-Kqn"/>
                                         </connections>

@@ -133,16 +133,17 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! CharacterSelectionCell
         cell.deleteButton.addTarget(self, action: #selector(deleteButtonPressed(sender:)), for: UIControl.Event.touchUpInside)
+        cell.clipboardButton.addTarget(self, action: #selector(clipboardButtonPressed(sender:)), for: UIControl.Event.touchUpInside)
         cell.deleteButton.tag = indexPath.row
         cell.deleteButton.setImage(CharacterSelectionCell.deleteIcon, for: UIControl.State.normal)
+        cell.clipboardButton.tag = indexPath.row
+        cell.clipboardButton.setImage(CharacterSelectionCell.clipboardIcon, for: UIControl.State.normal)
         let name = characters[indexPath.row]
         cell.nameLabel.text = name
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //print("Pressed at \(indexPath.row)")
-        //print("Name is \(characters[indexPath.row])")
         let name = characters[indexPath.row]
         store.dispatch(SwitchProfileByNameAction(name: name))
         self.dismiss(animated: true, completion: dismissOperations)
@@ -150,7 +151,6 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     
     @objc func newCharacterButtonPressed() {
         let mustComplete = (store.state.profileNameList.count == 0)
-        //print("Pressed new character button, mustComplete: \(mustComplete)")
         displayNewCharacterWindow(mustComplete: mustComplete)
     }
     
@@ -194,6 +194,20 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         self.present(popupVC, animated: true)
     }
     
+    @objc func copyProfileJSONToClipboard(name: String) {
+        let location = SerializationUtils.profileLocation(name: name)
+        if var profileText = try? String(contentsOf: location) {
+            do {
+                fixEscapeCharacters(&profileText)
+                let pasteboard = UIPasteboard.general
+                pasteboard.string = profileText
+                Toast.makeToast("Copied JSON for \(name)")
+            }
+        } else {
+            Toast.makeToast("Error copying JSON for \(name)")
+        }
+    }
+
     func dismissOperations() {
         //print("In dismissOperations()")
         main.selectionWindow = nil
@@ -203,15 +217,22 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         newCharacterButton.sendActions(for: UIControl.Event.touchUpInside)
     }
     
+    func indexPathForItem(item: UIView) -> IndexPath? {
+        let origin = item.convert(CGPoint.zero, to: tableView)
+        return tableView.indexPathForRow(at: origin)
+    }
+
     @objc func deleteButtonPressed(sender: UIButton) {
-        let buttonOriginInTable = sender.convert(CGPoint.zero, to: tableView)
-        let indexPath = tableView.indexPathForRow(at: buttonOriginInTable)
-        if (indexPath == nil) { return }
-        let name = characters[indexPath!.row]
+        guard let indexPath = indexPathForItem(item: sender) else { return }
+        let name = characters[indexPath.row]
         createDeletionPrompt(name: name)
     }
 
-    
+    @objc func clipboardButtonPressed(sender: UIButton) {
+        guard let indexPath = indexPathForItem(item: sender) else { return }
+        let name = characters[indexPath.row]
+        copyProfileJSONToClipboard(name: name)
+    }
 }
 
 // MARK: StoreSubscriber
