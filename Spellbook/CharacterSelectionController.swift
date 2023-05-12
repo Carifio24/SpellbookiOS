@@ -14,6 +14,7 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var selectionTitle: UILabel!
     @IBOutlet weak var selectionMessage: UILabel!
     @IBOutlet weak var newCharacterButton: UIButton!
+    @IBOutlet weak var importCharacterButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var backgroundView: UIImageView!
     
