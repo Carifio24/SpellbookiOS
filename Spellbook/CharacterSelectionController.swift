@@ -60,8 +60,9 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         // Set the table cell type
         //tableView.register(CharacterSelectionCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         
-        // Set the button function
+        // Set the button functions
         newCharacterButton.addTarget(self, action: #selector(newCharacterButtonPressed), for: UIControl.Event.touchUpInside)
+        importCharacterButton.addTarget(self, action: #selector(importCharacterButtonPressed), for: UIControl.Event.touchUpInside)
         
         // Load the data
         //print("About to load data")
@@ -89,31 +90,24 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         let usableHeight = height - topPadding - bottomPadding
         
         backgroundView.frame = CGRect(x: 0, y: 0, width: width, height: height)
-        
-        //print("Popup type: CharacterSelectionController")
-        //print("Popup width: \(width)")
-        //print("Popup height: \(height)")
 
         let titleX = CGFloat(width / 2)
         let titleY = view.frame.origin.y + topPadding
         selectionTitle.center.x = titleX
         selectionTitle.frame.origin.y = titleY
         selectionTitle.sizeToFit()
-        //selectionTitle.backgroundColor = UIColor.red
         
         let messageX = CGFloat(width / 2)
         let messageY = titleY + selectionTitle.frame.height
         selectionMessage.center.x = messageX
         selectionMessage.frame.origin.y = messageY
         selectionTitle.sizeToFit()
-        //selectionMessage.backgroundColor = UIColor.blue
         
         let newButtonX = CGFloat(width / 2)
         let newButtonY = messageY + selectionMessage.frame.height
         newCharacterButton.contentHorizontalAlignment = .center
         newCharacterButton.center.x = newButtonX
         newCharacterButton.frame.origin.y = newButtonY
-        //newCharacterButton.backgroundColor = UIColor.green
         newCharacterButton.sizeToFit()
 
         let tableX = leftPadding
@@ -155,6 +149,10 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         displayNewCharacterWindow(mustComplete: mustComplete)
     }
     
+    @objc func importCharacterButtonPressed() {
+        displayImportCharacterWindow()
+    }
+    
     func displayNewCharacterWindow(mustComplete: Bool=false) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "characterCreation") as! CharacterCreationController
@@ -175,6 +173,10 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         self.present(popupVC, animated: true)
     }
     
+    func displayImportCharacterWindow() {
+        
+    }
+    
     @objc func createDeletionPrompt(name: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "deletePrompt") as! DeletionPromptController
@@ -188,9 +190,6 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         let maxPopupWidth = CGFloat(350)
         let height = popupHeight <= maxPopupHeight ? popupHeight : maxPopupHeight
         let width = popupWidth <= maxPopupWidth ? popupWidth : maxPopupWidth
-        //print("Popup height and width are \(popupHeight), \(popupWidth)")
-        //print("The screen heights are \(SizeUtils.screenHeight), \(SizeUtils.screenWidth)")
-        //print("Deletion prompt will have width \(width), height \(height)")
         let popupVC = PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
         self.present(popupVC, animated: true)
     }
