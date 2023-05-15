@@ -164,8 +164,9 @@ class CharacterProfile {
         self.init(name: "")
     }
     
-    convenience init(sion: SION) {
-        self.init(name: sion[CharacterProfile.nameKey].string!,
+    convenience init(sion: SION) throws {
+        let name = try sion[CharacterProfile.nameKey].string ?! SpellbookError.BadCharacterProfileError
+        self.init(name: name,
                   sortFilterStatus: SortFilterStatus(sion: sion[CharacterProfile.sortFilterStatusKey]),
                   spellFilterStatus: SpellFilterStatus(sion: sion[CharacterProfile.spellFilterStatusKey]),
                   spellSlotStatus: SpellSlotStatus(sion: sion[CharacterProfile.spellSlotStatusKey]))

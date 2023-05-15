@@ -153,10 +153,7 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         displayImportCharacterWindow()
     }
     
-    func displayNewCharacterWindow(mustComplete: Bool=false) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "characterCreation") as! CharacterCreationController
-        
+    private func createPopup(_ controller: UIViewController) -> PopupViewController {
         let screenRect = UIScreen.main.bounds
         let popupWidth = CGFloat(0.8 * screenRect.size.width)
         let popupHeight = CGFloat(0.25 * screenRect.size.height)
@@ -165,7 +162,14 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         let height = popupHeight <= maxPopupHeight ? popupHeight : maxPopupHeight
         let width = popupWidth <= maxPopupWidth ? popupWidth : maxPopupWidth
         
-        let popupVC = PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
+        return PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
+    }
+    
+    func displayNewCharacterWindow(mustComplete: Bool=false) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "characterCreation") as! CharacterCreationController
+        
+        let popupVC = createPopup(controller)
         if mustComplete {
             controller.cancelButton.isHidden = true
             popupVC.canTapOutsideToDismiss = false
@@ -174,7 +178,11 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     }
     
     func displayImportCharacterWindow() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "importCharacter") as! ImportCharacterController
         
+        let popupVC = createPopup(controller)
+        self.present(popupVC, animated: true)
     }
     
     @objc func createDeletionPrompt(name: String) {

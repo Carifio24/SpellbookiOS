@@ -65,8 +65,8 @@
             filePath = "Spellbook/CharacterProfile.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "init(sion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -81,8 +81,8 @@
             filePath = "Spellbook/CharacterProfile.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "311"
-            endingLineNumber = "311"
+            startingLineNumber = "312"
+            endingLineNumber = "312"
             landmarkName = "toSION()"
             landmarkType = "7">
          </BreakpointContent>
@@ -97,8 +97,8 @@
             filePath = "Spellbook/CharacterProfile.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
             landmarkName = "toSION()"
             landmarkType = "7">
          </BreakpointContent>

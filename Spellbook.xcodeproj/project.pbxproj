@@ -21,6 +21,8 @@
 		8E02F7742438EF1400A3050C /* RangeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E02F7732438EF1400A3050C /* RangeView.xib */; };
 		8E02F7762438F04000A3050C /* RangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02F7752438F04000A3050C /* RangeView.swift */; };
 		8E07AE0B2A0C957400C0487B /* clipboard_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E07AE0A2A0C957400C0487B /* clipboard_icon.png */; };
+		8E07AE0D2A0F708700C0487B /* ImportCharacterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07AE0C2A0F708700C0487B /* ImportCharacterController.swift */; };
+		8E07AE0F2A10AFA700C0487B /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07AE0E2A10AFA700C0487B /* Operators.swift */; };
 		8E13F1E3244E1B15004CCC18 /* trash_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E13F1E2244E1B14004CCC18 /* trash_icon.png */; };
 		8E177F9B2432F34B005146B6 /* SortFilterTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E177F9A2432F34B005146B6 /* SortFilterTableController.swift */; };
 		8E19DA50257C094A002B4F43 /* FilterOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E19DA4F257C094A002B4F43 /* FilterOptionView.swift */; };
@@ -178,6 +180,8 @@
 		8E02F7732438EF1400A3050C /* RangeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RangeView.xib; sourceTree = "<group>"; };
 		8E02F7752438F04000A3050C /* RangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeView.swift; sourceTree = "<group>"; };
 		8E07AE0A2A0C957400C0487B /* clipboard_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clipboard_icon.png; sourceTree = "<group>"; };
+		8E07AE0C2A0F708700C0487B /* ImportCharacterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportCharacterController.swift; sourceTree = "<group>"; };
+		8E07AE0E2A10AFA700C0487B /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		8E13F1E2244E1B14004CCC18 /* trash_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash_icon.png; sourceTree = "<group>"; };
 		8E177F9A2432F34B005146B6 /* SortFilterTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFilterTableController.swift; sourceTree = "<group>"; };
 		8E19DA4F257C094A002B4F43 /* FilterOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionView.swift; sourceTree = "<group>"; };
@@ -353,6 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				397EE96C21ACA86400B116B0 /* Main.storyboard */,
+				8E07AE0C2A0F708700C0487B /* ImportCharacterController.swift */,
 				8EB3692129405EAB00856738 /* SpellbookReducers.swift */,
 				8EB3691D293F123900856738 /* AppReducer.swift */,
 				8EB3691F293F133900856738 /* SpellbookActions.swift */,
@@ -455,6 +460,7 @@
 				8E74FA5729EB5A6C00E13B91 /* SpellSlotsManagerController.swift */,
 				8E74FA5929EBD7D900E13B91 /* SpellSlotsManagerCell.swift */,
 				8E7EB4EC29F3B87F00408EA4 /* SpellSlotsManagerDelegate.swift */,
+				8E07AE0E2A10AFA700C0487B /* Operators.swift */,
 			);
 			path = Spellbook;
 			sourceTree = "<group>";
@@ -729,6 +735,7 @@
 				8E614902241991C200842A18 /* Unit.swift in Sources */,
 				8E02F7722437F39200A3050C /* CombinationProtocols.swift in Sources */,
 				8E614920241991C200842A18 /* ImageUtils.swift in Sources */,
+				8E07AE0F2A10AFA700C0487B /* Operators.swift in Sources */,
 				8E6148F4241991C200842A18 /* SideMenuCell.swift in Sources */,
 				8E614918241991C200842A18 /* StatusFilterController.swift in Sources */,
 				8E6148EC241991C200842A18 /* DeletionPromptController.swift in Sources */,
@@ -764,6 +771,7 @@
 				8E6148F8241991C200842A18 /* StringUtils.swift in Sources */,
 				8E614927241991C200842A18 /* SpellBuilder.swift in Sources */,
 				8E02F76224345F6200A3050C /* YesNo.swift in Sources */,
+				8E07AE0D2A0F708700C0487B /* ImportCharacterController.swift in Sources */,
 				8EEA28FD297C23D8004971AD /* SpellFilter.swift in Sources */,
 				8E614916241991C200842A18 /* SideMenuController.swift in Sources */,
 				8E74FA5A29EBD7D900E13B91 /* SpellSlotsManagerCell.swift in Sources */,
