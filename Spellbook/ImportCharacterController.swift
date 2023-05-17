@@ -28,16 +28,27 @@ class ImportCharacterController: UIViewController {
     }
 
     @objc func importButtonPressed() {
-        guard let json = jsonTextField.text else { return }
-        importCharacterFromJSON(json: json)
+        guard var json = jsonTextField.text else { return }
+        importCharacterFromJSON(&json)
     }
     
-    func importCharacterFromJSON(json: String) {
+    func importCharacterFromJSON(_ json: inout String) {
         do {
-            let sion = SION.init(string: json)
+            fixEscapeCharacters(&json)
+            let sion = SION(json: json)
+            
+            if let name = sion[CharacterProfile.nameKey].string {
+                let existingNames = store.state.profileNameList
+                if existingNames.contains(name) {
+                    Toast.makeToast("A character with the given name already exists")
+                    return
+                }
+            }
+            
             let profile = try CharacterProfile(sion: sion)
             store.dispatch(CreateProfileAction(profile: profile))
             Toast.makeToast("Imported \(profile.name) from JSON")
+            self.dismiss(animated: true, completion: nil)
         } catch {
             Toast.makeToast("Error importing character JSON")
         }

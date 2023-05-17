@@ -88,7 +88,7 @@ class CharacterProfile {
     private static let defaultRangeRangeInfo = RangeInfo<LengthUnit>(minUnit: LengthUnit.foot, maxUnit: LengthUnit.mile, minValue: 0, maxValue: 1)
     
     // Keys for loading/saving
-    private static let nameKey: String = "CharacterName"
+    static let nameKey: String = "CharacterName"
     private static let spellsKey: String = "Spells"
     private static let spellNameKey: String = "SpellName"
     private static let favoriteKey: String = "Favorite"
