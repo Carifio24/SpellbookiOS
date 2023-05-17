@@ -15,6 +15,7 @@ class NumberFieldDelegate<ActionType: Action>: NSObject, UITextFieldDelegate {
     
     let maxCharacters: Int
     let actionCreator: ActionCreator
+    let digitsCharacters = CharacterSet(charactersIn: "0123456789")
     
     init(maxCharacters: Int, actionCreator: @escaping ActionCreator) {
         self.maxCharacters = maxCharacters
@@ -22,6 +23,12 @@ class NumberFieldDelegate<ActionType: Action>: NSObject, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+        // Only accept a string that is entirely digits
+        if !CharacterSet(charactersIn: string).isSubset(of: digitsCharacters) {
+            return false
+        }
+
         let currentLength = textField.text?.count ?? 0
         
         // Prevent a bug dealing with pasting/undo
