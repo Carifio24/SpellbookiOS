@@ -12,7 +12,7 @@ class ImportCharacterController: UIViewController {
 
     @IBOutlet weak var importTitle: UILabel!
     @IBOutlet weak var importMessage: UILabel!
-    @IBOutlet weak var jsonTextField: UITextField!
+    @IBOutlet weak var jsonTextView: UITextView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var importButton: UIButton!
     
@@ -28,7 +28,7 @@ class ImportCharacterController: UIViewController {
     }
 
     @objc func importButtonPressed() {
-        guard var json = jsonTextField.text else { return }
+        guard var json = jsonTextView.text else { return }
         importCharacterFromJSON(&json)
     }
     

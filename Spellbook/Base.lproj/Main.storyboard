@@ -766,7 +766,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BookBackground.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="q0E-8I-oeP" userLabel="Background View">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLa-Ne-v4H" userLabel="Content View">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YLa-Ne-v4H" userLabel="Content View">
                                 <rect key="frame" x="0.0" y="44" width="414" height="158"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Import Character" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPG-Vf-utS" userLabel="Import Title">
@@ -781,16 +781,26 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cTA-8y-PCq" userLabel="JSON Text Field">
-                                        <rect key="frame" x="0.0" y="70" width="414" height="50"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Fn2-D4-m1i" userLabel="JSON Text View">
+                                        <rect key="frame" x="5" y="70" width="404" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" name="DefaultFontColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="7Wd-I2-tXh"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="yLB-54-xoN"/>
                                         </constraints>
+                                        <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2L6-2n-Gco" userLabel="Import Button">
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2L6-2n-Gco" userLabel="Import Button">
                                         <rect key="frame" x="339" y="69" width="67" height="31"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" name="DefaultFontColor"/>
@@ -799,7 +809,7 @@
                                             <color key="titleColor" name="DefaultFontColor"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="utV-Uh-w5L" userLabel="Cancel Button">
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="utV-Uh-w5L" userLabel="Cancel Button">
                                         <rect key="frame" x="264" y="56" width="67" height="56"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" name="DefaultFontColor"/>
@@ -812,16 +822,16 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="uPG-Vf-utS" firstAttribute="centerX" secondItem="YLa-Ne-v4H" secondAttribute="centerX" id="33n-3z-jbL"/>
+                                    <constraint firstItem="Fn2-D4-m1i" firstAttribute="trailing" secondItem="YLa-Ne-v4H" secondAttribute="trailing" constant="-5" id="3Az-r8-dV7"/>
+                                    <constraint firstItem="Fn2-D4-m1i" firstAttribute="leading" secondItem="YLa-Ne-v4H" secondAttribute="leading" constant="5" id="9wW-ce-0W5"/>
+                                    <constraint firstItem="utV-Uh-w5L" firstAttribute="top" secondItem="Fn2-D4-m1i" secondAttribute="bottom" constant="8" id="CdN-15-SJG"/>
                                     <constraint firstItem="uPG-Vf-utS" firstAttribute="top" secondItem="YLa-Ne-v4H" secondAttribute="top" id="FWl-Dk-4Ky"/>
                                     <constraint firstAttribute="trailing" secondItem="2L6-2n-Gco" secondAttribute="trailing" constant="10" id="Lv5-eY-FqK"/>
-                                    <constraint firstAttribute="trailing" secondItem="cTA-8y-PCq" secondAttribute="trailing" id="MP3-BP-1cK"/>
-                                    <constraint firstItem="utV-Uh-w5L" firstAttribute="top" secondItem="cTA-8y-PCq" secondAttribute="bottom" constant="8" id="QdI-uR-bNk"/>
-                                    <constraint firstItem="2L6-2n-Gco" firstAttribute="top" secondItem="cTA-8y-PCq" secondAttribute="bottom" constant="8" id="Spw-Gs-gJj"/>
-                                    <constraint firstItem="cTA-8y-PCq" firstAttribute="top" secondItem="a9j-3m-TJr" secondAttribute="bottom" constant="3" id="cdK-rf-wlc"/>
                                     <constraint firstAttribute="bottom" secondItem="utV-Uh-w5L" secondAttribute="bottom" id="eMW-kb-KOc"/>
                                     <constraint firstAttribute="bottom" secondItem="2L6-2n-Gco" secondAttribute="bottom" id="eoP-rO-jGa"/>
-                                    <constraint firstItem="cTA-8y-PCq" firstAttribute="leading" secondItem="YLa-Ne-v4H" secondAttribute="leading" id="syr-1i-co4"/>
+                                    <constraint firstItem="Fn2-D4-m1i" firstAttribute="top" secondItem="a9j-3m-TJr" secondAttribute="bottom" constant="3" id="moS-9H-Gwd"/>
                                     <constraint firstItem="a9j-3m-TJr" firstAttribute="centerX" secondItem="YLa-Ne-v4H" secondAttribute="centerX" id="t2h-eV-2kJ"/>
+                                    <constraint firstItem="2L6-2n-Gco" firstAttribute="top" secondItem="Fn2-D4-m1i" secondAttribute="bottom" constant="8" id="uW3-bs-Zvt"/>
                                     <constraint firstItem="2L6-2n-Gco" firstAttribute="leading" secondItem="utV-Uh-w5L" secondAttribute="trailing" constant="15" id="wtf-n4-Eh8"/>
                                     <constraint firstItem="a9j-3m-TJr" firstAttribute="top" secondItem="uPG-Vf-utS" secondAttribute="bottom" constant="3" id="yyU-k4-n2j"/>
                                 </constraints>
@@ -846,7 +856,7 @@
                         <outlet property="importButton" destination="2L6-2n-Gco" id="oRm-Pg-v7X"/>
                         <outlet property="importMessage" destination="a9j-3m-TJr" id="7AD-4d-d9w"/>
                         <outlet property="importTitle" destination="uPG-Vf-utS" id="UD7-fq-SMs"/>
-                        <outlet property="jsonTextField" destination="cTA-8y-PCq" id="pjT-pZ-7PC"/>
+                        <outlet property="jsonTextView" destination="Fn2-D4-m1i" id="SXq-MR-1Qt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XJ5-ZI-MaO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

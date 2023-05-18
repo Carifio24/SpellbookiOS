@@ -36,13 +36,13 @@ class TextFieldChooserDelegate<A: Action, T:CaseIterable & Equatable>: NSObject,
         self.title = title
         pickerData = T.allCases.map({ nameGetter($0) })
     }
-    
+
 
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         openPickerWindow(sender: textField)
         return false
     }
-    
+
     func openPickerWindow(sender: UITextField) {
         
         // Get the index of the selected option
