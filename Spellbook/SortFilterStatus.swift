@@ -45,6 +45,8 @@ class SortFilterStatus {
     private static let maxUnitKey = "MaxUnit";
     private static let minValueKey = "MinValue";
     private static let maxValueKey = "MaxValue";
+    private static let legacyMinValueKey = "MinText"
+    private static let legacyMaxValueKey = "MaxText"
     
     private static let VERBAL_INDEX = 0
     private static let SOMATIC_INDEX = 1
@@ -205,7 +207,9 @@ class SortFilterStatus {
     
     func setVisibility<T: Equatable>(item: T, collection: inout [T], visible: Bool) {
         if (visible) {
-            collection.append(item)
+            if (!collection.contains(item)) {
+                collection.append(item)
+            }
         } else {
             collection.removeAll(where: { $0 == item })
         }
@@ -343,16 +347,31 @@ class SortFilterStatus {
         self.maxRangeValue = maxValue
         self.maxRangeUnit = maxUnit
     }
-    private func setBoundsFromSION<U: Unit>(sion: SION, setter: BoundSetter<U>) {
-        let minValue = intFromSION(sion[SortFilterStatus.minValueKey], defaultValue: 0)
+    private func setBoundsFromSION<U: Unit>(sion: SION, setter: BoundSetter<U>,
+                                            minValueKey: String, maxValueKey: String) {
+        let minValue = intFromSION(sion[minValueKey], defaultValue: 0)
         let minUnit = (try? U.fromString(sion[SortFilterStatus.minUnitKey].string!)) ?? U.defaultUnit
-        let maxValue = intFromSION(sion[SortFilterStatus.maxValueKey], defaultValue: 1)
+        let maxValue = intFromSION(sion[maxValueKey], defaultValue: 1)
         let maxUnit = (try? U.fromString(sion[SortFilterStatus.maxUnitKey].string!)) ?? U.defaultUnit
         setter(minValue, minUnit, maxValue, maxUnit)
+    }
+    private func setBoundsFromSION<U: Unit>(sion: SION, setter: BoundSetter<U>) {
+        setBoundsFromSION(sion: sion, setter: setter,
+                          minValueKey: SortFilterStatus.minValueKey,
+                          maxValueKey: SortFilterStatus.maxValueKey)
+    }
+    private func setBoundsFromLegacySION<U: Unit>(sion: SION, setter: BoundSetter<U>) {
+        setBoundsFromSION(sion: sion, setter: setter,
+                          minValueKey: SortFilterStatus.legacyMinValueKey,
+                          maxValueKey: SortFilterStatus.legacyMaxValueKey)
     }
     func setCastingTimeBoundsFromSION(sion: SION) { setBoundsFromSION(sion: sion, setter: setCastingTimeBounds) }
     func setDurationBoundsFromSION(sion: SION) { setBoundsFromSION(sion: sion, setter: setDurationBounds) }
     func setRangeBoundsFromSION(sion: SION) { setBoundsFromSION(sion: sion, setter: setRangeBounds) }
+    
+    func setCastingTimeBoundsFromLegacySION(sion: SION) { setBoundsFromLegacySION(sion: sion, setter: setCastingTimeBounds) }
+    func setDurationBoundsFromLegacySION(sion: SION) { setBoundsFromLegacySION(sion: sion, setter: setDurationBounds) }
+    func setRangeBoundsFromLegacySION(sion: SION) { setBoundsFromLegacySION(sion: sion, setter: setRangeBounds) }
     
     func setMinCastingTimeValue(_ value: Int) { self.minCastingTimeValue = value }
     func setMaxCastingTimeValue(_ value: Int) { self.maxCastingTimeValue = value }

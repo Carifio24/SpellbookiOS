@@ -232,9 +232,9 @@ class CharacterProfile {
         }
         
         // Quantity range information
-        sortFilterStatus.setCastingTimeBoundsFromSION(sion: sion[CharacterProfile.castingTimeRangeKey])
-        sortFilterStatus.setDurationBoundsFromSION(sion: sion[CharacterProfile.durationRangeKey])
-        sortFilterStatus.setRangeBoundsFromSION(sion: sion[CharacterProfile.rangeRangeKey])
+        sortFilterStatus.setCastingTimeBoundsFromLegacySION(sion: sion[CharacterProfile.castingTimeRangeKey])
+        sortFilterStatus.setDurationBoundsFromLegacySION(sion: sion[CharacterProfile.durationRangeKey])
+        sortFilterStatus.setRangeBoundsFromLegacySION(sion: sion[CharacterProfile.rangeRangeKey])
         
         // The sorting directions
         sortFilterStatus.firstSortReverse = sion[CharacterProfile.reverse1Key].bool ?? false

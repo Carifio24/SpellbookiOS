@@ -77,11 +77,11 @@ func firstLetterOfWordsCapitalized(_ s: String) -> String {
 }
 
 func complement<T: Equatable>(items: [T], allItems: [T]) -> [T] {
-    return allItems.filter { items.contains($0) }
+    return allItems.filter { !items.contains($0) }
 }
 
-func complement<T: CaseIterable & RawRepresentable & Equatable>(items: [T]) -> [T] {
-    let allItems: [T] = T.allCases.map { $0.rawValue as! T }
+func complement<T: CaseIterable & Equatable>(items: [T]) -> [T] {
+    let allItems: [T] = T.allCases.map { $0 }
     return complement(items: items, allItems: allItems)
 }
 
