@@ -28,6 +28,8 @@ class LegacyProfileTests: XCTestCase {
         XCTAssertEqual(sortFilterStatus.statusFilterField, StatusFilterField.All)
         XCTAssertEqual(sortFilterStatus.firstSortField, SortField.Level)
         XCTAssertEqual(sortFilterStatus.secondSortField, SortField.School)
+        XCTAssertEqual(sortFilterStatus.firstSortReverse, true)
+        XCTAssertEqual(sortFilterStatus.secondSortReverse, false)
         XCTAssertEqual(sortFilterStatus.applyFiltersToSearch, false)
         XCTAssertEqual(sortFilterStatus.applyFiltersToLists, true)
         XCTAssertEqual(sortFilterStatus.useTashasExpandedLists, false)
@@ -41,6 +43,10 @@ class LegacyProfileTests: XCTestCase {
         XCTAssertEqual(sortFilterStatus.getVisibleClasses(false), [])
         XCTAssertEqual(sortFilterStatus.getVisibleSchools(true), School.allCases)
         XCTAssertEqual(sortFilterStatus.getVisibleSchools(false), [])
+        XCTAssertEqual(sortFilterStatus.getConcentrationFilter(true), false)
+        XCTAssertEqual(sortFilterStatus.getConcentrationFilter(false), true)
+        XCTAssertEqual(sortFilterStatus.getRitualFilter(true), true)
+        XCTAssertEqual(sortFilterStatus.getRitualFilter(false), true)
         
         let hiddenSources = [
             Sourcebook.XanatharsGTE, Sourcebook.SwordCoastAG, Sourcebook.TashasCOE, Sourcebook.LostLabKwalish,
@@ -79,9 +85,26 @@ class LegacyProfileTests: XCTestCase {
         XCTAssertEqual(rangeBounds.2, 1)
         XCTAssertEqual(rangeBounds.3, LengthUnit.mile)
         
-        
-        //spellFilterStatus.getStatus(id: <#T##Int#>)
-        
+        // ID F P K Name
+        // 486 F T T Jim's Glowing Coin
+        // 483 F T F Fast Friends
+        // 484 T T T Gift of Gab
+        // 512 F T F Raulothim's Psychic Lance
+        // 482 T T F Distort Value
+        // 511 T F F Ashardalon's Stride
+        // 515 F T F Draconic Transformation
+        // 485 F F T Incite Greed
+        // 510 T F F Rime's Binding Ice
+        // 514 T T T Fizban's Platinum Shield
+        // 513 T T F Summon Draconic Spirit
+        let favoriteSpellIDs = [482, 484, 510, 511, 513, 514]
+        let preparedSpellIDs = [482, 483, 484, 486, 512, 513, 514, 515]
+        let knownSpellIDs = [484, 485, 486, 514]
+        let oneTrueSpellIDs = [482, 483, 484, 485, 486, 510, 511, 512, 513, 514, 515]
+        XCTAssertEqual(spellFilterStatus.favoriteSpellIDs().sorted(), favoriteSpellIDs)
+        XCTAssertEqual(spellFilterStatus.preparedSpellIDs().sorted(), preparedSpellIDs)
+        XCTAssertEqual(spellFilterStatus.knownSpellIDs().sorted(), knownSpellIDs)
+        XCTAssertEqual(spellFilterStatus.spellsWithOneProperty().sorted(), oneTrueSpellIDs)
         
         for level in 1...Spellbook.MAX_SPELL_LEVEL {
             XCTAssertEqual(spellSlotsStatus.getAvailableSlots(level: level), 0)
