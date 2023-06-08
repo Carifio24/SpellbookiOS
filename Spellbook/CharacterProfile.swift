@@ -317,6 +317,7 @@ class CharacterProfile {
     
     // As a JSON string
     func toJSONString() -> String {
+        print(toSION().json)
         return toSION().json
     }
 

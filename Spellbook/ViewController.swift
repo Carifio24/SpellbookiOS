@@ -565,7 +565,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.levelSchoolLabel.text = spell.levelSchoolString()
         cell.sourcebookLabel.text = spell.sourcebooksString()
         
-        for label in [ cell.nameLabel, cell.levelSchoolLabel, cell.sourcebookLabel ] {
+        for label in [cell.nameLabel, cell.levelSchoolLabel, cell.sourcebookLabel] {
             label?.textColor = defaultFontColor
         }
         
