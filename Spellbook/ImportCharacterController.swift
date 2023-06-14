@@ -45,7 +45,7 @@ class ImportCharacterController: UIViewController {
                 }
             }
             
-            let profile = try CharacterProfile(sion: sion)
+            let profile = try CharacterProfile.fromSION(sion)
             store.dispatch(CreateProfileAction(profile: profile))
             Toast.makeToast("Imported \(profile.name) from JSON")
             self.dismiss(animated: true, completion: nil)

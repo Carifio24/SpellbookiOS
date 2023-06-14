@@ -164,9 +164,14 @@ class CharacterProfile {
         self.init(name: "")
     }
     
-    convenience init(sion: SION) throws {
+    static func fromSION(_ sion: SION) throws -> CharacterProfile {
         let name = try sion[CharacterProfile.nameKey].string ?! SpellbookError.BadCharacterProfileError
-        self.init(name: name,
+        let versionCode = sion[CharacterProfile.versionCodeKey].string
+        let version = versionCode != nil ? Version.fromString(versionCode!) : nil
+        if (version == nil || version! < Version(major: 3, minor: 0, patch: 0)) {
+            return CharacterProfile.fromLegacySION(sion: sion)
+        }
+        return CharacterProfile(name: name,
                   sortFilterStatus: SortFilterStatus(sion: sion[CharacterProfile.sortFilterStatusKey]),
                   spellFilterStatus: SpellFilterStatus(sion: sion[CharacterProfile.spellFilterStatusKey]),
                   spellSlotStatus: SpellSlotStatus(sion: sion[CharacterProfile.spellSlotStatusKey]))
@@ -309,6 +314,7 @@ class CharacterProfile {
     func toSION() -> SION {
         var sion: SION = [:]
         sion[CharacterProfile.nameKey].string = name
+        sion[CharacterProfile.versionCodeKey].string = VersionInfo.version.string()
         sion[CharacterProfile.spellSlotStatusKey] = spellSlotStatus.toSION()
         sion[CharacterProfile.spellFilterStatusKey] = spellFilterStatus.toSION()
         sion[CharacterProfile.sortFilterStatusKey] = sortFilterStatus.toSION()

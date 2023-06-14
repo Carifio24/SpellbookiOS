@@ -48,7 +48,7 @@ class SerializationUtils: NSObject {
             do {
                 fixEscapeCharacters(&profileText)
                 let profileSION = SION(json: profileText)
-                let profile = try CharacterProfile(sion: profileSION)
+                let profile = try CharacterProfile.fromSION(profileSION)
                 return profile
             } catch let _ {
                 throw SpellbookError.BadCharacterProfileError
