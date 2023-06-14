@@ -38,8 +38,8 @@ class SpellFilterStatus {
             for status in statuses {
                 self.spellStatusMap[status[SpellFilterStatus.spellIDKey].int ?? 0] =
                 SpellStatus(favorite: status[SpellFilterStatus.favoriteKey].bool ?? false,
-                            prepared: status[SpellFilterStatus.knownKey].bool ?? false,
-                            known: status[SpellFilterStatus.preparedKey].bool ?? false)
+                            prepared: status[SpellFilterStatus.preparedKey].bool ?? false,
+                            known: status[SpellFilterStatus.knownKey].bool ?? false)
             }
         }
     }
@@ -157,7 +157,7 @@ class SpellFilterStatus {
             spellStatuses.append(statusSION)
         }
         sion[SpellFilterStatus.spellsKey].array = spellStatuses
-        return SION(arrayLiteral: sion)
+        return sion
     }
     
 }
