@@ -135,7 +135,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewWillAppear(animated)
         store.subscribe(self) {
             $0.select {
-                ($0.profile, $0.profile?.sortFilterStatus, $0.profile?.spellFilterStatus, $0.currentSpellList)
+                ($0.profile, $0.profile?.sortFilterStatus, $0.profile?.spellFilterStatus, $0.currentSpellList, $0.dirtySpellIDs)
             }
         }
         spells = store.state.currentSpellList
@@ -586,13 +586,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Set the button callbacks
         // Set the callbacks for the buttons
         cell.favoriteButton.setCallback({
-            store.dispatch(TogglePropertyAction(spell: cell.spell, property: .Favorites))
+            store.dispatch(TogglePropertyAction(spell: cell.spell, property: .Favorites, markDirty: false))
         })
         cell.preparedButton.setCallback({
-            store.dispatch(TogglePropertyAction(spell: cell.spell, property: .Prepared))
+            store.dispatch(TogglePropertyAction(spell: cell.spell, property: .Prepared, markDirty: false))
         })
         cell.knownButton.setCallback({
-            store.dispatch(TogglePropertyAction(spell: cell.spell, property: .Known))
+            store.dispatch(TogglePropertyAction(spell: cell.spell, property: .Known, markDirty: false))
         })
 
         return cell
@@ -632,12 +632,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         store.dispatch(FilterNeededAction())
     }
     
+    func indexPathsForIDs(spellIDs: [Int]) -> [IndexPath] {
+        var indexPaths: [IndexPath] = []
+        for (idx, spell) in spells.enumerated() {
+            if (spellIDs.contains(spell.id)) {
+                let indexPath = IndexPath(item: idx, section: 0)
+                indexPaths.append(indexPath)
+            }
+        }
+        return indexPaths
+    }
+    
     // If one of the side menus is open, we want to close the menu rather than select a cell
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         //return main.closeMenuIfOpen() ? nil : indexPath
         return indexPath
     }
-    
     
     // Set what happens when a cell is selected
     // For us, that's creating a segue to a view with the spell info
@@ -715,7 +725,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 // MARK: StoreSubscriber
 extension ViewController: StoreSubscriber {
-    typealias StoreSubscriberStateType = (profile: CharacterProfile?, sortFilterStatus: SortFilterStatus?, spellFilterStatus: SpellFilterStatus?, currentSpellList: [Spell])
+    typealias StoreSubscriberStateType = (profile: CharacterProfile?, sortFilterStatus: SortFilterStatus?, spellFilterStatus: SpellFilterStatus?, currentSpellList: [Spell], dirtySpellIDs: [Int])
     
     func newState(state: StoreSubscriberStateType) {
         if let profile = state.profile {
@@ -724,6 +734,11 @@ extension ViewController: StoreSubscriber {
         if (state.currentSpellList != spells) {
             spells = state.currentSpellList
             spellTable.reloadData()
+        }
+        if (state.dirtySpellIDs.count > 0) {
+            let indexPaths = self.indexPathsForIDs(spellIDs: state.dirtySpellIDs)
+            self.spellTable.reloadRows(at: indexPaths, with: UITableView.RowAnimation.none)
+            store.dispatch(MarkAllSpellsCleanAction())
         }
     }
     

@@ -147,6 +147,7 @@ struct ToggleFlagAction: Action {
 struct TogglePropertyAction: Action {
     let spell: Spell
     let property: StatusFilterField
+    var markDirty: Bool = true
 }
 
 enum FilterOption {
@@ -221,3 +222,6 @@ struct EditTotalSpellSlotsAction: Action {
     let level: Int
     let totalSlots: Int
 }
+
+// TODO: Is there a better way to do this?
+struct MarkAllSpellsCleanAction: Action {}

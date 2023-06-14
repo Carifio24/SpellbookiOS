@@ -123,7 +123,10 @@ func appReducer(action: Action, state: SpellbookAppState?) -> SpellbookAppState 
     case let action as EditTotalSpellSlotsAction:
         return editTotalSpellSlotsReducer(action: action, state: &state)
     
-    
+    // Marking spells dirty
+    case let action as MarkAllSpellsCleanAction:
+        return markAllSpellsCleanReducer(action: action, state: &state)
+        
     // If we somehow get here, just do nothing
     default:
         return state

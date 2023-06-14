@@ -279,6 +279,7 @@ func togglePropertyReducer(action: TogglePropertyAction, state: inout SpellbookA
     if (profile.sortFilterStatus.statusFilterField == action.property) {
         filterSpells(&state)
     }
+    state.dirtySpellIDs = state.dirtySpellIDs + [action.spell.id]
     return state
 }
 
@@ -338,5 +339,10 @@ func editTotalSpellSlotsReducer(action: EditTotalSpellSlotsAction, state: inout 
     guard let profile = state.profile else { return state }
     let status = profile.spellSlotStatus
     status.setTotalSlots(level: action.level, slots: action.totalSlots)
+    return state
+}
+
+func markAllSpellsCleanReducer(action: MarkAllSpellsCleanAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    state.dirtySpellIDs = []
     return state
 }

@@ -16,6 +16,7 @@ struct SpellbookAppState {
     var spell: Spell? = nil
     var searchQuery: String? = nil
     let spellList: [Spell]
+    var dirtySpellIDs: [Int]
     var currentSpellList: [Spell]
     var profileNameList: [String] = []
     var settings: Settings
@@ -34,5 +35,6 @@ struct SpellbookAppState {
         spellList = SpellbookAppState.spellbook.spells
         currentSpellList = spellList
         profileNameList = SerializationUtils.characterNameList()
+        dirtySpellIDs = []
     }
 }
