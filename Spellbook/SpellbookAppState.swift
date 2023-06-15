@@ -12,6 +12,8 @@ struct SpellbookAppState {
     
     private static let spellbook = Spellbook(jsonStr: try! String(contentsOf: Bundle.main.url(forResource: "Spells", withExtension: "json")!))
     
+    static let allSpells = SpellbookAppState.spellbook.spells
+    
     var profile: CharacterProfile? = nil
     var spell: Spell? = nil
     var searchQuery: String? = nil

@@ -59,7 +59,6 @@ class SerializationUtils: NSObject {
             print(error.description)
             throw error
         }
-        
     }
     
     static func deleteCharacterProfile(profile: CharacterProfile) -> Bool {

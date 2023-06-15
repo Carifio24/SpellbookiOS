@@ -350,6 +350,7 @@ class SortFilterStatus {
     private func setBoundsFromSION<U: Unit>(sion: SION, setter: BoundSetter<U>,
                                             minValueKey: String, maxValueKey: String) {
         let minValue = intFromSION(sion[minValueKey], defaultValue: 0)
+        let test = sion[SortFilterStatus.minUnitKey]
         let minUnit = (try? U.fromString(sion[SortFilterStatus.minUnitKey].string!)) ?? U.defaultUnit
         let maxValue = intFromSION(sion[maxValueKey], defaultValue: 1)
         let maxUnit = (try? U.fromString(sion[SortFilterStatus.maxUnitKey].string!)) ?? U.defaultUnit
@@ -440,6 +441,8 @@ class SortFilterStatus {
         sion[SortFilterStatus.sort2Key].string = secondSortField.displayName
         sion[SortFilterStatus.reverse1Key].bool = firstSortReverse
         sion[SortFilterStatus.reverse2Key].bool = secondSortReverse
+        
+        sion[SortFilterStatus.statusFilterKey].string = statusFilterField.name()
     
         sion[SortFilterStatus.minSpellLevelKey].int = minSpellLevel
         sion[SortFilterStatus.maxSpellLevelKey].int = maxSpellLevel
@@ -485,6 +488,8 @@ class SortFilterStatus {
         secondSortField = SortField.fromName(sion[SortFilterStatus.sort2Key].string ?? SortField.Name.displayName)
         firstSortReverse = sion[SortFilterStatus.reverse1Key].bool ?? false
         secondSortReverse = sion[SortFilterStatus.reverse2Key].bool ?? false
+        
+        statusFilterField = StatusFilterField.fromName(sion[SortFilterStatus.statusFilterKey].string ?? "") ?? StatusFilterField.All
         
         minSpellLevel = intFromSION(sion[SortFilterStatus.minSpellLevelKey], defaultValue: Spellbook.MIN_SPELL_LEVEL)
         maxSpellLevel = intFromSION(sion[SortFilterStatus.maxSpellLevelKey], defaultValue: Spellbook.MAX_SPELL_LEVEL)

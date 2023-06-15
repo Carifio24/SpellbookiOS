@@ -171,10 +171,14 @@ class CharacterProfile {
         if (version == nil || version! < Version(major: 3, minor: 0, patch: 0)) {
             return CharacterProfile.fromLegacySION(sion: sion)
         }
+        let sortFilterStatus = SortFilterStatus(sion: sion[CharacterProfile.sortFilterStatusKey])
+        let spellFilterStatus = SpellFilterStatus(sion: sion[CharacterProfile.spellSlotStatusKey])
+        let spellSlotStatus = SpellSlotStatus(sion: sion[CharacterProfile.spellSlotStatusKey])
         return CharacterProfile(name: name,
-                  sortFilterStatus: SortFilterStatus(sion: sion[CharacterProfile.sortFilterStatusKey]),
-                  spellFilterStatus: SpellFilterStatus(sion: sion[CharacterProfile.spellFilterStatusKey]),
-                  spellSlotStatus: SpellSlotStatus(sion: sion[CharacterProfile.spellSlotStatusKey]))
+                  sortFilterStatus: sortFilterStatus,
+                  spellFilterStatus: spellFilterStatus,
+                  spellSlotStatus: spellSlotStatus
+        )
     }
     
     static func fromLegacySION(sion: SION) -> CharacterProfile {
@@ -401,7 +405,7 @@ class CharacterProfile {
     
     private static func convertStatusMap(oldMap: [String: SpellStatus]) -> [Int: SpellStatus] {
         let scagCantrips: Set = ["Booming Blade", "Green-Flame Blade", "Lightning Lure", "Sword Burst"]
-        let spells = store.state.spellList
+        let spells = SpellbookAppState.allSpells
         var idMap: [String: Int] = [:]
         for spell in spells {
             idMap[spell.name] = spell.id
