@@ -172,7 +172,7 @@ class CharacterProfile {
             return CharacterProfile.fromLegacySION(sion: sion)
         }
         let sortFilterStatus = SortFilterStatus(sion: sion[CharacterProfile.sortFilterStatusKey])
-        let spellFilterStatus = SpellFilterStatus(sion: sion[CharacterProfile.spellSlotStatusKey])
+        let spellFilterStatus = SpellFilterStatus(sion: sion[CharacterProfile.spellFilterStatusKey])
         let spellSlotStatus = SpellSlotStatus(sion: sion[CharacterProfile.spellSlotStatusKey])
         return CharacterProfile(name: name,
                   sortFilterStatus: sortFilterStatus,
