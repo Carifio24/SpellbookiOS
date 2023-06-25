@@ -150,12 +150,10 @@ func sortNeededReducer(action: SortNeededAction, state: inout SpellbookAppState)
 }
 
 fileprivate func sortSpells(_ state: inout SpellbookAppState) {
-    print("In sortSpells")
     guard let profile = state.profile else { return }
     let sortFilterStatus = profile.sortFilterStatus
     let comparator = spellComparator(sortField1: sortFilterStatus.firstSortField, sortField2: sortFilterStatus.secondSortField, reverse1: sortFilterStatus.firstSortReverse, reverse2: sortFilterStatus.secondSortReverse)
     state.currentSpellList = state.currentSpellList.sorted { comparator($0, $1) }
-    //print(state.currentSpellList.map { $0.name })
 }
 
 fileprivate func filterSpells(_ state: inout SpellbookAppState) {
@@ -313,6 +311,8 @@ func updateProfileReducer(action: SwitchProfileAction, state: inout SpellbookApp
     state.profile = action.newProfile
     state.settings.setCharacterName(name: action.newProfile.name)
     SerializationUtils.saveSettings(state.settings)
+    sortSpells(&state)
+    filterSpells(&state)
     return state
 }
 
