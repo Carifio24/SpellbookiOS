@@ -44,11 +44,12 @@ internal func filterAgainstBounds<Q:Comparable,U:Unit>(spell s: Spell, bounds: (
 // Determine whether or not a single row should be filtered
 func filterSpell(spell: Spell, sortFilterStatus: SortFilterStatus, spellFilterStatus: SpellFilterStatus, visibleSources: [Sourcebook], visibleClasses: [CasterClass], visibleSchools: [School], visibleCastingTimeTypes: [CastingTimeType], visibleDurationTypes: [DurationType], visibleRangeTypes: [RangeType], castingTimeBounds: (CastingTime,CastingTime), durationBounds: (Duration,Duration), rangeBounds: (Range,Range), isText: Bool, text: String) -> Bool {
     let spellName = spell.name.lowercased()
+    let searchText = text.lowercased()
     
     // If we aren't going to filter when searching, and there's search text,
     // we only need to check whether the spell name contains the search text
     if (!sortFilterStatus.applyFiltersToSearch && isText) {
-        return spellName.contains(text);
+        return spellName.contains(searchText);
     }
 
     // If we aren't going to filter spell lists, and the current filter isn't ALL
@@ -57,7 +58,7 @@ func filterSpell(spell: Spell, sortFilterStatus: SortFilterStatus, spellFilterSt
     if (!sortFilterStatus.applyFiltersToLists && sortFilterStatus.isStatusSet()) {
         var hide = spellFilterStatus.hiddenByFilter(spell: spell, filterField: sortFilterStatus.statusFilterField);
         if (isText) {
-            hide = hide || !spellName.contains(text);
+            hide = hide || !spellName.contains(searchText);
         }
         return !hide;
     }

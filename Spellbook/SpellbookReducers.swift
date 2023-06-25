@@ -299,10 +299,8 @@ func toggleFilterOptionReducer(action: ToggleFilterOptionAction, state: inout Sp
 
 func updateSearchQueryReducer(action: UpdateSearchQueryAction, state: inout SpellbookAppState) -> SpellbookAppState {
     state.searchQuery = action.searchQuery
-    if let status = state.profile?.sortFilterStatus {
-        if (status.applyFiltersToSearch) {
-            filterSpells(&state)
-        }
+    if state.profile?.sortFilterStatus != nil {
+        filterSpells(&state)
     }
     return state
 }
