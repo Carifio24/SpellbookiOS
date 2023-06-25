@@ -10,6 +10,18 @@ import ReSwift
 
 func appReducer(action: Action, state: SpellbookAppState?) -> SpellbookAppState {
     var state = state ?? SpellbookAppState()
+
+    state = specificActionReducer(action: action, state: &state)
+
+    // This will run on EVERY action, regardless of type
+    if let profile = state.profile {
+        SerializationUtils.saveCharacterProfile(profile: profile)
+    }
+
+    return state
+}
+
+func specificActionReducer(action: Action, state: inout SpellbookAppState) -> SpellbookAppState {
     switch action {
         
     // Updating sort parameters
@@ -127,6 +139,9 @@ func appReducer(action: Action, state: SpellbookAppState?) -> SpellbookAppState 
     case let action as MarkAllSpellsCleanAction:
         return markAllSpellsCleanReducer(action: action, state: &state)
         
+    case let action as SaveSettingsAction:
+        return saveSettingsReducer(action: action, state: &state)
+
     // If we somehow get here, just do nothing
     default:
         return state
