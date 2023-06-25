@@ -344,3 +344,8 @@ func markAllSpellsCleanReducer(action: MarkAllSpellsCleanAction, state: inout Sp
     state.dirtySpellIDs = []
     return state
 }
+
+func saveSettingsReducer(action: SaveSettingsAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    SerializationUtils.saveSettings(state.settings)
+    return state
+}
