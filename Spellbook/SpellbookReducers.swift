@@ -19,7 +19,7 @@ func sortFieldReducer(action: SortFieldAction, state: inout SpellbookAppState) -
     } else if (action.level == 2) {
         status.secondSortField = action.sortField
     }
-    sortSpells(&state)
+    state.sortSpells()
     return state
 }
 
@@ -30,14 +30,14 @@ func sortReverseReducer(action: SortReverseAction, state: inout SpellbookAppStat
     } else if (action.level == 2) {
         status.secondSortReverse = action.reverse
     }
-    sortSpells(&state)
+    state.sortSpells()
     return state
 }
 
 func statusFilterReducer(action: StatusFilterAction, state: inout SpellbookAppState) -> SpellbookAppState {
     guard let status = state.profile?.sortFilterStatus else { return state }
     status.statusFilterField = action.statusFilterField
-    filterSpells(&state)
+    state.filterAndSortSpells()
     return state
 }
 
@@ -48,7 +48,7 @@ func spellLevelReducer(action: SpellLevelAction, state: inout SpellbookAppState)
     } else {
         status.maxSpellLevel = action.level
     }
-    filterSpells(&state)
+    state.filterAndSortSpells()
     return state
 }
 
@@ -60,7 +60,7 @@ fileprivate func filterItemReducer<T:NameConstructible>(
 ) -> SpellbookAppState {
     guard let status = store.state.profile?.sortFilterStatus else { return state }
     visibilitySetter(status)(action.item, action.visible)
-    filterSpells(&state)
+    state.filterAndSortSpells()
     return state
 }
 func filterSchoolReducer(action: FilterItemAction<School>, state: inout SpellbookAppState) -> SpellbookAppState {
@@ -90,7 +90,7 @@ fileprivate func toggleItemReducer<T:NameConstructible>(
 ) -> SpellbookAppState {
     guard let status = store.state.profile?.sortFilterStatus else { return state }
     visibilityToggler(status)(action.item)
-    filterSpells(&state)
+    state.filterAndSortSpells()
     return state
 }
 func toggleSchoolReducer(action: ToggleItemAction<School>, state: inout SpellbookAppState) -> SpellbookAppState {
@@ -115,7 +115,7 @@ func toggleRangeTypeReducer(action: ToggleItemAction<RangeType>, state: inout Sp
 func filterAllReducer<T:NameConstructible & CaseIterable>(setter: (SortFilterStatus) -> (T, Bool) -> Void, action: FilterAllAction<T>, state: inout SpellbookAppState) -> SpellbookAppState {
     guard let status = state.profile?.sortFilterStatus else { return state }
     T.allCases.forEach({item in setter(status)(item, action.visible)})
-    filterSpells(&state)
+    state.filterAndSortSpells()
     return state
 }
 
@@ -145,24 +145,12 @@ func filterAllRangeTypesReducer(action: FilterAllRangeTypesAction, state: inout 
 
 
 func sortNeededReducer(action: SortNeededAction, state: inout SpellbookAppState) -> SpellbookAppState {
-    sortSpells(&state)
+    state.sortSpells()
     return state
 }
 
-fileprivate func sortSpells(_ state: inout SpellbookAppState) {
-    guard let profile = state.profile else { return }
-    let sortFilterStatus = profile.sortFilterStatus
-    let comparator = spellComparator(sortField1: sortFilterStatus.firstSortField, sortField2: sortFilterStatus.secondSortField, reverse1: sortFilterStatus.firstSortReverse, reverse2: sortFilterStatus.secondSortReverse)
-    state.currentSpellList = state.currentSpellList.sorted { comparator($0, $1) }
-}
-
-fileprivate func filterSpells(_ state: inout SpellbookAppState) {
-    let filter = createFilter(state: state)
-    state.currentSpellList = state.spellList.filter(filter)
-}
-
 func filterNeededReducer(action: FilterNeededAction, state: inout SpellbookAppState) -> SpellbookAppState {
-    filterSpells(&state)
+    state.filterAndSortSpells()
     return state
 }
 
@@ -176,7 +164,7 @@ fileprivate func valueUpdateReducer<T:QuantityType,U:Unit>(action: ValueUpdateAc
     } else {
         maxSetter(status)(action.value)
     }
-    filterSpells(&state)
+    state.filterAndSortSpells()
     return state
 }
 func rangeValueUpdateReducer(action: RangeValueUpdateAction, state: inout SpellbookAppState) -> SpellbookAppState {
@@ -198,7 +186,7 @@ fileprivate func unitUpdateReducer<T:QuantityType,U:Unit>(action: UnitUpdateActi
     } else {
         maxSetter(status)(action.unit)
     }
-    filterSpells(&state)
+    state.filterAndSortSpells()
     return state
 }
 func rangeUnitUpdateReducer(action: RangeUnitUpdateAction, state: inout SpellbookAppState) -> SpellbookAppState {
@@ -230,7 +218,7 @@ func setFlagFilterReducer(action: SetFlagAction, state: inout SpellbookAppState)
             status.setMaterialFilter(action.tf, to: action.value)
             break
     }
-    filterSpells(&state)
+    state.filterAndSortSpells()
     return state
 }
 
@@ -254,7 +242,7 @@ func toggleFlagFilterReducer(action: ToggleFlagAction, state: inout SpellbookApp
             status.toggleMaterialFilter(action.value)
             break
     }
-    filterSpells(&state)
+    state.filterAndSortSpells()
     return state
 }
 
@@ -275,7 +263,7 @@ func togglePropertyReducer(action: TogglePropertyAction, state: inout SpellbookA
             break
     }
     if (profile.sortFilterStatus.statusFilterField == action.property) {
-        filterSpells(&state)
+        state.filterAndSortSpells()
     }
     state.dirtySpellIDs = state.dirtySpellIDs + [action.spell.id]
     return state
@@ -300,7 +288,7 @@ func toggleFilterOptionReducer(action: ToggleFilterOptionAction, state: inout Sp
 func updateSearchQueryReducer(action: UpdateSearchQueryAction, state: inout SpellbookAppState) -> SpellbookAppState {
     state.searchQuery = action.searchQuery
     if state.profile?.sortFilterStatus != nil {
-        filterSpells(&state)
+        state.filterAndSortSpells()
     }
     return state
 }
@@ -309,8 +297,7 @@ func updateProfileReducer(action: SwitchProfileAction, state: inout SpellbookApp
     state.profile = action.newProfile
     state.settings.setCharacterName(name: action.newProfile.name)
     SerializationUtils.saveSettings(state.settings)
-    sortSpells(&state)
-    filterSpells(&state)
+    state.filterAndSortSpells()
     return state
 }
 

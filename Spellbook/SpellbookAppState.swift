@@ -38,5 +38,20 @@ struct SpellbookAppState {
         currentSpellList = spellList
         profileNameList = SerializationUtils.characterNameList()
         dirtySpellIDs = []
+
+        self.filterAndSortSpells()
+    }
+
+    mutating func sortSpells() {
+        if (profile == nil) { return }
+        let sortFilterStatus = profile!.sortFilterStatus
+        let comparator = spellComparator(sortField1: sortFilterStatus.firstSortField, sortField2: sortFilterStatus.secondSortField, reverse1: sortFilterStatus.firstSortReverse, reverse2: sortFilterStatus.secondSortReverse)
+        currentSpellList = currentSpellList.sorted { comparator($0, $1) }
+    }
+
+    mutating func filterAndSortSpells() {
+        let filter = createFilter(state: self)
+        currentSpellList = spellList.filter(filter)
+        self.sortSpells()
     }
 }
