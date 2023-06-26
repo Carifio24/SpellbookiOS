@@ -33,7 +33,7 @@ class SpellcastingInfoController: UIViewController {
     var infoText: String = String()
     
     // Font size
-    let infoFontSize = CGFloat(14)
+    let infoFontSize = CGFloat(16)
     
     // Size
     var width = CGFloat(0)
