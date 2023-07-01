@@ -22,11 +22,9 @@
                 <viewController storyboardIdentifier="spellSlotsManager" id="arj-OK-vCH" customClass="SpellSlotsManagerController" customModule="Spellbook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mgd-mi-fI0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="450"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BookBackground.jpeg" id="ovs-I3-fe2" userLabel="Background View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BookBackground.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="ovs-I3-fe2" userLabel="Background View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="450"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7Q-Vh-zEU" userLabel="Close Button">
                                 <rect key="frame" x="343.33333333333331" y="44" width="60.666666666666686" height="31"/>
@@ -87,7 +85,11 @@
                         <viewLayoutGuide key="safeArea" id="1Pi-bB-6zS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="ovs-I3-fe2" firstAttribute="leading" secondItem="mgd-mi-fI0" secondAttribute="leading" id="5kk-kc-9ZO"/>
                             <constraint firstItem="1Pi-bB-6zS" firstAttribute="trailing" secondItem="sSJ-tO-fUg" secondAttribute="trailing" id="FZ0-1X-XQY"/>
+                            <constraint firstAttribute="top" secondItem="ovs-I3-fe2" secondAttribute="top" id="HfA-i9-zL3"/>
+                            <constraint firstAttribute="bottom" secondItem="ovs-I3-fe2" secondAttribute="bottom" id="Hua-cw-hE4"/>
+                            <constraint firstAttribute="trailing" secondItem="ovs-I3-fe2" secondAttribute="trailing" id="Rvh-JD-bw0"/>
                             <constraint firstItem="1Pi-bB-6zS" firstAttribute="bottom" secondItem="sSJ-tO-fUg" secondAttribute="bottom" id="Y1n-h3-AZK"/>
                             <constraint firstItem="x7Q-Vh-zEU" firstAttribute="trailing" secondItem="1Pi-bB-6zS" secondAttribute="trailing" constant="-10" id="iMd-WB-Gpg"/>
                             <constraint firstItem="sSJ-tO-fUg" firstAttribute="leading" secondItem="1Pi-bB-6zS" secondAttribute="leading" id="kHU-kA-Dc6"/>
@@ -215,7 +217,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Spellbook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" image="BookBackground.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="N4d-fT-FYa">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>

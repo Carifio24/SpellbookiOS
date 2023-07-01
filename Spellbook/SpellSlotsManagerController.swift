@@ -15,7 +15,6 @@ class SpellSlotsManagerController: UIViewController {
     
     static let reuseIdentifier = "spellSlotsManagerIdentifier"
     private var delegate = SpellSlotsManagerDelegate()
-    private var cellWidth: CGFloat = 0
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

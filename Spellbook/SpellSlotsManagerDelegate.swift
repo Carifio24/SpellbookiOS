@@ -9,7 +9,8 @@
 import UIKit
 
 class SpellSlotsManagerDelegate: NSObject, UICollectionViewDelegate,
-                                 UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    UICollectionViewDataSource,
+    UICollectionViewDelegateFlowLayout {
     
     fileprivate static let sectionInsets = UIEdgeInsets(
                                         top: 5,
