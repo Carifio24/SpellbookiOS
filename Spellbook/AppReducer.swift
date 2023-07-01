@@ -12,13 +12,33 @@ func appReducer(action: Action, state: SpellbookAppState?) -> SpellbookAppState 
     var state = state ?? SpellbookAppState()
 
     state = specificActionReducer(action: action, state: &state)
+    let saveProfile = shouldSave(action: action)
 
-    // This will run on EVERY action, regardless of type
-    if let profile = state.profile {
-        SerializationUtils.saveCharacterProfile(profile: profile)
+    // This will run on any action that updates the profile
+    if (saveProfile) {
+        if let profile = state.profile {
+            SerializationUtils.saveCharacterProfile(profile: profile)
+        }
     }
 
     return state
+}
+
+func shouldSave(action: Action) -> Bool {
+    switch action {
+    case _ as DeleteProfileByNameAction:
+        return false
+    case _ as DeleteProfileAction:
+        return false
+    case _ as UpdateCharacterListAction:
+        return false
+    case _ as SaveSettingsAction:
+        return false
+    case _ as ClearProfileAction:
+        return false
+    default:
+        return true
+    }
 }
 
 func specificActionReducer(action: Action, state: inout SpellbookAppState) -> SpellbookAppState {

@@ -50,7 +50,7 @@ class SerializationUtils: NSObject {
                 let profileSION = SION(json: profileText)
                 let profile = try CharacterProfile.fromSION(profileSION)
                 return profile
-            } catch let _ {
+            } catch _ {
                 throw SpellbookError.BadCharacterProfileError
             }
         } else {

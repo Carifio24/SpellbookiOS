@@ -184,6 +184,8 @@ struct SwitchProfileByNameAction: Action {
     let name: String
 }
 
+struct ClearProfileAction: Action {}
+
 struct CreateProfileAction: Action {
     let profile: CharacterProfile
 }

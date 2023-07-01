@@ -28,11 +28,9 @@ let switchProfileMiddleware: AppMiddleware = {
                 next(action)
                 return
             }
-            if let profile = store.state.profile {
-                SerializationUtils.saveCharacterProfile(profile: profile)
-            }
             guard let state = getState() else { return }
             let newProfile = switchAction.newProfile
+            SerializationUtils.saveCharacterProfile(profile: newProfile)
             Toast.makeToast("Character selected: " + newProfile.name)
             next(action)
         }
@@ -128,8 +126,11 @@ let deleteProfileMiddleware: AppMiddleware = { dispatch, getState in
                     let newProfile = try SerializationUtils.loadCharacterProfile(name: characters[0])
                     dispatch(SwitchProfileAction(newProfile: newProfile))
                 } catch {
-                    // TODO: What to do here?
+                    // TODO: Is this the right thing to do here?
+                    dispatch(ClearProfileAction())
                 }
+            } else {
+                dispatch(ClearProfileAction())
             }
         }
     }
