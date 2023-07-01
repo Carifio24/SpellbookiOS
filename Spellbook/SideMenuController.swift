@@ -151,8 +151,6 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        print(controller)
-        print("adaptivePresentationStyle")
         return UIModalPresentationStyle.none
     }
     

@@ -131,7 +131,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let searchBar = UISearchBar()
     
     override func viewWillAppear(_ animated: Bool) {
-        print("ViewController")
         super.viewWillAppear(animated)
         store.subscribe(self) {
             $0.select {

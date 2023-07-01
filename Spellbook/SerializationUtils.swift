@@ -75,13 +75,10 @@ class SerializationUtils: NSObject {
     
     static func loadSettings() -> Settings {
         let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
-        print(settingsLocation.path)
         if let settingsText = try? String(contentsOf: settingsLocation) {
             do {
-                print(settingsText)
                 let settingsJSON = SION(json: settingsText)
                 let settings = Settings(json: settingsJSON)
-                print(settings)
                 return settings
             }
         } else {
