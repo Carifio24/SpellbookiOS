@@ -136,6 +136,10 @@ func specificActionReducer(action: Action, state: inout SpellbookAppState) -> Sp
     // Change character profile
     case let action as SwitchProfileAction:
         return updateProfileReducer(action: action, state: &state)
+
+    // Set current profile to nil
+    case let action as ClearProfileAction:
+        return clearProfileReducer(action: action, state: &state)
     
     // Generic sorting and filtering
     case let action as SortNeededAction:
