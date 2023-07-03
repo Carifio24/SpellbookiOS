@@ -282,6 +282,7 @@ func toggleFilterOptionReducer(action: ToggleFilterOptionAction, state: inout Sp
             status.useTashasExpandedLists = !status.useTashasExpandedLists
             break
     }
+    state.filterAndSortSpells()
     return state
 }
 
