@@ -727,17 +727,24 @@ extension ViewController: StoreSubscriber {
     typealias StoreSubscriberStateType = (profile: CharacterProfile?, sortFilterStatus: SortFilterStatus?, spellFilterStatus: SpellFilterStatus?, currentSpellList: [Spell], dirtySpellIDs: [Int])
     
     func newState(state: StoreSubscriberStateType) {
+        var needReload = false
         if let profile = state.profile {
-            self.setCharacterProfile(cp: profile, initialLoad: false)
+            if (profile.name != characterProfile.name) {
+                self.setCharacterProfile(cp: profile, initialLoad: false)
+                needReload = true
+            }
         }
         if (state.currentSpellList != spells) {
             spells = state.currentSpellList
-            spellTable.reloadData()
+            needReload = true
         }
-        if (state.dirtySpellIDs.count > 0) {
+        if (state.dirtySpellIDs.count > 0 && !needReload) {
             let indexPaths = self.indexPathsForIDs(spellIDs: state.dirtySpellIDs)
             self.spellTable.reloadRows(at: indexPaths, with: UITableView.RowAnimation.none)
             store.dispatch(MarkAllSpellsCleanAction())
+        }
+        if (needReload) {
+            spellTable.reloadData()
         }
     }
     
