@@ -19,8 +19,6 @@ class FilterView: UIView {
     @IBOutlet weak var filterButton: ToggleButton!
     @IBOutlet weak var nameLabel: UILabel!
     
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()

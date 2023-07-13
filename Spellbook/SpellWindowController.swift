@@ -95,16 +95,13 @@ class SpellWindowController: UIViewController {
         
         // Set the button callbacks
         favoriteButton.setCallback({
-            self.main.characterProfile.toggleFavorite(self.spell)
-            self.main.saveCharacterProfile()
+            store.dispatch(TogglePropertyAction(spell: self.spell, property: .Favorites))
         })
         preparedButton.setCallback({
-            self.main.characterProfile.togglePrepared(self.spell)
-            self.main.saveCharacterProfile()
+            store.dispatch(TogglePropertyAction(spell: self.spell, property: .Prepared))
         })
         knownButton.setCallback({
-            self.main.characterProfile.toggleKnown(self.spell)
-            self.main.saveCharacterProfile()
+            store.dispatch(TogglePropertyAction(spell: self.spell, property: .Known))
         })
         
         // Set the content view to fill the screen
@@ -128,8 +125,7 @@ class SpellWindowController: UIViewController {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
                 case UISwipeGestureRecognizer.Direction.right:
-                    self.main.filter()
-                    self.main.saveCharacterProfile()
+                    store.dispatch(FilterNeededAction())
                     self.dismiss(animated: true, completion: nil)
                     UIApplication.shared.setStatusBarTextColor(.dark)
                 default:
@@ -139,6 +135,9 @@ class SpellWindowController: UIViewController {
     }
     
     func setSpell(_ spell: Spell) {
+        
+        // Get the character profile
+        guard let profile = store.state.profile else { return }
         
         var needsLayoutUpdate = false
         
@@ -164,7 +163,7 @@ class SpellWindowController: UIViewController {
         rangeLabel.attributedText = propertyText(name: "Range", text: spell.range.string())
         concentrationLabel.attributedText = propertyText(name: "Concentration", text: bool_to_yn(yn: spell.concentration))
         classesLabel.attributedText = propertyText(name: "Classes", text: spell.classesString())
-        if (main.characterProfile.getUseTCEExpandedLists() && spell.tashasExpandedClasses.count > 0) {
+        if (profile.sortFilterStatus.useTashasExpandedLists && spell.tashasExpandedClasses.count > 0) {
             expandedClassesLabel.attributedText = propertyText(name: "TCE Expanded Classes", text: spell.tashasExpandedClassesString())
         }
         descriptionLabel.attributedText = propertyText(name: "Description", text: spell.description, addLine: true)
@@ -172,13 +171,10 @@ class SpellWindowController: UIViewController {
             higherLevelLabel.attributedText = propertyText(name: "Higher level", text: spell.higherLevel, addLine: true)
         }
         
-        // Get the character profile
-        let profile = main.characterProfile
-        
         // Set the spell buttons to the correct state
-        favoriteButton.set(profile.isFavorite(spell))
-        preparedButton.set(profile.isPrepared(spell))
-        knownButton.set(profile.isKnown(spell))
+        favoriteButton.set(profile.spellFilterStatus.isFavorite(spell))
+        preparedButton.set(profile.spellFilterStatus.isPrepared(spell))
+        knownButton.set(profile.spellFilterStatus.isKnown(spell))
         
         // Set the scroll view content size
         scrollView.contentSize = self.view.frame.size

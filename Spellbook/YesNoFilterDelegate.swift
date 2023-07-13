@@ -10,29 +10,28 @@ import UIKit
 
 class YesNoFilterDelegate: NSObject, FilterGridProtocol {
     
-    typealias StatusToggler = (CharacterProfile, Bool) -> Void
-    typealias StatusGetter = (CharacterProfile, Bool) -> Bool
+    typealias StatusGetter = (Bool) -> Bool
+    typealias ActionCreator = (Bool) -> ToggleFlagAction
     
     static let reuseIdentifier = "filterCell"
     private static let defaultWidth: CGFloat = 0.5 * (UIScreen.main.bounds.size.width - 10) - 5
-    let main = Controllers.mainController
     let items = YesNo.allCases.map({ $0 })
     let columns: Int
     let rows: Int
+    private let actionCreator: ActionCreator
     private let gridWidth: CGFloat
     private let columnWidth: CGFloat
     private let rowHeight: CGFloat = FilterView.imageHeight
     private var itemButtonMap: [Bool:ToggleButton] = [:]
-    private let statusToggler: StatusToggler
     private let statusGetter: StatusGetter
     private let sectionInsets = UIEdgeInsets(top: 5,
                                      left: 5,
                                      bottom: 5,
                                      right: 5)
     
-    init(statusGetter: @escaping StatusGetter, statusToggler: @escaping StatusToggler, gridWidth: CGFloat) {
+    init(statusGetter: @escaping StatusGetter, actionCreator: @escaping ActionCreator, gridWidth: CGFloat) {
         self.gridWidth = gridWidth
-        self.statusToggler = statusToggler
+        self.actionCreator = actionCreator
         self.statusGetter = statusGetter
         
         // We want to determine whether we need 1 row or two
@@ -60,8 +59,8 @@ class YesNoFilterDelegate: NSObject, FilterGridProtocol {
         
     }
     
-    convenience init(statusGetter: @escaping StatusGetter, statusToggler: @escaping StatusToggler) {
-        self.init(statusGetter: statusGetter, statusToggler: statusToggler, gridWidth: YesNoFilterDelegate.defaultWidth)
+    convenience init(statusGetter: @escaping StatusGetter, actionCreator: @escaping ActionCreator) {
+        self.init(statusGetter: statusGetter, actionCreator: actionCreator, gridWidth: YesNoFilterDelegate.defaultWidth)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -77,11 +76,10 @@ class YesNoFilterDelegate: NSObject, FilterGridProtocol {
         cell.filterView.filterButton.isUserInteractionEnabled = true
         //cell.filterView.nameLabel.sizeToFit()
         
-        cell.filterView.filterButton.set(statusGetter(main.characterProfile, bool))
+        cell.filterView.filterButton.set(statusGetter(bool))
         cell.filterView.filterButton.setCallback({
-            self.statusToggler(self.main.characterProfile, bool)
-            self.main.saveCharacterProfile()
-          })
+            store.dispatch(self.actionCreator(bool))
+        })
         //cell.backgroundColor = UIColor.systemPink
         itemButtonMap[bool] = cell.filterView.filterButton
         return cell

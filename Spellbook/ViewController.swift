@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import ActionSheetPicker_3_0
+import CoreActionSheetPicker
+import ReSwift
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, SWRevealViewControllerDelegate {
     
@@ -15,8 +16,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let spellbook = Spellbook(jsonStr: try! String(contentsOf: Bundle.main.url(forResource: "Spells", withExtension: "json")!))
     
     // Spell arrays
-    var spells: [(Spell, Bool)] = []
-    var spellArray: [Spell] = []
+    var spells: [Spell] = []
     
     // Filters
     static let sourcebookFilter: SpellFilter<Sourcebook> = { $0.isIn(sourcebook: $1) }
@@ -38,9 +38,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // Storage files
     let documentsDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-    let profilesDirectoryName = "Characters"
-    var profilesDirectory = URL(fileURLWithPath: "")
-    let settingsFile = "Settings.json"
     
     // Images for the filter/list navigation bar item
     static let filterIcon = UIImage(named: "FilterIcon")
@@ -68,7 +65,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var isRightMenuOpen = false
     
     // Settings, character profile, and selection window
-    var settings = Settings()
     var characterProfile = CharacterProfile()
     var selectionWindow: CharacterSelectionController?
     
@@ -102,8 +98,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let bottomPaddingFraction = CGFloat(0.01)
     
     // Usable height and width
-    static var usableHeight = CGFloat(0)
-    static var usableWidth = CGFloat(0)
+    static var usableHeight = UIScreen.main.bounds.height
+    static var usableWidth = UIScreen.main.bounds.width
     
     // The navigation bar and its items
     @IBOutlet var navBar: UINavigationItem!
@@ -114,6 +110,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private var rightNavBarItems: [UIBarButtonItem] = []
     private var titleView: UIView?
     
+    // The button images
+    // It's too costly to do the re-rendering every time, so we just do it once
+    static let buttonFraction = CGFloat(0.09)
+    static let imageWidth = max(ViewController.buttonFraction * ViewController.usableWidth, CGFloat(30))
+    static let imageHeight = ViewController.imageWidth
+    static let starEmpty = UIImage(named: "star_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: ViewController.imageWidth, height: ViewController.imageHeight)
+    static let starFilled = UIImage(named: "star_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: ViewController.imageWidth, height: ViewController.imageHeight)
+    static let wandEmpty = UIImage(named: "wand_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: ViewController.imageWidth, height: ViewController.imageHeight)
+    static let wandFilled = UIImage(named: "wand_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: ViewController.imageWidth, height: ViewController.imageHeight)
+    static let bookEmpty = UIImage(named: "book_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: ViewController.imageWidth, height: ViewController.imageHeight)
+    static let bookFilled = UIImage(named: "book_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: ViewController.imageWidth, height: ViewController.imageHeight)
+    
     // What to do when the search button is pressed
     @IBAction func searchButtonPressed(_ sender: Any) {
         showSearchBar()
@@ -121,6 +129,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // The search bar itself
     let searchBar = UISearchBar()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        store.subscribe(self) {
+            $0.select {
+                ($0.profile, $0.profile?.sortFilterStatus, $0.profile?.spellFilterStatus, $0.currentSpellList, $0.dirtySpellIDs)
+            }
+        }
+        spells = store.state.currentSpellList
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -219,35 +237,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         rightMenuButton.target = self
         rightMenuButton.action = #selector(rightMenuButtonPressed)
         
-        // Create the profiles directory if it doesn't already exist
-        let fileManager = FileManager.default
-        profilesDirectory = documentsDirectory.appendingPathComponent(profilesDirectoryName)
-        if !fileManager.fileExists(atPath: profilesDirectory.path) {
-            do {
-                try fileManager.createDirectory(atPath: profilesDirectory.path, withIntermediateDirectories: true, attributes: nil)
-            } catch let e {
-                print("\(e)")
-            }
-        }
-        
-        // Load the settings
-        loadSettings()
-        
-        // Load the character profile
-        let characters = characterList()
-        do {
-            if settings.charName == nil || settings.charName!.isEmpty {
-                if characters.count > 0 {
-                    try loadCharacterProfile(name: characters[0], initialLoad: true)
-                } else {
-                    openCharacterCreationDialog(mustComplete: true)
-                }
-            } else {
-                try loadCharacterProfile(name: settings.charName!, initialLoad: true)
-            }
-        } catch {
-            openCharacterCreationDialog(mustComplete: true)
-        }
         
         // The buttons on the right side of the navigation bar
         rightNavBarItems = [ rightMenuButton, filterButton, searchButton ]
@@ -260,14 +249,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         searchBar.barStyle = .black
         self.titleView = navigationItem.titleView
         
-        // If the view hasn't appeared before
-        if firstAppearance {
-            spellArray = []
-            for spell in spellbook.spells {
-                spells.append((spell,true))
-                spellArray.append(spell)
-            }
-            spellTable.reloadData()
+        // Load the character profile
+        let characters = store.state.profileNameList
+        if store.state.profile == nil {
+            openCharacterCreationDialog(mustComplete: true)
         }
         
         // Initial filtering and sorting
@@ -285,7 +270,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // This function sets the sizes of the top-level container views
     func setContainerDimensions(screenWidth: CGFloat, screenHeight: CGFloat) {
-
         
         // Get the padding sizes
         let leftPadding = max(min(leftPaddingFraction * screenWidth, maxHorizPadding), minHorizPadding)
@@ -325,160 +309,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return false
     }
     
-    // Get the list of characters that currently exist
-    func characterList() -> [String] {
-        var charList: [String] = []
-        let fileManager = FileManager.default
-        let charExt = "json"
-        let charExtLen = charExt.count
-        //print("profilesDirectory is \(profilesDirectory)")
-        let enumerator = fileManager.enumerator(at: profilesDirectory, includingPropertiesForKeys: nil)
-        //while let element = enumerator?.nextObject() as? String {
-        for x in enumerator!.allObjects {
-            let url = x as! URL
-            let element = url.lastPathComponent
-            //print(element)
-            if element.hasSuffix(charExt) {
-                var charName = element
-                charName.removeLast(charExtLen+1)
-                charList.append(charName)
-            }
-        }
-        charList.sort(by: { $0.lowercased() < $1.lowercased() })
-        return charList
-    }
-    
-    func setSideMenuCharacterName() {
-        //print("Setting side menu name with \(characterProfile.getName())")
-        if (sideMenuController!.characterLabel != nil) {
-            //print("Here")
-            sideMenuController!.characterLabel.text = "Character: " + characterProfile.getName()
-        } else {
-            //print("label is nil")
-            return
-        }
-    }
-    
-    func setFilterStatus() {
-        sideMenuController!.setFilterStatus(profile: characterProfile)
-    }
-    
-    func setSortFilterSettings() {
-        sortFilterController?.onCharacterProfileUpdate()
-    }
-    
     func setCharacterProfile(cp: CharacterProfile, initialLoad: Bool) {
         
-        characterProfile = cp
-        settings.setCharacterName(name: cp.getName())
-        setSideMenuCharacterName()
-        setSortFilterSettings()
-        saveSettings()
-        saveCharacterProfile()
+        if (characterProfile.name == cp.name) {
+            return
+        }
         
-        // Set side menu filter status
-        setFilterStatus()
+        characterProfile = cp
         
         // Filter and sort
         if !initialLoad {
             sort()
             filter()
-            updateSelectionList()
         }
         
         // Refresh the layout
         //sortFilterController?.tableView.setContentOffset(.zero, animated: true)
         //sortFilterController?.view.setNeedsLayout()
         sortFilterController?.tableView.reloadData()
-    }
-    
-    // Loading the settings
-    func loadSettings() {
-        let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
-        //print("settingsLocation is: \(settingsLocation)")
-        if let settingsText = try? String(contentsOf: settingsLocation) {
-            do {
-                //print("settingsText is: \(settingsText)")
-                let settingsJSON = SION(json: settingsText)
-                settings = Settings(json: settingsJSON)
-            }
-        } else {
-            //print("Error getting settings")
-            settings = Settings()
-            return
-        }
-    }
-    
-    func profileLocation(name: String) -> URL {
-        let charFile = name + ".json"
-        return profilesDirectory.appendingPathComponent(charFile)
-    }
-    
-    func loadCharacterProfile(name: String, initialLoad: Bool) throws {
-        let location = profileLocation(name: name)
-        //print("Location is: \(location)")
-        if var profileText = try? String(contentsOf: location) {
-            do {
-                fixEscapeCharacters(&profileText)
-                //print("profileText is:\n\(profileText)")
-                let profileSION = SION(json: profileText)
-                let profile = CharacterProfile(sion: profileSION)
-                setCharacterProfile(cp: profile, initialLoad: initialLoad)
-            }
-        } else {
-            print("Error reading profile")
-            let error = SpellbookError.BadCharacterProfileError
-            print(error.description)
-            throw error
-        }
-    }
-    
-    func saveCharacterProfile() {
-        let location = profileLocation(name: characterProfile.getName())
-        //print("Saving profile for \(characterProfile.name) to \(location)")
-        characterProfile.save(filename: location)
-    }
-    
-    func deleteCharacterProfile(name: String) {
-        let location = profileLocation(name: name)
-        //print("Beginning deleteCharacterProfile with name: \(name)")
-        let fileManager = FileManager.default
-        do {
-            let deletingCurrent = (name == characterProfile.getName())
-            try fileManager.removeItem(at: location)
-            let characters = characterList()
-            updateSelectionList()
-            setSideMenuCharacterName()
-            //print("deletingCurrent: \(deletingCurrent)")
-            if deletingCurrent {
-                if characters.count > 0 {
-                    //print("The new character's name is: \(characters[0])")
-                    do {
-                        try loadCharacterProfile(name: characters[0], initialLoad: false)
-                    } catch {
-                        openCharacterCreationDialog(mustComplete: true)
-                    }
-                }
-            }
-        } catch let e {
-            print("\(e)")
-        }
-    }
-    
-    // Saving the settings
-    func saveSettings() {
-        let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
-        settings.save(filename: settingsLocation)
-        //print("Settings are: \(settings.toJSONString())")
-        //print("Saving settings to: \(settingsLocation)")
-    }
-    
-    func updateSelectionList() {
-        //print("In updateSelectionList()")
-        if selectionWindow != nil {
-            //print("Updating...")
-            selectionWindow!.updateCharacterTable()
-        }
     }
     
     func openCharacterCreationDialog(mustComplete: Bool=false) {
@@ -522,8 +370,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             for item in fileItems {
                 //var inSpellbook = false
                 for spell in spells {
-                    if item == spell.0.name {
-                        propSetter(spell.0, true)
+                    if item == spell.name {
+                        propSetter(spell, true)
                         //print(spell.0.name)
                         //inSpellbook = true
                         break
@@ -532,25 +380,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         } else {
             return
-        }
-    }
-    
-    func saveSpellsWithProperty(propGetter: SpellStatusGetter, filename: String) {
-        let fileLocation = documentsDirectory.appendingPathComponent(filename)
-        //print("Saving spells to:")
-        //print(fileLocation)
-        var propNames: [String] = []
-        for spell in spells {
-            if propGetter(spell.0) {
-                propNames.append(spell.0.name)
-                //print(spell.0.name)
-            }
-        }
-        let propString = propNames.joined(separator: "\n")
-        do {
-            try propString.write(to: fileLocation, atomically: false, encoding: .utf8)
-        } catch let e {
-            print("\(e)")
         }
     }
     
@@ -579,8 +408,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //toggleWindowVisibilities()
         sortFilterController?.dismissKeyboard()
         if filterVisible {
-            sort()
-            filter()
+            //sort()
+            //filter()
         }
         toggleWindowVisibilities()
     }
@@ -628,12 +457,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         hideSearchBar()
         searchBar.text = ""
-        filter()
+        store.dispatch(UpdateSearchQueryAction(searchQuery: ""))
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         //passThroughView.blocking = false
-        filter()
+        store.dispatch(UpdateSearchQueryAction(searchQuery: searchText))
     }
 
     
@@ -699,7 +528,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     // Number of rows in TableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return spellArray.count
+        return spells.count
     }
     
     // Set the footer height
@@ -721,7 +550,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SpellDataCell
         
         // Get the spell
-        let spell = spellArray[indexPath.row]
+        let spell = spells[indexPath.row]
         cell.spell = spell
         
         // Cell formatting
@@ -735,94 +564,41 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.levelSchoolLabel.text = spell.levelSchoolString()
         cell.sourcebookLabel.text = spell.sourcebooksString()
         
-        for label in [ cell.nameLabel, cell.levelSchoolLabel, cell.sourcebookLabel ] {
+        for label in [cell.nameLabel, cell.levelSchoolLabel, cell.sourcebookLabel] {
             label?.textColor = defaultFontColor
         }
         
         // Set the button images
-        cell.favoriteButton.setTrueImage(image: SpellTableViewController.starFilled!)
-        cell.favoriteButton.setFalseImage(image: SpellTableViewController.starEmpty!)
-        cell.preparedButton.setTrueImage(image: SpellTableViewController.wandFilled!)
-        cell.preparedButton.setFalseImage(image: SpellTableViewController.wandEmpty!)
-        cell.knownButton.setTrueImage(image: SpellTableViewController.bookFilled!)
-        cell.knownButton.setFalseImage(image: SpellTableViewController.bookEmpty!)
+        cell.favoriteButton.setTrueImage(image: ViewController.starFilled!)
+        cell.favoriteButton.setFalseImage(image: ViewController.starEmpty!)
+        cell.preparedButton.setTrueImage(image: ViewController.wandFilled!)
+        cell.preparedButton.setFalseImage(image: ViewController.wandEmpty!)
+        cell.knownButton.setTrueImage(image: ViewController.bookFilled!)
+        cell.knownButton.setFalseImage(image: ViewController.bookEmpty!)
         
         // Set the button statuses
-        cell.favoriteButton.set(characterProfile.isFavorite(spell))
-        cell.preparedButton.set(characterProfile.isPrepared(spell))
-        cell.knownButton.set(characterProfile.isKnown(spell))
+        let sfs = store.state.profile?.spellFilterStatus ?? SpellFilterStatus()
+        cell.favoriteButton.set(sfs.isFavorite(spell))
+        cell.preparedButton.set(sfs.isPrepared(spell))
+        cell.knownButton.set(sfs.isKnown(spell))
         
         // Set the button callbacks
         // Set the callbacks for the buttons
         cell.favoriteButton.setCallback({
-            self.characterProfile.toggleFavorite(cell.spell)
-            self.saveCharacterProfile()
-            })
+            store.dispatch(TogglePropertyAction(spell: cell.spell, property: .Favorites, markDirty: false))
+        })
         cell.preparedButton.setCallback({
-            self.characterProfile.togglePrepared(cell.spell)
-            self.saveCharacterProfile()
+            store.dispatch(TogglePropertyAction(spell: cell.spell, property: .Prepared, markDirty: false))
         })
         cell.knownButton.setCallback({
-            self.characterProfile.toggleKnown(cell.spell)
-            self.saveCharacterProfile()
+            store.dispatch(TogglePropertyAction(spell: cell.spell, property: .Known, markDirty: false))
         })
 
         return cell
     }
     
-    
-    func updateSpellArray() {
-        // Filter out the items with a true value in the second component,
-        // then extract just the first component (the spell)
-        spellArray = spells.filter({$0.1}).map({$0.0})
-    }
-    
-    
-    // Function to sort the data by one field
-    func singleSort(sortField: SortField, reverse: Bool) {
-        
-        // Do the sorting
-        let cmp = spellComparator(sortField: sortField, reverse: reverse)
-        spells.sort { return cmp($0.0, $1.0) }
-        
-        // Get the array
-        updateSpellArray()
-
-        // Repopulate the table
-        //print("Reloading")
-        //print(index)
-        spellTable.reloadData()
-        //print("Done reloading")
-    }
-    
-    // Function to sort the data by two fields
-    func doubleSort(sortField1: SortField, sortField2: SortField, reverse1: Bool, reverse2: Bool) {
-        
-        // Do the sorting
-        let cmp = spellComparator(sortField1: sortField1, sortField2: sortField2, reverse1: reverse1, reverse2: reverse2)
-        spells.sort { return cmp($0.0, $1.0) }
-        
-        // Get the array
-        updateSpellArray()
-        
-        // Repopulate the table
-        //print("Reloading")
-        //print(index1)
-        //print(index2)
-        spellTable.reloadData()
-        //print("Done reloading")
-    }
-    
     func sort() {
-        doubleSort(sortField1: characterProfile.getFirstSortField(), sortField2: characterProfile.getSecondSortField(), reverse1: characterProfile.getFirstSortReverse(), reverse2: characterProfile.getSecondSortReverse())
-    }
-    
-    // Function to entirely unfilter - i.e., display everything
-    func unfilter() {
-        for i in 0...spells.count-1 {
-            spells[i] = (spells[i].0, true)
-        }
-        updateSpellArray()
+        store.dispatch(SortNeededAction())
     }
     
     internal func filterThroughArray<E:CaseIterable>(spell: Spell, values: [E], filter: (Spell,E) -> Bool) -> Bool {
@@ -850,107 +626,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     }
     
-    // Determine whether or not a single row should be filtered
-    func filterItem(spell: Spell, profile cp: CharacterProfile, visibleSourcebooks: [Sourcebook], visibleClasses: [CasterClass], visibleSchools: [School], visibleCastingTimeTypes: [CastingTimeType], visibleDurationTypes: [DurationType], visibleRangeTypes: [RangeType], castingTimeBounds: (CastingTime,CastingTime), durationBounds: (Duration,Duration), rangeBounds: (Range,Range), isText: Bool, text: String) -> Bool {
-        let spname = spell.name.lowercased()
-        
-        // If we aren't going to filter when searching, and there's search text,
-        // we only need to check whether the spell name contains the search text
-        if !cp.getApplyFiltersToSearch() && isText {
-            return !spname.contains(text)
-        }
-        
-        // If we aren't going to filter spell lists, and the current filter isn't ALL
-        // just check if the spell is on the list
-        if !cp.getApplyFiltersToLists() && cp.isStatusSet() {
-            var hide = !cp.satisfiesFilter(spell: spell, filter: cp.getStatusFilter())
-            if (isText) {
-                hide = hide || !spname.contains(text)
-            }
-            return hide
-        }
-        
-        // Run through the various filtering fields
-        
-        // Level
-        let level = spell.level
-        if (level > cp.getMaxSpellLevel()) || (level < cp.getMinSpellLevel()) { return true }
-        
-        // Sourcebooks
-        if filterThroughArray(spell: spell, values: visibleSourcebooks, filter: ViewController.sourcebookFilter) { return true }
-        
-        // Classes
-        if filterThroughArray(spell: spell, values: visibleClasses, filter: ViewController.casterClassesFilter(useExpanded: cp.getUseTCEExpandedLists())) { return true }
-        
-        // Schools
-        if filterThroughArray(spell: spell, values: visibleSchools, filter: ViewController.schoolFilter) { return true }
-        
-        // Casting time types
-        if filterThroughArray(spell: spell, values: visibleCastingTimeTypes, filter: ViewController.castingTimeTypeFilter) { return true }
-        
-        // Duration types
-        if filterThroughArray(spell: spell, values: visibleDurationTypes, filter: ViewController.durationTypeFilter) { return true }
-        
-        // Range types
-        if filterThroughArray(spell: spell, values: visibleRangeTypes, filter: ViewController.rangeTypeFilter) { return true }
-        
-        // Casting time bounds
-        if filterAgainstBounds(spell: spell, bounds: castingTimeBounds, quantityGetter: { $0.castingTime }) { return true }
-        
-        // Duration bounds
-        if filterAgainstBounds(spell: spell, bounds: durationBounds, quantityGetter: { $0.duration }) { return true }
-        
-        // Range bounds
-        if filterAgainstBounds(spell: spell, bounds: rangeBounds, quantityGetter: { $0.range }) { return true }
-        
-        // The rest of the filtering conditions
-        var toHide = (cp.favoritesSelected() && !cp.isFavorite(spell))
-        toHide = toHide || (cp.knownSelected() && !cp.isKnown(spell))
-        toHide = toHide || (cp.preparedSelected() && !cp.isPrepared(spell))
-        toHide = toHide || !cp.getRitualFilter(spell.ritual)
-        toHide = toHide || !cp.getConcentrationFilter(spell.concentration)
-        toHide = toHide || !cp.getVerbalFilter(spell.verbal)
-        toHide = toHide || !cp.getSomaticFilter(spell.somatic)
-        toHide = toHide || !cp.getMaterialFilter(spell.material)
-        toHide = toHide || (isText && !spname.contains(text))
-        return toHide
-    }
-    
     // Function to filter the table data
     func filter() {
-        
-        // During initial setup
-        if (spells.count == 0) { return }
-        
-        // Testing
-        //print("Favorites selected: \(main?.characterProfile.favoritesSelected())")
-        //print("Known selected: \(main?.characterProfile.knownSelected())")
-        //print("Prepared selected: \(main?.characterProfile.preparedSelected())")
-        
-        // First, we filter the data
-        let searchText = searchBar.text?.lowercased() ?? ""
-        let isText = !searchText.isEmpty
-        
-        let visibleSourcebooks = characterProfile.getVisibleValues(type: Sourcebook.self)
-        let visibleClasses = characterProfile.getVisibleValues(type: CasterClass.self)
-        let visibleSchools = characterProfile.getVisibleValues(type: School.self)
-        let visibleCastingTimeTypes = characterProfile.getVisibleValues(type: CastingTimeType.self)
-        let visibleDurationTypes = characterProfile.getVisibleValues(type: DurationType.self)
-        let visibleRangeTypes = characterProfile.getVisibleValues(type: RangeType.self)
-        let castingTimeBounds = characterProfile.getBounds(type: CastingTime.self)
-        let durationBounds = characterProfile.getBounds(type: Duration.self)
-        let rangeBounds = characterProfile.getBounds(type: Range.self)
-        
-        for i in 0...spells.count-1 {
-            let filter = filterItem(spell: spells[i].0, profile: characterProfile, visibleSourcebooks: visibleSourcebooks, visibleClasses: visibleClasses, visibleSchools: visibleSchools, visibleCastingTimeTypes: visibleCastingTimeTypes, visibleDurationTypes: visibleDurationTypes, visibleRangeTypes: visibleRangeTypes, castingTimeBounds: castingTimeBounds, durationBounds: durationBounds, rangeBounds: rangeBounds, isText: isText, text: searchText)
-            spells[i] = (spells[i].0, !filter)
+        store.dispatch(FilterNeededAction())
+    }
+    
+    func indexPathsForIDs(spellIDs: [Int]) -> [IndexPath] {
+        var indexPaths: [IndexPath] = []
+        for (idx, spell) in spells.enumerated() {
+            if (spellIDs.contains(spell.id)) {
+                let indexPath = IndexPath(item: idx, section: 0)
+                indexPaths.append(indexPath)
+            }
         }
-            
-        // Get the new spell array
-        updateSpellArray()
-            
-        // Repopulate the table
-        spellTable.reloadData()
+        return indexPaths
     }
     
     // If one of the side menus is open, we want to close the menu rather than select a cell
@@ -959,16 +648,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return indexPath
     }
     
-    
     // Set what happens when a cell is selected
     // For us, that's creating a segue to a view with the spell info
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
     
-        if indexPath.row >= spellArray.count { return }
+        if indexPath.row >= spells.count { return }
         let spellIndex = indexPath.row
-        let spell = spellArray[spellIndex]
+        let spell = spells[spellIndex]
 
         let spellWindowController = storyboard?.instantiateViewController(withIdentifier: spellWindowIdentifier) as! SpellWindowController
         spellWindowController.modalPresentationStyle = .fullScreen
@@ -979,7 +667,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         spellWindowController.spell = spell
         spellWindowController.spellIndex = spellIndex
         UIApplication.shared.setStatusBarTextColor(.light)
-        //print("")
     }
     
     
@@ -991,7 +678,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if indexPath == nil {
             return
         } else if (gestureRecognizer.state == UIGestureRecognizer.State.began) {
-            if indexPath!.row >= spellArray.count { return }
+            if indexPath!.row >= spells.count { return }
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "statusPopup") as! StatusPopupController
             
@@ -999,14 +686,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let popupWidth = CGFloat(166)
             controller.width = popupWidth
             controller.height = popupHeight
-            controller.main = self
             let cell = spellTable.cellForRow(at: indexPath!) as! SpellDataCell
             let positionX = CGFloat(0)
             let positionY = cell.frame.maxY
             let position = CGPoint(x: positionX, y: positionY)
             let absPosition = view.convert(position, from: self.spellTable)
             let popupPosition = PopupViewController.PopupPosition.topLeft(absPosition)
-            controller.spell = spellArray[indexPath!.row]
+            controller.spell = spells[indexPath!.row]
             let popupVC = PopupViewController(contentController: controller, position: popupPosition, popupWidth: popupWidth, popupHeight: popupHeight)
             popupVC.backgroundAlpha = 0
             self.present(popupVC, animated: true, completion: nil)
@@ -1034,4 +720,32 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let toHide: Bool = (yVelocity < -5) && !filterVisible // True if scrolling down, false if scrolling up
         navController.setNavigationBarHidden(toHide, animated: true)
     }
+}
+
+// MARK: StoreSubscriber
+extension ViewController: StoreSubscriber {
+    typealias StoreSubscriberStateType = (profile: CharacterProfile?, sortFilterStatus: SortFilterStatus?, spellFilterStatus: SpellFilterStatus?, currentSpellList: [Spell], dirtySpellIDs: [Int])
+    
+    func newState(state: StoreSubscriberStateType) {
+        var needReload = false
+        if let profile = state.profile {
+            if (profile.name != characterProfile.name) {
+                self.setCharacterProfile(cp: profile, initialLoad: false)
+                needReload = true
+            }
+        }
+        if (state.currentSpellList != spells) {
+            spells = state.currentSpellList
+            needReload = true
+        }
+        if (state.dirtySpellIDs.count > 0 && !needReload) {
+            let indexPaths = self.indexPathsForIDs(spellIDs: state.dirtySpellIDs)
+            self.spellTable.reloadRows(at: indexPaths, with: UITableView.RowAnimation.none)
+            store.dispatch(MarkAllSpellsCleanAction())
+        }
+        if (needReload) {
+            spellTable.reloadData()
+        }
+    }
+    
 }

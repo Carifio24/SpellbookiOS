@@ -15,10 +15,10 @@ class SpellStatus {
     private(set) var prepared: Bool = false;
     private(set) var known: Bool = false;
     
-    init(favIn: Bool, prepIn: Bool, knownIn: Bool) {
-        favorite = favIn
-        prepared = prepIn
-        known = knownIn
+    init(favorite: Bool, prepared: Bool, known: Bool) {
+        self.favorite = favorite
+        self.prepared = prepared
+        self.known = known
     }
     
     init() {}
@@ -26,5 +26,11 @@ class SpellStatus {
     func setFavorite(_ favIn: Bool) { favorite = favIn }
     func setPrepared(_ prepIn: Bool) { prepared = prepIn }
     func setKnown(_ knownIn: Bool) { known = knownIn }
+    
+    var noneTrue: Bool {
+        get {
+            return !(favorite || prepared || known)
+        }
+    }
     
 }

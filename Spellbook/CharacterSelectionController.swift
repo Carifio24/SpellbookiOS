@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import ReSwift
 
 class CharacterSelectionController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var selectionTitle: UILabel!
     @IBOutlet weak var selectionMessage: UILabel!
     @IBOutlet weak var newCharacterButton: UIButton!
+    @IBOutlet weak var importCharacterButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var backgroundView: UIImageView!
     
@@ -23,11 +25,20 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     var characters: [String] = []
     let main: ViewController = Controllers.mainController
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        store.subscribe(self) {
+            $0.select {
+                $0.profileNameList
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Get the current characters list
-        characters = main.characterList()
+        characters = store.state.profileNameList
         //print("There are \(characters.count) characters")
         
         // Set the view dimensions
@@ -49,8 +60,9 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         // Set the table cell type
         //tableView.register(CharacterSelectionCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         
-        // Set the button function
+        // Set the button functions
         newCharacterButton.addTarget(self, action: #selector(newCharacterButtonPressed), for: UIControl.Event.touchUpInside)
+        importCharacterButton.addTarget(self, action: #selector(importCharacterButtonPressed), for: UIControl.Event.touchUpInside)
         
         // Load the data
         //print("About to load data")
@@ -78,31 +90,24 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         let usableHeight = height - topPadding - bottomPadding
         
         backgroundView.frame = CGRect(x: 0, y: 0, width: width, height: height)
-        
-        //print("Popup type: CharacterSelectionController")
-        //print("Popup width: \(width)")
-        //print("Popup height: \(height)")
 
         let titleX = CGFloat(width / 2)
         let titleY = view.frame.origin.y + topPadding
         selectionTitle.center.x = titleX
         selectionTitle.frame.origin.y = titleY
         selectionTitle.sizeToFit()
-        //selectionTitle.backgroundColor = UIColor.red
         
         let messageX = CGFloat(width / 2)
         let messageY = titleY + selectionTitle.frame.height
         selectionMessage.center.x = messageX
         selectionMessage.frame.origin.y = messageY
         selectionTitle.sizeToFit()
-        //selectionMessage.backgroundColor = UIColor.blue
         
         let newButtonX = CGFloat(width / 2)
         let newButtonY = messageY + selectionMessage.frame.height
         newCharacterButton.contentHorizontalAlignment = .center
         newCharacterButton.center.x = newButtonX
         newCharacterButton.frame.origin.y = newButtonY
-        //newCharacterButton.backgroundColor = UIColor.green
         newCharacterButton.sizeToFit()
 
         let tableX = leftPadding
@@ -123,36 +128,32 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! CharacterSelectionCell
         cell.deleteButton.addTarget(self, action: #selector(deleteButtonPressed(sender:)), for: UIControl.Event.touchUpInside)
+        cell.clipboardButton.addTarget(self, action: #selector(clipboardButtonPressed(sender:)), for: UIControl.Event.touchUpInside)
         cell.deleteButton.tag = indexPath.row
         cell.deleteButton.setImage(CharacterSelectionCell.deleteIcon, for: UIControl.State.normal)
+        cell.clipboardButton.tag = indexPath.row
+        cell.clipboardButton.setImage(CharacterSelectionCell.clipboardIcon, for: UIControl.State.normal)
         let name = characters[indexPath.row]
         cell.nameLabel.text = name
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //print("Pressed at \(indexPath.row)")
-        //print("Name is \(characters[indexPath.row])")
         let name = characters[indexPath.row]
-        do {
-            try main.loadCharacterProfile(name: name, initialLoad: false)
-            Controllers.revealController.view.makeToast("Character selected: " + name, duration: Constants.toastDuration)
-        } catch {
-            Controllers.revealController.view.makeToast("Error loading character profile: " + name, duration: Constants.toastDuration)
-        }
+        store.dispatch(SwitchProfileByNameAction(name: name))
         self.dismiss(animated: true, completion: dismissOperations)
     }
     
     @objc func newCharacterButtonPressed() {
-        let mustComplete = (main.characterList().count == 0)
-        //print("Pressed new character button, mustComplete: \(mustComplete)")
+        let mustComplete = (store.state.profileNameList.count == 0)
         displayNewCharacterWindow(mustComplete: mustComplete)
     }
     
-    func displayNewCharacterWindow(mustComplete: Bool=false) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "characterCreation") as! CharacterCreationController
-        
+    @objc func importCharacterButtonPressed() {
+        displayImportCharacterWindow()
+    }
+    
+    private func createPopup(_ controller: UIViewController) -> PopupViewController {
         let screenRect = UIScreen.main.bounds
         let popupWidth = CGFloat(0.8 * screenRect.size.width)
         let popupHeight = CGFloat(0.25 * screenRect.size.height)
@@ -161,12 +162,26 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         let height = popupHeight <= maxPopupHeight ? popupHeight : maxPopupHeight
         let width = popupWidth <= maxPopupWidth ? popupWidth : maxPopupWidth
         
-        let popupVC = PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
+        return PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
+    }
+    
+    func displayNewCharacterWindow(mustComplete: Bool=false) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "characterCreation") as! CharacterCreationController
+        
+        let popupVC = createPopup(controller)
         if mustComplete {
             controller.cancelButton.isHidden = true
             popupVC.canTapOutsideToDismiss = false
-            self.present(popupVC, animated: true)
         }
+        self.present(popupVC, animated: true)
+    }
+    
+    func displayImportCharacterWindow() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "importCharacter") as! ImportCharacterController
+        
+        let popupVC = createPopup(controller)
         self.present(popupVC, animated: true)
     }
     
@@ -183,22 +198,24 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         let maxPopupWidth = CGFloat(350)
         let height = popupHeight <= maxPopupHeight ? popupHeight : maxPopupHeight
         let width = popupWidth <= maxPopupWidth ? popupWidth : maxPopupWidth
-        //print("Popup height and width are \(popupHeight), \(popupWidth)")
-        //print("The screen heights are \(SizeUtils.screenHeight), \(SizeUtils.screenWidth)")
-        //print("Deletion prompt will have width \(width), height \(height)")
         let popupVC = PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
         self.present(popupVC, animated: true)
     }
     
-    
-    func updateCharacterTable() {
-        characters = main.characterList()
-        tableView.reloadData()
-        //print(tableView.contentSize.height)
-        //print(tableView.frame.size.height)
-        tableView.isScrollEnabled = tableView.contentSize.height > tableView.frame.size.height
+    @objc func copyProfileJSONToClipboard(name: String) {
+        let location = SerializationUtils.profileLocation(name: name)
+        if var profileText = try? String(contentsOf: location) {
+            do {
+                fixEscapeCharacters(&profileText)
+                let pasteboard = UIPasteboard.general
+                pasteboard.string = profileText
+                Toast.makeToast("Copied JSON for \(name)")
+            }
+        } else {
+            Toast.makeToast("Error copying JSON for \(name)")
+        }
     }
-    
+
     func dismissOperations() {
         //print("In dismissOperations()")
         main.selectionWindow = nil
@@ -208,13 +225,30 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         newCharacterButton.sendActions(for: UIControl.Event.touchUpInside)
     }
     
+    func indexPathForItem(item: UIView) -> IndexPath? {
+        let origin = item.convert(CGPoint.zero, to: tableView)
+        return tableView.indexPathForRow(at: origin)
+    }
+
     @objc func deleteButtonPressed(sender: UIButton) {
-        let buttonOriginInTable = sender.convert(CGPoint.zero, to: tableView)
-        let indexPath = tableView.indexPathForRow(at: buttonOriginInTable)
-        if (indexPath == nil) { return }
-        let name = characters[indexPath!.row]
+        guard let indexPath = indexPathForItem(item: sender) else { return }
+        let name = characters[indexPath.row]
         createDeletionPrompt(name: name)
     }
 
-    
+    @objc func clipboardButtonPressed(sender: UIButton) {
+        guard let indexPath = indexPathForItem(item: sender) else { return }
+        let name = characters[indexPath.row]
+        copyProfileJSONToClipboard(name: name)
+    }
+}
+
+// MARK: StoreSubscriber
+extension CharacterSelectionController: StoreSubscriber {
+    func newState(state characterNames: [String]) {
+        // Refresh the table
+        characters = characterNames
+        tableView.reloadData()
+        tableView.isScrollEnabled = tableView.contentSize.height > tableView.frame.size.height
+    }
 }

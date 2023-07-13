@@ -12,6 +12,7 @@ typealias SpellStatusGetter = (Spell) -> Bool
 typealias SpellFilter<T> = (Spell,T) -> Bool
 
 import UIKit
+import ReSwift
 
 class SpellTableViewController: UITableViewController {
     
@@ -22,7 +23,6 @@ class SpellTableViewController: UITableViewController {
     // Spellbook
     let spellbook = Spellbook(jsonStr: try! String(contentsOf: Bundle.main.url(forResource: "Spells", withExtension: "json")!))
     
-    var spells: [(Spell, Bool)] = []
     var spellArray: [Spell] = []
     
     // Vertical position in main view
@@ -36,14 +36,6 @@ class SpellTableViewController: UITableViewController {
     let spellWindowIdentifier = "spellWindow"
     static let estimatedHeight = CGFloat(60)
     
-    // Filters
-    static let sourcebookFilter: SpellFilter<Sourcebook> = { $0.isIn(sourcebook: $1) }
-    static let casterClassesFilter: SpellFilter<CasterClass> = { $0.usableByClass($1) }
-    static let schoolFilter: SpellFilter<School> = { $0.school == $1 }
-    static let castingTimeTypeFilter: SpellFilter<CastingTimeType> = { $0.castingTime.type == $1 }
-    static let durationTypeFilter: SpellFilter<DurationType> = { $0.duration.type == $1 }
-    static let rangeTypeFilter: SpellFilter<RangeType> = { $0.range.type == $1 }
-    
     // The button images
     // It's too costly to do the re-rendering every time, so we just do it once
     static let buttonFraction = CGFloat(0.09)
@@ -56,7 +48,6 @@ class SpellTableViewController: UITableViewController {
     static let bookEmpty = UIImage(named: "book_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellTableViewController.imageWidth, height: SpellTableViewController.imageHeight)
     static let bookFilled = UIImage(named: "book_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellTableViewController.imageWidth, height: SpellTableViewController.imageHeight)
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,8 +56,6 @@ class SpellTableViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = SpellTableViewController.estimatedHeight
         tableView.rowHeight = UITableView.automaticDimension
-        
-        //print("profilesDirectory is: \(profilesDirectory)")
         
         // // Long press gesture recognizer (currently we aren't using it)
         //let lpgr = UILongPressGestureRecognizer.init(target: self, action: #selector(handleLongPress))
@@ -101,11 +90,7 @@ class SpellTableViewController: UITableViewController {
         
         // If this is the view's first appearance (i.e. when the app is opening), we initialize spellArray
         if firstAppear {
-            spellArray = []
-            for spell in spellbook.spells {
-                spells.append((spell,true))
-                spellArray.append(spell)
-            }
+            spellArray = store.state.currentSpellList
             tableView.reloadData()
             firstAppear = false
         }
@@ -118,6 +103,11 @@ class SpellTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        store.subscribe(self) {
+            $0.select {
+                $0.currentSpellList
+            }
+        }
     }
     
     func setTableDimensions(leftPadding: CGFloat, bottomPadding: CGFloat, usableHeight: CGFloat, usableWidth: CGFloat, tableTopPadding: CGFloat) {
@@ -189,213 +179,34 @@ class SpellTableViewController: UITableViewController {
         cell.knownButton.setFalseImage(image: SpellTableViewController.bookEmpty!)
         
         // Set the button statuses
-        let cp = main.characterProfile
-        cell.favoriteButton.set(cp.isFavorite(spell))
-        cell.preparedButton.set(cp.isPrepared(spell))
-        cell.knownButton.set(cp.isKnown(spell))
+        if let spellFilterStatus = store.state.profile?.spellFilterStatus {
+            cell.favoriteButton.set(spellFilterStatus.isFavorite(spell))
+            cell.preparedButton.set(spellFilterStatus.isPrepared(spell))
+            cell.knownButton.set(spellFilterStatus.isKnown(spell))
+        }
         
         // Set the button callbacks
         // Set the callbacks for the buttons
         cell.favoriteButton.setCallback({
-            let cp = self.main.characterProfile
-            cp.toggleFavorite(cell.spell)
-            self.main.saveCharacterProfile()
-            })
+            store.dispatch(TogglePropertyAction(spell: spell, property: StatusFilterField.Favorites))
+        })
         cell.preparedButton.setCallback({
-            let cp = self.main.characterProfile
-            cp.togglePrepared(cell.spell)
-            self.main.saveCharacterProfile()
+            store.dispatch(TogglePropertyAction(spell: spell, property: StatusFilterField.Prepared))
         })
         cell.knownButton.setCallback({
-            let cp = self.main.characterProfile
-            cp.toggleKnown(cell.spell)
-            self.main.saveCharacterProfile()
+            store.dispatch(TogglePropertyAction(spell: spell, property: StatusFilterField.Known))
         })
         
         return cell
     }
     
-    
-    func updateSpellArray() {
-        // Filter out the items with a true value in the second component,
-        // then extract just the first component (the spell)
-        spellArray = spells.filter({$0.1}).map({$0.0})
-    }
-    
-    
-    // Function to sort the data by one field
-    func singleSort(sortField: SortField, reverse: Bool) {
-        
-        // Do the sorting
-        let cmp = spellComparator(sortField: sortField, reverse: reverse)
-        spells.sort { return cmp($0.0, $1.0) }
-        
-        // Get the array
-        updateSpellArray()
-
-        // Repopulate the table
-        //print("Reloading")
-        //print(index)
-        tableView.reloadData()
-        //print("Done reloading")
-    }
-    
-    // Function to sort the data by two fields
-    func doubleSort(sortField1: SortField, sortField2: SortField, reverse1: Bool, reverse2: Bool) {
-        
-        // Do the sorting
-        let cmp = spellComparator(sortField1: sortField1, sortField2: sortField2, reverse1: reverse1, reverse2: reverse2)
-        spells.sort { return cmp($0.0, $1.0) }
-        
-        // Get the array
-        updateSpellArray()
-        
-        // Repopulate the table
-        //print("Reloading")
-        //print(index1)
-        //print(index2)
-        tableView.reloadData()
-        //print("Done reloading")
-    }
-    
     func sort() {
-        let cp = main.characterProfile
-        doubleSort(sortField1: cp.getFirstSortField(), sortField2: cp.getSecondSortField(), reverse1: cp.getFirstSortReverse(), reverse2: cp.getSecondSortReverse())
-    }
-    
-    // Function to entirely unfilter - i.e., display everything
-    func unfilter() {
-        for i in 0...spells.count-1 {
-            spells[i] = (spells[i].0, true)
-        }
-        updateSpellArray()
-    }
-    
-    internal func filterThroughArray<E:CaseIterable>(spell: Spell, values: [E], filter: (Spell,E) -> Bool) -> Bool {
-        for e in values {
-            if filter(spell, e) {
-                return false
-            }
-        }
-        return true
-    }
-    
-    internal func filterAgainstBounds<Q:Comparable,U:Unit>(spell s: Spell, bounds: (Quantity<Q,U>,Quantity<Q,U>)?, quantityGetter: (Spell) -> Quantity<Q,U>) -> Bool {
-        
-        // If the bounds are nil, this check should be skipped
-        if (bounds == nil) { return false }
-        
-        // Get the quantity
-        // If it isn't of the spanning type, return false
-        let quantity = quantityGetter(s)
-        if quantity.isTypeSpanning() {
-            return ( (quantity < bounds!.0) || (quantity > bounds!.1) )
-        } else {
-            return false
-        }
-        
-    }
-    
-    // Determine whether or not a single row should be filtered
-    func filterItem(spell: Spell, profile cp: CharacterProfile, visibleSourcebooks: [Sourcebook], visibleClasses: [CasterClass], visibleSchools: [School], visibleCastingTimeTypes: [CastingTimeType], visibleDurationTypes: [DurationType], visibleRangeTypes: [RangeType], castingTimeBounds: (CastingTime,CastingTime), durationBounds: (Duration,Duration), rangeBounds: (Range,Range), isText: Bool, text: String) -> Bool {
-        let spellName = spell.name.lowercased()
-        
-        // If we aren't going to filter when searching, and there's search text,
-        // we only need to check whether the spell name contains the search text
-        if (!cp.getApplyFiltersToSearch() && isText) {
-            return !spellName.contains(text);
-        }
-
-        // If we aren't going to filter spell lists, and the current filter isn't ALL
-        // just check if the spell is on the list
-        // (and that it respects any search text)
-        if (!cp.getApplyFiltersToLists() && cp.isStatusSet()) {
-            var hide = !cp.satisfiesFilter(spell: spell, filter: cp.getStatusFilter());
-            if (isText) {
-                hide = hide || !spellName.contains(text);
-            }
-            return hide;
-        }
-        
-        // Run through the various filtering fields
-        
-        // Level
-        let level = spell.level
-        if (level > cp.getMaxSpellLevel()) || (level < cp.getMinSpellLevel()) { return true }
-        
-        // Sourcebooks
-        if filterThroughArray(spell: spell, values: visibleSourcebooks, filter: SpellTableViewController.sourcebookFilter) { return true }
-        
-        // Classes
-        if filterThroughArray(spell: spell, values: visibleClasses, filter: SpellTableViewController.casterClassesFilter) { return true }
-        
-        // Schools
-        if filterThroughArray(spell: spell, values: visibleSchools, filter: SpellTableViewController.schoolFilter) { return true }
-        
-        // Casting time types
-        if filterThroughArray(spell: spell, values: visibleCastingTimeTypes, filter: SpellTableViewController.castingTimeTypeFilter) { return true }
-        
-        // Duration types
-        if filterThroughArray(spell: spell, values: visibleDurationTypes, filter: SpellTableViewController.durationTypeFilter) { return true }
-        
-        // Range types
-        if filterThroughArray(spell: spell, values: visibleRangeTypes, filter: SpellTableViewController.rangeTypeFilter) { return true }
-        
-        // Casting time bounds
-        if filterAgainstBounds(spell: spell, bounds: castingTimeBounds, quantityGetter: { $0.castingTime }) { return true }
-        
-        // Duration bounds
-        if filterAgainstBounds(spell: spell, bounds: durationBounds, quantityGetter: { $0.duration }) { return true }
-        
-        // Range bounds
-        if filterAgainstBounds(spell: spell, bounds: rangeBounds, quantityGetter: { $0.range }) { return true }
-        
-        // The rest of the filtering conditions
-        var toHide = (cp.favoritesSelected() && !cp.isFavorite(spell))
-        toHide = toHide || (cp.knownSelected() && !cp.isKnown(spell))
-        toHide = toHide || (cp.preparedSelected() && !cp.isPrepared(spell))
-        toHide = toHide || !cp.getRitualFilter(spell.ritual)
-        toHide = toHide || !cp.getConcentrationFilter(spell.concentration)
-        toHide = toHide || (isText && !spellName.contains(text))
-        return toHide
+        store.dispatch(SortNeededAction())
     }
     
     // Function to filter the table data
     func filter() {
-        
-        // During initial setup
-        if (spells.count == 0) { return }
-        
-        // Testing
-        //print("Favorites selected: \(main?.characterProfile.favoritesSelected())")
-        //print("Known selected: \(main?.characterProfile.knownSelected())")
-        //print("Prepared selected: \(main?.characterProfile.preparedSelected())")
-        
-        // First, we filter the data
-        let searchText = main.searchBar.text?.lowercased() ?? ""
-        let isText = !searchText.isEmpty
-        
-        let cp = main.characterProfile
-        let visibleSourcebooks = cp.getVisibleValues(type: Sourcebook.self)
-        let visibleClasses = cp.getVisibleValues(type: CasterClass.self)
-        let visibleSchools = cp.getVisibleValues(type: School.self)
-        let visibleCastingTimeTypes = cp.getVisibleValues(type: CastingTimeType.self)
-        let visibleDurationTypes = cp.getVisibleValues(type: DurationType.self)
-        let visibleRangeTypes = cp.getVisibleValues(type: RangeType.self)
-        let castingTimeBounds = cp.getBounds(type: CastingTime.self)
-        let durationBounds = cp.getBounds(type: Duration.self)
-        let rangeBounds = cp.getBounds(type: Range.self)
-        
-        for i in 0...spells.count-1 {
-            let filter = filterItem(spell: spells[i].0, profile: cp, visibleSourcebooks: visibleSourcebooks, visibleClasses: visibleClasses, visibleSchools: visibleSchools, visibleCastingTimeTypes: visibleCastingTimeTypes, visibleDurationTypes: visibleDurationTypes, visibleRangeTypes: visibleRangeTypes, castingTimeBounds: castingTimeBounds, durationBounds: durationBounds, rangeBounds: rangeBounds, isText: isText, text: searchText)
-            spells[i] = (spells[i].0, !filter)
-        }
-            
-        // Get the new spell array
-        updateSpellArray()
-            
-        // Repopulate the table
-        tableView.reloadData()
+        store.dispatchFunction(FilterNeededAction())
     }
     
     // If one of the side menus is open, we want to close the menu rather than select a cell
@@ -443,7 +254,6 @@ class SpellTableViewController: UITableViewController {
             let popupWidth = CGFloat(166)
             controller.width = popupWidth
             controller.height = popupHeight
-            controller.main = main
             let cell = tableView.cellForRow(at: indexPath!) as! SpellDataCell
             let positionX = CGFloat(0)
             let positionY = cell.frame.maxY
@@ -460,7 +270,6 @@ class SpellTableViewController: UITableViewController {
     // Filter on pulldown
     @objc func handlePullDown(_ sender: Any) {
         filter()
-        tableView.reloadData()
         refreshControl!.endRefreshing()
     }
     
@@ -536,4 +345,12 @@ class SpellTableViewController: UITableViewController {
     }
     */
 
+}
+
+// MARK: StoreSubscriber
+extension SpellTableViewController: StoreSubscriber {
+    func newState(state spells: [Spell]) {
+        spellArray = spells
+        tableView.reloadData()
+    }
 }

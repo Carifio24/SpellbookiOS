@@ -1,10 +1,14 @@
 //
-//  CollapsibleTableViewController.swift
+//  InfoMenuViewController.swift
 //  Spellbook
 //
 //  Created by Jonathan Carifio on 12/17/19.
 //  Copyright © 2019 Jonathan Carifio. All rights reserved.
 //
+
+// NB: Unlike most of the other view controllers, this one doesn't subscribe to the store
+// That's because there's no need to interact with the app state here
+// - this controller is just providing an interface for displaying static data
 
 import UIKit
 import SWXMLHash
@@ -136,7 +140,7 @@ class InfoMenuViewController: UITableViewController {
         
         let infoFile = Bundle.main.url(forResource: "SpellcastingInfo", withExtension: "xml")!
         let data = try! String(contentsOf: infoFile)
-        let xmlDoc = SWXMLHash.parse(data)
+        let xmlDoc = XMLHash.parse(data)
         var dataSections: [InfoSection] = []
         
         for section in xmlDoc["root"]["section"].all {

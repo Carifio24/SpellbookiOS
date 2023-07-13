@@ -88,7 +88,7 @@ class CharacterProfile {
     private static let defaultRangeRangeInfo = RangeInfo<LengthUnit>(minUnit: LengthUnit.foot, maxUnit: LengthUnit.mile, minValue: 0, maxValue: 1)
     
     // Keys for loading/saving
-    private static let nameKey: String = "CharacterName"
+    static let nameKey: String = "CharacterName"
     private static let spellsKey: String = "Spells"
     private static let spellNameKey: String = "SpellName"
     private static let favoriteKey: String = "Favorite"
@@ -130,95 +130,68 @@ class CharacterProfile {
     private static let rangeRangeKey = "RangeFilters"
     private static let rangeFilterKeys = [ "MinUnit", "MaxUnit", "MinText", "MaxText" ]
     
+    // Keys for member values
+    private static let spellFilterStatusKey = "SpellFilterStatus"
+    private static let sortFilterStatusKey = "SortFilterStatus"
+    private static let spellSlotStatusKey = "SpellSlotStatus"
     
     // Member values
-    private var name: String
-    private var spellStatuses: [String : SpellStatus]
-    private var sortField1: SortField
-    private var sortField2: SortField
-    private var reverse1: Bool
-    private var reverse2: Bool
-    private var statusFilter: StatusFilterField
-    private var minSpellLevel: Int
-    private var maxSpellLevel: Int
-    private var sourcebookVisibilities: Visibilities<Sourcebook>
-    private var casterVisibilities: Visibilities<CasterClass>
-    private var schoolVisibilities: Visibilities<School>
-    private var castingTimeTypeVisibilities: Visibilities<CastingTimeType>
-    private var durationTypeVisibilities: Visibilities<DurationType>
-    private var rangeTypeVisibilities: Visibilities<RangeType>
-    private var castingTimeRangeInfo: RangeInfo<TimeUnit>
-    private var durationRangeInfo: RangeInfo<TimeUnit>
-    private var rangeRangeInfo: RangeInfo<LengthUnit>
-    private var ritualFilter: Bool
-    private var notRitualFilter: Bool
-    private var concentrationFilter: Bool
-    private var notConcentrationFilter: Bool
-    private var verbalFilter: Bool
-    private var notVerbalFilter: Bool
-    private var somaticFilter: Bool
-    private var notSomaticFilter: Bool
-    private var materialFilter: Bool
-    private var notMaterialFilter: Bool
-    private var applyFiltersToLists: Bool
-    private var applyFiltersToSearch: Bool
-    private var useTCEExpandedLists: Bool
+    private(set) var name: String
+    private(set) var sortFilterStatus: SortFilterStatus
+    let spellFilterStatus: SpellFilterStatus
+    let spellSlotStatus: SpellSlotStatus
 
     
-    init(name: String, spellStatuses: [String:SpellStatus], sortField1: SortField, sortField2: SortField, reverse1: Bool, reverse2: Bool, statusFilter: StatusFilterField, minSpellLevel: Int, maxSpellLevel: Int, sourcebookVisibilities: Visibilities<Sourcebook>, casterVisibilities: Visibilities<CasterClass>, schoolVisibilities: Visibilities<School>, castingTimeTypeVisibilities: Visibilities<CastingTimeType>, durationTypeVisibilities: Visibilities<DurationType>, rangeTypeVisibilities: Visibilities<RangeType>, castingTimeRangeInfo: RangeInfo<TimeUnit>, durationRangeInfo: RangeInfo<TimeUnit>, rangeRangeInfo: RangeInfo<LengthUnit>, ritualFilter: Bool, notRitualFilter: Bool, concentrationFilter: Bool, notConcentrationFilter: Bool, verbalFilter: Bool, notVerbalFilter: Bool, somaticFilter: Bool, notSomaticFilter: Bool, materialFilter: Bool, notMaterialFilter: Bool, applyFiltersToLists: Bool, applyFiltersToSearch: Bool, useTCEExpandedLists: Bool) {
+    init(name: String, sortFilterStatus: SortFilterStatus, spellFilterStatus: SpellFilterStatus, spellSlotStatus: SpellSlotStatus) {
         self.name = name
-        self.spellStatuses = spellStatuses
-        self.sortField1 = sortField1
-        self.sortField2 = sortField2
-        self.reverse1 = reverse1
-        self.reverse2 = reverse2
-        self.statusFilter = statusFilter
-        self.minSpellLevel = minSpellLevel
-        self.maxSpellLevel = maxSpellLevel
-        self.sourcebookVisibilities = sourcebookVisibilities
-        self.casterVisibilities = casterVisibilities
-        self.schoolVisibilities = schoolVisibilities
-        self.castingTimeTypeVisibilities = castingTimeTypeVisibilities
-        self.durationTypeVisibilities = durationTypeVisibilities
-        self.rangeTypeVisibilities = rangeTypeVisibilities
-        self.castingTimeRangeInfo = castingTimeRangeInfo
-        self.durationRangeInfo = durationRangeInfo
-        self.rangeRangeInfo = rangeRangeInfo
-        self.ritualFilter = ritualFilter
-        self.notRitualFilter = notRitualFilter
-        self.concentrationFilter = concentrationFilter
-        self.notConcentrationFilter = notConcentrationFilter
-        self.verbalFilter = verbalFilter
-        self.notVerbalFilter = notVerbalFilter
-        self.somaticFilter = somaticFilter
-        self.notSomaticFilter = notSomaticFilter
-        self.materialFilter = materialFilter
-        self.notMaterialFilter = notMaterialFilter
-        self.applyFiltersToLists = applyFiltersToLists
-        self.applyFiltersToSearch = applyFiltersToSearch
-        self.useTCEExpandedLists = useTCEExpandedLists
+        self.sortFilterStatus = sortFilterStatus
+        self.spellFilterStatus = spellFilterStatus
+        self.spellSlotStatus = spellSlotStatus
     }
     
-    convenience init(name: String, spellStatuses: [String:SpellStatus]) {
-        self.init(name: name, spellStatuses: spellStatuses, sortField1: SortField.Name, sortField2: SortField.Name, reverse1: false, reverse2: false, statusFilter: StatusFilterField.All, minSpellLevel: Spellbook.MIN_SPELL_LEVEL, maxSpellLevel: Spellbook.MAX_SPELL_LEVEL, sourcebookVisibilities: CharacterProfile.defaultSourcebookVisibilities.copy(), casterVisibilities: CharacterProfile.defaultCasterVisibilities.copy(), schoolVisibilities: CharacterProfile.defaultSchoolVisibilities.copy(), castingTimeTypeVisibilities: CharacterProfile.defaultCastingTimeTypeVisibilities.copy(), durationTypeVisibilities: CharacterProfile.defaultDurationTypeVisibilities.copy(), rangeTypeVisibilities: CharacterProfile.defaultRangeTypeVisibilities.copy(), castingTimeRangeInfo: CharacterProfile.defaultCastingTimeRangeInfo.copy(), durationRangeInfo: CharacterProfile.defaultDurationRangeInfo.copy(), rangeRangeInfo: CharacterProfile.defaultRangeRangeInfo.copy(), ritualFilter: true, notRitualFilter: true, concentrationFilter: true, notConcentrationFilter: true, verbalFilter: true, notVerbalFilter: true, somaticFilter: true, notSomaticFilter: true, materialFilter: true, notMaterialFilter: true, applyFiltersToLists: false, applyFiltersToSearch: false, useTCEExpandedLists: false)
+    convenience init(name: String, spellFilterStatus: SpellFilterStatus) {
+        self.init(name: name,
+                  sortFilterStatus: SortFilterStatus(),
+                  spellFilterStatus: spellFilterStatus,
+                  spellSlotStatus:  SpellSlotStatus())
     }
     
     convenience init(name: String) {
-        self.init(name: name, spellStatuses: [:])
+        self.init(name: name, spellFilterStatus: SpellFilterStatus())
     }
     
     convenience init() {
         self.init(name: "")
     }
     
-    init(sion: SION) {
+    static func fromSION(_ sion: SION) throws -> CharacterProfile {
+        let name = try sion[CharacterProfile.nameKey].string ?! SpellbookError.BadCharacterProfileError
+        let versionCode = sion[CharacterProfile.versionCodeKey].string
+        let version = versionCode != nil ? Version.fromString(versionCode!) : nil
+        if (version == nil || version! < Version(major: 3, minor: 0, patch: 0)) {
+            return CharacterProfile.fromLegacySION(sion: sion)
+        }
+        let sortFilterStatus = SortFilterStatus(sion: sion[CharacterProfile.sortFilterStatusKey])
+        let spellFilterStatus = SpellFilterStatus(sion: sion[CharacterProfile.spellFilterStatusKey])
+        let spellSlotStatus = SpellSlotStatus(sion: sion[CharacterProfile.spellSlotStatusKey])
+        return CharacterProfile(name: name,
+                  sortFilterStatus: sortFilterStatus,
+                  spellFilterStatus: spellFilterStatus,
+                  spellSlotStatus: spellSlotStatus
+        )
+    }
+    
+    static func fromLegacySION(sion: SION) -> CharacterProfile {
         
         //print("Initializing character from:")
         //print(sion.toJSON())
         
+        let sortFilterStatus = SortFilterStatus()
+        let spellSlotStatus = SpellSlotStatus()
+        
         let scagEnding = " (SCAG)"
-        spellStatuses = [:]
-        name = sion[CharacterProfile.nameKey].string!
+        var spellStatusesByName: [String:SpellStatus] = [:]
+        let name = sion[CharacterProfile.nameKey].string!
         for (_, v) in sion[CharacterProfile.spellsKey] {
             var spellName: String = v[CharacterProfile.spellNameKey].string!
             if Spellbook.SCAG_CANTRIPS.contains(spellName) {
@@ -227,23 +200,31 @@ class CharacterProfile {
             let fav = v[CharacterProfile.favoriteKey].bool!
             let prep = v[CharacterProfile.preparedKey].bool!
             let known = v[CharacterProfile.knownKey].bool!
-            let status = SpellStatus(favIn: fav, prepIn: prep, knownIn: known)
-            spellStatuses[spellName] = status
+            let status = SpellStatus(favorite: fav, prepared: prep, known: known)
+            spellStatusesByName[spellName] = status
         }
+        let spellStatuses = CharacterProfile.convertStatusMap(oldMap: spellStatusesByName)
+        let spellFilterStatus = SpellFilterStatus(map: spellStatuses)
         
         // The sorting fields
-        let sortStr1: String = sion[CharacterProfile.sort1Key].string ?? SortField.Name.displayName
-        let sortStr2: String = sion[CharacterProfile.sort2Key].string ?? SortField.Name.displayName
-        sortField1 = SortField.fromName(sortStr1)
-        sortField2 = SortField.fromName(sortStr2)
+        let sortStr1 = sion[CharacterProfile.sort1Key].string ?? SortField.Name.displayName
+        let sortStr2 = sion[CharacterProfile.sort2Key].string ?? SortField.Name.displayName
+        sortFilterStatus.firstSortField = SortField.fromName(sortStr1)
+        sortFilterStatus.secondSortField = SortField.fromName(sortStr2)
         
         // Visibilities for various quantities
-        sourcebookVisibilities = CharacterProfile.mapFromHiddenNames(type: Sourcebook.self, nonTrivialFilter: true, sion: sion, key: CharacterProfile.hiddenSourcebooksKey)
-        casterVisibilities = CharacterProfile.mapFromHiddenNames(type: CasterClass.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenCastersKey)
-        schoolVisibilities = CharacterProfile.mapFromHiddenNames(type: School.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenSchoolsKey)
-        castingTimeTypeVisibilities = CharacterProfile.mapFromHiddenNames(type: CastingTimeType.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenCastingTimeTypesKey)
-        durationTypeVisibilities = CharacterProfile.mapFromHiddenNames(type: DurationType.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenDurationTypesKey)
-        rangeTypeVisibilities = CharacterProfile.mapFromHiddenNames(type: RangeType.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenRangeTypesKey)
+        let sourcebookVisibilities = CharacterProfile.mapFromHiddenNames(type: Sourcebook.self, nonTrivialFilter: true, sion: sion, key: CharacterProfile.hiddenSourcebooksKey)
+        for sb in Sourcebook.allCases { sortFilterStatus.setSourceVisibility(sb, visible: sourcebookVisibilities[sb]) }
+        let casterVisibilities = CharacterProfile.mapFromHiddenNames(type: CasterClass.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenCastersKey)
+        for cc in CasterClass.allCases { sortFilterStatus.setClassVisibility(cc, visible: casterVisibilities[cc]) }
+        let schoolVisibilities = CharacterProfile.mapFromHiddenNames(type: School.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenSchoolsKey)
+        for school in School.allCases { sortFilterStatus.setSchoolVisibility(school, visible: schoolVisibilities[school]) }
+        let castingTimeTypeVisibilities = CharacterProfile.mapFromHiddenNames(type: CastingTimeType.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenCastingTimeTypesKey)
+        for ctt in CastingTimeType.allCases { sortFilterStatus.setCastingTimeTypeVisibility(ctt, visible: castingTimeTypeVisibilities[ctt]) }
+        let durationTypeVisibilities = CharacterProfile.mapFromHiddenNames(type: DurationType.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenDurationTypesKey)
+        for dt in DurationType.allCases { sortFilterStatus.setDurationTypeVisibility(dt, visible: durationTypeVisibilities[dt]) }
+        let rangeTypeVisibilities = CharacterProfile.mapFromHiddenNames(type: RangeType.self, nonTrivialFilter: false, sion: sion, key: CharacterProfile.hiddenRangeTypesKey)
+        for rt in RangeType.allCases { sortFilterStatus.setRangeTypeVisibility(rt, visible: rangeTypeVisibilities[rt]) }
         
         // Handle sourcebook visibilities (for loading from old profiles)
         let booksSION = sion[CharacterProfile.booksFilterKey]
@@ -260,40 +241,40 @@ class CharacterProfile {
         }
         
         // Quantity range information
-        castingTimeRangeInfo = CharacterProfile.rangeInfoFromSION(sion: sion, key: CharacterProfile.castingTimeRangeKey, rangeType: CastingTimeType.self, unitType: TimeUnit.self)
-        durationRangeInfo = CharacterProfile.rangeInfoFromSION(sion: sion, key: CharacterProfile.durationRangeKey, rangeType: DurationType.self, unitType: TimeUnit.self)
-        rangeRangeInfo = CharacterProfile.rangeInfoFromSION(sion: sion, key: CharacterProfile.rangeRangeKey, rangeType: RangeType.self, unitType: LengthUnit.self)
+        sortFilterStatus.setCastingTimeBoundsFromLegacySION(sion: sion[CharacterProfile.castingTimeRangeKey])
+        sortFilterStatus.setDurationBoundsFromLegacySION(sion: sion[CharacterProfile.durationRangeKey])
+        sortFilterStatus.setRangeBoundsFromLegacySION(sion: sion[CharacterProfile.rangeRangeKey])
         
         // The sorting directions
-        reverse1 = sion[CharacterProfile.reverse1Key].bool ?? false
-        reverse2 = sion[CharacterProfile.reverse2Key].bool ?? false
+        sortFilterStatus.firstSortReverse = sion[CharacterProfile.reverse1Key].bool ?? false
+        sortFilterStatus.secondSortReverse = sion[CharacterProfile.reverse2Key].bool ?? false
         
         // The status filter
         let filterStr = sion[CharacterProfile.statusFilterKey].string ?? StatusFilterField.All.name()
-        statusFilter = StatusFilterField.fromName(filterStr)!
+        sortFilterStatus.statusFilterField = StatusFilterField.fromName(filterStr)!
         
         // Min and max spell levels
-        minSpellLevel = intFromSION(sion[CharacterProfile.minSpellLevelKey], defaultValue: Spellbook.MIN_SPELL_LEVEL)
-        maxSpellLevel = intFromSION(sion[CharacterProfile.maxSpellLevelKey], defaultValue: Spellbook.MAX_SPELL_LEVEL)
-        
+        sortFilterStatus.minSpellLevel = sion[CharacterProfile.minSpellLevelKey].int ?? Spellbook.MIN_SPELL_LEVEL
+        sortFilterStatus.maxSpellLevel = sion[CharacterProfile.maxSpellLevelKey].int ?? Spellbook.MAX_SPELL_LEVEL
+
         // Ritual and concentration filters
-        ritualFilter = sion[CharacterProfile.ritualKey].bool ?? true
-        notRitualFilter = sion[CharacterProfile.notRitualKey].bool ?? true
-        concentrationFilter = sion[CharacterProfile.concentrationKey].bool ?? true
-        notConcentrationFilter = sion[CharacterProfile.notConcentrationKey].bool ?? true
+        sortFilterStatus.setRitualFilter(true, to: sion[CharacterProfile.ritualKey].bool ?? true)
+        sortFilterStatus.setRitualFilter(false, to: sion[CharacterProfile.notRitualKey].bool ?? true)
+        sortFilterStatus.setConcentrationFilter(true, to: sion[CharacterProfile.concentrationKey].bool ?? true)
+        sortFilterStatus.setConcentrationFilter(false, to: sion[CharacterProfile.notConcentrationKey].bool ?? true)
         
         // Component filters
-        verbalFilter = sion[CharacterProfile.verbalKey].bool ?? true
-        notVerbalFilter = sion[CharacterProfile.notVerbalKey].bool ?? true
-        somaticFilter = sion[CharacterProfile.somaticKey].bool ?? true
-        notSomaticFilter = sion[CharacterProfile.notSomaticKey].bool ?? true
-        materialFilter = sion[CharacterProfile.materialKey].bool ?? true
-        notMaterialFilter = sion[CharacterProfile.notMaterialKey].bool ?? true
+        sortFilterStatus.setVerbalFilter(true, to: sion[CharacterProfile.verbalKey].bool ?? true)
+        sortFilterStatus.setVerbalFilter(false, to: sion[CharacterProfile.notVerbalKey].bool ?? true)
+        sortFilterStatus.setSomaticFilter(true, to: sion[CharacterProfile.somaticKey].bool ?? true)
+        sortFilterStatus.setSomaticFilter(false, to: sion[CharacterProfile.notSomaticKey].bool ?? true)
+        sortFilterStatus.setMaterialFilter(true, to: sion[CharacterProfile.materialKey].bool ?? true)
+        sortFilterStatus.setMaterialFilter(false, to: sion[CharacterProfile.notMaterialKey].bool ?? true)
         
         // Filter options
-        applyFiltersToLists = sion[CharacterProfile.applyFiltersToListsKey].bool ?? false
-        applyFiltersToSearch = sion[CharacterProfile.applyFiltersToSearchKey].bool ?? false
-        useTCEExpandedLists = sion[CharacterProfile.useTCEExpandedListsKey].bool ?? false
+        sortFilterStatus.applyFiltersToLists = sion[CharacterProfile.applyFiltersToListsKey].bool ?? false
+        sortFilterStatus.applyFiltersToSearch = sion[CharacterProfile.applyFiltersToSearchKey].bool ?? false
+        sortFilterStatus.useTashasExpandedLists = sion[CharacterProfile.useTCEExpandedListsKey].bool ?? false
         
         // Any version-specific options
         let versionCode: String? = sion[CharacterProfile.versionCodeKey].string ?? nil
@@ -309,118 +290,48 @@ class CharacterProfile {
         let v2_12_0 = Version(major: 2, minor: 12, patch: 0)
         let v2_13_0 = Version(major: 2, minor: 13, patch: 0)
         if (version == nil || version! == v2_10_0) {
-            let new_v211 = [ Sourcebook.ExplorersGTW, Sourcebook.RimeOTFrostmaiden, Sourcebook.LostLabKwalish, Sourcebook.AcquisitionsInc ]
+            let new_v211 = [
+                Sourcebook.ExplorersGTW,
+                Sourcebook.RimeOTFrostmaiden,
+                Sourcebook.LostLabKwalish,
+                Sourcebook.AcquisitionsInc
+            ]
             for sb in new_v211 {
-                self.setVisibility(sb, false)
+                sortFilterStatus.setSourceVisibility(sb, visible: false)
             }
         }
         if (version == nil || version! >= v2_10_0 && version! <= v2_11_0) {
-            self.setVisibility(Sourcebook.FizbansTOD, false)
+            sortFilterStatus.setSourceVisibility(Sourcebook.FizbansTOD, visible: false)
         }
         if (version == nil || version! >= v2_10_0 && version! <= v2_12_0) {
-            self.setVisibility(Sourcebook.StrixhavenCOC, false)
+            sortFilterStatus.setSourceVisibility(Sourcebook.StrixhavenCOC, visible: false)
         }
         if (version == nil || version! >= v2_10_0 && version! <= v2_13_0) {
-            self.setVisibility(Sourcebook.AstralAG, false)
+            sortFilterStatus.setSourceVisibility(Sourcebook.AstralAG, visible: false)
         }
+        
+        return CharacterProfile(name: name, sortFilterStatus: sortFilterStatus, spellFilterStatus: spellFilterStatus, spellSlotStatus: spellSlotStatus)
         
     }
     
     // To SION
-    func asSION() -> SION {
-        
-        // Create the SION document
-        var sion = SION([:])
-        
-        // Set the character name
-        sion[SION(CharacterProfile.nameKey)] = SION(name)
-        
-        // Set the spell statuses
-        var spellsSION = SION([])
-        var idx: Int = 0
-        for (spellName, status) in spellStatuses {
-            var statusSION = SION([:])
-            statusSION[CharacterProfile.spellNameKey] = SION(spellName)
-            statusSION[CharacterProfile.favoriteKey] = SION(status.favorite)
-            statusSION[CharacterProfile.preparedKey] = SION(status.prepared)
-            statusSION[CharacterProfile.knownKey] = SION(status.known)
-            spellsSION[idx] = statusSION
-            idx += 1
-        }
-        sion[SION(CharacterProfile.spellsKey)] = spellsSION
-        
-        // Set the sort fields and whether or not to reverse directions
-        sion[CharacterProfile.sort1Key] = SION(sortField1.displayName)
-        sion[CharacterProfile.sort2Key] = SION(sortField2.displayName)
-        sion[CharacterProfile.reverse1Key] = SION(reverse1)
-        sion[CharacterProfile.reverse2Key] = SION(reverse2)
-        
-        // Which spell list is selected (All, Favorites, Prepared, Known)
-        sion[CharacterProfile.statusFilterKey] = SION(statusFilter.name())
-        
-        // Min and max spell levels
-        sion[CharacterProfile.minSpellLevelKey] = SION(minSpellLevel)
-        sion[CharacterProfile.maxSpellLevelKey] = SION(maxSpellLevel)
-        
-        // Put in the arrays of hidden enums
-        sion[CharacterProfile.hiddenSourcebooksKey] = stringArrayToSION(getVisibleValueNames(type: Sourcebook.self, b: false))
-        sion[CharacterProfile.hiddenCastersKey] = stringArrayToSION(getVisibleValueNames(type: CasterClass.self, b: false))
-        sion[CharacterProfile.hiddenSchoolsKey] = stringArrayToSION(getVisibleValueNames(type: School.self, b: false))
-        sion[CharacterProfile.hiddenCastingTimeTypesKey] = stringArrayToSION(getVisibleValueNames(type: CastingTimeType.self, b: false))
-        sion[CharacterProfile.hiddenDurationTypesKey] = stringArrayToSION(getVisibleValueNames(type: DurationType.self, b: false))
-        sion[CharacterProfile.hiddenRangeTypesKey] = stringArrayToSION(getVisibleValueNames(type: RangeType.self, b: false))
-        
-        // Put in the range filters
-        sion[CharacterProfile.castingTimeRangeKey] = rangeInfoToSION(castingTimeRangeInfo)
-        sion[CharacterProfile.durationRangeKey] = rangeInfoToSION(durationRangeInfo)
-        sion[CharacterProfile.rangeRangeKey] = rangeInfoToSION(rangeRangeInfo)
-        
-        // Put in the concentration and ritual filters
-        sion[CharacterProfile.ritualKey] = SION(ritualFilter)
-        sion[CharacterProfile.notRitualKey] = SION(notRitualFilter)
-        sion[CharacterProfile.concentrationKey] = SION(concentrationFilter)
-        sion[CharacterProfile.notConcentrationKey] = SION(notConcentrationFilter)
-        
-        // Put in the component filters
-        sion[CharacterProfile.verbalKey] = SION(verbalFilter)
-        sion[CharacterProfile.notVerbalKey] = SION(notVerbalFilter)
-        sion[CharacterProfile.somaticKey] = SION(somaticFilter)
-        sion[CharacterProfile.notSomaticKey] = SION(notSomaticFilter)
-        sion[CharacterProfile.materialKey] = SION(materialFilter)
-        sion[CharacterProfile.notMaterialKey] = SION(notMaterialFilter)
-        
-        // Put in the filter options
-        sion[CharacterProfile.applyFiltersToListsKey] = SION(applyFiltersToLists)
-        sion[CharacterProfile.applyFiltersToSearchKey] = SION(applyFiltersToSearch)
-        sion[CharacterProfile.useTCEExpandedListsKey] = SION(useTCEExpandedLists)
-
-        // Put in the version code
-        sion[CharacterProfile.versionCodeKey] = SION(VersionInfo.currentVersionKey)
-        
+    func toSION() -> SION {
+        var sion: SION = [:]
+        sion[CharacterProfile.nameKey].string = name
+        sion[CharacterProfile.versionCodeKey].string = VersionInfo.version.string()
+        sion[CharacterProfile.spellSlotStatusKey] = spellSlotStatus.toSION()
+        sion[CharacterProfile.spellFilterStatusKey] = spellFilterStatus.toSION()
+        sion[CharacterProfile.sortFilterStatusKey] = sortFilterStatus.toSION()
         return sion
     }
     
     // As a JSON string
-    func asJSONString() -> String {
-        return asSION().json
+    func toJSONString() -> String {
+        return toSION().json
     }
-    
-    // Getting the ritual and concentration filters
-    func getRitualFilter(_ b: Bool) -> Bool { return b ? ritualFilter : notRitualFilter }
-    func getConcentrationFilter(_ b: Bool) -> Bool { return b ? concentrationFilter : notConcentrationFilter }
-    
-    // Getting the component filters
-    func getVerbalFilter(_ b: Bool) -> Bool { return b ? verbalFilter : notVerbalFilter }
-    func getSomaticFilter(_ b: Bool) -> Bool { return b ? somaticFilter : notSomaticFilter }
-    func getMaterialFilter(_ b: Bool) -> Bool { return b ? materialFilter : notMaterialFilter }
-    
-    // Getting the filtering options
-    func getApplyFiltersToSearch() -> Bool { return applyFiltersToSearch }
-    func getApplyFiltersToLists() -> Bool { return applyFiltersToLists }
-    func getUseTCEExpandedLists() -> Bool { return useTCEExpandedLists }
-    
+
     // For converting a RangeInfo<T> to a SION array
-    private func rangeInfoToSION<U:Unit>(_ rangeInfo: RangeInfo<U>) -> SION {
+    func rangeInfoToSION<U:Unit>(_ rangeInfo: RangeInfo<U>) -> SION {
         var rangeSION: SION = [:]
         rangeSION[CharacterProfile.rangeFilterKeys[0]] = SION(rangeInfo.minUnit.pluralName)
         rangeSION[CharacterProfile.rangeFilterKeys[1]] = SION(rangeInfo.maxUnit.pluralName)
@@ -429,371 +340,26 @@ class CharacterProfile {
         return rangeSION
     }
     
-    // For converting an array of Strings to a SION array
-    private func stringArrayToSION(_ stringArray: [String]) -> SION {
-        var array: SION = []
-        var i: Int = 0
-        for name in stringArray {
-            array[i] = SION(name)
-            i += 1
-        }
-        return array
-    }
-    
-    // For setting spell status properties
-    private func isProperty(s: Spell, propGetter: StatusPropertyGetter) -> Bool {
-        let status: SpellStatus? = spellStatuses[s.name]
-        if (status != nil) {
-            return propGetter(status!)
-        }
-        return false
-    }
-    
-    // The property getters
-    func isFavorite(_ s: Spell) -> Bool {
-        return isProperty(s: s, propGetter: { return $0.favorite })
-    }
-    
-    func isPrepared(_ s: Spell) -> Bool {
-        return isProperty(s: s, propGetter: { return $0.prepared })
-    }
-    
-    func isKnown(_ s: Spell) -> Bool {
-        return isProperty(s: s, propGetter: { return $0.known })
-    }
-    
-    func oneTrue(_ s: Spell) -> Bool {
-        return ( isFavorite(s) || isPrepared(s) || isKnown(s) )
-    }
-    func satisfiesFilter(spell: Spell, filter: StatusFilterField) -> Bool {
-        switch (filter) {
-        case StatusFilterField.Favorites:
-            return isFavorite(spell)
-        case StatusFilterField.Prepared:
-            return isPrepared(spell)
-        case StatusFilterField.Known:
-            return isKnown(spell)
-        default:
-            return true
-        }
-    }
-    
-    func getName() -> String { return name }
-    func getStatusFilter() -> StatusFilterField { return statusFilter }
-    func getFirstSortField() -> SortField { return sortField1 }
-    func getSecondSortField() -> SortField { return sortField2 }
-    func getFirstSortReverse() -> Bool { return reverse1 }
-    func getSecondSortReverse() -> Bool { return reverse2 }
-    func getMinSpellLevel() -> Int { return minSpellLevel }
-    func getMaxSpellLevel() -> Int { return maxSpellLevel }
-    
-    func favoritesSelected() -> Bool { return (statusFilter == StatusFilterField.Favorites) }
-    func preparedSelected() -> Bool { return (statusFilter == StatusFilterField.Prepared) }
-    func knownSelected() -> Bool { return (statusFilter == StatusFilterField.Known) }
-    func isStatusSet() -> Bool { return (statusFilter != StatusFilterField.All) }
-    
-    // Get only the visible values, with the given transformation applied to them
-    func getTransformedVisibleValues<E:NameConstructible, T>(type: E.Type, b: Bool, transform: (E) -> T)-> [T] {
-        let visibilityMap = getTypeMap(type)
-        if (visibilityMap == nil) { return [] }
-        return E.allCases.filter({visibilityMap![$0] == b}).map({transform($0)})
-    }
-    
-    // Get the visible values
-    func getVisibleValues<E:NameConstructible>(type: E.Type, b: Bool = true) -> [E] {
-        return getTransformedVisibleValues(type: type, b: b, transform: { e in return e })
-    }
-    
-    // Get the display names of the visible values
-    func getVisibleValueNames<E:NameConstructible>(type: E.Type, b: Bool = true) -> [String] {
-        return getTransformedVisibleValues(type: type, b: b, transform: { e in return e.displayName })
-    }
-    
-    
-    // For getting spell status properties
-    private func setProperty(s: Spell, val: Bool, propSetter: StatusPropertySetter) {
-        
-        // Get the status for the given spell
-        let status: SpellStatus? = spellStatuses[s.name]
-        
-        // If the status already exists, modify it
-        if (status != nil) {
-            propSetter(status!, val)
-        // Otherwise, add it to the dictionary. The default status has all values False
-        } else {
-            let newStatus = SpellStatus()
-            propSetter(newStatus, val)
-            spellStatuses[s.name] = newStatus
-        }
-        
-        // If all of the values are now false, remove the entry
-        if !oneTrue(s) {
-            spellStatuses.removeValue(forKey: s.name)
-        }
-    }
-    
-    // The property setters
-    func setFavorite(s: Spell, fav: Bool) {
-        setProperty(s: s, val: fav, propSetter: { $0.setFavorite($1) })
-    }
-    
-    func setPrepared(s: Spell, prep: Bool) {
-        setProperty(s: s, val: prep, propSetter: { $0.setPrepared($1) })
-    }
-    
-    func setKnown(s: Spell, known: Bool) {
-        setProperty(s: s, val: known, propSetter: { $0.setKnown($1) })
-    }
-    
-    // For toggling spell status properties
-    private func toggleProperty(spell: Spell, propGetter: StatusPropertyGetter, propSetter: StatusPropertySetter) {
-        setProperty(s: spell, val: !isProperty(s: spell, propGetter: propGetter), propSetter: propSetter)
-    }
-    
-    func toggleFavorite(_ s: Spell) {
-        toggleProperty(spell: s, propGetter: { return $0.favorite }, propSetter: { $0.setFavorite($1) })
-    }
-    
-    func togglePrepared(_ s: Spell) {
-        toggleProperty(spell: s, propGetter: { return $0.prepared }, propSetter: { $0.setPrepared($1) })
-    }
-    
-    func toggleKnown(_ s: Spell) {
-        toggleProperty(spell: s, propGetter: { return $0.known }, propSetter: { $0.setKnown($1) })
-    }
-    
-    func setFirstSortField(_ sf: SortField) { sortField1 = sf }
-    func setSecondSortField(_ sf: SortField) { sortField2 = sf }
-    func setFirstSortReverse(_ r1: Bool) { reverse1 = r1 }
-    func setSecondSortReverse(_ r2: Bool) { reverse2 = r2 }
-    func setStatusFilter(_ sff: StatusFilterField) { statusFilter = sff }
-    func setMinSpellLevel(_ level: Int) { minSpellLevel = level }
-    func setMaxSpellLevel(_ level: Int) { maxSpellLevel = level }
-    
-    // Set filtering options
-    func setApplyFiltersToLists(_ b: Bool) { applyFiltersToLists = b }
-    func setApplyFiltersToSearch(_ b: Bool) { applyFiltersToSearch = b }
-    func setUseTCEExpandedLists(_ b: Bool) { useTCEExpandedLists = b }
-    
-    
-    // For setting range filter data
-    private func setRangeValue<E:QuantityType, U:Unit, V>(_ quantityType: E.Type, _ unitType: U.Type, _ value: V, _ setter: (RangeInfo<U>, V) -> Void) {
-        let rangeInfo = getQuantityRangeInfo(E.self, U.self)
-        if (rangeInfo == nil) { return }
-        setter(rangeInfo!, value)
-    }
-    
-    func setMinValue<E:QuantityType, U:Unit>(quantityType: E.Type, unitType: U.Type, value: Int) {
-        setRangeValue(quantityType, unitType, value, { rangeInfo, val in rangeInfo.minValue = val } )
-    }
-    func setMaxValue<E:QuantityType, U:Unit>(quantityType: E.Type, unitType: U.Type, value: Int) {
-        setRangeValue(quantityType, unitType, value, { rangeInfo, val in rangeInfo.maxValue = val } )
-    }
-    func setMinUnit<E:QuantityType, U:Unit>(quantityType: E.Type, unitType: U.Type, unit: U) {
-        setRangeValue(quantityType, unitType, unit, { rangeInfo, val in rangeInfo.minUnit = val } )
-    }
-    func setMaxUnit<E:QuantityType, U:Unit>(quantityType: E.Type, unitType: U.Type, unit: U) {
-        setRangeValue(quantityType, unitType, unit, { rangeInfo, val in rangeInfo.maxUnit = val } )
-    }
-    
-    func setRangeInfo<Q:QuantityType, U:Unit>(_ quantityType: Q.Type, _ unitType: U.Type, rangeInfo: RangeInfo<U>) {
-        let id = ObjectIdentifier(quantityType)
-        switch (id) {
-        case ObjectIdentifier(CastingTimeType.self):
-            castingTimeRangeInfo = rangeInfo as! RangeInfo<TimeUnit>
-        case ObjectIdentifier(DurationType.self):
-            durationRangeInfo = rangeInfo as! RangeInfo<TimeUnit>
-        case ObjectIdentifier(RangeType.self):
-            rangeRangeInfo = rangeInfo as! RangeInfo<LengthUnit>
-        default:
-            return
-        }
-    }
-    
-    func setRangeInfo<Q:QuantityType, U:Unit, T:Quantity<Q,U>>(_ type: T.Type, rangeInfo: RangeInfo<U>) {
-        setRangeInfo(Q.self, U.self, rangeInfo: rangeInfo)
-    }
-    
-    func setRangeBoundsToDefault<Q:QuantityType, U:Unit, T:Quantity<Q,U>>(type: T.Type) {
-        setRangeInfo(type, rangeInfo: CharacterProfile.getDefaultQuantityRangeInfo(type)!.copy())
-    }
-    
-    // For getting range filter data
-    private func getRangeValue<E:QuantityType, U:Unit, V>(_ quantityType: E.Type, _ unitType: U.Type, _ getter: (RangeInfo<U>) -> V) -> V {
-        let rangeInfo = getQuantityRangeInfo(E.self, U.self)!
-        return getter(rangeInfo)
-    }
-    
-    func getMinValue<E:QuantityType, U:Unit>(quantityType: E.Type, unitType: U.Type) -> Int {
-        return getRangeValue(quantityType, unitType, { $0.minValue })
-    }
-    
-    func getMaxValue<E:QuantityType, U:Unit>(quantityType: E.Type, unitType: U.Type) -> Int {
-        return getRangeValue(quantityType, unitType, { $0.maxValue })
-    }
-    
-    func getMinUnit<E:QuantityType, U:Unit>(quantityType: E.Type, unitType: U.Type) -> U {
-        return getRangeValue(quantityType, unitType, { $0.minUnit })
-    }
-    
-    func getMaxUnit<E:QuantityType, U:Unit>(quantityType: E.Type, unitType: U.Type) -> U {
-        return getRangeValue(quantityType, unitType, { $0.maxUnit })
-    }
-    
-    
-    // Setting and toggling for the ritual, concentration, and component filters
-    func setRitualFilter(filter tf: Bool, to b: Bool) {
-        if tf { ritualFilter = b }
-        else { notRitualFilter = b }
-    }
-    func setConcentrationFilter(filter tf: Bool, to b: Bool) {
-        if tf { concentrationFilter = b }
-        else { notConcentrationFilter = b }
-    }
-    func setVerbalFilter(filter tf: Bool, to b: Bool) {
-        if tf { verbalFilter = b}
-        else { notVerbalFilter = b }
-    }
-    func setSomaticFilter(filter tf: Bool, to b: Bool) {
-        if tf { somaticFilter = b }
-        else { notSomaticFilter = b }
-    }
-    func setMaterialFilter(filter tf: Bool, to b: Bool) {
-        if tf { materialFilter = b }
-        else { notMaterialFilter = b }
-    }
-    
-    private func toggleFilter(_ tf: Bool, getter: (Bool) -> Bool, setter: (Bool,Bool) -> ()) { setter(tf, !getter(tf)) }
-    func toggleRitualFilter(_ tf: Bool) { toggleFilter(tf, getter: getRitualFilter, setter: setRitualFilter) }
-    func toggleConcentrationFilter(_ tf: Bool) { toggleFilter(tf, getter: getConcentrationFilter, setter: setConcentrationFilter) }
-    func toggleVerbalFilter(_ tf: Bool) { toggleFilter(tf, getter: getVerbalFilter, setter: setVerbalFilter) }
-    func toggleSomaticFilter(_ tf: Bool) { toggleFilter(tf, getter: getSomaticFilter,  setter: setSomaticFilter )}
-    func toggleMaterialFilter(_ tf: Bool) { toggleFilter(tf, getter: getMaterialFilter, setter: setMaterialFilter )}
- 
-    // Which map to use for a given type
-    func getTypeMap<E:NameDisplayable>(_ t : E.Type) -> Visibilities<E>? {
-        let id = ObjectIdentifier(t)
-        switch (id) {
-        case ObjectIdentifier(Sourcebook.self):
-            return sourcebookVisibilities as? Visibilities<E>
-        case ObjectIdentifier(CasterClass.self):
-            return casterVisibilities as? Visibilities<E>
-        case ObjectIdentifier(School.self):
-            return schoolVisibilities as? Visibilities<E>
-        case ObjectIdentifier(CastingTimeType.self):
-            return castingTimeTypeVisibilities as? Visibilities<E>
-        case ObjectIdentifier(DurationType.self):
-            return durationTypeVisibilities as? Visibilities<E>
-        case ObjectIdentifier(RangeType.self):
-            return rangeTypeVisibilities as? Visibilities<E>
-        default:
-            return nil
-        }
-    }
-    
     // Which default map to use for a given type
-    static func getDefaultTypeMap<E:CaseIterable & Hashable>(_ t : E.Type) -> Visibilities<E>? {
-        let id = ObjectIdentifier(t)
-        switch (id) {
-        case ObjectIdentifier(Sourcebook.self):
-            return CharacterProfile.defaultSourcebookVisibilities as? Visibilities<E>
-        case ObjectIdentifier(CasterClass.self):
-            return CharacterProfile.defaultCasterVisibilities as? Visibilities<E>
-        case ObjectIdentifier(School.self):
-            return CharacterProfile.defaultSchoolVisibilities as? Visibilities<E>
-        case ObjectIdentifier(CastingTimeType.self):
-            return CharacterProfile.defaultCastingTimeTypeVisibilities as? Visibilities<E>
-        case ObjectIdentifier(DurationType.self):
-            return CharacterProfile.defaultDurationTypeVisibilities as? Visibilities<E>
-        case ObjectIdentifier(RangeType.self):
-            return CharacterProfile.defaultRangeTypeVisibilities as? Visibilities<E>
-        default:
-            return nil
+        static func getDefaultTypeMap<E:CaseIterable & Hashable>(_ t : E.Type) -> Visibilities<E>? {
+            let id = ObjectIdentifier(t)
+            switch (id) {
+            case ObjectIdentifier(Sourcebook.self):
+                return CharacterProfile.defaultSourcebookVisibilities as? Visibilities<E>
+            case ObjectIdentifier(CasterClass.self):
+                return CharacterProfile.defaultCasterVisibilities as? Visibilities<E>
+            case ObjectIdentifier(School.self):
+                return CharacterProfile.defaultSchoolVisibilities as? Visibilities<E>
+            case ObjectIdentifier(CastingTimeType.self):
+                return CharacterProfile.defaultCastingTimeTypeVisibilities as? Visibilities<E>
+            case ObjectIdentifier(DurationType.self):
+                return CharacterProfile.defaultDurationTypeVisibilities as? Visibilities<E>
+            case ObjectIdentifier(RangeType.self):
+                return CharacterProfile.defaultRangeTypeVisibilities as? Visibilities<E>
+            default:
+                return nil
+            }
         }
-    }
-    
-    static func getUnitType<E:QuantityType>(_ t : E.Type) -> Any.Type {
-        let id = ObjectIdentifier(t)
-        switch (id) {
-        case ObjectIdentifier(CastingTimeType.self), ObjectIdentifier(DurationType.self):
-            return TimeUnit.self
-        case ObjectIdentifier(RangeType.self):
-            return LengthUnit.self
-        default:
-            return TimeUnit.self // Should never get here
-        }
-    }
-    
-    // Default range info for a given type
-    static func getDefaultQuantityRangeInfo<E:NameDisplayable, U:Unit>(_ t : E.Type, _ u : U.Type) -> RangeInfo<U>? {
-        let id = ObjectIdentifier(t)
-        switch (id) {
-        case ObjectIdentifier(CastingTimeType.self):
-            return CharacterProfile.defaultCastingTimeRangeInfo as? RangeInfo<U>
-        case ObjectIdentifier(DurationType.self):
-            return CharacterProfile.defaultDurationRangeInfo as? RangeInfo<U>
-        case ObjectIdentifier(RangeType.self):
-            return CharacterProfile.defaultRangeRangeInfo as? RangeInfo<U>
-        default:
-            return nil
-        }
-    }
-    
-    static func getDefaultQuantityRangeInfo<Q:QuantityType, U:Unit, T:Quantity<Q,U>>(_ type: T.Type) -> RangeInfo<U>? {
-        return getDefaultQuantityRangeInfo(Q.self, U.self)
-    }
-    
-    // Range info for a given type
-    func getQuantityRangeInfo<E:NameDisplayable, U:Unit>(_ t : E.Type, _ u : U.Type) -> RangeInfo<U>? {
-        let id = ObjectIdentifier(t)
-        switch(id) {
-        case ObjectIdentifier(CastingTimeType.self):
-            return castingTimeRangeInfo as? RangeInfo<U>
-        case ObjectIdentifier(DurationType.self):
-            return durationRangeInfo as? RangeInfo<U>
-        case ObjectIdentifier(RangeType.self):
-            return rangeRangeInfo as? RangeInfo<U>
-        default:
-            return nil
-        }
-    }
-    
-    // For getting the bounds of range types
-    func getBounds<Q:QuantityType, U:Unit, T:Quantity<Q,U>>(type: T.Type) -> (T,T) {
-        let info = getQuantityRangeInfo(Q.self, U.self)!
-        let minQuantity = T.init(type: Q.spanningType, value: info.minValue, unit: info.minUnit, str: "")
-        let maxQuantity = T.init(type: Q.spanningType, value: info.maxValue, unit: info.maxUnit, str: "")
-        return (minQuantity, maxQuantity)
-    }
-    
-    static func getDefaultBounds<Q:QuantityType, U:Unit, T:Quantity<Q,U>>(type: T.Type) -> (T,T) {
-        let info = getDefaultQuantityRangeInfo(Q.self, U.self)!
-        let minQuantity = T.init(type: Q.spanningType, value: info.minValue, unit: info.minUnit, str: "")
-        let maxQuantity = T.init(type: Q.spanningType, value: info.maxValue, unit: info.maxUnit, str: "")
-        return (minQuantity, maxQuantity)
-    }
-    
-    
-    // Get, set, and toggle the visibility of a certain value
-    func getVisibility<E:NameConstructible>(_ e: E) -> Bool {
-        let map = getTypeMap(E.self)
-        return map?[e] ?? false
-    }
-    
-    func setVisibility<E:NameConstructible>(_ e: E, _ b: Bool) {
-        let map = getTypeMap(E.self)
-        map?[e] = b
-    }
-    
-    func toggleVisibility<E:NameConstructible>(_ e: E) {
-        setVisibility(e, !getVisibility(e))
-    }
-    
-    
-    // Whether or not the spanning type is visible
-    func getSpanningTypeVisibility<E:QuantityType>(_ type: E.Type) -> Bool {
-        return getVisibility(E.spanningType)
-    }
     
     // Constructing a map from a list of hidden values
     // Used for JSON decoding
@@ -822,39 +388,39 @@ class CharacterProfile {
         }
         return map
     }
-    
-    private static func rangeInfoFromSION<T:NameDisplayable, U:Unit>(sion: SION, key: String, rangeType: T.Type, unitType: U.Type) -> RangeInfo<U> {
-        
-        // Query the appropriate key
-        let rangeInfoSION = sion[key].dictionary
-        
-        // If we don't have the key (more specifically, if its associated value isn't a dictionary), return the default
-        let defaultRange = CharacterProfile.getDefaultQuantityRangeInfo(rangeType, unitType)!.copy()
-        if rangeInfoSION == nil {
-            return defaultRange as RangeInfo<U>
-        }
-        
-        // If we do have the key, parse the dictionary
-        let minUnitString = rangeInfoSION![SION(CharacterProfile.rangeFilterKeys[0])]!.string ?? defaultRange.minUnit.pluralName
-        let maxUnitString = rangeInfoSION![SION(CharacterProfile.rangeFilterKeys[1])]!.string ?? defaultRange.maxUnit.pluralName
-        let minUnit = (try? U.fromString(minUnitString)) ?? defaultRange.minUnit
-        let maxUnit = (try? U.fromString(maxUnitString)) ?? defaultRange.maxUnit
-        
-        let minValue = intFromSION(rangeInfoSION![SION(CharacterProfile.rangeFilterKeys[2])]!, defaultValue: defaultRange.minValue)
-        let maxValue = intFromSION(rangeInfoSION![SION(CharacterProfile.rangeFilterKeys[3])]!, defaultValue: defaultRange.maxValue)
-        
-        return RangeInfo(minUnit: minUnit, maxUnit: maxUnit, minValue: minValue, maxValue: maxValue)
-        
-    }
+
     
     // Save to a file
-    func save(filename: URL) {
+    func save(filename: URL) -> Bool {
         do {
             //print(asJSONString())
-            try asJSONString().write(to: filename, atomically: false, encoding: .utf8)
+            try toJSONString().write(to: filename, atomically: false, encoding: .utf8)
+            return true
         } catch let e {
             print("\(e)")
+            return false
         }
+    }
+    
+    private static func convertStatusMap(oldMap: [String: SpellStatus]) -> [Int: SpellStatus] {
+        let scagCantrips: Set = ["Booming Blade", "Green-Flame Blade", "Lightning Lure", "Sword Burst"]
+        let spells = SpellbookAppState.allSpells
+        var idMap: [String: Int] = [:]
+        for spell in spells {
+            idMap[spell.name] = spell.id
+        }
+        
+        var newMap: [Int: SpellStatus] = [:]
+        for (name, status) in oldMap {
+            var nameToUse = name
+            if scagCantrips.contains(name) {
+                nameToUse = nameToUse + " (SCAG)"
+            }
+            if let id = idMap[nameToUse] {
+                newMap[id] = status
+            }
+        }
+        return newMap
     }
 }
 

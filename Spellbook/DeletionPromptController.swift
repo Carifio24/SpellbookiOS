@@ -10,7 +10,6 @@ import UIKit
 
 class DeletionPromptController: UIViewController {
 
-    
     @IBOutlet weak var backgroundView: UIImageView!
     @IBOutlet weak var deleteTitle: UILabel!
     @IBOutlet weak var deleteMessage: UILabel!
@@ -85,13 +84,14 @@ class DeletionPromptController: UIViewController {
     
     @objc func yesButtonPressed() {
         if name != nil {
-            main!.deleteCharacterProfile(name: name!)
-            Controllers.revealController.view.makeToast("Character deleted: " + name!, duration: Constants.toastDuration)
+            store.dispatch(DeleteProfileByNameAction(name: name!))
         }
         self.dismiss(animated: true, completion: { () -> Void in
+            
+            // TODO: Is there a race condition here with the action? If so, should this be in middleware?
             self.main!.selectionWindow?.dismiss(animated: true, completion: nil)
             self.main!.selectionWindow = nil
-            let creationNecessary = (self.main!.characterList().count == 0)
+            let creationNecessary = (store.state.profileNameList.count == 0)
             self.main!.openCharacterCreationDialog(mustComplete: creationNecessary)
         })
     }

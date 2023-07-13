@@ -15,7 +15,7 @@ public class Spellbook {
     
     static let SECOND_PER_ROUND = 6
     
-    static let SCAG_CANTRIPS = [ "Booming Blade", "Green-Flame Blade", "Lightning Lure", "Sword Burst"]
+    static let SCAG_CANTRIPS = [ "Booming Blade", "Green-Flame Blade", "Lightning Lure", "Sword Burst" ]
 
 	var spells: Array<Spell>
 	var N_SPELLS: Int

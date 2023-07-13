@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,7 +12,6 @@
 		397EE97E21ACA86800B116B0 /* SpellbookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE97D21ACA86800B116B0 /* SpellbookTests.swift */; };
 		397EE98921ACA86900B116B0 /* SpellbookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 397EE98821ACA86900B116B0 /* SpellbookUITests.swift */; };
 		39F306A62378A4310078FA83 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39F306A52378A4310078FA83 /* SWRevealViewController.m */; };
-		5B97D79C1F8C714337F2E991 /* Pods_SpellbookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F089C7503C44FC8DBBE004A /* Pods_SpellbookTests.framework */; };
 		8E02F76224345F6200A3050C /* YesNo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02F76124345F6200A3050C /* YesNo.swift */; };
 		8E02F7642436378400A3050C /* FilterGridDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02F7632436378400A3050C /* FilterGridDelegate.swift */; };
 		8E02F76624363BAD00A3050C /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E02F76524363BAD00A3050C /* FilterView.xib */; };
@@ -21,11 +20,15 @@
 		8E02F7722437F39200A3050C /* CombinationProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02F7712437F39200A3050C /* CombinationProtocols.swift */; };
 		8E02F7742438EF1400A3050C /* RangeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E02F7732438EF1400A3050C /* RangeView.xib */; };
 		8E02F7762438F04000A3050C /* RangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E02F7752438F04000A3050C /* RangeView.swift */; };
+		8E07AE0B2A0C957400C0487B /* clipboard_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E07AE0A2A0C957400C0487B /* clipboard_icon.png */; };
+		8E07AE0D2A0F708700C0487B /* ImportCharacterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07AE0C2A0F708700C0487B /* ImportCharacterController.swift */; };
+		8E07AE0F2A10AFA700C0487B /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E07AE0E2A10AFA700C0487B /* Operators.swift */; };
 		8E13F1E3244E1B15004CCC18 /* trash_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E13F1E2244E1B14004CCC18 /* trash_icon.png */; };
 		8E177F9B2432F34B005146B6 /* SortFilterTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E177F9A2432F34B005146B6 /* SortFilterTableController.swift */; };
 		8E19DA50257C094A002B4F43 /* FilterOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E19DA4F257C094A002B4F43 /* FilterOptionView.swift */; };
 		8E19DA55257C095A002B4F43 /* FilterOptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E19DA54257C095A002B4F43 /* FilterOptionView.xib */; };
 		8E19DA5A257D6D46002B4F43 /* MessageDialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E19DA59257D6D46002B4F43 /* MessageDialogController.swift */; };
+		8E452C0C2A3A652E00C78D9C /* CharacterProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E452C0B2A3A652E00C78D9C /* CharacterProfileTests.swift */; };
 		8E6148E2241991C200842A18 /* Spells.json in Resources */ = {isa = PBXBuildFile; fileRef = 8E61489B241991BE00842A18 /* Spells.json */; };
 		8E6148E3241991C200842A18 /* TimeUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E61489C241991BE00842A18 /* TimeUnit.swift */; };
 		8E6148E4241991C200842A18 /* SourcebookFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E61489D241991BE00842A18 /* SourcebookFilterController.swift */; };
@@ -87,7 +90,6 @@
 		8E61491F241991C200842A18 /* Transitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148D8241991C100842A18 /* Transitions.swift */; };
 		8E614920241991C200842A18 /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148D9241991C100842A18 /* ImageUtils.swift */; };
 		8E614921241991C200842A18 /* SubClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148DA241991C100842A18 /* SubClass.swift */; };
-		8E614924241991C200842A18 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148DD241991C100842A18 /* Toast.swift */; };
 		8E614925241991C200842A18 /* EnumMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148DE241991C100842A18 /* EnumMap.swift */; };
 		8E614926241991C200842A18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E6148DF241991C100842A18 /* Assets.xcassets */; };
 		8E614927241991C200842A18 /* SpellBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148E0241991C200842A18 /* SpellBuilder.swift */; };
@@ -104,20 +106,40 @@
 		8E61494624199B2D00842A18 /* x_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E61493D24199B2D00842A18 /* x_icon.png */; };
 		8E61494A24199ED500842A18 /* cloister_black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E61494824199CBC00842A18 /* cloister_black.ttf */; };
 		8E61494B24199ED800842A18 /* dungeon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E61494924199CBC00842A18 /* dungeon.ttf */; };
+		8E6551B629AB42B800A3BC43 /* SpellbookMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6551B529AB42B800A3BC43 /* SpellbookMiddleware.swift */; };
+		8E6551B829AB470400A3BC43 /* SerializationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6551B729AB470400A3BC43 /* SerializationUtils.swift */; };
+		8E6551BA29AC63E800A3BC43 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6551B929AC63E800A3BC43 /* Toast.swift */; };
+		8E6E2B7C28BC840200AA6483 /* SpellSlotStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B7B28BC840200AA6483 /* SpellSlotStatus.swift */; };
+		8E6E2B7E28BC8C3F00AA6483 /* SIONUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B7D28BC8C3F00AA6483 /* SIONUtils.swift */; };
+		8E6E2B8228E9FE4A00AA6483 /* SpellSlotsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B8128E9FE4A00AA6483 /* SpellSlotsController.swift */; };
+		8E6E2B8428E9FF2400AA6483 /* SpellbookAppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B8328E9FF2400AA6483 /* SpellbookAppState.swift */; };
+		8E6E2B8628EBF16800AA6483 /* SpellFilterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B8528EBF16800AA6483 /* SpellFilterStatus.swift */; };
+		8E6E2B8828ED472900AA6483 /* SortFilterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E2B8728ED472900AA6483 /* SortFilterStatus.swift */; };
+		8E74FA4629E3D7C600E13B91 /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 8E74FA4529E3D7C600E13B91 /* SWXMLHash */; };
+		8E74FA4C29E3D84300E13B91 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 8E74FA4B29E3D84300E13B91 /* Toast */; };
+		8E74FA5029E3DB3800E13B91 /* ReSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8E74FA4F29E3DB3800E13B91 /* ReSwift */; };
+		8E74FA5329E511D300E13B91 /* ActionSheetPicker-3.0 in Frameworks */ = {isa = PBXBuildFile; productRef = 8E74FA5229E511D300E13B91 /* ActionSheetPicker-3.0 */; };
+		8E74FA5629E5194000E13B91 /* SimpleCheckbox in Frameworks */ = {isa = PBXBuildFile; productRef = 8E74FA5529E5194000E13B91 /* SimpleCheckbox */; };
+		8E74FA5829EB5A6C00E13B91 /* SpellSlotsManagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E74FA5729EB5A6C00E13B91 /* SpellSlotsManagerController.swift */; };
+		8E74FA5A29EBD7D900E13B91 /* SpellSlotsManagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E74FA5929EBD7D900E13B91 /* SpellSlotsManagerCell.swift */; };
 		8E7615AA264D716900686033 /* VersionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7615A9264D716900686033 /* VersionInfo.swift */; };
 		8E7BD0DD244A6BEF00090C40 /* PassThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BD0DC244A6BEF00090C40 /* PassThroughView.swift */; };
+		8E7EB4ED29F3B87F00408EA4 /* SpellSlotsManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7EB4EC29F3B87F00408EA4 /* SpellSlotsManagerDelegate.swift */; };
 		8E92CC65243BCE2100EB78B2 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC64243BCE2100EB78B2 /* Images.swift */; };
 		8E92CC67243BD49900EB78B2 /* NumberFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E92CC66243BD49900EB78B2 /* NumberFieldDelegate.swift */; };
-		8EA1655826786E8E00C0CAD7 /* Pods_Spellbook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F52835E1AFE88EEDAA5E6F4 /* Pods_Spellbook.framework */; };
+		8EB3691E293F123900856738 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB3691D293F123900856738 /* AppReducer.swift */; };
+		8EB36920293F133900856738 /* SpellbookActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB3691F293F133900856738 /* SpellbookActions.swift */; };
+		8EB3692229405EAB00856738 /* SpellbookReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB3692129405EAB00856738 /* SpellbookReducers.swift */; };
+		8EB5331129D54D0F00952027 /* SpellSlotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB5331029D54D0F00952027 /* SpellSlotCell.swift */; };
 		8EBC99CA2651B84A00E18669 /* UpdateInfo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8E7615A8264CFA3F00686033 /* UpdateInfo.xml */; };
 		8EBF1792243A4B15004C17FA /* TextFieldChooserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */; };
 		8ED0B932242BE9E800A085F4 /* down_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED0B931242BE9E800A085F4 /* down_arrow.png */; };
 		8ED0B936242E514F00A085F4 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED0B935242E514F00A085F4 /* FilterView.swift */; };
 		8ED0B9382431392700A085F4 /* NameDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED0B9372431392700A085F4 /* NameDisplayable.swift */; };
-		8EEAFCCA2645FB4C00A05D01 /* CharacterProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEAFCC92645FB4C00A05D01 /* CharacterProfileTests.swift */; };
+		8EEA28FD297C23D8004971AD /* SpellFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA28FC297C23D8004971AD /* SpellFilter.swift */; };
+		8EEAFCCA2645FB4C00A05D01 /* LegacyProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEAFCC92645FB4C00A05D01 /* LegacyProfileTests.swift */; };
 		8EF6EF0B264668F60059BCE8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0A264668F60059BCE8 /* Version.swift */; };
 		8EF6EF0D26485A2E0059BCE8 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */; };
-		CB83F840FFCD694FF7F68B6C /* Pods_SpellbookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F3455F8D46FA0B4CF5F5E0C /* Pods_SpellbookUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,7 +160,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B1F6F8D5F47845DF8DF0EC9 /* Pods-SpellbookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpellbookTests.debug.xcconfig"; path = "Target Support Files/Pods-SpellbookTests/Pods-SpellbookTests.debug.xcconfig"; sourceTree = "<group>"; };
 		397EE96521ACA86400B116B0 /* Spellbook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spellbook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		397EE96D21ACA86400B116B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		397EE97221ACA86800B116B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -151,11 +172,6 @@
 		39F1046F21AD87F40068A09E /* SION.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SION.swift; path = "../../Desktop/git/swift-sion/Sources/SION/SION.swift"; sourceTree = "<group>"; };
 		39F306A42378A4310078FA83 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		39F306A52378A4310078FA83 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		3F089C7503C44FC8DBBE004A /* Pods_SpellbookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpellbookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		58DC16B854EE4ADBC5F4983A /* Pods-SpellbookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpellbookTests.release.xcconfig"; path = "Target Support Files/Pods-SpellbookTests/Pods-SpellbookTests.release.xcconfig"; sourceTree = "<group>"; };
-		60E6B430935826708B306334 /* Pods-Spellbook-SpellbookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spellbook-SpellbookUITests.release.xcconfig"; path = "Target Support Files/Pods-Spellbook-SpellbookUITests/Pods-Spellbook-SpellbookUITests.release.xcconfig"; sourceTree = "<group>"; };
-		6254587FB06BAE3430927A80 /* Pods-Spellbook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spellbook.debug.xcconfig"; path = "Target Support Files/Pods-Spellbook/Pods-Spellbook.debug.xcconfig"; sourceTree = "<group>"; };
-		7F52835E1AFE88EEDAA5E6F4 /* Pods_Spellbook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spellbook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E02F76124345F6200A3050C /* YesNo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YesNo.swift; sourceTree = "<group>"; };
 		8E02F7632436378400A3050C /* FilterGridDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterGridDelegate.swift; sourceTree = "<group>"; };
 		8E02F76524363BAD00A3050C /* FilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
@@ -164,11 +180,15 @@
 		8E02F7712437F39200A3050C /* CombinationProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinationProtocols.swift; sourceTree = "<group>"; };
 		8E02F7732438EF1400A3050C /* RangeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RangeView.xib; sourceTree = "<group>"; };
 		8E02F7752438F04000A3050C /* RangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeView.swift; sourceTree = "<group>"; };
+		8E07AE0A2A0C957400C0487B /* clipboard_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clipboard_icon.png; sourceTree = "<group>"; };
+		8E07AE0C2A0F708700C0487B /* ImportCharacterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportCharacterController.swift; sourceTree = "<group>"; };
+		8E07AE0E2A10AFA700C0487B /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		8E13F1E2244E1B14004CCC18 /* trash_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash_icon.png; sourceTree = "<group>"; };
 		8E177F9A2432F34B005146B6 /* SortFilterTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFilterTableController.swift; sourceTree = "<group>"; };
 		8E19DA4F257C094A002B4F43 /* FilterOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionView.swift; sourceTree = "<group>"; };
 		8E19DA54257C095A002B4F43 /* FilterOptionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterOptionView.xib; sourceTree = "<group>"; };
 		8E19DA59257D6D46002B4F43 /* MessageDialogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDialogController.swift; sourceTree = "<group>"; };
+		8E452C0B2A3A652E00C78D9C /* CharacterProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProfileTests.swift; sourceTree = "<group>"; };
 		8E61489B241991BE00842A18 /* Spells.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Spells.json; sourceTree = "<group>"; };
 		8E61489C241991BE00842A18 /* TimeUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeUnit.swift; sourceTree = "<group>"; };
 		8E61489D241991BE00842A18 /* SourcebookFilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourcebookFilterController.swift; sourceTree = "<group>"; };
@@ -231,7 +251,6 @@
 		8E6148D9241991C100842A18 /* ImageUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
 		8E6148DA241991C100842A18 /* SubClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubClass.swift; sourceTree = "<group>"; };
 		8E6148DB241991C100842A18 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8E6148DD241991C100842A18 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		8E6148DE241991C100842A18 /* EnumMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumMap.swift; sourceTree = "<group>"; };
 		8E6148DF241991C100842A18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E6148E0241991C200842A18 /* SpellBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellBuilder.swift; sourceTree = "<group>"; };
@@ -249,23 +268,35 @@
 		8E61493D24199B2D00842A18 /* x_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = x_icon.png; sourceTree = SOURCE_ROOT; };
 		8E61494824199CBC00842A18 /* cloister_black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = cloister_black.ttf; sourceTree = SOURCE_ROOT; };
 		8E61494924199CBC00842A18 /* dungeon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dungeon.ttf; sourceTree = SOURCE_ROOT; };
+		8E6551B529AB42B800A3BC43 /* SpellbookMiddleware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellbookMiddleware.swift; sourceTree = "<group>"; };
+		8E6551B729AB470400A3BC43 /* SerializationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerializationUtils.swift; sourceTree = "<group>"; };
+		8E6551B929AC63E800A3BC43 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		8E6E2B7B28BC840200AA6483 /* SpellSlotStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSlotStatus.swift; sourceTree = "<group>"; };
+		8E6E2B7D28BC8C3F00AA6483 /* SIONUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SIONUtils.swift; sourceTree = "<group>"; };
+		8E6E2B8128E9FE4A00AA6483 /* SpellSlotsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSlotsController.swift; sourceTree = "<group>"; };
+		8E6E2B8328E9FF2400AA6483 /* SpellbookAppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellbookAppState.swift; sourceTree = "<group>"; };
+		8E6E2B8528EBF16800AA6483 /* SpellFilterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellFilterStatus.swift; sourceTree = "<group>"; };
+		8E6E2B8728ED472900AA6483 /* SortFilterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFilterStatus.swift; sourceTree = "<group>"; };
+		8E74FA5729EB5A6C00E13B91 /* SpellSlotsManagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSlotsManagerController.swift; sourceTree = "<group>"; };
+		8E74FA5929EBD7D900E13B91 /* SpellSlotsManagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSlotsManagerCell.swift; sourceTree = "<group>"; };
 		8E7615A8264CFA3F00686033 /* UpdateInfo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = UpdateInfo.xml; path = Data/UpdateInfo.xml; sourceTree = SOURCE_ROOT; };
 		8E7615A9264D716900686033 /* VersionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionInfo.swift; sourceTree = "<group>"; };
 		8E7BD0DC244A6BEF00090C40 /* PassThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassThroughView.swift; sourceTree = "<group>"; };
+		8E7EB4EC29F3B87F00408EA4 /* SpellSlotsManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSlotsManagerDelegate.swift; sourceTree = "<group>"; };
 		8E92CC64243BCE2100EB78B2 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		8E92CC66243BD49900EB78B2 /* NumberFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFieldDelegate.swift; sourceTree = "<group>"; };
+		8EB3691D293F123900856738 /* AppReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
+		8EB3691F293F133900856738 /* SpellbookActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellbookActions.swift; sourceTree = "<group>"; };
+		8EB3692129405EAB00856738 /* SpellbookReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellbookReducers.swift; sourceTree = "<group>"; };
+		8EB5331029D54D0F00952027 /* SpellSlotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSlotCell.swift; sourceTree = "<group>"; };
 		8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldChooserDelegate.swift; sourceTree = "<group>"; };
 		8ED0B931242BE9E800A085F4 /* down_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_arrow.png; sourceTree = SOURCE_ROOT; };
 		8ED0B935242E514F00A085F4 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		8ED0B9372431392700A085F4 /* NameDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameDisplayable.swift; sourceTree = "<group>"; };
-		8EEAFCC92645FB4C00A05D01 /* CharacterProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterProfileTests.swift; sourceTree = "<group>"; };
+		8EEA28FC297C23D8004971AD /* SpellFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellFilter.swift; sourceTree = "<group>"; };
+		8EEAFCC92645FB4C00A05D01 /* LegacyProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyProfileTests.swift; sourceTree = "<group>"; };
 		8EF6EF0A264668F60059BCE8 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTests.swift; sourceTree = "<group>"; };
-		94AD71A6585758027403E648 /* Pods-SpellbookUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpellbookUITests.debug.xcconfig"; path = "Target Support Files/Pods-SpellbookUITests/Pods-SpellbookUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		9F3455F8D46FA0B4CF5F5E0C /* Pods_SpellbookUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpellbookUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B99DF75ACA873A5DE055F227 /* Pods-SpellbookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpellbookUITests.release.xcconfig"; path = "Target Support Files/Pods-SpellbookUITests/Pods-SpellbookUITests.release.xcconfig"; sourceTree = "<group>"; };
-		DE6D2E6E2D786F2DE413830B /* Pods-Spellbook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spellbook.release.xcconfig"; path = "Target Support Files/Pods-Spellbook/Pods-Spellbook.release.xcconfig"; sourceTree = "<group>"; };
-		EE3F9E4F2FA898B5DC95F959 /* Pods-Spellbook-SpellbookUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spellbook-SpellbookUITests.debug.xcconfig"; path = "Target Support Files/Pods-Spellbook-SpellbookUITests/Pods-Spellbook-SpellbookUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,7 +304,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EA1655826786E8E00C0CAD7 /* Pods_Spellbook.framework in Frameworks */,
+				8E74FA5329E511D300E13B91 /* ActionSheetPicker-3.0 in Frameworks */,
+				8E74FA4C29E3D84300E13B91 /* Toast in Frameworks */,
+				8E74FA5629E5194000E13B91 /* SimpleCheckbox in Frameworks */,
+				8E74FA4629E3D7C600E13B91 /* SWXMLHash in Frameworks */,
+				8E74FA5029E3DB3800E13B91 /* ReSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,7 +316,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B97D79C1F8C714337F2E991 /* Pods_SpellbookTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,28 +323,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB83F840FFCD694FF7F68B6C /* Pods_SpellbookUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1109E518942E432F6020BD46 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				6254587FB06BAE3430927A80 /* Pods-Spellbook.debug.xcconfig */,
-				DE6D2E6E2D786F2DE413830B /* Pods-Spellbook.release.xcconfig */,
-				EE3F9E4F2FA898B5DC95F959 /* Pods-Spellbook-SpellbookUITests.debug.xcconfig */,
-				60E6B430935826708B306334 /* Pods-Spellbook-SpellbookUITests.release.xcconfig */,
-				0B1F6F8D5F47845DF8DF0EC9 /* Pods-SpellbookTests.debug.xcconfig */,
-				58DC16B854EE4ADBC5F4983A /* Pods-SpellbookTests.release.xcconfig */,
-				94AD71A6585758027403E648 /* Pods-SpellbookUITests.debug.xcconfig */,
-				B99DF75ACA873A5DE055F227 /* Pods-SpellbookUITests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		397EE95C21ACA86300B116B0 = {
 			isa = PBXGroup;
 			children = (
@@ -324,7 +342,6 @@
 				397EE98721ACA86900B116B0 /* SpellbookUITests */,
 				397EE96621ACA86400B116B0 /* Products */,
 				39F1046E21AD87F40068A09E /* Frameworks */,
-				1109E518942E432F6020BD46 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -342,10 +359,17 @@
 			isa = PBXGroup;
 			children = (
 				397EE96C21ACA86400B116B0 /* Main.storyboard */,
+				8E07AE0C2A0F708700C0487B /* ImportCharacterController.swift */,
+				8EB3692129405EAB00856738 /* SpellbookReducers.swift */,
+				8EB3691D293F123900856738 /* AppReducer.swift */,
+				8EB3691F293F133900856738 /* SpellbookActions.swift */,
+				8E6E2B8328E9FF2400AA6483 /* SpellbookAppState.swift */,
+				8E6E2B8528EBF16800AA6483 /* SpellFilterStatus.swift */,
 				397EE97121ACA86800B116B0 /* LaunchScreen.storyboard */,
 				8E6148CA241991C000842A18 /* AppDelegate.swift */,
 				8E6148DF241991C100842A18 /* Assets.xcassets */,
 				8E177F9A2432F34B005146B6 /* SortFilterTableController.swift */,
+				8E6E2B7B28BC840200AA6483 /* SpellSlotStatus.swift */,
 				8E92CC66243BD49900EB78B2 /* NumberFieldDelegate.swift */,
 				8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */,
 				8E02F7712437F39200A3050C /* CombinationProtocols.swift */,
@@ -416,7 +440,6 @@
 				8E6148B1241991BF00842A18 /* StringUtils.swift */,
 				8E6148DA241991C100842A18 /* SubClass.swift */,
 				8E61489C241991BE00842A18 /* TimeUnit.swift */,
-				8E6148DD241991C100842A18 /* Toast.swift */,
 				8E6148AB241991BF00842A18 /* ToggleButton.swift */,
 				8E6148D8241991C100842A18 /* Transitions.swift */,
 				8E6148BB241991C000842A18 /* Unit.swift */,
@@ -428,6 +451,18 @@
 				8E19DA59257D6D46002B4F43 /* MessageDialogController.swift */,
 				8EF6EF0A264668F60059BCE8 /* Version.swift */,
 				8E7615A9264D716900686033 /* VersionInfo.swift */,
+				8E6E2B7D28BC8C3F00AA6483 /* SIONUtils.swift */,
+				8E6E2B8128E9FE4A00AA6483 /* SpellSlotsController.swift */,
+				8E6E2B8728ED472900AA6483 /* SortFilterStatus.swift */,
+				8EEA28FC297C23D8004971AD /* SpellFilter.swift */,
+				8E6551B529AB42B800A3BC43 /* SpellbookMiddleware.swift */,
+				8E6551B729AB470400A3BC43 /* SerializationUtils.swift */,
+				8E6551B929AC63E800A3BC43 /* Toast.swift */,
+				8EB5331029D54D0F00952027 /* SpellSlotCell.swift */,
+				8E74FA5729EB5A6C00E13B91 /* SpellSlotsManagerController.swift */,
+				8E74FA5929EBD7D900E13B91 /* SpellSlotsManagerCell.swift */,
+				8E7EB4EC29F3B87F00408EA4 /* SpellSlotsManagerDelegate.swift */,
+				8E07AE0E2A10AFA700C0487B /* Operators.swift */,
 			);
 			path = Spellbook;
 			sourceTree = "<group>";
@@ -437,8 +472,9 @@
 			children = (
 				397EE97D21ACA86800B116B0 /* SpellbookTests.swift */,
 				397EE97F21ACA86800B116B0 /* Info.plist */,
-				8EEAFCC92645FB4C00A05D01 /* CharacterProfileTests.swift */,
+				8EEAFCC92645FB4C00A05D01 /* LegacyProfileTests.swift */,
 				8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */,
+				8E452C0B2A3A652E00C78D9C /* CharacterProfileTests.swift */,
 			);
 			path = SpellbookTests;
 			sourceTree = "<group>";
@@ -466,9 +502,6 @@
 			isa = PBXGroup;
 			children = (
 				39F1046F21AD87F40068A09E /* SION.swift */,
-				7F52835E1AFE88EEDAA5E6F4 /* Pods_Spellbook.framework */,
-				3F089C7503C44FC8DBBE004A /* Pods_SpellbookTests.framework */,
-				9F3455F8D46FA0B4CF5F5E0C /* Pods_SpellbookUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -495,6 +528,7 @@
 			isa = PBXGroup;
 			children = (
 				8E13F1E2244E1B14004CCC18 /* trash_icon.png */,
+				8E07AE0A2A0C957400C0487B /* clipboard_icon.png */,
 				8E61493524199B2D00842A18 /* book_empty.png */,
 				8E61493A24199B2D00842A18 /* book_filled.png */,
 				8ED0B931242BE9E800A085F4 /* down_arrow.png */,
@@ -525,17 +559,22 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 397EE98D21ACA86900B116B0 /* Build configuration list for PBXNativeTarget "Spellbook" */;
 			buildPhases = (
-				3BF5CC04C2A985527DBFBB9F /* [CP] Check Pods Manifest.lock */,
 				397EE96121ACA86400B116B0 /* Sources */,
 				397EE96221ACA86400B116B0 /* Frameworks */,
 				397EE96321ACA86400B116B0 /* Resources */,
-				B149EC58FB6CD941EA076568 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Spellbook;
+			packageProductDependencies = (
+				8E74FA4529E3D7C600E13B91 /* SWXMLHash */,
+				8E74FA4B29E3D84300E13B91 /* Toast */,
+				8E74FA4F29E3DB3800E13B91 /* ReSwift */,
+				8E74FA5229E511D300E13B91 /* ActionSheetPicker-3.0 */,
+				8E74FA5529E5194000E13B91 /* SimpleCheckbox */,
+			);
 			productName = Spellbook;
 			productReference = 397EE96521ACA86400B116B0 /* Spellbook.app */;
 			productType = "com.apple.product-type.application";
@@ -544,7 +583,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 397EE99021ACA86900B116B0 /* Build configuration list for PBXNativeTarget "SpellbookTests" */;
 			buildPhases = (
-				80D32404DAD258AB3A82DA41 /* [CP] Check Pods Manifest.lock */,
 				397EE97521ACA86800B116B0 /* Sources */,
 				397EE97621ACA86800B116B0 /* Frameworks */,
 				397EE97721ACA86800B116B0 /* Resources */,
@@ -563,7 +601,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 397EE99321ACA86900B116B0 /* Build configuration list for PBXNativeTarget "SpellbookUITests" */;
 			buildPhases = (
-				EE7352EE04FC83993404A242 /* [CP] Check Pods Manifest.lock */,
 				397EE98021ACA86900B116B0 /* Sources */,
 				397EE98121ACA86900B116B0 /* Frameworks */,
 				397EE98221ACA86900B116B0 /* Resources */,
@@ -613,6 +650,13 @@
 				Base,
 			);
 			mainGroup = 397EE95C21ACA86300B116B0;
+			packageReferences = (
+				8E74FA4429E3D7C600E13B91 /* XCRemoteSwiftPackageReference "SWXMLHash" */,
+				8E74FA4A29E3D84300E13B91 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				8E74FA4E29E3DB3800E13B91 /* XCRemoteSwiftPackageReference "ReSwift" */,
+				8E74FA5129E511D300E13B91 /* XCRemoteSwiftPackageReference "ActionSheetPicker-3" */,
+				8E74FA5429E5194000E13B91 /* XCRemoteSwiftPackageReference "SimpleCheckbox" */,
+			);
 			productRefGroup = 397EE96621ACA86400B116B0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -650,6 +694,7 @@
 				8E13F1E3244E1B15004CCC18 /* trash_icon.png in Resources */,
 				8E02F7742438EF1400A3050C /* RangeView.xib in Resources */,
 				8E6148E2241991C200842A18 /* Spells.json in Resources */,
+				8E07AE0B2A0C957400C0487B /* clipboard_icon.png in Resources */,
 				8E61494A24199ED500842A18 /* cloister_black.ttf in Resources */,
 				8ED0B932242BE9E800A085F4 /* down_arrow.png in Resources */,
 			);
@@ -671,97 +716,12 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		3BF5CC04C2A985527DBFBB9F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Spellbook-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		80D32404DAD258AB3A82DA41 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SpellbookTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B149EC58FB6CD941EA076568 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Spellbook/Pods-Spellbook-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Spellbook/Pods-Spellbook-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Spellbook/Pods-Spellbook-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EE7352EE04FC83993404A242 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SpellbookUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		397EE96121ACA86400B116B0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E6E2B7E28BC8C3F00AA6483 /* SIONUtils.swift in Sources */,
 				8E61490B241991C200842A18 /* SortDirectionButton.swift in Sources */,
 				8E614928241991C200842A18 /* Spellbook.swift in Sources */,
 				8E7BD0DD244A6BEF00090C40 /* PassThroughView.swift in Sources */,
@@ -778,9 +738,11 @@
 				8E614902241991C200842A18 /* Unit.swift in Sources */,
 				8E02F7722437F39200A3050C /* CombinationProtocols.swift in Sources */,
 				8E614920241991C200842A18 /* ImageUtils.swift in Sources */,
+				8E07AE0F2A10AFA700C0487B /* Operators.swift in Sources */,
 				8E6148F4241991C200842A18 /* SideMenuCell.swift in Sources */,
 				8E614918241991C200842A18 /* StatusFilterController.swift in Sources */,
 				8E6148EC241991C200842A18 /* DeletionPromptController.swift in Sources */,
+				8E7EB4ED29F3B87F00408EA4 /* SpellSlotsManagerDelegate.swift in Sources */,
 				8E614907241991C200842A18 /* PopupViewController.swift in Sources */,
 				8E6148EE241991C200842A18 /* CharacterCreationController.swift in Sources */,
 				8E614911241991C200842A18 /* AppDelegate.swift in Sources */,
@@ -788,31 +750,43 @@
 				8E92CC65243BCE2100EB78B2 /* Images.swift in Sources */,
 				8E61490D241991C200842A18 /* CharacterSelectionController.swift in Sources */,
 				8E177F9B2432F34B005146B6 /* SortFilterTableController.swift in Sources */,
+				8E6E2B8828ED472900AA6483 /* SortFilterStatus.swift in Sources */,
 				8E6148F9241991C200842A18 /* SortField.swift in Sources */,
 				8E614906241991C200842A18 /* StatusPopupController.swift in Sources */,
 				8E6148EA241991C200842A18 /* StatusFilterField.swift in Sources */,
 				8E6148F2241991C200842A18 /* ToggleButton.swift in Sources */,
 				8E614914241991C200842A18 /* CasterClass.swift in Sources */,
+				8E74FA5829EB5A6C00E13B91 /* SpellSlotsManagerController.swift in Sources */,
 				8E02F7762438F04000A3050C /* RangeView.swift in Sources */,
 				8E614917241991C200842A18 /* SpellParse.swift in Sources */,
 				8E614901241991C200842A18 /* School.swift in Sources */,
 				8E6148E3241991C200842A18 /* TimeUnit.swift in Sources */,
 				8E02F7642436378400A3050C /* FilterGridDelegate.swift in Sources */,
 				8E614900241991C200842A18 /* QuantityType.swift in Sources */,
+				8E6551B629AB42B800A3BC43 /* SpellbookMiddleware.swift in Sources */,
 				8E6148FF241991C200842A18 /* CharacterProfile.swift in Sources */,
 				8E614905241991C200842A18 /* InfoTableViewHeader.swift in Sources */,
+				8EB36920293F133900856738 /* SpellbookActions.swift in Sources */,
 				8E614912241991C200842A18 /* Quantity.swift in Sources */,
+				8E6E2B8628EBF16800AA6483 /* SpellFilterStatus.swift in Sources */,
+				8E6E2B8228E9FE4A00AA6483 /* SpellSlotsController.swift in Sources */,
+				8EB3691E293F123900856738 /* AppReducer.swift in Sources */,
 				8E6148F8241991C200842A18 /* StringUtils.swift in Sources */,
 				8E614927241991C200842A18 /* SpellBuilder.swift in Sources */,
 				8E02F76224345F6200A3050C /* YesNo.swift in Sources */,
+				8E07AE0D2A0F708700C0487B /* ImportCharacterController.swift in Sources */,
+				8EEA28FD297C23D8004971AD /* SpellFilter.swift in Sources */,
 				8E614916241991C200842A18 /* SideMenuController.swift in Sources */,
+				8E74FA5A29EBD7D900E13B91 /* SpellSlotsManagerCell.swift in Sources */,
 				8E6148F5241991C200842A18 /* SpellTableViewController.swift in Sources */,
 				8E6148E4241991C200842A18 /* SourcebookFilterController.swift in Sources */,
+				8E6551BA29AC63E800A3BC43 /* Toast.swift in Sources */,
 				8EF6EF0B264668F60059BCE8 /* Version.swift in Sources */,
 				8E61491E241991C200842A18 /* Constants.swift in Sources */,
 				8E614908241991C200842A18 /* SION.swift in Sources */,
 				8E614904241991C200842A18 /* Range.swift in Sources */,
 				8E19DA50257C094A002B4F43 /* FilterOptionView.swift in Sources */,
+				8EB3692229405EAB00856738 /* SpellbookReducers.swift in Sources */,
 				8E6148E9241991C200842A18 /* LabelViewController.swift in Sources */,
 				8E6148E7241991C200842A18 /* InfoMenuCell.swift in Sources */,
 				8E61490C241991C200842A18 /* EnumUtilities.swift in Sources */,
@@ -824,12 +798,13 @@
 				8E6148FE241991C200842A18 /* ViewController.swift in Sources */,
 				8E6148EF241991C200842A18 /* SizeUtils.swift in Sources */,
 				8E6148F7241991C200842A18 /* InfoMenuViewController.swift in Sources */,
+				8E6E2B7C28BC840200AA6483 /* SpellSlotStatus.swift in Sources */,
 				8ED0B9382431392700A085F4 /* NameDisplayable.swift in Sources */,
-				8E614924241991C200842A18 /* Toast.swift in Sources */,
 				8ED0B936242E514F00A085F4 /* FilterView.swift in Sources */,
 				8E614910241991C200842A18 /* Util.swift in Sources */,
 				8E6148EB241991C200842A18 /* CastingTime.swift in Sources */,
 				8E614925241991C200842A18 /* EnumMap.swift in Sources */,
+				8EB5331129D54D0F00952027 /* SpellSlotCell.swift in Sources */,
 				8E614903241991C200842A18 /* Spell.swift in Sources */,
 				8EBF1792243A4B15004C17FA /* TextFieldChooserDelegate.swift in Sources */,
 				8E61491C241991C200842A18 /* SpellStatus.swift in Sources */,
@@ -839,8 +814,10 @@
 				8E6148ED241991C200842A18 /* LengthUnit.swift in Sources */,
 				8E61491A241991C200842A18 /* iOSUtils.swift in Sources */,
 				39F306A62378A4310078FA83 /* SWRevealViewController.m in Sources */,
+				8E6551B829AB470400A3BC43 /* SerializationUtils.swift in Sources */,
 				8E19DA5A257D6D46002B4F43 /* MessageDialogController.swift in Sources */,
 				8E61491F241991C200842A18 /* Transitions.swift in Sources */,
+				8E6E2B8428E9FF2400AA6483 /* SpellbookAppState.swift in Sources */,
 				8E6148E5241991C200842A18 /* Duration.swift in Sources */,
 				8E92CC67243BD49900EB78B2 /* NumberFieldDelegate.swift in Sources */,
 			);
@@ -851,8 +828,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				397EE97E21ACA86800B116B0 /* SpellbookTests.swift in Sources */,
-				8EEAFCCA2645FB4C00A05D01 /* CharacterProfileTests.swift in Sources */,
+				8EEAFCCA2645FB4C00A05D01 /* LegacyProfileTests.swift in Sources */,
 				8EF6EF0D26485A2E0059BCE8 /* VersionTests.swift in Sources */,
+				8E452C0C2A3A652E00C78D9C /* CharacterProfileTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -950,7 +928,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1005,7 +983,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1017,24 +995,23 @@
 		};
 		397EE98E21ACA86900B116B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6254587FB06BAE3430927A80 /* Pods-Spellbook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 37;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = RSR87G74R7;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Spellbook/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.13.1;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dnd.jon.Spellbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1047,24 +1024,23 @@
 		};
 		397EE98F21ACA86900B116B0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DE6D2E6E2D786F2DE413830B /* Pods-Spellbook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
-				CURRENT_PROJECT_VERSION = 33;
+				CURRENT_PROJECT_VERSION = 37;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = RSR87G74R7;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Spellbook/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.13.1;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dnd.jon.Spellbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1076,7 +1052,6 @@
 		};
 		397EE99121ACA86900B116B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B1F6F8D5F47845DF8DF0EC9 /* Pods-SpellbookTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1100,7 +1075,6 @@
 		};
 		397EE99221ACA86900B116B0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58DC16B854EE4ADBC5F4983A /* Pods-SpellbookTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1123,7 +1097,6 @@
 		};
 		397EE99421ACA86900B116B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 94AD71A6585758027403E648 /* Pods-SpellbookUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1144,7 +1117,6 @@
 		};
 		397EE99521ACA86900B116B0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B99DF75ACA873A5DE055F227 /* Pods-SpellbookUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1203,6 +1175,77 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8E74FA4429E3D7C600E13B91 /* XCRemoteSwiftPackageReference "SWXMLHash" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/drmohundro/SWXMLHash.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		8E74FA4A29E3D84300E13B91 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		8E74FA4E29E3DB3800E13B91 /* XCRemoteSwiftPackageReference "ReSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReSwift/ReSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.1.0;
+			};
+		};
+		8E74FA5129E511D300E13B91 /* XCRemoteSwiftPackageReference "ActionSheetPicker-3" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/skywinder/ActionSheetPicker-3.0";
+			requirement = {
+				kind = revision;
+				revision = 8d82c21036c2f478a47908a7fc107ec7027abcab;
+			};
+		};
+		8E74FA5429E5194000E13B91 /* XCRemoteSwiftPackageReference "SimpleCheckbox" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BeauNouvelle/SimpleCheckbox.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8E74FA4529E3D7C600E13B91 /* SWXMLHash */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E74FA4429E3D7C600E13B91 /* XCRemoteSwiftPackageReference "SWXMLHash" */;
+			productName = SWXMLHash;
+		};
+		8E74FA4B29E3D84300E13B91 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E74FA4A29E3D84300E13B91 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
+		8E74FA4F29E3DB3800E13B91 /* ReSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E74FA4E29E3DB3800E13B91 /* XCRemoteSwiftPackageReference "ReSwift" */;
+			productName = ReSwift;
+		};
+		8E74FA5229E511D300E13B91 /* ActionSheetPicker-3.0 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E74FA5129E511D300E13B91 /* XCRemoteSwiftPackageReference "ActionSheetPicker-3" */;
+			productName = "ActionSheetPicker-3.0";
+		};
+		8E74FA5529E5194000E13B91 /* SimpleCheckbox */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E74FA5429E5194000E13B91 /* XCRemoteSwiftPackageReference "SimpleCheckbox" */;
+			productName = SimpleCheckbox;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 397EE95D21ACA86300B116B0 /* Project object */;
 }

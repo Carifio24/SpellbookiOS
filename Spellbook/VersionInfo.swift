@@ -11,15 +11,15 @@ import SWXMLHash
 
 class VersionInfo {
     
-    static let version = Version(major: 2, minor: 13, patch: 1)
-    static let previousVersion = Version(major: 2, minor: 13, patch: 0)
+    static let version = Version(major: 3, minor: 0, patch: 0)
+    static let previousVersion = Version(major: 2, minor: 13, patch: 1)
     
     static let currentVersionKey = "v_" + version.string(separator: "_")
     
     static let (updateTitle, updateText): (String, String) = {
         let infoFile = Bundle.main.url(forResource: "UpdateInfo", withExtension: "xml")!
         let data = try! String(contentsOf: infoFile)
-        let xmlDoc = SWXMLHash.parse(data)
+        let xmlDoc = XMLHash.parse(data)
         do {
             let updateSection = try xmlDoc["root"]["section"].withAttribute("name", VersionInfo.currentVersionKey)
             let updateTitleText = try updateSection["item"].withAttribute("name", "title").element!.text

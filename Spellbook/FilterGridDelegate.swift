@@ -7,14 +7,20 @@
 //
 
 import UIKit
+import ReSwift
 
 fileprivate let defaultWidth: CGFloat = UIScreen.main.bounds.size.width - CGFloat(10)
 
-class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
+class FilterGridDelegate<T:NameConstructible, A:Action>: NSObject, FilterGridProtocol {
     
     typealias ItemComparator = (T,T) -> Bool
+    typealias VisibilityGetter = (T) -> Bool
+    typealias ActionCreator = (T) -> A
     
     let reuseIdentifier = "filterCell"
+    
+    let getter: VisibilityGetter
+    let actionCreator: ActionCreator
     
     fileprivate(set) var items: [T]
     private var itemButtonMap: [T:ToggleButton] = [:]
@@ -23,14 +29,14 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
     private let gridWidth: CGFloat
     private let columnWidth: CGFloat
     fileprivate let rowHeight: CGFloat = FilterView.imageHeight
-    private let main = Controllers.mainController
     fileprivate let sectionInsets = UIEdgeInsets(top: 5,
                                      left: 5,
                                      bottom: 5,
                                      right: 5)
     
-    init(gridWidth: CGFloat, sortBy: ItemComparator? = nil) {
-        
+    init(gridWidth: CGFloat, getter: @escaping VisibilityGetter, actionCreator: @escaping ActionCreator, sortBy: ItemComparator? = nil) {
+        self.getter = getter
+        self.actionCreator = actionCreator
         self.gridWidth = gridWidth
         var items = T.allCases.map({ $0 })
         if sortBy != nil {
@@ -68,8 +74,8 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
         columnWidth = maxWidth
     }
     
-    convenience init(sortBy:  ItemComparator? = nil) {
-        self.init(gridWidth: defaultWidth, sortBy: sortBy)
+    convenience init(getter: @escaping VisibilityGetter, actionCreator: @escaping ActionCreator, sortBy:  ItemComparator? = nil) {
+        self.init(gridWidth: defaultWidth, getter: getter, actionCreator: actionCreator, sortBy: sortBy)
     }
     
     
@@ -90,10 +96,9 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
         //cell.filterView.nameLabel.sizeToFit()
         //print("Item is \(item.displayName)")
         //print("Visibility is \(main.characterProfile.getVisibility(item))")
-        button.set(main.characterProfile.getVisibility(item))
+        button.set(getter(item))
         button.setCallback({
-            self.main.characterProfile.toggleVisibility(item)
-            self.main.saveCharacterProfile()
+            store.dispatch(self.actionCreator(item))
         })
         button.setLongPressCallback({
             if !button.isSet() { button.sendActions(for: .touchUpInside) }
@@ -119,8 +124,8 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
             }
         }
     }
-    @objc func selectAll() { setAll(true) }
-    @objc func unselectAll() { setAll(false) }
+    @objc func selectAll() { store.dispatch(FilterAllAction<T>(visible: true)) }
+    @objc func unselectAll() { store.dispatch(FilterAllAction<T>(visible: false)) }
     
     func collectionView(_ collectionView: UICollectionView,
             layout collectionViewLayout: UICollectionViewLayout,
@@ -184,13 +189,13 @@ class FilterGridDelegate<T:NameConstructible>: NSObject, FilterGridProtocol {
     
 }
 
-class FilterGridFeatureDelegate<T:NameConstructible> : FilterGridDelegate<T> {
+class FilterGridFeatureDelegate<T:NameConstructible, A:Action> : FilterGridDelegate<T,A> {
     let featuredItems: [T]
     let allItems: [T]
     var featuredRows: Int = 0
     private(set) var showingFeatured: Bool
     
-    init(featuredItems: [T], gridWidth: CGFloat, sortBy: ItemComparator? = nil) {
+    init(featuredItems: [T], gridWidth: CGFloat, getter: @escaping VisibilityGetter, actionCreator: @escaping ActionCreator, sortBy: ItemComparator? = nil) {
         var allItems = T.allCases.map({$0})
         var featured = featuredItems
         if sortBy != nil {
@@ -200,7 +205,7 @@ class FilterGridFeatureDelegate<T:NameConstructible> : FilterGridDelegate<T> {
         self.featuredItems = featured
         self.allItems = allItems
         self.showingFeatured = false
-        super.init(gridWidth: gridWidth, sortBy: sortBy)
+        super.init(gridWidth: gridWidth, getter: getter, actionCreator: actionCreator, sortBy: sortBy)
         self.featuredRows = Int(Float(featuredItems.count / self.columns).rounded(.up))
     }
     
@@ -208,8 +213,8 @@ class FilterGridFeatureDelegate<T:NameConstructible> : FilterGridDelegate<T> {
     func useAll() { self.items = self.allItems; self.showingFeatured = false }
     func toggleUseFeatured() { self.showingFeatured ? self.useAll() : self.useFeatured() }
     
-    convenience init(featuredItems: [T], sortBy: ItemComparator? = nil) {
-        self.init(featuredItems: featuredItems, gridWidth: defaultWidth, sortBy: sortBy)
+    convenience init(featuredItems: [T], getter: @escaping VisibilityGetter, actionCreator: @escaping ActionCreator, sortBy: ItemComparator? = nil) {
+        self.init(featuredItems: featuredItems, gridWidth: defaultWidth, getter: getter, actionCreator: actionCreator, sortBy: sortBy)
     }
     
     override func desiredHeight() -> CGFloat {
@@ -222,19 +227,19 @@ class FilterGridFeatureDelegate<T:NameConstructible> : FilterGridDelegate<T> {
 }
 
 
-class FilterGridRangeDelegate<T:QuantityType>: FilterGridDelegate<T> {
+class FilterGridRangeDelegate<T:QuantityType, A:Action>: FilterGridDelegate<T,A> {
     
     typealias FlagSetter = (Bool) -> Void
     
     var flagSetter: FlagSetter
     
-    init(gridWidth: CGFloat, flagSetter: @escaping FlagSetter) {
+    init(gridWidth: CGFloat, getter: @escaping VisibilityGetter, actionCreator: @escaping ActionCreator, flagSetter: @escaping FlagSetter) {
         self.flagSetter = flagSetter
-        super.init(gridWidth: gridWidth)
+        super.init(gridWidth: gridWidth, getter: getter, actionCreator: actionCreator)
     }
     
-    convenience init(flagSetter: @escaping FlagSetter) {
-        self.init(gridWidth: defaultWidth, flagSetter: flagSetter)
+    convenience init(getter: @escaping VisibilityGetter, actionCreator: @escaping ActionCreator, flagSetter: @escaping FlagSetter) {
+        self.init(gridWidth: defaultWidth, getter: getter, actionCreator: actionCreator, flagSetter: flagSetter)
     }
     
     

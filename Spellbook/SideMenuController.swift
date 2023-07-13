@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReSwift
 
 class SideMenuController: UIViewController, UIPopoverPresentationControllerDelegate {
 
@@ -17,6 +18,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     @IBOutlet var selectionButton: UIButton!
     @IBOutlet weak var updateInfoLabel: UILabel!
     @IBOutlet weak var whatsNewButton: UIButton!
+    @IBOutlet weak var spellSlotsButton: UIButton!
     
     var statusController: StatusFilterController?
     
@@ -34,6 +36,8 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     
     private var viewHeight = CGFloat(600)
     private var viewWidth = CGFloat(400)
+    
+    static let spellSlotsIdentifier = "spellSlots"
     
     // Status bar
     // Status bar
@@ -65,9 +69,11 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         let statusFilterHeight = CGFloat(171)
         let characterLabelHeight = CGFloat(20)
         let selectionButtonHeight = CGFloat(20)
+        let spellSlotsButtonHeight = CGFloat(20)
         let belowFilterPadding = min(max(0.05 * SizeUtils.screenHeight, 25), 40)
         let belowCharacterLabelPadding = CGFloat(14)
-        let belowSelectionButtonPadding = CGFloat(23)
+        let belowSelectionButtonPadding = CGFloat(20)
+        let belowSpellSlotsButtonPadding = CGFloat(23)
         let notchTopPadding = CGFloat(35)
         let updateInfoLabelHeight = CGFloat(20)
         let belowUpdateInfoLabelPadding = CGFloat(14)
@@ -92,33 +98,39 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         currentY += characterLabelHeight + belowCharacterLabelPadding
         selectionButton.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: selectionButtonHeight)
         
-        currentY += selectionButtonHeight + belowSelectionButtonPadding
+        currentY += spellSlotsButtonHeight + belowSelectionButtonPadding
+        spellSlotsButton.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: spellSlotsButtonHeight)
+        
+        currentY += selectionButtonHeight + belowSpellSlotsButtonPadding
         updateInfoLabel.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: updateInfoLabelHeight)
         
         currentY += updateInfoLabelHeight + belowUpdateInfoLabelPadding
         whatsNewButton.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: whatsNewButtonHeight)
         
-        // The character selection button callback
         selectionButton.addTarget(self, action: #selector(selectionButtonPressed), for: UIControl.Event.touchUpInside)
         
-        // The what's new selection button callback
         whatsNewButton.addTarget(self, action: #selector(updateInfoButtonPressed), for: UIControl.Event.touchUpInside)
+        
+        spellSlotsButton.addTarget(self, action: #selector(spellSlotsButtonPressed), for: UIControl.Event.touchUpInside)
         
         characterLabel.textColor = defaultFontColor
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        store.subscribe(self) {
+            $0.select { $0.profile?.name }
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         
         // Set the character label
-        let name = main?.characterProfile.getName()
+        let name = store.state.profile?.name ?? nil
         if (name != nil) {
             characterLabel.text = "Character: " + name!
         }
-        if statusController != nil {
-            statusController!.setFilter(main!.characterProfile.getStatusFilter())
-        }
-        
     }
     
     // Connecting to the child controllers
@@ -162,12 +174,6 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         self.present(popupVC, animated: true, completion: nil)
         //self.present(controller, animated: true, completion: nil)
     }
-
-    func setFilterStatus(profile: CharacterProfile) {
-        if statusController != nil {
-            statusController!.setFilter(profile.getStatusFilter())
-        }
-    }
     
     @objc func updateInfoButtonPressed() {
         
@@ -190,6 +196,16 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         
         let popupVC = PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
         self.present(popupVC, animated: true, completion: nil)
+    }
+    
+    @objc func spellSlotsButtonPressed() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: SideMenuController.spellSlotsIdentifier) as! SpellSlotsController
+        controller.transitioningDelegate = controller
+        Controllers.mainNavController.pushViewController(controller, animated: true)
+        Controllers.mainController.closeMenuIfOpen()
+        Controllers.spellSlotsController = controller
+        UIApplication.shared.setStatusBarTextColor(.light)
     }
     
     
@@ -219,4 +235,14 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     */
 
+}
+
+// MARK: StoreSubscriber
+extension SideMenuController: StoreSubscriber {
+    typealias StoreSubscriberStateType = String?
+    func newState(state name: StoreSubscriberStateType) {
+        if (name != nil) {
+            characterLabel.text = "Character: " + name!
+        }
+    }
 }

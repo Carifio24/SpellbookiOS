@@ -6,13 +6,13 @@
 //  Copyright © 2020 Jonathan Carifio. All rights reserved.
 //
 
+import ReSwift
 import UIKit
 
 class RangeView: UIView, HeightProvider {
     
-    typealias BoundsGetter = (CharacterProfile) -> (Int, String, Int, String)
-    typealias DefaultBoundsGetter = () -> (Int, String, Int, String)
-    typealias ProfileDefaulter = (CharacterProfile) -> Void
+    typealias BoundsGetter<U: Unit> = () -> (Int, U, Int, U)
+    typealias NamedBoundsGetter = () -> (Int, String, Int, String)
 
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var selectionRow: UIView!
@@ -28,9 +28,9 @@ class RangeView: UIView, HeightProvider {
     var minValueDelegate: UITextFieldDelegate?
     var maxValueDelegate: UITextFieldDelegate?
     
-    var boundsGetter: BoundsGetter?
-    var defaultBoundsGetter: DefaultBoundsGetter?
-    var profileDefaulter: ProfileDefaulter?
+    var boundsGetter: NamedBoundsGetter?
+    var defaultBoundsGetter: NamedBoundsGetter?
+    var actionCreator: (() -> Action)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,42 +53,51 @@ class RangeView: UIView, HeightProvider {
         }
     }
     
-    func setType<Q:QuantityType, U:Unit, T:Quantity<Q,U>>(_ type: T.Type, centerText: String, title: String) {
+    func setType<T:QuantityType, U:Unit, Q:Quantity<T,U>>(_ type: Q.Type,
+                                                                    centerText: String,
+                                                                    title: String) {
+        
+        typealias UnitActionType = UnitUpdateAction<T,U>
+        typealias ValueActionType = ValueUpdateAction<T,U>
         
         // Create and set the delegates for the units
-        minUnitDelegate = UnitChooserDelegate<U>(
-            getter: { cp in return cp.getMinUnit(quantityType: Q.self, unitType: U.self) },
-            setter: { cp, unit in cp.setMinUnit(quantityType: Q.self, unitType: U.self, unit: unit) }, title: title)
-        maxUnitDelegate = UnitChooserDelegate<U>(
-            getter: { cp in return cp.getMaxUnit(quantityType: Q.self, unitType: U.self) },
-            setter: { cp, unit in cp.setMaxUnit(quantityType: Q.self, unitType: U.self, unit: unit) }, title: title)
-        minUnitChoice.delegate = minUnitDelegate!
-        maxUnitChoice.delegate = maxUnitDelegate!
+        minUnitDelegate = UnitChooserDelegate<UnitActionType,U>(
+            itemProvider: { () in
+                let unitString = self.boundsGetter?().1 ?? ""
+                if let unit = try? U.fromString(unitString) { return unit }
+                return U.defaultUnit
+            },
+            actionCreator:{ (unit) in return UnitActionType.min(unit: unit, quantityType: T.self) },
+            title: title
+        )
+        maxUnitDelegate = UnitChooserDelegate<UnitActionType,U>(
+            itemProvider: { () in
+                let unitString = self.boundsGetter?().3 ?? ""
+                if let unit = try? U.fromString(unitString) { return unit }
+                return U.defaultUnit
+            },
+            actionCreator:{ (unit) in return UnitActionType.max(unit: unit, quantityType: T.self) },
+            title: title
+        )
+        minUnitChoice.delegate = minUnitDelegate
+        maxUnitChoice.delegate = maxUnitDelegate
+        
+        // Create the function that will get the values for the unit bounds
+        boundsGetter = { () in return store.state.profile?.sortFilterStatus.getStringBounds(Q.self) ?? (0, "", 1, "") }
         
         // Create and set the delegates for the values
-        minValueDelegate = NumberFieldDelegate(maxCharacters: 3, setter: { cp, value in cp.setMinValue(quantityType: Q.self, unitType: U.self, value: value) })
-        maxValueDelegate = NumberFieldDelegate(maxCharacters: 3, setter: { cp, value in cp.setMaxValue(quantityType: Q.self, unitType: U.self, value: value) })
+        minValueDelegate = NumberFieldDelegate<ValueActionType>(
+            maxCharacters: 3,
+            actionCreator: { (value) in return ValueActionType.min(value: value, quantityType: T.self, unitType: U.self) }
+        )
+        maxValueDelegate = NumberFieldDelegate<ValueActionType>(
+            maxCharacters: 3,
+            actionCreator: { (value) in return ValueActionType.max(value: value, quantityType: T.self, unitType: U.self) }
+        )
         minValueEntry.delegate = minValueDelegate!
         maxValueEntry.delegate = maxValueDelegate!
         
-        
-        // Create the function that will get the values for the unit bounds
-        boundsGetter = { cp in
-            let bounds = cp.getBounds(type: T.self)
-            let textGetter: (U) -> String = SizeUtils.unitTextGetter(U.self)
-            return (bounds.0.value, textGetter(bounds.0.unit), bounds.1.value, textGetter(bounds.1.unit))
-        }
-        defaultBoundsGetter = {
-            let defaultBounds = CharacterProfile.getDefaultBounds(type: T.self)
-            let textGetter: (U) -> String = SizeUtils.unitTextGetter(U.self)
-            return (defaultBounds.0.value, textGetter(defaultBounds.0.unit), defaultBounds.1.value, textGetter(defaultBounds.1.unit))
-        }
-        
-        // Create the function that will be called to set the character profile bounds to the default
-        profileDefaulter = { cp in
-            cp.setRangeBoundsToDefault(type: T.self)
-        }
-        
+        actionCreator = { () in return QuantityRangeDefaultAction<T,U,Q>() }
         
         // We can set the center label now, since that won't change when the character profile changes
         rangeTextLabel.text = " ≤ " + centerText + " ≤ "
@@ -114,9 +123,7 @@ class RangeView: UIView, HeightProvider {
         if (defaultBoundsGetter != nil) {
             let (minValue, minUnitName, maxValue, maxUnitName) = defaultBoundsGetter!()
             setValues(minValue: minValue, minUnitName: minUnitName, maxValue: maxValue, maxUnitName: maxUnitName)
-            let main = Controllers.mainController
-            profileDefaulter!(main.characterProfile)
-            main.saveCharacterProfile()
+            store.dispatch(self.actionCreator!())
         }
     }
     
@@ -125,8 +132,7 @@ class RangeView: UIView, HeightProvider {
     // To be called when the character profile is changed
     func updateValues() {
         if (boundsGetter != nil) {
-            let profile = Controllers.mainController.characterProfile
-            let (minValue, minUnitName, maxValue, maxUnitName) = boundsGetter!(profile)
+            let (minValue, minUnitName, maxValue, maxUnitName) = boundsGetter!()
             setValues(minValue: minValue, minUnitName: minUnitName, maxValue: maxValue, maxUnitName: maxUnitName)
         }
     }

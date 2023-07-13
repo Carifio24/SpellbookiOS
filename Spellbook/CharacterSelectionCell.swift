@@ -12,10 +12,12 @@ class CharacterSelectionCell: UITableViewCell {
     
     
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var clipboardButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     
     static let iconSize = CGFloat(35)
     static let deleteIcon = UIImage(named: "trash_icon.png")?.withRenderingMode(.alwaysOriginal).resized(width: CharacterSelectionCell.iconSize, height: CharacterSelectionCell.iconSize)
+    static let clipboardIcon = UIImage(named: "clipboard_icon.png")?.withRenderingMode(.alwaysOriginal).resized(width: CharacterSelectionCell.iconSize, height: CharacterSelectionCell.iconSize)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

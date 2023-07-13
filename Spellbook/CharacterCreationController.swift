@@ -10,7 +10,6 @@ import UIKit
 
 class CharacterCreationController: UIViewController {
 
-    
     @IBOutlet weak var backgroundView: UIImageView!
     @IBOutlet weak var creationTitle: UILabel!
     @IBOutlet weak var creationMessage: UILabel!
@@ -22,7 +21,6 @@ class CharacterCreationController: UIViewController {
     var width = CGFloat(0)
     let buttonWidth = CGFloat(75)
     let buttonHeight = CGFloat(40)
-    let main = Controllers.mainController
     private var cancelable = false
     
     private static let emptyNameMessage = "The character name cannot be empty"
@@ -94,7 +92,7 @@ class CharacterCreationController: UIViewController {
         createButton.frame = CGRect(x: createButtonX, y: buttonsY, width: buttonWidth, height: buttonHeight)
         //print(createButtonX)
         
-        if main.characterList().count == 0 {
+        if store.state.profileNameList.count == 0 {
             cancelButton.isHidden = true
             cancelable = false
         }
@@ -104,7 +102,7 @@ class CharacterCreationController: UIViewController {
     @objc func createButtonPressed() {
         let name = nameEntry.text!
         
-        let characters = main.characterList()
+        let characters = store.state.profileNameList
         let nChars = characters.count
         
         // Reject an empty name
@@ -132,17 +130,7 @@ class CharacterCreationController: UIViewController {
         
         // Create the new character profile
         let profile = CharacterProfile(name: name)
-        let charFile: String = profile.getName() + ".json"
-        let profileLocation = main.profilesDirectory.appendingPathComponent(charFile)
-        profile.save(filename: profileLocation)
-        
-        // Set it as the current profile if there are no others
-        if nChars == 0 {
-            main.setCharacterProfile(cp: profile, initialLoad: false)
-        }
-        
-        // Update the character selection window, if one is open
-        main.updateSelectionList()
+        store.dispatch(CreateProfileAction(profile: profile))
         
         // Toast message
         Controllers.revealController.view.makeToast("Character created: " + name, duration: Constants.toastDuration)
@@ -157,7 +145,7 @@ class CharacterCreationController: UIViewController {
     }
     
     func setButtonFunctions() {
-        
+
         cancelButton.addTarget(self, action: #selector(cancelButtonPressed), for: UIControl.Event.touchUpInside)
         createButton.addTarget(self, action: #selector(createButtonPressed), for: UIControl.Event.touchUpInside)
         

@@ -1,0 +1,52 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ActionSheetPicker-3.0",
+        "repositoryURL": "https://github.com/skywinder/ActionSheetPicker-3.0",
+        "state": {
+          "branch": null,
+          "revision": "8d82c21036c2f478a47908a7fc107ec7027abcab",
+          "version": null
+        }
+      },
+      {
+        "package": "ReSwift",
+        "repositoryURL": "https://github.com/ReSwift/ReSwift.git",
+        "state": {
+          "branch": null,
+          "revision": "cb5c3c02f652420ef413dea41e13ac5a76b6c0fd",
+          "version": "6.1.1"
+        }
+      },
+      {
+        "package": "SimpleCheckbox",
+        "repositoryURL": "https://github.com/BeauNouvelle/SimpleCheckbox.git",
+        "state": {
+          "branch": null,
+          "revision": "96cf25c98bd8e595018df6a2466a9a1eb348fdb8",
+          "version": "2.3.0"
+        }
+      },
+      {
+        "package": "SWXMLHash",
+        "repositoryURL": "https://github.com/drmohundro/SWXMLHash.git",
+        "state": {
+          "branch": null,
+          "revision": "4d0f62f561458cbe1f732171e625f03195151b60",
+          "version": "7.0.1"
+        }
+      },
+      {
+        "package": "Toast",
+        "repositoryURL": "https://github.com/scalessec/Toast-Swift",
+        "state": {
+          "branch": null,
+          "revision": "0c9493eeacb102cc614da385cfaaf475379f4ab4",
+          "version": "5.0.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
