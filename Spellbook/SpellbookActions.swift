@@ -225,5 +225,7 @@ struct EditTotalSpellSlotsAction: Action {
     let totalSlots: Int
 }
 
+struct RegainAllSlotsAction: Action {}
+
 // TODO: Is there a better way to do this?
 struct MarkAllSpellsCleanAction: Action {}

@@ -27,11 +27,16 @@ class SpellSlotsController: UITableViewController {
         }
         
         // Add the right navigation bar item to allow editing the totals
-        self.navigationItem.rightBarButtonItem =
+        self.navigationItem.rightBarButtonItems = [
                                   UIBarButtonItem(image: UIImage(named: "EditIcon"),
                                                   style: UIBarButtonItem.Style.plain,
                                                   target: self,
-                                                  action: #selector(openSlotManager))
+                                                  action: #selector(openSlotManager)),
+                                  UIBarButtonItem(image: UIImage(named: "RefreshIcon"),
+                                                  style: UIBarButtonItem.Style.plain,
+                                                  target: self,
+                                                  action: #selector(regainSpentSlots))
+                                  ]
     }
 
     override func viewDidLoad() {
@@ -61,6 +66,11 @@ class SpellSlotsController: UITableViewController {
         let controller = storyboard?.instantiateViewController(withIdentifier: SpellSlotsController.spellSlotsManagerIdentifier) as! SpellSlotsManagerController
         controller.modalPresentationStyle = .pageSheet
         self.present(controller, animated: true, completion: nil)
+    }
+    
+    @objc func regainSpentSlots() {
+        store.dispatch(RegainAllSlotsAction())
+        tableView.reloadData()
     }
     
 
