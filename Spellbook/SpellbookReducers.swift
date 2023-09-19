@@ -314,24 +314,31 @@ func updateCharacterListReducer(action: UpdateCharacterListAction, state: inout 
     return state
 }
 
-func useSpellSlotReducer(action: UseSpellSlotAction, state: inout SpellbookAppState) -> SpellbookAppState {
+func useSpellSlotReducer(action: UseSpellSlotAction, state: SpellbookAppState) -> SpellbookAppState {
     guard let profile = state.profile else { return state }
     let status = profile.spellSlotStatus
     status.useSlot(level: action.level)
     return state
 }
 
-func gainSpellSlotReducer(action: GainSpellSlotAction, state: inout SpellbookAppState) -> SpellbookAppState {
+func gainSpellSlotReducer(action: GainSpellSlotAction, state: SpellbookAppState) -> SpellbookAppState {
     guard let profile = state.profile else { return state }
     let status = profile.spellSlotStatus
     status.gainSlot(level: action.level)
     return state
 }
 
-func editTotalSpellSlotsReducer(action: EditTotalSpellSlotsAction, state: inout SpellbookAppState) -> SpellbookAppState {
+func editTotalSpellSlotsReducer(action: EditTotalSpellSlotsAction, state: SpellbookAppState) -> SpellbookAppState {
     guard let profile = state.profile else { return state }
     let status = profile.spellSlotStatus
     status.setTotalSlots(level: action.level, slots: action.totalSlots)
+    return state
+}
+
+func regainAllSlotsReducer(action: RegainAllSlotsAction, state: SpellbookAppState) -> SpellbookAppState {
+    guard let profile = state.profile else { return state }
+    let status = profile.spellSlotStatus
+    status.regainAllSlots()
     return state
 }
 

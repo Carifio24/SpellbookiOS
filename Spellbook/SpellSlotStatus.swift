@@ -53,7 +53,7 @@ class SpellSlotStatus {
         usedSlots[level - 1] = min(slots, totalSlots[level - 1])
     }
     
-    func refillAllSlots() {
+    func regainAllSlots() {
         usedSlots = usedSlots.map { _ in 0 }
     }
     

@@ -153,11 +153,13 @@ func specificActionReducer(action: Action, state: inout SpellbookAppState) -> Sp
         
     // Using & gaining spell slots
     case let action as UseSpellSlotAction:
-        return useSpellSlotReducer(action: action, state: &state)
+        return useSpellSlotReducer(action: action, state: state)
     case let action as GainSpellSlotAction:
-        return gainSpellSlotReducer(action: action, state: &state)
+        return gainSpellSlotReducer(action: action, state: state)
     case let action as EditTotalSpellSlotsAction:
-        return editTotalSpellSlotsReducer(action: action, state: &state)
+        return editTotalSpellSlotsReducer(action: action, state: state)
+    case let action as RegainAllSlotsAction:
+        return regainAllSlotsReducer(action: action, state: state)
     
     // Marking spells dirty
     case let action as MarkAllSpellsCleanAction:
