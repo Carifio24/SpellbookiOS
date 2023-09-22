@@ -25,4 +25,8 @@
         <item name="title">Version 3.0.0 update</item>
         <item name="description">This update adds the ability to keep track of spell slots for each character.</item>
     </section>
+    <section name="v_3_1_0">
+        <item name="title">Version 3.1.0 update</item>
+        <item name="description">This update adds a button to the spell slots screen to regain all slots.</item>
+    </section>
 </root>
