@@ -1,3 +1,6 @@
+// There isn't a proper Predicate type until iOS 17
+typealias Predicate<T> = (T) -> Bool
+
 func yn_to_bool(yn: String) throws -> Bool {
 	if yn == "no" {
 		return false
