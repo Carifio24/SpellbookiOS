@@ -229,3 +229,7 @@ struct RegainAllSlotsAction: Action {}
 
 // TODO: Is there a better way to do this?
 struct MarkAllSpellsCleanAction: Action {}
+
+struct CastSpellAction: Action {
+    let level: Int
+}

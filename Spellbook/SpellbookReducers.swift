@@ -351,3 +351,10 @@ func saveSettingsReducer(action: SaveSettingsAction, state: inout SpellbookAppSt
     SerializationUtils.saveSettings(state.settings)
     return state
 }
+
+func castSpellReducer(action: CastSpellAction, state: SpellbookAppState) -> SpellbookAppState {
+    guard let profile = state.profile else { return state }
+    let status = profile.spellSlotStatus
+    status.useSlot(level: action.level)
+    return state
+}

@@ -168,6 +168,9 @@ func specificActionReducer(action: Action, state: inout SpellbookAppState) -> Sp
     case let action as SaveSettingsAction:
         return saveSettingsReducer(action: action, state: &state)
 
+    case let action as CastSpellAction:
+        return castSpellReducer(action: action, state: state)
+
     // If we somehow get here, just do nothing
     default:
         return state
