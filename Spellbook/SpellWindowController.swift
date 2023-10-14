@@ -60,6 +60,9 @@ class SpellWindowController: UIViewController {
     @IBOutlet weak var preparedButton: ToggleButton!
     @IBOutlet weak var knownButton: ToggleButton!
     
+    // The cast button
+    @IBOutlet weak var castButton: UIButton!
+
     @IBOutlet weak var backgroundView: UIImageView!
     
     // Spacing constraints for the spacing between the components/materials/royalties/duration labels
