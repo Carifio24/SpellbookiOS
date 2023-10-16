@@ -24,14 +24,12 @@ class DeletionPromptController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Set the text
+
         deleteMessage.text = "Are you sure you want to delete \(name ?? "")?"
-        
+
         // Set the layout
         //setLayout()
-        
-        // Set the button functions
+
         noButton.addTarget(self, action: #selector(noButtonPressed), for: UIControl.Event.touchUpInside)
         yesButton.addTarget(self, action: #selector(yesButtonPressed), for: UIControl.Event.touchUpInside)
 

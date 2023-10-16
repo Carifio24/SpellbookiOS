@@ -8,6 +8,8 @@
 
 import ReSwift
 
+struct GenericSpellbookAction: Action {}
+
 struct SortFieldAction: Action {
     let sortField: SortField
     let level: Int
@@ -232,4 +234,8 @@ struct MarkAllSpellsCleanAction: Action {}
 
 struct CastSpellAction: Action {
     let level: Int
+}
+
+struct ToastAction: Action {
+    let message: String
 }

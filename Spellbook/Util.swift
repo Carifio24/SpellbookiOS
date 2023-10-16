@@ -91,3 +91,31 @@ func complement<T: CaseIterable & Equatable>(items: [T]) -> [T] {
 func arrayDifference<T: Equatable>(array arr: [T], remove: [T]) -> [T] {
     return arr.filter { !remove.contains($0) }
 }
+
+func ordinal(number: Int) -> String {
+    switch number {
+    case 1:
+        return "1st"
+    case 2:
+        return "2nd"
+    case 3:
+        return "3rd"
+    default:
+        return "\(number)th"
+    }
+}
+
+func valueFrom(ordinal: String) -> Int? {
+    if ordinal == "1st" {
+        return 1
+    } else if ordinal == "2nd" {
+        return 2
+    } else if ordinal == "3rd" {
+        return 3
+    } else if ordinal.hasSuffix("th") {
+        let numberString = ordinal.dropLast(2)
+        return Int(numberString)
+    } else {
+        return nil
+    }
+}

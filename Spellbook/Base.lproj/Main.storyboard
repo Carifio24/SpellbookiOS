@@ -769,6 +769,92 @@
             </objects>
             <point key="canvasLocation" x="4540.579710144928" y="-193.52678571428569"/>
         </scene>
+        <!--Higher Level Slot Controller-->
+        <scene sceneID="Uyg-Ic-rFW">
+            <objects>
+                <viewController modalPresentationStyle="overCurrentContext" id="GpO-Pl-HcB" customClass="HigherLevelSlotController" customModule="Spellbook" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GAW-fg-wte">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BookBackground.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="7eY-Td-wXG" userLabel="Background View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C84-TB-2ig" userLabel="Content View">
+                                <rect key="frame" x="0.0" y="44" width="414" height="158"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Slot Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8kD-zX-U6U" userLabel="Higher Level Title">
+                                        <rect key="frame" x="67" y="0.0" width="280" height="47"/>
+                                        <fontDescription key="fontDescription" name="CloisterBlack-Light" family="Cloister Black" pointSize="40"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Slot level:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7L-NE-wKL" userLabel="Slot Level Label">
+                                        <rect key="frame" x="0.0" y="56" width="74" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DLn-G1-ocq" userLabel="Cancel Button">
+                                        <rect key="frame" x="248" y="96" width="75" height="35"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" name="DefaultFontColor"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o3o-4l-2pl" userLabel="Cast Button">
+                                        <rect key="frame" x="331" y="96" width="75" height="35"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Cast">
+                                            <color key="titleColor" name="DefaultFontColor"/>
+                                        </state>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aor-Nx-U24">
+                                        <rect key="frame" x="132" y="55" width="97" height="34"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="o3o-4l-2pl" secondAttribute="trailing" constant="10" id="7PR-wh-BnQ"/>
+                                    <constraint firstItem="8kD-zX-U6U" firstAttribute="centerX" secondItem="C84-TB-2ig" secondAttribute="centerX" id="Ax7-Kg-VRL"/>
+                                    <constraint firstItem="aor-Nx-U24" firstAttribute="centerY" secondItem="p7L-NE-wKL" secondAttribute="centerY" id="EVE-9H-2Gp"/>
+                                    <constraint firstItem="DLn-G1-ocq" firstAttribute="top" secondItem="aor-Nx-U24" secondAttribute="bottom" constant="8" id="K7c-Ij-tj8"/>
+                                    <constraint firstItem="aor-Nx-U24" firstAttribute="leading" secondItem="p7L-NE-wKL" secondAttribute="trailing" constant="3" id="Lwt-B8-xeY"/>
+                                    <constraint firstItem="o3o-4l-2pl" firstAttribute="leading" secondItem="DLn-G1-ocq" secondAttribute="trailing" constant="15" id="fT7-Ky-mMg"/>
+                                    <constraint firstItem="o3o-4l-2pl" firstAttribute="centerY" secondItem="DLn-G1-ocq" secondAttribute="centerY" id="ilF-39-5v6"/>
+                                    <constraint firstItem="p7L-NE-wKL" firstAttribute="leading" secondItem="C84-TB-2ig" secondAttribute="leading" id="qVg-za-rRj"/>
+                                    <constraint firstItem="8kD-zX-U6U" firstAttribute="top" secondItem="C84-TB-2ig" secondAttribute="top" id="quA-da-ReZ"/>
+                                    <constraint firstItem="p7L-NE-wKL" firstAttribute="top" secondItem="8kD-zX-U6U" secondAttribute="bottom" constant="3" id="xw4-bW-bRi"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="PH6-9Z-iKn"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="PH6-9Z-iKn" firstAttribute="trailing" secondItem="7eY-Td-wXG" secondAttribute="trailing" id="2Vl-mq-Tqi"/>
+                            <constraint firstItem="7eY-Td-wXG" firstAttribute="top" secondItem="GAW-fg-wte" secondAttribute="top" id="CUe-JW-6SR"/>
+                            <constraint firstItem="7eY-Td-wXG" firstAttribute="leading" secondItem="PH6-9Z-iKn" secondAttribute="leading" id="DFq-6s-sFg"/>
+                            <constraint firstItem="C84-TB-2ig" firstAttribute="leading" secondItem="PH6-9Z-iKn" secondAttribute="leading" id="YJA-Ug-IYW"/>
+                            <constraint firstItem="PH6-9Z-iKn" firstAttribute="trailing" secondItem="C84-TB-2ig" secondAttribute="trailing" id="gm8-oU-b8L"/>
+                            <constraint firstAttribute="bottom" secondItem="7eY-Td-wXG" secondAttribute="bottom" id="jU9-tH-a7P"/>
+                            <constraint firstItem="C84-TB-2ig" firstAttribute="top" secondItem="PH6-9Z-iKn" secondAttribute="top" id="wfv-IL-M9y"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="414" height="400"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="DLn-G1-ocq" id="65A-MN-5od"/>
+                        <outlet property="castButton" destination="o3o-4l-2pl" id="qqv-sT-QRv"/>
+                        <outlet property="slotLevelChooser" destination="aor-Nx-U24" id="RVJ-L1-UEN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BoP-QS-Ys0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5500" y="-747"/>
+        </scene>
         <!--Import Character Controller-->
         <scene sceneID="zDk-3k-MFU">
             <objects>

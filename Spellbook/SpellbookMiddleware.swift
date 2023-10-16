@@ -152,3 +152,16 @@ let deleteProfileByNameMiddleware: AppMiddleware = {
         }
     }
 }
+
+let makeToastMiddleware: AppMiddleware = {
+    dispatch, getState in
+    return { next in
+        return { action in
+            guard let toastAction = action as? ToastAction else {
+                next(action)
+                return
+            }
+            Toast.makeToast(toastAction.message)
+        }
+    }
+}

@@ -23,13 +23,13 @@ class TextFieldChooserDelegate<A: Action, T:Equatable>: NSObject, UITextFieldDel
     
     let itemProvider: ItemProvider
     let items: [T]
-    let actionCreator: ActionCreator
+    let actionCreator: ActionCreator?
     let nameGetter: StringGetter
     let textSetter: StringGetter
     let nameConstructor: StringConstructor
     let itemFilter: ItemFilter?
     
-    init(items: [T], title: String, itemProvider: @escaping ItemProvider, actionCreator: @escaping ActionCreator, nameGetter: @escaping StringGetter, textSetter: @escaping StringGetter, nameConstructor: @escaping StringConstructor, itemFilter: ItemFilter? = nil) {
+    init(items: [T], title: String, itemProvider: @escaping ItemProvider, actionCreator: ActionCreator? = nil, nameGetter: @escaping StringGetter, textSetter: @escaping StringGetter, nameConstructor: @escaping StringConstructor, itemFilter: ItemFilter? = nil) {
         self.items = items
         self.itemProvider = itemProvider
         self.actionCreator = actionCreator
@@ -67,7 +67,9 @@ class TextFieldChooserDelegate<A: Action, T:Equatable>: NSObject, UITextFieldDel
                      picker, index, value in
                      let valueStr = value as! String
                      let item = self.nameConstructor(valueStr)
-                     store.dispatch(self.actionCreator(item))
+                     if let creator = self.actionCreator {
+                         store.dispatch(creator(item))
+                     }
                      sender.text = self.textSetter(item)
                      sender.endEditing(true)
                      return
@@ -82,7 +84,7 @@ class TextFieldChooserDelegate<A: Action, T:Equatable>: NSObject, UITextFieldDel
 
 class TextFieldIterableChooserDelegate<A:Action, T:CaseIterable & Equatable>: TextFieldChooserDelegate<A,T> {
     
-    init(title: String, itemProvider: @escaping ItemProvider, actionCreator: @escaping ActionCreator, nameGetter: @escaping StringGetter, textSetter: @escaping StringGetter, nameConstructor: @escaping StringConstructor, itemFilter: ItemFilter? = nil) {
+    init(title: String, itemProvider: @escaping ItemProvider, actionCreator: ActionCreator? = nil, nameGetter: @escaping StringGetter, textSetter: @escaping StringGetter, nameConstructor: @escaping StringConstructor, itemFilter: ItemFilter? = nil) {
         let items = T.allCases.map({ $0 })
         super.init(items: items,
                    title: title,
@@ -103,7 +105,7 @@ class TextFieldIterableChooserDelegate<A:Action, T:CaseIterable & Equatable>: Te
 
 class NameConstructibleChooserDelegate<A:Action, N:NameConstructible>: TextFieldIterableChooserDelegate<A,N> {
     
-    init(itemProvider: @escaping ItemProvider, actionCreator: @escaping ActionCreator, title: String) {
+    init(itemProvider: @escaping ItemProvider, actionCreator: ActionCreator? = nil, title: String) {
         super.init(title: title,
                    itemProvider: itemProvider,
                    actionCreator: actionCreator,
@@ -114,7 +116,7 @@ class NameConstructibleChooserDelegate<A:Action, N:NameConstructible>: TextField
 }
 
 class UnitChooserDelegate<A:Action, U:Unit> : TextFieldIterableChooserDelegate<A,U> {
-    init(itemProvider: @escaping ItemProvider, actionCreator: @escaping ActionCreator, title: String) {
+    init(itemProvider: @escaping ItemProvider, actionCreator: ActionCreator? = nil, title: String) {
         super.init(title: title,
                    itemProvider: itemProvider,
                    actionCreator: actionCreator,

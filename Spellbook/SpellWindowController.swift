@@ -107,6 +107,8 @@ class SpellWindowController: UIViewController {
             store.dispatch(TogglePropertyAction(spell: self.spell, property: .Known))
         })
         
+        castButton.addTarget(self, action: #selector(self.onCastClicked), for: UIControl.Event.touchUpInside)
+        
         // Set the content view to fill the screen
         contentView.frame = UIScreen.main.bounds
         
@@ -220,6 +222,13 @@ class SpellWindowController: UIViewController {
     
     func locationText(_ s: Spell) -> String {
          return s.locations.map { $0.key.code.uppercased() + " " + String($0.value) }.joined(separator: ", ")
+    }
+    
+    @objc func onCastClicked() {
+        guard let profile = store.state.profile else { return }
+        let level = spell.level
+        let status = profile.spellSlotStatus
+        
     }
 
 }
