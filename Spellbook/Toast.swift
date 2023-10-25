@@ -11,10 +11,15 @@ import Toast
 
 class Toast {
     
-    // We make our Toast messages through the main ViewController of the app
+    static func makeToast(_ message: String, duration: TimeInterval = Constants.toastDuration, controller: UIViewController) {
+        controller.view.makeToast(message, duration: duration)
+    }
+    
+    // By default, we make our Toast messages through the main ViewController of the app
     // which is the SWRevealController
     // If we ever change this, we only need to change it here
     static func makeToast(_ message: String, duration: TimeInterval = Constants.toastDuration) {
-        Controllers.revealController.view.makeToast(message, duration: duration)
+        makeToast(message, duration: duration, controller: Controllers.revealController)
     }
+
 }

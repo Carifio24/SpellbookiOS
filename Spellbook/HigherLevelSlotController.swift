@@ -37,7 +37,7 @@ class HigherLevelSlotController: UIViewController {
             items: Array(range),
             title: "Select Slot Level",
             itemProvider: {
-                status.minLevelWithCondition(condition: { level in
+                return status.minLevelWithCondition(condition: { level in
                     return status.hasAvailableSlots(level: level) && level >= baseLevel
                 })
             },

@@ -16,6 +16,74 @@
         </array>
     </customFonts>
     <scenes>
+        <!--Confirm Next Available Cast Controller-->
+        <scene sceneID="MII-ea-ICI">
+            <objects>
+                <viewController restorationIdentifier="confirmNextAvailableCast" id="9Fa-y1-h1a" customClass="ConfirmNextAvailableCastController" customModule="Spellbook" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="P7I-Df-fYZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BookBackground.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="KwL-1f-CAa" userLabel="Background View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSB-ib-m5H" userLabel="Available Cast Title">
+                                <rect key="frame" x="186" y="44" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8a-ag-tIE" userLabel="Available Cast Message">
+                                <rect key="frame" x="0.0" y="67" width="414" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFG-sf-NX6" userLabel="Yes Button">
+                                <rect key="frame" x="169" y="182" width="75" height="35"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" name="DefaultFontColor"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="75v-2M-5fL" userLabel="No Button">
+                                <rect key="frame" x="169" y="182" width="75" height="35"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" name="DefaultFontColor"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9br-on-Fyr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="9br-on-Fyr" firstAttribute="trailing" secondItem="eFG-sf-NX6" secondAttribute="trailing" constant="10" id="9ks-ja-NUz"/>
+                            <constraint firstAttribute="bottom" secondItem="KwL-1f-CAa" secondAttribute="bottom" id="H1i-9w-QBk"/>
+                            <constraint firstItem="9br-on-Fyr" firstAttribute="trailing" secondItem="KwL-1f-CAa" secondAttribute="trailing" id="IM0-BX-3Md"/>
+                            <constraint firstItem="HSB-ib-m5H" firstAttribute="centerX" secondItem="9br-on-Fyr" secondAttribute="centerX" id="KqL-NM-ojZ"/>
+                            <constraint firstItem="HSB-ib-m5H" firstAttribute="top" secondItem="9br-on-Fyr" secondAttribute="top" id="RR5-yp-CYT"/>
+                            <constraint firstItem="75v-2M-5fL" firstAttribute="centerY" secondItem="eFG-sf-NX6" secondAttribute="centerY" id="Xvc-dz-PGd"/>
+                            <constraint firstItem="KwL-1f-CAa" firstAttribute="leading" secondItem="9br-on-Fyr" secondAttribute="leading" id="Zwk-KQ-fBq"/>
+                            <constraint firstItem="V8a-ag-tIE" firstAttribute="leading" secondItem="9br-on-Fyr" secondAttribute="leading" id="hdN-pl-iKm"/>
+                            <constraint firstItem="9br-on-Fyr" firstAttribute="trailing" secondItem="V8a-ag-tIE" secondAttribute="trailing" id="jmI-Ed-5sn"/>
+                            <constraint firstItem="eFG-sf-NX6" firstAttribute="top" secondItem="V8a-ag-tIE" secondAttribute="bottom" constant="8" id="nLE-52-sk7"/>
+                            <constraint firstItem="eFG-sf-NX6" firstAttribute="leading" secondItem="75v-2M-5fL" secondAttribute="trailing" constant="15" id="wo5-vy-C1p"/>
+                            <constraint firstItem="KwL-1f-CAa" firstAttribute="top" secondItem="P7I-Df-fYZ" secondAttribute="top" id="wzQ-3s-g9G"/>
+                            <constraint firstItem="V8a-ag-tIE" firstAttribute="top" secondItem="HSB-ib-m5H" secondAttribute="bottom" constant="2" id="zeF-J5-zZ8"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="414" height="400"/>
+                    <connections>
+                        <outlet property="availableCastMessage" destination="V8a-ag-tIE" id="pxZ-gg-vZc"/>
+                        <outlet property="noButton" destination="75v-2M-5fL" id="UxV-fs-YOe"/>
+                        <outlet property="yesButton" destination="eFG-sf-NX6" id="54a-EB-1tu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uWj-vZ-dEg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2084" y="-1055"/>
+        </scene>
         <!--Spell Slots Manager Controller-->
         <scene sceneID="zsG-WN-av0">
             <objects>
@@ -508,6 +576,14 @@
                                                 <state key="normal" title="Cast">
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -772,7 +848,7 @@
         <!--Higher Level Slot Controller-->
         <scene sceneID="Uyg-Ic-rFW">
             <objects>
-                <viewController modalPresentationStyle="overCurrentContext" id="GpO-Pl-HcB" customClass="HigherLevelSlotController" customModule="Spellbook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="higherLevelSlotDialog" modalPresentationStyle="overCurrentContext" id="GpO-Pl-HcB" customClass="HigherLevelSlotController" customModule="Spellbook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GAW-fg-wte">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

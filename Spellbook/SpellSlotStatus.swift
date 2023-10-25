@@ -68,7 +68,7 @@ class SpellSlotStatus {
         usedSlots[level - 1] = max(usedSlots[level - 1] - 1, 0)
     }
 
-    func levelWithCondition(condition: Predicate<Int>, range: ClosedRange<Int>) -> Int {
+    func levelWithCondition<SeqInt: Sequence>(condition: Predicate<Int>, range: SeqInt) -> Int where SeqInt.Iterator.Element == Int {
         for level in range {
             if condition(level) {
                 return level
@@ -78,11 +78,11 @@ class SpellSlotStatus {
     }
 
     func minLevelWithCondition(condition: Predicate<Int>) -> Int {
-        return levelWithCondition(condition: condition, range: Spellbook.MIN_SPELL_LEVEL...Spellbook.MAX_SPELL_LEVEL)
+        return levelWithCondition(condition: condition, range: 1...Spellbook.MAX_SPELL_LEVEL)
     }
 
     func maxLevelWithCondition(condition: Predicate<Int>) -> Int {
-        return levelWithCondition(condition: condition, range: Spellbook.MAX_SPELL_LEVEL...Spellbook.MIN_SPELL_LEVEL)
+        return levelWithCondition(condition: condition, range: (1...Spellbook.MAX_SPELL_LEVEL).reversed())
     }
 
     func minLevelWithSlots() -> Int {
