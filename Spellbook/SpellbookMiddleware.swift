@@ -161,6 +161,7 @@ let makeToastMiddleware: AppMiddleware = {
                 next(action)
                 return
             }
+            
             Toast.makeToast(toastAction.message)
         }
     }

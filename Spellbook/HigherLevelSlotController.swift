@@ -33,19 +33,19 @@ class HigherLevelSlotController: UIViewController {
         
         // TODO: It's kind of gross to need to use this dummy type
         // It feels like a refactor of the delegate is necessary
-        let textDelegate = TextFieldChooserDelegate<GenericSpellbookAction, Int>(
-            items: Array(range),
-            title: "Select Slot Level",
-            itemProvider: {
-                return status.minLevelWithCondition(condition: { level in
-                    return status.hasAvailableSlots(level: level) && level >= baseLevel
-                })
-            },
-            nameGetter: ordinal,
-            textSetter: ordinal,
-            nameConstructor: { valueFrom(ordinal: $0) ?? 0 })
-        
-        slotLevelChooser.delegate = textDelegate
+//        let textDelegate = TextFieldChooserDelegate<GenericSpellbookAction, Int>(
+//            items: Array(range),
+//            title: "Select Slot Level",
+//            itemProvider: {
+//                () in return status.minLevelWithCondition(condition: { level in
+//                    return status.hasAvailableSlots(level: level) && level >= baseLevel
+//                })
+//            },
+//            nameGetter: ordinal,
+//            textSetter: ordinal,
+//            nameConstructor: { valueFrom(ordinal: $0) ?? 0 })
+//
+//        slotLevelChooser.delegate = textDelegate
     }
     
     @objc func cancelButtonPressed() {
@@ -57,7 +57,8 @@ class HigherLevelSlotController: UIViewController {
         if let text = slotLevelChooser.text {
             if let level = valueFrom(ordinal: text) {
                 store.dispatch(CastSpellAction(level: level))
-                store.dispatch(ToastAction(message: "\(spell.name) was cast at level \(level)"))
+                let message = "\(spell.name) was cast at level \(level)"
+                Toast.makeToast(message, controller: self.parent ?? self)
             }
         }
         

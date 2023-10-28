@@ -16,6 +16,9 @@ class ConfirmNextAvailableCastController: UIViewController {
     
     var spell: Spell?
     var level: Int = 0
+    
+    // TODO: What's a better way to do this?
+    var toastController: UIViewController? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +47,10 @@ class ConfirmNextAvailableCastController: UIViewController {
             }
             if let spell = self.spell {
                 store.dispatch(CastSpellAction(level: self.level))
-                store.dispatch(ToastAction(message: "\(spell.name) was cast at level \(self.level)"))
+                
+                let message = "\(spell.name) was cast at level \(self.level)"
+                let controller = self.toastController ?? (self.parent ?? self)
+                Toast.makeToast(message, controller: controller)
             }
         })
     }
