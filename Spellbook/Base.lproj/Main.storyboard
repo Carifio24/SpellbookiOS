@@ -846,10 +846,10 @@
             </objects>
             <point key="canvasLocation" x="4540.579710144928" y="-193.52678571428569"/>
         </scene>
-        <!--Higher Level Slot Controller-->
+        <!--Higher Level Slot Controller old-->
         <scene sceneID="Uyg-Ic-rFW">
             <objects>
-                <viewController storyboardIdentifier="higherLevelSlotDialog" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GpO-Pl-HcB" customClass="HigherLevelSlotController" customModule="Spellbook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="higherLevelSlotDialogOld" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GpO-Pl-HcB" userLabel="Higher Level Slot Controller old" customClass="HigherLevelSlotController" customModule="Spellbook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GAW-fg-wte">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1020,9 +1020,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="3ts-vc-Ye6" firstAttribute="trailing" secondItem="YLa-Ne-v4H" secondAttribute="trailing" id="1b9-MK-Sig"/>
+                            <constraint firstItem="q0E-8I-oeP" firstAttribute="trailing" secondItem="3ts-vc-Ye6" secondAttribute="trailing" id="42m-fk-exH"/>
+                            <constraint firstItem="q0E-8I-oeP" firstAttribute="top" secondItem="51v-iM-lTt" secondAttribute="top" id="Kur-cC-eDx"/>
                             <constraint firstItem="3ts-vc-Ye6" firstAttribute="trailing" secondItem="q0E-8I-oeP" secondAttribute="trailing" id="MJi-5P-xqQ"/>
                             <constraint firstItem="YLa-Ne-v4H" firstAttribute="top" secondItem="3ts-vc-Ye6" secondAttribute="top" id="NhU-Rg-gDt"/>
+                            <constraint firstItem="q0E-8I-oeP" firstAttribute="leading" secondItem="3ts-vc-Ye6" secondAttribute="leading" id="ORO-zZ-Ba0"/>
                             <constraint firstItem="q0E-8I-oeP" firstAttribute="leading" secondItem="3ts-vc-Ye6" secondAttribute="leading" id="XIb-Q1-VYM"/>
+                            <constraint firstItem="q0E-8I-oeP" firstAttribute="bottom" secondItem="3ts-vc-Ye6" secondAttribute="bottom" id="iYM-hD-pp3"/>
                             <constraint firstItem="YLa-Ne-v4H" firstAttribute="leading" secondItem="3ts-vc-Ye6" secondAttribute="leading" id="ish-sL-syY"/>
                             <constraint firstItem="q0E-8I-oeP" firstAttribute="bottom" secondItem="51v-iM-lTt" secondAttribute="bottom" id="jbD-Cs-Wrv"/>
                             <constraint firstItem="q0E-8I-oeP" firstAttribute="top" secondItem="51v-iM-lTt" secondAttribute="top" id="qEs-YQ-kkz"/>
@@ -1133,6 +1137,85 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="06p-7L-Sgg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5673.177903801723" y="23.317920918367342"/>
+        </scene>
+        <!--Higher Level Slot Controller-->
+        <scene sceneID="NLX-iC-gpt">
+            <objects>
+                <viewController storyboardIdentifier="higherLevelSlotDialog" modalPresentationStyle="overCurrentContext" id="Lr5-L7-Can" customClass="HigherLevelSlotController" customModule="Spellbook" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6LT-Bz-B28">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TX4-om-EeB" userLabel="Content View">
+                                <rect key="frame" x="0.0" y="44" width="414" height="356"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Slot Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jU-U7-zqg" userLabel="Higher Level Title">
+                                        <rect key="frame" x="67" y="0.0" width="280" height="47"/>
+                                        <fontDescription key="fontDescription" name="CloisterBlack-Light" family="Cloister Black" pointSize="40"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Slot level:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ByY-tq-dHs" userLabel="Slot Level Label">
+                                        <rect key="frame" x="5" y="52" width="73.333333333333329" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9q-J4-0cv" userLabel="Cancel Button">
+                                        <rect key="frame" x="309" y="87.666666666666657" width="48" height="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" name="DefaultFontColor"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F1B-yn-h71" userLabel="Cast Button">
+                                        <rect key="frame" x="372" y="87.666666666666657" width="32" height="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Cast">
+                                            <color key="titleColor" name="DefaultFontColor"/>
+                                        </state>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f7c-NG-8CO" userLabel="Slot Level Chooser">
+                                        <rect key="frame" x="81.333333333333329" y="45.666666666666671" width="32" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="ByY-tq-dHs" firstAttribute="top" secondItem="8jU-U7-zqg" secondAttribute="bottom" constant="5" id="DDZ-6F-R37"/>
+                                    <constraint firstItem="f7c-NG-8CO" firstAttribute="leading" secondItem="ByY-tq-dHs" secondAttribute="trailing" constant="3" id="GCw-cz-P0l"/>
+                                    <constraint firstItem="F1B-yn-h71" firstAttribute="top" secondItem="f7c-NG-8CO" secondAttribute="bottom" constant="8" id="HnK-OH-hre"/>
+                                    <constraint firstItem="b9q-J4-0cv" firstAttribute="top" secondItem="f7c-NG-8CO" secondAttribute="bottom" constant="8" id="LZs-zk-3jE"/>
+                                    <constraint firstAttribute="trailing" secondItem="F1B-yn-h71" secondAttribute="trailing" constant="10" id="d9p-WZ-Bhd"/>
+                                    <constraint firstItem="F1B-yn-h71" firstAttribute="leading" secondItem="b9q-J4-0cv" secondAttribute="trailing" constant="15" id="dju-Le-TZH"/>
+                                    <constraint firstItem="8jU-U7-zqg" firstAttribute="centerX" secondItem="TX4-om-EeB" secondAttribute="centerX" id="fCW-Ls-4fG"/>
+                                    <constraint firstItem="f7c-NG-8CO" firstAttribute="centerY" secondItem="ByY-tq-dHs" secondAttribute="centerY" id="oEU-b3-e4q"/>
+                                    <constraint firstItem="8jU-U7-zqg" firstAttribute="top" secondItem="TX4-om-EeB" secondAttribute="top" id="svF-H7-mLE"/>
+                                    <constraint firstItem="ByY-tq-dHs" firstAttribute="leading" secondItem="TX4-om-EeB" secondAttribute="leading" constant="5" id="tAR-XG-P1n"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rhV-sZ-DLl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="TX4-om-EeB" firstAttribute="top" secondItem="rhV-sZ-DLl" secondAttribute="top" id="9Pg-HA-Dnj"/>
+                            <constraint firstItem="rhV-sZ-DLl" firstAttribute="trailing" secondItem="TX4-om-EeB" secondAttribute="trailing" id="IY2-Wp-KMW"/>
+                            <constraint firstItem="TX4-om-EeB" firstAttribute="leading" secondItem="rhV-sZ-DLl" secondAttribute="leading" id="TZL-e7-31M"/>
+                            <constraint firstItem="rhV-sZ-DLl" firstAttribute="bottom" secondItem="TX4-om-EeB" secondAttribute="bottom" id="hpu-fV-sRg"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="414" height="400"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="b9q-J4-0cv" id="emY-pg-Sgb"/>
+                        <outlet property="castButton" destination="F1B-yn-h71" id="XPV-kW-M41"/>
+                        <outlet property="slotLevelChooser" destination="f7c-NG-8CO" id="w0w-25-Cna"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vti-8N-CsL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6430" y="-665"/>
         </scene>
         <!--Deletion Prompt Controller-->
         <scene sceneID="Tbl-02-dyn">

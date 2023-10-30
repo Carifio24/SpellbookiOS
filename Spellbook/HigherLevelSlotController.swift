@@ -11,7 +11,7 @@ import UIKit
 import ReSwift
 
 class HigherLevelSlotController: UIViewController {
-
+    
     @IBOutlet weak var slotLevelChooser: UITextField!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var castButton: UIButton!
@@ -22,7 +22,7 @@ class HigherLevelSlotController: UIViewController {
         super.viewDidLoad()
         
         cancelButton.addTarget(self, action: #selector(cancelButtonPressed), for: UIControl.Event.touchUpInside)
-        castButton.addTarget(self, action: #selector(castButtonPressed), for: UIControl.Event.touchUpInside)
+        //castButton.addTarget(self, action: #selector(castButtonPressed), for: UIControl.Event.touchUpInside)
         
         guard let spell = self.spell else { return }
         guard let profile = store.state.profile else { return }
@@ -52,17 +52,17 @@ class HigherLevelSlotController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @objc func castButtonPressed() {
-        guard let spell = self.spell else { return }
-        if let text = slotLevelChooser.text {
-            if let level = valueFrom(ordinal: text) {
-                store.dispatch(CastSpellAction(level: level))
-                let message = "\(spell.name) was cast at level \(level)"
-                Toast.makeToast(message, controller: self.parent ?? self)
-            }
-        }
-        
-        self.dismiss(animated: true, completion: nil)
-    }
+//    @objc func castButtonPressed() {
+//        guard let spell = self.spell else { return }
+//        if let text = slotLevelChooser.text {
+//            if let level = valueFrom(ordinal: text) {
+//                store.dispatch(CastSpellAction(level: level))
+//                let message = "\(spell.name) was cast at level \(level)"
+//                Toast.makeToast(message, controller: self.parent ?? self)
+//            }
+//        }
+//
+//        self.dismiss(animated: true, completion: nil)
+//    }
 
 }
