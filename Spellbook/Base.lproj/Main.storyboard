@@ -1146,6 +1146,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BookBackground.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="f1B-rQ-au5" userLabel="Background View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TX4-om-EeB" userLabel="Content View">
                                 <rect key="frame" x="0.0" y="44" width="414" height="356"/>
                                 <subviews>
@@ -1161,6 +1164,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f7c-NG-8CO" userLabel="Slot Level Chooser">
+                                        <rect key="frame" x="81.333333333333329" y="45.666666666666671" width="32" height="34"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9q-J4-0cv" userLabel="Cancel Button">
                                         <rect key="frame" x="309" y="87.666666666666657" width="48" height="30"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -1175,13 +1184,8 @@
                                             <color key="titleColor" name="DefaultFontColor"/>
                                         </state>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f7c-NG-8CO" userLabel="Slot Level Chooser">
-                                        <rect key="frame" x="81.333333333333329" y="45.666666666666671" width="32" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="ByY-tq-dHs" firstAttribute="top" secondItem="8jU-U7-zqg" secondAttribute="bottom" constant="5" id="DDZ-6F-R37"/>
                                     <constraint firstItem="f7c-NG-8CO" firstAttribute="leading" secondItem="ByY-tq-dHs" secondAttribute="trailing" constant="3" id="GCw-cz-P0l"/>
@@ -1200,9 +1204,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="TX4-om-EeB" firstAttribute="top" secondItem="rhV-sZ-DLl" secondAttribute="top" id="9Pg-HA-Dnj"/>
+                            <constraint firstItem="f1B-rQ-au5" firstAttribute="top" secondItem="6LT-Bz-B28" secondAttribute="top" id="E8i-F3-5lH"/>
                             <constraint firstItem="rhV-sZ-DLl" firstAttribute="trailing" secondItem="TX4-om-EeB" secondAttribute="trailing" id="IY2-Wp-KMW"/>
                             <constraint firstItem="TX4-om-EeB" firstAttribute="leading" secondItem="rhV-sZ-DLl" secondAttribute="leading" id="TZL-e7-31M"/>
+                            <constraint firstItem="f1B-rQ-au5" firstAttribute="bottom" secondItem="6LT-Bz-B28" secondAttribute="bottom" id="VhI-ZA-VUr"/>
+                            <constraint firstItem="f1B-rQ-au5" firstAttribute="leading" secondItem="rhV-sZ-DLl" secondAttribute="leading" id="ahI-in-NxO"/>
                             <constraint firstItem="rhV-sZ-DLl" firstAttribute="bottom" secondItem="TX4-om-EeB" secondAttribute="bottom" id="hpu-fV-sRg"/>
+                            <constraint firstItem="rhV-sZ-DLl" firstAttribute="trailing" secondItem="f1B-rQ-au5" secondAttribute="trailing" id="ok4-Ps-QIn"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
