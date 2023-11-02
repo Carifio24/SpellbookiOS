@@ -242,7 +242,7 @@ class SpellWindowController: UIViewController {
             controller.spell = spell
             let popupHeight = 0.33 * SizeUtils.screenHeight
             let popupWidth = 0.75 * SizeUtils.screenWidth
-            let height = min(popupHeight, CGFloat(170))
+            let height = min(popupHeight, CGFloat(135))
             let width = min(popupWidth, CGFloat(370))
             let popupVC = PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
             self.present(popupVC, animated: true, completion: nil)
@@ -254,7 +254,7 @@ class SpellWindowController: UIViewController {
             controller.toastController = self
             let popupHeight = 0.33 * SizeUtils.screenHeight
             let popupWidth = 0.75 * SizeUtils.screenWidth
-            let height = min(popupHeight, CGFloat(150))
+            let height = min(popupHeight, CGFloat(155))
             let width = min(popupWidth, CGFloat(370))
             let popupVC = PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
             self.present(popupVC, animated: true, completion: nil)

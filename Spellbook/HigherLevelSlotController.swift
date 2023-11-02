@@ -17,6 +17,7 @@ class HigherLevelSlotController: UIViewController {
     @IBOutlet weak var castButton: UIButton!
     
     var spell: Spell?
+    var textDelegate: TextFieldChooserDelegate<GenericSpellbookAction, Int>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,19 +34,21 @@ class HigherLevelSlotController: UIViewController {
         
         // TODO: It's kind of gross to need to use this dummy type
         // It feels like a refactor of the delegate is necessary
-        let textDelegate = TextFieldChooserDelegate<GenericSpellbookAction, Int>(
+        let initialLevel = status.minLevelWithCondition(condition: { level in
+            return status.hasAvailableSlots(level: level) && level >= baseLevel
+        })
+        self.textDelegate = TextFieldChooserDelegate<GenericSpellbookAction, Int>(
             items: Array(range),
             title: "Select Slot Level",
             itemProvider: {
-                () in return status.minLevelWithCondition(condition: { level in
-                    return status.hasAvailableSlots(level: level) && level >= baseLevel
-                })
+                () in return initialLevel
             },
             nameGetter: ordinal,
             textSetter: ordinal,
             nameConstructor: { valueFrom(ordinal: $0) ?? 0 })
 
-        slotLevelChooser.delegate = textDelegate
+        slotLevelChooser.text = ordinal(number: initialLevel)
+        slotLevelChooser.delegate = self.textDelegate!
     }
     
     @objc func cancelButtonPressed() {
