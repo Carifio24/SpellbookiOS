@@ -240,6 +240,7 @@ class SpellWindowController: UIViewController {
         } else if !spell.higherLevel.isEmpty {
             let controller = storyboard.instantiateViewController(withIdentifier: "higherLevelSlotDialog") as! HigherLevelSlotController
             controller.spell = spell
+            controller.toastController = self
             let popupHeight = 0.33 * SizeUtils.screenHeight
             let popupWidth = 0.75 * SizeUtils.screenWidth
             let height = min(popupHeight, CGFloat(135))

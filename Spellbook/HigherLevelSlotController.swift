@@ -18,12 +18,15 @@ class HigherLevelSlotController: UIViewController {
     
     var spell: Spell?
     var textDelegate: TextFieldChooserDelegate<GenericSpellbookAction, Int>?
+    
+    // TODO: What's a better way to do this?
+    var toastController: UIViewController? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         cancelButton.addTarget(self, action: #selector(cancelButtonPressed), for: UIControl.Event.touchUpInside)
-        //castButton.addTarget(self, action: #selector(castButtonPressed), for: UIControl.Event.touchUpInside)
+        castButton.addTarget(self, action: #selector(castButtonPressed), for: UIControl.Event.touchUpInside)
         
         guard let spell = self.spell else { return }
         guard let profile = store.state.profile else { return }
@@ -61,7 +64,8 @@ class HigherLevelSlotController: UIViewController {
             if let level = valueFrom(ordinal: text) {
                 store.dispatch(CastSpellAction(level: level))
                 let message = "\(spell.name) was cast at level \(level)"
-                Toast.makeToast(message, controller: self.parent ?? self)
+                let controller = self.toastController ?? (self.parent ?? self)
+                Toast.makeToast(message, controller: controller)
             }
         }
 
