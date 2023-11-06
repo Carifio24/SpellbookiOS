@@ -138,6 +138,8 @@
 		8ED0B9382431392700A085F4 /* NameDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED0B9372431392700A085F4 /* NameDisplayable.swift */; };
 		8EEA28FD297C23D8004971AD /* SpellFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEA28FC297C23D8004971AD /* SpellFilter.swift */; };
 		8EEAFCCA2645FB4C00A05D01 /* LegacyProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEAFCC92645FB4C00A05D01 /* LegacyProfileTests.swift */; };
+		8EEDC3E22ADA69170045D002 /* HigherLevelSlotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEDC3E12ADA69170045D002 /* HigherLevelSlotController.swift */; };
+		8EEDC3E42AE739A60045D002 /* ConfirmNextAvailableCastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEDC3E32AE739A50045D002 /* ConfirmNextAvailableCastController.swift */; };
 		8EF6EF0B264668F60059BCE8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0A264668F60059BCE8 /* Version.swift */; };
 		8EF6EF0D26485A2E0059BCE8 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */; };
 /* End PBXBuildFile section */
@@ -295,6 +297,8 @@
 		8ED0B9372431392700A085F4 /* NameDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameDisplayable.swift; sourceTree = "<group>"; };
 		8EEA28FC297C23D8004971AD /* SpellFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellFilter.swift; sourceTree = "<group>"; };
 		8EEAFCC92645FB4C00A05D01 /* LegacyProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyProfileTests.swift; sourceTree = "<group>"; };
+		8EEDC3E12ADA69170045D002 /* HigherLevelSlotController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HigherLevelSlotController.swift; sourceTree = "<group>"; };
+		8EEDC3E32AE739A50045D002 /* ConfirmNextAvailableCastController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmNextAvailableCastController.swift; sourceTree = "<group>"; };
 		8EF6EF0A264668F60059BCE8 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -359,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				397EE96C21ACA86400B116B0 /* Main.storyboard */,
+				8EEDC3E12ADA69170045D002 /* HigherLevelSlotController.swift */,
 				8E07AE0C2A0F708700C0487B /* ImportCharacterController.swift */,
 				8EB3692129405EAB00856738 /* SpellbookReducers.swift */,
 				8EB3691D293F123900856738 /* AppReducer.swift */,
@@ -384,6 +389,7 @@
 				8E6148D7241991C100842A18 /* Constants.swift */,
 				8E6148C3241991C000842A18 /* Controllers.swift */,
 				8E6148A5241991BF00842A18 /* DeletionPromptController.swift */,
+				8EEDC3E32AE739A50045D002 /* ConfirmNextAvailableCastController.swift */,
 				8E61489E241991BE00842A18 /* Duration.swift */,
 				8E6148DE241991C100842A18 /* EnumMap.swift */,
 				8E6148C5241991C000842A18 /* EnumUtilities.swift */,
@@ -772,9 +778,11 @@
 				8E6E2B8228E9FE4A00AA6483 /* SpellSlotsController.swift in Sources */,
 				8EB3691E293F123900856738 /* AppReducer.swift in Sources */,
 				8E6148F8241991C200842A18 /* StringUtils.swift in Sources */,
+				8EEDC3E22ADA69170045D002 /* HigherLevelSlotController.swift in Sources */,
 				8E614927241991C200842A18 /* SpellBuilder.swift in Sources */,
 				8E02F76224345F6200A3050C /* YesNo.swift in Sources */,
 				8E07AE0D2A0F708700C0487B /* ImportCharacterController.swift in Sources */,
+				8EEDC3E42AE739A60045D002 /* ConfirmNextAvailableCastController.swift in Sources */,
 				8EEA28FD297C23D8004971AD /* SpellFilter.swift in Sources */,
 				8E614916241991C200842A18 /* SideMenuController.swift in Sources */,
 				8E74FA5A29EBD7D900E13B91 /* SpellSlotsManagerCell.swift in Sources */,

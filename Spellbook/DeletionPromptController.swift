@@ -24,14 +24,12 @@ class DeletionPromptController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Set the text
+
         deleteMessage.text = "Are you sure you want to delete \(name ?? "")?"
-        
+
         // Set the layout
         //setLayout()
-        
-        // Set the button functions
+
         noButton.addTarget(self, action: #selector(noButtonPressed), for: UIControl.Event.touchUpInside)
         yesButton.addTarget(self, action: #selector(yesButtonPressed), for: UIControl.Event.touchUpInside)
 
@@ -95,16 +93,5 @@ class DeletionPromptController: UIViewController {
             self.main!.openCharacterCreationDialog(mustComplete: creationNecessary)
         })
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

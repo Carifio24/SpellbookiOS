@@ -60,6 +60,9 @@ class SpellWindowController: UIViewController {
     @IBOutlet weak var preparedButton: ToggleButton!
     @IBOutlet weak var knownButton: ToggleButton!
     
+    // The cast button
+    @IBOutlet weak var castButton: UIButton!
+
     @IBOutlet weak var backgroundView: UIImageView!
     
     // Spacing constraints for the spacing between the components/materials/royalties/duration labels
@@ -104,6 +107,8 @@ class SpellWindowController: UIViewController {
             store.dispatch(TogglePropertyAction(spell: self.spell, property: .Known))
         })
         
+        castButton.addTarget(self, action: #selector(self.onCastClicked), for: UIControl.Event.touchUpInside)
+        
         // Set the content view to fill the screen
         contentView.frame = UIScreen.main.bounds
         
@@ -140,6 +145,9 @@ class SpellWindowController: UIViewController {
         guard let profile = store.state.profile else { return }
         
         var needsLayoutUpdate = false
+        
+        // Don't show the cast button for cantrips
+        castButton.isHidden = spell.level == 0
         
         // Set the text on the name label
         spellNameLabel.text = spell.name
@@ -217,6 +225,48 @@ class SpellWindowController: UIViewController {
     
     func locationText(_ s: Spell) -> String {
          return s.locations.map { $0.key.code.uppercased() + " " + String($0.value) }.joined(separator: ", ")
+    }
+    
+    @objc func onCastClicked() {
+        guard let profile = store.state.profile else { return }
+        let level = spell.level
+        let status = profile.spellSlotStatus
+        var message: String?
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if level > status.maxLevelWithSlots() {
+            message = "\(profile.name) has no slots of level \(level) or above!"
+        } else if level > status.maxLevelWithAvailableSlots() {
+            message = "\(profile.name) has no available slots of level \(level) or above!"
+        } else if !spell.higherLevel.isEmpty {
+            let controller = storyboard.instantiateViewController(withIdentifier: "higherLevelSlotDialog") as! HigherLevelSlotController
+            controller.spell = spell
+            controller.toastController = self
+            let popupHeight = 0.33 * SizeUtils.screenHeight
+            let popupWidth = 0.75 * SizeUtils.screenWidth
+            let height = min(popupHeight, CGFloat(135))
+            let width = min(popupWidth, CGFloat(370))
+            let popupVC = PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
+            self.present(popupVC, animated: true, completion: nil)
+        } else if status.getAvailableSlots(level: level) == 0 {
+            let levelToUse = status.nextAvailableSlotLevel(baseLevel: level)
+            let controller = storyboard.instantiateViewController(withIdentifier: "confirmNextAvailableCast") as! ConfirmNextAvailableCastController
+            controller.spell = spell
+            controller.level = levelToUse
+            controller.toastController = self
+            let popupHeight = 0.33 * SizeUtils.screenHeight
+            let popupWidth = 0.75 * SizeUtils.screenWidth
+            let height = min(popupHeight, CGFloat(155))
+            let width = min(popupWidth, CGFloat(370))
+            let popupVC = PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
+            self.present(popupVC, animated: true, completion: nil)
+        } else {
+            store.dispatch(CastSpellAction(level: level))
+            message = "\(spell.name) was cast"
+        }
+        
+        if let toast = message {
+            self.view.makeToast(toast, duration: Constants.toastDuration)
+        }
     }
 
 }
