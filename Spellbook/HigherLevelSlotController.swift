@@ -35,20 +35,21 @@ class HigherLevelSlotController: UIViewController {
         let maxLevel = status.maxLevelWithSlots()
         let range = baseLevel...maxLevel
         
-        // TODO: It's kind of gross to need to use this dummy type
-        // It feels like a refactor of the delegate is necessary
         let initialLevel = status.minLevelWithCondition(condition: { level in
             return status.hasAvailableSlots(level: level) && level >= baseLevel
         })
+
+        // TODO: It's kind of gross to need to use this dummy type
+        // It feels like a refactor of the delegate is necessary
         self.textDelegate = TextFieldChooserDelegate<GenericSpellbookAction, Int>(
             items: Array(range),
             title: "Select Slot Level",
-            itemProvider: {
-                () in return initialLevel
-            },
+            itemProvider: { () in return initialLevel },
             nameGetter: ordinal,
             textSetter: ordinal,
-            nameConstructor: { valueFrom(ordinal: $0) ?? 0 })
+            nameConstructor: { valueFrom(ordinal: $0) ?? 0 },
+            itemFilter: { level in return status.hasAvailableSlots(level: level) }
+        )
 
         slotLevelChooser.text = ordinal(number: initialLevel)
         slotLevelChooser.delegate = self.textDelegate!
