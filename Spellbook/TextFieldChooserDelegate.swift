@@ -50,14 +50,13 @@ class TextFieldChooserDelegate<A: Action, T:Equatable>: NSObject, UITextFieldDel
         
         // Get the index of the selected option
         let selectedItem = self.itemProvider()
-        let selectedIndex: Int = items.firstIndex(of: selectedItem) ?? 0
         
         var itemsToUse = self.items
         if (self.itemFilter != nil) {
             itemsToUse = self.items.filter(self.itemFilter!)
         }
+        let selectedIndex: Int = itemsToUse.firstIndex(of: selectedItem) ?? 0
         let pickerData = itemsToUse.map(self.nameGetter)
-        
         
         // Create the action sheet picker
         let actionSheetPicker = ActionSheetStringPicker(title: title,
