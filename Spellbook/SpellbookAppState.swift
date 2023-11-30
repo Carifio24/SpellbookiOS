@@ -8,7 +8,7 @@
 
 import ReSwift
 
-struct SpellbookAppState {
+struct SpellbookAppState: StateType {
     
     private static let spellbook = Spellbook(jsonStr: try! String(contentsOf: Bundle.main.url(forResource: "Spells", withExtension: "json")!))
     
