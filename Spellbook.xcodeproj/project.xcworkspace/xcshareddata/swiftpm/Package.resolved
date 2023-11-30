@@ -13,8 +13,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ReSwift/ReSwift.git",
       "state" : {
-        "revision" : "26d3095bdf55f093501bf3a749bb2718bab671b3",
-        "version" : "6.0.0"
+        "revision" : "cb5c3c02f652420ef413dea41e13ac5a76b6c0fd",
+        "version" : "6.1.1"
       }
     },
     {
