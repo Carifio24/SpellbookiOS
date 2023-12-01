@@ -1,5 +1,5 @@
 enum Sourcebook: Int, NameConstructible {
-	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG, TashasCOE, AcquisitionsInc, LostLabKwalish, RimeOTFrostmaiden, ExplorersGTW, FizbansTOD, StrixhavenCOC, AstralAG, TalDoreiCSR
+	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG, TashasCOE, AcquisitionsInc, LostLabKwalish, RimeOTFrostmaiden, ExplorersGTW, FizbansTOD, StrixhavenCOC, AstralAG, TalDoreiCSR, SigilOutlands
     
     static let coreSourcebooks = [ PlayersHandbook, XanatharsGTE, TashasCOE ]
     
@@ -31,6 +31,8 @@ enum Sourcebook: Int, NameConstructible {
             return "Astral Adventurer's Guide"
         case .TalDoreiCSR:
             return "Tal'Dorei Campaign Setting Reborn"
+        case .SigilOutlands:
+            return "Sigil and the Outlands"
         }
     }
     
@@ -46,7 +48,8 @@ enum Sourcebook: Int, NameConstructible {
         FizbansTOD: "ftd",
         StrixhavenCOC: "scc",
         AstralAG: "aag",
-        TalDoreiCSR: "tdcsr"
+        TalDoreiCSR: "tdcsr",
+        SigilOutlands: "so"
     ]
     
     var code: String {
