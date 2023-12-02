@@ -25,6 +25,11 @@ struct FilterItemAction<T:NameConstructible>: Action {
     let visible: Bool
 }
 
+struct FilterAllButAction<T:NameConstructible>: Action {
+    let item: T
+    let visible: Bool
+}
+
 struct FilterAllAction<T:NameConstructible>: Action {
     let visible: Bool
 }
@@ -52,6 +57,13 @@ typealias FilterSourcebookAction = FilterItemAction<Sourcebook>
 typealias FilterCastingTimeTypeAction = FilterItemAction<CastingTimeType>
 typealias FilterDurationTypeAction = FilterItemAction<DurationType>
 typealias FilterRangeTypeAction = FilterItemAction<RangeType>
+
+typealias FilterAllSchoolsButAction = FilterAllButAction<School>
+typealias FilterAllClassesButAction = FilterAllButAction<CasterClass>
+typealias FilterAllSourcebooksButAction = FilterAllButAction<Sourcebook>
+typealias FilterAllCastingTimeTypesButAction = FilterAllButAction<CastingTimeType>
+typealias FilterAllDurationTypesButAction = FilterAllButAction<DurationType>
+typealias FilterAllRangeTypesButAction = FilterAllButAction<RangeType>
 
 typealias FilterAllSchoolsAction = FilterAllAction<School>
 typealias FilterAllClassesAction = FilterAllAction<CasterClass>
