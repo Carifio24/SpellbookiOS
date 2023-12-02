@@ -234,7 +234,7 @@ class FilterGridRangeDelegate<T:QuantityType, A:Action, F:Action>: FilterGridDel
          longPressActionCreator: LongPressActionCreator?,
          gridWidth: CGFloat = defaultWidth) {
         self.flagSetter = flagSetter
-        super.init(getter: getter, actionCreator: actionCreator, gridWidth: gridWidth)
+        super.init(getter: getter, actionCreator: actionCreator, longPressActionCreator: longPressActionCreator, gridWidth: gridWidth)
     }
     
     
