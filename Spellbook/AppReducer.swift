@@ -71,6 +71,20 @@ func specificActionReducer(action: Action, state: inout SpellbookAppState) -> Sp
         return filterDurationTypeReducer(action: action, state: &state)
     case let action as FilterRangeTypeAction:
         return filterRangeTypeReducer(action: action, state: &state)
+
+    // All-but-one visibility setting
+    case let action as FilterAllSchoolsButAction:
+        return filterAllSchoolsButReducer(action: action, state: &state)
+    case let action as FilterAllClassesButAction:
+        return filterAllClassesButReducer(action: action, state: &state)
+    case let action as FilterAllSourcebooksButAction:
+        return filterAllSourcesButReducer(action: action, state: &state)
+    case let action as FilterAllCastingTimeTypesButAction:
+        return filterAllCastingTimeTypesButReducer(action: action, state: &state)
+    case let action as FilterAllDurationTypesButAction:
+        return filterAllDurationTypesButReducer(action: action, state: &state)
+    case let action as FilterAllRangeTypesButAction:
+        return filterAllRangeTypesButReducer(action: action, state: &state)
     
     // Visibility toggling
     case let action as ToggleSchoolAction:

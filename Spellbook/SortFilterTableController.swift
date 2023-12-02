@@ -157,25 +157,28 @@ class SortFilterTableController: UITableViewController {
         statusGetter: { tf in return store.state.profile?.sortFilterStatus.getMaterialFilter(tf) ?? true },
         actionCreator: ToggleFlagAction.material
     )
-    private let sourcebookDelegate = FilterGridFeatureDelegate<Sourcebook,ToggleSourcebookAction>(
+    private let sourcebookDelegate = FilterGridFeatureDelegate<Sourcebook,ToggleSourcebookAction,FilterAllSourcebooksButAction>(
         featuredItems: Sourcebook.coreSourcebooks,
         getter: { sb in return store.state.profile?.sortFilterStatus.getVisibility(sb) ?? true },
         actionCreator: ToggleSourcebookAction.init,
+        longPressActionCreator: { item in return FilterAllSourcebooksButAction(item: item, visible: false) },
         sortBy: Sourcebook.coreNameComparator()
     )
-    private let casterDelegate = FilterGridDelegate<CasterClass,ToggleClassAction>(
+    private let casterDelegate = FilterGridDelegate<CasterClass,ToggleClassAction,FilterAllClassesButAction>(
         getter: { cc in return store.state.profile?.sortFilterStatus.getVisibility(cc) ?? true },
         actionCreator: ToggleClassAction.init,
+        longPressActionCreator: { item in return FilterAllClassesButAction(item: item, visible: false) },
         sortBy: CasterClass.nameComparator()
     )
-    private let schoolDelegate = FilterGridDelegate<School,ToggleSchoolAction>(
+    private let schoolDelegate = FilterGridDelegate<School,ToggleSchoolAction,FilterAllSchoolsButAction>(
         getter: { s in return store.state.profile?.sortFilterStatus.getVisibility(s) ?? true },
         actionCreator: ToggleSchoolAction.init,
+        longPressActionCreator: { item in return FilterAllSchoolsButAction(item: item, visible: false) },
         sortBy: School.nameComparator()
     )
-    private var castingTimeDelegate: FilterGridRangeDelegate<CastingTimeType,ToggleCastingTimeTypeAction>?
-    private var durationDelegate: FilterGridRangeDelegate<DurationType,ToggleDurationTypeAction>?
-    private var rangeDelegate: FilterGridRangeDelegate<RangeType,ToggleRangeTypeAction>?
+    private var castingTimeDelegate: FilterGridRangeDelegate<CastingTimeType,ToggleCastingTimeTypeAction,FilterAllCastingTimeTypesButAction>?
+    private var durationDelegate: FilterGridRangeDelegate<DurationType,ToggleDurationTypeAction,FilterAllDurationTypesButAction>?
+    private var rangeDelegate: FilterGridRangeDelegate<RangeType,ToggleRangeTypeAction,FilterAllRangeTypesButAction>?
     private var gridsAndDelegates: [(UICollectionView, FilterGridProtocol)] = []
     
     // For handling touches wrt keyboard dismissal
@@ -227,20 +230,23 @@ class SortFilterTableController: UITableViewController {
         maxLevelEntry.delegate = maxLevelDelegate
         
         // Create the range delegates
-        castingTimeDelegate = FilterGridRangeDelegate<CastingTimeType,ToggleCastingTimeTypeAction>(
+        castingTimeDelegate = FilterGridRangeDelegate<CastingTimeType,ToggleCastingTimeTypeAction,FilterAllCastingTimeTypesButAction>(
             getter: { ctt in return store.state.profile?.sortFilterStatus.getVisibility(ctt) ?? true },
+            flagSetter: { b in self.castingTimeRangeVisible = b },
             actionCreator: ToggleCastingTimeTypeAction.init,
-            flagSetter: { b in self.castingTimeRangeVisible = b }
+            longPressActionCreator: { item in return FilterAllCastingTimeTypesButAction(item: item, visible: false) }
         )
-        durationDelegate = FilterGridRangeDelegate<DurationType,ToggleDurationTypeAction>(
+        durationDelegate = FilterGridRangeDelegate<DurationType,ToggleDurationTypeAction,FilterAllDurationTypesButAction>(
             getter: { dt in return store.state.profile?.sortFilterStatus.getVisibility(dt) ?? true },
+            flagSetter: { b in self.durationRangeVisible = b },
             actionCreator: ToggleDurationTypeAction.init,
-            flagSetter: { b in self.durationRangeVisible = b }
+            longPressActionCreator: { item in return FilterAllDurationTypesButAction(item: item, visible: false) }
         )
-        rangeDelegate = FilterGridRangeDelegate<RangeType,ToggleRangeTypeAction>(
+        rangeDelegate = FilterGridRangeDelegate<RangeType,ToggleRangeTypeAction,FilterAllRangeTypesButAction>(
             getter: { rt in return store.state.profile?.sortFilterStatus.getVisibility(rt) ?? true },
+            flagSetter: { b in self.rangeRangeVisible = b },
             actionCreator: ToggleRangeTypeAction.init,
-            flagSetter: { b in self.rangeRangeVisible = b }
+            longPressActionCreator: { item in return FilterAllRangeTypesButAction(item: item, visible: false) }
         )
         
         // The list of range views, and info about their table section and visibility
