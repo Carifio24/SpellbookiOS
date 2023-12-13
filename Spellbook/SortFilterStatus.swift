@@ -51,6 +51,7 @@ class SortFilterStatus {
     private static let VERBAL_INDEX = 0
     private static let SOMATIC_INDEX = 1
     private static let MATERIAL_INDEX = 2
+    private static let ROYALTY_INDEX = 3
     
     private var name: String? = nil
     
@@ -73,8 +74,8 @@ class SortFilterStatus {
     private var yesConcentration = true
     private var noConcentration = true
     
-    private var yesComponents = [true, true, true]
-    private var noComponents = [true, true, true]
+    private var yesComponents = [true, true, true, true]
+    private var noComponents = [true, true, true, true]
     
     private var visibleSources = Sourcebook.coreSourcebooks
     private var visibleClasses = CasterClass.allCases
@@ -275,6 +276,10 @@ class SortFilterStatus {
         return getComponentFilter(b, index: SortFilterStatus.MATERIAL_INDEX)
     }
     
+    func getRoyaltyFilter(_ b: Bool) -> Bool {
+        return getComponentFilter(b, index: SortFilterStatus.ROYALTY_INDEX)
+    }
+    
     private func setComponentFilter(_ tf: Bool, index: Int, value: Bool) {
         if (tf) {
             yesComponents[index] = value
@@ -285,6 +290,7 @@ class SortFilterStatus {
     func setVerbalFilter(_ tf: Bool, to value: Bool) { setComponentFilter(tf, index: SortFilterStatus.VERBAL_INDEX, value: value) }
     func setSomaticFilter(_ tf: Bool, to value: Bool) { setComponentFilter(tf, index: SortFilterStatus.SOMATIC_INDEX, value: value) }
     func setMaterialFilter(_ tf: Bool, to value: Bool) { setComponentFilter(tf, index: SortFilterStatus.MATERIAL_INDEX, value: value) }
+    func setRoyaltyFilter(_ tf: Bool, to value: Bool) { setComponentFilter(tf, index: SortFilterStatus.ROYALTY_INDEX, value: value) }
     
     // Riual and concentration filters
     
@@ -305,8 +311,9 @@ class SortFilterStatus {
     func toggleRitualFilter(_ tf: Bool) { toggleFilter(tf, getter: getRitualFilter, setter: setRitualFilter) }
     func toggleConcentrationFilter(_ tf: Bool) { toggleFilter(tf, getter: getConcentrationFilter, setter: setConcentrationFilter) }
     func toggleVerbalFilter(_ tf: Bool) { toggleFilter(tf, getter: getVerbalFilter, setter: setVerbalFilter) }
-    func toggleSomaticFilter(_ tf: Bool) { toggleFilter(tf, getter: getSomaticFilter,  setter: setSomaticFilter )}
-    func toggleMaterialFilter(_ tf: Bool) { toggleFilter(tf, getter: getMaterialFilter, setter: setMaterialFilter )}
+    func toggleSomaticFilter(_ tf: Bool) { toggleFilter(tf, getter: getSomaticFilter,  setter: setSomaticFilter) }
+    func toggleMaterialFilter(_ tf: Bool) { toggleFilter(tf, getter: getMaterialFilter, setter: setMaterialFilter) }
+    func toggleRoyaltyFilter(_ tf: Bool) { toggleFilter(tf, getter: getRoyaltyFilter, setter: setRoyaltyFilter) }
     
     // Status filter
     func favoritesSelected() -> Bool { return (statusFilterField == StatusFilterField.Favorites) }
@@ -502,8 +509,15 @@ class SortFilterStatus {
         yesConcentration = sion[SortFilterStatus.concentrationKey].bool ?? true
         noConcentration = sion[SortFilterStatus.notConcentrationKey].bool ?? true
         
-        yesComponents = sion[SortFilterStatus.componentsFiltersKey].array?.map{ $0.bool ?? true } ?? [true, true, true]
-        noComponents = sion[SortFilterStatus.notComponentsFiltersKey].array?.map{ $0.bool ?? true } ?? [true, true, true]
+        yesComponents = sion[SortFilterStatus.componentsFiltersKey].array?.map{ $0.bool ?? true } ?? [true, true, true, true]
+        noComponents = sion[SortFilterStatus.notComponentsFiltersKey].array?.map{ $0.bool ?? true } ?? [true, true, true, true]
+        
+        if yesComponents.count < 4 {
+            yesComponents += Array(repeating: true, count: 4 - yesComponents.count)
+        }
+        if noComponents.count < 4 {
+            noComponents += Array(repeating: true, count: 4 - noComponents.count)
+        }
         
         let sourcebookArray = sion[SortFilterStatus.sourcebooksKey]
         visibleSources = arrayFromSION(sion: sourcebookArray, creator: { Sourcebook.fromCode($0.string) }, defaultArray: Sourcebook.allCases)

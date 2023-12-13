@@ -72,6 +72,8 @@ class YesNoFilterDelegate: NSObject, FilterGridProtocol {
         let item = items[indexPath.row]
         let bool = item.bool
         cell.backgroundColor = .clear
+        print(indexPath)
+        print(actionCreator)
         cell.filterView.nameLabel.text = item.displayName
         cell.filterView.filterButton.isUserInteractionEnabled = true
         //cell.filterView.nameLabel.sizeToFit()

@@ -256,6 +256,9 @@ func setFlagFilterReducer(action: SetFlagAction, state: inout SpellbookAppState)
         case .Material:
             status.setMaterialFilter(action.tf, to: action.value)
             break
+        case .Royalty:
+            status.setRoyaltyFilter(action.tf, to: action.value)
+            break
     }
     state.filterAndSortSpells()
     return state
@@ -279,6 +282,9 @@ func toggleFlagFilterReducer(action: ToggleFlagAction, state: inout SpellbookApp
             break
         case .Material:
             status.toggleMaterialFilter(action.value)
+            break
+        case .Royalty:
+            status.toggleRoyaltyFilter(action.value)
             break
     }
     state.filterAndSortSpells()

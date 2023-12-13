@@ -105,6 +105,7 @@ func filterSpell(spell: Spell, sortFilterStatus: SortFilterStatus, spellFilterSt
     toHide = toHide || !sortFilterStatus.getVerbalFilter(spell.verbal)
     toHide = toHide || !sortFilterStatus.getSomaticFilter(spell.somatic)
     toHide = toHide || !sortFilterStatus.getMaterialFilter(spell.material)
+    toHide = toHide || !sortFilterStatus.getRoyaltyFilter(spell.royalty)
     toHide = toHide || (isText && !spellName.contains(text))
     return !toHide
 }
