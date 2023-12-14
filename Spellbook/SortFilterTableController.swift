@@ -41,6 +41,7 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var verbalLabel: UILabel!
     @IBOutlet weak var somaticLabel: UILabel!
     @IBOutlet weak var materialLabel: UILabel!
+    @IBOutlet weak var royaltyLabel: UILabel!
     private var labels: [UILabel] = []
     
     // Sort direction arrows
@@ -107,6 +108,7 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var verbalGrid: UICollectionView!
     @IBOutlet weak var somaticGrid: UICollectionView!
     @IBOutlet weak var materialGrid: UICollectionView!
+    @IBOutlet weak var royaltyGrid: UICollectionView!
     
     // Constraints governing the bottoms of the quantity type grids
     @IBOutlet weak var durationBottomConstraint: NSLayoutConstraint!
@@ -156,6 +158,10 @@ class SortFilterTableController: UITableViewController {
     private let materialDelegate = YesNoFilterDelegate(
         statusGetter: { tf in return store.state.profile?.sortFilterStatus.getMaterialFilter(tf) ?? true },
         actionCreator: ToggleFlagAction.material
+    )
+    private let royaltyDelegate = YesNoFilterDelegate(
+        statusGetter: { tf in return store.state.profile?.sortFilterStatus.getRoyaltyFilter(tf) ?? true },
+        actionCreator: ToggleFlagAction.royalty
     )
     private let sourcebookDelegate = FilterGridFeatureDelegate<Sourcebook,ToggleSourcebookAction,FilterAllSourcebooksButAction>(
         featuredItems: Sourcebook.coreSourcebooks,
@@ -273,6 +279,7 @@ class SortFilterTableController: UITableViewController {
             (verbalGrid, verbalDelegate),
             (somaticGrid, somaticDelegate),
             (materialGrid, materialDelegate),
+            (royaltyGrid, royaltyDelegate),
             (sourcebookGrid, sourcebookDelegate),
             (casterGrid, casterDelegate),
             (schoolGrid, schoolDelegate),
@@ -292,7 +299,7 @@ class SortFilterTableController: UITableViewController {
         
         // Set the text color for the labels and the text fields
         labels = [
-            firstLevelLabel, secondLevelLabel, levelRangeLabel, ritualLabel, concentrationLabel, verbalLabel, somaticLabel, materialLabel
+            firstLevelLabel, secondLevelLabel, levelRangeLabel, ritualLabel, concentrationLabel, verbalLabel, somaticLabel, materialLabel, royaltyLabel
         ]
         for label in labels { label.textColor = defaultFontColor }
         textFields = [

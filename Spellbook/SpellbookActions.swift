@@ -132,7 +132,7 @@ struct SortNeededAction: Action {}
 struct FilterNeededAction: Action {}
 
 enum FlagType {
-    case Ritual, Concentration, Verbal, Somatic, Material
+    case Ritual, Concentration, Verbal, Somatic, Material, Royalty
 }
 
 struct SetFlagAction: Action {
@@ -156,6 +156,8 @@ struct ToggleFlagAction: Action {
     static func verbal(_ value: Bool) -> ToggleFlagAction { return ToggleFlagAction(flag: .Verbal, value: value) }
     static func somatic(_ value: Bool) -> ToggleFlagAction { return ToggleFlagAction(flag: .Somatic, value: value) }
     static func material(_ value: Bool) -> ToggleFlagAction { return ToggleFlagAction(flag: .Material, value: value) }
+    static func royalty(_ value: Bool) -> ToggleFlagAction { return ToggleFlagAction(flag: .Royalty, value: value) }
+    
 }
 
 struct TogglePropertyAction: Action {
