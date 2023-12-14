@@ -2335,6 +2335,9 @@
                                                                             <constraint firstAttribute="trailing" secondItem="s5o-mH-Lb2" secondAttribute="trailing" id="kK1-fO-Sjt"/>
                                                                         </constraints>
                                                                     </collectionViewCellContentView>
+                                                                    <connections>
+                                                                        <outlet property="filterView" destination="s5o-mH-Lb2" id="eLY-ML-3xE"/>
+                                                                    </connections>
                                                                 </collectionViewCell>
                                                             </cells>
                                                         </collectionView>
