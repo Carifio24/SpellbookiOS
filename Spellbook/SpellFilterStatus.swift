@@ -22,10 +22,15 @@ class SpellFilterStatus {
     private static let preparedProperty: SpellStatusProperty = { status in return status.prepared }
     private static let knownProperty: SpellStatusProperty = { status in return status.known }
     
+    private var favoritesCount = 0
+    private var preparedCount = 0
+    private var knownCount = 0
+    
     private var spellStatusMap: [Int: SpellStatus]
     
     init(map: [Int:SpellStatus]) {
         self.spellStatusMap = map
+        self.updateAllListCounts()
     }
     
     convenience init() {
@@ -42,6 +47,7 @@ class SpellFilterStatus {
                             known: status[SpellFilterStatus.knownKey].bool ?? false)
             }
         }
+        self.updateAllListCounts()
     }
     
     private func isProperty(_ spell: Spell, property: SpellStatusProperty) -> Bool {
@@ -96,53 +102,109 @@ class SpellFilterStatus {
         return spellIDsByProperty(property: SpellFilterStatus.knownProperty)
     }
     
+    func listsCount(status: SpellStatus) -> Int {
+        return [status.favorite, status.prepared, status.known].filter({ $0 }).count
+    }
+    
+    func listsCount(spell: Spell) -> Int {
+        guard let status = spellStatusMap[spell.id] else { return 0 }
+        return listsCount(status: status)
+    }
+    
     func spellsWithOneProperty() -> [Int] {
         return spellStatusMap.filter({ $1.favorite || $1.prepared || $1.known }).map({$0.key})
     }
     
     // Setting whether a spell is ony a given spell list
-    private func setProperty(spell: Spell, value: Bool, propSetter: (SpellStatus, Bool) -> Void) {
+    private func setProperty(spell: Spell, value: Bool,
+                             propSetter: (SpellStatus, Bool) -> Void,
+                             listCountUpdater: () -> Void) {
         let id = spell.id
         if let status = spellStatusMap[id] {
+            let initialListCount = listsCount(status: status)
             propSetter(status, value)
+            let finalListCount = listsCount(status: status)
             if status.noneTrue {
                 spellStatusMap.removeValue(forKey: id)
+            }
+            if finalListCount != initialListCount {
+                listCountUpdater()
             }
         } else if value {
             let status = SpellStatus()
             propSetter(status, true)
             spellStatusMap[id] = status
+            listCountUpdater()
         }
+    }
+    
+    private func updateFavoritesCount() {
+        self.favoritesCount = self.favoriteSpellIDs().count
+    }
+    
+    private func updatePreparedCount() {
+        self.preparedCount = self.preparedSpellIDs().count
+    }
+    
+    private func updateKnownCount() {
+        self.knownCount = self.knownSpellIDs().count
+    }
+    
+    private func updateAllListCounts() {
+        self.updateFavoritesCount()
+        self.updatePreparedCount()
+        self.updateKnownCount()
     }
     
     // The property setters
     func setFavorite(spell: Spell, favorite: Bool) {
-        setProperty(spell: spell, value: favorite, propSetter: { $0.setFavorite($1) })
+        setProperty(spell: spell, value: favorite,
+                    propSetter: { $0.setFavorite($1) },
+                    listCountUpdater: self.updateFavoritesCount
+        )
     }
     
     func setPrepared(spell: Spell, prepared: Bool) {
-        setProperty(spell: spell, value: prepared, propSetter: { $0.setPrepared($1) })
+        setProperty(spell: spell, value: prepared,
+                    propSetter: { $0.setPrepared($1) },
+                    listCountUpdater: self.updatePreparedCount
+        )
     }
     
     func setKnown(spell: Spell, known: Bool) {
-        setProperty(spell: spell, value: known, propSetter: { $0.setKnown($1) })
+        setProperty(spell: spell, value: known,
+                    propSetter: { $0.setKnown($1) },
+                    listCountUpdater: self.updateKnownCount
+        )
     }
     
     // For toggling spell status properties
-    private func toggleProperty(spell: Spell, propGetter: StatusPropertyGetter, propSetter: StatusPropertySetter) {
-        setProperty(spell: spell, value: !isProperty(spell, property: propGetter), propSetter: propSetter)
+    private func toggleProperty(spell: Spell, propGetter: StatusPropertyGetter,
+                                propSetter: StatusPropertySetter,
+                                listCountUpdater: () -> Void)
+    {
+        setProperty(spell: spell, value: !isProperty(spell, property: propGetter), propSetter: propSetter, listCountUpdater: listCountUpdater)
     }
     
     func toggleFavorite(_ s: Spell) {
-        toggleProperty(spell: s, propGetter: { return $0.favorite }, propSetter: { $0.setFavorite($1) })
+        toggleProperty(spell: s, propGetter: { return $0.favorite },
+                       propSetter: { $0.setFavorite($1) },
+                       listCountUpdater: self.updateFavoritesCount
+        )
     }
     
     func togglePrepared(_ s: Spell) {
-        toggleProperty(spell: s, propGetter: { return $0.prepared }, propSetter: { $0.setPrepared($1) })
+        toggleProperty(spell: s, propGetter: { return $0.prepared },
+                       propSetter: { $0.setPrepared($1) },
+                       listCountUpdater: self.updatePreparedCount
+        )
     }
     
     func toggleKnown(_ s: Spell) {
-        toggleProperty(spell: s, propGetter: { return $0.known }, propSetter: { $0.setKnown($1) })
+        toggleProperty(spell: s, propGetter: { return $0.known },
+                       propSetter: { $0.setKnown($1) },
+                       listCountUpdater: self.updateKnownCount
+        )
     }
 
     func toSION() -> SION {
