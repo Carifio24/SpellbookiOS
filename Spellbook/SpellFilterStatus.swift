@@ -22,9 +22,9 @@ class SpellFilterStatus {
     private static let preparedProperty: SpellStatusProperty = { status in return status.prepared }
     private static let knownProperty: SpellStatusProperty = { status in return status.known }
     
-    private var favoritesCount = 0
-    private var preparedCount = 0
-    private var knownCount = 0
+    private(set) var favoritesCount = 0
+    private(set) var preparedCount = 0
+    private(set) var knownCount = 0
     
     private var spellStatusMap: [Int: SpellStatus]
     

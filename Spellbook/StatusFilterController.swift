@@ -42,7 +42,12 @@ class StatusFilterController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         store.subscribe(self) {
-            $0.select { $0.profile?.sortFilterStatus.statusFilterField }
+            $0.select {
+                ($0.profile?.sortFilterStatus.statusFilterField,
+                 $0.profile?.spellFilterStatus.favoritesCount,
+                 $0.profile?.spellFilterStatus.preparedCount,
+                 $0.profile?.spellFilterStatus.knownCount)
+            }
         }
     }
     
@@ -153,21 +158,35 @@ class StatusFilterController: UITableViewController {
         
     }
     
+    
     func setFilter(_ sff: StatusFilterField) {
         let indexPath = IndexPath(row: sff.rawValue, section: 0)
-        //let cell = tableView.cellForRow(at: indexPath) as! SideMenuCell
         tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.none)
+    }
+    
+    func cellForFilterField(_ sff: StatusFilterField) -> SideMenuCell? {
+        return tableView.cellForRow(at: IndexPath(row: sff.rawValue, section: 0)) as? SideMenuCell
     }
 
 }
 
 // MARK: StoreSubscriber
 extension StatusFilterController: StoreSubscriber {
-    typealias StoreSubscriberStateType = StatusFilterField?
+    typealias StoreSubscriberStateType = (field: StatusFilterField?, favoritesCount: Int?, preparedCount: Int?, knownCount: Int?)
     
-    func newState(state field: StoreSubscriberStateType) {
-        if (field != nil) {
-            setFilter(field!)
+    func newState(state: StoreSubscriberStateType) {
+        if let field = state.field {
+            setFilter(field)
+        }
+        let counts = [state.favoritesCount, state.preparedCount, state.knownCount]
+        for (index, count) in counts.enumerated() {
+            let sff = StatusFilterField(rawValue: index + 1) ?? StatusFilterField.All
+            if count == nil || sff == StatusFilterField.All {
+                continue
+            }
+            if let cell = self.cellForFilterField(sff) {
+                cell.optionLabel.text = menuOptions[sff.rawValue] + " (\(count ?? 0))"
+            }
         }
     }
 }
