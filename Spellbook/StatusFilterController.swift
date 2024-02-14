@@ -11,16 +11,6 @@ import ReSwift
 
 class StatusFilterController: UITableViewController {
     
-    // The menu options are the names of the status filter options
-    // We generate the array via an IICE
-    let menuOptions: [String] = {
-        var options: [String]  = []
-        for sff in StatusFilterField.allCases {
-            options.append(sff.name())
-        }
-        return options
-    }()
-    
     // This dictionary contains the appropriate image filename for each status filter field
     // Keyed by the filter field's raw value
     let iconFilenames: [Int : String] = [
@@ -29,7 +19,6 @@ class StatusFilterController: UITableViewController {
         StatusFilterField.Prepared.rawValue : "wand_empty",
         StatusFilterField.Known.rawValue : "book_empty"
     ]
-    
     
     let cellReuseIdentifier = "statusMenuCell"
     
@@ -101,7 +90,7 @@ class StatusFilterController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menuOptions.count
+        return StatusFilterField.allCases.count
     }
     
     // The table title
@@ -141,7 +130,8 @@ class StatusFilterController: UITableViewController {
         let imageFile = iconFilenames[indexPath.row]!
         let cell = SideMenuCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: cellReuseIdentifier, selected: false, isSelectedImageFile: imageFile, notSelectedImageFile: imageFile)
         //let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SideMenuCell
-        cell.optionLabel.text = menuOptions[indexPath.row]
+        let field = StatusFilterField(rawValue: indexPath.row) ?? StatusFilterField.All
+        cell.optionLabel.text = field.name()
         cell.optionLabel.textColor = UIColor.black
         cell.optionLabel.backgroundColor = UIColor.clear
         cell.backgroundColor = UIColor.clear
@@ -152,7 +142,6 @@ class StatusFilterController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
         // Set the filtering variables accordingly
-        //print("The row is \(indexPath.row)")
         let sff = StatusFilterField(rawValue: indexPath.row)!
         store.dispatch(StatusFilterAction(statusFilterField: sff))
         
@@ -185,7 +174,7 @@ extension StatusFilterController: StoreSubscriber {
                 continue
             }
             if let cell = self.cellForFilterField(sff) {
-                cell.optionLabel.text = menuOptions[sff.rawValue] + " (\(count ?? 0))"
+                cell.optionLabel.text = "\(sff.name()): (\(count ?? 0))"
             }
         }
     }
