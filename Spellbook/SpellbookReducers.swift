@@ -307,7 +307,11 @@ func togglePropertyReducer(action: TogglePropertyAction, state: inout SpellbookA
             status.togglePrepared(action.spell)
             break
     }
-    if (profile.sortFilterStatus.statusFilterField == action.property) {
+    if (
+        profile.sortFilterStatus.statusFilterField == StatusFilterField.All
+            &&
+        profile.sortFilterStatus.statusFilterField == action.property
+    ) {
         state.filterAndSortSpells()
     }
     state.dirtySpellIDs = state.dirtySpellIDs + [action.spell.id]
