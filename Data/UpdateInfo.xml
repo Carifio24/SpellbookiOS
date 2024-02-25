@@ -29,4 +29,9 @@
         <item name="title">Version 3.1.0 update</item>
         <item name="description">This update adds a button to the spell slots screen to regain all slots.</item>
     </section>
+    <section name="v_3_4_0">
+        <item name="title">Version 3.4.0 update</item>
+        <item name="description">This update modifies the UI to show the count for each spell list next to the list name in both the side menu and the bottom navigation bar. This can be enabled or disabled from the settings screen.&lt;br/&gt;&lt;br/&gt;Additionally, this update fixes some typos and mistakes in the text for a few spells.
+            </item>
+    </section>
 </root>
