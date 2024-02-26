@@ -17,9 +17,12 @@ class SpellSlotsController: UITableViewController {
     
     static let cellReuseIdentifier = "spellSlotCell"
     static let spellSlotsManagerIdentifier = "spellSlotsManager"
+    private var hideNavBarOnSwipeWhenDismissed: Bool = true
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        hideNavBarOnSwipeWhenDismissed = navigationController?.hidesBarsOnSwipe ?? true
+        navigationController?.hidesBarsOnSwipe = false
         store.subscribe(self) {
             $0.select {
                 $0.profile?.spellSlotStatus.totalSlots
@@ -60,14 +63,15 @@ class SpellSlotsController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         Controllers.spellSlotsController = nil
+        navigationController?.hidesBarsOnSwipe = hideNavBarOnSwipeWhenDismissed
     }
-    
+
     @objc func openSlotManager() {
         let controller = storyboard?.instantiateViewController(withIdentifier: SpellSlotsController.spellSlotsManagerIdentifier) as! SpellSlotsManagerController
         controller.modalPresentationStyle = .pageSheet
         self.present(controller, animated: true, completion: nil)
     }
-    
+
     @objc func regainSpentSlots() {
         store.dispatch(RegainAllSlotsAction())
         tableView.reloadData()
@@ -107,6 +111,16 @@ class SpellSlotsController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: SpellSlotsController.cellReuseIdentifier, for: indexPath) as! SpellSlotCell
         cell.level = indexPath.row + 1
         return cell
+    }
+
+    // We don't want the cells to be selectable
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
+    }
+
+    // Prevent the row from highlight flickering when pressed
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
 
 }

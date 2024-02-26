@@ -29,4 +29,9 @@
         <item name="title">Version 3.1.0 update</item>
         <item name="description">This update adds a button to the spell slots screen to regain all slots.</item>
     </section>
+    <section name="v_3_4_0">
+        <item name="title">Version 3.4.0 update</item>
+        <item name="description">The spellbook has been updated with the following new features:&lt;br/&gt;&lt;br/&gt;&#8226; The ability to filter spells by royalty has been added.&lt;br/&gt;&lt;br/&gt;&#8226; The count for each spell list is now shown next to the list name in both the side menu and the bottom navigation bar.&lt;br/&gt;&lt;br/&gt;Additionally, this update fixes some typos and mistakes in the text for a few spells.</item>
+            </item>
+    </section>
 </root>
