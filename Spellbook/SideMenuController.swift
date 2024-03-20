@@ -91,6 +91,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         
         currentY += (headerHeight + tablePadding)
         statusFilterView.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: statusFilterHeight + belowFilterPadding)
+        statusController?.tableView.frame = CGRect(x: 0, y: 0, width: viewWidth - leftPadding, height: statusFilterHeight + belowFilterPadding)
         
         currentY += (statusFilterHeight + belowFilterPadding)
         characterLabel.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: characterLabelHeight)
