@@ -1,4 +1,5 @@
 {
+  "originHash" : "cf2216abba0eb2180a6f4d920103cda5fe5206d47e7549dd2680f0c1d4975521",
   "pins" : [
     {
       "identity" : "actionsheetpicker-3.0",
@@ -13,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ReSwift/ReSwift.git",
       "state" : {
-        "revision" : "26d3095bdf55f093501bf3a749bb2718bab671b3",
-        "version" : "6.0.0"
+        "revision" : "cb5c3c02f652420ef413dea41e13ac5a76b6c0fd",
+        "version" : "6.1.1"
       }
     },
     {
@@ -22,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/BeauNouvelle/SimpleCheckbox.git",
       "state" : {
-        "revision" : "d7fa095107a5b27ed1bfe89005bc060417b0a9b2",
-        "version" : "2.5.0"
+        "revision" : "e9791e08a9aac10a1955439bb50dae75dccd0f50",
+        "version" : "2.5.1"
       }
     },
     {
@@ -31,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/drmohundro/SWXMLHash.git",
       "state" : {
-        "revision" : "4d0f62f561458cbe1f732171e625f03195151b60",
-        "version" : "7.0.1"
+        "revision" : "a853604c9e9a83ad9954c7e3d2a565273982471f",
+        "version" : "7.0.2"
       }
     },
     {
@@ -40,10 +41,10 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/scalessec/Toast-Swift",
       "state" : {
-        "revision" : "0c9493eeacb102cc614da385cfaaf475379f4ab4",
-        "version" : "5.0.1"
+        "revision" : "ddccd20d6fb718448d9b179c454c561653fda7d5",
+        "version" : "5.1.1"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
