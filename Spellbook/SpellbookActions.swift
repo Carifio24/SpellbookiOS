@@ -253,3 +253,15 @@ struct CastSpellAction: Action {
 struct ToastAction: Action {
     let message: String
 }
+
+struct ExportFormatAction: Action {
+    let format: ExportFormat
+}
+
+struct ExportListAction: Action {
+    let list: StatusFilterField
+}
+
+struct ExportAllContentAction: Action {
+    let allContent: Bool
+}

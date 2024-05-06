@@ -525,13 +525,11 @@ class SortFilterTableController: UITableViewController {
     //  BUT the touch won't carry through to the view controller
     //  i.e., I can't accidentally press a button while closing a keyboard
     @objc func keyboardWillAppear() {
-        //print("In keyboardWillAppear")
         isKeyboardOpen = true
         Controllers.mainController.passThroughView.blocking = true
     }
 
     @objc func keyboardWillDisappear() {
-        //print("In keyboardWillDisappear")
         isKeyboardOpen = false
         Controllers.mainController.passThroughView.blocking = false
     }

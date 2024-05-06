@@ -142,6 +142,8 @@
 		8EEDC3E42AE739A60045D002 /* ConfirmNextAvailableCastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEDC3E32AE739A50045D002 /* ConfirmNextAvailableCastController.swift */; };
 		8EF6EF0B264668F60059BCE8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0A264668F60059BCE8 /* Version.swift */; };
 		8EF6EF0D26485A2E0059BCE8 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */; };
+		FC176B462BE73F0B002DB306 /* SpellListExportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC176B452BE73F0B002DB306 /* SpellListExportController.swift */; };
+		FC176B482BE86564002DB306 /* ExportSpellListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC176B472BE86564002DB306 /* ExportSpellListState.swift */; };
 		FCA109612BDB742B001CADDD /* SpellListHTMLExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA109602BDB742B001CADDD /* SpellListHTMLExporter.swift */; };
 		FCA109652BDB7593001CADDD /* SpellListPDFExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA109642BDB7593001CADDD /* SpellListPDFExporter.swift */; };
 		FCED92E72BD94EDE00D1E93B /* SpellListExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCED92E62BD94EDE00D1E93B /* SpellListExporter.swift */; };
@@ -305,6 +307,8 @@
 		8EEDC3E32AE739A50045D002 /* ConfirmNextAvailableCastController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmNextAvailableCastController.swift; sourceTree = "<group>"; };
 		8EF6EF0A264668F60059BCE8 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTests.swift; sourceTree = "<group>"; };
+		FC176B452BE73F0B002DB306 /* SpellListExportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListExportController.swift; sourceTree = "<group>"; };
+		FC176B472BE86564002DB306 /* ExportSpellListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportSpellListState.swift; sourceTree = "<group>"; };
 		FCA109602BDB742B001CADDD /* SpellListHTMLExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListHTMLExporter.swift; sourceTree = "<group>"; };
 		FCA109642BDB7593001CADDD /* SpellListPDFExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListPDFExporter.swift; sourceTree = "<group>"; };
 		FCED92E62BD94EDE00D1E93B /* SpellListExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListExporter.swift; sourceTree = "<group>"; };
@@ -371,6 +375,7 @@
 			isa = PBXGroup;
 			children = (
 				397EE96C21ACA86400B116B0 /* Main.storyboard */,
+				FC176B452BE73F0B002DB306 /* SpellListExportController.swift */,
 				8EEDC3E12ADA69170045D002 /* HigherLevelSlotController.swift */,
 				8E07AE0C2A0F708700C0487B /* ImportCharacterController.swift */,
 				8EB3692129405EAB00856738 /* SpellbookReducers.swift */,
@@ -481,6 +486,7 @@
 				FCED92EA2BDA1FAA00D1E93B /* SpellListMarkdownExporter.swift */,
 				FCA109602BDB742B001CADDD /* SpellListHTMLExporter.swift */,
 				FCA109642BDB7593001CADDD /* SpellListPDFExporter.swift */,
+				FC176B472BE86564002DB306 /* ExportSpellListState.swift */,
 			);
 			path = Spellbook;
 			sourceTree = "<group>";
@@ -809,6 +815,7 @@
 				8E614904241991C200842A18 /* Range.swift in Sources */,
 				8E19DA50257C094A002B4F43 /* FilterOptionView.swift in Sources */,
 				8EB3692229405EAB00856738 /* SpellbookReducers.swift in Sources */,
+				FC176B462BE73F0B002DB306 /* SpellListExportController.swift in Sources */,
 				8E6148E9241991C200842A18 /* LabelViewController.swift in Sources */,
 				8E6148E7241991C200842A18 /* InfoMenuCell.swift in Sources */,
 				8E61490C241991C200842A18 /* EnumUtilities.swift in Sources */,
@@ -837,6 +844,7 @@
 				8E6148E6241991C200842A18 /* CharacterTableController.swift in Sources */,
 				8E6148ED241991C200842A18 /* LengthUnit.swift in Sources */,
 				8E61491A241991C200842A18 /* iOSUtils.swift in Sources */,
+				FC176B482BE86564002DB306 /* ExportSpellListState.swift in Sources */,
 				39F306A62378A4310078FA83 /* SWRevealViewController.m in Sources */,
 				8E6551B829AB470400A3BC43 /* SerializationUtils.swift in Sources */,
 				8E19DA5A257D6D46002B4F43 /* MessageDialogController.swift in Sources */,

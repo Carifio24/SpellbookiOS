@@ -14,6 +14,10 @@ class SpellListMarkdownExporter: SpellListExporter {
     var title: String? = nil
     private var spells: [Spell] = []
     
+    init(expanded: Bool) {
+        self.expanded = expanded
+    }
+    
     private static func headerString(_ level: Int) -> String {
         return String(repeating: "#", count: level)
     }

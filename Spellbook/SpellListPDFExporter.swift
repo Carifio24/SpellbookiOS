@@ -10,7 +10,7 @@ import Foundation
 
 class SpellListPDFExporter: SpellListHTMLExporter {
     
-    override func export(stream: OutputStream) {
+    func export(stream: OutputStream) {
         var text = ""
         let line = lineBreak()
         text.append(line)
@@ -36,7 +36,7 @@ class SpellListPDFExporter: SpellListHTMLExporter {
         }
 
         UIGraphicsEndPDFContext();
-        
+
         stream.write(pdfData.bytes, maxLength: pdfData.length)
     }
     

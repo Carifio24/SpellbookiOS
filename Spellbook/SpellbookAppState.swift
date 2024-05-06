@@ -22,6 +22,7 @@ struct SpellbookAppState: StateType {
     var currentSpellList: [Spell]
     var profileNameList: [String] = []
     var settings: Settings
+    var exportSpellListState = ExportSpellListState()
     
     init() {
         settings = SerializationUtils.loadSettings()

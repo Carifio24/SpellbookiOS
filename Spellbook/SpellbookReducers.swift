@@ -407,3 +407,18 @@ func castSpellReducer(action: CastSpellAction, state: SpellbookAppState) -> Spel
     status.useSlot(level: action.level)
     return state
 }
+
+func exportFormatReducer(action: ExportFormatAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    state.exportSpellListState.format = action.format
+    return state
+}
+
+func exportListReducer(action: ExportListAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    state.exportSpellListState.list = action.list
+    return state
+}
+
+func exportAllContentReducer(action: ExportAllContentAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    state.exportSpellListState.allContent = action.allContent
+    return state
+}

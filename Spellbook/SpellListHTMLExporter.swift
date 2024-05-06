@@ -14,6 +14,10 @@ class SpellListHTMLExporter: SpellListExporter {
     var title: String? = nil
     var spells: [Spell] = []
     
+    init(expanded: Bool) {
+        self.expanded = expanded
+    }
+    
     func titleText() -> String {
         return "<h1>\(title ?? "")</h1>"
     }
@@ -31,7 +35,8 @@ class SpellListHTMLExporter: SpellListExporter {
     }
     
     func promptText(prompt: String, text: String, lineBreak: Bool) -> String {
-        return ""
+        let line = lineBreak ? "<br>" : ""
+        return "<div><strong>\(prompt):</strong>\(line) \(text)</div>"
     }
     
     func promptText(prompt: String, text: String) -> String {
