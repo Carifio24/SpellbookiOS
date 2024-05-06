@@ -11,8 +11,8 @@ import SWXMLHash
 
 class VersionInfo {
     
-    static let version = Version(major: 3, minor: 4, patch: 0)
-    static let previousVersion = Version(major: 3, minor: 3, patch: 0)
+    static let version = Version(major: 3, minor: 5, patch: 0)
+    static let previousVersion = Version(major: 3, minor: 4, patch: 0)
     
     static let currentVersionKey = "v_" + version.string(separator: "_")
     

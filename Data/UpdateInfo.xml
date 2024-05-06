@@ -32,6 +32,9 @@
     <section name="v_3_4_0">
         <item name="title">Version 3.4.0 update</item>
         <item name="description">The spellbook has been updated with the following new features:&lt;br/&gt;&lt;br/&gt;&#8226; The ability to filter spells by royalty has been added.&lt;br/&gt;&lt;br/&gt;&#8226; The count for each spell list is now shown next to the list name in both the side menu and the bottom navigation bar.&lt;br/&gt;&lt;br/&gt;Additionally, this update fixes some typos and mistakes in the text for a few spells.</item>
-            </item>
+    </section>
+    <section name="v_3_5_0">
+        <item name="title">Version 3.5.0 update</item>
+        <item name="description">The spellbook has been updated with the following new features:&lt;br/&gt;&lt;br/&gt;&#8226; Content from &lt;b&gt;The Book of Many Things&lt;/b&gt; has been added&lt;/b&gt;.&lt;br/&gt;&lt;br/&gt;&#8226; The higher level text for &lt;b&gt;Erupting Earth&lt;/b&gt; has been corrected&lt;/b&gt;.&lt;br/&gt;&lt;br/&gt;&#8226; The spellcasting information has been updated with a description of the royalty component.</item>
     </section>
 </root>
