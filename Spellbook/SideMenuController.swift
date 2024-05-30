@@ -19,6 +19,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     @IBOutlet weak var updateInfoLabel: UILabel!
     @IBOutlet weak var whatsNewButton: UIButton!
     @IBOutlet weak var spellSlotsButton: UIButton!
+    @IBOutlet weak var exportSpellListButton: UIButton!
     
     var statusController: StatusFilterController?
     
@@ -38,6 +39,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     private var viewWidth = CGFloat(400)
     
     static let spellSlotsIdentifier = "spellSlots"
+    static let exportSpellListIdentifier = "exportSpellList"
     
     // Status bar
     // Status bar
@@ -70,10 +72,12 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         let characterLabelHeight = CGFloat(20)
         let selectionButtonHeight = CGFloat(20)
         let spellSlotsButtonHeight = CGFloat(20)
+        let exportSpellListButtonHeight = CGFloat(20)
         let belowFilterPadding = min(max(0.05 * SizeUtils.screenHeight, 25), 40)
         let belowCharacterLabelPadding = CGFloat(14)
         let belowSelectionButtonPadding = CGFloat(20)
         let belowSpellSlotsButtonPadding = CGFloat(23)
+        let belowExportSpellListButtonPadding = CGFloat(23)
         let notchTopPadding = CGFloat(35)
         let updateInfoLabelHeight = CGFloat(20)
         let belowUpdateInfoLabelPadding = CGFloat(14)
@@ -101,6 +105,9 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         currentY += spellSlotsButtonHeight + belowSelectionButtonPadding
         spellSlotsButton.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: spellSlotsButtonHeight)
         
+        currentY += exportSpellListButtonHeight + belowExportSpellListButtonPadding
+        exportSpellListButton.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: exportSpellListButtonHeight)
+        
         currentY += selectionButtonHeight + belowSpellSlotsButtonPadding
         updateInfoLabel.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: updateInfoLabelHeight)
         
@@ -112,6 +119,8 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         whatsNewButton.addTarget(self, action: #selector(updateInfoButtonPressed), for: UIControl.Event.touchUpInside)
         
         spellSlotsButton.addTarget(self, action: #selector(spellSlotsButtonPressed), for: UIControl.Event.touchUpInside)
+        
+        exportSpellListButton.addTarget(self, action: #selector(exportSpellListButtonPressed), for: UIControl.Event.touchUpInside)
         
         characterLabel.textColor = defaultFontColor
         
@@ -151,7 +160,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.none
+        return UIModalPresentationStyle.popover
     }
     
     @objc func selectionButtonPressed() {
@@ -206,6 +215,23 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         Controllers.mainController.closeMenuIfOpen()
         Controllers.spellSlotsController = controller
         UIApplication.shared.setStatusBarTextColor(.light)
+    }
+    
+    @objc func exportSpellListButtonPressed() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: SideMenuController.exportSpellListIdentifier) as? SpellListExportController
+        controller?.modalPresentationStyle = .popover
+        controller?.preferredContentSize = CGSize(width: 400, height: 400)
+        
+        if let popoverPresentationController = controller?.popoverPresentationController {
+            popoverPresentationController.permittedArrowDirections = .left
+            popoverPresentationController.sourceView = self.view
+            popoverPresentationController.sourceRect = self.exportSpellListButton.frame
+            popoverPresentationController.delegate = self
+            if let popoverController = controller {
+                present(popoverController, animated: true, completion: nil)
+            }
+        }
     }
     
     

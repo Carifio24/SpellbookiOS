@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReSwift
 
 enum ExportFormat: CaseIterable {
     case PDF, Markdown, HTML
@@ -96,6 +97,15 @@ class SpellListExportController: UIViewController {
         nameConstructor: { name in return ExportFormat.fromName(name) ?? ExportFormat.PDF }
     )
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        store.subscribe(self) {
+            $0.select {
+                $0.exportSpellListState
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -149,4 +159,16 @@ class SpellListExportController: UIViewController {
     }
     */
 
+}
+
+// MARK: - StoreSubscriber
+extension SpellListExportController: StoreSubscriber {
+   typealias StoreSubscriberStateType = ExportSpellListState?
+    
+    func newState(state: StoreSubscriberStateType) {
+       let status = state ?? ExportSpellListState()
+        listSelector.text = status.list.name()
+        formatSelector.text = status.format.name
+        allContentSwitch.isOn = status.allContent
+    }
 }

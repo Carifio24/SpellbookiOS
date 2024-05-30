@@ -53,7 +53,7 @@ extension SpellListExporter {
                 text.append(line)
             }
             if !spell.royalty.description.isEmpty {
-                text.append(promptText(prompt: "Royalty", text: <#T##String#>))
+                text.append(promptText(prompt: "Royalty", text: spell.royalties))
                 text.append(line)
             }
             text.append(promptText(prompt: "Duration", text: spell.duration.string()))
