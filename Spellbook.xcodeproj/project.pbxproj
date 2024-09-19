@@ -142,6 +142,7 @@
 		8EEDC3E42AE739A60045D002 /* ConfirmNextAvailableCastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEDC3E32AE739A50045D002 /* ConfirmNextAvailableCastController.swift */; };
 		8EF6EF0B264668F60059BCE8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0A264668F60059BCE8 /* Version.swift */; };
 		8EF6EF0D26485A2E0059BCE8 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */; };
+		FC2BCF1D2C09934100E923FC /* SpellCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2BCF1C2C09934100E923FC /* SpellCodec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -301,6 +302,7 @@
 		8EEDC3E32AE739A50045D002 /* ConfirmNextAvailableCastController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmNextAvailableCastController.swift; sourceTree = "<group>"; };
 		8EF6EF0A264668F60059BCE8 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTests.swift; sourceTree = "<group>"; };
+		FC2BCF1C2C09934100E923FC /* SpellCodec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellCodec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -469,6 +471,7 @@
 				8E74FA5929EBD7D900E13B91 /* SpellSlotsManagerCell.swift */,
 				8E7EB4EC29F3B87F00408EA4 /* SpellSlotsManagerDelegate.swift */,
 				8E07AE0E2A10AFA700C0487B /* Operators.swift */,
+				FC2BCF1C2C09934100E923FC /* SpellCodec.swift */,
 			);
 			path = Spellbook;
 			sourceTree = "<group>";
@@ -788,6 +791,7 @@
 				8E74FA5A29EBD7D900E13B91 /* SpellSlotsManagerCell.swift in Sources */,
 				8E6148F5241991C200842A18 /* SpellTableViewController.swift in Sources */,
 				8E6148E4241991C200842A18 /* SourcebookFilterController.swift in Sources */,
+				FC2BCF1D2C09934100E923FC /* SpellCodec.swift in Sources */,
 				8E6551BA29AC63E800A3BC43 /* Toast.swift in Sources */,
 				8EF6EF0B264668F60059BCE8 /* Version.swift in Sources */,
 				8E61491E241991C200842A18 /* Constants.swift in Sources */,

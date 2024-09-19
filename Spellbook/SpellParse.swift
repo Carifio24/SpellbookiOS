@@ -9,7 +9,7 @@ func intGetter(_ sion: SION, key: String) -> Int {
     }
 }
 
-func has_key(obj: SION, key: String) -> Bool {
+func hasKey(_ obj: SION, key: String) -> Bool {
 	for (k, _) in obj {
 		if k.string! == key {
 			return true
@@ -18,7 +18,7 @@ func has_key(obj: SION, key: String) -> Bool {
 	return false
 }
 
-func load_file(filepath: String) -> String {
+func loadFile(filepath: String) -> String {
 	let text = try! String(contentsOf: URL(fileURLWithPath: filepath))
     //print(text)
 	return text
@@ -58,14 +58,14 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
         b.setRange(Range())
     }
     
-	if has_key(obj: obj, key: "ritual") {
+	if hasKey(obj, key: "ritual") {
         b.setRitual(obj["ritual"].bool!)
 	} else {
 		b.setRitual(false)
 	}
     if (durationString.starts(with: "Up to")) {
         b.setConcentration(true)
-    } else if has_key(obj: obj, key: "concentration") {
+    } else if hasKey(obj, key: "concentration") {
         b.setConcentration(obj["concentration"].bool!)
 	} else {
 		b.setConcentration(false)
@@ -79,12 +79,12 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
     }
 
 	// Material, if necessary
-	if has_key(obj: obj, key: "material") {
+	if hasKey(obj, key: "material") {
 		b.setMaterials(obj["material"].string!)
 	}
     
     // Royalties, if necessary
-    if has_key(obj: obj, key: "royalty") {
+    if hasKey(obj, key: "royalty") {
         b.setRoyalties(obj["royalty"].string!)
     }
 
@@ -102,7 +102,7 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
 
 	// Higher level description
 	var hlString = ""
-	if has_key(obj: obj, key: "higher_level") {
+	if hasKey(obj, key: "higher_level") {
         hlString = obj["higher_level"].string!
 	}
     b.setHigherLevelDesc(hlString)
@@ -114,7 +114,7 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
 	}
 
 	// Subclasses
-	if has_key(obj: obj, key: "subclasses") {
+	if hasKey(obj, key: "subclasses") {
 		jarr = obj["subclasses"]
 		for (_, name) in jarr {
             b.addSubclass(SubClass.fromName(name.string!))
@@ -122,7 +122,7 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
 	}
     
     // Classes
-    if has_key(obj: obj, key: "tce_expanded_classes") {
+    if hasKey(obj, key: "tce_expanded_classes") {
         jarr = obj["tce_expanded_classes"]
         for (_, name) in jarr {
             b.addTashasExpandedClass(CasterClass.fromName(name.string!))
