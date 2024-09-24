@@ -72,7 +72,7 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
     var castingTimeString = obj["casting_time"].string!
     let endsWithRitual = castingTimeString.hasSuffix(RITUAL_SUFFIX)
     if (endsWithRitual) {
-        let finalIndex = castingTimeString.count - RITUAL_SUFFIX.count
+        let finalIndex = castingTimeString.count - RITUAL_SUFFIX.count - 1
         castingTimeString = castingTimeString[...finalIndex]
     }
     do {
