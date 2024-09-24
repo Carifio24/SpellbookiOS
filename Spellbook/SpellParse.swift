@@ -24,6 +24,9 @@ func load_file(filepath: String) -> String {
 	return text
 }
 
+fileprivate let CONCENTRATION_PREFIX = "Up to "
+fileprivate let RITUAL_SUFFIX = " or Ritual"
+
 func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
 
 	// Objects to reuse
@@ -58,12 +61,7 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
         b.setRange(Range())
     }
     
-	if has_key(obj: obj, key: "ritual") {
-        b.setRitual(obj["ritual"].bool!)
-	} else {
-		b.setRitual(false)
-	}
-    if (durationString.starts(with: "Up to")) {
+    if (durationString.starts(with: CONCENTRATION_PREFIX)) {
         b.setConcentration(true)
     } else if has_key(obj: obj, key: "concentration") {
         b.setConcentration(obj["concentration"].bool!)
@@ -71,11 +69,22 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
 		b.setConcentration(false)
 	}
 
-    let castingTimeString = obj["casting_time"].string!
+    var castingTimeString = obj["casting_time"].string!
+    let endsWithRitual = castingTimeString.hasSuffix(RITUAL_SUFFIX)
+    if (endsWithRitual) {
+        let finalIndex = castingTimeString.count - RITUAL_SUFFIX.count
+        castingTimeString = castingTimeString[...finalIndex]
+    }
     do {
         try b.setCastingTime(CastingTime.fromString(castingTimeString))
     } catch {
         b.setCastingTime(CastingTime())
+    }
+    
+    if has_key(obj: obj, key: "ritual") {
+        b.setRitual(obj["ritual"].bool!)
+    } else {
+        b.setRitual(endsWithRitual)
     }
 
 	// Material, if necessary
@@ -128,8 +137,11 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
             b.addTashasExpandedClass(CasterClass.fromName(name.string!))
         }
     }
-
-	// Return
+    
+    let rulesetName = obj["ruleset"].string
+    let ruleset = Ruleset.fromName(rulesetName) ?? Ruleset.Rules2014
+    b.setRuleset(ruleset)
+    
 	return b.buildAndReset()
 }
 
@@ -141,10 +153,8 @@ func parseSpellList(jsonStr: String) -> Array<Spell> {
     var i = 0
 	var spells: Array<Spell> = []
 	var jarr = SION(json: jsonStr)
-	for (_, v) in jarr {
-        //print("\(v)")
-        //print("=====")
-        let nextSpell = parseSpell(obj: v, b: builder)
+	for (_, obj) in jarr {
+        let nextSpell = parseSpell(obj: obj, b: builder)
 		spells.append(nextSpell)
         i += 1
 	}

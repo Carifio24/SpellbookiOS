@@ -77,13 +77,15 @@ class CastingTime : Quantity<CastingTimeType, TimeUnit> {
         
         do {
             let sSplit = s.split(separator: " ", maxSplits: 1)
-            let value = Int(sSplit[0])!
-            let typeStr = String(sSplit[1])
+            var value = Int(sSplit[0]) ?? 1
+            var typeStr = sSplit.count > 1 ? String(sSplit[1]) : ""
             
             // If the type is one of the action types
             var type: CastingTimeType? = nil
+            let sLower = s.lowercased()
             for ctt in CastingTimeType.actionTypes {
-                if typeStr.starts(with: ctt.parseName) {
+                let typeName = ctt.parseName
+                if sLower.starts(with: typeName) || typeStr.starts(with: typeName) {
                     type = ctt
                     break
                 }
