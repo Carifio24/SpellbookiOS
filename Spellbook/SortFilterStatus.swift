@@ -68,6 +68,8 @@ class SortFilterStatus {
     var applyFiltersToLists = false
     var applyFiltersToSearch = false
     var useTashasExpandedLists = false
+    var hideDuplicateSpells = true
+    var prefer2024Spells = true
     
     private var yesRitual = true
     private var noRitual = true

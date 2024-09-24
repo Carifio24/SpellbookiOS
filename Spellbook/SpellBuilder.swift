@@ -35,6 +35,7 @@ public class SpellBuilder {
     private(set) var subclasses: Array<SubClass> = []
     private(set) var tashasExpandedClasses: Array<CasterClass> = []
     private(set) var locations: [Sourcebook:Int] = [:]
+    private(set) var ruleset: Ruleset = Ruleset.Rules2014
     
     // Setters
     func setID(_ id: Int) -> SpellBuilder { self.id = id; return self }
@@ -58,6 +59,7 @@ public class SpellBuilder {
     func setSubclasses(_ subclasses: Array<SubClass>) -> SpellBuilder { self.subclasses = subclasses; return self }
     func setTashasExpandedClasses(_ classes: Array<CasterClass>) -> SpellBuilder { self.tashasExpandedClasses = classes; return self }
     func setLocations(_ locations: [Sourcebook:Int]) -> SpellBuilder { self.locations = locations; return self }
+    func setRuleset(_ ruleset: Ruleset) -> SpellBuilder { self.ruleset = ruleset; return self }
     
     func addClass(_ cc: CasterClass) -> SpellBuilder { self.classes.append(cc); return self }
     func addSubclass(_ sc: SubClass) -> SpellBuilder { self.subclasses.append(sc); return self }
@@ -67,7 +69,7 @@ public class SpellBuilder {
     
     // Build
     func build() -> Spell {
-        return Spell(id: id, name: name, description: description, higherLevel: higherLevel, range: range, verbal: verbal, somatic: somatic, material: material, royalty: royalty, materials: materials, royalties: royalties, ritual: ritual, duration: duration, concentration: concentration, castingTime: castingTime, level: level, school: school, classes: classes, subclasses: subclasses, tashasExpandedClasses: tashasExpandedClasses, locations: locations)
+        return Spell(id: id, name: name, description: description, higherLevel: higherLevel, range: range, verbal: verbal, somatic: somatic, material: material, royalty: royalty, materials: materials, royalties: royalties, ritual: ritual, duration: duration, concentration: concentration, castingTime: castingTime, level: level, school: school, classes: classes, subclasses: subclasses, tashasExpandedClasses: tashasExpandedClasses, locations: locations, ruleset: ruleset)
     }
     
     // Reset to default values
@@ -77,7 +79,7 @@ public class SpellBuilder {
         materials = ""; royalties = ""; ritual = false; duration = Duration();
         concentration = false; castingTime = CastingTime(); level = 0;
         school = School.Abjuration; classes = []; subclasses = [];
-        tashasExpandedClasses = []; locations = [:]
+        tashasExpandedClasses = []; locations = [:]; ruleset = Ruleset.Rules2014
     }
     
     // Build and reset
