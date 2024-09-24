@@ -52,6 +52,8 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var listsFilterView: FilterOptionView!
     @IBOutlet weak var searchFilterView: FilterOptionView!
     @IBOutlet weak var tashasExpandedView: FilterOptionView!
+    @IBOutlet weak var hideDuplicatesView: FilterOptionView!
+    @IBOutlet weak var prefer2024View: FilterOptionView!
     private var filterOptionViews: [FilterOptionView] = []
     
     // Select all buttons
@@ -344,7 +346,7 @@ class SortFilterTableController: UITableViewController {
 //        ]
         
         // Set up the filter options
-        filterOptionViews = [ listsFilterView, searchFilterView, tashasExpandedView ]
+        filterOptionViews = [ listsFilterView, searchFilterView, tashasExpandedView, hideDuplicatesView, prefer2024View ]
         
         listsFilterView.setOptionTitle("Apply Filters to Spell Lists")
         listsFilterView.setHelpInfo(title: "Apply Filters to Spell Lists", description: "If selected, filters are applied to the favorite, known, and prepared spell lists. Otherwise, they are not.")
@@ -365,6 +367,20 @@ class SortFilterTableController: UITableViewController {
         tashasExpandedView.setPropertyFunctions(
             getter: { () in return store.state.profile?.sortFilterStatus.useTashasExpandedLists ?? true },
             actionCreator: ToggleFilterOptionAction.useTashasExpandedLists
+        )
+        
+        hideDuplicatesView.setOptionTitle("Hide Duplicate Spells")
+        hideDuplicatesView.setHelpInfo(title: "Hide Duplicate Spells", description: "Select this option to only show one version of each spell that has versions from both the 2014 and 2024 editions.")
+        hideDuplicatesView.setPropertyFunctions(
+            getter: { () in return store.state.profile?.sortFilterStatus.hideDuplicateSpells ?? true },
+            actionCreator: ToggleFilterOptionAction.hideDuplicateSpells
+        )
+        
+        prefer2024View.setOptionTitle("Prefer 2024 Spells")
+        prefer2024View.setHelpInfo(title: "Prefer 2024 Spells", description: "If selected, 2024 spells will be shown over 2014 ones. Otherwise, 2014 spells will be shown.")
+        prefer2024View.setPropertyFunctions(
+            getter: { () in return store.state.profile?.sortFilterStatus.prefer2024Spells ?? true },
+            actionCreator: ToggleFilterOptionAction.prefer2024Spells
         )
         
         // Set the heights of the filter option views and the range cells

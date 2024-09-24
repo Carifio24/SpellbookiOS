@@ -142,6 +142,8 @@
 		8EEDC3E42AE739A60045D002 /* ConfirmNextAvailableCastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEDC3E32AE739A50045D002 /* ConfirmNextAvailableCastController.swift */; };
 		8EF6EF0B264668F60059BCE8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0A264668F60059BCE8 /* Version.swift */; };
 		8EF6EF0D26485A2E0059BCE8 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */; };
+		FC74CDFF2C9F3938001AC518 /* Ruleset.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74CDFE2C9F3938001AC518 /* Ruleset.swift */; };
+		FC74CE012C9FF168001AC518 /* BidirectionalMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74CE002C9FF168001AC518 /* BidirectionalMap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -301,6 +303,8 @@
 		8EEDC3E32AE739A50045D002 /* ConfirmNextAvailableCastController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmNextAvailableCastController.swift; sourceTree = "<group>"; };
 		8EF6EF0A264668F60059BCE8 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTests.swift; sourceTree = "<group>"; };
+		FC74CDFE2C9F3938001AC518 /* Ruleset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ruleset.swift; sourceTree = "<group>"; };
+		FC74CE002C9FF168001AC518 /* BidirectionalMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidirectionalMap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -362,6 +366,7 @@
 		397EE96721ACA86400B116B0 /* Spellbook */ = {
 			isa = PBXGroup;
 			children = (
+				FC74CE002C9FF168001AC518 /* BidirectionalMap.swift */,
 				397EE96C21ACA86400B116B0 /* Main.storyboard */,
 				8EEDC3E12ADA69170045D002 /* HigherLevelSlotController.swift */,
 				8E07AE0C2A0F708700C0487B /* ImportCharacterController.swift */,
@@ -469,6 +474,7 @@
 				8E74FA5929EBD7D900E13B91 /* SpellSlotsManagerCell.swift */,
 				8E7EB4EC29F3B87F00408EA4 /* SpellSlotsManagerDelegate.swift */,
 				8E07AE0E2A10AFA700C0487B /* Operators.swift */,
+				FC74CDFE2C9F3938001AC518 /* Ruleset.swift */,
 			);
 			path = Spellbook;
 			sourceTree = "<group>";
@@ -742,6 +748,7 @@
 				8E614921241991C200842A18 /* SubClass.swift in Sources */,
 				8E614913241991C200842A18 /* SpellDataCell.swift in Sources */,
 				8E614902241991C200842A18 /* Unit.swift in Sources */,
+				FC74CE012C9FF168001AC518 /* BidirectionalMap.swift in Sources */,
 				8E02F7722437F39200A3050C /* CombinationProtocols.swift in Sources */,
 				8E614920241991C200842A18 /* ImageUtils.swift in Sources */,
 				8E07AE0F2A10AFA700C0487B /* Operators.swift in Sources */,
@@ -763,6 +770,7 @@
 				8E6148F2241991C200842A18 /* ToggleButton.swift in Sources */,
 				8E614914241991C200842A18 /* CasterClass.swift in Sources */,
 				8E74FA5829EB5A6C00E13B91 /* SpellSlotsManagerController.swift in Sources */,
+				FC74CDFF2C9F3938001AC518 /* Ruleset.swift in Sources */,
 				8E02F7762438F04000A3050C /* RangeView.swift in Sources */,
 				8E614917241991C200842A18 /* SpellParse.swift in Sources */,
 				8E614901241991C200842A18 /* School.swift in Sources */,
