@@ -25,6 +25,8 @@ class SortFilterTableController: UITableViewController {
         SectionInfo(name: "Sorting Options", collapsed: false)
     ]
     
+    private let sortFilterStatus: SortFilterStatus? = nil
+    
     // Text fields
     @IBOutlet weak var firstSortChoice: UITextField!
     @IBOutlet weak var secondSortChoice: UITextField!
@@ -404,7 +406,7 @@ class SortFilterTableController: UITableViewController {
         super.viewWillAppear(animated)
         store.subscribe(self) {
             $0.select {
-                $0.profile?.sortFilterStatus
+                ($0.profile?.sortFilterStatus, $0.profile?.sortFilterStatus.hideDuplicateSpells)
             }
         }
     }
@@ -421,7 +423,9 @@ class SortFilterTableController: UITableViewController {
         switch (section) {
         case RITUAL_CONCENTRATION_SECTION:
             return 1
-        case FILTER_OPTIONS_SECTION, CASTING_TIME_SECTION, DURATION_SECTION, RANGE_SECTION:
+        case FILTER_OPTIONS_SECTION:
+            return 5
+        case CASTING_TIME_SECTION, DURATION_SECTION, RANGE_SECTION:
             return 3
         default:
             return 2
@@ -453,6 +457,10 @@ class SortFilterTableController: UITableViewController {
     }
     
     func onSortFilterStatusUpdate(_ sfStatus: SortFilterStatus) {
+        
+        if (sfStatus === sortFilterStatus) {
+            return
+        }
         
         // Update the sort names
         firstSortChoice.text = sfStatus.firstSortField.displayName
@@ -614,10 +622,12 @@ class SortFilterTableController: UITableViewController {
 
 // MARK: - StoreSubscriber
 extension SortFilterTableController: StoreSubscriber {
-    typealias StoreSubscriberStateType = SortFilterStatus?
+    typealias StoreSubscriberStateType = (status: SortFilterStatus?, hideDuplicates: Bool?)
     
     func newState(state: StoreSubscriberStateType) {
-        let status = state ?? SortFilterStatus()
+        let status = state.status ?? SortFilterStatus()
         self.onSortFilterStatusUpdate(status)
+        
+        self.prefer2024View.chooser.isEnabled = state.hideDuplicates ?? true
     }
 }
