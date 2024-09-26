@@ -330,6 +330,12 @@ func toggleFilterOptionReducer(action: ToggleFilterOptionAction, state: inout Sp
         case .UseTashasExpandedLists:
             status.useTashasExpandedLists = !status.useTashasExpandedLists
             break
+        case .HideDuplicateSpells:
+            status.hideDuplicateSpells = !status.hideDuplicateSpells
+            break
+        case .Prefer2024Spells:
+            status.prefer2024Spells = !status.prefer2024Spells
+            break
     }
     state.filterAndSortSpells()
     return state

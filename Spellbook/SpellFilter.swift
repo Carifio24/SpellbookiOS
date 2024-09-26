@@ -139,3 +139,34 @@ func createFilter(state: SpellbookAppState) -> (Spell) -> Bool {
     return { spell in return filterSpell(spell: spell, sortFilterStatus: sortFilterStatus, spellFilterStatus: spellFilterStatus, visibleSources: visibleSources, visibleClasses: visibleClasses, visibleSchools: visibleSchools, visibleCastingTimeTypes: visibleCastingTimeTypes, visibleDurationTypes: visibleDurationTypes, visibleRangeTypes: visibleRangeTypes, castingTimeBounds: castingTimeBounds, durationBounds: durationBounds, rangeBounds: rangeBounds, isText: isText, text: searchText) }
     
 }
+
+func filteredSpellList(state: SpellbookAppState) -> [Spell] {
+
+    let spellList = SpellbookAppState.allSpells
+    var keptIDs = Set<Int>()
+    let filter = createFilter(state: state)
+    let hideDuplicates = state.profile?.sortFilterStatus.hideDuplicateSpells ?? true
+
+    var filteredSpellList = spellList.filter(filter)
+    if hideDuplicates {
+        keptIDs = Set(filteredSpellList.map { $0.id })
+    }
+
+    // I'd rather avoid a second pass, but since linked spells won't necessarily
+    // have the same data, we can't generally know whether we need to filter a spell
+    // as a duplicate on the first pass
+    if hideDuplicates {
+        let prefer2024Spells = state.profile?.sortFilterStatus.prefer2024Spells ?? true
+        let rulesetToIgnore = prefer2024Spells ? Ruleset.Rules2014 : Ruleset.Rules2024
+        let duplicatesFilter = { (spell: Spell) in
+            if spell.ruleset != rulesetToIgnore {
+                return true
+            }
+            guard let linkedID = Spellbook.linkedSpellID(for: spell) else { return true }
+            return !keptIDs.contains(linkedID)
+        }
+        filteredSpellList = filteredSpellList.filter(duplicatesFilter)
+    }
+
+    return filteredSpellList
+}

@@ -55,7 +55,7 @@ class LegacyProfileTests: XCTestCase {
             Sourcebook.XanatharsGTE, Sourcebook.SwordCoastAG, Sourcebook.TashasCOE, Sourcebook.LostLabKwalish,
             Sourcebook.RimeOTFrostmaiden, Sourcebook.ExplorersGTW, Sourcebook.StrixhavenCOC, Sourcebook.AstralAG
         ]
-        XCTAssertEqual(sortFilterStatus.getVisibleSources(true), complement(items: hiddenSources))
+        XCTAssertEqual(Set(sortFilterStatus.getVisibleSources(true)), Set(complement(items: hiddenSources)))
         XCTAssertEqual(sortFilterStatus.getVisibleSources(false), hiddenSources)
         
         let hiddenCTTypes = [CastingTimeType.BonusAction]

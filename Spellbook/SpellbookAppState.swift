@@ -50,8 +50,7 @@ struct SpellbookAppState: StateType {
     }
 
     mutating func filterAndSortSpells() {
-        let filter = createFilter(state: self)
-        currentSpellList = spellList.filter(filter)
+        currentSpellList = filteredSpellList(state: self)
         self.sortSpells()
     }
 }

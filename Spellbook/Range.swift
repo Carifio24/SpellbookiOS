@@ -85,6 +85,7 @@ class Range : Quantity<RangeType, LengthUnit> {
                 }
                 let end = distStr.count - 2
                 distStr = String(distStr[1...end])
+                distStr = distStr.replacingOccurrences(of: "-", with: " ")
                 let distSplit = distStr.split(separator: " ")
                 let length = Int(distSplit[0])
                 let unit = try LengthUnit.fromString(String(distSplit[1]))

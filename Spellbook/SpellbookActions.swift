@@ -167,7 +167,8 @@ struct TogglePropertyAction: Action {
 }
 
 enum FilterOption {
-    case ApplyFiltersToLists, ApplyFiltersToSearch, UseTashasExpandedLists
+    case ApplyFiltersToLists, ApplyFiltersToSearch, UseTashasExpandedLists,
+         HideDuplicateSpells, Prefer2024Spells
 }
 
 struct ToggleFilterOptionAction: Action {
@@ -176,6 +177,8 @@ struct ToggleFilterOptionAction: Action {
     static func applyFiltersToLists() -> ToggleFilterOptionAction { return ToggleFilterOptionAction(option: .ApplyFiltersToLists) }
     static func applyFiltersToSearch() -> ToggleFilterOptionAction { return ToggleFilterOptionAction(option: .ApplyFiltersToSearch) }
     static func useTashasExpandedLists() -> ToggleFilterOptionAction { return ToggleFilterOptionAction(option: .UseTashasExpandedLists) }
+    static func hideDuplicateSpells() -> ToggleFilterOptionAction { return ToggleFilterOptionAction(option: .HideDuplicateSpells) }
+    static func prefer2024Spells() -> ToggleFilterOptionAction { return ToggleFilterOptionAction(option: .Prefer2024Spells) }
 }
 
 struct SetFilterOptionAction: Action {

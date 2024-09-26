@@ -12,39 +12,41 @@ import ReSwift
 class SortFilterStatus {
     
     // Keys for loading/saving
-    private static let sort1Key = "SortField1";
-    private static let sort2Key = "SortField2";
-    private static let classFilterKey = "FilterClass";
-    private static let reverse1Key = "Reverse1";
-    private static let reverse2Key = "Reverse2";
-    private static let booksFilterKey = "BookFilters";
-    private static let statusFilterKey = "StatusFilter";
-    private static let quantityRangesKey = "QuantityRanges";
-    private static let ritualKey = "Ritual";
-    private static let notRitualKey = "NotRitual";
-    private static let concentrationKey = "Concentration";
-    private static let notConcentrationKey = "NotConcentration";
-    private static let minSpellLevelKey = "MinSpellLevel";
-    private static let maxSpellLevelKey = "MaxSpellLevel";
-    private static let componentsFiltersKey = "ComponentsFilters";
-    private static let notComponentsFiltersKey = "NotComponentsFilters";
-    private static let useTCEExpandedListsKey = "UseTCEExpandedLists";
-    private static let applyFiltersToSpellListsKey = "ApplyFiltersToSpellLists";
-    private static let applyFiltersToSearchKey = "ApplyFiltersToSearch";
+    private static let sort1Key = "SortField1"
+    private static let sort2Key = "SortField2"
+    private static let classFilterKey = "FilterClass"
+    private static let reverse1Key = "Reverse1"
+    private static let reverse2Key = "Reverse2"
+    private static let booksFilterKey = "BookFilters"
+    private static let statusFilterKey = "StatusFilter"
+    private static let quantityRangesKey = "QuantityRanges"
+    private static let ritualKey = "Ritual"
+    private static let notRitualKey = "NotRitual"
+    private static let concentrationKey = "Concentration"
+    private static let notConcentrationKey = "NotConcentration"
+    private static let minSpellLevelKey = "MinSpellLevel"
+    private static let maxSpellLevelKey = "MaxSpellLevel"
+    private static let componentsFiltersKey = "ComponentsFilters"
+    private static let notComponentsFiltersKey = "NotComponentsFilters"
+    private static let useTCEExpandedListsKey = "UseTCEExpandedLists"
+    private static let applyFiltersToSpellListsKey = "ApplyFiltersToSpellLists"
+    private static let applyFiltersToSearchKey = "ApplyFiltersToSearch"
+    private static let hideDuplicateSpellsKey = "HideDuplicateSpells"
+    private static let prefer2024SpellsKey = "Prefer2024Spells"
 
-    private static let sourcebooksKey = "Sourcebooks";
-    private static let schoolsKey = "Schools";
-    private static let classesKey = "Classes";
-    private static let castingTimeTypesKey = "CastingTimeTypes";
-    private static let durationTypesKey = "DurationTypes";
-    private static let rangeTypesKey = "RangeTypes";
-    private static let castingTimeBoundsKey = "CastingTimeBounds";
-    private static let durationBoundsKey = "DurationBounds";
-    private static let rangeBoundsKey = "RangeBounds";
-    private static let minUnitKey = "MinUnit";
-    private static let maxUnitKey = "MaxUnit";
-    private static let minValueKey = "MinValue";
-    private static let maxValueKey = "MaxValue";
+    private static let sourcebooksKey = "Sourcebooks"
+    private static let schoolsKey = "Schools"
+    private static let classesKey = "Classes"
+    private static let castingTimeTypesKey = "CastingTimeTypes"
+    private static let durationTypesKey = "DurationTypes"
+    private static let rangeTypesKey = "RangeTypes"
+    private static let castingTimeBoundsKey = "CastingTimeBounds"
+    private static let durationBoundsKey = "DurationBounds"
+    private static let rangeBoundsKey = "RangeBounds"
+    private static let minUnitKey = "MinUnit"
+    private static let maxUnitKey = "MaxUnit"
+    private static let minValueKey = "MinValue"
+    private static let maxValueKey = "MaxValue"
     private static let legacyMinValueKey = "MinText"
     private static let legacyMaxValueKey = "MaxText"
     
@@ -68,6 +70,8 @@ class SortFilterStatus {
     var applyFiltersToLists = false
     var applyFiltersToSearch = false
     var useTashasExpandedLists = false
+    var hideDuplicateSpells = true
+    var prefer2024Spells = true
     
     private var yesRitual = true
     private var noRitual = true
@@ -456,7 +460,9 @@ class SortFilterStatus {
         sion[SortFilterStatus.applyFiltersToSearchKey].bool = applyFiltersToSearch
         sion[SortFilterStatus.applyFiltersToSpellListsKey].bool = applyFiltersToLists
         sion[SortFilterStatus.useTCEExpandedListsKey].bool = useTashasExpandedLists
-        
+        sion[SortFilterStatus.hideDuplicateSpellsKey].bool = hideDuplicateSpells
+        sion[SortFilterStatus.prefer2024SpellsKey].bool = prefer2024Spells
+
         sion[SortFilterStatus.ritualKey].bool = yesRitual
         sion[SortFilterStatus.notRitualKey].bool = noRitual
         sion[SortFilterStatus.concentrationKey].bool = yesConcentration
@@ -503,7 +509,9 @@ class SortFilterStatus {
         applyFiltersToSearch = sion[SortFilterStatus.applyFiltersToSearchKey].bool ?? false
         applyFiltersToLists = sion[SortFilterStatus.applyFiltersToSpellListsKey].bool ?? false
         useTashasExpandedLists = sion[SortFilterStatus.useTCEExpandedListsKey].bool ?? false
-        
+        hideDuplicateSpells = sion[SortFilterStatus.hideDuplicateSpellsKey].bool ?? true
+        prefer2024Spells = sion[SortFilterStatus.prefer2024SpellsKey].bool ?? true
+
         yesRitual = sion[SortFilterStatus.ritualKey].bool ?? true
         noRitual = sion[SortFilterStatus.notRitualKey].bool ?? true
         yesConcentration = sion[SortFilterStatus.concentrationKey].bool ?? true

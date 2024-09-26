@@ -1,14 +1,14 @@
 enum Sourcebook: Int, NameConstructible {
-	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG, TashasCOE, AcquisitionsInc, LostLabKwalish, RimeOTFrostmaiden, ExplorersGTW, FizbansTOD, StrixhavenCOC, AstralAG, TalDoreiCSR, SigilOutlands, BookOfMT
+	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG, TashasCOE, AcquisitionsInc, LostLabKwalish, RimeOTFrostmaiden, ExplorersGTW, FizbansTOD, StrixhavenCOC, AstralAG, TalDoreiCSR, SigilOutlands, BookOfMT, PlayersHandbook2024
     
-    static let coreSourcebooks = [ PlayersHandbook, XanatharsGTE, TashasCOE ]
+    static let coreSourcebooks = [ PlayersHandbook, XanatharsGTE, TashasCOE, PlayersHandbook2024 ]
     
     var isCore: Bool { return Sourcebook.coreSourcebooks.contains(self) }
     
     internal static var displayNameMap = EnumMap<Sourcebook,String> { e in
         switch (e) {
         case .PlayersHandbook:
-            return "Player's Handbook"
+            return "Player's Handbook (2014)"
         case .XanatharsGTE:
             return "Xanathar's Guide to Everything"
         case .SwordCoastAG:
@@ -35,11 +35,13 @@ enum Sourcebook: Int, NameConstructible {
             return "Sigil and the Outlands"
         case .BookOfMT:
             return "The Book of Many Things"
+        case .PlayersHandbook2024:
+            return "Player's Handbook (2024)"
         }
     }
     
     private static let codeMap: [Sourcebook:String] = [
-        PlayersHandbook : "phb",
+        PlayersHandbook : "phb14",
         XanatharsGTE : "xge",
         SwordCoastAG : "scag",
         TashasCOE: "tce",
@@ -53,6 +55,7 @@ enum Sourcebook: Int, NameConstructible {
         TalDoreiCSR: "tdcsr",
         SigilOutlands: "so",
         BookOfMT: "bmt",
+        PlayersHandbook2024: "phb24",
     ]
     
     var code: String {
@@ -60,7 +63,11 @@ enum Sourcebook: Int, NameConstructible {
     }
     
     static func fromCode(_ s: String?) -> Sourcebook? {
-        guard let t = s?.lowercased() else { return nil }
+        guard var t = s?.lowercased() else { return nil }
+        // Special-case hack for the original 5e Player's Handbook
+        if (t == "phb") {
+            t = "phb14"
+        }
         return getOneKey(dict: Sourcebook.codeMap, value: t)
     }
     
