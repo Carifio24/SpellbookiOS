@@ -144,18 +144,12 @@ func filteredSpellList(state: SpellbookAppState) -> [Spell] {
 
     let spellList = SpellbookAppState.allSpells
     var keptIDs = Set<Int>()
-    var filteredSpellList: [Spell] = []
     let filter = createFilter(state: state)
     let hideDuplicates = state.profile?.sortFilterStatus.hideDuplicateSpells ?? true
 
-    //
-    for spell in spellList {
-        if !filter(spell) {
-            filteredSpellList.append(spell)
-            if hideDuplicates {
-                keptIDs.insert(spell.id)
-            }
-        }
+    var filteredSpellList = spellList.filter(filter)
+    if hideDuplicates {
+        keptIDs = Set(filteredSpellList.map { $0.id })
     }
 
     // I'd rather avoid a second pass, but since linked spells won't necessarily
@@ -165,11 +159,12 @@ func filteredSpellList(state: SpellbookAppState) -> [Spell] {
         let prefer2024Spells = state.profile?.sortFilterStatus.prefer2024Spells ?? true
         let rulesetToIgnore = prefer2024Spells ? Ruleset.Rules2014 : Ruleset.Rules2024
         let duplicatesFilter = { (spell: Spell) in
+            var filter = false
             if spell.ruleset == rulesetToIgnore {
-                return false
+                guard let linkedID = Spellbook.linkedSpellID(for: spell) else { return true }
+                filter = keptIDs.contains(linkedID)
             }
-            guard let linkedID = Spellbook.linkedSpellID(for: spell) else { return false }
-            return !keptIDs.contains(linkedID)
+            return !filter
         }
         filteredSpellList = filteredSpellList.filter(duplicatesFilter)
     }
