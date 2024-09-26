@@ -8,18 +8,14 @@ jobs:
     strategy:
       matrix:
         include:
-          - xcode: "13.2"
-            ios: "15.2"
-          - xcode: "13.1"
-            ios: "15.0"
-          - xcode: "12.4"
-            ios: "13.4"
-          - xcode: "11.7"
-            ios: "13.7"
-    name: "Run tests on iOS (${{ matrix.ios }})"
+          - os: "17.2"
+          - os: "17.5"
+          - os: "18.0"
+          - os: "18.1"
+    name: "Run tests: OS (${{ matrix.os }})"
     steps:
     - uses: actions/checkout@v1
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_15.3.0.app && /usr/bin/xcodebuild -version
     - name: Run tests
-      run: xcodebuild test -scheme Spellbook -project Spellbook.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 12,OS=${{ matrix.ios }}' | xcpretty && exit ${PIPESTATUS[0]}
+      run: xcodebuild test -scheme Spellbook -project Spellbook.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 14,OS=${{ matrix.os }}' | xcpretty && exit ${PIPESTATUS[0]}
