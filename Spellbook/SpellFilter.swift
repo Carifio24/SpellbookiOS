@@ -159,12 +159,11 @@ func filteredSpellList(state: SpellbookAppState) -> [Spell] {
         let prefer2024Spells = state.profile?.sortFilterStatus.prefer2024Spells ?? true
         let rulesetToIgnore = prefer2024Spells ? Ruleset.Rules2014 : Ruleset.Rules2024
         let duplicatesFilter = { (spell: Spell) in
-            var filter = false
-            if spell.ruleset == rulesetToIgnore {
-                guard let linkedID = Spellbook.linkedSpellID(for: spell) else { return true }
-                filter = keptIDs.contains(linkedID)
+            if spell.ruleset != rulesetToIgnore {
+                return true
             }
-            return !filter
+            guard let linkedID = Spellbook.linkedSpellID(for: spell) else { return true }
+            return !keptIDs.contains(linkedID)
         }
         filteredSpellList = filteredSpellList.filter(duplicatesFilter)
     }
