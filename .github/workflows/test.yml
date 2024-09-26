@@ -22,4 +22,4 @@ jobs:
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_15.3.0.app && /usr/bin/xcodebuild -version
     - name: Run tests
-      run: xcodebuild test -scheme Spellbook -project Spellbook.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 12,OS=15.5' | xcpretty && exit ${PIPESTATUS[0]}
+      run: xcodebuild test -scheme Spellbook -project Spellbook.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 12,OS=${{ matrix.ios }}' | xcpretty && exit ${PIPESTATUS[0]}
