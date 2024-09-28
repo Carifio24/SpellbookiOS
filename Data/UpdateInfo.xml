@@ -37,4 +37,8 @@
         <item name="title">Version 3.5.0 update</item>
         <item name="description">The spellbook has been updated with the following new features:&lt;br/&gt;&lt;br/&gt;&#8226; Content from &lt;b&gt;The Book of Many Things&lt;/b&gt; has been added&lt;/b&gt;.&lt;br/&gt;&lt;br/&gt;&#8226; The higher level text for &lt;b&gt;Erupting Earth&lt;/b&gt; has been corrected&lt;/b&gt;.&lt;br/&gt;&lt;br/&gt;&#8226; The spellcasting information has been updated with a description of the royalty component.</item>
     </section>
+    <section name="v_3_6_0">
+        <item name="title">Version 3.6.0 update</item>
+        <item name="description">The spellbook has been updated to include spells from the &lt;b&gt;2024 Player\'s Handbook&lt;/b&gt;. As many of the spells from this book are new versions of those from previous sourcebooks, this update also adds an option to &lt;b&gt;hide duplicate spells&lt;/b&gt; between the 2024 PHB and previous sourcebooks. Toggling this option off will allow both versions to be shown in the spell list. If this option is enabled, one can choose whether they prefer to see &lt;b&gt;2024 or 2014&lt;/b&gt; versions of the spells. This setting can be adjusted on a &lt;b&gt;character-by-character basis&lt;/b&gt;.</item>
+    </section>
 </root>
