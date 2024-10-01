@@ -155,7 +155,11 @@ func filteredSpellList(state: SpellbookAppState) -> [Spell] {
     // I'd rather avoid a second pass, but since linked spells won't necessarily
     // have the same data, we can't generally know whether we need to filter a spell
     // as a duplicate on the first pass
-    if hideDuplicates {
+    let isText = (state.searchQuery?.isEmpty) != nil
+    let applyFiltersToSearch = state.profile?.sortFilterStatus.applyFiltersToSearch ?? false
+    let searchTextOnly = isText && !applyFiltersToSearch
+    let doDuplicatesFilter = hideDuplicates && !searchTextOnly
+    if doDuplicatesFilter {
         let prefer2024Spells = state.profile?.sortFilterStatus.prefer2024Spells ?? true
         let rulesetToIgnore = prefer2024Spells ? Ruleset.Rules2014 : Ruleset.Rules2024
         let duplicatesFilter = { (spell: Spell) in
