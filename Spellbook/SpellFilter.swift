@@ -106,7 +106,7 @@ func filterSpell(spell: Spell, sortFilterStatus: SortFilterStatus, spellFilterSt
     toHide = toHide || !sortFilterStatus.getSomaticFilter(spell.somatic)
     toHide = toHide || !sortFilterStatus.getMaterialFilter(spell.material)
     toHide = toHide || !sortFilterStatus.getRoyaltyFilter(spell.royalty)
-    toHide = toHide || (isText && !spellName.contains(text))
+    toHide = toHide || (isText && !spellName.contains(searchText))
     return !toHide
 }
 
@@ -120,7 +120,7 @@ func createFilter(state: SpellbookAppState) -> (Spell) -> Bool {
     // First, we filter the data
     let searchText = state.searchQuery ?? ""
     let isText = !searchText.isEmpty
-    
+
     guard let cp = state.profile else {
         return { spell in return false }
     }
@@ -155,7 +155,14 @@ func filteredSpellList(state: SpellbookAppState) -> [Spell] {
     // I'd rather avoid a second pass, but since linked spells won't necessarily
     // have the same data, we can't generally know whether we need to filter a spell
     // as a duplicate on the first pass
-    if hideDuplicates {
+    let isText = !(state.searchQuery?.isEmpty ?? true)
+    let applyFiltersToSearch = state.profile?.sortFilterStatus.applyFiltersToSearch ?? false
+    let searchTextOnly = isText && !applyFiltersToSearch
+    let applyFiltersToLists = state.profile?.sortFilterStatus.applyFiltersToLists ?? false
+    let statusSet = state.profile?.sortFilterStatus.isStatusSet() ?? false
+    let listsAndSearchOnly = !applyFiltersToLists && statusSet
+    let doDuplicatesFilter = hideDuplicates && !searchTextOnly && !listsAndSearchOnly
+    if doDuplicatesFilter {
         let prefer2024Spells = state.profile?.sortFilterStatus.prefer2024Spells ?? true
         let rulesetToIgnore = prefer2024Spells ? Ruleset.Rules2014 : Ruleset.Rules2024
         let duplicatesFilter = { (spell: Spell) in
