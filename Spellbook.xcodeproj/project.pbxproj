@@ -142,6 +142,7 @@
 		8EEDC3E42AE739A60045D002 /* ConfirmNextAvailableCastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEDC3E32AE739A50045D002 /* ConfirmNextAvailableCastController.swift */; };
 		8EF6EF0B264668F60059BCE8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0A264668F60059BCE8 /* Version.swift */; };
 		8EF6EF0D26485A2E0059BCE8 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */; };
+		FC0CC3C32CB35C0C001E0EFE /* SpellCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0CC3C22CB35C0C001E0EFE /* SpellCodec.swift */; };
 		FC74CDFF2C9F3938001AC518 /* Ruleset.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74CDFE2C9F3938001AC518 /* Ruleset.swift */; };
 		FC74CE012C9FF168001AC518 /* BidirectionalMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74CE002C9FF168001AC518 /* BidirectionalMap.swift */; };
 		FCB135DE2D55DCDD007EEB0B /* ParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB135DD2D55DCDD007EEB0B /* ParsingTests.swift */; };
@@ -304,6 +305,7 @@
 		8EEDC3E32AE739A50045D002 /* ConfirmNextAvailableCastController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmNextAvailableCastController.swift; sourceTree = "<group>"; };
 		8EF6EF0A264668F60059BCE8 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTests.swift; sourceTree = "<group>"; };
+		FC0CC3C22CB35C0C001E0EFE /* SpellCodec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellCodec.swift; sourceTree = "<group>"; };
 		FC74CDFE2C9F3938001AC518 /* Ruleset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ruleset.swift; sourceTree = "<group>"; };
 		FC74CE002C9FF168001AC518 /* BidirectionalMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidirectionalMap.swift; sourceTree = "<group>"; };
 		FCB135DD2D55DCDD007EEB0B /* ParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingTests.swift; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 				8E7EB4EC29F3B87F00408EA4 /* SpellSlotsManagerDelegate.swift */,
 				8E07AE0E2A10AFA700C0487B /* Operators.swift */,
 				FC74CDFE2C9F3938001AC518 /* Ruleset.swift */,
+				FC0CC3C22CB35C0C001E0EFE /* SpellCodec.swift */,
 			);
 			path = Spellbook;
 			sourceTree = "<group>";
@@ -761,6 +764,7 @@
 				8E7EB4ED29F3B87F00408EA4 /* SpellSlotsManagerDelegate.swift in Sources */,
 				8E614907241991C200842A18 /* PopupViewController.swift in Sources */,
 				8E6148EE241991C200842A18 /* CharacterCreationController.swift in Sources */,
+				FC0CC3C32CB35C0C001E0EFE /* SpellCodec.swift in Sources */,
 				8E614911241991C200842A18 /* AppDelegate.swift in Sources */,
 				8E61490A241991C200842A18 /* Controllers.swift in Sources */,
 				8E92CC65243BCE2100EB78B2 /* Images.swift in Sources */,
