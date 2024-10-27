@@ -358,6 +358,38 @@ class SortFilterStatus {
         self.maxRangeValue = maxValue
         self.maxRangeUnit = maxUnit
     }
+
+    func setCastingTimeBoundsToDefault() {
+        setCastingTimeBounds(minValue: SortFilterStatus.defaultMinCastingTimeValue,
+                             minUnit: SortFilterStatus.defaultMinCastingTimeUnit,
+                             maxValue: SortFilterStatus.defaultMaxCastingTimeValue,
+                             maxUnit: SortFilterStatus.defaultMaxCastingTimeUnit)
+    }
+    func setDurationBoundsToDefault() {
+        setDurationBounds(minValue: SortFilterStatus.defaultMinDurationValue,
+                          minUnit: SortFilterStatus.defaultMinDurationUnit,
+                          maxValue: SortFilterStatus.defaultMaxDurationValue,
+                          maxUnit: SortFilterStatus.defaultMaxDurationUnit)
+    }
+    func setRangeBoundsToDefault() {
+        setRangeBounds(minValue: SortFilterStatus.defaultMinRangeValue,
+                       minUnit: SortFilterStatus.defaultMinRangeUnit,
+                       maxValue: SortFilterStatus.defaultMaxRangeValue,
+                       maxUnit: SortFilterStatus.defaultMaxRangeUnit)
+    }
+    func setBoundsToDefault<T:QuantityType, U:Unit, Q:Quantity<T,U>>(_ type: Q.Type) {
+        switch type {
+        case is CastingTime.Type:
+            return setCastingTimeBoundsToDefault()
+        case is Duration.Type:
+            return setDurationBoundsToDefault()
+        case is Range.Type:
+            return setRangeBoundsToDefault()
+        default:
+            return
+        }
+    }
+
     private func setBoundsFromSION<U: Unit>(sion: SION, setter: BoundSetter<U>,
                                             minValueKey: String, maxValueKey: String) {
         let minValue = intFromSION(sion[minValueKey], defaultValue: 0)
