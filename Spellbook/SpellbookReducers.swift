@@ -238,6 +238,22 @@ func castingTimeUnitUpdateReducer(action: CastingTimeUnitUpdateAction, state: in
     return unitUpdateReducer(action: action, state: &state, minSetter: SortFilterStatus.setMinCastingTimeUnit, maxSetter: SortFilterStatus.setMaxCastingTimeUnit)
 }
 
+func defaultRangeReducer<T: QuantityType, U: Unit, Q: Quantity<T,U>>(action: QuantityRangeDefaultAction<T,U,Q>, state: inout SpellbookAppState, type: Q.Type) -> SpellbookAppState {
+    guard let status = state.profile?.sortFilterStatus else { return state }
+    status.setBoundsToDefault(type)
+    state.filterAndSortSpells()
+    return state
+}
+func defaultCastingTimeRangeReducer(action: CastingTimeDefaultAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    return defaultRangeReducer(action: action, state: &state, type: CastingTime.self)
+}
+func defaultDurationRangeReducer(action: DurationDefaultAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    return defaultRangeReducer(action: action, state: &state, type: Duration.self)
+}
+func defaultRangeRangeReducer(action: RangeDefaultAction, state: inout SpellbookAppState) -> SpellbookAppState {
+    return defaultRangeReducer(action: action, state: &state, type: Range.self)
+}
+
 func setFlagFilterReducer(action: SetFlagAction, state: inout SpellbookAppState) -> SpellbookAppState {
     guard let status = state.profile?.sortFilterStatus else { return state }
     switch (action.flag) {

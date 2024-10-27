@@ -82,8 +82,9 @@ class RangeView: UIView, HeightProvider {
         minUnitChoice.delegate = minUnitDelegate
         maxUnitChoice.delegate = maxUnitDelegate
         
-        // Create the function that will get the values for the unit bounds
+        // Create the functions that will get the values for the unit bounds
         boundsGetter = { () in return store.state.profile?.sortFilterStatus.getStringBounds(Q.self) ?? (0, "", 1, "") }
+        defaultBoundsGetter = { () in return store.state.profile?.sortFilterStatus.getDefaultStringBounds(Q.self) ?? (0, "", 1, "") }
         
         // Create and set the delegates for the values
         minValueDelegate = NumberFieldDelegate<ValueActionType>(

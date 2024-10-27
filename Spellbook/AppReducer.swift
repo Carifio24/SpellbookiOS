@@ -127,6 +127,14 @@ func specificActionReducer(action: Action, state: inout SpellbookAppState) -> Sp
         return rangeValueUpdateReducer(action: action, state: &state)
     case let action as RangeUnitUpdateAction:
         return rangeUnitUpdateReducer(action: action, state: &state)
+
+    // Resetting ranges to defaults
+    case let action as CastingTimeDefaultAction:
+        return defaultCastingTimeRangeReducer(action: action, state: &state)
+    case let action as DurationDefaultAction:
+        return defaultDurationRangeReducer(action: action, state: &state)
+    case let action as RangeDefaultAction:
+        return defaultRangeRangeReducer(action: action, state: &state)
     
     // Updating filter flags
     case let action as SetFlagAction:
