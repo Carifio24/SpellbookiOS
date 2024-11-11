@@ -143,6 +143,7 @@
 		8EF6EF0B264668F60059BCE8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0A264668F60059BCE8 /* Version.swift */; };
 		8EF6EF0D26485A2E0059BCE8 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */; };
 		FC0CC3C32CB35C0C001E0EFE /* SpellCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0CC3C22CB35C0C001E0EFE /* SpellCodec.swift */; };
+		FC2C78522CE1E7D50062FEEF /* HomebrewManagementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2C78512CE1E7D50062FEEF /* HomebrewManagementController.swift */; };
 		FC74CDFF2C9F3938001AC518 /* Ruleset.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74CDFE2C9F3938001AC518 /* Ruleset.swift */; };
 		FC74CE012C9FF168001AC518 /* BidirectionalMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74CE002C9FF168001AC518 /* BidirectionalMap.swift */; };
 /* End PBXBuildFile section */
@@ -305,6 +306,7 @@
 		8EF6EF0A264668F60059BCE8 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTests.swift; sourceTree = "<group>"; };
 		FC0CC3C22CB35C0C001E0EFE /* SpellCodec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellCodec.swift; sourceTree = "<group>"; };
+		FC2C78512CE1E7D50062FEEF /* HomebrewManagementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomebrewManagementController.swift; sourceTree = "<group>"; };
 		FC74CDFE2C9F3938001AC518 /* Ruleset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ruleset.swift; sourceTree = "<group>"; };
 		FC74CE002C9FF168001AC518 /* BidirectionalMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidirectionalMap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -416,6 +418,7 @@
 				8E6148DB241991C100842A18 /* Info.plist */,
 				8E6148A0241991BE00842A18 /* InfoMenuCell.swift */,
 				8E6148B0241991BF00842A18 /* InfoMenuViewController.swift */,
+				FC2C78512CE1E7D50062FEEF /* HomebrewManagementController.swift */,
 				8E6148BE241991C000842A18 /* InfoTableViewHeader.swift */,
 				8E6148D3241991C100842A18 /* iOSUtils.swift */,
 				8E6148A2241991BF00842A18 /* LabelViewController.swift */,
@@ -838,6 +841,7 @@
 				8E19DA5A257D6D46002B4F43 /* MessageDialogController.swift in Sources */,
 				8E61491F241991C200842A18 /* Transitions.swift in Sources */,
 				8E6E2B8428E9FF2400AA6483 /* SpellbookAppState.swift in Sources */,
+				FC2C78522CE1E7D50062FEEF /* HomebrewManagementController.swift in Sources */,
 				8E6148E5241991C200842A18 /* Duration.swift in Sources */,
 				8E92CC67243BD49900EB78B2 /* NumberFieldDelegate.swift in Sources */,
 			);
@@ -1026,7 +1030,7 @@
 				DEVELOPMENT_TEAM = RSR87G74R7;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Spellbook/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1055,7 +1059,7 @@
 				DEVELOPMENT_TEAM = RSR87G74R7;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Spellbook/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
