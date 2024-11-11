@@ -126,13 +126,14 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! CharacterSelectionCell
-        cell.deleteButton.addTarget(self, action: #selector(deleteButtonPressed(sender:)), for: UIControl.Event.touchUpInside)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! ItemSelectionCell
+        cell.deleteCommand.
+        cell.deleteCommand.action = #selector(deleteButtonPressed(sender: ))
         cell.clipboardButton.addTarget(self, action: #selector(clipboardButtonPressed(sender:)), for: UIControl.Event.touchUpInside)
         cell.deleteButton.tag = indexPath.row
-        cell.deleteButton.setImage(CharacterSelectionCell.deleteIcon, for: UIControl.State.normal)
+        cell.deleteButton.setImage(ItemSelectionCell.deleteIcon, for: UIControl.State.normal)
         cell.clipboardButton.tag = indexPath.row
-        cell.clipboardButton.setImage(CharacterSelectionCell.clipboardIcon, for: UIControl.State.normal)
+        cell.clipboardButton.setImage(ItemSelectionCell.clipboardIcon, for: UIControl.State.normal)
         let name = characters[indexPath.row]
         cell.nameLabel.text = name
         return cell

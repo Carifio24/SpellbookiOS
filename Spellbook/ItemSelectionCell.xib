@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="cloister_black.ttf">
+            <string>CloisterBlack-Light</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ItemSelectionCell" customModule="Spellbook" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="507" height="82"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAg-G0-Qud" userLabel="Content View">
+                    <rect key="frame" x="0.0" y="0.0" width="507" height="82"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w3g-42-2U6">
+                            <rect key="frame" x="61" y="0.0" width="118" height="82"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" name="CloisterBlack-Light" family="Cloister Black" pointSize="36"/>
+                            <color key="textColor" systemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcO-R0-Pez">
+                            <rect key="frame" x="488" y="30" width="19" height="22"/>
+                            <menu key="menu" id="wG0-qC-idM">
+                                <children>
+                                    <command title="Rename" id="Sqj-Hl-KF8" userLabel="Rename"/>
+                                    <command title="Duplicate" id="4am-aS-xVg" userLabel="Duplicate"/>
+                                    <command title="Export to JSON" id="r26-gr-EVw" userLabel="Export to JSON"/>
+                                    <command title="Copy JSON" id="1rt-tI-ogD" userLabel="Copy JSON"/>
+                                    <command title="Delete" id="mHm-sg-6HM" userLabel="Delete"/>
+                                </children>
+                            </menu>
+                            <state key="normal" image="ellipsis" catalog="system"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.transform.rotation.z">
+                                    <integer key="value" value="0"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="qcO-R0-Pez" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="w3g-42-2U6" secondAttribute="trailing" id="GjQ-rF-Ue0"/>
+                        <constraint firstAttribute="trailing" secondItem="qcO-R0-Pez" secondAttribute="trailing" id="bUE-KF-CYK"/>
+                        <constraint firstItem="w3g-42-2U6" firstAttribute="leading" secondItem="oAg-G0-Qud" secondAttribute="leading" id="eM1-64-lMM"/>
+                        <constraint firstItem="qcO-R0-Pez" firstAttribute="centerY" secondItem="oAg-G0-Qud" secondAttribute="centerY" id="kBj-jV-hHh"/>
+                        <constraint firstItem="w3g-42-2U6" firstAttribute="centerY" secondItem="oAg-G0-Qud" secondAttribute="centerY" id="yFb-2E-V4u"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="oAg-G0-Qud" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="8OI-ER-Juv"/>
+                <constraint firstItem="oAg-G0-Qud" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Pgx-bB-g9p"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="oAg-G0-Qud" secondAttribute="trailing" id="dqA-pZ-smC"/>
+                <constraint firstAttribute="bottom" secondItem="oAg-G0-Qud" secondAttribute="bottom" id="tyf-8P-cMv"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-138.1679389312977" y="-22.535211267605636"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ellipsis" catalog="system" width="128" height="37"/>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

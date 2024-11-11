@@ -8,21 +8,16 @@
 
 import UIKit
 
-class CharacterSelectionCell: UITableViewCell {
+class ItemSelectionCell: UITableViewCell {
     
-    
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var clipboardButton: UIButton!
-    @IBOutlet weak var deleteButton: UIButton!
     
     static let iconSize = CGFloat(35)
-    static let deleteIcon = UIImage(named: "trash_icon.png")?.withRenderingMode(.alwaysOriginal).resized(width: CharacterSelectionCell.iconSize, height: CharacterSelectionCell.iconSize)
-    static let clipboardIcon = UIImage(named: "clipboard_icon.png")?.withRenderingMode(.alwaysOriginal).resized(width: CharacterSelectionCell.iconSize, height: CharacterSelectionCell.iconSize)
+    static let deleteIcon = UIImage(named: "trash_icon.png")?.withRenderingMode(.alwaysOriginal).resized(width: ItemSelectionCell.iconSize, height: ItemSelectionCell.iconSize)
+    static let clipboardIcon = UIImage(named: "clipboard_icon.png")?.withRenderingMode(.alwaysOriginal).resized(width: ItemSelectionCell.iconSize, height: ItemSelectionCell.iconSize)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
-        
     }
     
     required init?(coder decoder: NSCoder) {
@@ -31,19 +26,6 @@ class CharacterSelectionCell: UITableViewCell {
     }
     
     func setup() {
-//        nameLabel.textColor = defaultFontColor
-//        self.addSubview(nameLabel)
-//        print("nameLabel height is \(nameLabel.frame.size.height)")
-//        nameLabel.backgroundColor = UIColor.red
-//        nameLabel.text = name
-//        print("nameLabel height is \(nameLabel.frame.size.height)")
-//        nameLabel.textColor = UIColor.black
-//        nameLabel.font = nameFont
-
-        //self.bringSubviewToFront(nameLabel)
-        //self.addSubview(iconButton)
-        //self.bringSubviewToFront(iconButton)
-        
     }
     
 //    @objc func deleteButtonPressed() {
