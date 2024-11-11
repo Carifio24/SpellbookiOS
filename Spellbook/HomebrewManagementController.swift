@@ -9,6 +9,15 @@
 import UIKit
 
 class HomebrewManagementController: UITableViewController {
+    
+    struct InfoSection {
+        let name: String
+        let items: [String]
+        let itemInfo: [String:String]
+        var collapsed: Bool
+    }
+    
+    let sections: [InfoSection] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,13 +32,23 @@ class HomebrewManagementController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return sections.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return sections[section].collapsed ? 0 : sections[section].items.count
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44.0
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1.0
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 
     /*

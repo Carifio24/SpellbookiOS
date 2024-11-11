@@ -145,10 +145,8 @@ class CharacterCreationController: UIViewController {
     }
     
     func setButtonFunctions() {
-
         cancelButton.addTarget(self, action: #selector(cancelButtonPressed), for: UIControl.Event.touchUpInside)
         createButton.addTarget(self, action: #selector(createButtonPressed), for: UIControl.Event.touchUpInside)
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

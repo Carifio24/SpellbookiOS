@@ -66,7 +66,7 @@
 		8E614906241991C200842A18 /* StatusPopupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148BF241991C000842A18 /* StatusPopupController.swift */; };
 		8E614907241991C200842A18 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148C0241991C000842A18 /* PopupViewController.swift */; };
 		8E614908241991C200842A18 /* SION.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148C1241991C000842A18 /* SION.swift */; };
-		8E614909241991C200842A18 /* CharacterSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148C2241991C000842A18 /* CharacterSelectionCell.swift */; };
+		8E614909241991C200842A18 /* ItemSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148C2241991C000842A18 /* ItemSelectionCell.swift */; };
 		8E61490A241991C200842A18 /* Controllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148C3241991C000842A18 /* Controllers.swift */; };
 		8E61490B241991C200842A18 /* SortDirectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148C4241991C000842A18 /* SortDirectionButton.swift */; };
 		8E61490C241991C200842A18 /* EnumUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148C5241991C000842A18 /* EnumUtilities.swift */; };
@@ -144,6 +144,8 @@
 		8EF6EF0D26485A2E0059BCE8 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */; };
 		FC0CC3C32CB35C0C001E0EFE /* SpellCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0CC3C22CB35C0C001E0EFE /* SpellCodec.swift */; };
 		FC2C78522CE1E7D50062FEEF /* HomebrewManagementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2C78512CE1E7D50062FEEF /* HomebrewManagementController.swift */; };
+		FC2C78562CE262CE0062FEEF /* NamedItemEventDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2C78552CE262CE0062FEEF /* NamedItemEventDelegate.swift */; };
+		FC2C78582CE288400062FEEF /* ItemSelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC2C78572CE288400062FEEF /* ItemSelectionCell.xib */; };
 		FC74CDFF2C9F3938001AC518 /* Ruleset.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74CDFE2C9F3938001AC518 /* Ruleset.swift */; };
 		FC74CE012C9FF168001AC518 /* BidirectionalMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74CE002C9FF168001AC518 /* BidirectionalMap.swift */; };
 		FCB135DE2D55DCDD007EEB0B /* ParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB135DD2D55DCDD007EEB0B /* ParsingTests.swift */; };
@@ -233,7 +235,7 @@
 		8E6148BF241991C000842A18 /* StatusPopupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusPopupController.swift; sourceTree = "<group>"; };
 		8E6148C0241991C000842A18 /* PopupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		8E6148C1241991C000842A18 /* SION.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SION.swift; sourceTree = "<group>"; };
-		8E6148C2241991C000842A18 /* CharacterSelectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterSelectionCell.swift; sourceTree = "<group>"; };
+		8E6148C2241991C000842A18 /* ItemSelectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSelectionCell.swift; sourceTree = "<group>"; };
 		8E6148C3241991C000842A18 /* Controllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Controllers.swift; sourceTree = "<group>"; };
 		8E6148C4241991C000842A18 /* SortDirectionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortDirectionButton.swift; sourceTree = "<group>"; };
 		8E6148C5241991C000842A18 /* EnumUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumUtilities.swift; sourceTree = "<group>"; };
@@ -308,6 +310,8 @@
 		8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTests.swift; sourceTree = "<group>"; };
 		FC0CC3C22CB35C0C001E0EFE /* SpellCodec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellCodec.swift; sourceTree = "<group>"; };
 		FC2C78512CE1E7D50062FEEF /* HomebrewManagementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomebrewManagementController.swift; sourceTree = "<group>"; };
+		FC2C78552CE262CE0062FEEF /* NamedItemEventDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamedItemEventDelegate.swift; sourceTree = "<group>"; };
+		FC2C78572CE288400062FEEF /* ItemSelectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemSelectionCell.xib; sourceTree = "<group>"; };
 		FC74CDFE2C9F3938001AC518 /* Ruleset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ruleset.swift; sourceTree = "<group>"; };
 		FC74CE002C9FF168001AC518 /* BidirectionalMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidirectionalMap.swift; sourceTree = "<group>"; };
 		FCB135DD2D55DCDD007EEB0B /* ParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingTests.swift; sourceTree = "<group>"; };
@@ -394,7 +398,6 @@
 				8E6148A4241991BF00842A18 /* CastingTime.swift */,
 				8E6148A7241991BF00842A18 /* CharacterCreationController.swift */,
 				8E6148B8241991BF00842A18 /* CharacterProfile.swift */,
-				8E6148C2241991C000842A18 /* CharacterSelectionCell.swift */,
 				8E6148C6241991C000842A18 /* CharacterSelectionController.swift */,
 				8E61489F241991BE00842A18 /* CharacterTableController.swift */,
 				8E6148D7241991C100842A18 /* Constants.swift */,
@@ -409,6 +412,8 @@
 				8E02F76F2437EC8800A3050C /* YesNoFilterDelegate.swift */,
 				8E02F7632436378400A3050C /* FilterGridDelegate.swift */,
 				8E02F7732438EF1400A3050C /* RangeView.xib */,
+				8E6148C2241991C000842A18 /* ItemSelectionCell.swift */,
+				FC2C78572CE288400062FEEF /* ItemSelectionCell.xib */,
 				8E02F7752438F04000A3050C /* RangeView.swift */,
 				8ED0B935242E514F00A085F4 /* FilterView.swift */,
 				8E02F76524363BAD00A3050C /* FilterView.xib */,
@@ -483,6 +488,7 @@
 				8E07AE0E2A10AFA700C0487B /* Operators.swift */,
 				FC74CDFE2C9F3938001AC518 /* Ruleset.swift */,
 				FC0CC3C22CB35C0C001E0EFE /* SpellCodec.swift */,
+				FC2C78552CE262CE0062FEEF /* NamedItemEventDelegate.swift */,
 			);
 			path = Spellbook;
 			sourceTree = "<group>";
@@ -696,6 +702,7 @@
 			files = (
 				8E61494224199B2D00842A18 /* star_empty.png in Resources */,
 				8E02F76624363BAD00A3050C /* FilterView.xib in Resources */,
+				FC2C78582CE288400062FEEF /* ItemSelectionCell.xib in Resources */,
 				8E61494024199B2D00842A18 /* up_arrow.png in Resources */,
 				8E614931241997C300842A18 /* SpellcastingInfo.xml in Resources */,
 				8E61494B24199ED800842A18 /* dungeon.ttf in Resources */,
@@ -753,7 +760,7 @@
 				8E02F7702437EC8800A3050C /* YesNoFilterDelegate.swift in Sources */,
 				8E6148FC241991C200842A18 /* HashableType.swift in Sources */,
 				8E6148E8241991C200842A18 /* SearchButton.swift in Sources */,
-				8E614909241991C200842A18 /* CharacterSelectionCell.swift in Sources */,
+				8E614909241991C200842A18 /* ItemSelectionCell.swift in Sources */,
 				8E614921241991C200842A18 /* SubClass.swift in Sources */,
 				8E614913241991C200842A18 /* SpellDataCell.swift in Sources */,
 				8E614902241991C200842A18 /* Unit.swift in Sources */,
@@ -819,6 +826,7 @@
 				8E614919241991C200842A18 /* FromRightDismissAnimator.swift in Sources */,
 				8E61490E241991C200842A18 /* Extensions.swift in Sources */,
 				8E7615AA264D716900686033 /* VersionInfo.swift in Sources */,
+				FC2C78562CE262CE0062FEEF /* NamedItemEventDelegate.swift in Sources */,
 				8E02F76A2436B5E200A3050C /* FilterCell.swift in Sources */,
 				8E61491B241991C200842A18 /* SpellbookError.swift in Sources */,
 				8E6148FE241991C200842A18 /* ViewController.swift in Sources */,
