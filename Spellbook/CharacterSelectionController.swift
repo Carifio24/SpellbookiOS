@@ -37,6 +37,8 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.register(ItemSelectionCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        
         // Get the current characters list
         characters = store.state.profileNameList
         //print("There are \(characters.count) characters")
@@ -56,9 +58,6 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         for label in [ selectionTitle, selectionMessage ] {
             label?.textColor = defaultFontColor
         }
-        
-        // Set the table cell type
-        //tableView.register(CharacterSelectionCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         
         // Set the button functions
         newCharacterButton.addTarget(self, action: #selector(newCharacterButtonPressed), for: UIControl.Event.touchUpInside)
@@ -127,13 +126,13 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! ItemSelectionCell
-        cell.deleteCommand.
-        cell.deleteCommand.action = #selector(deleteButtonPressed(sender: ))
-        cell.clipboardButton.addTarget(self, action: #selector(clipboardButtonPressed(sender:)), for: UIControl.Event.touchUpInside)
-        cell.deleteButton.tag = indexPath.row
-        cell.deleteButton.setImage(ItemSelectionCell.deleteIcon, for: UIControl.State.normal)
-        cell.clipboardButton.tag = indexPath.row
-        cell.clipboardButton.setImage(ItemSelectionCell.clipboardIcon, for: UIControl.State.normal)
+        // cell.deleteCommand.
+        // cell.deleteCommand.action = #selector(deleteButtonPressed(sender: ))
+        // cell.clipboardButton.addTarget(self, action: #selector(clipboardButtonPressed(sender:)), for: UIControl.Event.touchUpInside)
+        // cell.deleteButton.tag = indexPath.row
+        // cell.deleteButton.setImage(ItemSelectionCell.deleteIcon, for: UIControl.State.normal)
+        // cell.clipboardButton.tag = indexPath.row
+        // cell.clipboardButton.setImage(ItemSelectionCell.clipboardIcon, for: UIControl.State.normal)
         let name = characters[indexPath.row]
         cell.nameLabel.text = name
         return cell

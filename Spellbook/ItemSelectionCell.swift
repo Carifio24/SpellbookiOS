@@ -10,10 +10,14 @@ import UIKit
 
 class ItemSelectionCell: UITableViewCell {
     
+    @IBOutlet weak var rootView: UIView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var pullDownButton: UIButton!
     
     static let iconSize = CGFloat(35)
-    static let deleteIcon = UIImage(named: "trash_icon.png")?.withRenderingMode(.alwaysOriginal).resized(width: ItemSelectionCell.iconSize, height: ItemSelectionCell.iconSize)
-    static let clipboardIcon = UIImage(named: "clipboard_icon.png")?.withRenderingMode(.alwaysOriginal).resized(width: ItemSelectionCell.iconSize, height: ItemSelectionCell.iconSize)
+    
+    let name: String? = nil
+    let delegate: NamedItemEventDelegate? = nil
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -26,6 +30,17 @@ class ItemSelectionCell: UITableViewCell {
     }
     
     func setup() {
+        Bundle.main.loadNibNamed("ItemSelectionCell", owner: self, options: nil)
+        self.contentView.backgroundColor = UIColor.clear
+        self.addSubview(rootView)
+        setupCommands()
+    }
+    
+    @IBAction func onPress(sender: UIButton) {
+       print("Pressed!")
+    }
+    
+    private func setupCommands() {
     }
     
 //    @objc func deleteButtonPressed() {
