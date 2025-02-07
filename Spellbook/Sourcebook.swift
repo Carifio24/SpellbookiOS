@@ -1,5 +1,5 @@
 enum Sourcebook: Int, NameConstructible {
-	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG, TashasCOE, AcquisitionsInc, LostLabKwalish, RimeOTFrostmaiden, ExplorersGTW, FizbansTOD, StrixhavenCOC, AstralAG, TalDoreiCSR, SigilOutlands, BookOfMT, PlayersHandbook2024
+	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG, TashasCOE, AcquisitionsInc, LostLabKwalish, RimeOTFrostmaiden, ExplorersGTW, FizbansTOD, StrixhavenCOC, AstralAG, TalDoreiCSR, SigilOutlands, BookOfMT, PlayersHandbook2024, GuildmastersGTR
     
     static let coreSourcebooks = [ PlayersHandbook, XanatharsGTE, TashasCOE, PlayersHandbook2024 ]
     
@@ -37,6 +37,8 @@ enum Sourcebook: Int, NameConstructible {
             return "The Book of Many Things"
         case .PlayersHandbook2024:
             return "Player's Handbook (2024)"
+        case .GuildmastersGTR:
+            return "Guildmaster's Guide to Ravnica"
         }
     }
     
@@ -56,6 +58,7 @@ enum Sourcebook: Int, NameConstructible {
         SigilOutlands: "so",
         BookOfMT: "bmt",
         PlayersHandbook2024: "phb24",
+        GuildmastersGTR: "ggr",
     ]
     
     var code: String {

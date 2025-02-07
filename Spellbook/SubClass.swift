@@ -1,5 +1,5 @@
 enum SubClass: Int, NameConstructible {
-	case Land, Lore, Draconic, Hunter, Life, Devotion, Berserker, Evocation, Fiend, Thief, OpenHand, Graviturgy, Chronurgy, Arcana, EldritchKnight, ArcaneTrickster, ClockworkSoul, AberrantMind, DivineSoul, OpenSeaPaladin
+	case Land, Lore, Draconic, Hunter, Life, Devotion, Berserker, Evocation, Fiend, Thief, OpenHand, Graviturgy, Chronurgy, Arcana, EldritchKnight, ArcaneTrickster, ClockworkSoul, AberrantMind, DivineSoul, OpenSeaPaladin, DimirOperative
     
     internal static var displayNameMap = EnumMap<SubClass,String> { e in
         switch(e) {
@@ -43,6 +43,8 @@ enum SubClass: Int, NameConstructible {
             return "Divine Soul"
         case .OpenSeaPaladin:
             return "Open Sea Paladin"
+        case .DimirOperative:
+            return "Dimir Operative"
         }
     }
 //
