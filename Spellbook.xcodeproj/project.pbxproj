@@ -144,6 +144,7 @@
 		8EF6EF0D26485A2E0059BCE8 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */; };
 		FC74CDFF2C9F3938001AC518 /* Ruleset.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74CDFE2C9F3938001AC518 /* Ruleset.swift */; };
 		FC74CE012C9FF168001AC518 /* BidirectionalMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74CE002C9FF168001AC518 /* BidirectionalMap.swift */; };
+		FCB135DE2D55DCDD007EEB0B /* ParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB135DD2D55DCDD007EEB0B /* ParsingTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -305,6 +306,7 @@
 		8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTests.swift; sourceTree = "<group>"; };
 		FC74CDFE2C9F3938001AC518 /* Ruleset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ruleset.swift; sourceTree = "<group>"; };
 		FC74CE002C9FF168001AC518 /* BidirectionalMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidirectionalMap.swift; sourceTree = "<group>"; };
+		FCB135DD2D55DCDD007EEB0B /* ParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -487,6 +489,7 @@
 				8EEAFCC92645FB4C00A05D01 /* LegacyProfileTests.swift */,
 				8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */,
 				8E452C0B2A3A652E00C78D9C /* CharacterProfileTests.swift */,
+				FCB135DD2D55DCDD007EEB0B /* ParsingTests.swift */,
 			);
 			path = SpellbookTests;
 			sourceTree = "<group>";
@@ -846,6 +849,7 @@
 				397EE97E21ACA86800B116B0 /* SpellbookTests.swift in Sources */,
 				8EEAFCCA2645FB4C00A05D01 /* LegacyProfileTests.swift in Sources */,
 				8EF6EF0D26485A2E0059BCE8 /* VersionTests.swift in Sources */,
+				FCB135DE2D55DCDD007EEB0B /* ParsingTests.swift in Sources */,
 				8E452C0C2A3A652E00C78D9C /* CharacterProfileTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
