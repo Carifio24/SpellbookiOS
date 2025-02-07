@@ -41,4 +41,8 @@
         <item name="title">Version 3.6.0 update</item>
         <item name="description">The spellbook has been updated to include spells from the &lt;b&gt;2024 Player\'s Handbook&lt;/b&gt;. As many of the spells from this book are new versions of those from previous sourcebooks, this update also adds an option to &lt;b&gt;hide duplicate spells&lt;/b&gt; between the 2024 PHB and previous sourcebooks. Toggling this option off will allow both versions to be shown in the spell list. If this option is enabled, one can choose whether they prefer to see &lt;b&gt;2024 or 2014&lt;/b&gt; versions of the spells. This setting can be adjusted on a &lt;b&gt;character-by-character basis&lt;/b&gt;.</item>
     </section>
+    <section name="v_3_6_3">
+        <item name="title">Version 3.6.3 update</item>
+        <item name="description">This release updates the text of spells that were affected by the errata for Xanathar's Guide to Everything.</item>
+    </section>
 </root>
