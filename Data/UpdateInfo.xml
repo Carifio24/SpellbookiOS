@@ -45,4 +45,8 @@
         <item name="title">Version 3.6.3 update</item>
         <item name="description">This release updates the text of spells that were affected by the errata for Xanathar's Guide to Everything.</item>
     </section>
+    <section name="v_3_7_0">
+        <item name="title">Version 3.7.0 update</item>
+        <item name="description">This update corrects the &lt;b&gt;duration of Transmute Rock&lt;/b&gt;.</item>
+    </section>
 </root>
