@@ -31,6 +31,7 @@ class ItemSelectionCell: UITableViewCell {
     
     func setup() {
         Bundle.main.loadNibNamed("ItemSelectionCell", owner: self, options: nil)
+        print("Item selection cell setup")
         self.contentView.backgroundColor = UIColor.clear
         self.addSubview(rootView)
         setupCommands()

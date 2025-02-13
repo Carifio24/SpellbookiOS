@@ -19,18 +19,18 @@
             <connections>
                 <outlet property="nameLabel" destination="dMz-Lw-Xqm" id="e7D-0p-lwD"/>
                 <outlet property="pullDownButton" destination="qcO-R0-Pez" id="Mr2-gY-xpu"/>
-                <outlet property="rootView" destination="1Zw-Lz-aoS" id="HQ0-FG-uNv"/>
+                <outlet property="rootView" destination="awx-V3-H7e" id="evB-cs-F7H"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="awx-V3-H7e">
-            <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+            <rect key="frame" x="0.0" y="0.0" width="374" height="81"/>
             <subviews>
-                <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="1Zw-Lz-aoS" userLabel="Content View">
-                    <rect key="frame" x="0.0" y="0.0" width="393" height="44"/>
+                <view contentMode="center" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Zw-Lz-aoS" userLabel="Content View">
+                    <rect key="frame" x="0.0" y="0.0" width="374" height="49"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcO-R0-Pez">
-                            <rect key="frame" x="374.66666666666669" y="11" width="18.333333333333314" height="22"/>
+                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcO-R0-Pez">
+                            <rect key="frame" x="355.66666666666669" y="13.666666666666671" width="18.333333333333314" height="22"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <menu key="menu" id="wG0-qC-idM">
                                 <children>
@@ -51,8 +51,8 @@
                                 <action selector="onPressWithSender:" destination="-1" eventType="touchUpInside" id="m03-be-xL2"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMz-Lw-Xqm">
-                            <rect key="frame" x="0.0" y="1" width="76.333333333333329" height="42"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMz-Lw-Xqm">
+                            <rect key="frame" x="0.0" y="3.6666666666666643" width="76.333333333333329" height="42"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" name="CloisterBlack-Light" family="Cloister Black" pointSize="36"/>
                             <nil key="textColor"/>
@@ -71,23 +71,19 @@
             <viewLayoutGuide key="safeArea" id="kSg-9W-A4D"/>
             <color key="backgroundColor" systemColor="systemOrangeColor"/>
             <constraints>
-                <constraint firstItem="1Zw-Lz-aoS" firstAttribute="trailing" secondItem="kSg-9W-A4D" secondAttribute="trailing" id="6xV-qS-7KT"/>
-                <constraint firstItem="1Zw-Lz-aoS" firstAttribute="leading" secondItem="kSg-9W-A4D" secondAttribute="leading" id="Eud-J8-hB6"/>
                 <constraint firstItem="1Zw-Lz-aoS" firstAttribute="leading" secondItem="kSg-9W-A4D" secondAttribute="leading" id="L1h-q0-BQU"/>
-                <constraint firstAttribute="bottom" secondItem="1Zw-Lz-aoS" secondAttribute="bottom" id="UTc-KC-U7p"/>
-                <constraint firstItem="1Zw-Lz-aoS" firstAttribute="top" secondItem="awx-V3-H7e" secondAttribute="top" id="YEt-er-ri2"/>
-                <constraint firstAttribute="bottom" secondItem="1Zw-Lz-aoS" secondAttribute="bottom" id="ent-L1-1YN"/>
-                <constraint firstItem="1Zw-Lz-aoS" firstAttribute="top" secondItem="awx-V3-H7e" secondAttribute="top" id="vop-Nm-PlY"/>
+                <constraint firstItem="1Zw-Lz-aoS" firstAttribute="top" secondItem="kSg-9W-A4D" secondAttribute="top" id="YEt-er-ri2"/>
+                <constraint firstItem="1Zw-Lz-aoS" firstAttribute="bottom" secondItem="kSg-9W-A4D" secondAttribute="bottom" id="vop-Nm-PlY"/>
                 <constraint firstItem="1Zw-Lz-aoS" firstAttribute="trailing" secondItem="kSg-9W-A4D" secondAttribute="trailing" id="xDS-cx-YEQ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-2976.3358778625952" y="-108.09859154929578"/>
+            <point key="canvasLocation" x="-2993.8931297709923" y="-30.633802816901412"/>
         </view>
     </objects>
     <resources>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
