@@ -1,5 +1,29 @@
-enum Sourcebook: Int, NameConstructible {
-	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG, TashasCOE, AcquisitionsInc, LostLabKwalish, RimeOTFrostmaiden, ExplorersGTW, FizbansTOD, StrixhavenCOC, AstralAG, TalDoreiCSR, SigilOutlands, BookOfMT, PlayersHandbook2024, GuildmastersGTR
+class Sourcebook: NameConstructible {
+    let id: Int
+    let displayName: String
+    let code: String
+    
+    init(id: Int, displayName: String, code: String) {
+        self.id = id
+        self.displayName = displayName
+        self.code = code
+    }
+    
+    static let PlayersHandbook = Sourcebook(id: 0, displayName: "Player's Handbook (2014)", code: "phb14")
+    static let XanatharsGTE = Sourcebook(id: 1, displayName: "Xanathar's Guide to Everything", code: "xge")
+    static let SwordCoastAG = Sourcebook(id: 2, displayName: "Sword Coast Adv. Guide", code: "scag")
+    static let TashasCOE = Sourcebook(id: 3, displayName: "Tasha's Cauldron of Everything", code: "tce")
+    static let AcquisitionsInc = Sourcebook(id: 4, displayName: "Acquisitions Incorporated", code: "ai")
+    static let LostLabKwalish = Sourcebook(id: 5, displayName: "Lost Laboratory of Kwalish", code: "llk")
+    static let RimeOTFrostmaiden = Sourcebook(id: 6, displayName: "Rime of the Frostmaiden", code: "rf")
+    static let ExplorersGTF = Sourcebook(id: 7, displayName: "Explorer's Guide to Wildemount", code: "egw")
+    static let FizbansTOD = Sourcebook(id: 8, displayName: "Fizban's Treasury of Dragons", code: "ftd")
+    static let StrixhavenCOC = Sourcebook(id: 9, displayName: "Strixhaven: A Curriculum of Chaos", code: "scc")
+    static let AstralAG = Sourcebook(id: 10, displayName: "Astral Adventurer's Guide", code: "aag")
+    static let TalDoreiCSR = Sourcebook(id: 11, displayName: "Tal'Dorei Campaign Setting Reborn", code: "tdcsr")
+    static let SigilOutlands = Sourcebook(id: 12, displayName: "Sigil and the Outlands", code: "so")
+
+case PlayersHandbook=0, XanatharsGTE, SwordCoastAG, TashasCOE, AcquisitionsInc, LostLabKwalish, RimeOTFrostmaiden, ExplorersGTW, FizbansTOD, StrixhavenCOC, AstralAG, TalDoreiCSR, SigilOutlands, BookOfMT, PlayersHandbook2024, GuildmastersGTR
     
     static let coreSourcebooks = [ PlayersHandbook, XanatharsGTE, TashasCOE, PlayersHandbook2024 ]
     

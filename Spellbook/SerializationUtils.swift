@@ -13,6 +13,8 @@ class SerializationUtils: NSObject {
     static let profilesExtension = ".json"
     static let createdSpellsDirectoryName = "CreatedSpells"
     static let createdSpellsExtension = ".json"
+    static let createdSourcesDirectoryName = "CreatedSources"
+    static let createdSourcesExtension = ".json"
     static let settingsFile = "Settings.json"
     
     static let documentsDirectory: URL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
@@ -32,6 +34,7 @@ class SerializationUtils: NSObject {
     
     static let profilesDirectory = getDirectory(directoryName: profilesDirectoryName)
     static let createdSpellsDirectory = getDirectory(directoryName: createdSpellsDirectoryName)
+    static let createdSourcesDirectory = getDirectory(directoryName: createdSourcesDirectoryName)
     
     private static func nameFileLocation(name: String, ext: String, directory: URL) -> URL {
         let filename = name + ext
@@ -52,6 +55,14 @@ class SerializationUtils: NSObject {
     
     static func createdSpellLocation(spell: Spell) -> URL {
         return createdSpellLocation(name: spell.name)
+    }
+    
+    static func createdSourcebookLocation(name: String) -> URL {
+        return nameFileLocation(name: name, ext: createdSourcesExtension, directory: createdSpellsDirectory)
+    }
+    
+    static func createdSourcebookLocation(sourcebook: Sourcebook) -> URL {
+        return createdSourcebookLocation(name: sourcebook.displayName)
     }
     
     static func saveCharacterProfile(profile: CharacterProfile) -> Bool {
@@ -86,12 +97,18 @@ class SerializationUtils: NSObject {
                                 errorCreator: { return SpellbookError.BadCharacterProfileError })
     }
     
+    static func loadCreatedSpell(name: String, codec: SpellCodec? = nil, builder: SpellBuilder? = nil) throws -> Spell {
+        let codec = codec ?? SpellCodec()
+        let builder = builder ?? SpellBuilder()
+        return try loadItemFromJSON(name: name, locationGetter: self.createdSpellLocation, itemCreator: { sion in return codec.parseSpell(sion: sion, b: builder) }, errorCreator: { return SpellbookError.BadCreatedSpellError })
+    }
+    
     private static func deleteFile(location: URL) -> Bool {
         let fileManager = FileManager.default
         do {
             try fileManager.removeItem(at: location)
             return true
-        } catch let e {
+        } catch {
             return false
         }
     }
@@ -148,5 +165,9 @@ class SerializationUtils: NSObject {
     
     static func createdSpellNameList() -> [String] {
         return itemNameList(directory: createdSpellsDirectory, ext: createdSpellsExtension)
+    }
+    
+    static func createdSourcebooksList() -> [String] {
+        return itemNameList(directory: createdSourcesDirectory, ext: createdSourcesExtension)
     }
 }

@@ -9,9 +9,28 @@
 import UIKit
 
 class HomebrewManagementController: UITableViewController {
+    
+    static let cellReuseIdentifier = "homebrew_cell"
+    static let headerReuseIdentifier = "homebrew_header"
+    
+    struct InfoSection {
+        let name: String
+        let items: [String]
+        let itemInfo: [String:String]
+        var collapsed: Bool
+    }
+    
+    let sections: [InfoSection] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Register the header and cell types
+        tableView.register(InfoTableViewHeader.self, forHeaderFooterViewReuseIdentifier: HomebrewManagementController.headerReuseIdentifier)
+        tableView.register(InfoMenuCell.self, forCellReuseIdentifier: HomebrewManagementController.cellReuseIdentifier)
+        
+        // The header for the table
+        tableView.tableHeaderView = HomebrewTableViewHeader()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -23,13 +42,34 @@ class HomebrewManagementController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return sections.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return sections[section].collapsed ? 0 : sections[section].items.count
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 44.0
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1.0
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    static func createSections() -> [InfoSection] {
+        
+        let items: [String:String] = [:]
+        let sections: [InfoSection] = []
+        let createdSourceNames = SerializationUtils.createdSourcebooksList()
+        let createdSpells = store.state.allCreatedSpells
+        
+        return sections
+        
     }
 
     /*
@@ -58,7 +98,7 @@ class HomebrewManagementController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 

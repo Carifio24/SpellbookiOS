@@ -53,4 +53,18 @@ struct SpellbookAppState: StateType {
         currentSpellList = filteredSpellList(state: self)
         self.sortSpells()
     }
+    
+    var allCreatedSources: [Sourcebook] {
+    
+    var allCreatedSpells: [Spell] {
+        get {
+            let codec = SpellCodec()
+            let builder = SpellBuilder()
+            let createdSpellItems: [Spell?] = SerializationUtils.createdSpellNameList().map({
+               name in
+                return try? SerializationUtils.loadCreatedSpell(name: name, codec: codec, builder: builder)
+            })
+            return createdSpellItems.compactMap { $0 }
+        }
+    }
 }

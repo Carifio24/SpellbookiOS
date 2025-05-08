@@ -23,7 +23,12 @@ class InfoMenuCell: UITableViewCell {
         // The label settings
         label.textColor = UIColor.black
         label.backgroundColor = UIColor.clear
-        label.frame = CGRect(x: InfoMenuCell.horizPadding, y: InfoMenuCell.vertPadding, width: self.frame.size.width - 2*InfoMenuCell.horizPadding, height: self.frame.size.height - 2*InfoMenuCell.vertPadding)
+        label.frame = CGRect(
+            x: InfoMenuCell.horizPadding,
+            y: InfoMenuCell.vertPadding,
+            width: self.frame.size.width - 2*InfoMenuCell.horizPadding,
+            height: self.frame.size.height - 2*InfoMenuCell.vertPadding
+        )
         self.addSubview(label)
     }
     
