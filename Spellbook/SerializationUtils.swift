@@ -110,4 +110,12 @@ class SerializationUtils: NSObject {
         charNames.sort(by: { $0.lowercased() < $1.lowercased() })
         return charNames
     }
+    
+    static func boolYesNo(_ value: Bool, capitalized: Bool = false) -> String {
+        var string = value ? "yes" : "no"
+        if capitalized {
+            string = string.prefix(1).capitalized + string.dropFirst()
+        }
+        return string
+    }
 }
