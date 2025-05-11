@@ -132,7 +132,7 @@
 		8EB3692229405EAB00856738 /* SpellbookReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB3692129405EAB00856738 /* SpellbookReducers.swift */; };
 		8EB5331129D54D0F00952027 /* SpellSlotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB5331029D54D0F00952027 /* SpellSlotCell.swift */; };
 		8EBC99CA2651B84A00E18669 /* UpdateInfo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8E7615A8264CFA3F00686033 /* UpdateInfo.xml */; };
-		8EBF1792243A4B15004C17FA /* TextFieldChooserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */; };
+		8EBF1792243A4B15004C17FA /* TextFieldChooserActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBF1791243A4B15004C17FA /* TextFieldChooserActionDelegate.swift */; };
 		8ED0B932242BE9E800A085F4 /* down_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED0B931242BE9E800A085F4 /* down_arrow.png */; };
 		8ED0B936242E514F00A085F4 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED0B935242E514F00A085F4 /* FilterView.swift */; };
 		8ED0B9382431392700A085F4 /* NameDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED0B9372431392700A085F4 /* NameDisplayable.swift */; };
@@ -148,6 +148,7 @@
 		FC74CDFF2C9F3938001AC518 /* Ruleset.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74CDFE2C9F3938001AC518 /* Ruleset.swift */; };
 		FC74CE012C9FF168001AC518 /* BidirectionalMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74CE002C9FF168001AC518 /* BidirectionalMap.swift */; };
 		FC8256AC2DCFAABF00CBED32 /* SpellListPDFExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8256AB2DCFAABF00CBED32 /* SpellListPDFExporter.swift */; };
+		FC8256AF2DCFB3E800CBED32 /* ExportSpellListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8256AE2DCFB3E800CBED32 /* ExportSpellListController.swift */; };
 		FCB135DE2D55DCDD007EEB0B /* ParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB135DD2D55DCDD007EEB0B /* ParsingTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -298,7 +299,7 @@
 		8EB3691F293F133900856738 /* SpellbookActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellbookActions.swift; sourceTree = "<group>"; };
 		8EB3692129405EAB00856738 /* SpellbookReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellbookReducers.swift; sourceTree = "<group>"; };
 		8EB5331029D54D0F00952027 /* SpellSlotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSlotCell.swift; sourceTree = "<group>"; };
-		8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldChooserDelegate.swift; sourceTree = "<group>"; };
+		8EBF1791243A4B15004C17FA /* TextFieldChooserActionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldChooserActionDelegate.swift; sourceTree = "<group>"; };
 		8ED0B931242BE9E800A085F4 /* down_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_arrow.png; sourceTree = SOURCE_ROOT; };
 		8ED0B935242E514F00A085F4 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		8ED0B9372431392700A085F4 /* NameDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameDisplayable.swift; sourceTree = "<group>"; };
@@ -314,6 +315,7 @@
 		FC74CDFE2C9F3938001AC518 /* Ruleset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ruleset.swift; sourceTree = "<group>"; };
 		FC74CE002C9FF168001AC518 /* BidirectionalMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidirectionalMap.swift; sourceTree = "<group>"; };
 		FC8256AB2DCFAABF00CBED32 /* SpellListPDFExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListPDFExporter.swift; sourceTree = "<group>"; };
+		FC8256AE2DCFB3E800CBED32 /* ExportSpellListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportSpellListController.swift; sourceTree = "<group>"; };
 		FCB135DD2D55DCDD007EEB0B /* ParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -391,7 +393,7 @@
 				8E177F9A2432F34B005146B6 /* SortFilterTableController.swift */,
 				8E6E2B7B28BC840200AA6483 /* SpellSlotStatus.swift */,
 				8E92CC66243BD49900EB78B2 /* NumberFieldDelegate.swift */,
-				8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */,
+				8EBF1791243A4B15004C17FA /* TextFieldChooserActionDelegate.swift */,
 				8E02F7712437F39200A3050C /* CombinationProtocols.swift */,
 				8E6148B6241991BF00842A18 /* BookBackground.jpeg */,
 				8E6148CD241991C100842A18 /* CasterClass.swift */,
@@ -489,6 +491,7 @@
 				FC46ED5E2DCDC93800D42840 /* SpellListExporter.swift */,
 				FC46ED622DCE46D600D42840 /* SpellListMarkdownExporter.swift */,
 				FC8256AB2DCFAABF00CBED32 /* SpellListPDFExporter.swift */,
+				FC8256AE2DCFB3E800CBED32 /* ExportSpellListController.swift */,
 			);
 			path = Spellbook;
 			sourceTree = "<group>";
@@ -821,6 +824,7 @@
 				8E614908241991C200842A18 /* SION.swift in Sources */,
 				8E614904241991C200842A18 /* Range.swift in Sources */,
 				8E19DA50257C094A002B4F43 /* FilterOptionView.swift in Sources */,
+				FC8256AF2DCFB3E800CBED32 /* ExportSpellListController.swift in Sources */,
 				8EB3692229405EAB00856738 /* SpellbookReducers.swift in Sources */,
 				8E6148E9241991C200842A18 /* LabelViewController.swift in Sources */,
 				8E6148E7241991C200842A18 /* InfoMenuCell.swift in Sources */,
@@ -841,7 +845,7 @@
 				8E614925241991C200842A18 /* EnumMap.swift in Sources */,
 				8EB5331129D54D0F00952027 /* SpellSlotCell.swift in Sources */,
 				8E614903241991C200842A18 /* Spell.swift in Sources */,
-				8EBF1792243A4B15004C17FA /* TextFieldChooserDelegate.swift in Sources */,
+				8EBF1792243A4B15004C17FA /* TextFieldChooserActionDelegate.swift in Sources */,
 				8E61491C241991C200842A18 /* SpellStatus.swift in Sources */,
 				8E6148FA241991C200842A18 /* Sourcebook.swift in Sources */,
 				8E6148F1241991C200842A18 /* SpellComparison.swift in Sources */,
