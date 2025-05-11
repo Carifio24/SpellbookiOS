@@ -10,42 +10,41 @@ import ReSwift
 import UIKit
 import CoreActionSheetPicker
 
-class TextFieldChooserDelegate<A: Action, T:Equatable>: NSObject, UITextFieldDelegate {
+class TextFieldChooserDelegate<T: Equatable>: NSObject, UITextFieldDelegate {
     
-    typealias ActionCreator = (T) -> A
     typealias ItemProvider = () -> T
     typealias StringGetter = (T) -> String
     typealias StringConstructor = (String) -> T
     typealias ItemFilter = (T) -> Bool
+    typealias Completion = (ActionSheetStringPicker?, T) -> ()
     
     let title: String
     let main = Controllers.mainController
     
     let itemProvider: ItemProvider
     let items: [T]
-    let actionCreator: ActionCreator?
+    let completion: Completion
     let nameGetter: StringGetter
     let textSetter: StringGetter
     let nameConstructor: StringConstructor
     let itemFilter: ItemFilter?
     
-    init(items: [T], title: String, itemProvider: @escaping ItemProvider, actionCreator: ActionCreator? = nil, nameGetter: @escaping StringGetter, textSetter: @escaping StringGetter, nameConstructor: @escaping StringConstructor, itemFilter: ItemFilter? = nil) {
+    init(items: [T], title: String, itemProvider: @escaping ItemProvider, completion: @escaping Completion, nameGetter: @escaping StringGetter, textSetter: @escaping StringGetter, nameConstructor: @escaping StringConstructor, itemFilter: ItemFilter? = nil) {
         self.items = items
         self.itemProvider = itemProvider
-        self.actionCreator = actionCreator
+        self.completion = completion
         self.nameGetter = nameGetter
         self.textSetter = textSetter
         self.nameConstructor = nameConstructor
         self.itemFilter = itemFilter
         self.title = title
     }
-
-
+    
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         openPickerWindow(sender: textField)
         return false
     }
-
+    
     func openPickerWindow(sender: UITextField) {
         
         // Get the index of the selected option
@@ -66,9 +65,7 @@ class TextFieldChooserDelegate<A: Action, T:Equatable>: NSObject, UITextFieldDel
                      picker, index, value in
                      let valueStr = value as! String
                      let item = self.nameConstructor(valueStr)
-                     if let creator = self.actionCreator {
-                         store.dispatch(creator(item))
-                     }
+                     self.completion(picker, item)
                      sender.text = self.textSetter(item)
                      sender.endEditing(true)
                      return
@@ -78,10 +75,28 @@ class TextFieldChooserDelegate<A: Action, T:Equatable>: NSObject, UITextFieldDel
         actionSheetPicker?.show()
         
     }
+}
+
+class TextFieldChooserActionDelegate<A: Action, T:Equatable>: TextFieldChooserDelegate<T> {
+    
+    typealias ActionCreator = (T) -> A
+    
+    let actionCreator: ActionCreator?
+    
+    init(items: [T], title: String, itemProvider: @escaping ItemProvider, actionCreator: ActionCreator? = nil, nameGetter: @escaping StringGetter, textSetter: @escaping StringGetter, nameConstructor: @escaping StringConstructor, itemFilter: ItemFilter? = nil) {
+        self.actionCreator = actionCreator
+        let completion: Completion = {
+            picker, item in
+            if let creator = actionCreator {
+                store.dispatch(creator(item))
+            }
+        }
+        super.init(items: items, title: title, itemProvider: itemProvider, completion: completion, nameGetter: nameGetter, textSetter: textSetter, nameConstructor: nameConstructor, itemFilter: itemFilter)
+    }
     
 }
 
-class TextFieldIterableChooserDelegate<A:Action, T:CaseIterable & Equatable>: TextFieldChooserDelegate<A,T> {
+class TextFieldIterableChooserDelegate<A:Action, T:CaseIterable & Equatable>: TextFieldChooserActionDelegate<A,T> {
     
     init(title: String, itemProvider: @escaping ItemProvider, actionCreator: ActionCreator? = nil, nameGetter: @escaping StringGetter, textSetter: @escaping StringGetter, nameConstructor: @escaping StringConstructor, itemFilter: ItemFilter? = nil) {
         let items = T.allCases.map({ $0 })
