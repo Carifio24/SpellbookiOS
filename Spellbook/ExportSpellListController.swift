@@ -22,8 +22,9 @@ enum ExportFormat: Int, CaseIterable {
         }
     }
     
-    var name: String {
-        switch (self) {
+    private static let nameMap: EnumMap<ExportFormat,String> = EnumMap(resolver: {
+        format in
+        switch (format) {
         case .PDF:
             return "PDF"
         case .Markdown:
@@ -31,6 +32,10 @@ enum ExportFormat: Int, CaseIterable {
         case .HTML:
             return "HTML"
         }
+    })
+    
+    var name: String {
+        ExportFormat.nameMap[self]
     }
     
     var mimeType: String {
@@ -43,12 +48,26 @@ enum ExportFormat: Int, CaseIterable {
             return "text/html"
         }
     }
+    
+    var exporterCreator: (Bool) -> SpellListExporter {
+        switch (self) {
+        case .PDF:
+            return SpellListPDFExporter.init
+        case .Markdown:
+            return SpellListMarkdownExporter.init
+        case .HTML:
+            return SpellListHTMLExporter.init
+        }
+    }
+    
+    static func fromName(_ name: String) -> Self? {
+        getOneKey(enumMap: ExportFormat.nameMap, value: name)
+    }
 }
 
 class ExportSpellListController: UIViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
-    
     @IBOutlet weak var listLabel: UILabel!
     @IBOutlet weak var formatLabel: UILabel!
     @IBOutlet weak var allContentLabel: UILabel!
@@ -58,18 +77,49 @@ class ExportSpellListController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var exportButton: UIButton!
     
+    private var list: StatusFilterField = StatusFilterField.All
+    private var exportFormat: ExportFormat = ExportFormat.PDF
+    private var allContent: Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        let listChoiceDelegate = TextFieldChooserDelegate(items: StatusFilterField.allCases, title: "Spell List", itemProvider: { () in return  store.state.profile?.sortFilterStatus.statusFilterField ?? StatusFilterField.All }, nameGetter: { $0.name() }, textSetter: { $0.name() }, nameConstructor: { return StatusFilterField.fromName($0) ?? StatusFilterField.All }, completion: { (_picker, list) in self.list = list })
+        let formatChoiceDelegate = TextFieldChooserDelegate(items: ExportFormat.allCases, title: "Output Format", itemProvider: { () in return ExportFormat.PDF }, nameGetter: { $0.name }, textSetter: { $0.name }, nameConstructor: { return ExportFormat.fromName($0) ?? ExportFormat.PDF }, completion: { (_picker, format) in self.exportFormat = format })
+        allContentSwitch.addTarget(self, action: #selector(allContentSwitchPressed(chooser:)), for: UIControl.Event.valueChanged)
+                
         cancelButton.addTarget(self, action: #selector(cancelButtonPressed), for: UIControl.Event.touchUpInside)
-        
-        let listChoiceDelegate = TextF
+        exportButton.addTarget(self, action: #selector(exportButtonPressed), for: UIControl.Event.touchUpInside)
+    }
+    
+    @objc func allContentSwitchPressed(chooser: UISwitch) {
+        self.allContent = chooser.isOn
     }
     
     @objc func cancelButtonPressed() {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @objc func exportButtonPressed() {
+        guard let profile = store.state.profile else { return }
+        let spellFilterStatus = profile.spellFilterStatus
+        
+        let spellIDs: [Int] = {
+            switch (list) {
+            case .All:
+                return spellFilterStatus.favoriteSpellIDs() + spellFilterStatus.preparedSpellIDs() + spellFilterStatus.knownSpellIDs()
+            case .Favorites:
+                return spellFilterStatus.favoriteSpellIDs()
+            case .Prepared:
+                return spellFilterStatus.preparedSpellIDs()
+            case .Known:
+                return spellFilterStatus.knownSpellIDs()
+            }
+        }()
+        
+        let exporterCreator = exportFormat.exporterCreator
+    }
+        
 
     /*
     // MARK: - Navigation

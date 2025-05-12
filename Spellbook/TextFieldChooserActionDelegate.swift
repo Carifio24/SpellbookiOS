@@ -23,13 +23,13 @@ class TextFieldChooserDelegate<T: Equatable>: NSObject, UITextFieldDelegate {
     
     let itemProvider: ItemProvider
     let items: [T]
-    let completion: Completion
+    let completion: Completion?
     let nameGetter: StringGetter
     let textSetter: StringGetter
     let nameConstructor: StringConstructor
     let itemFilter: ItemFilter?
     
-    init(items: [T], title: String, itemProvider: @escaping ItemProvider, completion: @escaping Completion, nameGetter: @escaping StringGetter, textSetter: @escaping StringGetter, nameConstructor: @escaping StringConstructor, itemFilter: ItemFilter? = nil) {
+    init(items: [T], title: String, itemProvider: @escaping ItemProvider, nameGetter: @escaping StringGetter, textSetter: @escaping StringGetter, nameConstructor: @escaping StringConstructor, completion: Completion? = nil, itemFilter: ItemFilter? = nil) {
         self.items = items
         self.itemProvider = itemProvider
         self.completion = completion
@@ -65,7 +65,9 @@ class TextFieldChooserDelegate<T: Equatable>: NSObject, UITextFieldDelegate {
                      picker, index, value in
                      let valueStr = value as! String
                      let item = self.nameConstructor(valueStr)
-                     self.completion(picker, item)
+                     if let completion = self.completion {
+                        completion(picker, item)
+                     }
                      sender.text = self.textSetter(item)
                      sender.endEditing(true)
                      return
@@ -91,7 +93,7 @@ class TextFieldChooserActionDelegate<A: Action, T:Equatable>: TextFieldChooserDe
                 store.dispatch(creator(item))
             }
         }
-        super.init(items: items, title: title, itemProvider: itemProvider, completion: completion, nameGetter: nameGetter, textSetter: textSetter, nameConstructor: nameConstructor, itemFilter: itemFilter)
+        super.init(items: items, title: title, itemProvider: itemProvider, nameGetter: nameGetter, textSetter: textSetter, nameConstructor: nameConstructor, completion: completion, itemFilter: itemFilter)
     }
     
 }
