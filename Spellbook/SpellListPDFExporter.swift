@@ -8,4 +8,12 @@
 
 import Foundation
 
-class SpellListPDFExporter: SpellListHTMLExporter {}
+class SpellListPDFExporter: SpellListHTMLExporter {
+    func export(path: URL) {
+        do {
+            try self.string.print(to: path)
+        } catch let e {
+            print("\(e)")
+        }
+    }
+}

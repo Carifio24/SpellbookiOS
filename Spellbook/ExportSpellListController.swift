@@ -84,7 +84,7 @@ class ExportSpellListController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let listChoiceDelegate = TextFieldChooserDelegate(items: StatusFilterField.allCases, title: "Spell List", itemProvider: { () in return  store.state.profile?.sortFilterStatus.statusFilterField ?? StatusFilterField.All }, nameGetter: { $0.name() }, textSetter: { $0.name() }, nameConstructor: { return StatusFilterField.fromName($0) ?? StatusFilterField.All }, completion: { (_picker, list) in self.list = list })
+        let listChoiceDelegate = TextFieldChooserDelegate(items: [StatusFilterField.Favorites, StatusFilterField.Prepared, StatusFilterField.Known], title: "Spell List", itemProvider: { () in return  store.state.profile?.sortFilterStatus.statusFilterField ?? StatusFilterField.Favorites }, nameGetter: { $0.name() }, textSetter: { $0.name() }, nameConstructor: { return StatusFilterField.fromName($0) ?? StatusFilterField.Favorites }, completion: { (_picker, list) in self.list = list })
         let formatChoiceDelegate = TextFieldChooserDelegate(items: ExportFormat.allCases, title: "Output Format", itemProvider: { () in return ExportFormat.PDF }, nameGetter: { $0.name }, textSetter: { $0.name }, nameConstructor: { return ExportFormat.fromName($0) ?? ExportFormat.PDF }, completion: { (_picker, format) in self.exportFormat = format })
         allContentSwitch.addTarget(self, action: #selector(allContentSwitchPressed(chooser:)), for: UIControl.Event.valueChanged)
                 
@@ -101,19 +101,23 @@ class ExportSpellListController: UIViewController {
     }
     
     @objc func exportButtonPressed() {
+        if (list == .All) {
+            return
+        }
+        
         guard let profile = store.state.profile else { return }
         let spellFilterStatus = profile.spellFilterStatus
         
         let spellIDs: [Int] = {
             switch (list) {
-            case .All:
-                return spellFilterStatus.favoriteSpellIDs() + spellFilterStatus.preparedSpellIDs() + spellFilterStatus.knownSpellIDs()
             case .Favorites:
                 return spellFilterStatus.favoriteSpellIDs()
             case .Prepared:
                 return spellFilterStatus.preparedSpellIDs()
             case .Known:
                 return spellFilterStatus.knownSpellIDs()
+            default:
+                return []
             }
         }()
         

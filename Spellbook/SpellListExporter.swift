@@ -28,7 +28,7 @@ extension SpellListExporter {
     
     func addTextForSpell(spell: Spell) {
         self.addLineBreak()
-        self.addSpellNameText(name: spell.name)
+        self.addSpellNameText(spell.name)
         self.addLineBreak()
         self.addOrdinalSchoolText(level: spell.level, school: spell.school, ritual: spell.ritual)
         if (self.expanded) {
@@ -69,6 +69,11 @@ extension SpellListExporter {
         self.addLineBreak()
     }
     
-    // TODO: Add this here (once I know how)
-    // func export() {}
+    func export(path: URL) {
+        do {
+            try self.data.write(to: path)
+        } catch let e {
+            print("\(e)")
+        }
+    }
 }

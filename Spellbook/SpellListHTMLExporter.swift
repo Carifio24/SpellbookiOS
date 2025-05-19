@@ -9,7 +9,7 @@
 import Foundation
 
 class SpellListHTMLExporter: SpellListExporter {
-    private var string: String = ""
+    internal var string: String = ""
     var title = ""
     var spells: [Spell] = []
     var expanded: Bool = true
