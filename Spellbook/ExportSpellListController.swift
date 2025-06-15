@@ -81,11 +81,23 @@ class ExportSpellListController: UIViewController {
     private var exportFormat: ExportFormat = ExportFormat.PDF
     private var allContent: Bool = true
     
+    // Note that we need to keep these as member values (or somewhere else with the appropriate lifespan)
+    // If they're defined locally in e.g. viewDidLoad, they'll get GCed when they go out of scope
+    // as the UITextField delegate is a weak reference
+    private var listChoiceDelegate: TextFieldChooserDelegate<StatusFilterField>?
+    private var formatChoiceDelegate: TextFieldChooserDelegate<ExportFormat>?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let listChoiceDelegate = TextFieldChooserDelegate(items: [StatusFilterField.Favorites, StatusFilterField.Prepared, StatusFilterField.Known], title: "Spell List", itemProvider: { () in return  store.state.profile?.sortFilterStatus.statusFilterField ?? StatusFilterField.Favorites }, nameGetter: { $0.name() }, textSetter: { $0.name() }, nameConstructor: { return StatusFilterField.fromName($0) ?? StatusFilterField.Favorites }, completion: { (_picker, list) in self.list = list })
-        let formatChoiceDelegate = TextFieldChooserDelegate(items: ExportFormat.allCases, title: "Output Format", itemProvider: { () in return ExportFormat.PDF }, nameGetter: { $0.name }, textSetter: { $0.name }, nameConstructor: { return ExportFormat.fromName($0) ?? ExportFormat.PDF }, completion: { (_picker, format) in self.exportFormat = format })
+        
+        listChoiceDelegate = TextFieldChooserDelegate(items: [StatusFilterField.Favorites, StatusFilterField.Prepared, StatusFilterField.Known], title: "Spell List", itemProvider: { () in return  store.state.profile?.sortFilterStatus.statusFilterField ?? StatusFilterField.Favorites }, nameGetter: { $0.name() }, textSetter: { $0.name() }, nameConstructor: { return StatusFilterField.fromName($0) ?? StatusFilterField.Favorites }, completion: { (_picker, list) in self.list = list })
+        listChoice.delegate = listChoiceDelegate
+        listChoice.text = (store.state.profile?.sortFilterStatus.statusFilterField ?? StatusFilterField.Favorites).name()
+        
+        formatChoiceDelegate = TextFieldChooserDelegate(items: ExportFormat.allCases, title: "Output Format", itemProvider: { () in return ExportFormat.PDF }, nameGetter: { $0.name }, textSetter: { $0.name }, nameConstructor: { return ExportFormat.fromName($0) ?? ExportFormat.PDF }, completion: { (_picker, format) in self.exportFormat = format })
+        formatChoice.delegate = formatChoiceDelegate
+        formatChoice.text = ExportFormat.PDF.name
+        
         allContentSwitch.addTarget(self, action: #selector(allContentSwitchPressed(chooser:)), for: UIControl.Event.valueChanged)
                 
         cancelButton.addTarget(self, action: #selector(cancelButtonPressed), for: UIControl.Event.touchUpInside)

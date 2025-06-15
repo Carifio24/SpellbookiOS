@@ -81,6 +81,9 @@ class SortFilterTableController: UITableViewController {
     @IBOutlet weak var showMoreSourcebooksButton: UIButton!
     
     // Text field delegates
+    // Note that we need to keep these as member values (or somewhere else with the appropriate lifespan)
+    // If they're defined locally in e.g. viewDidLoad, they'll get GCed when they go out of scope
+    // as the UITextField delegate is a weak reference
     let firstSortDelegate = NameConstructibleChooserDelegate<SortFieldAction,SortField>(
         itemProvider: { () in return store.state.profile?.sortFilterStatus.firstSortField ?? SortField.Name },
         actionCreator: { sf in return SortFieldAction(sortField: sf, level: 1) },
