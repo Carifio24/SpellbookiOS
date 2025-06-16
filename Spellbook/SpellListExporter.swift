@@ -70,6 +70,9 @@ extension SpellListExporter {
     }
     
     func export(path: URL) {
+        self.addTitleText(title)
+        self.addLineBreak()
+        self.spells.forEach(self.addTextForSpell)
         do {
             try self.data.write(to: path)
         } catch let e {

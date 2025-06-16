@@ -65,7 +65,7 @@ enum ExportFormat: Int, CaseIterable {
     }
 }
 
-class ExportSpellListController: UIViewController {
+class ExportSpellListController: UIViewController, UIDocumentPickerDelegate {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var listLabel: UILabel!
@@ -77,9 +77,10 @@ class ExportSpellListController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var exportButton: UIButton!
     
-    private var list: StatusFilterField = StatusFilterField.All
+    private var list: StatusFilterField = StatusFilterField.Favorites
     private var exportFormat: ExportFormat = ExportFormat.PDF
     private var allContent: Bool = true
+    private var tempFile: URL? = nil
     
     // Note that we need to keep these as member values (or somewhere else with the appropriate lifespan)
     // If they're defined locally in e.g. viewDidLoad, they'll get GCed when they go out of scope
@@ -92,7 +93,11 @@ class ExportSpellListController: UIViewController {
         
         listChoiceDelegate = TextFieldChooserDelegate(items: [StatusFilterField.Favorites, StatusFilterField.Prepared, StatusFilterField.Known], title: "Spell List", itemProvider: { () in return  store.state.profile?.sortFilterStatus.statusFilterField ?? StatusFilterField.Favorites }, nameGetter: { $0.name() }, textSetter: { $0.name() }, nameConstructor: { return StatusFilterField.fromName($0) ?? StatusFilterField.Favorites }, completion: { (_picker, list) in self.list = list })
         listChoice.delegate = listChoiceDelegate
-        listChoice.text = (store.state.profile?.sortFilterStatus.statusFilterField ?? StatusFilterField.Favorites).name()
+        var statusFilterField = store.state.profile?.sortFilterStatus.statusFilterField ?? StatusFilterField.Favorites
+        if statusFilterField == StatusFilterField.All {
+            statusFilterField = StatusFilterField.Favorites
+        }
+        listChoice.text = statusFilterField.name()
         
         formatChoiceDelegate = TextFieldChooserDelegate(items: ExportFormat.allCases, title: "Output Format", itemProvider: { () in return ExportFormat.PDF }, nameGetter: { $0.name }, textSetter: { $0.name }, nameConstructor: { return ExportFormat.fromName($0) ?? ExportFormat.PDF }, completion: { (_picker, format) in self.exportFormat = format })
         formatChoice.delegate = formatChoiceDelegate
@@ -134,6 +139,19 @@ class ExportSpellListController: UIViewController {
         }()
         
         let exporterCreator = exportFormat.exporterCreator
+        let exporter = exporterCreator(allContentSwitch.isOn)
+        let temp = getTemporaryURL(suffix: exportFormat.fileExtension, filename: list.name())
+        tempFile = temp
+        do {
+            try exporter.data.write(to: temp)
+        } catch let e {
+            print("\(e)")
+            return
+        }
+        
+        let picker = UIDocumentPickerViewController(forExporting: [temp])
+        picker.delegate = self
+        present(picker , animated: true, completion: nil)
     }
         
 
@@ -146,5 +164,30 @@ class ExportSpellListController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    private func saveTo(url: URL) {
+        print(tempFile?.absoluteString)
+        print(url.absoluteString)
+        if let file = tempFile {
+            do {
+                try FileManager.default.copyItem(at: file, to: url)
+            } catch let e {
+                Toast.makeToast("Error exporting spell list file")
+                print("\(e)")
+            }
+            
+            // try? FileManager.default.removeItem(at: file)
+        }
+    }
+    
+    
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
+        saveTo(url: url)
+    }
+    
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        guard let url = urls.first else { return }
+        saveTo(url: url)
+    }
 
 }

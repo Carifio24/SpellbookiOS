@@ -220,10 +220,17 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     @objc func exportSpellListButtonPressed() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: SideMenuController.exportSpellListIdentifier) as! ExportSpellListController
-        Controllers.mainNavController.pushViewController(controller, animated: true)
+        
+        let popupHeight = CGFloat(225)
+        let popupWidth = 0.75 * SizeUtils.screenWidth
+        let maxPopupWidth = CGFloat(370)
+        let height = popupHeight
+        let width = popupWidth <= maxPopupWidth ? popupWidth : maxPopupWidth
+        
+        let popupVC = PopupViewController(contentController: controller, popupWidth: width, popupHeight: height)
         Controllers.mainController.closeMenuIfOpen()
         Controllers.exportSpellListController = controller
-        UIApplication.shared.setStatusBarTextColor(.light)
+        self.present(popupVC, animated: true, completion: nil)
     }
     
     

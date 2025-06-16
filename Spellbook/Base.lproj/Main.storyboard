@@ -90,63 +90,66 @@
             <objects>
                 <viewController storyboardIdentifier="exportSpellList" id="AAN-v4-GZ8" customClass="ExportSpellListController" customModule="Spellbook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aIl-GN-J2B">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="275"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BookBackground.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="saP-F0-vUV">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="385.33333333333331"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="275"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Export Spell List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vfm-CB-rag">
                                 <rect key="frame" x="72" y="41" width="286" height="47"/>
                                 <fontDescription key="fontDescription" name="CloisterBlack-Light" family="Cloister Black" pointSize="40"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" systemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cPI-6x-zyz">
                                 <rect key="frame" x="87" y="100" width="30" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" systemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Format" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="weF-06-7jN">
                                 <rect key="frame" x="73" y="140" width="59" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" systemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="All content" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIW-fo-f9m">
                                 <rect key="frame" x="42" y="177" width="105" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" systemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kf5-sJ-VPR">
                                 <rect key="frame" x="153" y="93" width="97" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" systemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cY5-9v-jbh">
                                 <rect key="frame" x="153" y="135" width="97" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" systemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i4u-Xe-jv2">
-                                <rect key="frame" x="248" y="798" width="77" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i4u-Xe-jv2">
+                                <rect key="frame" x="248" y="253.00000000000003" width="77" height="34.333333333333343"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Cancel"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhX-W9-IzW">
-                                <rect key="frame" x="330" y="798" width="74" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhX-W9-IzW">
+                                <rect key="frame" x="330" y="253.00000000000003" width="74" height="34.333333333333343"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Export"/>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yym-v0-iwA">
                                 <rect key="frame" x="155" y="172" width="51" height="31"/>
+                                <color key="onTintColor" systemColor="darkTextColor"/>
                             </switch>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="173-eD-s9f"/>
@@ -164,10 +167,10 @@
                             <constraint firstItem="saP-F0-vUV" firstAttribute="trailing" secondItem="aIl-GN-J2B" secondAttribute="trailing" id="NVA-Po-Tll"/>
                             <constraint firstItem="HIW-fo-f9m" firstAttribute="leading" secondItem="173-eD-s9f" secondAttribute="leading" constant="10" id="PB0-p0-7SO"/>
                             <constraint firstItem="yym-v0-iwA" firstAttribute="centerY" secondItem="HIW-fo-f9m" secondAttribute="centerY" id="SnT-A3-4Mq"/>
-                            <constraint firstItem="i4u-Xe-jv2" firstAttribute="top" secondItem="saP-F0-vUV" secondAttribute="bottom" id="YC2-BW-fZb"/>
+                            <constraint firstItem="i4u-Xe-jv2" firstAttribute="centerY" secondItem="rhX-W9-IzW" secondAttribute="centerY" id="YC2-BW-fZb"/>
                             <constraint firstItem="cY5-9v-jbh" firstAttribute="leading" secondItem="weF-06-7jN" secondAttribute="trailing" constant="5" id="YeP-U5-XpR"/>
+                            <constraint firstItem="i4u-Xe-jv2" firstAttribute="top" secondItem="yym-v0-iwA" secondAttribute="bottom" constant="20" id="ZKR-Ux-boH"/>
                             <constraint firstItem="saP-F0-vUV" firstAttribute="top" secondItem="aIl-GN-J2B" secondAttribute="top" id="cyO-zp-N2Y"/>
-                            <constraint firstItem="rhX-W9-IzW" firstAttribute="bottom" secondItem="173-eD-s9f" secondAttribute="bottom" constant="10" id="eGl-Ij-Fb3"/>
                             <constraint firstItem="cPI-6x-zyz" firstAttribute="leading" secondItem="173-eD-s9f" secondAttribute="leading" constant="10" id="iHb-pF-3ZZ"/>
                             <constraint firstItem="cY5-9v-jbh" firstAttribute="centerY" secondItem="weF-06-7jN" secondAttribute="centerY" id="jFd-Vd-r3j"/>
                             <constraint firstItem="weF-06-7jN" firstAttribute="leading" secondItem="173-eD-s9f" secondAttribute="leading" constant="10" id="jK7-ji-Q4Q"/>
@@ -178,6 +181,8 @@
                             <constraint firstItem="Vfm-CB-rag" firstAttribute="centerX" secondItem="173-eD-s9f" secondAttribute="centerX" id="x89-6t-gmv"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="414" height="275"/>
                     <connections>
                         <outlet property="allContentLabel" destination="HIW-fo-f9m" id="2zb-aw-ZvU"/>
                         <outlet property="allContentSwitch" destination="yym-v0-iwA" id="mhB-2g-5zW"/>
