@@ -78,9 +78,10 @@ class ExportSpellListController: UIViewController, UIDocumentPickerDelegate {
     @IBOutlet weak var exportButton: UIButton!
     
     private var list: StatusFilterField = StatusFilterField.Favorites
-    private var exportFormat: ExportFormat = ExportFormat.PDF
+    private var exportFormat: ExportFormat = ExportFormat.Markdown
     private var allContent: Bool = true
     private var tempFile: URL? = nil
+    private var exporter: SpellListExporter? = nil
     
     // Note that we need to keep these as member values (or somewhere else with the appropriate lifespan)
     // If they're defined locally in e.g. viewDidLoad, they'll get GCed when they go out of scope
@@ -101,7 +102,7 @@ class ExportSpellListController: UIViewController, UIDocumentPickerDelegate {
         
         formatChoiceDelegate = TextFieldChooserDelegate(items: ExportFormat.allCases, title: "Output Format", itemProvider: { () in return ExportFormat.PDF }, nameGetter: { $0.name }, textSetter: { $0.name }, nameConstructor: { return ExportFormat.fromName($0) ?? ExportFormat.PDF }, completion: { (_picker, format) in self.exportFormat = format })
         formatChoice.delegate = formatChoiceDelegate
-        formatChoice.text = ExportFormat.PDF.name
+        formatChoice.text = exportFormat.name
         
         allContentSwitch.addTarget(self, action: #selector(allContentSwitchPressed(chooser:)), for: UIControl.Event.valueChanged)
                 
@@ -140,11 +141,27 @@ class ExportSpellListController: UIViewController, UIDocumentPickerDelegate {
         
         let exporterCreator = exportFormat.exporterCreator
         let exporter = exporterCreator(allContentSwitch.isOn)
-        let temp = getTemporaryURL(suffix: exportFormat.fileExtension, filename: list.name())
+        for id in spellIDs {
+            if let spell = SpellbookAppState.allSpells.first(where: { spell in spell.id == id }) {
+                exporter.addTextForSpell(spell: spell)
+            }
+        }
+        // let temp = getTemporaryURL(suffix: exportFormat.fileExtension, filename: list.name())
+        let temp = DOCUMENTS_DIRECTORY.appendingPathComponent(UUID().uuidString + ".md")
         tempFile = temp
+        self.exporter = exporter
         do {
             try exporter.data.write(to: temp)
+            print("SUCCESSFULLY WROTE TEMP FILE")
+            if #available(iOS 16.0, *) {
+                print("FILE EXISTS")
+                print(FileManager.default.fileExists(atPath: temp.path()))
+                print(temp.path())
+            } else {
+                // Fallback on earlier versions
+            }
         } catch let e {
+            print("ERROR WRITING TEMP FILE")
             print("\(e)")
             return
         }
@@ -166,13 +183,39 @@ class ExportSpellListController: UIViewController, UIDocumentPickerDelegate {
     */
     
     private func saveTo(url: URL) {
-        print(tempFile?.absoluteString)
-        print(url.absoluteString)
+        print("======")
+        print(path(tempFile!))
+        print(path(url))
+
         if let file = tempFile {
+            if #available(iOS 16.0, *) {
+                print("ABOUT TO TRY MOVING")
+                print(path(file))
+                print(FileManager.default.fileExists(atPath: path(file)))
+                print(path(url))
+                print(FileManager.default.fileExists(atPath: path(url)))
+            } else {
+                // Fallback on earlier versions
+            }
             do {
-                try FileManager.default.copyItem(at: file, to: url)
+                print(path(url))
+                print("CHOSEN PATH EXISTS:")
+                print(FileManager.default.fileExists(atPath: path(url)))
+                if FileManager.default.fileExists(atPath: path(url)) {
+                    print("REMOVING")
+                    try FileManager.default.removeItem(at: url)
+                }
+                print(path(url.deletingLastPathComponent()))
+                print("Directory exists")
+                print(FileManager.default.fileExists(atPath: path(url.deletingLastPathComponent())))
+                print(path(file), path(url))
+                // try FileManager.default.moveItem(at: file, to: url)
+                if let exporter = self.exporter {
+                    exporter.export(path: url)
+                }
             } catch let e {
                 Toast.makeToast("Error exporting spell list file")
+                print("======ERROR======")
                 print("\(e)")
             }
             
