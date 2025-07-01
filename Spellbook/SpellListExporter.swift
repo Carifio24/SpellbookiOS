@@ -11,7 +11,7 @@ import Foundation
 protocol SpellListExporter {
      
     var title: String { get set }
-    var spells: [Spell] { get }
+    var spells: [Spell] { get set }
     var expanded: Bool { get set }
     
     func addTitleText(_ title: String)
