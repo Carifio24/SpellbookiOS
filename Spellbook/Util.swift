@@ -119,3 +119,25 @@ func valueFrom(ordinal: String) -> Int? {
         return nil
     }
 }
+
+// Storage files
+let DOCUMENTS_DIRECTORY = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+let TEMPORARY_DIRECTORY = FileManager.default.temporaryDirectory
+
+func getTemporaryURL(suffix: String, filename: String? = nil) -> URL {
+    let name = filename ?? UUID().uuidString
+    let path = "\(name).\(suffix)"
+    return TEMPORARY_DIRECTORY.appendingPathComponent(path)
+}
+
+func getDocumentsURL(filename: String) -> URL {
+    return DOCUMENTS_DIRECTORY.appendingPathComponent(filename)
+}
+
+func path(_ url: URL, percentEncoded: Bool = false) -> String {
+    if #available(iOS 16.0, *) {
+        return url.path(percentEncoded: percentEncoded)
+    } else {
+        return url.path
+    }
+}

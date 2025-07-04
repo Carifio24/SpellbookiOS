@@ -40,7 +40,7 @@ extension String {
             return try NSAttributedString(data: data,options: [.documentType: NSAttributedString.DocumentType.html,.characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
         }
         catch {
-            print(error.localizedDescription)
+            Swift.print(error.localizedDescription)
             return nil
         }
     }
@@ -57,7 +57,7 @@ extension String {
             return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
         }
         catch {
-            print(error)
+            Swift.print(error)
             return nil
         }
     }

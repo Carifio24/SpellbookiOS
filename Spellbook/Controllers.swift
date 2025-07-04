@@ -22,5 +22,6 @@ class Controllers {
     static let sideMenuController = revealController.rearViewController as! SideMenuController
     
     static var spellSlotsController: SpellSlotsController? = nil
+    static var exportSpellListController: ExportSpellListController? = nil
     
 }

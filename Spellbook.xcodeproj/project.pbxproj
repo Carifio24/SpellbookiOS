@@ -132,7 +132,7 @@
 		8EB3692229405EAB00856738 /* SpellbookReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB3692129405EAB00856738 /* SpellbookReducers.swift */; };
 		8EB5331129D54D0F00952027 /* SpellSlotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB5331029D54D0F00952027 /* SpellSlotCell.swift */; };
 		8EBC99CA2651B84A00E18669 /* UpdateInfo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 8E7615A8264CFA3F00686033 /* UpdateInfo.xml */; };
-		8EBF1792243A4B15004C17FA /* TextFieldChooserDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */; };
+		8EBF1792243A4B15004C17FA /* TextFieldChooserActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EBF1791243A4B15004C17FA /* TextFieldChooserActionDelegate.swift */; };
 		8ED0B932242BE9E800A085F4 /* down_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8ED0B931242BE9E800A085F4 /* down_arrow.png */; };
 		8ED0B936242E514F00A085F4 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED0B935242E514F00A085F4 /* FilterView.swift */; };
 		8ED0B9382431392700A085F4 /* NameDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ED0B9372431392700A085F4 /* NameDisplayable.swift */; };
@@ -142,8 +142,14 @@
 		8EEDC3E42AE739A60045D002 /* ConfirmNextAvailableCastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEDC3E32AE739A50045D002 /* ConfirmNextAvailableCastController.swift */; };
 		8EF6EF0B264668F60059BCE8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0A264668F60059BCE8 /* Version.swift */; };
 		8EF6EF0D26485A2E0059BCE8 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */; };
+		FC2FAFD42E14F3AA00710B6A /* HtmlToPdf in Frameworks */ = {isa = PBXBuildFile; productRef = FC2FAFD32E14F3AA00710B6A /* HtmlToPdf */; };
+		FC46ED5F2DCDC93800D42840 /* SpellListExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC46ED5E2DCDC93800D42840 /* SpellListExporter.swift */; };
+		FC46ED632DCE46D600D42840 /* SpellListMarkdownExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC46ED622DCE46D600D42840 /* SpellListMarkdownExporter.swift */; };
+		FC6B96CD2DCF25D60091A5CA /* SpellListHTMLExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6B96CC2DCF25D60091A5CA /* SpellListHTMLExporter.swift */; };
 		FC74CDFF2C9F3938001AC518 /* Ruleset.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74CDFE2C9F3938001AC518 /* Ruleset.swift */; };
 		FC74CE012C9FF168001AC518 /* BidirectionalMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC74CE002C9FF168001AC518 /* BidirectionalMap.swift */; };
+		FC8256AC2DCFAABF00CBED32 /* SpellListPDFExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8256AB2DCFAABF00CBED32 /* SpellListPDFExporter.swift */; };
+		FC8256AF2DCFB3E800CBED32 /* ExportSpellListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8256AE2DCFB3E800CBED32 /* ExportSpellListController.swift */; };
 		FCB135DE2D55DCDD007EEB0B /* ParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB135DD2D55DCDD007EEB0B /* ParsingTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -294,7 +300,7 @@
 		8EB3691F293F133900856738 /* SpellbookActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellbookActions.swift; sourceTree = "<group>"; };
 		8EB3692129405EAB00856738 /* SpellbookReducers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellbookReducers.swift; sourceTree = "<group>"; };
 		8EB5331029D54D0F00952027 /* SpellSlotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellSlotCell.swift; sourceTree = "<group>"; };
-		8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldChooserDelegate.swift; sourceTree = "<group>"; };
+		8EBF1791243A4B15004C17FA /* TextFieldChooserActionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldChooserActionDelegate.swift; sourceTree = "<group>"; };
 		8ED0B931242BE9E800A085F4 /* down_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_arrow.png; sourceTree = SOURCE_ROOT; };
 		8ED0B935242E514F00A085F4 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		8ED0B9372431392700A085F4 /* NameDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameDisplayable.swift; sourceTree = "<group>"; };
@@ -304,8 +310,13 @@
 		8EEDC3E32AE739A50045D002 /* ConfirmNextAvailableCastController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmNextAvailableCastController.swift; sourceTree = "<group>"; };
 		8EF6EF0A264668F60059BCE8 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTests.swift; sourceTree = "<group>"; };
+		FC46ED5E2DCDC93800D42840 /* SpellListExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListExporter.swift; sourceTree = "<group>"; };
+		FC46ED622DCE46D600D42840 /* SpellListMarkdownExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListMarkdownExporter.swift; sourceTree = "<group>"; };
+		FC6B96CC2DCF25D60091A5CA /* SpellListHTMLExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListHTMLExporter.swift; sourceTree = "<group>"; };
 		FC74CDFE2C9F3938001AC518 /* Ruleset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ruleset.swift; sourceTree = "<group>"; };
 		FC74CE002C9FF168001AC518 /* BidirectionalMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidirectionalMap.swift; sourceTree = "<group>"; };
+		FC8256AB2DCFAABF00CBED32 /* SpellListPDFExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListPDFExporter.swift; sourceTree = "<group>"; };
+		FC8256AE2DCFB3E800CBED32 /* ExportSpellListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportSpellListController.swift; sourceTree = "<group>"; };
 		FCB135DD2D55DCDD007EEB0B /* ParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -319,6 +330,7 @@
 				8E74FA5629E5194000E13B91 /* SimpleCheckbox in Frameworks */,
 				8E74FA4629E3D7C600E13B91 /* SWXMLHash in Frameworks */,
 				8E74FA5029E3DB3800E13B91 /* ReSwift in Frameworks */,
+				FC2FAFD42E14F3AA00710B6A /* HtmlToPdf in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,7 +395,7 @@
 				8E177F9A2432F34B005146B6 /* SortFilterTableController.swift */,
 				8E6E2B7B28BC840200AA6483 /* SpellSlotStatus.swift */,
 				8E92CC66243BD49900EB78B2 /* NumberFieldDelegate.swift */,
-				8EBF1791243A4B15004C17FA /* TextFieldChooserDelegate.swift */,
+				8EBF1791243A4B15004C17FA /* TextFieldChooserActionDelegate.swift */,
 				8E02F7712437F39200A3050C /* CombinationProtocols.swift */,
 				8E6148B6241991BF00842A18 /* BookBackground.jpeg */,
 				8E6148CD241991C100842A18 /* CasterClass.swift */,
@@ -447,6 +459,7 @@
 				8E6148AE241991BF00842A18 /* SpellTableViewController.swift */,
 				8E7BD0DC244A6BEF00090C40 /* PassThroughView.swift */,
 				8E6148AC241991BF00842A18 /* SpellWindowController.swift */,
+				FC6B96CC2DCF25D60091A5CA /* SpellListHTMLExporter.swift */,
 				8E6148D1241991C100842A18 /* StatusFilterController.swift */,
 				8E6148A3241991BF00842A18 /* StatusFilterField.swift */,
 				8E6148BF241991C000842A18 /* StatusPopupController.swift */,
@@ -477,6 +490,10 @@
 				8E7EB4EC29F3B87F00408EA4 /* SpellSlotsManagerDelegate.swift */,
 				8E07AE0E2A10AFA700C0487B /* Operators.swift */,
 				FC74CDFE2C9F3938001AC518 /* Ruleset.swift */,
+				FC46ED5E2DCDC93800D42840 /* SpellListExporter.swift */,
+				FC46ED622DCE46D600D42840 /* SpellListMarkdownExporter.swift */,
+				FC8256AB2DCFAABF00CBED32 /* SpellListPDFExporter.swift */,
+				FC8256AE2DCFB3E800CBED32 /* ExportSpellListController.swift */,
 			);
 			path = Spellbook;
 			sourceTree = "<group>";
@@ -589,6 +606,7 @@
 				8E74FA4F29E3DB3800E13B91 /* ReSwift */,
 				8E74FA5229E511D300E13B91 /* ActionSheetPicker-3.0 */,
 				8E74FA5529E5194000E13B91 /* SimpleCheckbox */,
+				FC2FAFD32E14F3AA00710B6A /* HtmlToPdf */,
 			);
 			productName = Spellbook;
 			productReference = 397EE96521ACA86400B116B0 /* Spellbook.app */;
@@ -671,6 +689,7 @@
 				8E74FA4E29E3DB3800E13B91 /* XCRemoteSwiftPackageReference "ReSwift" */,
 				8E74FA5129E511D300E13B91 /* XCRemoteSwiftPackageReference "ActionSheetPicker-3" */,
 				8E74FA5429E5194000E13B91 /* XCRemoteSwiftPackageReference "SimpleCheckbox" */,
+				FC8256AD2DCFAC5400CBED32 /* XCRemoteSwiftPackageReference "swift-html-to-pdf" */,
 			);
 			productRefGroup = 397EE96621ACA86400B116B0 /* Products */;
 			projectDirPath = "";
@@ -748,6 +767,7 @@
 				8E6148FC241991C200842A18 /* HashableType.swift in Sources */,
 				8E6148E8241991C200842A18 /* SearchButton.swift in Sources */,
 				8E614909241991C200842A18 /* CharacterSelectionCell.swift in Sources */,
+				FC6B96CD2DCF25D60091A5CA /* SpellListHTMLExporter.swift in Sources */,
 				8E614921241991C200842A18 /* SubClass.swift in Sources */,
 				8E614913241991C200842A18 /* SpellDataCell.swift in Sources */,
 				8E614902241991C200842A18 /* Unit.swift in Sources */,
@@ -791,6 +811,7 @@
 				8E6148F8241991C200842A18 /* StringUtils.swift in Sources */,
 				8EEDC3E22ADA69170045D002 /* HigherLevelSlotController.swift in Sources */,
 				8E614927241991C200842A18 /* SpellBuilder.swift in Sources */,
+				FC46ED5F2DCDC93800D42840 /* SpellListExporter.swift in Sources */,
 				8E02F76224345F6200A3050C /* YesNo.swift in Sources */,
 				8E07AE0D2A0F708700C0487B /* ImportCharacterController.swift in Sources */,
 				8EEDC3E42AE739A60045D002 /* ConfirmNextAvailableCastController.swift in Sources */,
@@ -800,11 +821,13 @@
 				8E6148F5241991C200842A18 /* SpellTableViewController.swift in Sources */,
 				8E6148E4241991C200842A18 /* SourcebookFilterController.swift in Sources */,
 				8E6551BA29AC63E800A3BC43 /* Toast.swift in Sources */,
+				FC46ED632DCE46D600D42840 /* SpellListMarkdownExporter.swift in Sources */,
 				8EF6EF0B264668F60059BCE8 /* Version.swift in Sources */,
 				8E61491E241991C200842A18 /* Constants.swift in Sources */,
 				8E614908241991C200842A18 /* SION.swift in Sources */,
 				8E614904241991C200842A18 /* Range.swift in Sources */,
 				8E19DA50257C094A002B4F43 /* FilterOptionView.swift in Sources */,
+				FC8256AF2DCFB3E800CBED32 /* ExportSpellListController.swift in Sources */,
 				8EB3692229405EAB00856738 /* SpellbookReducers.swift in Sources */,
 				8E6148E9241991C200842A18 /* LabelViewController.swift in Sources */,
 				8E6148E7241991C200842A18 /* InfoMenuCell.swift in Sources */,
@@ -825,7 +848,7 @@
 				8E614925241991C200842A18 /* EnumMap.swift in Sources */,
 				8EB5331129D54D0F00952027 /* SpellSlotCell.swift in Sources */,
 				8E614903241991C200842A18 /* Spell.swift in Sources */,
-				8EBF1792243A4B15004C17FA /* TextFieldChooserDelegate.swift in Sources */,
+				8EBF1792243A4B15004C17FA /* TextFieldChooserActionDelegate.swift in Sources */,
 				8E61491C241991C200842A18 /* SpellStatus.swift in Sources */,
 				8E6148FA241991C200842A18 /* Sourcebook.swift in Sources */,
 				8E6148F1241991C200842A18 /* SpellComparison.swift in Sources */,
@@ -835,6 +858,7 @@
 				39F306A62378A4310078FA83 /* SWRevealViewController.m in Sources */,
 				8E6551B829AB470400A3BC43 /* SerializationUtils.swift in Sources */,
 				8E19DA5A257D6D46002B4F43 /* MessageDialogController.swift in Sources */,
+				FC8256AC2DCFAABF00CBED32 /* SpellListPDFExporter.swift in Sources */,
 				8E61491F241991C200842A18 /* Transitions.swift in Sources */,
 				8E6E2B8428E9FF2400AA6483 /* SpellbookAppState.swift in Sources */,
 				8E6148E5241991C200842A18 /* Duration.swift in Sources */,
@@ -1026,7 +1050,7 @@
 				DEVELOPMENT_TEAM = RSR87G74R7;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Spellbook/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1055,7 +1079,7 @@
 				DEVELOPMENT_TEAM = RSR87G74R7;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = Spellbook/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1078,6 +1102,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RSR87G74R7;
 				INFOPLIST_FILE = SpellbookTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1101,6 +1126,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RSR87G74R7;
 				INFOPLIST_FILE = SpellbookTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1122,6 +1148,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RSR87G74R7;
 				INFOPLIST_FILE = SpellbookUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1142,6 +1169,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RSR87G74R7;
 				INFOPLIST_FILE = SpellbookUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1237,6 +1265,14 @@
 				minimumVersion = 2.5.0;
 			};
 		};
+		FC8256AD2DCFAC5400CBED32 /* XCRemoteSwiftPackageReference "swift-html-to-pdf" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/coenttb/swift-html-to-pdf.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1264,6 +1300,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8E74FA5429E5194000E13B91 /* XCRemoteSwiftPackageReference "SimpleCheckbox" */;
 			productName = SimpleCheckbox;
+		};
+		FC2FAFD32E14F3AA00710B6A /* HtmlToPdf */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC8256AD2DCFAC5400CBED32 /* XCRemoteSwiftPackageReference "swift-html-to-pdf" */;
+			productName = HtmlToPdf;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

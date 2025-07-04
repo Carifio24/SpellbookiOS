@@ -17,7 +17,7 @@ class HigherLevelSlotController: UIViewController {
     @IBOutlet weak var castButton: UIButton!
     
     var spell: Spell?
-    var textDelegate: TextFieldChooserDelegate<GenericSpellbookAction, Int>?
+    var textDelegate: TextFieldChooserActionDelegate<GenericSpellbookAction, Int>?
     
     // TODO: What's a better way to do this?
     var toastController: UIViewController? = nil
@@ -41,7 +41,7 @@ class HigherLevelSlotController: UIViewController {
 
         // TODO: It's kind of gross to need to use this dummy type
         // It feels like a refactor of the delegate is necessary
-        self.textDelegate = TextFieldChooserDelegate<GenericSpellbookAction, Int>(
+        self.textDelegate = TextFieldChooserActionDelegate<GenericSpellbookAction, Int>(
             items: Array(range),
             title: "Select Slot Level",
             itemProvider: { () in return initialLevel },

@@ -35,10 +35,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // Estimated cell height
     static let estimatedHeight = CGFloat(60)
-    
-    // Storage files
-    let documentsDirectory = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-    
+
     // Images for the filter/list navigation bar item
     static let filterIcon = UIImage(named: "FilterIcon")
     static let listIcon = UIImage(named: "ListIcon")
@@ -362,18 +359,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func loadSpellsForProperty(filename: String, propSetter: SpellStatusSetter) {
-        let fileLocation = documentsDirectory.appendingPathComponent(filename)
-        //print("Loading spells from")
-        //print(fileLocation)
+        let fileLocation = DOCUMENTS_DIRECTORY.appendingPathComponent(filename)
         if let fileText = try? String(contentsOf: fileLocation) {
             let fileItems = fileText.components(separatedBy: .newlines)
             for item in fileItems {
-                //var inSpellbook = false
                 for spell in spells {
                     if item == spell.name {
                         propSetter(spell, true)
-                        //print(spell.0.name)
-                        //inSpellbook = true
                         break
                     }
                 }

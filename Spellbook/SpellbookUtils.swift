@@ -8,6 +8,8 @@
 
 import Foundation
 
-func complement<T>(items: [T], allItems: [T]) -> [T] {
-    return allItems.filter({ !items.contains($0) })
+func complement<T>(items: [T], allItems: [T]) -> [T] where T: Equatable {
+    return allItems.filter { !items.contains($0) }
 }
+
+
