@@ -32,12 +32,12 @@ class SpellListMarkdownExporter: SpellListExporter {
     }
     
     func addTitleText(_ title: String) {
-        let toAdd = SpellListMarkdownExporter.headerString(level: 1) + title
+        let toAdd = "\(SpellListMarkdownExporter.headerString(level: 1)) \(title)"
         self.addText(toAdd)
     }
     
     func addSpellNameText(_ name: String) {
-        let toAdd = SpellListMarkdownExporter.headerString(level: 2) + name
+        let toAdd = "\(SpellListMarkdownExporter.headerString(level: 2)) \(name)"
         self.addText(toAdd)
     }
     
@@ -63,7 +63,7 @@ class SpellListMarkdownExporter: SpellListExporter {
             description.append(" (ritual)")
         }
         
-        let toAdd = SpellListMarkdownExporter.headerString(level: 3) + "*\(description)*"
+        let toAdd = "\(SpellListMarkdownExporter.headerString(level: 3)) *\(description)*"
         self.addText(toAdd)
     }
     
