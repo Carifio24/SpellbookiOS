@@ -78,7 +78,7 @@ class ExportSpellListController: UIViewController, UIDocumentPickerDelegate {
     @IBOutlet weak var exportButton: UIButton!
     
     private var list: StatusFilterField = StatusFilterField.Favorites
-    private var exportFormat: ExportFormat = ExportFormat.Markdown
+    private var exportFormat: ExportFormat = ExportFormat.PDF
     private var allContent: Bool = true
     private var tempFile: URL? = nil
     private var exporter: SpellListExporter? = nil
@@ -173,21 +173,23 @@ class ExportSpellListController: UIViewController, UIDocumentPickerDelegate {
     }
     */
     
-    private func saveTo(url: URL) {
+    private func saveTo(url: URL) async {
         if let exporter = self.exporter {
-            exporter.export(path: url)
+            await exporter.export(path: url)
             self.dismiss(animated: true)
         }
     }
     
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentAt url: URL) {
-        saveTo(url: url)
+        guard url.startAccessingSecurityScopedResource() else { print("Scoped error"); return }
+        Task { await saveTo(url: url) }
     }
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         guard let url = urls.first else { return }
-        saveTo(url: url)
+        guard url.startAccessingSecurityScopedResource() else { print("Scoped error"); return }
+        Task { await saveTo(url: url) }
     }
 
 }

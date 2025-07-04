@@ -22,6 +22,7 @@ protocol SpellListExporter {
     func addLineBreak()
     
     var data: Data { get }
+    func export(path: URL) async
 }
 
 extension SpellListExporter {
@@ -67,16 +68,5 @@ extension SpellListExporter {
             }
         }
         self.addLineBreak()
-    }
-    
-    func export(path: URL) {
-        self.addTitleText(title)
-        self.addLineBreak()
-        self.spells.forEach(self.addTextForSpell)
-        do {
-            try self.data.write(to: path)
-        } catch let e {
-            print("\(e)")
-        }
     }
 }

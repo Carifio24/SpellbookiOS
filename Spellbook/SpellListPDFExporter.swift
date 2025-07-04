@@ -7,13 +7,17 @@
 //
 
 import Foundation
+import HtmlToPdf
 
 class SpellListPDFExporter: SpellListHTMLExporter {
-    func export(path: URL) {
-//        do {
-//            try self.string.print(to: path)
-//        } catch let e {
-//            print("\(e)")
-//        }
+    override func export(path: URL) async {
+        self.addTitleText(title)
+        self.addLineBreak()
+        self.spells.forEach(self.addTextForSpell)
+        do {
+            try await self.string.print(to: path)
+        } catch let e {
+            print("\(e)")
+        }
     }
 }

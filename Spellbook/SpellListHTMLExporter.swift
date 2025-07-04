@@ -63,4 +63,15 @@ class SpellListHTMLExporter: SpellListExporter {
             return Data(self.string.utf8)
         }
     }
+    
+    func export(path: URL) async {
+        self.addTitleText(title)
+        self.addLineBreak()
+        self.spells.forEach(self.addTextForSpell)
+        do {
+            try self.data.write(to: path)
+        } catch let e {
+            print("\(e)")
+        }
+    }
 }
