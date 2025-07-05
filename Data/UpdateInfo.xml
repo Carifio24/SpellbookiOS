@@ -57,4 +57,8 @@
         <item name="title">Version 3.7.2 update</item>
         <item name="description">The spellbook has been updated to include &lt;b&gt;Water Breathing from the 2024 PHB&lt;/b&gt;, which was previously missing. Additionally, an issue with the &lt;b&gt;description of Water Walk&lt;/b&gt; has been fixed.</item>
     </section>
+    <section name="v_3_8_0">
+        <item name="title">Version 3.8.0 update</item>
+        <item name="description">The spellbook has been updated with the ability to &lt;b&gt;export a spell list&lt;/b&gt; to an external file. Lists can be exported with all of the information for each spell, or in an abbreviated format (like the app\'s spell table). Available export formats are &lt;b&gt;PDF, Markdown, and HTML&lt;/b&gt;.</item>
+    </section>
 </root>
