@@ -128,9 +128,12 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! CharacterSelectionCell
         cell.deleteButton.addTarget(self, action: #selector(deleteButtonPressed(sender:)), for: UIControl.Event.touchUpInside)
+        cell.pencilButton.addTarget(self, action: #selector(pencilButtonPressed(sender:)), for: UIControl.Event.touchUpInside)
         cell.clipboardButton.addTarget(self, action: #selector(clipboardButtonPressed(sender:)), for: UIControl.Event.touchUpInside)
         cell.deleteButton.tag = indexPath.row
         cell.deleteButton.setImage(CharacterSelectionCell.deleteIcon, for: UIControl.State.normal)
+        cell.pencilButton.tag = indexPath.row
+        cell.pencilButton.setImage(CharacterSelectionCell.pencilIcon, for: UIControl.State.normal)
         cell.clipboardButton.tag = indexPath.row
         cell.clipboardButton.setImage(CharacterSelectionCell.clipboardIcon, for: UIControl.State.normal)
         let name = characters[indexPath.row]
@@ -185,6 +188,15 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         self.present(popupVC, animated: true)
     }
     
+    @objc func displayRenameCharacterWindow(name: String) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "renameCharacter") as! RenameCharacterController
+        controller.name = name
+        
+        let popupVC = createPopup(controller)
+        self.present(popupVC, animated: true)
+    }
+    
     @objc func createDeletionPrompt(name: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "deletePrompt") as! DeletionPromptController
@@ -234,6 +246,12 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         guard let indexPath = indexPathForItem(item: sender) else { return }
         let name = characters[indexPath.row]
         createDeletionPrompt(name: name)
+    }
+    
+    @objc func pencilButtonPressed(sender: UIButton) {
+        guard let indexPath = indexPathForItem(item: sender) else { return }
+        let name = characters[indexPath.row]
+        displayRenameCharacterWindow(name: name)
     }
 
     @objc func clipboardButtonPressed(sender: UIButton) {

@@ -143,6 +143,7 @@
 		8EF6EF0B264668F60059BCE8 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0A264668F60059BCE8 /* Version.swift */; };
 		8EF6EF0D26485A2E0059BCE8 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */; };
 		FC2FAFD42E14F3AA00710B6A /* HtmlToPdf in Frameworks */ = {isa = PBXBuildFile; productRef = FC2FAFD32E14F3AA00710B6A /* HtmlToPdf */; };
+		FC2FAFD82E1A4D0400710B6A /* RenameCharacterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2FAFD72E1A4D0400710B6A /* RenameCharacterController.swift */; };
 		FC46ED5F2DCDC93800D42840 /* SpellListExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC46ED5E2DCDC93800D42840 /* SpellListExporter.swift */; };
 		FC46ED632DCE46D600D42840 /* SpellListMarkdownExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC46ED622DCE46D600D42840 /* SpellListMarkdownExporter.swift */; };
 		FC6B96CD2DCF25D60091A5CA /* SpellListHTMLExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6B96CC2DCF25D60091A5CA /* SpellListHTMLExporter.swift */; };
@@ -310,6 +311,7 @@
 		8EEDC3E32AE739A50045D002 /* ConfirmNextAvailableCastController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmNextAvailableCastController.swift; sourceTree = "<group>"; };
 		8EF6EF0A264668F60059BCE8 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTests.swift; sourceTree = "<group>"; };
+		FC2FAFD72E1A4D0400710B6A /* RenameCharacterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenameCharacterController.swift; sourceTree = "<group>"; };
 		FC46ED5E2DCDC93800D42840 /* SpellListExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListExporter.swift; sourceTree = "<group>"; };
 		FC46ED622DCE46D600D42840 /* SpellListMarkdownExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListMarkdownExporter.swift; sourceTree = "<group>"; };
 		FC6B96CC2DCF25D60091A5CA /* SpellListHTMLExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListHTMLExporter.swift; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 				FC46ED622DCE46D600D42840 /* SpellListMarkdownExporter.swift */,
 				FC8256AB2DCFAABF00CBED32 /* SpellListPDFExporter.swift */,
 				FC8256AE2DCFB3E800CBED32 /* ExportSpellListController.swift */,
+				FC2FAFD72E1A4D0400710B6A /* RenameCharacterController.swift */,
 			);
 			path = Spellbook;
 			sourceTree = "<group>";
@@ -830,6 +833,7 @@
 				FC8256AF2DCFB3E800CBED32 /* ExportSpellListController.swift in Sources */,
 				8EB3692229405EAB00856738 /* SpellbookReducers.swift in Sources */,
 				8E6148E9241991C200842A18 /* LabelViewController.swift in Sources */,
+				FC2FAFD82E1A4D0400710B6A /* RenameCharacterController.swift in Sources */,
 				8E6148E7241991C200842A18 /* InfoMenuCell.swift in Sources */,
 				8E61490C241991C200842A18 /* EnumUtilities.swift in Sources */,
 				8E614919241991C200842A18 /* FromRightDismissAnimator.swift in Sources */,

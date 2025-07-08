@@ -10,13 +10,14 @@ import UIKit
 
 class CharacterSelectionCell: UITableViewCell {
     
-    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var clipboardButton: UIButton!
+    @IBOutlet weak var pencilButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     
     static let iconSize = CGFloat(35)
     static let deleteIcon = UIImage(named: "trash_icon.png")?.withRenderingMode(.alwaysOriginal).resized(width: CharacterSelectionCell.iconSize, height: CharacterSelectionCell.iconSize)
+    static let pencilIcon = UIImage(named: "EditIcon")?.inverseImage(cgResult: true)?.withRenderingMode(.alwaysOriginal).resized(width: CharacterSelectionCell.iconSize * 0.9, height: CharacterSelectionCell.iconSize * 0.9)
     static let clipboardIcon = UIImage(named: "clipboard_icon.png")?.withRenderingMode(.alwaysOriginal).resized(width: CharacterSelectionCell.iconSize, height: CharacterSelectionCell.iconSize)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

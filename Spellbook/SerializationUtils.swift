@@ -73,6 +73,19 @@ class SerializationUtils: NSObject {
         }
     }
     
+    static func renameCharacterProfile(currentName: String, newName: String) -> Bool {
+        do {
+            let profile = try loadCharacterProfile(name: currentName)
+            let deletedOld = SerializationUtils.deleteCharacterProfile(profile: profile)
+            profile.rename(newName: newName)
+            let savedNew = profile.save(filename: SerializationUtils.profileLocation(name: newName))
+            return savedNew && deletedOld
+        } catch let e {
+            print("\(e)")
+            return false
+        }
+    }
+    
     static func loadSettings() -> Settings {
         let settingsLocation = documentsDirectory.appendingPathComponent(settingsFile)
         if let settingsText = try? String(contentsOf: settingsLocation) {

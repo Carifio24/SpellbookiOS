@@ -118,8 +118,8 @@ let deleteProfileMiddleware: AppMiddleware = { dispatch, getState in
             let deletedCurrent = (toDelete.name == profile.name)
             dispatch(UpdateCharacterListAction())
             
-            let characters = SerializationUtils.characterNameList()
             if !deletedCurrent { return }
+            let characters = SerializationUtils.characterNameList()
             
             if characters.count > 0 {
                 do {
@@ -148,6 +148,33 @@ let deleteProfileByNameMiddleware: AppMiddleware = {
                 do {
                     dispatch(DeleteProfileAction(profile: profile))
                 }
+            }
+        }
+    }
+}
+
+let renameProfileMiddleware: AppMiddleware = {
+    dispatch, getState in
+    return { next in
+        return { action in
+            guard let renameAction = action as?
+                    RenameProfileAction else {
+                next(action)
+                return
+            }
+            guard let state = getState() else { return }
+            let currentName = renameAction.currentName
+            let activeName = state.profile?.name
+            let newName = renameAction.newName
+            let renamed = SerializationUtils.renameCharacterProfile(currentName: currentName, newName: renameAction.newName)
+            let renamedCurrent = (currentName == activeName)
+            
+            if (!renamed) { return }
+            Toast.makeToast("Character name changed from \(currentName) to \(newName)")
+            
+            dispatch(UpdateCharacterListAction())
+            if renamedCurrent {
+                dispatch(SwitchProfileByNameAction(name: newName))
             }
         }
     }

@@ -217,6 +217,11 @@ struct DeleteProfileByNameAction: Action {
     let name: String
 }
 
+struct RenameProfileAction: Action {
+    let currentName: String
+    let newName: String
+}
+
 struct SaveProfileAction: Action {
     let profile: CharacterProfile
 }

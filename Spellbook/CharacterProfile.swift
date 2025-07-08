@@ -388,6 +388,10 @@ class CharacterProfile {
         }
         return map
     }
+    
+    func rename(newName: String) {
+        self.name = newName
+    }
 
     
     // Save to a file
