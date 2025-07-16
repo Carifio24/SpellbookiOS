@@ -127,12 +127,6 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! CharacterSelectionCell
-        cell.deleteButton.addTarget(self, action: #selector(deleteButtonPressed(sender:)), for: UIControl.Event.touchUpInside)
-        cell.clipboardButton.addTarget(self, action: #selector(clipboardButtonPressed(sender:)), for: UIControl.Event.touchUpInside)
-        cell.deleteButton.tag = indexPath.row
-        cell.deleteButton.setImage(CharacterSelectionCell.deleteIcon, for: UIControl.State.normal)
-        cell.clipboardButton.tag = indexPath.row
-        cell.clipboardButton.setImage(CharacterSelectionCell.clipboardIcon, for: UIControl.State.normal)
         let name = characters[indexPath.row]
         cell.nameLabel.text = name
         return cell
@@ -142,6 +136,33 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         let name = characters[indexPath.row]
         store.dispatch(SwitchProfileByNameAction(name: name))
         self.dismiss(animated: true, completion: dismissOperations)
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   contextMenuConfigurationForRowAt indexPath: IndexPath,
+                   point: CGPoint) -> UIContextMenuConfiguration? {
+        let name = characters[indexPath.row]
+        return UIContextMenuConfiguration(identifier: indexPath as NSCopying,
+                                          previewProvider: nil,
+                                          actionProvider: {
+            suggestedActions in
+            let copyJSONAction =
+                UIAction(title: "Copy Profile JSON",
+                         image: UIImage(named: "clipboard_icon.png")) { action in
+                    self.copyProfileJSONToClipboard(name: name)
+                }
+            let renameAction =
+                UIAction(title: "Rename Character",
+                         image: UIImage(named: "EditIcon")?.inverseImage(cgResult: true)) { action in
+                    self.displayRenameCharacterWindow(name: name)
+                }
+            let deleteAction =
+                UIAction(title: "Delete Character",
+                         image: UIImage(named: "trash_icon.png")) { action in
+                    self.createDeletionPrompt(name: name)
+                }
+            return UIMenu(title: "Profile Options", children: [copyJSONAction, renameAction, deleteAction])
+        })
     }
     
     @objc func newCharacterButtonPressed() {
@@ -185,7 +206,16 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         self.present(popupVC, animated: true)
     }
     
-    @objc func createDeletionPrompt(name: String) {
+    func displayRenameCharacterWindow(name: String) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "renameCharacter") as! RenameCharacterController
+        controller.name = name
+        
+        let popupVC = createPopup(controller)
+        self.present(popupVC, animated: true)
+    }
+    
+    func createDeletionPrompt(name: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "deletePrompt") as! DeletionPromptController
         controller.main = main
@@ -230,16 +260,18 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         return tableView.indexPathForRow(at: origin)
     }
 
-    @objc func deleteButtonPressed(sender: UIButton) {
-        guard let indexPath = indexPathForItem(item: sender) else { return }
-        let name = characters[indexPath.row]
-        createDeletionPrompt(name: name)
+    func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        return makeTargetedPreview(for: configuration)
     }
 
-    @objc func clipboardButtonPressed(sender: UIButton) {
-        guard let indexPath = indexPathForItem(item: sender) else { return }
-        let name = characters[indexPath.row]
-        copyProfileJSONToClipboard(name: name)
+    func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        return makeTargetedPreview(for: configuration)
+    }
+
+    private func makeTargetedPreview(for configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        guard let indexPath = configuration.identifier as? IndexPath else { return nil }
+        guard let cell = tableView.cellForRow(at: indexPath) as? CharacterSelectionCell else { return nil }
+        return UITargetedPreview(view: cell.contentView)
     }
 }
 
