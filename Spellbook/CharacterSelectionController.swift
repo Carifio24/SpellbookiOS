@@ -206,7 +206,7 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         self.present(popupVC, animated: true)
     }
     
-    @objc func displayRenameCharacterWindow(name: String) {
+    func displayRenameCharacterWindow(name: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "renameCharacter") as! RenameCharacterController
         controller.name = name
@@ -215,7 +215,7 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         self.present(popupVC, animated: true)
     }
     
-    @objc func createDeletionPrompt(name: String) {
+    func createDeletionPrompt(name: String) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "deletePrompt") as! DeletionPromptController
         controller.main = main
@@ -260,28 +260,9 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
         return tableView.indexPathForRow(at: origin)
     }
 
-    @objc func deleteButtonPressed(sender: UIButton) {
-        guard let indexPath = indexPathForItem(item: sender) else { return }
-        let name = characters[indexPath.row]
-        createDeletionPrompt(name: name)
-    }
-    
-    @objc func pencilButtonPressed(sender: UIButton) {
-        guard let indexPath = indexPathForItem(item: sender) else { return }
-        let name = characters[indexPath.row]
-        displayRenameCharacterWindow(name: name)
-    }
-
-    @objc func clipboardButtonPressed(sender: UIButton) {
-        guard let indexPath = indexPathForItem(item: sender) else { return }
-        let name = characters[indexPath.row]
-        copyProfileJSONToClipboard(name: name)
-    }
-    
     func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         return makeTargetedPreview(for: configuration)
     }
-
 
     func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         return makeTargetedPreview(for: configuration)
