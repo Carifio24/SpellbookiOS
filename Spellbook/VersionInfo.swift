@@ -11,10 +11,10 @@ import SWXMLHash
 
 class VersionInfo {
     
-    static let version = Version(major: 3, minor: 8, patch: 0)
-    static let previousVersion = Version(major: 3, minor: 7, patch: 2)
+    static let version = Version(major: 3, minor: 9, patch: 0)
+    static let previousVersion = Version(major: 3, minor: 8, patch: 0)
     
-    static let updateLogVersion = Version(major: 3, minor: 8, patch: 0)
+    static let updateLogVersion = Version(major: 3, minor: 9, patch: 0)
     static let updateLogVersionKey = "v_" + updateLogVersion.string(separator: "_")
     
     static let (updateTitle, updateText): (String, String) = {

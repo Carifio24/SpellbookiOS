@@ -61,4 +61,8 @@
         <item name="title">Version 3.8.0 update</item>
         <item name="description">The spellbook has been updated with the ability to &lt;b&gt;export a spell list&lt;/b&gt; to an external file. Lists can be exported with all of the information for each spell, or in an abbreviated format (like the app\'s spell table). Available export formats are &lt;b&gt;PDF, Markdown, and HTML&lt;/b&gt;.</item>
     </section>
+        <section name="v_3_9_0">
+        <item name="title">Version 3.9.0 update</item>
+        <item name="description">The spellbook has been updated with the ability to &lt;b&gt;rename an existing character&lt;/b&gt;. Additionally, the options for renaming a character, deleting a character, and copying a character's JSON have been moved to the &lt;b&gt;context menu&lt;/b&gt; for the character selection cell. (To access the context menu, &lt;b&gt;long press&lt;/b&gt; on the character's row in the selection dialog.)</item>
+    </section>
 </root>
