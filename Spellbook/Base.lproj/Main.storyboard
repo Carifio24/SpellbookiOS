@@ -1438,7 +1438,7 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="fdw-rP-FdR" secondAttribute="bottom" id="6JC-cd-Q5a"/>
                             <constraint firstItem="fdw-rP-FdR" firstAttribute="leading" secondItem="C39-pq-e5x" secondAttribute="leading" id="Ey9-XY-sYi"/>
-                            <constraint firstItem="tHH-vL-5En" firstAttribute="leading" secondItem="deG-YK-kRH" secondAttribute="trailing" constant="5" id="FFB-Bq-jLx"/>
+                            <constraint firstItem="tHH-vL-5En" firstAttribute="leading" secondItem="deG-YK-kRH" secondAttribute="trailing" constant="15" id="FFB-Bq-jLx"/>
                             <constraint firstItem="c9W-6x-xK1" firstAttribute="top" secondItem="C39-pq-e5x" secondAttribute="top" constant="5" id="GPL-VZ-etx"/>
                             <constraint firstItem="fdw-rP-FdR" firstAttribute="trailing" secondItem="C39-pq-e5x" secondAttribute="trailing" id="JYB-sn-tWv"/>
                             <constraint firstItem="deG-YK-kRH" firstAttribute="top" secondItem="H08-Dk-PUF" secondAttribute="bottom" constant="5" id="MYO-xk-WDD"/>
@@ -1948,7 +1948,7 @@
                             <tableViewSection headerTitle="Filter Options" id="nkt-s2-SOP" userLabel="Filter Options">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="hzf-AI-tqn">
-                                        <rect key="frame" x="0.0" y="225.33333015441895" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="225.33333015441897" width="414" height="43.999999999999972"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hzf-AI-tqn" id="14f-bY-mAc">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -3534,10 +3534,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
