@@ -161,7 +161,7 @@ class CharacterSelectionController: UIViewController, UITableViewDelegate, UITab
                          image: UIImage(named: "trash_icon.png")) { action in
                     self.createDeletionPrompt(name: name)
                 }
-            return UIMenu(title: "Profile Options", children: [copyJSONAction, renameAction, deleteAction])
+            return UIMenu(title: "Character Options", children: [copyJSONAction, renameAction, deleteAction])
         })
     }
     
