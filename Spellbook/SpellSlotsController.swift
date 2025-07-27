@@ -28,7 +28,7 @@ class SpellSlotsController: UITableViewController {
                 $0.profile?.spellSlotStatus.totalSlots
             }
         }
-        
+
         // Add the right navigation bar item to allow editing the totals
         self.navigationItem.rightBarButtonItems = [
                                   UIBarButtonItem(image: UIImage(named: "EditIcon"),
@@ -45,6 +45,10 @@ class SpellSlotsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if navigationController?.isNavigationBarHidden ?? true {
+            navigationController?.setNavigationBarHidden(false, animated: true)
+        }
+
         self.view.backgroundColor = UIColor.clear
         tableView.separatorStyle = .none
         tableView.backgroundView = UIImageView(image:  InfoMenuViewController.backgroundImage)
