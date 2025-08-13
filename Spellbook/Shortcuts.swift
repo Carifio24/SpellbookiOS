@@ -63,3 +63,14 @@ func addShortcut(
             
     application.shortcutItems = existingShortcuts
 }
+
+func addSpellShortcut(spell: Spell) {
+    addShortcut(
+        type: "spellView",
+        title: spell.name,
+        subtitle: nil,
+        userInfo: [
+            "spell": spell
+        ]
+    )
+}

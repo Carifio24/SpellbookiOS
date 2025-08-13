@@ -45,10 +45,10 @@ class SpellCodec {
     private static let CONCENTRATION_PREFIX = "Up to"
     private static let RITUAL_SUFFIX = " or Ritual"
 
-    func parseSpell(sion: SION, b: SpellBuilder) -> Spell {
+    func parseSpell(sion: SION, builder: SpellBuilder) -> Spell {
 
         // Set the values that need no/trivial parsing
-        b.setID(intGetter(sion, key: SpellCodec.ID_KEY))
+        builder.setID(intGetter(sion, key: SpellCodec.ID_KEY))
             .setName(sion[SpellCodec.NAME_KEY].string!)
             .setLevel(intGetter(sion, key: SpellCodec.LEVEL_KEY))
             .setSchool(School.fromName(sion[SpellCodec.SCHOOL_KEY].string!))
@@ -57,27 +57,27 @@ class SpellCodec {
         if let array = locations.array {
             for location in array {
                 if let sb = Sourcebook.fromCode(location[SpellCodec.SOURCEBOOK_KEY].string) {
-                    b.addLocation(sourcebook: sb, page: intGetter(location, key: SpellCodec.PAGE_KEY))
+                    builder.addLocation(sourcebook: sb, page: intGetter(location, key: SpellCodec.PAGE_KEY))
                 }
             }
         }
         let durationString = sion[SpellCodec.DURATION_KEY].string! // Use this again later for the concentration part
         do {
-            try b.setDuration(Duration.fromString(durationString))
+            try builder.setDuration(Duration.fromString(durationString))
         } catch {
-            b.setDuration(Duration())
+            builder.setDuration(Duration())
         }
         
         do {
-            try b.setRange(Range.fromString(sion[SpellCodec.RANGE_KEY].string!))
+            try builder.setRange(Range.fromString(sion[SpellCodec.RANGE_KEY].string!))
         } catch {
-            b.setRange(Range())
+            builder.setRange(Range())
         }
         
         if (durationString.starts(with: SpellCodec.CONCENTRATION_PREFIX)) {
-            b.setConcentration(true)
+            builder.setConcentration(true)
         } else {
-            b.setConcentration(sion[SpellCodec.CONCENTRATION_KEY].bool ?? false)
+            builder.setConcentration(sion[SpellCodec.CONCENTRATION_KEY].bool ?? false)
         }
         
         var castingTimeString = sion[SpellCodec.CASTING_TIME_KEY].string!
@@ -88,57 +88,71 @@ class SpellCodec {
         }
         
         do {
-            try b.setCastingTime(CastingTime.fromString(castingTimeString))
+            try builder.setCastingTime(CastingTime.fromString(castingTimeString))
         } catch {
-            b.setCastingTime(CastingTime())
+            builder.setCastingTime(CastingTime())
         }
         
-        b.setRitual(sion[SpellCodec.RITUAL_KEY].bool ?? endsWithRitual)
+        builder.setRitual(sion[SpellCodec.RITUAL_KEY].bool ?? endsWithRitual)
         
-        b.setMaterials(sion[SpellCodec.MATERIAL_KEY].string ?? "")
-        b.setRoyalties(sion[SpellCodec.ROYALTY_KEY].string ?? "")
+        builder.setMaterials(sion[SpellCodec.MATERIAL_KEY].string ?? "")
+        builder.setRoyalties(sion[SpellCodec.ROYALTY_KEY].string ?? "")
         
         // components
         let components = sion[SpellCodec.COMPONENTS_KEY]
         for (_, v) in components {
-            if v == "V" { b.setVerbal(true); continue }
-            if v == "S" { b.setSomatic(true); continue }
-            if v == "M" { b.setMaterial(true); continue }
-            if v == "R" { b.setRoyalty(true); continue }
+            if v == "V" { builder.setVerbal(true); continue }
+            if v == "S" { builder.setSomatic(true); continue }
+            if v == "M" { builder.setMaterial(true); continue }
+            if v == "R" { builder.setRoyalty(true); continue }
         }
         
         // Description
-        b.setDescription(sion[SpellCodec.DESCRIPTION_KEY].string!)
+        builder.setDescription(sion[SpellCodec.DESCRIPTION_KEY].string!)
         
         // Higher level description
         let hlString = sion[SpellCodec.HIGHER_LEVEL_KEY].string ?? ""
-        b.setHigherLevelDesc(hlString)
+        builder.setHigherLevelDesc(hlString)
         
         let classes = sion[SpellCodec.CLASSES_KEY]
         if let array = classes.array {
             for cls in array {
-                b.addClass(CasterClass.fromName(cls.string!))
+                builder.addClass(CasterClass.fromName(cls.string!))
             }
         }
         
         let subclasses = sion[SpellCodec.SUBCLASSES_KEY]
         if let array = subclasses.array {
             for subclass in array {
-                b.addSubclass(SubClass.fromName(subclass.string!))
+                builder.addSubclass(SubClass.fromName(subclass.string!))
             }
         }
         
         let tceExpandedClasses = sion[SpellCodec.TCE_EXPANDED_CLASSES_KEY]
         if let array = tceExpandedClasses.array {
             for cls in array {
-                b.addTashasExpandedClass(CasterClass.fromName(cls.string!))
+                builder.addTashasExpandedClass(CasterClass.fromName(cls.string!))
             }
         }
 
         let rulesetName = sion[SpellCodec.RULESET_KEY].string
         let ruleset = Ruleset.fromName(rulesetName) ?? Ruleset.Rules2014
-        b.setRuleset(ruleset)
+        builder.setRuleset(ruleset)
         
-        return b.buildAndReset()
+        return builder.buildAndReset()
+    }
+    
+    func toSION(_ spell: Spell) -> SION {
+        var sion: SION = [:]
+        
+        sion[SpellCodec.ID_KEY].int = spell.id
+        sion[SpellCodec.NAME_KEY].string = spell.name
+        sion[SpellCodec.DESCRIPTION_KEY].string = spell.description
+        sion[SpellCodec.HIGHER_LEVEL_KEY].string = spell.higherLevel
+        
+        sion[SpellCodec.RANGE_KEY].string = spell.range.string()
+        sion[SpellCodec.DURATION_KEY].string = spell.duration.string()
+        
+        return sion
     }
 }
