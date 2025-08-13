@@ -153,6 +153,7 @@
 		FC8256AF2DCFB3E800CBED32 /* ExportSpellListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8256AE2DCFB3E800CBED32 /* ExportSpellListController.swift */; };
 		FCB135DE2D55DCDD007EEB0B /* ParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB135DD2D55DCDD007EEB0B /* ParsingTests.swift */; };
 		FCD5CEA82E4C53CF003C4D96 /* Shortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD5CEA72E4C53CD003C4D96 /* Shortcuts.swift */; };
+		FCD5CEAA2E4CFC42003C4D96 /* SpellCodec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD5CEA92E4CFC42003C4D96 /* SpellCodec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -322,6 +323,7 @@
 		FC8256AE2DCFB3E800CBED32 /* ExportSpellListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportSpellListController.swift; sourceTree = "<group>"; };
 		FCB135DD2D55DCDD007EEB0B /* ParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingTests.swift; sourceTree = "<group>"; };
 		FCD5CEA72E4C53CD003C4D96 /* Shortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shortcuts.swift; sourceTree = "<group>"; };
+		FCD5CEA92E4CFC42003C4D96 /* SpellCodec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellCodec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -384,6 +386,7 @@
 		397EE96721ACA86400B116B0 /* Spellbook */ = {
 			isa = PBXGroup;
 			children = (
+				FCD5CEA92E4CFC42003C4D96 /* SpellCodec.swift */,
 				FCD5CEA72E4C53CD003C4D96 /* Shortcuts.swift */,
 				FC74CE002C9FF168001AC518 /* BidirectionalMap.swift */,
 				397EE96C21ACA86400B116B0 /* Main.storyboard */,
@@ -819,6 +822,7 @@
 				8E614927241991C200842A18 /* SpellBuilder.swift in Sources */,
 				FC46ED5F2DCDC93800D42840 /* SpellListExporter.swift in Sources */,
 				8E02F76224345F6200A3050C /* YesNo.swift in Sources */,
+				FCD5CEAA2E4CFC42003C4D96 /* SpellCodec.swift in Sources */,
 				8E07AE0D2A0F708700C0487B /* ImportCharacterController.swift in Sources */,
 				8EEDC3E42AE739A60045D002 /* ConfirmNextAvailableCastController.swift in Sources */,
 				8EEA28FD297C23D8004971AD /* SpellFilter.swift in Sources */,
