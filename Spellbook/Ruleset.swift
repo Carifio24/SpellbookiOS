@@ -8,17 +8,17 @@
 
 import Foundation
 
-enum Ruleset {
+enum Ruleset: Int, NameConstructible {
     case Rules2014, Rules2024, RulesCreated
     
-    private static let nameMap: [String:Ruleset] = [
-        "2014": Rules2014,
-        "2024": Rules2024,
-        "created": RulesCreated,
-    ]
-    
-    static func fromName(_ name: String?) -> Ruleset? {
-        guard var key = name?.lowercased() else { return nil }
-        return Ruleset.nameMap[key]
+    internal static var displayNameMap = EnumMap<Ruleset, String> { e in
+        switch(e) {
+        case .Rules2014:
+            return "2014"
+        case .Rules2024:
+            return "2024"
+        case .RulesCreated:
+            return "Created"
+        }
     }
 }
