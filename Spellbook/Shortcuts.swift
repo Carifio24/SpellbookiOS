@@ -25,7 +25,7 @@ func addShortcut(
     let application = UIApplication.shared
     var order = getOrderedShortcuts()
     
-    order.removeAll { $0 == type }
+    order.removeAll { $0 == title }
     
     if order.count >= MAX_SHORTCUTS {
         order.removeFirst(order.count - MAX_SHORTCUTS + 1)
@@ -35,14 +35,14 @@ func addShortcut(
    
     UserDefaults.standard.set(order, forKey: SHORTCUT_STORAGE_KEY)
     
-    let existingShortcuts = order.map { shortcutType in
+    let existingShortcuts = order.map { shortcutTitle in
         // Try to reuse the existing shortcut’s data if it exists in current list
-        if let current = application.shortcutItems?.first(where: { $0.type == shortcutType }),
-           shortcutType != type {
+        if let current = application.shortcutItems?.first(where: { $0.localizedTitle == shortcutTitle }),
+           shortcutTitle != title {
             return current
         }
         
-        if shortcutType == type {
+        if shortcutTitle == title {
             return UIApplicationShortcutItem(
                 type: type,
                 localizedTitle: title,
@@ -53,10 +53,10 @@ func addShortcut(
         }
         
         return UIApplicationShortcutItem(
-            type: shortcutType,
-            localizedTitle: shortcutType,
+            type: type,
+            localizedTitle: shortcutTitle,
             localizedSubtitle: nil,
-            icon: UIApplicationShortcutIcon(type: .compose),
+            icon: UIApplicationShortcutIcon(type: iconType),
             userInfo: nil
         )
     }
