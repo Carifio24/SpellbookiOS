@@ -136,7 +136,7 @@ class SpellCodec {
         }
 
         let rulesetName = sion[SpellCodec.RULESET_KEY].string
-        let ruleset = Ruleset.fromName(rulesetName) ?? Ruleset.Rules2014
+        let ruleset = rulesetName != nil ? Ruleset.fromName(rulesetName!) : Ruleset.Rules2014
         builder.setRuleset(ruleset)
         
         return builder.buildAndReset()
@@ -149,10 +149,39 @@ class SpellCodec {
         sion[SpellCodec.NAME_KEY].string = spell.name
         sion[SpellCodec.DESCRIPTION_KEY].string = spell.description
         sion[SpellCodec.HIGHER_LEVEL_KEY].string = spell.higherLevel
-        
+        sion[SpellCodec.LEVEL_KEY].int = spell.level
+        sion[SpellCodec.SCHOOL_KEY].string = spell.school.displayName
+
         sion[SpellCodec.RANGE_KEY].string = spell.range.string()
         sion[SpellCodec.DURATION_KEY].string = spell.duration.string()
-        
+        sion[SpellCodec.CASTING_TIME_KEY].string = spell.castingTime.string()
+
+        sion[SpellCodec.RITUAL_KEY].bool = spell.ritual
+        sion[SpellCodec.CONCENTRATION_KEY].bool = spell.concentration
+
+        sion[SpellCodec.MATERIAL_KEY].string = spell.materials
+        sion[SpellCodec.ROYALTY_KEY].string = spell.royalties
+
+        var components: [String] = []
+        if spell.verbal { components.append("V") }
+        if spell.somatic { components.append("S") }
+        if spell.material { components.append("M") }
+        if spell.royalty { components.append("R") }
+
+        sion[SpellCodec.CLASSES_KEY].array = spell.classes.map { SION($0.displayName) }
+        sion[SpellCodec.SUBCLASSES_KEY].array = spell.subclasses.map { SION($0.displayName) }
+        sion[SpellCodec.TCE_EXPANDED_CLASSES_KEY].array = spell.tashasExpandedClasses.map { SION($0.displayName) }
+
+        sion[SpellCodec.RULESET_KEY].string = spell.ruleset.displayName
+
+        sion[SpellCodec.LOCATIONS_KEY].array = spell.locations.map {
+            entry in
+            return [
+                SION.Key(SpellCodec.SOURCEBOOK_KEY): SION(entry.key.displayName),
+                SION.Key(SpellCodec.PAGE_KEY): SION(entry.value),
+            ]
+        }
+
         return sion
     }
 }
