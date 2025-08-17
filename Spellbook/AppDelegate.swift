@@ -57,8 +57,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "spellWindow") as! SpellWindowController
+            controller.modalPresentationStyle = .fullScreen
+            controller.transitioningDelegate = controller
             controller.fromShortcut = true
-            Controllers.mainNavController.present(controller, animated: true, completion: { controller.spell = spell })
+            window?.rootViewController = controller
+            controller.spell = spell
             completionHandler(true)
         }
         
