@@ -79,10 +79,22 @@ class SpellWindowController: UIViewController {
     var spell = Spell() {
         didSet { setSpell(spell) }
     }
+    
+    var fromShortcut: Bool
+    
+    init(shortcut: Bool = false) {
+        self.fromShortcut = shortcut
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        self.fromShortcut = false
+        super.init(coder: coder)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // We close the window on a swipe to the right
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
@@ -108,6 +120,12 @@ class SpellWindowController: UIViewController {
         })
         
         castButton.addTarget(self, action: #selector(self.onCastClicked), for: UIControl.Event.touchUpInside)
+        
+        if fromShortcut {
+            for button in [favoriteButton, preparedButton, knownButton, castButton] {
+                button?.isHidden = true
+            }
+        }
         
         // Set the content view to fill the screen
         contentView.frame = UIScreen.main.bounds
@@ -141,16 +159,25 @@ class SpellWindowController: UIViewController {
     
     func setSpell(_ spell: Spell) {
         
+        print("Starting setSpell")
+        print(spell)
+        
         // Get the character profile
         guard let profile = store.state.profile else { return }
         
         var needsLayoutUpdate = false
         
+        print("Got profile")
+        
         // Don't show the cast button for cantrips
-        castButton.isHidden = spell.level == 0
+        castButton.isHidden = fromShortcut || spell.level == 0
+        
+        print("Hid cast button for cantrip")
         
         // Set the text on the name label
         spellNameLabel.text = spell.name
+        
+        print("Set text")
         
         // Do the same for the body of the spell text
         schoolLevelLabel.attributedText = schoolLevelText(spell)
@@ -171,7 +198,7 @@ class SpellWindowController: UIViewController {
         rangeLabel.attributedText = propertyText(name: "Range", text: spell.range.string())
         concentrationLabel.attributedText = propertyText(name: "Concentration", text: bool_to_yn(yn: spell.concentration))
         classesLabel.attributedText = propertyText(name: "Classes", text: spell.classesString())
-        if (profile.sortFilterStatus.useTashasExpandedLists && spell.tashasExpandedClasses.count > 0) {
+        if fromShortcut || (profile.sortFilterStatus.useTashasExpandedLists && spell.tashasExpandedClasses.count > 0) {
             expandedClassesLabel.attributedText = propertyText(name: "TCE Expanded Classes", text: spell.tashasExpandedClassesString())
         }
         descriptionLabel.attributedText = propertyText(name: "Description", text: spell.description, addLine: true)
@@ -179,10 +206,14 @@ class SpellWindowController: UIViewController {
             higherLevelLabel.attributedText = propertyText(name: "Higher level", text: spell.higherLevel, addLine: true)
         }
         
+        print("Set labels")
+
         // Set the spell buttons to the correct state
         favoriteButton.set(profile.spellFilterStatus.isFavorite(spell))
         preparedButton.set(profile.spellFilterStatus.isPrepared(spell))
         knownButton.set(profile.spellFilterStatus.isKnown(spell))
+        
+        print("Set buttons")
         
         // Set the scroll view content size
         scrollView.contentSize = self.view.frame.size
@@ -266,6 +297,15 @@ class SpellWindowController: UIViewController {
         
         if let toast = message {
             self.view.makeToast(toast, duration: Constants.toastDuration)
+        }
+    }
+    
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        super.dismiss(animated: flag, completion: completion)
+        if (fromShortcut) {
+            // If we're opening from a shortcut, this should be a standalone view
+            // and so I think it makes sense to directly exit the application here
+            exit(0)
         }
     }
 

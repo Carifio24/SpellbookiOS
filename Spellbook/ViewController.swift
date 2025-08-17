@@ -589,6 +589,37 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
     
+    private func makeTargetedPreview(for configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        guard let indexPath = configuration.identifier as? IndexPath else { return nil }
+        guard let cell = spellTable.cellForRow(at: indexPath) as? SpellDataCell else { return nil }
+        return UITargetedPreview(view: cell.contentView)
+    }
+    
+    func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        return makeTargetedPreview(for: configuration)
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   contextMenuConfigurationForRowAt indexPath: IndexPath,
+                   point: CGPoint) -> UIContextMenuConfiguration? {
+        let cell = tableView.cellForRow(at: indexPath) as! SpellDataCell
+        let spell = cell.spell
+        return UIContextMenuConfiguration(
+            identifier: indexPath as NSCopying,
+            previewProvider: nil,
+            actionProvider: {
+                suggestedActions in
+                let shortcutAction =
+                UIAction(
+                    title: "Create Shortcut",
+                    image: UIImage(named: "book_empty.png")) {
+                        action in addSpellShortcut(spell: spell)
+                    }
+                return UIMenu(title: "Spell Options", children: [shortcutAction])
+            }
+        )
+    }
+    
     func sort() {
         store.dispatch(SortNeededAction())
     }

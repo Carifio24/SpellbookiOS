@@ -45,7 +45,9 @@ class SpellCodec {
     private static let CONCENTRATION_PREFIX = "Up to"
     private static let RITUAL_SUFFIX = " or Ritual"
 
-    func parseSpell(sion: SION, builder: SpellBuilder) -> Spell {
+    func parseSpell(sion: SION, builder spellBuilder: SpellBuilder? = nil) -> Spell {
+        
+        let builder = spellBuilder ?? SpellBuilder()
 
         // Set the values that need no/trivial parsing
         builder.setID(intGetter(sion, key: SpellCodec.ID_KEY))

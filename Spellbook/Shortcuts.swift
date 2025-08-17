@@ -35,12 +35,14 @@ func addShortcut(
    
     UserDefaults.standard.set(order, forKey: SHORTCUT_STORAGE_KEY)
     
+    
     let existingShortcuts = order.map { shortcutTitle in
         // Try to reuse the existing shortcut’s data if it exists in current list
-        if let current = application.shortcutItems?.first(where: { $0.localizedTitle == shortcutTitle }),
-           shortcutTitle != title {
+        if let current = application.shortcutItems?.first(where: { $0.localizedTitle == shortcutTitle }) {
             return current
         }
+        
+        let info = userInfo as [String: NSSecureCoding]?
         
         if shortcutTitle == title {
             return UIApplicationShortcutItem(
@@ -48,7 +50,7 @@ func addShortcut(
                 localizedTitle: title,
                 localizedSubtitle: subtitle,
                 icon: UIApplicationShortcutIcon(type: iconType),
-                userInfo: userInfo as [String: NSSecureCoding]?
+                userInfo: info
             )
         }
         
@@ -57,7 +59,7 @@ func addShortcut(
             localizedTitle: shortcutTitle,
             localizedSubtitle: nil,
             icon: UIApplicationShortcutIcon(type: iconType),
-            userInfo: nil
+            userInfo: info
         )
     }
             
@@ -65,12 +67,19 @@ func addShortcut(
 }
 
 func addSpellShortcut(spell: Spell) {
+    let codec = SpellCodec()
+    let sion = codec.toSION(spell)
+    
+    var jsonString = String(sion.json)
+    fixEscapeCharacters(&jsonString)
+    let type = "Open \(spell.name)"
+    
     addShortcut(
-        type: "spellView",
+        type: type,
         title: spell.name,
         subtitle: nil,
         userInfo: [
-            "spell": spell
+            "spell": jsonString as NSString
         ]
     )
 }

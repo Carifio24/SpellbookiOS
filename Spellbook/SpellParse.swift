@@ -137,9 +137,9 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
             b.addTashasExpandedClass(CasterClass.fromName(name.string!))
         }
     }
-    
+
     let rulesetName = obj["ruleset"].string
-    let ruleset = Ruleset.fromName(rulesetName) ?? Ruleset.Rules2014
+    let ruleset = rulesetName != nil ? Ruleset.fromName(rulesetName!) : Ruleset.Rules2014
     b.setRuleset(ruleset)
     
 	return b.buildAndReset()
