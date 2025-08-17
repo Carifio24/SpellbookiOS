@@ -11,8 +11,16 @@ import UIKit
 fileprivate let MAX_SHORTCUTS = 4
 fileprivate let SHORTCUT_STORAGE_KEY = "dynamicShortcutOrder"
 
-func getOrderedShortcuts() -> [String] {
-    return UserDefaults.standard.stringArray(forKey: SHORTCUT_STORAGE_KEY) ?? []
+struct ShortcutInfo: Codable {
+    let type: String
+    let title: String
+}
+
+func getOrderedShortcuts() -> [ShortcutInfo] {
+    guard let shortcuts = UserDefaults.standard.array(forKey: SHORTCUT_STORAGE_KEY) as? [Data] else {
+        return []
+    }
+    return shortcuts.compactMap { data in return try? PropertyListDecoder().decode(ShortcutInfo.self, from: data) }
 }
 
 func addShortcut(
@@ -25,28 +33,29 @@ func addShortcut(
     let application = UIApplication.shared
     var order = getOrderedShortcuts()
     
-    order.removeAll { $0 == title }
+    order.removeAll { $0.title == title }
     
     if order.count >= MAX_SHORTCUTS {
         order.removeFirst(order.count - MAX_SHORTCUTS + 1)
     }
     
-    order.append(type)
-   
-    UserDefaults.standard.set(order, forKey: SHORTCUT_STORAGE_KEY)
+    order.append(ShortcutInfo(type: type, title: title))
+    
+    let orderedInfo = order.compactMap { try? PropertyListEncoder().encode($0) }
+    UserDefaults.standard.set(orderedInfo, forKey: SHORTCUT_STORAGE_KEY)
     
     
-    let existingShortcuts = order.map { shortcutTitle in
+    let existingShortcuts = order.map { shortcutInfo in
         // Try to reuse the existing shortcut’s data if it exists in current list
-        if let current = application.shortcutItems?.first(where: { $0.localizedTitle == shortcutTitle }) {
+        if let current = application.shortcutItems?.first(where: { $0.localizedTitle == shortcutInfo.title }) {
             return current
         }
         
         let info = userInfo as [String: NSSecureCoding]?
         
-        if shortcutTitle == title {
+        if shortcutInfo.title == title {
             return UIApplicationShortcutItem(
-                type: type,
+                type: shortcutInfo.type,
                 localizedTitle: title,
                 localizedSubtitle: subtitle,
                 icon: UIApplicationShortcutIcon(type: iconType),
@@ -55,8 +64,8 @@ func addShortcut(
         }
         
         return UIApplicationShortcutItem(
-            type: type,
-            localizedTitle: shortcutTitle,
+            type: shortcutInfo.type,
+            localizedTitle: shortcutInfo.title,
             localizedSubtitle: nil,
             icon: UIApplicationShortcutIcon(type: iconType),
             userInfo: info
@@ -71,15 +80,24 @@ func addSpellShortcut(spell: Spell) {
     let sion = codec.toSION(spell)
     
     var jsonString = String(sion.json)
-    fixEscapeCharacters(&jsonString)
-    let type = "Open \(spell.name)"
+    let replacements = [
+        "\\'" : "\'",
+        "\\\\" : "\\",
+    ]
+    fixEscapeCharacters(&jsonString, replacements: replacements)
+    
+    // The "type" is what is displayed on the home screen context menu
+    // so we make the type be the spell name, and store our own type info
+    // in the userInfo
+    let type = spell.name
     
     addShortcut(
         type: type,
-        title: spell.name,
+        title: type,
         subtitle: nil,
         userInfo: [
-            "spell": jsonString as NSString
+            "spell": jsonString as NSString,
+            "type": "SpellView"
         ]
     )
 }

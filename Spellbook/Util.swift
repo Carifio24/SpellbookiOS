@@ -19,14 +19,14 @@ func bool_to_yn(yn: Bool) -> String {
 	}
 }
 
+let defaultEscapeReplacements = [
+    "\\'" : "\'",
+    "\\\\" : "\\",
+    "\\n" : "\n",
+    "\\t" : "\t"
+]
 
-func fixEscapeCharacters(_ str : inout String) {
-    let replacements : [String : String] = [
-        "\\'" : "\'",
-        "\\\\" : "\\",
-        "\\n" : "\n",
-        "\\t" : "\t"
-    ]
+func fixEscapeCharacters(_ str : inout String, replacements: [String:String] = defaultEscapeReplacements) {
     for x in replacements {
         str = str.replacingOccurrences(of: x.0, with: x.1)
     }

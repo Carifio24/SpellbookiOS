@@ -45,24 +45,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
-       
-        if shortcutItem.type.starts(with: "Open") {
-            print("Spell shortcut")
+        
+        guard let info = shortcutItem.userInfo else {
+            completionHandler(false)
+            return
+        }
+        
+        if let spellJSON = info["spell"], let type = info["type"], type as? String == "SpellView" {
             let codec = SpellCodec()
-            let userInfo = shortcutItem.userInfo
-            guard let json = userInfo?["spell"] else { completionHandler(false); return }
-            let jsonString = json as! String
+            let jsonString = spellJSON as! String
             let sion = SION(json: jsonString)
             let spell = codec.parseSpell(sion: sion)
-            
+
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "spellWindow") as! SpellWindowController
+            controller.modalPresentationStyle = .fullScreen
+            controller.transitioningDelegate = controller
             controller.fromShortcut = true
             Controllers.mainNavController.present(controller, animated: true, completion: { controller.spell = spell })
             completionHandler(true)
+        } else {
+            completionHandler(false)
         }
         
-        completionHandler(false)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
