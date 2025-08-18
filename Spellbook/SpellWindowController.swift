@@ -159,25 +159,16 @@ class SpellWindowController: UIViewController {
     
     func setSpell(_ spell: Spell) {
         
-        print("Starting setSpell")
-        print(spell)
-        
         // Get the character profile
         guard let profile = store.state.profile else { return }
         
         var needsLayoutUpdate = false
         
-        print("Got profile")
-        
         // Don't show the cast button for cantrips
         castButton.isHidden = fromShortcut || spell.level == 0
         
-        print("Hid cast button for cantrip")
-        
         // Set the text on the name label
         spellNameLabel.text = spell.name
-        
-        print("Set text")
         
         // Do the same for the body of the spell text
         schoolLevelLabel.attributedText = schoolLevelText(spell)
@@ -206,18 +197,13 @@ class SpellWindowController: UIViewController {
             higherLevelLabel.attributedText = propertyText(name: "Higher level", text: spell.higherLevel, addLine: true)
         }
         
-        print("Set labels")
-
         // Set the spell buttons to the correct state
         favoriteButton.set(profile.spellFilterStatus.isFavorite(spell))
         preparedButton.set(profile.spellFilterStatus.isPrepared(spell))
         knownButton.set(profile.spellFilterStatus.isKnown(spell))
         
-        print("Set buttons")
-        
         // Set the scroll view content size
         scrollView.contentSize = self.view.frame.size
-        //print("Scroll enabled: \(scrollView.isScrollEnabled)")
         
         // Update the constraints if necessary
         if needsLayoutUpdate {
