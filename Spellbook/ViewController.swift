@@ -592,6 +592,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private func makeTargetedPreview(for configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         guard let indexPath = configuration.identifier as? IndexPath else { return nil }
         guard let cell = spellTable.cellForRow(at: indexPath) as? SpellDataCell else { return nil }
+        cell.contentView.backgroundColor = UIColor.white
         return UITargetedPreview(view: cell.contentView)
     }
     
@@ -612,7 +613,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 let shortcutAction =
                 UIAction(
                     title: "Create Shortcut",
-                    image: UIImage(named: "book_empty.png")) {
+                    image: UIImage(named: "book_empty.png")?.inverseImage(cgResult: true))  {
                         action in addSpellShortcut(spell: spell)
                     }
                 return UIMenu(title: "Spell Options", children: [shortcutAction])
