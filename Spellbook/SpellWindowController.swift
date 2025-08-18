@@ -300,15 +300,6 @@ class SpellWindowController: UIViewController {
         }
     }
     
-    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        super.dismiss(animated: flag, completion: completion)
-        if (fromShortcut) {
-            // If we're opening from a shortcut, this should be a standalone view
-            // and so I think it makes sense to directly exit the application here
-            exit(0)
-        }
-    }
-
 }
 
 
