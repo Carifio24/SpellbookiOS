@@ -36,10 +36,10 @@ func addShortcut(
     order.removeAll { $0.title == title }
     
     if order.count >= MAX_SHORTCUTS {
-        order.removeFirst(order.count - MAX_SHORTCUTS + 1)
+        order.removeLast(order.count - MAX_SHORTCUTS + 1)
     }
     
-    order.append(ShortcutInfo(type: type, title: title))
+    order.insert(ShortcutInfo(type: type, title: title), at: 0)
     
     let orderedInfo = order.compactMap { try? PropertyListEncoder().encode($0) }
     UserDefaults.standard.set(orderedInfo, forKey: SHORTCUT_STORAGE_KEY)
