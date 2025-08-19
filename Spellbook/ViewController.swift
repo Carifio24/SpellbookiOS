@@ -592,7 +592,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private func makeTargetedPreview(for configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         guard let indexPath = configuration.identifier as? IndexPath else { return nil }
         guard let cell = spellTable.cellForRow(at: indexPath) as? SpellDataCell else { return nil }
-        cell.contentView.backgroundColor = UIColor.white
         return UITargetedPreview(view: cell.contentView)
     }
     
