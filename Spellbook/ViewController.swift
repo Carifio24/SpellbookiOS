@@ -545,6 +545,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let spell = spells[indexPath.row]
         cell.spell = spell
         
+        setupCell(cell: cell, spell: spell)
+        
+        return cell
+    }
+        
+    func setupCell(cell: SpellDataCell, spell: Spell) {
+        
         // Cell formatting
         cell.layoutMargins = UIEdgeInsets(top: 2, left: 0, bottom: 2, right: 0)
         cell.selectionStyle = .gray
@@ -585,20 +592,39 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.knownButton.setCallback({
             store.dispatch(TogglePropertyAction(spell: cell.spell, property: .Known, markDirty: false))
         })
-
-        return cell
     }
     
     private func makeTargetedPreview(for configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         guard let indexPath = configuration.identifier as? IndexPath else { return nil }
         guard let cell = spellTable.cellForRow(at: indexPath) as? SpellDataCell else { return nil }
+        cell.contentView.backgroundColor = UIColor.lightGray
         return UITargetedPreview(view: cell.contentView)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayContextMenu configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+        guard let indexPath = configuration.identifier as? IndexPath else { return }
+        guard let cell = self.spellTable.cellForRow(at: indexPath) as? SpellDataCell else { return }
+        cell.contentView.backgroundColor = UIColor.white
+    }
+        
+    func tableView(_ tableView: UITableView, willEndContextMenuInteraction configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+        animator?.addCompletion {
+            guard let indexPath = configuration.identifier as? IndexPath else { return }
+            guard let cell = self.spellTable.cellForRow(at: indexPath) as? SpellDataCell else { return }
+            cell.contentView.backgroundColor = UIColor.clear
+        }
     }
     
     func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         return makeTargetedPreview(for: configuration)
     }
     
+//    func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+//        let preview = makeTargetedPreview(for: configuration)
+//        preview?.view.backgroundColor = UIColor.clear
+//        return preview
+//    }
+
     func tableView(_ tableView: UITableView,
                    contextMenuConfigurationForRowAt indexPath: IndexPath,
                    point: CGPoint) -> UIContextMenuConfiguration? {
