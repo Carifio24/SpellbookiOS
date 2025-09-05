@@ -594,24 +594,31 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         })
     }
     
-    private func makeTargetedPreview(for configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+    private func makeTargetedPreview(for configuration: UIContextMenuConfiguration, backgroundColor: UIColor? = nil) -> UITargetedPreview? {
         guard let indexPath = configuration.identifier as? IndexPath else { return nil }
         guard let cell = spellTable.cellForRow(at: indexPath) as? SpellDataCell else { return nil }
         cell.contentView.backgroundColor = UIColor.lightGray
-        return UITargetedPreview(view: cell.contentView)
+        let preview = UITargetedPreview(view: cell.contentView)
+        if (backgroundColor != nil) {
+            preview.view.backgroundColor = backgroundColor
+        }
+        return preview
+    }
+    
+    func setCellBackgroundColor(indexPath: IndexPath, color: UIColor) {
+        guard let cell = spellTable.cellForRow(at: indexPath) as? SpellDataCell else { return }
+        cell.contentView.backgroundColor = color
     }
     
     func tableView(_ tableView: UITableView, willDisplayContextMenu configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
         guard let indexPath = configuration.identifier as? IndexPath else { return }
-        guard let cell = self.spellTable.cellForRow(at: indexPath) as? SpellDataCell else { return }
-        cell.contentView.backgroundColor = UIColor.white
+        setCellBackgroundColor(indexPath: indexPath, color: UIColor.white)
     }
         
     func tableView(_ tableView: UITableView, willEndContextMenuInteraction configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
         animator?.addCompletion {
             guard let indexPath = configuration.identifier as? IndexPath else { return }
-            guard let cell = self.spellTable.cellForRow(at: indexPath) as? SpellDataCell else { return }
-            cell.contentView.backgroundColor = UIColor.clear
+            self.setCellBackgroundColor(indexPath: indexPath, color: UIColor.clear)
         }
     }
     
