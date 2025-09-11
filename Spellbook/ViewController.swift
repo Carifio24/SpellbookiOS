@@ -592,6 +592,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.knownButton.setCallback({
             store.dispatch(TogglePropertyAction(spell: cell.spell, property: .Known, markDirty: false))
         })
+        
+        let width = spellTable.frame.width
+        NSLayoutConstraint.activate([
+            cell.nameLabel.widthAnchor.constraint(equalToConstant: width - 3 * ViewController.imageWidth - 30)
+        ])
+
+        let buttons = [cell.favoriteButton, cell.preparedButton, cell.knownButton]
+        NSLayoutConstraint.activate(buttons.compactMap({
+            button in
+            return button?.widthAnchor.constraint(equalToConstant: ViewController.imageWidth)
+        }))
     }
     
     private func makeTargetedPreview(for configuration: UIContextMenuConfiguration, backgroundColor: UIColor? = nil) -> UITargetedPreview? {
