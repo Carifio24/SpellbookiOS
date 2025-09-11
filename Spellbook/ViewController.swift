@@ -109,7 +109,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // The button images
     // It's too costly to do the re-rendering every time, so we just do it once
-    static let buttonFraction = CGFloat(0.09)
+    static let buttonFraction = oniPad ? CGFloat(0.04) : CGFloat(0.09)
     static let imageWidth = max(ViewController.buttonFraction * ViewController.usableWidth, CGFloat(30))
     static let imageHeight = ViewController.imageWidth
     static let starEmpty = UIImage(named: "star_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: ViewController.imageWidth, height: ViewController.imageHeight)
