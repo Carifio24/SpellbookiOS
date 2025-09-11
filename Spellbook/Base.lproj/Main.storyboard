@@ -577,7 +577,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
                                     <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xTV-VH-ZcY" userLabel="Content View">
-                                        <rect key="frame" x="8" y="0.0" width="414" height="240.33333333333334"/>
+                                        <rect key="frame" x="8" y="0.0" width="414" height="1333"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMW-F5-hmt">
                                                 <rect key="frame" x="-62" y="21" width="363" height="85"/>
@@ -592,31 +592,31 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pc4-lp-KCl">
-                                                <rect key="frame" x="5" y="5" width="350.33333333333331" height="0.0"/>
+                                                <rect key="frame" x="5" y="5" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" systemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBx-OV-kFQ">
-                                                <rect key="frame" x="5" y="7" width="350.33333333333331" height="0.0"/>
+                                                <rect key="frame" x="5" y="7" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" systemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LO2-Vv-zrI">
-                                                <rect key="frame" x="5" y="9" width="350.33333333333331" height="0.0"/>
+                                                <rect key="frame" x="5" y="9" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" systemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y43-NE-UnZ">
-                                                <rect key="frame" x="5" y="11" width="350.33333333333331" height="0.0"/>
+                                                <rect key="frame" x="5" y="11" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" systemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUT-AL-0TC">
-                                                <rect key="frame" x="5" y="13" width="350.33333333333331" height="0.0"/>
+                                                <rect key="frame" x="5" y="13" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" systemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -628,7 +628,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="31Y-hW-A43">
-                                                <rect key="frame" x="5" y="13" width="350.33333333333331" height="0.0"/>
+                                                <rect key="frame" x="5" y="13" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -646,7 +646,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BzG-dM-bz3">
-                                                <rect key="frame" x="5" y="19" width="350.33333333333331" height="0.0"/>
+                                                <rect key="frame" x="5" y="19" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -663,7 +663,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3p-02-z1G" customClass="ToggleButton" customModule="Spellbook" customModuleProvider="target">
-                                                <rect key="frame" x="355.33333333333331" y="1" width="53.666666666666686" height="53.666666666666664"/>
+                                                <rect key="frame" x="62" y="1" width="347" height="347"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="z3p-02-z1G" secondAttribute="height" multiplier="1:1" id="Dat-qE-U9v"/>
@@ -671,21 +671,21 @@
                                                 <state key="normal" image="star_empty.png"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="omB-O3-Bun" customClass="ToggleButton" customModule="Spellbook" customModuleProvider="target">
-                                                <rect key="frame" x="355.33333333333331" y="57.666666666666671" width="53.666666666666686" height="54"/>
+                                                <rect key="frame" x="-245" y="351" width="654" height="654"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="omB-O3-Bun" secondAttribute="height" multiplier="1:1" id="UZu-EA-Tiw"/>
                                                 </constraints>
                                                 <state key="normal" image="wand_empty.png"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6W-mZ-pXE" customClass="ToggleButton" customModule="Spellbook" customModuleProvider="target">
-                                                <rect key="frame" x="355.33333333333331" y="114.66666666666667" width="53.666666666666686" height="53.666666666666671"/>
+                                                <rect key="frame" x="156" y="1008" width="253" height="253"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="f6W-mZ-pXE" secondAttribute="height" multiplier="1:1" id="6Ro-jl-CqV"/>
                                                 </constraints>
                                                 <state key="normal" image="book_empty.png"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qMf-rX-l1X" userLabel="Cast Button">
-                                                <rect key="frame" x="355.33333333333331" y="171.33333333333334" width="53.666666666666686" height="37"/>
+                                                <rect key="frame" x="260" y="1264" width="45" height="37"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <inset key="contentEdgeInsets" minX="5" minY="8" maxX="5" maxY="8"/>
@@ -707,54 +707,38 @@
                                         <constraints>
                                             <constraint firstItem="yfg-mz-Cj6" firstAttribute="top" secondItem="7Lk-KK-W3S" secondAttribute="bottom" constant="2" id="0Of-nJ-VSi"/>
                                             <constraint firstItem="hUT-AL-0TC" firstAttribute="leading" secondItem="xTV-VH-ZcY" secondAttribute="leading" constant="5" id="0eO-3A-5Oa"/>
-                                            <constraint firstItem="hUT-AL-0TC" firstAttribute="width" secondItem="xTV-VH-ZcY" secondAttribute="width" multiplier="0.87" constant="-10" id="0oq-mc-mS1"/>
-                                            <constraint firstItem="omB-O3-Bun" firstAttribute="width" secondItem="xTV-VH-ZcY" secondAttribute="width" multiplier="0.13" id="1cv-t8-cCY"/>
                                             <constraint firstItem="z3p-02-z1G" firstAttribute="trailing" secondItem="xTV-VH-ZcY" secondAttribute="trailing" constant="-5" id="1yH-CS-8tC"/>
                                             <constraint firstItem="f6W-mZ-pXE" firstAttribute="trailing" secondItem="xTV-VH-ZcY" secondAttribute="trailing" constant="-5" id="4sw-XT-v3G"/>
-                                            <constraint firstItem="z3p-02-z1G" firstAttribute="width" secondItem="xTV-VH-ZcY" secondAttribute="width" multiplier="0.13" id="6mi-9w-6p9"/>
                                             <constraint firstItem="MBx-OV-kFQ" firstAttribute="leading" secondItem="xTV-VH-ZcY" secondAttribute="leading" constant="5" id="71b-2R-D0o"/>
-                                            <constraint firstItem="qMf-rX-l1X" firstAttribute="width" secondItem="xTV-VH-ZcY" secondAttribute="width" multiplier="0.13" id="7h4-EI-z5J"/>
                                             <constraint firstItem="LO2-Vv-zrI" firstAttribute="top" secondItem="MBx-OV-kFQ" secondAttribute="bottom" constant="2" id="8xr-Zo-SgC"/>
                                             <constraint firstItem="qMf-rX-l1X" firstAttribute="top" relation="greaterThanOrEqual" secondItem="f6W-mZ-pXE" secondAttribute="bottom" constant="3" id="92H-bv-Tnh"/>
                                             <constraint firstItem="pc4-lp-KCl" firstAttribute="top" secondItem="RLp-JA-JL3" secondAttribute="bottom" constant="2" id="BSq-yV-P1q"/>
                                             <constraint firstItem="RLp-JA-JL3" firstAttribute="top" secondItem="eMW-F5-hmt" secondAttribute="bottom" constant="2" id="BbM-YP-TQ1"/>
-                                            <constraint firstItem="yfg-mz-Cj6" firstAttribute="width" secondItem="xTV-VH-ZcY" secondAttribute="width" multiplier="0.87" constant="-10" id="D9U-ca-A2c"/>
-                                            <constraint firstItem="AnF-D5-EEE" firstAttribute="width" secondItem="xTV-VH-ZcY" secondAttribute="width" multiplier="0.87" constant="-10" id="DDB-wx-n2b"/>
                                             <constraint firstItem="z3p-02-z1G" firstAttribute="top" secondItem="xTV-VH-ZcY" secondAttribute="top" constant="1" id="Dgr-kl-XiZ"/>
                                             <constraint firstItem="qMf-rX-l1X" firstAttribute="bottom" secondItem="0Wq-uU-OZd" secondAttribute="top" constant="-5" id="E0z-I2-duJ"/>
-                                            <constraint firstItem="RLp-JA-JL3" firstAttribute="width" secondItem="xTV-VH-ZcY" secondAttribute="width" multiplier="0.87" constant="-10" id="J1H-ZK-DEV"/>
                                             <constraint firstItem="BzG-dM-bz3" firstAttribute="leading" secondItem="xTV-VH-ZcY" secondAttribute="leading" constant="5" id="Jbh-xP-8Fs"/>
                                             <constraint firstItem="omB-O3-Bun" firstAttribute="trailing" secondItem="xTV-VH-ZcY" secondAttribute="trailing" constant="-5" id="KxE-mk-khv"/>
                                             <constraint firstItem="0Wq-uU-OZd" firstAttribute="width" secondItem="xTV-VH-ZcY" secondAttribute="width" constant="-10" id="O6P-O1-v0v"/>
-                                            <constraint firstItem="MBx-OV-kFQ" firstAttribute="width" secondItem="xTV-VH-ZcY" secondAttribute="width" multiplier="0.87" constant="-10" id="Ova-Jp-kcC"/>
                                             <constraint firstItem="y43-NE-UnZ" firstAttribute="top" secondItem="LO2-Vv-zrI" secondAttribute="bottom" constant="2" id="PR7-IB-ZxF"/>
                                             <constraint firstItem="LO2-Vv-zrI" firstAttribute="leading" secondItem="xTV-VH-ZcY" secondAttribute="leading" constant="5" id="QvU-f0-NDz"/>
-                                            <constraint firstItem="LO2-Vv-zrI" firstAttribute="width" secondItem="xTV-VH-ZcY" secondAttribute="width" multiplier="0.87" constant="-10" id="RKN-Ze-zr9"/>
-                                            <constraint firstItem="pc4-lp-KCl" firstAttribute="width" secondItem="xTV-VH-ZcY" secondAttribute="width" multiplier="0.87" constant="-10" id="Rki-9x-FYZ"/>
                                             <constraint firstItem="RLp-JA-JL3" firstAttribute="leading" secondItem="xTV-VH-ZcY" secondAttribute="leading" constant="5" id="Sw6-2j-rXl"/>
                                             <constraint firstItem="BzG-dM-bz3" firstAttribute="top" secondItem="yfg-mz-Cj6" secondAttribute="bottom" constant="2" id="T0N-Qh-2vn"/>
                                             <constraint firstItem="AnF-D5-EEE" firstAttribute="leading" secondItem="xTV-VH-ZcY" secondAttribute="leading" constant="5" id="U39-6z-tlm"/>
                                             <constraint firstItem="AnF-D5-EEE" firstAttribute="top" secondItem="hUT-AL-0TC" secondAttribute="bottom" id="Uuh-X9-Mpb"/>
-                                            <constraint firstItem="BzG-dM-bz3" firstAttribute="width" secondItem="xTV-VH-ZcY" secondAttribute="width" multiplier="0.87" constant="-10" id="X8x-5M-YZP"/>
                                             <constraint firstItem="0Wq-uU-OZd" firstAttribute="leading" secondItem="xTV-VH-ZcY" secondAttribute="leading" constant="5" id="a8P-oo-PYZ"/>
                                             <constraint firstItem="7Lk-KK-W3S" firstAttribute="top" secondItem="31Y-hW-A43" secondAttribute="bottom" constant="2" id="aV6-xJ-nzf"/>
                                             <constraint firstItem="fny-iQ-Av2" firstAttribute="bottom" secondItem="xTV-VH-ZcY" secondAttribute="bottom" constant="-25" id="aru-dz-b2o"/>
                                             <constraint firstItem="yfg-mz-Cj6" firstAttribute="leading" secondItem="xTV-VH-ZcY" secondAttribute="leading" constant="5" id="bSt-tC-XnY"/>
-                                            <constraint firstItem="f6W-mZ-pXE" firstAttribute="width" secondItem="xTV-VH-ZcY" secondAttribute="width" multiplier="0.13" id="czw-2a-qkd"/>
-                                            <constraint firstItem="7Lk-KK-W3S" firstAttribute="width" secondItem="xTV-VH-ZcY" secondAttribute="width" multiplier="0.87" constant="-10" id="dHb-v6-bje"/>
                                             <constraint firstItem="7Lk-KK-W3S" firstAttribute="leading" secondItem="xTV-VH-ZcY" secondAttribute="leading" constant="5" id="dJ1-0n-Bjg"/>
-                                            <constraint firstItem="y43-NE-UnZ" firstAttribute="width" secondItem="xTV-VH-ZcY" secondAttribute="width" multiplier="0.87" constant="-10" id="dU9-Ux-a9b"/>
                                             <constraint firstItem="qMf-rX-l1X" firstAttribute="centerX" secondItem="f6W-mZ-pXE" secondAttribute="centerX" id="fdo-qZ-j2g"/>
                                             <constraint firstItem="31Y-hW-A43" firstAttribute="top" secondItem="AnF-D5-EEE" secondAttribute="bottom" id="frZ-29-dsB"/>
                                             <constraint firstItem="eMW-F5-hmt" firstAttribute="top" secondItem="xTV-VH-ZcY" secondAttribute="top" constant="1" id="gVE-Jr-UFL"/>
-                                            <constraint firstItem="31Y-hW-A43" firstAttribute="width" secondItem="xTV-VH-ZcY" secondAttribute="width" multiplier="0.87" constant="-10" id="hkg-yA-02R"/>
                                             <constraint firstItem="eMW-F5-hmt" firstAttribute="leading" secondItem="xTV-VH-ZcY" secondAttribute="leading" constant="5" id="iv9-YV-JUB"/>
                                             <constraint firstItem="0Wq-uU-OZd" firstAttribute="top" secondItem="BzG-dM-bz3" secondAttribute="bottom" constant="2" id="j65-b6-WWd"/>
                                             <constraint firstItem="fny-iQ-Av2" firstAttribute="top" secondItem="0Wq-uU-OZd" secondAttribute="bottom" constant="2" id="lil-Ia-17Z"/>
                                             <constraint firstItem="fny-iQ-Av2" firstAttribute="width" secondItem="xTV-VH-ZcY" secondAttribute="width" constant="-10" id="mnb-Lr-2z8"/>
                                             <constraint firstItem="y43-NE-UnZ" firstAttribute="leading" secondItem="xTV-VH-ZcY" secondAttribute="leading" constant="5" id="oY4-IT-dpL"/>
                                             <constraint firstItem="pc4-lp-KCl" firstAttribute="leading" secondItem="xTV-VH-ZcY" secondAttribute="leading" constant="5" id="p4K-Fm-bqd"/>
-                                            <constraint firstItem="eMW-F5-hmt" firstAttribute="width" secondItem="xTV-VH-ZcY" secondAttribute="width" multiplier="0.87" constant="-10" id="qUE-hj-WTm"/>
                                             <constraint firstItem="fny-iQ-Av2" firstAttribute="leading" secondItem="xTV-VH-ZcY" secondAttribute="leading" constant="5" id="u1f-gE-P3N"/>
                                             <constraint firstItem="MBx-OV-kFQ" firstAttribute="top" secondItem="pc4-lp-KCl" secondAttribute="bottom" constant="2" id="w9P-GR-4XM"/>
                                             <constraint firstItem="31Y-hW-A43" firstAttribute="leading" secondItem="xTV-VH-ZcY" secondAttribute="leading" constant="5" id="xz6-qU-hA2"/>
@@ -1396,19 +1380,19 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rename Character" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c9W-6x-xK1">
-                                <rect key="frame" x="103" y="93" width="208" height="35.333333333333343"/>
+                                <rect key="frame" x="103" y="93" width="208" height="35"/>
                                 <fontDescription key="fontDescription" name="CloisterBlack-Light" family="Cloister Black" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u2G-q7-d8v">
-                                <rect key="frame" x="207" y="133.33333333333334" width="0.0" height="0.0"/>
+                                <rect key="frame" x="207" y="133" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H08-Dk-PUF">
-                                <rect key="frame" x="82" y="138.33333333333334" width="250" height="50"/>
+                                <rect key="frame" x="82" y="138" width="250" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" name="DefaultFontColor"/>
                                 <constraints>
@@ -1948,7 +1932,7 @@
                             <tableViewSection headerTitle="Filter Options" id="nkt-s2-SOP" userLabel="Filter Options">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="hzf-AI-tqn">
-                                        <rect key="frame" x="0.0" y="225.33333015441897" width="414" height="43.999999999999972"/>
+                                        <rect key="frame" x="0.0" y="225.33333015441895" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hzf-AI-tqn" id="14f-bY-mAc">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -2185,7 +2169,7 @@
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             </collectionViewFlowLayout>
                                                             <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="9m7-IC-edr" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="9m7-IC-edr" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                                     <rect key="frame" x="37" y="0.0" width="128" height="128"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Wy-Y7-3R4">
@@ -2243,7 +2227,7 @@
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             </collectionViewFlowLayout>
                                                             <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="vaj-JQ-hq6" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="vaj-JQ-hq6" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                                     <rect key="frame" x="37" y="0.0" width="128" height="128"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1na-Fe-aSv">
@@ -2333,7 +2317,7 @@
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             </collectionViewFlowLayout>
                                                             <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="9Av-vT-BMJ" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="9Av-vT-BMJ" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                                     <rect key="frame" x="37" y="0.0" width="128" height="128"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="kYh-hu-pH6">
@@ -2392,7 +2376,7 @@
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             </collectionViewFlowLayout>
                                                             <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="eJH-NJ-9aR" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="eJH-NJ-9aR" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                                     <rect key="frame" x="37" y="0.0" width="128" height="128"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="hCS-XO-M3z">
@@ -2479,7 +2463,7 @@
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             </collectionViewFlowLayout>
                                                             <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="zjA-aV-cOq" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="zjA-aV-cOq" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                                     <rect key="frame" x="37" y="0.0" width="128" height="128"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="ld3-gq-3Nv">
@@ -2693,7 +2677,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="LR8-S2-cAX" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="LR8-S2-cAX" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eyw-BM-ZK5">
@@ -2815,7 +2799,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="ivf-rg-qoA" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="ivf-rg-qoA" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="1en-JT-doz">
@@ -2929,7 +2913,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="l2R-a5-9D9" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="l2R-a5-9D9" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="gfd-Qa-VSe">
@@ -3039,7 +3023,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="XWr-P7-zGZ" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="XWr-P7-zGZ" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="yeu-9c-2EZ">
@@ -3183,7 +3167,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="pZE-d0-NmF" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="pZE-d0-NmF" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="Rbu-PW-9Tz">
@@ -3322,7 +3306,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="Hpd-Dh-ert" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="filterCell" translatesAutoresizingMaskIntoConstraints="NO" id="Hpd-Dh-ert" customClass="FilterCell" customModule="Spellbook" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="ze1-FN-cRj">
