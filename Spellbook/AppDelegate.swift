@@ -43,6 +43,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        
+        guard let info = shortcutItem.userInfo else {
+            completionHandler(false)
+            return
+        }
+        
+        if let spellJSON = info["spell"], let type = info["type"], type as? String == "SpellView" {
+            let codec = SpellCodec()
+            let jsonString = spellJSON as! String
+            let sion = SION(json: jsonString)
+            let spell = codec.parseSpell(sion: sion)
+
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "spellWindow") as! SpellWindowController
+            controller.modalPresentationStyle = .fullScreen
+            controller.transitioningDelegate = controller
+            controller.fromShortcut = true
+            Controllers.mainNavController.present(controller, animated: true, completion: { controller.spell = spell })
+            completionHandler(true)
+        } else {
+            completionHandler(false)
+        }
+        
+    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

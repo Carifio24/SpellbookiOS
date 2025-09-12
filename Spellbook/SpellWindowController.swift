@@ -79,10 +79,22 @@ class SpellWindowController: UIViewController {
     var spell = Spell() {
         didSet { setSpell(spell) }
     }
+    
+    var fromShortcut: Bool
+    
+    init(shortcut: Bool = false) {
+        self.fromShortcut = shortcut
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        self.fromShortcut = false
+        super.init(coder: coder)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // We close the window on a swipe to the right
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
@@ -108,6 +120,12 @@ class SpellWindowController: UIViewController {
         })
         
         castButton.addTarget(self, action: #selector(self.onCastClicked), for: UIControl.Event.touchUpInside)
+        
+        if fromShortcut {
+            for button in [favoriteButton, preparedButton, knownButton, castButton] {
+                button?.isHidden = true
+            }
+        }
         
         // Set the content view to fill the screen
         contentView.frame = UIScreen.main.bounds
@@ -147,7 +165,7 @@ class SpellWindowController: UIViewController {
         var needsLayoutUpdate = false
         
         // Don't show the cast button for cantrips
-        castButton.isHidden = spell.level == 0
+        castButton.isHidden = fromShortcut || spell.level == 0
         
         // Set the text on the name label
         spellNameLabel.text = spell.name
@@ -171,7 +189,7 @@ class SpellWindowController: UIViewController {
         rangeLabel.attributedText = propertyText(name: "Range", text: spell.range.string())
         concentrationLabel.attributedText = propertyText(name: "Concentration", text: bool_to_yn(yn: spell.concentration))
         classesLabel.attributedText = propertyText(name: "Classes", text: spell.classesString())
-        if (profile.sortFilterStatus.useTashasExpandedLists && spell.tashasExpandedClasses.count > 0) {
+        if fromShortcut || (profile.sortFilterStatus.useTashasExpandedLists && spell.tashasExpandedClasses.count > 0) {
             expandedClassesLabel.attributedText = propertyText(name: "TCE Expanded Classes", text: spell.tashasExpandedClassesString())
         }
         descriptionLabel.attributedText = propertyText(name: "Description", text: spell.description, addLine: true)
@@ -186,7 +204,6 @@ class SpellWindowController: UIViewController {
         
         // Set the scroll view content size
         scrollView.contentSize = self.view.frame.size
-        //print("Scroll enabled: \(scrollView.isScrollEnabled)")
         
         // Update the constraints if necessary
         if needsLayoutUpdate {
@@ -268,7 +285,7 @@ class SpellWindowController: UIViewController {
             self.view.makeToast(toast, duration: Constants.toastDuration)
         }
     }
-
+    
 }
 
 

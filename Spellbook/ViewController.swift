@@ -545,6 +545,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let spell = spells[indexPath.row]
         cell.spell = spell
         
+        setupCell(cell: cell, spell: spell)
+        
+        return cell
+    }
+        
+    func setupCell(cell: SpellDataCell, spell: Spell) {
+        
         // Cell formatting
         cell.layoutMargins = UIEdgeInsets(top: 2, left: 0, bottom: 2, right: 0)
         cell.selectionStyle = .gray
@@ -585,8 +592,65 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.knownButton.setCallback({
             store.dispatch(TogglePropertyAction(spell: cell.spell, property: .Known, markDirty: false))
         })
+    }
+    
+    private func makeTargetedPreview(for configuration: UIContextMenuConfiguration, backgroundColor: UIColor? = nil) -> UITargetedPreview? {
+        guard let indexPath = configuration.identifier as? IndexPath else { return nil }
+        guard let cell = spellTable.cellForRow(at: indexPath) as? SpellDataCell else { return nil }
+        cell.contentView.backgroundColor = UIColor.lightGray
+        let preview = UITargetedPreview(view: cell.contentView)
+        if (backgroundColor != nil) {
+            preview.view.backgroundColor = backgroundColor
+        }
+        return preview
+    }
+    
+    func setCellBackgroundColor(indexPath: IndexPath, color: UIColor) {
+        guard let cell = spellTable.cellForRow(at: indexPath) as? SpellDataCell else { return }
+        cell.contentView.backgroundColor = color
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayContextMenu configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+        guard let indexPath = configuration.identifier as? IndexPath else { return }
+        setCellBackgroundColor(indexPath: indexPath, color: UIColor.white)
+    }
+        
+    func tableView(_ tableView: UITableView, willEndContextMenuInteraction configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+        animator?.addCompletion {
+            guard let indexPath = configuration.identifier as? IndexPath else { return }
+            self.setCellBackgroundColor(indexPath: indexPath, color: UIColor.clear)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        return makeTargetedPreview(for: configuration)
+    }
+    
+//    func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+//        let preview = makeTargetedPreview(for: configuration)
+//        preview?.view.backgroundColor = UIColor.clear
+//        return preview
+//    }
 
-        return cell
+    func tableView(_ tableView: UITableView,
+                   contextMenuConfigurationForRowAt indexPath: IndexPath,
+                   point: CGPoint) -> UIContextMenuConfiguration? {
+        let cell = tableView.cellForRow(at: indexPath) as! SpellDataCell
+        let spell = cell.spell
+        return UIContextMenuConfiguration(
+            identifier: indexPath as NSCopying,
+            previewProvider: nil,
+            actionProvider: {
+                suggestedActions in
+                let shortcutAction =
+                UIAction(
+                    title: "Create Shortcut",
+                    image: UIImage(named: "book_empty.png")?.inverseImage(cgResult: true))  {
+                        action in addSpellShortcut(spell: spell)
+                    }
+                return UIMenu(title: "Spell Options", children: [shortcutAction])
+            }
+        )
     }
     
     func sort() {
