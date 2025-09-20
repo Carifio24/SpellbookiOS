@@ -440,7 +440,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ur2-d0-T5w" userLabel="Favorite Button" customClass="ToggleButton" customModule="Spellbook" customModuleProvider="target">
-                                                    <rect key="frame" x="10" y="-12.666666666666666" width="34" height="34.333333333333336"/>
+                                                    <rect key="frame" x="277" y="-12.666666666666666" width="34" height="34.333333333333336"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="ur2-d0-T5w" secondAttribute="height" multiplier="1:1" id="1VY-jP-XGj"/>
@@ -448,7 +448,7 @@
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBG-LC-kEi" userLabel="Known Button" customClass="ToggleButton" customModule="Spellbook" customModuleProvider="target">
-                                                    <rect key="frame" x="93" y="-12.666666666666666" width="34" height="34.333333333333336"/>
+                                                    <rect key="frame" x="360" y="-12.666666666666666" width="34" height="34.333333333333336"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="oBG-LC-kEi" secondAttribute="height" multiplier="1:1" id="uu8-fK-Dzt"/>
@@ -456,7 +456,7 @@
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6P0-N9-euK" userLabel="Prepared Button" customClass="ToggleButton" customModule="Spellbook" customModuleProvider="target">
-                                                    <rect key="frame" x="49" y="-12.666666666666666" width="34" height="34.333333333333336"/>
+                                                    <rect key="frame" x="316" y="-12.666666666666666" width="34" height="34.333333333333336"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="6P0-N9-euK" secondAttribute="height" multiplier="1:1" id="RkD-75-sF1"/>
@@ -469,7 +469,8 @@
                                             <constraints>
                                                 <constraint firstItem="Ber-Ky-GUN" firstAttribute="leading" secondItem="gQ9-or-WCo" secondAttribute="leading" id="3WD-0X-A6j"/>
                                                 <constraint firstItem="jt9-iC-lBj" firstAttribute="bottom" secondItem="Ber-Ky-GUN" secondAttribute="bottom" id="7iF-sc-UaW"/>
-                                                <constraint firstItem="ur2-d0-T5w" firstAttribute="leading" secondItem="gQ9-or-WCo" secondAttribute="trailing" constant="10" id="EUK-xt-eZV"/>
+                                                <constraint firstAttribute="trailing" secondItem="oBG-LC-kEi" secondAttribute="trailing" constant="10" id="B1X-pr-2yf"/>
+                                                <constraint firstItem="ur2-d0-T5w" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gQ9-or-WCo" secondAttribute="trailing" constant="10" id="EUK-xt-eZV"/>
                                                 <constraint firstItem="oBG-LC-kEi" firstAttribute="centerY" secondItem="P8j-J3-IBW" secondAttribute="centerY" id="LZT-JY-c5J"/>
                                                 <constraint firstAttribute="bottom" secondItem="Ber-Ky-GUN" secondAttribute="bottom" constant="3" id="N6U-1g-L0I"/>
                                                 <constraint firstItem="jt9-iC-lBj" firstAttribute="leading" secondItem="Ber-Ky-GUN" secondAttribute="trailing" constant="5" id="QFU-4y-mel"/>

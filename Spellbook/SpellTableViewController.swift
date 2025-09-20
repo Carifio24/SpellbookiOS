@@ -39,7 +39,8 @@ class SpellTableViewController: UITableViewController {
     // The button images
     // It's too costly to do the re-rendering every time, so we just do it once
     static let buttonFraction = CGFloat(0.09)
-    static let imageWidth = SpellTableViewController.buttonFraction * ViewController.usableWidth
+    static let usableWidth = UIScreen.main.bounds.width - 10
+    static let imageWidth = SpellTableViewController.buttonFraction * SpellTableViewController.usableWidth
     static let imageHeight = SpellTableViewController.imageWidth
     static let starEmpty = UIImage(named: "star_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellTableViewController.imageWidth, height: SpellTableViewController.imageHeight)
     static let starFilled = UIImage(named: "star_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellTableViewController.imageWidth, height: SpellTableViewController.imageHeight)
