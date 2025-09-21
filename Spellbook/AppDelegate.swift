@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // Disable rotation
-    private let orientationLock = UIInterfaceOrientationMask.all
+    private let orientationLock = oniPad ? UIInterfaceOrientationMask.allButUpsideDown : UIInterfaceOrientationMask.portrait
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         return self.orientationLock
     }
