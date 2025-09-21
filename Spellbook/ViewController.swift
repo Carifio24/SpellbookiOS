@@ -269,7 +269,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // This function sets the sizes of the top-level container views
     func setContainerDimensions(screenWidth: CGFloat, screenHeight: CGFloat) {
         
-        self.buttonFraction = oniPad ? CGFloat(0.04) : CGFloat(0.09)
+        self.buttonFraction = oniPad ? CGFloat(0.04) : CGFloat(0.08)
 
         // Get the padding sizes
         let leftPadding = max(min(leftPaddingFraction * screenWidth, maxHorizPadding), minHorizPadding)
@@ -280,16 +280,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // Account for padding
         self.usableHeight = screenHeight - topPadding - bottomPadding
         self.usableWidth = screenWidth - leftPadding - rightPadding
-        print("Usable width")
-        print(self.usableWidth)
         
         // The button images
         // It's too costly to do the re-rendering every time, so we just do it once
-        print("Button fraction")
-        print(self.buttonFraction)
         self.imageWidth = max(self.buttonFraction * self.usableWidth, CGFloat(30))
-        print("Image width")
-        print(self.imageWidth)
         self.imageHeight = self.imageWidth
         self.starEmpty = UIImage(named: "star_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: self.imageWidth, height: self.imageHeight)
         self.starFilled = UIImage(named: "star_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: self.imageWidth, height: self.imageHeight)
@@ -615,11 +609,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         })
         
         let width = spellTable.frame.width
-        print(width)
-        print(self.buttonFraction)
-        print(self.imageWidth)
-        print(width - 3 * self.imageWidth - 30)
-        print(UIScreen.main.bounds.width)
         NSLayoutConstraint.activate([
             cell.nameLabel.widthAnchor.constraint(equalToConstant: width - 3 * self.imageWidth - 30)
         ])
@@ -629,8 +618,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             button in
             return button?.widthAnchor.constraint(equalToConstant: self.imageWidth)
         }))
-        print(cell.knownButton.frame)
-        print("======")
     }
     
     private func makeTargetedPreview(for configuration: UIContextMenuConfiguration, backgroundColor: UIColor? = nil) -> UITargetedPreview? {

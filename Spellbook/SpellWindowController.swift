@@ -15,7 +15,7 @@ class SpellWindowController: UIViewController {
     
     // How much of the horizontal width goes to the name label
     // The rest is for the favoriting button
-    static let majorWidthFraction = oniPad ? CGFloat(0.94) : CGFloat(0.87)
+    static let majorWidthFraction = oniPad ? CGFloat(0.94) : CGFloat(0.86)
     static let minorWidthFraction = 1 - SpellWindowController.majorWidthFraction
     static let halfGapWidth = CGFloat(10)
     static let imageWidth = UIScreen.main.bounds.width * SpellWindowController.minorWidthFraction
@@ -93,13 +93,22 @@ class SpellWindowController: UIViewController {
         super.init(coder: coder)
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    private var swipeRightHandler: UISwipeGestureRecognizer? = nil
+    private func setupSwipeRightHandler() {
+        if let handler = self.swipeRightHandler {
+            self.view.removeGestureRecognizer(handler)
+        }
         // We close the window on a swipe to the right
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(swipeRight)
+        self.swipeRightHandler = swipeRight
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupSwipeRightHandler()
         
         // Set the button images
         favoriteButton.setTrueImage(image: SpellWindowController.isFavoriteImage!)
@@ -171,14 +180,24 @@ class SpellWindowController: UIViewController {
         labels.forEach { $0!.textColor = defaultFontColor }
         
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        // Set the content view to fill the screen
+        contentView.frame = UIScreen.main.bounds
         
         // The content size of the scroll view is equal to the content view's size
         scrollView.contentSize = contentView.frame.size
     }
     
+    override func viewWillTransition(to size: CGSize,
+                                     with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        scrollView.contentSize = contentView.frame.size
+        setupSwipeRightHandler()
+    }
+
     @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
