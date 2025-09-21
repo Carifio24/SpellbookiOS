@@ -130,10 +130,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Set the sizes of the container views (there are no other top level elements)
-        let screenRect = UIScreen.main.bounds
-        setContainerDimensions(screenWidth: screenRect.size.width, screenHeight: screenRect.size.height)
-        
         store.subscribe(self) {
             $0.select {
                 ($0.profile, $0.profile?.sortFilterStatus, $0.profile?.spellFilterStatus, $0.currentSpellList, $0.dirtySpellIDs)
@@ -259,11 +255,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // The view has appeared, so we can set firstAppearance to false
         firstAppearance = false
-        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+                
+        // Set the sizes of the container views (there are no other top level elements)
+        let screenRect = UIScreen.main.bounds
+        setContainerDimensions(screenWidth: screenRect.size.width, screenHeight: screenRect.size.height)
     }
     
     // This function sets the sizes of the top-level container views
@@ -283,7 +282,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // The button images
         // It's too costly to do the re-rendering every time, so we just do it once
-        self.imageWidth = max(self.buttonFraction * self.usableWidth, CGFloat(30))
+        // self.imageWidth = max(self.buttonFraction * self.usableWidth, CGFloat(30))
+        
+        self.imageWidth = oniPad ? CGFloat(40.5) : CGFloat(30.5)
         self.imageHeight = self.imageWidth
         self.starEmpty = UIImage(named: "star_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: self.imageWidth, height: self.imageHeight)
         self.starFilled = UIImage(named: "star_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: self.imageWidth, height: self.imageHeight)
@@ -312,8 +313,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     // But for the moment, the SpellDataCell change doesn't work correctly, and so rotation is disabled
     override func viewWillTransition(to size: CGSize,
                                      with coordinator: UIViewControllerTransitionCoordinator) {
-        setContainerDimensions(screenWidth: size.width, screenHeight: size.height)
         super.viewWillTransition(to: size, with: coordinator)
+        setContainerDimensions(screenWidth: size.width, screenHeight: size.height)
     }
     
     // Until the issue with the SpellDataCell sizing is fixed, let's disable rotation
@@ -625,6 +626,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         NSLayoutConstraint.activate(buttons.compactMap({
             button in
             return button?.widthAnchor.constraint(equalToConstant: self.imageWidth)
+        }))
+        NSLayoutConstraint.activate(buttons.compactMap({
+            button in
+            return button?.heightAnchor.constraint(equalToConstant: self.imageHeight)
         }))
     }
     

@@ -20,6 +20,8 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     @IBOutlet weak var updateInfoLabel: UILabel!
     @IBOutlet weak var whatsNewButton: UIButton!
     @IBOutlet weak var spellSlotsButton: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var contentView: UIView!
     
     var statusController: StatusFilterController?
     
@@ -62,6 +64,11 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         viewWidth = viewRect.size.width
         
         characterLabel.textColor = defaultFontColor
+        
+        selectionButton.addTarget(self, action: #selector(selectionButtonPressed), for: UIControl.Event.touchUpInside)
+        exportSpellListButton.addTarget(self, action: #selector(exportSpellListButtonPressed), for: UIControl.Event.touchUpInside)
+        whatsNewButton.addTarget(self, action: #selector(updateInfoButtonPressed), for: UIControl.Event.touchUpInside)
+        spellSlotsButton.addTarget(self, action: #selector(spellSlotsButtonPressed), for: UIControl.Event.touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,7 +77,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
             $0.select { $0.profile?.name }
         }
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         
         // Set the character label
@@ -79,7 +86,24 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
             characterLabel.text = "Character: " + name!
         }
     }
-    
+
+    func setScrollViewSize() {
+        if let content = contentView, let scroll = scrollView {
+            // The content size of the scroll view is equal to the content view's size
+            scroll.contentSize = content.frame.size
+            
+        }
+    }
+
+    override func viewWillTransition(to size: CGSize,
+                                     with coordinator: UIViewControllerTransitionCoordinator) {
+        setScrollViewSize()
+    }
+
+    override func viewDidLayoutSubviews() {
+        setScrollViewSize()
+    }
+
     // Connecting to the child controllers
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "statusSegue" {
@@ -96,11 +120,11 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
 //
 //        }
     }
-    
+
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
     }
-    
+
     @objc func selectionButtonPressed() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "characterSelection") as! CharacterSelectionController
