@@ -429,7 +429,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         navigationItem.titleView = searchBar
         searchBar.alpha = 0
         navigationItem.setLeftBarButton(nil, animated: true)
-        navigationItem.setRightBarButtonItems(nil, animated: true)
+        if oniPad {
+            let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(iPadSearchBarCancelButtonClicked))
+            navigationItem.setRightBarButtonItems([cancelButton], animated: true)
+        } else {
+            navigationItem.setRightBarButtonItems(nil, animated: true)
+        }
         self.searchBar.alpha = 1
         self.searchBar.becomeFirstResponder()
 //        UIView.animate(withDuration: 0.5, animations: {
@@ -459,6 +464,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return toClose
     }
 
+    @objc func iPadSearchBarCancelButtonClicked() {
+        searchBarCancelButtonClicked(self.searchBar)
+    }
 
     // MARK: UISearchBarDelegate
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
