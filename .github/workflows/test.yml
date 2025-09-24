@@ -7,15 +7,23 @@ jobs:
     runs-on: macos-14
     strategy:
       matrix:
-        include:
-          - os: "17.2"
+        os: ["17.4", "17.5", "18.1", "18.2"]
+        device: ["iPhone 15", "iPhone 16", "iPad Pro 13-inch (M4)"]
+        exclude:
+          - os: "17.4"
+            device: "iPhone 16"
           - os: "17.5"
-          - os: "18.0"
+            device: "iPhone 16"
           - os: "18.1"
+            device: "iPhone 15"
+          - os: "18.2"
+            device: "iPhone 15"
     name: "Run tests: OS (${{ matrix.os }})"
     steps:
-    - uses: actions/checkout@v1
-    - name: Select Xcode
-      run: sudo xcode-select -switch /Applications/Xcode_15.3.0.app && /usr/bin/xcodebuild -version
+    - uses: actions/checkout@v4
+    - name: Select Xcode Version
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '16.2'
     - name: Run tests
-      run: xcodebuild test -scheme Spellbook -project Spellbook.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 14,OS=${{ matrix.os }}' | xcpretty && exit ${PIPESTATUS[0]}
+      run: xcodebuild test -scheme Spellbook -project Spellbook.xcodeproj -destination 'platform=iOS Simulator,name=${{ matrix.device }},OS=${{ matrix.os }}' | xcpretty && exit ${PIPESTATUS[0]}
