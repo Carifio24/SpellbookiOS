@@ -7,9 +7,8 @@ jobs:
     runs-on: macos-14
     strategy:
       matrix:
-        include:
-          - os: ["17.4", "17.5", "18.1", "18.2"]
-          - device: ["iPhone 16", "iPad Pro 13-inch (M4)"]
+        os: ["17.4", "17.5", "18.1", "18.2"]
+        device: ["iPhone 16", "iPad Pro 13-inch (M4)"]
     name: "Run tests: OS (${{ matrix.os }})"
     steps:
     - uses: actions/checkout@v4
