@@ -25,5 +25,7 @@ jobs:
       uses: maxim-lobanov/setup-xcode@v1
       with:
         xcode-version: '16.2'
+    - name: Check Swift version
+      run: swift --version
     - name: Run tests
       run: xcodebuild test -scheme Spellbook -project Spellbook.xcodeproj -destination 'platform=iOS Simulator,name=${{ matrix.device }},OS=${{ matrix.os }}' | xcpretty && exit ${PIPESTATUS[0]}
