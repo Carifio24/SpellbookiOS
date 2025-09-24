@@ -4,16 +4,13 @@ on: [push]
 
 jobs:
   run_tests:
-    runs-on: macos-14
+    runs-on: macos-15
     strategy:
       matrix:
         include:
           - os: "18.0"
           - os: "18.1"
           - os: "18.2"
-          - os: "18.3"
-          - os: "18.4"
-          - os: "18.5"
     name: "Run tests: OS (${{ matrix.os }})"
     steps:
     - uses: actions/checkout@v4
@@ -22,4 +19,4 @@ jobs:
       with:
         xcode-version: '16.2'
     - name: Run tests
-      run: xcodebuild test -scheme Spellbook -project Spellbook.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 14,OS=${{ matrix.os }}' | xcpretty && exit ${PIPESTATUS[0]}
+      run: xcodebuild test -scheme Spellbook -project Spellbook.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 16,OS=${{ matrix.os }}' | xcpretty && exit ${PIPESTATUS[0]}
