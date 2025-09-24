@@ -16,6 +16,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Select Xcode
-      run: sudo xcode-select -switch /Applications/Xcode_15.3.0.app && /usr/bin/xcodebuild -version
+      run: sudo xcode-select -switch /Applications/Xcode_16.3.0.app && /usr/bin/xcodebuild -version
     - name: Run tests
       run: xcodebuild test -scheme Spellbook -project Spellbook.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 14,OS=${{ matrix.os }}' | xcpretty && exit ${PIPESTATUS[0]}
