@@ -8,10 +8,12 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: "17.2"
-          - os: "17.5"
           - os: "18.0"
           - os: "18.1"
+          - os: "18.2"
+          - os: "18.3"
+          - os: "18.4"
+          - os: "18.5"
     name: "Run tests: OS (${{ matrix.os }})"
     steps:
     - uses: actions/checkout@v1
