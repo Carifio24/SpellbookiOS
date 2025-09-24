@@ -8,7 +8,12 @@ jobs:
     strategy:
       matrix:
         os: ["17.4", "17.5", "18.1", "18.2"]
-        device: ["iPhone 16", "iPad Pro 13-inch (M4)"]
+        device: ["iPhone 15", "iPhone 16", "iPad Pro 13-inch (M4)"]
+        exclude:
+          - os: "17.4"
+            device: "iPhone 16"
+          - os: "17.5"
+            device: "iPhone 16"
     name: "Run tests: OS (${{ matrix.os }})"
     steps:
     - uses: actions/checkout@v4
