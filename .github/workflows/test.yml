@@ -14,6 +14,10 @@ jobs:
             device: "iPhone 16"
           - os: "17.5"
             device: "iPhone 16"
+          - os: "18.1"
+            device: "iPhone 15"
+          - os: "18.2"
+            device: "iPhone 15"
     name: "Run tests: OS (${{ matrix.os }})"
     steps:
     - uses: actions/checkout@v4
