@@ -8,8 +8,12 @@ jobs:
     strategy:
       matrix:
         include:
+          - os: "17.4"
+          - os: "17.5"
           - os: "18.1"
           - os: "18.2"
+          - device: "iPhone 16"
+          - device: "iPad Pro 13-inch (M4)"
     name: "Run tests: OS (${{ matrix.os }})"
     steps:
     - uses: actions/checkout@v4
@@ -18,4 +22,4 @@ jobs:
       with:
         xcode-version: '16.2'
     - name: Run tests
-      run: xcodebuild test -scheme Spellbook -project Spellbook.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 16,OS=${{ matrix.os }}' | xcpretty && exit ${PIPESTATUS[0]}
+      run: xcodebuild test -scheme Spellbook -project Spellbook.xcodeproj -destination 'platform=iOS Simulator,name=${{ matrix.device }},OS=${{ matrix.os }}' | xcpretty && exit ${PIPESTATUS[0]}
