@@ -16,7 +16,7 @@ jobs:
           - os: "18.5"
     name: "Run tests: OS (${{ matrix.os }})"
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_16.3.0.app && /usr/bin/xcodebuild -version
     - name: Run tests
