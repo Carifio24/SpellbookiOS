@@ -27,31 +27,50 @@ class SpellTableViewController: UITableViewController {
     
     // Vertical position in main view
     var mainY = CGFloat(0)
-
-    
-    @IBOutlet var spellTable: UITableView!
     
     let cellReuseIdentifier = "cell"
     let spellWindowSegueIdentifier = "spellWindowSegue"
     let spellWindowIdentifier = "spellWindow"
     static let estimatedHeight = CGFloat(60)
     
+    // Usable height and width
+    var usableHeight = UIScreen.main.bounds.height
+    var usableWidth = UIScreen.main.bounds.width
+    
+    // Extreme padding amounts
+    let maxHorizPadding = CGFloat(5)
+    let maxTopPadding = CGFloat(5)
+    let maxBotPadding = CGFloat(3)
+    let minHorizPadding = CGFloat(1)
+    let minTopPadding = CGFloat(1)
+    let minBotPadding = CGFloat(1)
+    
+    // Padding amounts
+    let leftPaddingFraction = CGFloat(0.01)
+    let rightPaddingFraction = CGFloat(0.01)
+    let topPaddingFraction = CGFloat(0.01)
+    let bottomPaddingFraction = CGFloat(0.01)
+    
     // The button images
     // It's too costly to do the re-rendering every time, so we just do it once
-    static let buttonFraction = CGFloat(0.09)
-    static let usableWidth = UIScreen.main.bounds.width - 10
-    static let imageWidth = SpellTableViewController.buttonFraction * SpellTableViewController.usableWidth
-    static let imageHeight = SpellTableViewController.imageWidth
-    static let starEmpty = UIImage(named: "star_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellTableViewController.imageWidth, height: SpellTableViewController.imageHeight)
-    static let starFilled = UIImage(named: "star_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellTableViewController.imageWidth, height: SpellTableViewController.imageHeight)
-    static let wandEmpty = UIImage(named: "wand_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellTableViewController.imageWidth, height: SpellTableViewController.imageHeight)
-    static let wandFilled = UIImage(named: "wand_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellTableViewController.imageWidth, height: SpellTableViewController.imageHeight)
-    static let bookEmpty = UIImage(named: "book_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellTableViewController.imageWidth, height: SpellTableViewController.imageHeight)
-    static let bookFilled = UIImage(named: "book_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: SpellTableViewController.imageWidth, height: SpellTableViewController.imageHeight)
-
+    var buttonFraction: CGFloat!
+    var imageWidth: CGFloat!
+    var imageHeight: CGFloat!
+    var starEmpty: UIImage!
+    var starFilled: UIImage!
+    var wandEmpty: UIImage!
+    var wandFilled: UIImage!
+    var bookEmpty: UIImage!
+    var bookFilled: UIImage!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNeedsStatusBarAppearanceUpdate()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+
         // Populate the list of spells
         //tableView.register(SpellDataCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         tableView.separatorStyle = .none
@@ -79,8 +98,6 @@ class SpellTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -89,26 +106,62 @@ class SpellTableViewController: UITableViewController {
         // Get the main view
         //main = self.parent as? ViewController
         
+        if !firstAppear { return }
+        
         // If this is the view's first appearance (i.e. when the app is opening), we initialize spellArray
-        if firstAppear {
-            spellArray = store.state.currentSpellList
-            tableView.reloadData()
-            firstAppear = false
-        }
+        spellArray = store.state.currentSpellList
+        tableView.reloadData()
         
         // Initial filtering and sorting
         filter()
         sort()
         
+        firstAppear = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Set the sizes of the container views (there are no other top level elements)
+        let screenRect = UIScreen.main.bounds
+        setContainerDimensions(screenWidth: screenRect.size.width, screenHeight: screenRect.size.height)
+        
         store.subscribe(self) {
             $0.select {
-                $0.currentSpellList
+                ($0.currentSpellList, $0.dirtySpellIDs)
             }
         }
+    }
+    
+    // This function sets the sizes of the top-level container views
+    func setContainerDimensions(screenWidth: CGFloat, screenHeight: CGFloat) {
+        
+        self.buttonFraction = oniPad ? CGFloat(0.04) : CGFloat(0.08)
+
+        // Get the padding sizes
+        let leftPadding = max(min(leftPaddingFraction * screenWidth, maxHorizPadding), minHorizPadding)
+        let rightPadding = max(min(rightPaddingFraction * screenWidth, maxHorizPadding), minHorizPadding)
+        let topPadding = max(min(topPaddingFraction * screenHeight, maxTopPadding), minTopPadding)
+        let bottomPadding = max(min(bottomPaddingFraction * screenHeight, maxBotPadding), minBotPadding)
+        
+        // Account for padding
+        self.usableHeight = screenHeight - topPadding - bottomPadding
+        self.usableWidth = screenWidth - leftPadding - rightPadding
+        
+        // The button images
+        // It's too costly to do the re-rendering every time, so we just do it once
+        // self.imageWidth = max(self.buttonFraction * self.usableWidth, CGFloat(30))
+        
+        self.imageWidth = oniPad ? CGFloat(40.5) : CGFloat(30.5)
+        self.imageHeight = self.imageWidth
+        self.starEmpty = UIImage(named: "star_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: self.imageWidth, height: self.imageHeight)
+        self.starFilled = UIImage(named: "star_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: self.imageWidth, height: self.imageHeight)
+        self.wandEmpty = UIImage(named: "wand_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: self.imageWidth, height: self.imageHeight)
+        self.wandFilled = UIImage(named: "wand_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: self.imageWidth, height: self.imageHeight)
+        self.bookEmpty = UIImage(named: "book_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: self.imageWidth, height: self.imageHeight)
+        self.bookFilled = UIImage(named: "book_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: self.imageWidth, height: self.imageHeight)
+        
+        tableView.reloadData()
     }
     
     func setTableDimensions(leftPadding: CGFloat, bottomPadding: CGFloat, usableHeight: CGFloat, usableWidth: CGFloat, tableTopPadding: CGFloat) {
@@ -130,9 +183,16 @@ class SpellTableViewController: UITableViewController {
     }
     
     // Set the footer height
-    override func tableView(_ tableView: UITableView, heightForFooterInSection: Int) -> CGFloat {
-        return 2 * SpellTableViewController.estimatedHeight
-    }
+//    func tableView(_ tableView: UITableView, heightForFooterInSection: Int) -> CGFloat {
+//        return 2 * SpellTableViewController.estimatedHeight
+//    }
+
+    
+//    func tableView(_ tableView: UITableView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+//        let preview = makeTargetedPreview(for: configuration)
+//        preview?.view.backgroundColor = UIColor.clear
+//        return preview
+//    }
 
     
     // Return the footer view
@@ -151,6 +211,13 @@ class SpellTableViewController: UITableViewController {
         let spell = spellArray[indexPath.row]
         cell.spell = spell
         
+        setupCell(cell: cell, spell: spell)
+        
+        return cell
+    }
+        
+    func setupCell(cell: SpellDataCell, spell: Spell) {
+        
         // Cell formatting
         cell.layoutMargins = UIEdgeInsets(top: 2, left: 0, bottom: 2, right: 0)
         cell.selectionStyle = .gray
@@ -167,38 +234,113 @@ class SpellTableViewController: UITableViewController {
         cell.sourcebookLabel.textColor = defaultFontColor
         
         // Set the label text colors
-        for label in [ cell.nameLabel, cell.levelSchoolLabel, cell.sourcebookLabel ] {
+        for label in [cell.nameLabel, cell.levelSchoolLabel, cell.sourcebookLabel] {
             label?.textColor = defaultFontColor
         }
         
         // Set the button images
-        cell.favoriteButton.setTrueImage(image: SpellTableViewController.starFilled!)
-        cell.favoriteButton.setFalseImage(image: SpellTableViewController.starEmpty!)
-        cell.preparedButton.setTrueImage(image: SpellTableViewController.wandFilled!)
-        cell.preparedButton.setFalseImage(image: SpellTableViewController.wandEmpty!)
-        cell.knownButton.setTrueImage(image: SpellTableViewController.bookFilled!)
-        cell.knownButton.setFalseImage(image: SpellTableViewController.bookEmpty!)
+        cell.favoriteButton.setTrueImage(image: self.starFilled!)
+        cell.favoriteButton.setFalseImage(image: self.starEmpty!)
+        cell.preparedButton.setTrueImage(image: self.wandFilled!)
+        cell.preparedButton.setFalseImage(image: self.wandEmpty!)
+        cell.knownButton.setTrueImage(image: self.bookFilled!)
+        cell.knownButton.setFalseImage(image: self.bookEmpty!)
         
         // Set the button statuses
-        if let spellFilterStatus = store.state.profile?.spellFilterStatus {
-            cell.favoriteButton.set(spellFilterStatus.isFavorite(spell))
-            cell.preparedButton.set(spellFilterStatus.isPrepared(spell))
-            cell.knownButton.set(spellFilterStatus.isKnown(spell))
-        }
+        let sfs = store.state.profile?.spellFilterStatus ?? SpellFilterStatus()
+        cell.favoriteButton.set(sfs.isFavorite(spell))
+        cell.preparedButton.set(sfs.isPrepared(spell))
+        cell.knownButton.set(sfs.isKnown(spell))
         
         // Set the button callbacks
         // Set the callbacks for the buttons
         cell.favoriteButton.setCallback({
-            store.dispatch(TogglePropertyAction(spell: spell, property: StatusFilterField.Favorites))
+            store.dispatch(TogglePropertyAction(spell: cell.spell, property: .Favorites, markDirty: false))
         })
         cell.preparedButton.setCallback({
-            store.dispatch(TogglePropertyAction(spell: spell, property: StatusFilterField.Prepared))
+            store.dispatch(TogglePropertyAction(spell: cell.spell, property: .Prepared, markDirty: false))
         })
         cell.knownButton.setCallback({
-            store.dispatch(TogglePropertyAction(spell: spell, property: StatusFilterField.Known))
+            store.dispatch(TogglePropertyAction(spell: cell.spell, property: .Known, markDirty: false))
         })
         
-        return cell
+        let width = tableView.frame.width
+        NSLayoutConstraint.activate([
+            cell.nameLabel.widthAnchor.constraint(equalToConstant: width - 3 * self.imageWidth - 30)
+        ])
+
+        let buttons = [cell.favoriteButton, cell.preparedButton, cell.knownButton]
+        NSLayoutConstraint.activate(buttons.compactMap({
+            button in
+            return button?.widthAnchor.constraint(equalToConstant: self.imageWidth)
+        }))
+        NSLayoutConstraint.activate(buttons.compactMap({
+            button in
+            return button?.heightAnchor.constraint(equalToConstant: self.imageHeight)
+        }))
+    }
+    
+    private func makeTargetedPreview(for configuration: UIContextMenuConfiguration, backgroundColor: UIColor? = nil) -> UITargetedPreview? {
+        guard let indexPath = configuration.identifier as? IndexPath else { return nil }
+        guard let cell = tableView.cellForRow(at: indexPath) as? SpellDataCell else { return nil }
+        cell.contentView.backgroundColor = UIColor.lightGray
+        let preview = UITargetedPreview(view: cell.contentView)
+        if (backgroundColor != nil) {
+            preview.view.backgroundColor = backgroundColor
+        }
+        return preview
+    }
+    
+    func setCellBackgroundColor(indexPath: IndexPath, color: UIColor) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? SpellDataCell else { return }
+        cell.contentView.backgroundColor = color
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayContextMenu configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+        guard let indexPath = configuration.identifier as? IndexPath else { return }
+        setCellBackgroundColor(indexPath: indexPath, color: UIColor.white)
+    }
+        
+    override func tableView(_ tableView: UITableView, willEndContextMenuInteraction configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+        animator?.addCompletion {
+            guard let indexPath = configuration.identifier as? IndexPath else { return }
+            self.setCellBackgroundColor(indexPath: indexPath, color: UIColor.clear)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, previewForHighlightingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
+        return makeTargetedPreview(for: configuration)
+    }
+        
+    override func tableView(
+        _ tableView: UITableView,
+        contextMenuConfigurationForRowAt indexPath: IndexPath,
+        point: CGPoint) -> UIContextMenuConfiguration? {
+        let cell = tableView.cellForRow(at: indexPath) as! SpellDataCell
+        let spell = cell.spell
+        return UIContextMenuConfiguration(
+            identifier: indexPath as NSCopying,
+            previewProvider: nil,
+            actionProvider: {
+                suggestedActions in
+                let shortcutAction =
+                UIAction(
+                    title: "Create Shortcut",
+                    image: UIImage(named: "book_empty.png")?.inverseImage(cgResult: true))  {
+                        action in addSpellShortcut(spell: spell)
+                    }
+                return UIMenu(title: "Spell Options", children: [shortcutAction])
+            }
+        )
+    }
+    
+    // This is supposed to handle rotations, etc.
+    // so we re-call setContainerDimensions and change the size associated to SpellDataCell
+    // But for the moment, the SpellDataCell change doesn't work correctly, and so rotation is disabled
+    override func viewWillTransition(to size: CGSize,
+                                     with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        setContainerDimensions(screenWidth: size.width, screenHeight: size.height)
     }
     
     func sort() {
@@ -208,6 +350,17 @@ class SpellTableViewController: UITableViewController {
     // Function to filter the table data
     func filter() {
         store.dispatchFunction(FilterNeededAction())
+    }
+    
+    func indexPathsForIDs(spellIDs: [Int]) -> [IndexPath] {
+        var indexPaths: [IndexPath] = []
+        for (idx, spell) in spellArray.enumerated() {
+            if (spellIDs.contains(spell.id)) {
+                let indexPath = IndexPath(item: idx, section: 0)
+                indexPaths.append(indexPath)
+            }
+        }
+        return indexPaths
     }
     
     // If one of the side menus is open, we want to close the menu rather than select a cell
@@ -235,7 +388,6 @@ class SpellTableViewController: UITableViewController {
         self.present(spellWindowController, animated: true, completion: nil)
         spellWindowController.spell = spell
         spellWindowController.spellIndex = spellIndex
-        //print("")
     }
     
     
@@ -271,6 +423,7 @@ class SpellTableViewController: UITableViewController {
     // Filter on pulldown
     @objc func handlePullDown(_ sender: Any) {
         filter()
+        tableView.reloadData()
         refreshControl!.endRefreshing()
     }
     
@@ -350,8 +503,19 @@ class SpellTableViewController: UITableViewController {
 
 // MARK: StoreSubscriber
 extension SpellTableViewController: StoreSubscriber {
-    func newState(state spells: [Spell]) {
-        spellArray = spells
-        tableView.reloadData()
+    typealias StoreSubscriberStateType = (currentSpellList: [Spell], dirtySpellIDs: [Int])
+    
+    func newState(state: StoreSubscriberStateType) {
+        let needReload = state.currentSpellList != spellArray
+        if (needReload) {
+            spellArray = state.currentSpellList
+            tableView.reloadData()
+        }
+        
+        if (state.dirtySpellIDs.count > 0 && !needReload) {
+           let indexPaths = self.indexPathsForIDs(spellIDs: state.dirtySpellIDs)
+            self.tableView.reloadRows(at: indexPaths, with: UITableView.RowAnimation.none)
+           store.dispatch(MarkAllSpellsCleanAction())
+        }
     }
 }
