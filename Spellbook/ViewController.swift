@@ -95,8 +95,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let bottomPaddingFraction = CGFloat(0.01)
     
     // Usable height and width
-    static var usableHeight = UIScreen.main.bounds.height
-    static var usableWidth = UIScreen.main.bounds.width
+    var usableHeight = UIScreen.main.bounds.height
+    var usableWidth = UIScreen.main.bounds.width
     
     // The navigation bar and its items
     @IBOutlet var navBar: UINavigationItem!
@@ -109,15 +109,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // The button images
     // It's too costly to do the re-rendering every time, so we just do it once
-    static let buttonFraction = CGFloat(0.09)
-    static let imageWidth = max(ViewController.buttonFraction * ViewController.usableWidth, CGFloat(30))
-    static let imageHeight = ViewController.imageWidth
-    static let starEmpty = UIImage(named: "star_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: ViewController.imageWidth, height: ViewController.imageHeight)
-    static let starFilled = UIImage(named: "star_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: ViewController.imageWidth, height: ViewController.imageHeight)
-    static let wandEmpty = UIImage(named: "wand_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: ViewController.imageWidth, height: ViewController.imageHeight)
-    static let wandFilled = UIImage(named: "wand_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: ViewController.imageWidth, height: ViewController.imageHeight)
-    static let bookEmpty = UIImage(named: "book_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: ViewController.imageWidth, height: ViewController.imageHeight)
-    static let bookFilled = UIImage(named: "book_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: ViewController.imageWidth, height: ViewController.imageHeight)
+    var buttonFraction: CGFloat!
+    var imageWidth: CGFloat!
+    var imageHeight: CGFloat!
+    var starEmpty: UIImage!
+    var starFilled: UIImage!
+    var wandEmpty: UIImage!
+    var wandFilled: UIImage!
+    var bookEmpty: UIImage!
+    var bookFilled: UIImage!
     
     // What to do when the search button is pressed
     @IBAction func searchButtonPressed(_ sender: Any) {
@@ -129,6 +129,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         store.subscribe(self) {
             $0.select {
                 ($0.profile, $0.profile?.sortFilterStatus, $0.profile?.spellFilterStatus, $0.currentSpellList, $0.dirtySpellIDs)
@@ -194,10 +195,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // as this calls some subview methods as well as sets dimensions
         if !firstAppearance { return }
         
-        // Set the sizes of the container views (there are no other top level elements)
-        let screenRect = UIScreen.main.bounds
-        setContainerDimensions(screenWidth: screenRect.size.width, screenHeight: screenRect.size.height)
-        
         // Dismiss keyboard when not in the search field
         //let tapper = UITapGestureRecognizer(target: self, action: #selector(endEditing))
         //tapper.cancelsTouchesInView = false
@@ -258,16 +255,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // The view has appeared, so we can set firstAppearance to false
         firstAppearance = false
-        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+                
+        // Set the sizes of the container views (there are no other top level elements)
+        let screenRect = UIScreen.main.bounds
+        setContainerDimensions(screenWidth: screenRect.size.width, screenHeight: screenRect.size.height)
     }
     
     // This function sets the sizes of the top-level container views
     func setContainerDimensions(screenWidth: CGFloat, screenHeight: CGFloat) {
         
+        self.buttonFraction = oniPad ? CGFloat(0.04) : CGFloat(0.08)
+
         // Get the padding sizes
         let leftPadding = max(min(leftPaddingFraction * screenWidth, maxHorizPadding), minHorizPadding)
         let rightPadding = max(min(rightPaddingFraction * screenWidth, maxHorizPadding), minHorizPadding)
@@ -275,9 +277,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let bottomPadding = max(min(bottomPaddingFraction * screenHeight, maxBotPadding), minBotPadding)
         
         // Account for padding
-        ViewController.usableHeight = screenHeight - topPadding - bottomPadding
-        ViewController.usableWidth = screenWidth - leftPadding - rightPadding
+        self.usableHeight = screenHeight - topPadding - bottomPadding
+        self.usableWidth = screenWidth - leftPadding - rightPadding
         
+        // The button images
+        // It's too costly to do the re-rendering every time, so we just do it once
+        // self.imageWidth = max(self.buttonFraction * self.usableWidth, CGFloat(30))
+        
+        self.imageWidth = oniPad ? CGFloat(40.5) : CGFloat(30.5)
+        self.imageHeight = self.imageWidth
+        self.starEmpty = UIImage(named: "star_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: self.imageWidth, height: self.imageHeight)
+        self.starFilled = UIImage(named: "star_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: self.imageWidth, height: self.imageHeight)
+        self.wandEmpty = UIImage(named: "wand_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: self.imageWidth, height: self.imageHeight)
+        self.wandFilled = UIImage(named: "wand_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: self.imageWidth, height: self.imageHeight)
+        self.bookEmpty = UIImage(named: "book_empty.png")?.withRenderingMode(.alwaysOriginal).resized(width: self.imageWidth, height: self.imageHeight)
+        self.bookFilled = UIImage(named: "book_filled.png")?.withRenderingMode(.alwaysOriginal).resized(width: self.imageWidth, height: self.imageHeight)
+        
+        spellTable.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -414,7 +430,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         navigationItem.titleView = searchBar
         searchBar.alpha = 0
         navigationItem.setLeftBarButton(nil, animated: true)
-        navigationItem.setRightBarButtonItems(nil, animated: true)
+        if oniPad {
+            let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(iPadSearchBarCancelButtonClicked))
+            navigationItem.setRightBarButtonItems([cancelButton], animated: true)
+        } else {
+            navigationItem.setRightBarButtonItems(nil, animated: true)
+        }
         self.searchBar.alpha = 1
         self.searchBar.becomeFirstResponder()
 //        UIView.animate(withDuration: 0.5, animations: {
@@ -444,6 +465,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return toClose
     }
 
+    @objc func iPadSearchBarCancelButtonClicked() {
+        searchBarCancelButtonClicked(self.searchBar)
+    }
 
     // MARK: UISearchBarDelegate
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -568,12 +592,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         // Set the button images
-        cell.favoriteButton.setTrueImage(image: ViewController.starFilled!)
-        cell.favoriteButton.setFalseImage(image: ViewController.starEmpty!)
-        cell.preparedButton.setTrueImage(image: ViewController.wandFilled!)
-        cell.preparedButton.setFalseImage(image: ViewController.wandEmpty!)
-        cell.knownButton.setTrueImage(image: ViewController.bookFilled!)
-        cell.knownButton.setFalseImage(image: ViewController.bookEmpty!)
+        cell.favoriteButton.setTrueImage(image: self.starFilled!)
+        cell.favoriteButton.setFalseImage(image: self.starEmpty!)
+        cell.preparedButton.setTrueImage(image: self.wandFilled!)
+        cell.preparedButton.setFalseImage(image: self.wandEmpty!)
+        cell.knownButton.setTrueImage(image: self.bookFilled!)
+        cell.knownButton.setFalseImage(image: self.bookEmpty!)
         
         // Set the button statuses
         let sfs = store.state.profile?.spellFilterStatus ?? SpellFilterStatus()
@@ -592,6 +616,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.knownButton.setCallback({
             store.dispatch(TogglePropertyAction(spell: cell.spell, property: .Known, markDirty: false))
         })
+        
+        let width = spellTable.frame.width
+        NSLayoutConstraint.activate([
+            cell.nameLabel.widthAnchor.constraint(equalToConstant: width - 3 * self.imageWidth - 30)
+        ])
+
+        let buttons = [cell.favoriteButton, cell.preparedButton, cell.knownButton]
+        NSLayoutConstraint.activate(buttons.compactMap({
+            button in
+            return button?.widthAnchor.constraint(equalToConstant: self.imageWidth)
+        }))
+        NSLayoutConstraint.activate(buttons.compactMap({
+            button in
+            return button?.heightAnchor.constraint(equalToConstant: self.imageHeight)
+        }))
     }
     
     private func makeTargetedPreview(for configuration: UIContextMenuConfiguration, backgroundColor: UIColor? = nil) -> UITargetedPreview? {

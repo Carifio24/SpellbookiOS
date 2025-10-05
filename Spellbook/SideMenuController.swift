@@ -20,6 +20,8 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     @IBOutlet weak var updateInfoLabel: UILabel!
     @IBOutlet weak var whatsNewButton: UIButton!
     @IBOutlet weak var spellSlotsButton: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var contentView: UIView!
     
     var statusController: StatusFilterController?
     
@@ -61,69 +63,12 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         viewHeight = viewRect.size.height
         viewWidth = viewRect.size.width
         
-        // Set the dimensions for the background image
-        // No padding necessary for this
-        backgroundView.frame = CGRect(x: 0, y: -backgroundOffset, width: viewWidth, height: viewHeight + backgroundOffset)
-        
-        //let headerHeight = CGFloat(0.1 * viewHeight)
-        //let statusFilterHeight = CGFloat(0.3 * viewHeight)
-        let headerHeight = CGFloat(57)
-        let statusFilterHeight = CGFloat(171)
-        let characterLabelHeight = CGFloat(20)
-        let exportSpellListLabelHeight = CGFloat(20)
-        let selectionButtonHeight = CGFloat(20)
-        let spellSlotsButtonHeight = CGFloat(20)
-        let belowFilterPadding = min(max(0.05 * SizeUtils.screenHeight, 25), 40)
-        let belowCharacterLabelPadding = CGFloat(14)
-        let belowExportSpellListLabelPadding = CGFloat(14)
-        let belowSelectionButtonPadding = CGFloat(20)
-        let belowSpellSlotsButtonPadding = CGFloat(23)
-        let notchTopPadding = CGFloat(35)
-        let updateInfoLabelHeight = CGFloat(20)
-        let belowUpdateInfoLabelPadding = CGFloat(14)
-        let whatsNewButtonHeight = CGFloat(20)
-        
-        // Does the device have a notch or not?
-        let hasNotch = UIDevice.current.hasNotch
-        
-        // Set up the view positioning
-        var currentY = CGFloat(topPadding)
-        if hasNotch {
-            currentY += notchTopPadding
-        }
-        sideMenuHeader.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth, height: headerHeight)
-        
-        currentY += (headerHeight + tablePadding)
-        statusFilterView.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: statusFilterHeight + belowFilterPadding)
-        
-        currentY += (statusFilterHeight + belowFilterPadding)
-        characterLabel.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: characterLabelHeight)
-        
-        currentY += characterLabelHeight + belowCharacterLabelPadding
-        selectionButton.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: selectionButtonHeight)
-        
-        currentY += exportSpellListLabelHeight + belowExportSpellListLabelPadding
-        exportSpellListButton.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: exportSpellListLabelHeight)
-        
-        currentY += spellSlotsButtonHeight + belowSelectionButtonPadding
-        spellSlotsButton.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: spellSlotsButtonHeight)
-        
-        currentY += selectionButtonHeight + belowSpellSlotsButtonPadding
-        updateInfoLabel.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: updateInfoLabelHeight)
-        
-        currentY += updateInfoLabelHeight + belowUpdateInfoLabelPadding
-        whatsNewButton.frame = CGRect(x: leftPadding, y: currentY, width: viewWidth - leftPadding, height: whatsNewButtonHeight)
-        
-        selectionButton.addTarget(self, action: #selector(selectionButtonPressed), for: UIControl.Event.touchUpInside)
-        
-        exportSpellListButton.addTarget(self, action: #selector(exportSpellListButtonPressed), for: UIControl.Event.touchUpInside)
-        
-        whatsNewButton.addTarget(self, action: #selector(updateInfoButtonPressed), for: UIControl.Event.touchUpInside)
-        
-        spellSlotsButton.addTarget(self, action: #selector(spellSlotsButtonPressed), for: UIControl.Event.touchUpInside)
-        
         characterLabel.textColor = defaultFontColor
         
+        selectionButton.addTarget(self, action: #selector(selectionButtonPressed), for: UIControl.Event.touchUpInside)
+        exportSpellListButton.addTarget(self, action: #selector(exportSpellListButtonPressed), for: UIControl.Event.touchUpInside)
+        whatsNewButton.addTarget(self, action: #selector(updateInfoButtonPressed), for: UIControl.Event.touchUpInside)
+        spellSlotsButton.addTarget(self, action: #selector(spellSlotsButtonPressed), for: UIControl.Event.touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -132,7 +77,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
             $0.select { $0.profile?.name }
         }
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         
         // Set the character label
@@ -141,7 +86,24 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
             characterLabel.text = "Character: " + name!
         }
     }
-    
+
+    func setScrollViewSize() {
+        if let content = contentView, let scroll = scrollView {
+            // The content size of the scroll view is equal to the content view's size
+            scroll.contentSize = content.frame.size
+            
+        }
+    }
+
+    override func viewWillTransition(to size: CGSize,
+                                     with coordinator: UIViewControllerTransitionCoordinator) {
+        setScrollViewSize()
+    }
+
+    override func viewDidLayoutSubviews() {
+        setScrollViewSize()
+    }
+
     // Connecting to the child controllers
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "statusSegue" {
@@ -158,15 +120,14 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
 //
 //        }
     }
-    
+
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return UIModalPresentationStyle.none
     }
-    
+
     @objc func selectionButtonPressed() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "characterSelection") as! CharacterSelectionController
-        
         
         let popupHeight = 0.5 * SizeUtils.screenHeight
         let popupWidth = 0.75 * SizeUtils.screenWidth
