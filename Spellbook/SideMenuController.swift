@@ -23,8 +23,6 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     
-    var statusController: StatusFilterController?
-    
     var main: ViewController?
     
     let backgroundOffset = CGFloat(27)
@@ -125,23 +123,6 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
 
     override func viewDidLayoutSubviews() {
         setScrollViewSize()
-    }
-
-    // Connecting to the child controllers
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "statusSegue" {
-            statusController = (segue.destination as! StatusFilterController)
-        }
-//        if segue.identifier == "characterSelection" {
-//            let popoverViewController = segue.destination
-//            popoverViewController.modalPresentationStyle = .popover
-//            print("Set style")
-//            popoverViewController.presentationController?.delegate = self
-//            print("Assigned delegate")
-//            popoverViewController.popoverPresentationController?.sourceView = selectionButton
-//            popoverViewController.popoverPresentationController?.sourceRect = CGRect(x: 0, y: 0, width: selectionButton.frame.size.width, height: selectionButton.frame.size.height)
-//
-//        }
     }
 
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {

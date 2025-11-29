@@ -80,7 +80,6 @@
 		8E614915241991C200842A18 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148CE241991C100842A18 /* Settings.swift */; };
 		8E614916241991C200842A18 /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148CF241991C100842A18 /* SideMenuController.swift */; };
 		8E614917241991C200842A18 /* SpellParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148D0241991C100842A18 /* SpellParse.swift */; };
-		8E614918241991C200842A18 /* StatusFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148D1241991C100842A18 /* StatusFilterController.swift */; };
 		8E614919241991C200842A18 /* FromRightDismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148D2241991C100842A18 /* FromRightDismissAnimator.swift */; };
 		8E61491A241991C200842A18 /* iOSUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148D3241991C100842A18 /* iOSUtils.swift */; };
 		8E61491B241991C200842A18 /* SpellbookError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148D4241991C100842A18 /* SpellbookError.swift */; };
@@ -255,7 +254,6 @@
 		8E6148CE241991C100842A18 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		8E6148CF241991C100842A18 /* SideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
 		8E6148D0241991C100842A18 /* SpellParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellParse.swift; sourceTree = "<group>"; };
-		8E6148D1241991C100842A18 /* StatusFilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusFilterController.swift; sourceTree = "<group>"; };
 		8E6148D2241991C100842A18 /* FromRightDismissAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromRightDismissAnimator.swift; sourceTree = "<group>"; };
 		8E6148D3241991C100842A18 /* iOSUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSUtils.swift; sourceTree = "<group>"; };
 		8E6148D4241991C100842A18 /* SpellbookError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellbookError.swift; sourceTree = "<group>"; };
@@ -470,7 +468,6 @@
 				8E7BD0DC244A6BEF00090C40 /* PassThroughView.swift */,
 				8E6148AC241991BF00842A18 /* SpellWindowController.swift */,
 				FC6B96CC2DCF25D60091A5CA /* SpellListHTMLExporter.swift */,
-				8E6148D1241991C100842A18 /* StatusFilterController.swift */,
 				8E6148A3241991BF00842A18 /* StatusFilterField.swift */,
 				8E6148BF241991C000842A18 /* StatusPopupController.swift */,
 				8E6148B1241991BF00842A18 /* StringUtils.swift */,
@@ -788,7 +785,6 @@
 				8E614920241991C200842A18 /* ImageUtils.swift in Sources */,
 				8E07AE0F2A10AFA700C0487B /* Operators.swift in Sources */,
 				8E6148F4241991C200842A18 /* SideMenuCell.swift in Sources */,
-				8E614918241991C200842A18 /* StatusFilterController.swift in Sources */,
 				8E6148EC241991C200842A18 /* DeletionPromptController.swift in Sources */,
 				8E7EB4ED29F3B87F00408EA4 /* SpellSlotsManagerDelegate.swift in Sources */,
 				8E614907241991C200842A18 /* PopupViewController.swift in Sources */,
