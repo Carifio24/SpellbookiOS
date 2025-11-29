@@ -1678,19 +1678,28 @@
                                                 <color key="textColor" systemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YnO-eH-2iK">
-                                                <rect key="frame" x="1" y="68.666666666666657" width="238" height="199.99999999999997"/>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gdl-vj-ylZ" userLabel="Status Filter View">
+                                                <rect key="frame" x="5" y="68.666666666666657" width="404" height="199.99999999999997"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="czw-3S-Hr6"/>
+                                                    <constraint firstAttribute="height" constant="200" id="6pY-br-0pR"/>
                                                 </constraints>
-                                                <connections>
-                                                    <segue destination="526-HG-Tzy" kind="embed" identifier="statusSegue" id="nsR-T5-eop"/>
-                                                </connections>
-                                            </containerView>
+                                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="statusMenuCell" id="Xl0-rq-dPq" customClass="SideMenuCell" customModule="Spellbook" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="50" width="404" height="43.666667938232422"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xl0-rq-dPq" id="ZPm-9y-V8a">
+                                                            <rect key="frame" x="0.0" y="0.0" width="404" height="43.666667938232422"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </tableViewCellContentView>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                            </tableView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCE-VA-VJs">
                                                 <rect key="frame" x="5" y="273.66666666666669" width="0.0" height="0.0"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                                 <color key="textColor" systemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1710,8 +1719,8 @@
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtt-Pc-x84" userLabel="Export Spell List Button">
-                                                <rect key="frame" x="46" y="46" width="147" height="35"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtt-Pc-x84" userLabel="Export Spell List Button">
+                                                <rect key="frame" x="5" y="354.66666666666669" width="123" height="33"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Export Spell List">
@@ -1736,11 +1745,11 @@
                                         <constraints>
                                             <constraint firstItem="Qda-26-fCf" firstAttribute="leading" secondItem="Tg0-0v-I7N" secondAttribute="leading" constant="5" id="6rq-gE-nyf"/>
                                             <constraint firstItem="wtt-Pc-x84" firstAttribute="top" secondItem="Qda-26-fCf" secondAttribute="bottom" constant="5" id="7au-82-Qfk"/>
-                                            <constraint firstItem="YnO-eH-2iK" firstAttribute="top" secondItem="wna-nj-ofa" secondAttribute="bottom" constant="5" id="DlS-eP-avs"/>
+                                            <constraint firstItem="gdl-vj-ylZ" firstAttribute="trailing" secondItem="Tg0-0v-I7N" secondAttribute="trailing" constant="-5" id="AaP-kC-4zZ"/>
+                                            <constraint firstItem="gdl-vj-ylZ" firstAttribute="top" secondItem="wna-nj-ofa" secondAttribute="bottom" constant="5" id="Bvf-fQ-Ohq"/>
                                             <constraint firstItem="wtt-Pc-x84" firstAttribute="leading" secondItem="Tg0-0v-I7N" secondAttribute="leading" constant="5" id="GSX-Zn-Gs1"/>
                                             <constraint firstItem="eFO-b5-jRQ" firstAttribute="leading" secondItem="Tg0-0v-I7N" secondAttribute="leading" constant="5" id="HGP-pz-JUr"/>
                                             <constraint firstItem="bgJ-32-A8i" firstAttribute="top" secondItem="eFO-b5-jRQ" secondAttribute="bottom" constant="5" id="Jpl-1D-aqG"/>
-                                            <constraint firstItem="xCE-VA-VJs" firstAttribute="top" secondItem="YnO-eH-2iK" secondAttribute="bottom" constant="5" id="L64-eP-caj"/>
                                             <constraint firstItem="wna-nj-ofa" firstAttribute="leading" secondItem="Tg0-0v-I7N" secondAttribute="leading" constant="5" id="LLi-is-r22"/>
                                             <constraint firstItem="wna-nj-ofa" firstAttribute="top" secondItem="Tg0-0v-I7N" secondAttribute="top" constant="5" id="Lq2-iO-1oO"/>
                                             <constraint firstItem="xCE-VA-VJs" firstAttribute="leading" secondItem="Tg0-0v-I7N" secondAttribute="leading" constant="5" id="Pz2-Ej-8qm"/>
@@ -1748,7 +1757,8 @@
                                             <constraint firstItem="Qda-26-fCf" firstAttribute="top" secondItem="8BR-mp-g4U" secondAttribute="bottom" constant="5" id="TnW-ui-3Lp"/>
                                             <constraint firstItem="8BR-mp-g4U" firstAttribute="top" secondItem="xCE-VA-VJs" secondAttribute="bottom" constant="5" id="Xxb-5C-6JX"/>
                                             <constraint firstItem="bgJ-32-A8i" firstAttribute="leading" secondItem="Tg0-0v-I7N" secondAttribute="leading" constant="5" id="aKA-W3-12q"/>
-                                            <constraint firstItem="YnO-eH-2iK" firstAttribute="leading" secondItem="Tg0-0v-I7N" secondAttribute="leading" constant="5" id="d45-qH-u2a"/>
+                                            <constraint firstItem="xCE-VA-VJs" firstAttribute="top" secondItem="gdl-vj-ylZ" secondAttribute="bottom" constant="5" id="aU6-96-0jU"/>
+                                            <constraint firstItem="gdl-vj-ylZ" firstAttribute="leading" secondItem="Tg0-0v-I7N" secondAttribute="leading" constant="5" id="ccw-bg-X69"/>
                                             <constraint firstAttribute="trailing" secondItem="wna-nj-ofa" secondAttribute="trailing" constant="5" id="sbn-db-q2E"/>
                                             <constraint firstItem="8BR-mp-g4U" firstAttribute="leading" secondItem="Tg0-0v-I7N" secondAttribute="leading" constant="5" id="xNo-vn-i9L"/>
                                         </constraints>
@@ -1783,7 +1793,7 @@
                         <outlet property="selectionButton" destination="8BR-mp-g4U" id="eZ4-yL-ucW"/>
                         <outlet property="sideMenuHeader" destination="wna-nj-ofa" id="xMA-ns-dai"/>
                         <outlet property="spellSlotsButton" destination="Qda-26-fCf" id="QrG-R1-yGZ"/>
-                        <outlet property="statusFilterView" destination="YnO-eH-2iK" id="oGE-MX-zei"/>
+                        <outlet property="statusFilterTable" destination="gdl-vj-ylZ" id="h7N-bZ-Ka6"/>
                         <outlet property="updateInfoLabel" destination="eFO-b5-jRQ" id="IxA-tb-TSc"/>
                         <outlet property="whatsNewButton" destination="bgJ-32-A8i" id="Irw-f6-JrK"/>
                     </connections>
@@ -1797,20 +1807,22 @@
             <objects>
                 <viewController id="526-HG-Tzy" customClass="StatusFilterController" customModule="Spellbook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jzb-0h-mv9" customClass="UITableView">
-                        <rect key="frame" x="0.0" y="0.0" width="238" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="statusMenuCell" translatesAutoresizingMaskIntoConstraints="NO" id="hC5-Lg-NpH" customClass="SideMenuCell" customModule="Spellbook" customModuleProvider="target">
                                 <rect key="frame" x="-68" y="42" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hC5-Lg-NpH" id="CKz-Hx-6IP">
+                                <tableViewCellContentView key="contentView" clipsSubviews="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hC5-Lg-NpH" id="CKz-Hx-6IP">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" systemColor="systemPurpleColor"/>
                             </tableViewCell>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cLc-US-TfF"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemMintColor"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="top-OO-HlV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3558,6 +3570,12 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemMintColor">
+            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

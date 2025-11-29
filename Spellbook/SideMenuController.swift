@@ -13,7 +13,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
 
     @IBOutlet var backgroundView: UIImageView!
     @IBOutlet var sideMenuHeader: UILabel!
-    @IBOutlet var statusFilterView: UIView!
+    @IBOutlet weak var statusFilterTable: UITableView!
     @IBOutlet var characterLabel: UILabel!
     @IBOutlet var selectionButton: UIButton!
     @IBOutlet var exportSpellListButton: UIButton!
@@ -28,6 +28,8 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     var main: ViewController?
     
     let backgroundOffset = CGFloat(27)
+    
+    let statusFilterManager = StatusFilterTableManager()
     
     let leftPadding = CGFloat(7)
     let topPadding = CGFloat(20)
@@ -69,10 +71,31 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         exportSpellListButton.addTarget(self, action: #selector(exportSpellListButtonPressed), for: UIControl.Event.touchUpInside)
         whatsNewButton.addTarget(self, action: #selector(updateInfoButtonPressed), for: UIControl.Event.touchUpInside)
         spellSlotsButton.addTarget(self, action: #selector(spellSlotsButtonPressed), for: UIControl.Event.touchUpInside)
+        
+        statusFilterTableSetup()
+    }
+    
+    private func statusFilterTableSetup() {
+        // We don't want to show any dividing lines
+        statusFilterTable.separatorStyle = .none
+        
+        // Make the table view transparent
+        statusFilterTable.backgroundColor = UIColor.clear
+        statusFilterTable
+            .tintColor = UIColor.clear
+        
+        // Don't let the table scroll
+        statusFilterTable.isScrollEnabled = false
+        
+        statusFilterTable.allowsSelection = true
+        
+        statusFilterTable.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.statusFilterTable.dataSource = self.statusFilterManager
+        self.statusFilterTable.delegate = self.statusFilterManager
         store.subscribe(self) {
             $0.select { $0.profile?.name }
         }

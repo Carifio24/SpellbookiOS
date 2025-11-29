@@ -58,6 +58,8 @@ class StatusFilterController: UITableViewController {
         // Don't let the table scroll
         tableView.isScrollEnabled = false
         
+        tableView.allowsSelection = true
+        
         // Set the dimensions of child views
         setViewDimensions()
         
@@ -135,6 +137,7 @@ class StatusFilterController: UITableViewController {
         cell.optionLabel.textColor = UIColor.black
         cell.optionLabel.backgroundColor = UIColor.clear
         cell.backgroundColor = UIColor.clear
+        cell.selectionStyle = .default
         return cell
     }
     
