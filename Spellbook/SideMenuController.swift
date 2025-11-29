@@ -106,6 +106,9 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         if (name != nil) {
             characterLabel.text = "Character: " + name!
         }
+        if let sff = store.state.profile?.sortFilterStatus.statusFilterField {
+            statusFilterManager.selectCell(statusFilterTable, for: sff)
+        }
     }
 
     func setScrollViewSize() {

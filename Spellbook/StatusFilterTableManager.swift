@@ -87,6 +87,11 @@ class StatusFilterTableManager: NSObject, UITableViewDataSource, UITableViewDele
         // Set the filtering variables accordingly
         let sff = StatusFilterField(rawValue: indexPath.row)!
         store.dispatch(StatusFilterAction(statusFilterField: sff))
-        
+    }
+    
+    func selectCell(_ tableView: UITableView, for statusFilterField: StatusFilterField) {
+        print(statusFilterField.rawValue)
+        let indexPath = IndexPath(row: statusFilterField.rawValue, section: 0)
+        tableView.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
     }
 }
