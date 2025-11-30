@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ReSwift
 
 class StatusFilterTableManager: NSObject, UITableViewDataSource, UITableViewDelegate {
     
@@ -73,7 +74,11 @@ class StatusFilterTableManager: NSObject, UITableViewDataSource, UITableViewDele
         let cell = SideMenuCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: cellReuseIdentifier, selected: false, isSelectedImageFile: imageFile, notSelectedImageFile: imageFile)
         //let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! SideMenuCell
         let field = StatusFilterField(rawValue: indexPath.row) ?? StatusFilterField.All
-        cell.optionLabel.text = field.name()
+        if let count = store.state.profile?.spellFilterStatus.countForStatus(field) {
+            cell.optionLabel.text = "\(field.name()): (\(count))"
+        } else {
+            cell.optionLabel.text = field.name()
+        }
         cell.optionLabel.textColor = UIColor.black
         cell.optionLabel.backgroundColor = UIColor.clear
         cell.backgroundColor = UIColor.clear
@@ -89,8 +94,31 @@ class StatusFilterTableManager: NSObject, UITableViewDataSource, UITableViewDele
         store.dispatch(StatusFilterAction(statusFilterField: sff))
     }
     
+    private func indexPath(for statusFilterField: StatusFilterField) -> IndexPath {
+        return IndexPath(row: statusFilterField.rawValue, section: 0)
+    }
+    
     func selectCell(_ tableView: UITableView, for statusFilterField: StatusFilterField) {
-        let indexPath = IndexPath(row: statusFilterField.rawValue, section: 0)
-        tableView.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
+        let iPath = indexPath(for: statusFilterField)
+        tableView.selectRow(at: iPath, animated: true, scrollPosition: .middle)
+    }
+    
+    func getCell(_ tableView: UITableView, for statusFilterField: StatusFilterField) -> SideMenuCell? {
+        let iPath = indexPath(for: statusFilterField)
+        return tableView.cellForRow(at: iPath) as? SideMenuCell
+    }
+    
+    func setCounts(_ tableView: UITableView, favorite: Int?, prepared: Int?, known: Int?) {
+        let counts = [favorite, prepared, known]
+        for (index, count) in counts.enumerated() {
+            if let sff = StatusFilterField(rawValue: index + 1), let ct = count {
+                if sff == StatusFilterField.All {
+                    continue
+                }
+                if let cell = getCell(tableView, for: sff) {
+                    cell.optionLabel.text = "\(sff.name()): (\(ct))"
+                }
+            }
+        }
     }
 }

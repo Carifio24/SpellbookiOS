@@ -69,8 +69,6 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         exportSpellListButton.addTarget(self, action: #selector(exportSpellListButtonPressed), for: UIControl.Event.touchUpInside)
         whatsNewButton.addTarget(self, action: #selector(updateInfoButtonPressed), for: UIControl.Event.touchUpInside)
         spellSlotsButton.addTarget(self, action: #selector(spellSlotsButtonPressed), for: UIControl.Event.touchUpInside)
-        
-        statusFilterTableSetup()
     }
     
     private func statusFilterTableSetup() {
@@ -88,6 +86,10 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         statusFilterTable.allowsSelection = true
         
         statusFilterTable.reloadData()
+        
+        if let sff = store.state.profile?.sortFilterStatus.statusFilterField {
+            statusFilterManager.selectCell(statusFilterTable, for: sff)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,7 +97,14 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         self.statusFilterTable.dataSource = self.statusFilterManager
         self.statusFilterTable.delegate = self.statusFilterManager
         store.subscribe(self) {
-            $0.select { $0.profile?.name }
+            $0.select {
+                (
+                    $0.profile?.name,
+                    $0.profile?.spellFilterStatus.favoritesCount,
+                    $0.profile?.spellFilterStatus.preparedCount,
+                    $0.profile?.spellFilterStatus.knownCount
+                )
+            }
         }
     }
 
@@ -106,9 +115,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         if (name != nil) {
             characterLabel.text = "Character: " + name!
         }
-        if let sff = store.state.profile?.sortFilterStatus.statusFilterField {
-            statusFilterManager.selectCell(statusFilterTable, for: sff)
-        }
+
     }
 
     func setScrollViewSize() {
@@ -125,6 +132,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     }
 
     override func viewDidLayoutSubviews() {
+        statusFilterTableSetup()
         setScrollViewSize()
     }
 
@@ -232,10 +240,16 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
 
 // MARK: StoreSubscriber
 extension SideMenuController: StoreSubscriber {
-    typealias StoreSubscriberStateType = String?
-    func newState(state name: StoreSubscriberStateType) {
-        if (name != nil) {
-            characterLabel.text = "Character: " + name!
+
+    typealias StoreSubscriberStateType = (name: String?, favoritesCount: Int?, preparedCount: Int?, knownCount: Int?)
+
+    func newState(state: StoreSubscriberStateType) {
+
+        if let charName = state.name {
+            characterLabel.text = "Character: " + charName
         }
+        
+        statusFilterManager.setCounts(statusFilterTable, favorite: state.favoritesCount, prepared: state.preparedCount, known: state.knownCount)
+
     }
 }
