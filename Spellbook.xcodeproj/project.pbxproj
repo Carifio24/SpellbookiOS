@@ -80,7 +80,6 @@
 		8E614915241991C200842A18 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148CE241991C100842A18 /* Settings.swift */; };
 		8E614916241991C200842A18 /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148CF241991C100842A18 /* SideMenuController.swift */; };
 		8E614917241991C200842A18 /* SpellParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148D0241991C100842A18 /* SpellParse.swift */; };
-		8E614918241991C200842A18 /* StatusFilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148D1241991C100842A18 /* StatusFilterController.swift */; };
 		8E614919241991C200842A18 /* FromRightDismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148D2241991C100842A18 /* FromRightDismissAnimator.swift */; };
 		8E61491A241991C200842A18 /* iOSUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148D3241991C100842A18 /* iOSUtils.swift */; };
 		8E61491B241991C200842A18 /* SpellbookError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E6148D4241991C100842A18 /* SpellbookError.swift */; };
@@ -144,6 +143,7 @@
 		8EF6EF0D26485A2E0059BCE8 /* VersionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */; };
 		FC2FAFD42E14F3AA00710B6A /* HtmlToPdf in Frameworks */ = {isa = PBXBuildFile; productRef = FC2FAFD32E14F3AA00710B6A /* HtmlToPdf */; };
 		FC2FAFD82E1A4D0400710B6A /* RenameCharacterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2FAFD72E1A4D0400710B6A /* RenameCharacterController.swift */; };
+		FC3B1CD62EDA5C9F00555449 /* StatusFilterTableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3B1CD52EDA5C9F00555449 /* StatusFilterTableManager.swift */; };
 		FC46ED5F2DCDC93800D42840 /* SpellListExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC46ED5E2DCDC93800D42840 /* SpellListExporter.swift */; };
 		FC46ED632DCE46D600D42840 /* SpellListMarkdownExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC46ED622DCE46D600D42840 /* SpellListMarkdownExporter.swift */; };
 		FC6B96CD2DCF25D60091A5CA /* SpellListHTMLExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6B96CC2DCF25D60091A5CA /* SpellListHTMLExporter.swift */; };
@@ -254,7 +254,6 @@
 		8E6148CE241991C100842A18 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		8E6148CF241991C100842A18 /* SideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
 		8E6148D0241991C100842A18 /* SpellParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellParse.swift; sourceTree = "<group>"; };
-		8E6148D1241991C100842A18 /* StatusFilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusFilterController.swift; sourceTree = "<group>"; };
 		8E6148D2241991C100842A18 /* FromRightDismissAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromRightDismissAnimator.swift; sourceTree = "<group>"; };
 		8E6148D3241991C100842A18 /* iOSUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSUtils.swift; sourceTree = "<group>"; };
 		8E6148D4241991C100842A18 /* SpellbookError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpellbookError.swift; sourceTree = "<group>"; };
@@ -314,6 +313,7 @@
 		8EF6EF0A264668F60059BCE8 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		8EF6EF0C26485A2E0059BCE8 /* VersionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTests.swift; sourceTree = "<group>"; };
 		FC2FAFD72E1A4D0400710B6A /* RenameCharacterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenameCharacterController.swift; sourceTree = "<group>"; };
+		FC3B1CD52EDA5C9F00555449 /* StatusFilterTableManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusFilterTableManager.swift; sourceTree = "<group>"; };
 		FC46ED5E2DCDC93800D42840 /* SpellListExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListExporter.swift; sourceTree = "<group>"; };
 		FC46ED622DCE46D600D42840 /* SpellListMarkdownExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListMarkdownExporter.swift; sourceTree = "<group>"; };
 		FC6B96CC2DCF25D60091A5CA /* SpellListHTMLExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpellListHTMLExporter.swift; sourceTree = "<group>"; };
@@ -468,7 +468,6 @@
 				8E7BD0DC244A6BEF00090C40 /* PassThroughView.swift */,
 				8E6148AC241991BF00842A18 /* SpellWindowController.swift */,
 				FC6B96CC2DCF25D60091A5CA /* SpellListHTMLExporter.swift */,
-				8E6148D1241991C100842A18 /* StatusFilterController.swift */,
 				8E6148A3241991BF00842A18 /* StatusFilterField.swift */,
 				8E6148BF241991C000842A18 /* StatusPopupController.swift */,
 				8E6148B1241991BF00842A18 /* StringUtils.swift */,
@@ -503,6 +502,7 @@
 				FC8256AB2DCFAABF00CBED32 /* SpellListPDFExporter.swift */,
 				FC8256AE2DCFB3E800CBED32 /* ExportSpellListController.swift */,
 				FC2FAFD72E1A4D0400710B6A /* RenameCharacterController.swift */,
+				FC3B1CD52EDA5C9F00555449 /* StatusFilterTableManager.swift */,
 			);
 			path = Spellbook;
 			sourceTree = "<group>";
@@ -785,7 +785,6 @@
 				8E614920241991C200842A18 /* ImageUtils.swift in Sources */,
 				8E07AE0F2A10AFA700C0487B /* Operators.swift in Sources */,
 				8E6148F4241991C200842A18 /* SideMenuCell.swift in Sources */,
-				8E614918241991C200842A18 /* StatusFilterController.swift in Sources */,
 				8E6148EC241991C200842A18 /* DeletionPromptController.swift in Sources */,
 				8E7EB4ED29F3B87F00408EA4 /* SpellSlotsManagerDelegate.swift in Sources */,
 				8E614907241991C200842A18 /* PopupViewController.swift in Sources */,
@@ -823,6 +822,7 @@
 				FC46ED5F2DCDC93800D42840 /* SpellListExporter.swift in Sources */,
 				8E02F76224345F6200A3050C /* YesNo.swift in Sources */,
 				FCD5CEAA2E4CFC42003C4D96 /* SpellCodec.swift in Sources */,
+				FC3B1CD62EDA5C9F00555449 /* StatusFilterTableManager.swift in Sources */,
 				8E07AE0D2A0F708700C0487B /* ImportCharacterController.swift in Sources */,
 				8EEDC3E42AE739A60045D002 /* ConfirmNextAvailableCastController.swift in Sources */,
 				8EEA28FD297C23D8004971AD /* SpellFilter.swift in Sources */,
@@ -1057,7 +1057,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
-				CURRENT_PROJECT_VERSION = 59;
+				CURRENT_PROJECT_VERSION = 64;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = RSR87G74R7;
 				EXCLUDED_ARCHS = "";
@@ -1067,7 +1067,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.9.0;
+				MARKETING_VERSION = 3.10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dnd.jon.Spellbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1088,7 +1088,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				"CODE_SIGN_STYLE[sdk=iphoneos*]" = Automatic;
-				CURRENT_PROJECT_VERSION = 59;
+				CURRENT_PROJECT_VERSION = 64;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = RSR87G74R7;
 				EXCLUDED_ARCHS = "";
@@ -1098,7 +1098,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.9.0;
+				MARKETING_VERSION = 3.10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = dnd.jon.Spellbook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
