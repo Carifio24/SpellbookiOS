@@ -27191,7 +27191,7 @@
         "concentration": true,
         "desc": "For the duration, moonlight fills a 20-foot Emanation originating from you with Dim Light. While in that area, you and your allies have Half Cover and Resistance to Cold, Lightning, and Radiant damage.\n\nWhile the spell lasts, you can use one of the following options, ending the spell immediately:\n\nLiberation. When you fail a saving throw to avoid or end the Frightened, Grappled, or Restrained condition, you can take a Reaction to succeed on the save instead.\n\nRespite. As a Magic action, you or an ally within the area regains Hit Points equal to 4d10 plus your spellcasting ability modifier.",
         "duration": "Up to 1 minute",
-        "id": 921,
+        "id": 940,
         "level": 5,
         "locations": [
             {
@@ -27697,5 +27697,33 @@
         "range": "60 feet",
         "ruleset": "2024",
         "school": "Abjuration"
+    },
+    {
+        "casting_time": "1 hour",
+        "classes": [
+            "Artificer"
+        ],
+        "components": [
+            "V",
+            "S",
+            "M"
+        ],
+        "desc": "You summon a special homunculus in an unoccupied space within range. This creature uses the Homunculus Servant stat block. If you already have a homunculus from this spell, the homunculus is replaced by the new one. You determine the homunculus's appearance, such as a mechanical-looking bird, winged vial, or miniature animate cauldron.\n\nCombat. The homunculus is an ally to you and your allies. In combat, it shares your Initiative count, but it takes its turn immediately after yours. It obeys your commands (no action required by you). If you don't issue any, it takes the Dodge action and uses its movement to avoid danger.",
+        "duration": "Instantaneous",
+        "higher_level": "Use the spell slot's level for the spell's level in the stat block.",
+        "id": 941,
+        "level": 2,
+        "locations": [
+            {
+                "page": 21,
+                "sourcebook": "EFA"
+            }
+        ],
+        "material": "A gem worth 100+ gp",
+        "name": "Homunculus Servant",
+        "range": "10 feet",
+        "ritual": true,
+        "ruleset": "2024",
+        "school": "Conjuration"
     }
 ]
