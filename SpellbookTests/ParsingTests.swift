@@ -13,6 +13,6 @@ import XCTest
 class ParsingTests: XCTestCase {
     func testParseSpellList() {
         let state = SpellbookAppState()
-        XCTAssert(state.spellList.count == 921)
+        XCTAssert(state.spellList.count == 941)
     }
 }

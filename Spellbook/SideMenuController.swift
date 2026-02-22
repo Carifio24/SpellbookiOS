@@ -13,7 +13,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
 
     @IBOutlet var backgroundView: UIImageView!
     @IBOutlet var sideMenuHeader: UILabel!
-    @IBOutlet var statusFilterView: UIView!
+    @IBOutlet weak var statusFilterTable: UITableView!
     @IBOutlet var characterLabel: UILabel!
     @IBOutlet var selectionButton: UIButton!
     @IBOutlet var exportSpellListButton: UIButton!
@@ -23,11 +23,11 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     
-    var statusController: StatusFilterController?
-    
     var main: ViewController?
     
     let backgroundOffset = CGFloat(27)
+    
+    let statusFilterManager = StatusFilterTableManager()
     
     let leftPadding = CGFloat(7)
     let topPadding = CGFloat(20)
@@ -71,10 +71,40 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         spellSlotsButton.addTarget(self, action: #selector(spellSlotsButtonPressed), for: UIControl.Event.touchUpInside)
     }
     
+    private func statusFilterTableSetup() {
+        // We don't want to show any dividing lines
+        statusFilterTable.separatorStyle = .none
+        
+        // Make the table view transparent
+        statusFilterTable.backgroundColor = UIColor.clear
+        statusFilterTable
+            .tintColor = UIColor.clear
+        
+        // Don't let the table scroll
+        statusFilterTable.isScrollEnabled = false
+        
+        statusFilterTable.allowsSelection = true
+        
+        statusFilterTable.reloadData()
+        
+        if let sff = store.state.profile?.sortFilterStatus.statusFilterField {
+            statusFilterManager.selectCell(statusFilterTable, for: sff)
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.statusFilterTable.dataSource = self.statusFilterManager
+        self.statusFilterTable.delegate = self.statusFilterManager
         store.subscribe(self) {
-            $0.select { $0.profile?.name }
+            $0.select {
+                (
+                    $0.profile?.name,
+                    $0.profile?.spellFilterStatus.favoritesCount,
+                    $0.profile?.spellFilterStatus.preparedCount,
+                    $0.profile?.spellFilterStatus.knownCount
+                )
+            }
         }
     }
 
@@ -85,6 +115,7 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
         if (name != nil) {
             characterLabel.text = "Character: " + name!
         }
+
     }
 
     func setScrollViewSize() {
@@ -101,24 +132,8 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
     }
 
     override func viewDidLayoutSubviews() {
+        statusFilterTableSetup()
         setScrollViewSize()
-    }
-
-    // Connecting to the child controllers
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "statusSegue" {
-            statusController = (segue.destination as! StatusFilterController)
-        }
-//        if segue.identifier == "characterSelection" {
-//            let popoverViewController = segue.destination
-//            popoverViewController.modalPresentationStyle = .popover
-//            print("Set style")
-//            popoverViewController.presentationController?.delegate = self
-//            print("Assigned delegate")
-//            popoverViewController.popoverPresentationController?.sourceView = selectionButton
-//            popoverViewController.popoverPresentationController?.sourceRect = CGRect(x: 0, y: 0, width: selectionButton.frame.size.width, height: selectionButton.frame.size.height)
-//
-//        }
     }
 
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
@@ -225,10 +240,16 @@ class SideMenuController: UIViewController, UIPopoverPresentationControllerDeleg
 
 // MARK: StoreSubscriber
 extension SideMenuController: StoreSubscriber {
-    typealias StoreSubscriberStateType = String?
-    func newState(state name: StoreSubscriberStateType) {
-        if (name != nil) {
-            characterLabel.text = "Character: " + name!
+
+    typealias StoreSubscriberStateType = (name: String?, favoritesCount: Int?, preparedCount: Int?, knownCount: Int?)
+
+    func newState(state: StoreSubscriberStateType) {
+
+        if let charName = state.name {
+            characterLabel.text = "Character: " + charName
         }
+        
+        statusFilterManager.setCounts(statusFilterTable, favorite: state.favoritesCount, prepared: state.preparedCount, known: state.knownCount)
+
     }
 }

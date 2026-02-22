@@ -61,8 +61,12 @@
         <item name="title">Version 3.8.0 update</item>
         <item name="description">The spellbook has been updated with the ability to &lt;b&gt;export a spell list&lt;/b&gt; to an external file. Lists can be exported with all of the information for each spell, or in an abbreviated format (like the app\'s spell table). Available export formats are &lt;b&gt;PDF, Markdown, and HTML&lt;/b&gt;.</item>
     </section>
-        <section name="v_3_9_0">
+    <section name="v_3_9_0">
         <item name="title">Version 3.9.0 update</item>
         <item name="description">The spellbook has been updated with the ability to &lt;b&gt;rename an existing character&lt;/b&gt;. Additionally, the options for renaming a character, deleting a character, and copying a character's JSON have been moved to the &lt;b&gt;context menu&lt;/b&gt; for the character selection cell. (To access the context menu, &lt;b&gt;long press&lt;/b&gt; on the character's row in the selection dialog.)&lt;br/&gt;&lt;br/&gt;Additionally, a bug has been fixed which could cause the navigation bar to be hidden in the spell slots controller.</item>
+    </section>
+    <section name="v_3_10_0">
+        <item name="title">Version 3.10.0 update</item>
+        <item name="description">The spellbook has been updated with the following new features:&lt;br/&gt;&lt;br/&gt;&#8226; Content from &lt;b&gt;Forgotten Realms: Heroes of Faerûn&lt;/b&gt;.&lt;br/&gt;&lt;br/&gt;&#8226; The ability to add &lt;b&gt;shortcuts to specific spells&lt;/b&gt; on the home screen&lt;br/&gt;&lt;br/&gt;&#8226; Better support for non-phone screen sizes, such as iPad</item>
     </section>
 </root>

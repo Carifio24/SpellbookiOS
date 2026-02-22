@@ -111,6 +111,19 @@ class SpellFilterStatus {
         return listsCount(status: status)
     }
     
+    func countForStatus(_ statusFilterField: StatusFilterField) -> Int? {
+        switch statusFilterField {
+        case .Favorites:
+            return favoritesCount
+        case .Prepared:
+            return preparedCount
+        case .Known:
+            return knownCount
+        default:
+            return nil
+        }
+    }
+    
     func spellsWithOneProperty() -> [Int] {
         return spellStatusMap.filter({ $1.favorite || $1.prepared || $1.known }).map({$0.key})
     }
