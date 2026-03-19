@@ -15,7 +15,7 @@ class SpellWindowController: UIViewController {
     
     // How much of the horizontal width goes to the name label
     // The rest is for the favoriting button
-    static let majorWidthFraction = oniPad ? CGFloat(0.94) : CGFloat(0.86)
+    static let majorWidthFraction = oniPad ? CGFloat(0.93) : CGFloat(0.86)
     static let minorWidthFraction = 1 - SpellWindowController.majorWidthFraction
     static let halfGapWidth = CGFloat(10)
     static let imageWidth = UIScreen.main.bounds.width * SpellWindowController.minorWidthFraction
@@ -144,7 +144,7 @@ class SpellWindowController: UIViewController {
             favoriteButton,
             preparedButton,
             knownButton,
-            castButton
+            castButton,
         ]
         let majorWidthViews = [
             locationLabel,
@@ -169,12 +169,7 @@ class SpellWindowController: UIViewController {
         NSLayoutConstraint.activate(majorWidthViews.compactMap({ view in
             return view?.widthAnchor.constraint(equalToConstant: SpellWindowController.majorWidthFraction * width - SpellWindowController.halfGapWidth)
         }))
-        NSLayoutConstraint.activate([
-            favoriteButton.widthAnchor.constraint(equalToConstant: SpellWindowController.minorWidthFraction * width),
-            preparedButton.widthAnchor.constraint(equalToConstant: SpellWindowController.minorWidthFraction * width),
-            knownButton.widthAnchor.constraint(equalToConstant: SpellWindowController.minorWidthFraction * width),
-        ])
-
+        
         // Set the label fonts
         let labels = [ spellNameLabel, schoolLevelLabel, locationLabel, concentrationLabel, castingTimeLabel, rangeLabel, componentsLabel, materialsLabel, durationLabel, classesLabel, expandedClassesLabel, descriptionLabel, higherLevelLabel ]
         labels.forEach { $0!.textColor = defaultFontColor }

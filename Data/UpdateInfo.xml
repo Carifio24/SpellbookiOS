@@ -69,4 +69,8 @@
         <item name="title">Version 3.10.0 update</item>
         <item name="description">The spellbook has been updated with the following new features:&lt;br/&gt;&lt;br/&gt;&#8226; Content from &lt;b&gt;Forgotten Realms: Heroes of Faerûn&lt;/b&gt;.&lt;br/&gt;&lt;br/&gt;&#8226; The ability to add &lt;b&gt;shortcuts to specific spells&lt;/b&gt; on the home screen&lt;br/&gt;&lt;br/&gt;&#8226; Better support for non-phone screen sizes, such as iPad</item>
     </section>
+    <section name="v_3_11_0">
+        <item name="title">Version 3.11.0 update</item>
+        <item name="description">The spellbook has been updated to include the new spell and Artificer spell list from &lt;b&gt;Eberron: Forge of the Artificer&lt;/b&gt;.</item>
+    </section>
 </root>
