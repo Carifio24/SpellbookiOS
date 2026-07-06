@@ -50,10 +50,16 @@ class SpellCodec {
         let builder = spellBuilder ?? SpellBuilder()
 
         // Set the values that need no/trivial parsing
-        builder.setID(intGetter(sion, key: SpellCodec.ID_KEY))
-            .setName(sion[SpellCodec.NAME_KEY].string!)
-            .setLevel(intGetter(sion, key: SpellCodec.LEVEL_KEY))
-            .setSchool(School.fromName(sion[SpellCodec.SCHOOL_KEY].string!))
+        builder.setName(sion[SpellCodec.NAME_KEY].string!)
+               .setLevel(intGetter(sion, key: SpellCodec.LEVEL_KEY))
+               .setSchool(School.fromName(sion[SpellCodec.SCHOOL_KEY].string!))
+        
+        // Previously we had integer IDs
+        // so we need to handle that
+        let id = sion[SpellCodec.ID_KEY]
+        if (id.int != nil) {
+            
+        }
         
         let locations = sion[SpellCodec.LOCATIONS_KEY]
         if let array = locations.array {
