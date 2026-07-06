@@ -14,7 +14,7 @@ public class SpellBuilder {
     init() {}
     
     // Member values
-    private(set) var id: Int = 0
+    private(set) var id: UUID = UUID()
     private(set) var name: String = ""
     private(set) var description: String = ""
     private(set) var higherLevel: String = ""
@@ -38,7 +38,7 @@ public class SpellBuilder {
     private(set) var ruleset: Ruleset = Ruleset.Rules2014
     
     // Setters
-    func setID(_ id: Int) -> SpellBuilder { self.id = id; return self }
+    func setID(_ id: UUID) -> SpellBuilder { self.id = id; return self }
     func setName(_ name: String) -> SpellBuilder { self.name = name; return self }
     func setDescription(_ desc: String) -> SpellBuilder { self.description = desc; return self }
     func setHigherLevelDesc(_ higherLevel: String) -> SpellBuilder { self.higherLevel = higherLevel; return self }
@@ -74,7 +74,7 @@ public class SpellBuilder {
     
     // Reset to default values
     func reset() {
-        id = 0; name = ""; description = ""; higherLevel = "";
+        id = UUID(); name = ""; description = ""; higherLevel = "";
         range = Range(); verbal = false; somatic = false; material = false; royalty = false;
         materials = ""; royalties = ""; ritual = false; duration = Duration();
         concentration = false; castingTime = CastingTime(); level = 0;
