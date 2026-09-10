@@ -1,5 +1,5 @@
 enum Sourcebook: Int, NameConstructible {
-	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG, TashasCOE, AcquisitionsInc, LostLabKwalish, RimeOTFrostmaiden, ExplorersGTW, FizbansTOD, StrixhavenCOC, AstralAG, TalDoreiCSR, SigilOutlands, BookOfMT, PlayersHandbook2024, GuildmastersGTR, FRHeroesOfFaerun, EberronFotA
+	case PlayersHandbook=0, XanatharsGTE, SwordCoastAG, TashasCOE, AcquisitionsInc, LostLabKwalish, RimeOTFrostmaiden, ExplorersGTW, FizbansTOD, StrixhavenCOC, AstralAG, TalDoreiCSR, SigilOutlands, BookOfMT, PlayersHandbook2024, GuildmastersGTR, FRHeroesOfFaerun, EberronFotA, ArcanaUnleashed
     
     static let coreSourcebooks = [ PlayersHandbook, XanatharsGTE, TashasCOE, PlayersHandbook2024 ]
     
@@ -43,6 +43,8 @@ enum Sourcebook: Int, NameConstructible {
             return "Forgotten Realms: Heroes of Faerûn"
         case .EberronFotA:
             return "Eberron: Forge of the Artificer"
+        case .ArcanaUnleashed:
+            return "Arcana Unleashed"
         }
     }
     
@@ -65,6 +67,7 @@ enum Sourcebook: Int, NameConstructible {
         GuildmastersGTR: "ggr",
         FRHeroesOfFaerun: "frhf",
         EberronFotA: "efa",
+        ArcanaUnleashed: "au",
     ]
     
     var code: String {
