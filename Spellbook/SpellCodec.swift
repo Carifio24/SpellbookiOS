@@ -153,7 +153,7 @@ class SpellCodec {
     func toSION(_ spell: Spell) -> SION {
         var sion: SION = [:]
         
-        sion[SpellCodec.ID_KEY].int = spell.id
+        sion[SpellCodec.ID_KEY].string = spell.id.uuidString
         sion[SpellCodec.NAME_KEY].string = spell.name
         sion[SpellCodec.DESCRIPTION_KEY].string = spell.description
         sion[SpellCodec.HIGHER_LEVEL_KEY].string = spell.higherLevel
