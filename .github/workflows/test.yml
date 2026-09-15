@@ -21,7 +21,7 @@ jobs:
             device: "iPhone 16 Pro"
             xcode: "26.1"
           - os: "26.2"
-            device: "iPad Pro 13-inch (M4)"
+            device: "iPad Pro 13-inch (M5)"
             xcode: "26.2"
     name: "Run tests: OS (${{ matrix.os }})"
     steps:
