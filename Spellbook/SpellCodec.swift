@@ -57,9 +57,22 @@ class SpellCodec {
         // Previously we had integer IDs
         // so we need to handle that
         let id = sion[SpellCodec.ID_KEY]
-        if (id.int != nil) {
-            
+        var spellUUID: UUID? = nil
+        if let intID = id.int {
+            var maybeUUID = Spellbook.uuidForID(intID)
+            if let uuid = maybeUUID {
+                spellUUID = uuid
+            } else {
+                let uuid = UUID()
+                Spellbook.setUUIDForInt(intID: intID, uuid: uuid)
+                spellUUID = uuid
+            }
+        } else if let uuidString = id.string {
+            if let uuid = UUID(uuidString: uuidString) {
+                spellUUID = uuid
+            }
         }
+        builder.setID(spellUUID ?? UUID())
         
         let locations = sion[SpellCodec.LOCATIONS_KEY]
         if let array = locations.array {
