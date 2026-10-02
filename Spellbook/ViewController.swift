@@ -510,7 +510,7 @@ class ViewController: UIViewController, UISearchBarDelegate, SWRevealViewControl
 
 // MARK: StoreSubscriber
 extension ViewController: StoreSubscriber {
-    typealias StoreSubscriberStateType = (profile: CharacterProfile?, sortFilterStatus: SortFilterStatus?, spellFilterStatus: SpellFilterStatus?, currentSpellList: [Spell], dirtySpellIDs: [Int])
+    typealias StoreSubscriberStateType = (profile: CharacterProfile?, sortFilterStatus: SortFilterStatus?, spellFilterStatus: SpellFilterStatus?, currentSpellList: [Spell], dirtySpellIDs: [UUID])
     
     func newState(state: StoreSubscriberStateType) {
         if let profile = state.profile {

@@ -9,6 +9,14 @@ func intGetter(_ sion: SION, key: String) -> Int {
     }
 }
 
+func uuidGetter(_ sion: SION, key: String) -> UUID {
+    var uuid: UUID? = nil
+    if let uuidString = sion[key].string {
+       uuid = UUID(uuidString: uuidString)
+    }
+    return uuid ?? UUID()
+}
+
 func has_key(obj: SION, key: String) -> Bool {
 	for (k, _) in obj {
 		if k.string! == key {
@@ -34,7 +42,7 @@ func parseSpell(obj: SION, b: SpellBuilder) -> Spell {
 	var jso: SION
 	
 	// Set the values that need no/trivial parsing
-    b.setID(intGetter(obj, key: "id"))
+    b.setID(uuidGetter(obj, key: "id"))
         .setName(obj["name"].string!)
         .setLevel(intGetter(obj, key: "level"))
         .setSchool(School.fromName(obj["school"].string!))

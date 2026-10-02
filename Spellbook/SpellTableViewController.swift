@@ -352,7 +352,7 @@ class SpellTableViewController: UITableViewController {
         store.dispatchFunction(FilterNeededAction())
     }
     
-    func indexPathsForIDs(spellIDs: [Int]) -> [IndexPath] {
+    func indexPathsForIDs(spellIDs: [UUID]) -> [IndexPath] {
         var indexPaths: [IndexPath] = []
         for (idx, spell) in spellArray.enumerated() {
             if (spellIDs.contains(spell.id)) {
@@ -503,7 +503,7 @@ class SpellTableViewController: UITableViewController {
 
 // MARK: StoreSubscriber
 extension SpellTableViewController: StoreSubscriber {
-    typealias StoreSubscriberStateType = (currentSpellList: [Spell], dirtySpellIDs: [Int])
+    typealias StoreSubscriberStateType = (currentSpellList: [Spell], dirtySpellIDs: [UUID])
     
     func newState(state: StoreSubscriberStateType) {
         let needReload = state.currentSpellList != spellArray

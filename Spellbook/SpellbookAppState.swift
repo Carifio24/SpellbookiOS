@@ -18,7 +18,7 @@ struct SpellbookAppState: StateType {
     var spell: Spell? = nil
     var searchQuery: String? = nil
     let spellList: [Spell]
-    var dirtySpellIDs: [Int]
+    var dirtySpellIDs: [UUID]
     var currentSpellList: [Spell]
     var profileNameList: [String] = []
     var settings: Settings

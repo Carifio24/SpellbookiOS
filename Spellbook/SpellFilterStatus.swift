@@ -26,9 +26,9 @@ class SpellFilterStatus {
     private(set) var preparedCount = 0
     private(set) var knownCount = 0
     
-    private var spellStatusMap: [Int: SpellStatus]
+    private var spellStatusMap: [UUID: SpellStatus]
     
-    init(map: [Int:SpellStatus]) {
+    init(map: [UUID: SpellStatus]) {
         self.spellStatusMap = map
         self.updateAllListCounts()
     }
@@ -41,7 +41,11 @@ class SpellFilterStatus {
         self.spellStatusMap = [:]
         if let statuses = sion[SpellFilterStatus.spellsKey].array {
             for status in statuses {
-                self.spellStatusMap[status[SpellFilterStatus.spellIDKey].int ?? 0] =
+                var key: UUID? = nil
+                if let uuidString = status[SpellFilterStatus.spellIDKey].string {
+                        key = UUID(uuidString: uuidString)
+                }
+                self.spellStatusMap[key ?? UUID()] =
                 SpellStatus(favorite: status[SpellFilterStatus.favoriteKey].bool ?? false,
                             prepared: status[SpellFilterStatus.preparedKey].bool ?? false,
                             known: status[SpellFilterStatus.knownKey].bool ?? false)
@@ -82,23 +86,23 @@ class SpellFilterStatus {
         }
     }
     
-    func getStatus(id: Int) -> SpellStatus? { return spellStatusMap[id] }
+    func getStatus(id: UUID) -> SpellStatus? { return spellStatusMap[id] }
     
     func getStatus(spell: Spell) -> SpellStatus? { return getStatus(id: spell.id) }
     
-    private func spellIDsByProperty(property: SpellStatusProperty) -> [Int] {
+    private func spellIDsByProperty(property: SpellStatusProperty) -> [UUID] {
         return spellStatusMap.filter({property($1)}).map({$0.key})
     }
     
-    func favoriteSpellIDs() -> [Int] {
+    func favoriteSpellIDs() -> [UUID] {
         return spellIDsByProperty(property: SpellFilterStatus.favoriteProperty)
     }
     
-    func preparedSpellIDs() -> [Int] {
+    func preparedSpellIDs() -> [UUID] {
         return spellIDsByProperty(property: SpellFilterStatus.preparedProperty)
     }
     
-    func knownSpellIDs() -> [Int] {
+    func knownSpellIDs() -> [UUID] {
         return spellIDsByProperty(property: SpellFilterStatus.knownProperty)
     }
     
@@ -124,11 +128,11 @@ class SpellFilterStatus {
         }
     }
     
-    func spellsWithOneProperty() -> [Int] {
+    func spellsWithOneProperty() -> [UUID] {
         return spellStatusMap.filter({ $1.favorite || $1.prepared || $1.known }).map({$0.key})
     }
     
-    // Setting whether a spell is ony a given spell list
+    // Setting whether a spell is on a given spell list
     private func setProperty(spell: Spell, value: Bool,
                              propSetter: (SpellStatus, Bool) -> Void,
                              listCountUpdater: () -> Void) {
@@ -225,7 +229,7 @@ class SpellFilterStatus {
         var spellStatuses: [SION] = []
         for (id, status) in spellStatusMap {
             var statusSION: SION = [:]
-            statusSION[SpellFilterStatus.spellIDKey].int = id
+            statusSION[SpellFilterStatus.spellIDKey].string = id.uuidString
             statusSION[SpellFilterStatus.favoriteKey].bool = status.favorite
             statusSION[SpellFilterStatus.preparedKey].bool = status.prepared
             statusSION[SpellFilterStatus.knownKey].bool = status.known
