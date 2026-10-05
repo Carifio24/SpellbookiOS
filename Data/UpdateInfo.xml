@@ -73,4 +73,8 @@
         <item name="title">Version 3.11.0 update</item>
         <item name="description">The spellbook has been updated to include the new spell and Artificer spell list from &lt;b&gt;Eberron: Forge of the Artificer&lt;/b&gt;.</item>
     </section>
+    <section name="v_3_12_0">
+        <item name="title">Version 3.12.0</item>
+        <item name="description">The spellbook has been updated to include spells from &lt;b&gt;Arcana Unleashed&lt;/b&gt;.</item>
+    </section>
 </root>
